@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 
-PKG_NAME:=luciexpress
+PKG_NAME:=juci
 PKG_VERSION:=15.6.1
 PKG_MAINTAINER:=Martin K. Schröder <martin.schroder@inteno.se>
 
