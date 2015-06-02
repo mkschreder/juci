@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="btn-group pull-right">
+			<span ng-show="status == 'ok'" class="btn pull-right"><i style="color: green;" class="fa fa-check-circle fa-2x"></i></span>
+			<span ng-show="status == 'disabled'" class="btn pull-right"><i style="color: gray;" class="fa fa-times-circle fa-2x"></i></span>
+			<span ng-show="status == 'progress'" class="btn pull-right"><i style="color: orange;" class="fa fa-spinner fa-2x fa-spin"></i></span>
+			<span ng-show="status == 'error'" class="btn pull-right"><i style="color: red;" class="fa fa-exclamation-circle fa-2x"></i></span>
+		</div>
+		<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'vodafont';">
+			{{title | translate}}
+		</h3>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="panel-body" ng-transclude>
+	</div>
+</div>

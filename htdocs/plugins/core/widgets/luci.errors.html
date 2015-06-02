@@ -1,0 +1,5 @@
+<div class="alert alert-danger" ng-show="errors.length">
+	<ul>
+		<li ng-repeat="err in errors track by $index"><!--<button class="btn btn-default pull-right" >Hide</button>-->{{(err.message||err)}}<div style="clear: both;"></div></li>
+	</ul>
+</div>

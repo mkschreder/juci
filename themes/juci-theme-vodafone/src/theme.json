@@ -1,0 +1,11 @@
+{
+	"title": "Vodafone", 
+	"index": "index.html", 
+	"styles": [
+		"css/bootstrap.min.css",
+		"css/theme.css"
+	], 
+	"scripts": [
+		"vodafone"
+	]
+}

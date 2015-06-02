@@ -1,0 +1,49 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="WifiSchedulePageCtrl">
+		<luci-config-section>
+			<luci-config-heading>{{ 'Schedule' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'wifi.schedule.info' | translate }}</luci-config-info>
+			<luci-config-lines>
+				<luci-config-line title="{{'Schedule Function'|translate}}">
+					<switch id="enabled" name="enabled" ng-model="status.schedule.value" class="green"></switch>
+				</luci-config-line>
+			</luci-config-lines>
+		</luci-config-section>
+		<luci-config-section ng-show="status.schedule.value">
+			<luci-config-heading>{{ 'Setup Scheduling' | translate }}</luci-config-heading>
+			<luci-config-lines>
+				<luci-config-line title="{{'During this time the WiFi is'|translate}}">
+					<luci-select ng-model="status.sched_status.value" ng-items="statusItems"></luci-select>
+				</luci-config-line>
+			</luci-config-lines>
+			<table class="table">
+				<thead>
+					<th translate>Day</th>
+					<th translate>Time</th>
+					<!--<th translate>Status</th>-->
+					<th></th>
+					<th></th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in schedules">
+							<td>{{ item.days.value.join(",") }}</td>
+							<td>{{ item.time.value }}</td>
+							<!--<td>{{ item.enabled.value }}</td>-->
+							<td style="width: 1%"><button class="btn btn-default" ng-click="onEditSchedule(item)"><i class="fa fa-pencil" style="{{editColor}}"></i></button></td>
+							<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteSchedule(item)"><i class="fa fa-trash-o"></i></button></td>
+					</tr>
+					<tr>
+							<td colspan="3"></td>
+							<td style="width: 1%"><button class="btn btn-default" ng-click="onAddSchedule()"><i class="fa fa-plus"></i></button></td>
+					</tr>
+				</tbody>
+			</table>
+		</luci-config-section>
+		<luci-config-apply></luci-config-apply>
+		<modal title="Add a new WiFi Schedule" ng-show="showScheduleDialog" on-accept="onAcceptSchedule()" 
+			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
+			<uci-wireless-schedule-edit ng-model="schedule" schedule="schedule" valid="scheduleValid"></uci-wireless-schedule-edit>
+			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
+		</modal>
+	</div>
+</luci-layout-with-sidebar>

@@ -1,0 +1,54 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="PhoneRingingScheduleCtrl">
+		<luci-config-section>
+			<luci-config-heading>{{ 'Ringing Schedule' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'phone.schedule.info' | translate }}</luci-config-info>
+			<p>This page is not done yet. Waiting for voice API. </p>
+			<luci-config-lines>
+				<luci-config-line title="{{'Ringing Schedule'|translate}}">
+					<switch name="enabled" ng-model="settings.enabled.value" class="green"></switch>
+				</luci-config-line>
+				<luci-config-line title="{{'During this time ringing is '|translate}}"  ng-show="settings.enabled.value">
+					<luci-select ng-model="settings.status.value" ng-items="enabledDisabledItems"></luci-select>
+				</luci-config-line>
+			</luci-config-lines>
+			<table class="table" ng-show="settings.enabled.value">
+				<thead>
+					<th translate>Day</th>
+					<th translate>Time</th>
+					<th translate>Number</th>
+					<th translate>Status</th>
+					<!--<th translate>Status</th>-->
+					<th></th>
+					<th></th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in schedules">
+							<td>{{ item.days.value.join(",") }}</td>
+							<td>{{ item.time.value }}</td>
+							<td>{{ allSipAccountsMap[item.sip_service_provider.value].name.value }}</td>
+							<td>{{ ((settings.status.value)?"Enabled":"Disabled") | translate}}</td>
+							<!--<td>{{ item.enabled.value }}</td>-->
+							<td style="width: 1%"><button class="btn btn-default" ng-click="onEditSchedule(item)"><i class="fa fa-pencil" style="{{editColor}}"></i></button></td>
+							<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteSchedule(item)"><i class="fa fa-trash-o"></i></button></td>
+					</tr>
+					<tr>
+							<td colspan="5"></td>
+							<td style="width: 1%"><button class="btn btn-default" ng-click="onAddSchedule()"><i class="fa fa-plus"></i></button></td>
+					</tr>
+				</tbody>
+			</table>
+		</luci-config-section>
+		<luci-config-apply></luci-config-apply>
+		<modal title="Add a new Ringing Schedule" ng-show="showScheduleDialog" on-accept="onAcceptSchedule()" 
+			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
+			<luci-config-lines>
+				<luci-config-line title="Phone Number">
+					<luci-select ng-model="schedule.sip_service_provider.value" ng-items="allSipAccounts" placeholder="Pick Phone Number"/>
+				</luci-config-line>
+			</luci-config-line>
+			<uci-wireless-schedule-edit ng-model="schedule" schedule="schedule" valid="scheduleValid"></uci-wireless-schedule-edit>
+			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
+		</modal>
+	</div>
+</luci-layout-with-sidebar>

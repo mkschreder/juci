@@ -1,0 +1,29 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="WifiSettingsPageCtrl">
+		<luci-config>
+			<luci-config-section>
+				<luci-config-heading>{{'Settings'|translate}}</luci-config-heading>
+				<luci-config-info>{{'wifi.settings.info'|translate}}</luci-config-info>
+				<div ng-repeat="dev in devices">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="btn-group pull-right">
+								<span class="btn " ng-click="dev.expanded = !(dev.expanded)">
+									<i class="fa fa-caret-down fa-2x" ng-show="dev.expanded"></i>
+									<i class="fa fa-caret-left fa-2x" ng-hide="dev.expanded"></i>
+								</span>
+							</div>
+							<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'vodafont';">{{dev.frequency}}</h3>
+							<div style="clear: both;"></div>
+						</div>
+						<div class="panel-body " ng-show="dev.expanded" >
+							<uci-wireless-device-edit ng-model="dev.fields"></uci-wireless-device-edit>
+						</div>
+					<div class="panel-footer" ng-show="dev.expanded">
+						<luci-config-apply></luci-config-apply>
+					</div>
+				</div>
+			</luci-config-section>
+		</luci-config>
+	</div>
+</luci-layout-with-sidebar>

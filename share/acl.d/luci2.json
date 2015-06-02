@@ -1,0 +1,435 @@
+{
+	"unauthenticated": {
+		"description": "Functions allowed for unauthenticated requests",
+		"read": {
+			"ubus": {
+				"luci2.ui": [
+					"themes"
+				], 
+				"uci": [
+					"juci"
+				]
+			}, 
+		}
+	},
+
+	"core": {
+		"description": "Core functions for LuCI",
+		"read": {
+			"ubus": {
+				"luci2.ui": [
+					"*"
+				],
+				"session": [
+					"access",
+					"destroy"
+				],
+				"uci": [
+					"*"
+				]
+			}
+		}
+	},
+
+	"status": {
+		"description": "Status information display",
+		"read": {
+			"ubus": {
+				"iwinfo": [
+					"devices",
+					"info",
+					"assoclist",
+					"phyname"
+				],
+				"router": [
+					"dslstats", 
+					"info", 
+					"clients", 
+					"igmptable"
+				],
+				"system": [
+					"info",
+					"board"
+				],
+				"network.interface": [
+					"status"
+				],
+				"luci2.network": [
+					"conntrack_count",
+					"dhcp_leases",
+					"dhcp6_leases",
+					"arp_table",
+					"routes",
+					"routes6"
+				],
+				"luci2.system": [
+					"diskfree",
+					"syslog",
+					"dmesg",
+					"process_list"
+				]
+			}
+		},
+		"write": {
+			"ubus": {
+				"luci2.system": [
+					"process_signal"
+				]
+			}
+		}
+	},
+
+	"system": {
+		"description": "General system settings",
+		"read": {
+			"ubus": {
+				"system": [
+					"info",
+					"board"
+				],
+				"luci2.system": [
+					"init_list"
+				]
+			},
+			"uci": [
+				"luci"
+			]
+		},
+		"write": {
+			"ubus": {
+				"luci2.system": [
+					"init_action"
+				]
+			},
+			"uci": [
+				"luci"
+			]
+		}
+	},
+
+	"admin": {
+		"description": "Authentication and SSH settings",
+		"read": {
+			"ubus": {
+				"luci2.system": [
+					"sshkeys_get", 
+					"upgrade_test", 
+					"upgrade_clean", 
+					"upgrade_check", 
+					"upgrade_start"
+				], 
+				"asterisk": [
+					"status"
+				], 
+				"asterisk.call_log": [
+					"list",
+					"sshkeys_get"
+				], 
+				"wps": [
+					"genpin", 
+					"setpin",
+					"pbc",
+					"showpin",
+					"stapin", 
+					"status", 
+					"stop"
+				], 
+				"router": [
+					"networks"
+				], 
+				"network.interface": [
+					"dump"
+				]
+			},
+			"uci": [
+				"dropbear", 
+				"boardpanel", 
+				"hosts",
+				"voice_client", 
+				"juci"
+			]
+		},
+		"write": {
+			"ubus": {
+				"luci2.system": [
+					"sshkeys_set",
+					"password_set"
+				], 
+				"asterisk.call_log": [
+					"list"
+				], 
+				"wps": [
+					"genpin", 
+					"setpin",
+					"pbc",
+					"showpin",
+					"stapin", 
+					"status",
+					"stop"
+				]
+			},
+			"uci": [
+				"dropbear", 
+				"boardpanel", 
+				"hosts",
+				"voice_client", 
+				"juci"
+			]
+		}
+	},
+
+	"users": {
+		"description": "Guest login settings",
+		"read": {
+			"uci": [
+				"rpcd"
+			]
+		},
+		"write": {
+			"uci": [
+				"rpcd"
+			]
+		}
+	},
+
+	"software": {
+		"description": "Package management",
+		"read": {
+			"ubus": {
+				"system": [
+					"info",
+					"board"
+				],
+				"luci2.opkg": [
+					"list",
+					"list_installed",
+					"find",
+					"config_get"
+				]
+			}
+		},
+		"write": {
+			"ubus": {
+				"luci2.opkg": [
+					"install",
+					"remove",
+					"update",
+					"config_set"
+				]
+			}
+		}
+	},
+
+	"upgrade": {
+		"description": "Firmware upgrade",
+		"read": {
+			"ubus": {
+				"luci2.system": [
+					"upgrade_test",
+					"reset_test"
+				]
+			}
+		},
+		"write": {
+			"luci-io": [
+				"upload"
+			],
+			"ubus": {
+				"luci2.system": [
+					"upgrade_start",
+					"upgrade_clean",
+					"reset_start",
+					"reboot"
+				]
+			}
+		}
+	},
+
+	"backup": {
+		"description": "Backup and Restore",
+		"read": {
+			"luci-io": [
+				"backup"
+			],
+			"ubus": {
+				"luci2.system": [
+					"backup_config_get",
+					"backup_list"
+				]
+			}
+		},
+		"write": {
+			"ubus": {
+				"luci2.system": [
+					"backup_clean",
+					"backup_config_set",
+					"backup_restore",
+					"reboot"
+				]
+			}
+		}
+	},
+
+	"startup": {
+		"description": "System boot settings",
+		"read": {
+			"ubus": {
+				"luci2.system": [
+					"init_list",
+					"rclocal_get"
+				]
+			}
+		},
+		"write": {
+			"ubus": {
+				"luci2.system": [
+					"init_action",
+					"rclocal_set"
+				]
+			}
+		}
+	},
+
+	"cron": {
+		"description": "Crontab management",
+		"read": {
+			"ubus": {
+				"luci2.system": [
+					"crontab_get"
+				]
+			}
+		},
+		"write": {
+			"ubus": {
+				"luci2.system": [
+					"crontab_set"
+				]
+			}
+		}
+	},
+
+	"leds": {
+		"description": "Hardware LED configuration",
+		"read": {
+			"ubus": {
+				"network.device": [
+					"status"
+				],
+				"luci2.system": [
+					"led_list",
+					"usb_list"
+				]
+			},
+			"uci": [
+				"system"
+			]
+		},
+		"write": {
+			"uci": [
+				"system"
+			]
+		}
+	},
+
+	"diagnostics": {
+		"description": "Network diagnostic tools",
+		"read": {
+			"ubus": {
+				"luci2.network": [
+					"ping",
+					"ping6",
+					"traceroute",
+					"traceroute6",
+					"nslookup"
+				]
+			}
+		}
+	},
+
+	"hostnames": {
+		"description": "Host entry management",
+		"read": {
+			"uci": [
+				"dhcp"
+			]
+		},
+		"write": {
+			"uci": [
+				"dhcp"
+			]
+		}
+	},
+
+	"network": {
+		"description": "Network, switch and routing configuration",
+		"read": {
+			"ubus": {
+				"network": [
+					"get_proto_handlers"
+				],
+				"network.device": [
+					"status"
+				],
+				"network.interface": [
+					"dump"
+				],
+				"network.wireless": [
+					"status"
+				],
+				"luci2.network": [
+					"switch_list",
+					"switch_info",
+					"switch_status",
+					"device_list", 
+					"conntrack_table", 
+					"dslstats"
+				],
+				"luci2.network.bwmon": [
+					"devices",
+					"statistics"
+				], 
+				"router": [ "radios" ]
+			},
+			"uci": [
+				"network",
+				"wireless",
+				"broadcom", 
+				"ddns"
+			]
+		},
+		"write": {
+			"uci": [
+				"network",
+				"wireless"
+			]
+		}
+	},
+	
+	"wireless": {
+		"description": "Wireless configuration", 
+		"read": {
+			"uci": [
+				"wireless"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"wireless", 
+				"ddns"
+			]
+		}
+	}, 
+	"firewall": {
+		"description": "Firewall configuration",
+		"read": {
+			"uci": [
+				"firewall"
+			]
+		},
+		"write": {
+			"uci": [
+				"firewall"
+			]
+		}
+	}
+}

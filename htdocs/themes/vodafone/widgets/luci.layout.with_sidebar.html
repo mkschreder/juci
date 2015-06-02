@@ -1,0 +1,41 @@
+<luci-top-bar></luci-top-bar>
+<div>
+	<div class="luci-content container dynheight" role="main" >
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10">
+				<div id="rhombus-wrap" class="visible-lg visible-md visible-sm">
+					<div id="logo"> </div>
+					<div id="rhombus"> </div>
+				</div>
+				<div class="row">
+						<luci-navbar></luci-navbar>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<luci-nav></luci-nav>
+					</div>
+					<div class="col-md-9">
+						<luci-errors></luci-errors>
+						<ng-transclude></ng-transclude>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+		<!--
+		<div class="row">
+				<luci-navbar></luci-navbar>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-3">
+				<luci-nav></luci-nav>
+			</div>
+			<div class="col-md-9">
+				<ng-transclude></ng-transclude>
+			</div>
+		</div>-->
+	</div>
+	<luci-footer></luci-footer>
+</div>

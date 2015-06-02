@@ -1,0 +1,37 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/* needed for modals */
+.modal-backdrop {
+	z-index: 0; 
+}
+
+/*input[type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label {*/
+    /*cursor: pointer;*/
+    /*font-weight: normal;*/
+    /*line-height: 20px;*/
+    /*margin-bottom: 15px;*/
+    /*padding-left: 25px;*/
+    /*position: relative;*/
+    /*z-index: 2;*/
+/*}*/
+
+.field-error {
+	border-left: 4px solid rgba(255, 0, 0, 0.6); 
+}
+
+.no-side-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.wifi-enabled {
+    color: #64bd63;
+}
+
+.wifi-disabled {
+    color: #777;
+}

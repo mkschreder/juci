@@ -1,0 +1,12 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="SettingsNetworkCtrl">
+		<luci-config-heading>{{ 'Network Settings' | translate }}</luci-config-heading>
+		<luci-config-info>{{ 'settings.network.info' | translate }}</luci-config-info>
+		<luci-config-section>
+			<div ng-repeat="interface in interfaces">
+				<uci-network-interface-edit ng-model="interface"></uci-network-interface-edit>
+			</div>
+		</luci-config-section>
+		<luci-config-apply></luci-config-apply>
+	</div>
+</luci-layout-with-sidebar>

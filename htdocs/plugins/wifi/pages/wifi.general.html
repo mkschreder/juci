@@ -1,0 +1,34 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="WifiGeneralPageCtrl">
+		<luci-config-section>
+			<luci-config-heading>{{ 'General WiFi Settings' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'wifi.general.info' | translate }}</luci-config-info>
+		</luci-config-section>
+		<luci-config-section>
+			<div class="alert alert-warning" ng-show="status.schedule.value">
+				<p translate>You have wifi-scheduling enabled. This means that your wifi will be automatically turned on and off based on your schedule settings</p>
+			</div>
+			<luci-config-lines>
+				<luci-config-line title="{{'Wifi Network'|translate}}">
+					<switch ng-model="status.wlan.value" class="green" ng-change="onApply"></switch>
+				</luci-config-line>
+				<luci-config-line ng-show="boardpanel" title="{{'Enable WiFi On/Off button on EasyBox'|translate}}">
+					<switch ng-model="boardpanel.settings.wifibutton.value" class="green" ng-change="onApply"></switch>
+				</luci-config-line>
+			</luci-config-lines>
+		</luci-config-section>
+		<luci-config-section ng-show="status.wlan.value">
+			<luci-config-heading>{{ 'Setup' | translate }}</luci-config-heading>
+			<p translate>wifi.general.setup.info</p>
+			<br/>
+			<div class="alert alert-info" ng-show="info">
+				<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{info}}</p>
+			</div>
+			<div class="row" ng-repeat="iface in interfaces">
+				<div class="col-md-12" >
+					<uci-wireless-interface ng-model="iface"></uci-wireless-interface>
+				</div>
+			</div>
+		</luci-config-section>
+	</div>
+</luci-layout-with-sidebar>

@@ -1,0 +1,13 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="StatusSystemPage">
+		<luci-table
+			title="{{'System Status'|translate}}"
+			data="systemStatusTbl"></luci-table>
+		<luci-table
+			title="{{'Memory'|translate}}"
+			data="systemMemoryTbl"></luci-table>
+		<luci-table
+			title="{{'Storage'|translate}}"
+			data="systemStorageTbl"></luci-table>
+	</div>
+</luci-layout-with-sidebar>

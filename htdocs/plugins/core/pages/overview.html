@@ -1,0 +1,116 @@
+<luci-layout-single-column>
+	<div ng-controller="OverviewPageCtrl">
+	
+		<div class="row">
+			<div class="col-lg-4 visible-lg" ng-show="dsl.mode != ''">
+				<div style="position: relative;">
+					<span ng-show="dsl.max_rate_down" style="position: absolute; left: 250px; top: 100px; white-space: nowrap; font-family: 'vodafont';">{{dsl.max_rate_down}} Mbit/s</span>
+					<span ng-show="dsl.max_rate_up" style="position: absolute; left: 250px; top: 130px; white-space: nowrap; font-family: 'vodafont';">{{dsl.max_rate_up}} Mbit/s</span>
+					<div style="position: absolute; width: 110px; height: 1px; background-color: #a9b300; left: 220px; top: 126px;"></div>
+					<div style="position: absolute; width: 60px; height: 30px; background-color: #a9b300; left: 164px; top: 112px; border-radius: 20px; color: white; padding: 3px 0px; text-align: center;">{{wan_type}}</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+					<center>
+						<img style="width: 300px;" ng-src="/img/hardware/{{config.system.hardware}}.jpg" usemap="#routerBot" alt="Router"/>
+					</center>
+			</div> 
+		</div>
+		<div class="row">
+			<div class="col-lg-12 visible-lg"> 
+				<center style="position:relative; font-size: 3em; color: #00b0c9; ">
+					<img ng-src="themes/vodafone/img/overview-background.jpg" id="Image-Maps-Com-image-maps-2015-04-08-032815" usemap="#image-maps-2015-04-08-032815" alt="Router">
+					<div style="position: absolute; top: 70px; left: 100px; text-align: center; width: 60px;">{{wireless.clients.length}}</div>
+					<div style="position: absolute; top: 70px; left: 450px; text-align: center; width: 60px;">{{network.clients.length}}</div>
+					<div style="position: absolute; top: 70px; left: 795px; text-align: center; width: 60px;">{{sipAccounts.length||0}}</div>
+				</center>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<center><h3 style="color: #00b0c9"><i class="fa fa-wifi"></i> WiFi</h3></center>
+				<table class="table">
+					<tr>
+						<td>
+							<div class="col-xs-2"><i class="fa fa-calendar fa-2x"></i></div>
+							<div class="col-xs-8">
+								<a class="overview-list-item-text" href="#!/wifi-schedule"><strong>{{'Schedule'|translate}}</strong></a>
+							</div>
+							<div class="col-xs-2">
+								<a class="label label-{{(wifi.status.schedule.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWIFISchedToggle()"><strong>{{wifiSchedStatus| translate}}</strong></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="col-xs-2"><i class="fa fa-wifi fa-2x"></i></div>
+							<div class="col-xs-8">
+								<a class="overview-list-item-text" href="#!/wifi-wps"><strong>WPS</strong></a>
+							</div>
+							<div class="col-xs-2">
+								<a class="label label-{{(wifi.status.wps.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWPSToggle()"><strong>{{wifiWPSStatus | translate}}</strong></a>
+							</div>
+						</td>
+					</tr>
+					<tr ng-repeat="client in wireless.clients">
+						<td>
+								<div class="col-xs-2"><i class="fa fa-desktop fa-2x"></i></div>
+								<div class="col-xs-8">{{client.hostname}}<br/>{{client.ipaddr}}</div>
+								<div ng-show="client.connected" class="col-xs-2" style="color: #a9b400;">
+									<wifi-signal-indicator ng-model="client.snr"></wifi-signal-indicator>
+								</div>
+								<div ng-show="!client.connected" class="col-xs-2" style="color:#eee;"><i class="fa fa-signal fa-2x"></i></div>
+						</td>
+					</tr>
+				</table>
+				<section ng-show="wireless.guest_clients.length > 0">
+					<center><h3 style="color: #00b0c9">Guest WiFi</h3></center>
+					<table class="table">
+						<tr ng-repeat="client in wireless.guest_clients">
+							<td>
+								<div class="col-xs-2"><i class="fa fa-desktop fa-2x"></i></div>
+								<div class="col-xs-8">{{client.hostname}}<br/>{{client.ipaddr}}</div>
+								<div ng-show="client.connected" class="col-xs-2" style="color: #a9b400"><i class="fa fa-signal fa-2x"></i></div>
+								<div ng-show="!client.connected" class="col-xs-2" style="color: #eee"><i class="fa fa-signal fa-2x"></i></div>
+							</td>
+						</tr>
+					</table>
+				</section>
+			</div>
+			<div class="col-md-4">
+				<center><h3 style="color: #00b0c9"><i class="fa fa-globe"></i> Network</h3></center>
+				<table class="table">
+					<tr ng-repeat="client in network.clients">
+						<td>
+							<div class="col-xs-2"><i class="fa fa-laptop fa-2x"></i></div>
+							<div class="col-xs-8">{{client.hostname || defaultHostName}}<br/>{{client.ipaddr}}</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<center><h3 style="color: #00b0c9"><i class="fa fa-phone"></i> Phone</h3></center>
+				<table class="table">
+					<tr>
+						<td>
+							<div class="col-xs-2"><i class="fa fa-calendar fa-2x"></i></div>
+							<div class="col-xs-8">
+								<a class="overview-list-item-text" href="#!/phone-ringing-schedule"><strong>{{'Schedule'|translate}}</strong></a>
+							</div>
+							<div class="col-xs-2">
+								<a class="label label-{{(voice_client.RINGING_STATUS.enabled.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onPhoneToggle()"><strong>{{phoneSchedStatus | translate}}</strong></a>
+							</div>
+						</td>
+					</tr>
+					<tr ng-repeat="sip in sipAccounts track by $index">
+						<td >
+							<div class="col-xs-2"><strong>S{{$index|uppercase}}: </strong></div>
+							<div class="col-xs-8"><strong>{{sip.user.value||'Unknown'}}</strong></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+</luci-layout-single-column>

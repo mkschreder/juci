@@ -1,0 +1,26 @@
+{
+	"scripts": [
+		"phone", 
+		"widgets/uci.voice_client.call_filter"
+	], 
+	"pages": {
+		"phone/number_blocking": {
+			"view": "pages/phone.number_blocking"
+		}, 
+		"phone/call_log": {
+			"view": "pages/phone.call_log"
+		}, 
+		"phone/numbers": {
+			"view": "pages/phone.numbers"
+		}, 
+		"phone/lines": {
+			"view": "pages/phone.lines"
+		}, 
+		"phone/ringing_schedule": {
+			"view": "pages/phone.ringing_schedule"
+		}, 
+		"phone/speed_dialing": {
+			"view": "pages/phone.speed_dialing"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+<luci-layout-with-sidebar>
+	<div id="dslstats" ng-controller="StatsCtrl" ng-form='myForm'>
+		<h2 translate>DSL Status</h2>
+		<p translate>dsl.status.info</p>
+		<div  ng-repeat="tbl in tables track by $index">
+			<h2>{{tbl.title|translate}}</h2>
+			<table class="table">
+				<thead>
+					<th ng-repeat="col in tbl.columns  track by $index"  style="{{($index != 0)?'text-align: center;width: 30%':''}}">{{col}}</th>
+				</thead>
+				<tr ng-repeat="row in tbl.rows  track by $index">
+					<td ng-repeat="cell in row  track by $index" style="{{($index != 0)?'text-align: center;':''}}">{{cell}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</luci-layout-with-sidebar>

@@ -1,0 +1,13 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="StatusNetworkPage">
+		<luci-table
+			title="{{'Connections'|translate}}"
+			data="systemConnectionsTbl"></luci-table>
+		<luci-table
+			title="{{'DHCP Leases'|translate}}"
+			data="systemDHCPLeasesTbl"></luci-table>
+		<luci-table
+			title="{{'Active Stations'|translate}}"
+			data="systemStationsTbl"></luci-table>
+	</div>
+</luci-layout-with-sidebar>

@@ -1,0 +1,10 @@
+{
+	"scripts": [
+		"dropbear"
+	], 
+	"pages": {
+		"settings/dropbear": {
+			"view": "pages/services.dropbear"
+		}
+	}
+}

@@ -1,0 +1,58 @@
+<div>
+	<luci-config-lines>
+		<luci-config-line title="{{'MAC Filtering'|translate}}">
+			<switch ng-model="interface.macfilter.value" class="green" ng-change="onFilterEnable"></switch>
+		</luci-config-line>
+	</luci-config-lines>
+	<div ng-show="interface.macfilter.value">
+		<!--<div class="alert alert-danger">
+			<div ng-message="pattern" translate><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>You must enter a valid MAC address!</div>
+		</div>-->
+		<luci-config-lines>
+			<luci-config-line title="{{'Access for listed devices'|translate}}">
+				<div class="btn-group">
+					<button ng-repeat="mode in [[1,'allow'], [2, 'deny']]" class="btn btn-default" ng-model="interface.macmode.value" btn-radio="mode[0]">{{ 'interface.macmode.'+mode[1] | translate}}</button>
+				</div>
+			</luci-config-line>
+			<luci-config-line title="{{'Currently added devices'|translate}}">
+				<table class="table">
+					<tr ng-repeat="mac in maclist">
+						<td>
+							<input type="text" class="form-control" ng-model="mac.hostname" ng-blur="rebuildMacList()"/>
+						</td>
+						<td>
+							<input type="text" class="form-control" ng-model="mac.macaddr" ng-blur="rebuildMacList()" placeholder="xx:xx:xx:xx:xx:xx" /><!-- ng-pattern="/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/"-->
+						</td>
+						<td>
+							<button class="btn btn-default" ng-click="onDeleteHost(mac)"><i class="fa fa-trash-o"></i></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>
+							<button class="btn btn-default" ng-click="onAddNewClient()"><i class="fa fa-plus"></i></button>
+						</td>
+					</tr>
+				</table>
+			</luci-config-line>
+			<luci-config-line title="{{'Add currently connected hosts to the list'|translate}}">
+				<button class="btn btn-default" ng-click="onAddClients()"><i class="fa fa-plus"></i></button>
+			</luci-config-line>
+		</luci-config-lines>
+	</div>
+	<modal title="{{'Add clients to MAC filtering list'|translate}}" ng-show="showModal" on-accept="onAcceptModal()" on-dismiss="onDismissModal()" dismiss-label="{{'Cancel'|translate}}" accept-label="{{'Save'|translate}}">
+		<div class="row" ng-repeat="cl in client_list">
+			<div class="col-xs-6">
+                <div class="checkbox checkbox-small checkbox-info">
+                    <input type="checkbox" ng-model="cl.checked"/>
+				    <label><strong>{{cl.client.hostname}}</strong></label>
+                </div>
+			</div>
+			<div class="col-xs-6" style="margin-top: 5px;">
+				<label>{{cl.client.macaddr}}</label>
+			</div>
+		</div>
+	</modal>
+</div>
+

@@ -1,0 +1,49 @@
+body {
+	font-size: 16px;
+}
+
+div.logo {
+	background-image: url('../img/luci_default.png'); 
+	background-size: 100% auto; 
+	height: 20px; 
+	width: 91px; 
+	margin-left: 20px;
+}
+
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+#logo {
+	float: left;
+}
+#top-bar {
+	background-color: #ebebeb;
+	border-bottom: 1px solid #bbb;
+	height: 50px;
+	margin-bottom: 20px;
+	position: relative;
+	font-size: 14px;
+	line-height: 50px;
+}
+#top-bar-content {
+	width: 950px;
+	margin: 0 auto;
+	padding-left: 80px;
+}
+#top-info-mode {
+	float: right;
+}
+#top-info-logged-user {
+	float: right;
+	margin-right: 15px;
+}
+#top-info-mode .chosen-container {
+	background-color: #fff;
+	display: block;
+	margin-top: 5px;
+}
+
+.navbar-default {
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}

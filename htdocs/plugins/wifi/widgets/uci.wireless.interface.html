@@ -1,0 +1,48 @@
+<div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="btn-group pull-right">
+				<span class="btn">
+					<i ng-class="interface.disabled.value?'wifi-disabled':'wifi-enabled'" class="fa fa-wifi fa-2x"/>
+				</span>
+				<span class="btn " ng-click="expanded = !expanded">
+					<i class="fa fa-caret-down fa-2x" ng-show="expanded"></i>
+					<i class="fa fa-caret-left fa-2x" ng-hide="expanded"></i>
+				</span>
+			</div>
+			<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'vodafont';">{{interface.ssid.value}} ({{interface[".frequency"]}})</h3>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="panel-body " ng-show="expanded" >
+			<luci-config-lines>
+				<luci-config-line title="{{'Enabled'|translate}}"><switch ng-model="interface.disabled.value" class="green" inverted></switch></luci-config-line>
+			</luci-config-lines>
+			<luci-config-lines ng-hide="interface.disabled.value">
+				<luci-config-line title="{{'wifi-iface.ssid'|translate}}">
+					<input type="text" class="form-control" placeholder="Wifi Name" ng-model="interface.ssid.value" maxlength="32"/>
+				</luci-config-line>
+				<luci-config-line title="{{'wifi-iface.closed'|translate}}">
+					<switch id="enabled" name="enabled" ng-model="interface.closed.value" class="green" inverted></switch>
+				</luci-config-line>
+				<luci-config-line title="{{'wifi-iface.device'|translate}}">
+					<luci-select ng-model="interface.device.value" ng-items="devices" placeholder="Choose Radio"></luci-select>
+				</luci-config-line>
+				<luci-config-line title="{{'wifi-iface.encryption'|translate}}">
+					<luci-select ng-model="interface.encryption.value" ng-items="cryptoChoices" placeholder="Choose Protection"/>
+				</luci-config-line>
+				<luci-config-line title="{{'wifi-iface.key'|translate}}" ng-show="interface.encryption.value != 'none'">
+					<input type="{{(!showPassword)?'password':'text'}}" class="form-control" placeholder="{{'wifi-iface.key'|translate}}" ng-model="interface.key.value" />
+					<div class="checkbox checkbox-info">
+						<input type="checkbox" ng-model="showPassword" />
+						<label><strong>{{'Display Characters'|translate}}</strong></label>
+					</div>
+				</luci-config-line>
+			</luci-config-lines>
+			<luci-errors ng-model="errors"/>
+		</div>
+		<div class="panel-footer" ng-show="expanded">
+			<luci-config-apply on-pre-apply="onPreApply()"></luci-config-apply>
+		</div>
+	</div>
+</div>
+

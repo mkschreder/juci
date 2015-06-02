@@ -1,0 +1,50 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="InternetPortMappingPageCtrl">
+		<h2 translate>Port Mapping</h2>
+		<p translate>Port mapping allows remote computers to connect to a specific device within your private network.</p>
+		<!--<div class="panel panel-default" ng-show="rule">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{rule[".name"]}}</h3>
+			</div>
+			<div class="panel-body">
+				<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
+			</div>
+			<div class="panel-footer">
+				<luci-config-apply ></luci-config-apply>
+			</div>
+		</div>-->
+		<table class="table">
+			<thead><th translate>Local IP</th><th translate>Protocol</th><th translate>Local port</th><th translate>Public Port</th><th></th><th></th></thead>
+			<tbody ng-repeat="r in redirects">
+				<tr>
+					<td>{{ r.dest_ip.value }}</td>
+					<td>{{ r.proto.value }}</td>
+					<td>{{ r.dest_port.value }}</td>
+					<td>{{ r.src_dport.value }}</td>
+					<td style="width: 1%"><button class="btn btn-default" ng-click="onEditRule(r)" ng-hide="r['.edit']"><i class="fa fa-pencil" style="{{editColor}}"></i></button></td>
+					<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteRule(r)"><i class="fa fa-trash-o"></i></button></td>
+				</tr>
+				<tr ng-show="r['.edit']">
+					<td colspan="6">
+						<uci-firewall-nat-rule-edit ng-model="r"></uci-firewall-nat-rule-edit>
+						<div class="btn-toolbar pull-right" >
+							<button class="btn btn-lg btn-primary" ng-click="onAcceptEdit(r)" ng-disabled="busy">
+								<i class="fa fa-spinner" ng-show="r['.busy']"/>{{ "Apply"| translate }}
+							</button>
+							<button class="btn btn-lg btn-default" ng-click="onCancelEdit(r)">{{ "Cancel" | translate }}</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td colspan="5"></td>
+					<td style="width: 1%"><button class="btn btn-default" ng-click="onAddRule()"><i class="fa fa-plus"></i></button></td>
+				</tr>
+			</tbody>
+		</table>
+		<!--<modal title="Add Port Mapping" ng-show="showModal" on-accept="onAcceptModal()" on-dismiss="onDismissModal()" dismiss-label="Cancel" accept-label="Save">
+			<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
+		</modal>-->
+	</div>
+</luci-layout-with-sidebar>

@@ -1,0 +1,21 @@
+{
+  "name": "luci",
+  "version": "1.0.0",
+  "main": "css/app.css",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "angular": "*",
+    "angular-gettext": "*",
+    "angular-ui": "*",
+    "angular-ui-bootstrap": "*",
+    "angular-ui-router": "*",
+    "bootstrap": "*",
+    "jquery": "*"
+  },
+  "devDependencies": {
+  
+  }
+}

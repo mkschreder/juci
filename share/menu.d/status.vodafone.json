@@ -1,0 +1,12 @@
+{
+    "status/status/voice": {
+        "title": "Voice",
+        "acls": [ "status" ],
+        "index": 20
+    },
+    "status/status/tv": {
+        "title": "Vodafone TV",
+        "acls": [ "status" ],
+        "index": 30
+    }
+}

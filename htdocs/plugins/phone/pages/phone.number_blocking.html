@@ -1,0 +1,63 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="PhoneNumberBlockingPageCtrl">
+		<luci-config-heading>{{ 'Number Blocking' | translate }}</luci-config-heading>
+		<luci-config-info>{{ 'phone.number_blocking.info' | translate }}</luci-config-info>
+		
+		<luci-config-section>
+			<h2 translate>Outgoing Calls</h2>
+			<luci-config-lines>
+				<luci-config-line title="Outgoing Number Blocking">
+					<switch ng-model="filter.block_outgoing.value"></switch>
+				</luci-config-line>
+			<luci-config-lines>
+			<luci-config-lines ng-show="filter.block_outgoing.value">
+				<hr/>
+				<luci-config-line title="Do not allow connections to these numbers">
+					<div class="row" ng-repeat="rule in outgoingRules track by rule['.name']">
+						<div class="form-group form-inline">
+							<input type="text" class="form-control" ng-model="rule.extension.value" ng-blur="onSave()" placeholder="{{'Phone Extension'|translate}}"/>
+							<button class="btn btn-default" ng-click="onDeleteOutgoingRule(rule)"><i class="fa fa-trash"></i></button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group form-inline">
+							<button class="btn btn-default pull-right" ng-click="onAddOutgoingRule()"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+				</luci-config-line>
+				<hr/>
+				<i translate>You can also block ranges of numbers.For example: "0160#" blocks all numbers starting with "0160".</i>
+				<luci-config-line title="Block connections to all foreign numbers">
+					<switch ng-model="filter.block_foreign.value"></switch>
+				</luci-config-line>
+				<luci-config-line title="Block connections to all special rate numbers">
+					<switch ng-model="filter.block_special_rate.value"></switch>
+				</luci-config-line>
+			<luci-config-lines>
+		</luci-config-section>
+		<luci-config-section>
+			<h2 translate>Incoming Calls</h2>
+			<luci-config-lines>
+				<luci-config-line title="Incoming Number Blocking">
+					<switch ng-model="filter.block_incoming.value"></switch>
+				</luci-config-line>
+			<luci-config-lines>
+			<luci-config-lines ng-show="filter.block_incoming.value">
+				<luci-config-line title="Do not allow connections from these numbers">
+					<div class="row" ng-repeat="rule in incomingRules">
+						<div class="form-group form-inline">
+							<input type="text" class="form-control" ng-model="rule.extension.value"  ng-blur="onSave()" placeholder="{{'Phone Extension'|translate}}"/>
+							<button class="btn btn-default" ng-click="onDeleteIncomingRule(rule)"><i class="fa fa-trash"></i></button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group form-inline">
+							<button class="btn btn-default pull-right" ng-click="onAddIncomingRule()"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+				</luci-config-line>
+			<luci-config-lines>
+		</luci-config-section>
+		<luci-config-apply></luci-config-apply>
+	</div>
+</luci-layout-with-sidebar>

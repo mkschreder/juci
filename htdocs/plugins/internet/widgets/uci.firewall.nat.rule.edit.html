@@ -1,0 +1,67 @@
+<form name="ruleForm" class="form-horizontal" novalidate>
+	<div class="form-group">
+			<label for="device" class="control-label col-xs-4" translate>Device</label>
+			<div class="col-xs-8" id="device">
+				<luci-select ng-model="rule.dest_ip.value" ng-items="deviceChoices" placeholder="Select connected device"></luci-select>
+			</div>
+	</div>
+	<div class="form-group">
+			<label for="ipAddress" class="control-label col-xs-4" translate>Local IP Address</label>
+			<div class="col-xs-8">
+				<input id="ipAddress" type="text" class="form-control" ng-model="rule.dest_ip.value" />
+			</div>
+	</div>
+	<div class="form-group">
+		<label for="protocol" class="control-label col-xs-4" translate>Protocol</label>
+		<div class="col-xs-8" id="protocol">
+			<luci-select ng-model="rule.proto.value" ng-items="protocolChoices" placeholder="Select protocol"></luci-select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="range" class="control-label col-xs-4">Type</label>
+		<div class="col-xs-8" id="range">
+			<div class="btn-group">
+				<button ng-repeat="item in [[false,'Port'], [true, 'Port range']]" class="btn btn-default" ng-model="portIsRange" btn-radio="item[0]" ng-click="onPortRangeClick(item[0])">{{item[1]}}</button>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" >
+		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Public port</label>
+		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Public port range</label>
+		<div class="col-xs-8" ng-class="{'field-error': rule.src_dport.error}" >
+			<luci-input-port ng-model="rule.src_dport.value" port-range="portIsRange"/>
+		</div>
+	</div>
+	<div class="form-group" >
+		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Private port</label>
+		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Private port range</label>
+		<div class="col-xs-8" ng-class="{'field-error': rule.dest_port.error}" >
+			<luci-input-port ng-model="rule.dest_port.value" port-range="portIsRange"/>
+		</div>
+	</div>
+	<!--<div class="form-group" ng-show="portIsRange" >
+		<label for="range" class="control-label col-xs-4">Public port range</label>
+		<div class="col-xs-8" ng-class="{'field-error': rule.src_dport.error}" >
+			<luci-input-port-range ng-model="rule.src_dport.value" />
+		</div>
+	</div>
+	<div class="form-group" ng-show="portIsRange" >
+		<label for="range" class="control-label col-xs-4">Private port range</label>
+		<div class="col-xs-8" ng-class="{'field-error': rule.dest_port.error}" >
+			<luci-input-port-range ng-model="rule.dest_port.value" />
+		</div>
+	</div>-->
+	<!--<div ng-show="portIsRange" > 
+		<input type="text" ng-model="rule.dest_port.value"/>
+		<luci-input-port-range name="publicPortRange" model="rule.src_dport" form="ruleForm" label="Public port range" label-class="col-xs-4" input-outer-class="col-xs-3" message-class="col-xs-8" message-offset-class="col-xs-offset-4" />
+	</div>
+	<div ng-show="portIsRange">
+		<luci-input-port-range name="privatePortRange" model="rule.dest_port" form="ruleForm" label="Private port range" label-class="col-xs-4" input-outer-class="col-xs-3" message-class="col-xs-8" message-offset-class="col-xs-offset-4" />
+	</div>
+	<div ng-show="!portIsRange">
+		<luci-input-port id="publicPortId" name="publicPort" model="rule.src_dport" form="ruleForm" label="Public port" label-class="col-xs-4" input-outer-class="col-xs-3" message-class="col-xs-8" message-offset-class="col-xs-offset-4" />
+	</div>
+	<div ng-show="!portIsRange">
+		<luci-input-port id="privatePortId" name="privatePort" model="rule.dest_port" form="ruleForm" label="Private port" label-class="col-xs-4" input-outer-class="col-xs-3" message-class="col-xs-8" message-offset-class="col-xs-offset-4" />
+	</div>-->
+</form>

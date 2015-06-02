@@ -1,0 +1,14 @@
+.checkbox-info input[type="checkbox"] {
+	cursor: pointer; 
+}
+.checkbox-info input[type="checkbox"]:checked + label::before {
+	background-color: #64bd63;
+	border-color: #808080;
+}
+.checkbox-info input[type="checkbox"]:checked + label::after {
+	color: #fff;
+}
+.checkbox-small {
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}

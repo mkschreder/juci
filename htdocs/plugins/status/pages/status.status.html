@@ -1,0 +1,31 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="StatsOverviewCtrl">
+		<luci-config-section>
+			<luci-config-heading>{{ 'Status' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'status.status.info' | translate }}</luci-config-info>
+		</luci-config-section>
+		<luci-expandable title="{{sec.name}}" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface">
+			<luci-config-lines ng-hide="sec.interface.errors" >
+				<luci-config-line title="{{'IP Address'|translate}}">
+					<strong>{{sec.interface["ipv4-address"][0].address}}</strong>
+				</luci-config-line>
+				<luci-config-line title="{{'Gateway'|translate}}" ng-show="sec.interface['route'][0].nexthop">
+					<strong>{{sec.interface["route"][0].nexthop}}</strong>
+				</luci-config-line>
+				<luci-config-line title="{{'Primary DNS'|translate}}" ng-show="sec.interface['dns-server'][0]">
+					<strong>{{sec.interface["dns-server"][0]}}</strong>
+				</luci-config-line>
+				<luci-config-line title="{{'Secondary DNS'|translate}}" ng-show="sec.interface['dns-server'][1]">
+					<strong>{{sec.interface["dns-server"][1]}}</strong>
+				</luci-config-line>
+			</luci-config-lines>
+		</luci-expandable>
+		<luci-expandable title="DSL" status="dsl_status" ng-show="dsl_status == 'ok' || dsl_status == 'progress'">
+			<luci-config-lines >
+				<luci-config-line title="{{'Line Status'|translate}}">
+					<strong>{{dslinfo.status}}</strong>
+				</luci-config-line>
+			</luci-config-lines>
+		</luci-expandable>
+	</div>
+</luci-layout-with-sidebar>

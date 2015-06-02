@@ -1,0 +1,40 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="StatusEventsPageCtrl">
+		<luci-config-section>
+			<luci-config-heading>{{ 'Event Log' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'status.eventlog.info' | translate }}</luci-config-info>
+			<luci-config-lines>
+				<luci-config-line title="Categories to Show">
+					<div class="row" ng-class="{'field-error': schedule.days.error}" >
+							<div class="col-xs-4" ng-repeat="type in allLogTypes">
+								<div class="checkbox checkbox-info">
+									<input type="checkbox" checklist-model="selectedLogTypes" checklist-value="type.value"> 
+									<label>{{type.label}}</label>
+								</div>
+							</div>
+						</div>
+				</luci-config-line>
+				<luci-config-line title="Events to Show">
+					<luci-select ng-model="selectedShowType" ng-items="allEventTypes" placeholder="Select events to show" on-change="onTypeChanged()"></luci-select>
+				</luci-config-line>
+			</luci-config-lines>
+		</luci-config-section>
+		<luci-config-section>
+			<luci-config-heading>{{'Log' | translate}}</luci-config-heading>
+			<table class="table">
+				<thead>
+					<th translate>Date</th>
+					<th translate>Type</th>
+					<th translate>Source</th>
+					<th translate>Message</th>
+				</thead>
+				<tr ng-repeat="line in logs track by $index" class="{{lineClass(line)}}">
+					<td nowrap>{{line[0]}}</td>
+					<td>{{line[1]}}</td>
+					<td>{{line[2]}}</td>
+					<td>{{line[3]}}</td>
+				</tr>
+			</table>
+		</luci-config-section>
+	</div>
+</luci-layout-with-sidebar>

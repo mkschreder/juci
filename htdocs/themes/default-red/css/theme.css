@@ -1,0 +1,20 @@
+body {
+	font-size: 16px;
+}
+
+div.logo {
+	background-image: url('../img/inteno_white.png'); 
+	background-size: 100% auto; 
+	height: 20px; 
+	width: 91px; 
+}
+.top-bar { 
+	margin-bottom: 20px; 
+	background-color: #EBEBEB;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px; 
+}
+
+.navbar-default {
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}

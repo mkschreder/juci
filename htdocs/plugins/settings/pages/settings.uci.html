@@ -1,0 +1,47 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="SettingsUCIController">
+		<h2>Advanced settings</h2>
+		<ui-select ng-model="selectedSection"
+				 theme="bootstrap"
+				 search-enabled="false"
+				 style="width: 200px;"
+				 on-select="onChangeSection($item, $model)"
+		>
+			<ui-select-match placeholder="Select config section...">{{$select.selected.label}}</ui-select-match>
+			<ui-select-choices repeat="section in sections"
+							 refresh-delay="0">
+				<div >{{section.label}}</div>
+			</ui-select-choices>
+		</ui-select><br/><br/>
+		<span ng-show="loading" translate>Loading</span>
+		<div class="panel panel-danger" ng-show="error && !loading">
+			<div class="panel-heading">
+				<h3 class="panel-title">ERROR</h3>
+			</div>
+			<div class="panel-body">
+				<p class="col-md-12" style="font-size: 20px; color: red;" >{{error}}</p>
+			</div>
+		</div>
+		<div ng-repeat="(section_id, values) in subsections" ng-show="!loading" class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{ section_id }}</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row" ng-repeat="(k, v) in values">
+						<div class="col-md-6">
+							{{k}}
+						</div>
+						<div class="col-md-6">
+							<input type="text" class="form-control" ng-model="values[k]"/>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<button class="btn btn-primary" ng-click="onSaveSection(section_id)"> Save </button>
+					<button class="btn btn-default" ng-click="onResetSection(section_id)"> Reset </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</luci-layout-with-sidebar>

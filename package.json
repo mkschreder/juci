@@ -1,0 +1,32 @@
+{
+  "name": "LuCi",
+  "version": "0.0.1",
+  "dependencies": {
+    "JSON": "*",
+    "express": "*",
+    "body-parser": "*",
+    "grunt": "*",
+    "grunt-angular-gettext": "*",
+    "request": "*",
+    "glob": "*",
+    "async": "*",
+    "expect.js": "*",
+    "object-assign": "*",
+    "jquery-deferred": "*",
+    "najax": "*",
+    "watchjs": "*",
+    "uglify-js": "*", 
+    "array.prototype.find": "*"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "devDependencies": {
+    "jasmine-core": "~2.3.3",
+    "karma-jasmine": "~0.3.5",
+    "karma-firefox-launcher": "~0.1.6",
+    "mocha": "~2.2.5",
+    "karma-mocha": "~0.1.10"
+  }
+}

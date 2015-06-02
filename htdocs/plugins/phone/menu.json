@@ -1,0 +1,41 @@
+{
+	"phone": {
+		"title": "Phone", 
+		"index": 20
+	}, 
+	"phone/call_log": {
+		"title": "Call Log",
+		"acls": [  ],
+		"index": 10
+	},
+	"phone/number_blocking": {
+		"title": "Number Blocking",
+		"modes": [ "expert" ], 
+		"acls": [  ],
+		"index": 20
+	},
+	"phone/ringing_schedule": {
+		"title": "Ringing Schedule",
+		"modes": [ "expert" ], 
+		"acls": [  ],
+		"index": 30
+	},
+	"phone/numbers": {
+		"title": "Phone Numbers",
+		"modes": [ "expert" ], 
+		"acls": [  ],
+		"index": 40
+	},
+	"phone/lines": {
+		"title": "Phone Lines",
+		"modes": [ "expert" ], 
+		"acls": [  ],
+		"index": 41
+	},
+	"phone/speed_dialing": {
+		"title": "Speed Dialing", 
+		"modes": [ "expert" ], 
+		"acls": [ ], 
+		"index": 50
+	}
+}

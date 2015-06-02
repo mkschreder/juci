@@ -1,0 +1,7 @@
+{
+	"index": "index.html", 
+	"styles": [
+		"css/theme.css", 
+		"css/bootstrap.min.css"
+	]
+}

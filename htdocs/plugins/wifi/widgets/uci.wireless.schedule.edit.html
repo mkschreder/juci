@@ -1,0 +1,22 @@
+<form name="ruleForm" class="form-horizontal" novalidate>
+	<!--<div class="modal-body">-->
+		<luci-config-lines>
+			<luci-config-line title="{{'Time Frame'|translate}}">
+				<luci-select ng-model="selectedTimeFrame" on-change="onChangeDays()" ng-items="allTimeFrames"></luci-select>
+			</luci-config-line>
+			<luci-config-line title="{{'Days'|translate}}" no-pull >
+				<div class="row" ng-class="{'field-error': schedule.days.error}" >
+					<div class="col-xs-6 " ng-repeat="day in allDayNames">
+						<div class="checkbox checkbox-info">
+							<input type="checkbox" checklist-model="schedule.days.value" checklist-value="day.value">
+							<label><strong>{{day.label}}</strong></label>
+						</div>
+					</div>
+				</div>
+			</luci-config-line>
+			<luci-config-line title="{{'Time'|translate}}" no-pull>
+				<luci-input-timespan ng-model="schedule.time" luci-timespan-validator="schedule.time.value"></luci-input-timespan>
+			</luci-config-line>
+		</luci-config-lines>
+	<!--</div>-->
+</form>

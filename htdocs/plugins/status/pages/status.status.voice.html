@@ -1,0 +1,41 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="StatusVoicePageCtrl">
+		<luci-config-section>
+			<luci-config-heading>{{ 'Voice Status' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'status.voice.info' | translate }}</luci-config-info>
+			<h3>{{'Your Phone Numbers'|translate}}</h3>
+			<table class="table">
+				<tr>
+					<th translate>Name</th>
+					<th translate>Phone Number</th>
+					<th translate>Domain</th>
+					<th style="text-align: center;" translate>Status</th>
+				</tr>
+				<tr ng-repeat="sip in sipAccounts track by $index">
+					<td>{{sip[".config"].name.value}}</td>
+					<td>{{sip.username}}</td>
+					<td>{{sip.domain}}</td>
+					<td style="text-align: center;">
+						<i class="fa fa-check-circle fa-2x text-success" ng-show="sip.registered"/>
+						<i class="fa fa-times-circle fa-2x" ng-hide="sip.registered"/>
+					</td>
+				</tr>
+			</table>
+		</luci-config-section>
+		<luci-config-section>
+			<luci-config-heading>{{ 'Voice Lines' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'status.voice_lines.info' | translate }}</luci-config-info>
+			<h3>{{'Your Phone Lines'|translate}}</h3>
+			<table class="table">
+				<tr>
+					<th translate>Name</th>
+					<th width="30%" style="text-align: center;" translate>State</th>
+				</tr>
+				<tr ng-repeat="line in brcmLines track by $index">
+					<td>{{line[".config"].name.value}}</td>
+					<td style="text-align: center;">{{line.sub_0_state}}</td>
+				</tr>
+			</table>
+		</luci-config-section>
+	</div>
+</luci-layout-with-sidebar>
