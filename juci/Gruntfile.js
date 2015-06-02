@@ -11,17 +11,17 @@ module.exports = function(grunt){
 				files: {
 					'po/template.pot': [
 						'js/*.js',
-						'htdocs/plugins/**/*.html', 
-						'htdocs/plugins/**/*.js', 
-						'htdocs/themes/**/*.html', 
-						'htdocs/themes/**/*.js']
+						'src/plugins/**/*.html', 
+						'src/plugins/**/*.js', 
+						'src/themes/**/*.html', 
+						'src/themes/**/*.js']
 				}
 			}
 		}, 
 		nggettext_compile: {
 			all: {
 				files: {
-					'htdocs/lib/js/translations.js': ['po/*.po']
+					'src/lib/js/translations.js': ['po/*.po']
 				}
 			}
 		}, 
@@ -30,7 +30,7 @@ module.exports = function(grunt){
 				files: {
 					'po/titles.pot': [
 						"share/menu.d/*.json", 
-						"htdocs/plugins/**/menu.json"
+						"src/plugins/**/menu.json"
 					]
 				}
 			}
@@ -86,7 +86,7 @@ module.exports = function(grunt){
 		}); 
 	}); 
 	grunt.registerTask("test", "Run all tests using mocha", function(){
-		var files = grunt.file.expand(["./tests/test-*.js", "./htdocs/**/test-*.js", "./htdocs/**/*.test.js"]); 
+		var files = grunt.file.expand(["./tests/test-*.js", "./src/**/test-*.js", "./src/**/*.test.js"]); 
 		console.log("Will run tests: "+files); 
 		var done = this.async(); 
 		var spawn = require('child_process').spawn;
@@ -98,71 +98,71 @@ module.exports = function(grunt){
 		console.log(files); 
 	});
 	grunt.registerTask("compile", "Compile all files into a single file", function(){
-		var OUTDIR = "bin/"; 
+		var OUTDIR = "htdocs/"; 
 		var libfiles = [
-			"htdocs/lib/js/async.js",
-			"htdocs/lib/js/js-schema.min.js",
-			"htdocs/lib/js/require.js",
-			"htdocs/lib/js/jquery.min.js",
-			"htdocs/lib/js/angular.min.js",
-			"htdocs/lib/js/angular-ui.min.js",
-			"htdocs/lib/js/angular-ui-router.min.js",
-			"htdocs/lib/js/angular-gettext.min.js",
-			"htdocs/lib/js/bootstrap-select.min.js",
-			"htdocs/lib/js/select.min.js",
-			"htdocs/lib/js/angular-animate.min.js",
-			"htdocs/lib/js/angular-ui-bootstrap-luci.min.js",
-			"htdocs/lib/js/jquery-jsonrpc.js",
-			"htdocs/lib/js/translations.js",
-			"htdocs/lib/js/bootstrap.min.js",
-			"htdocs/lib/js/angular-ui-switch.min.js",
-			"htdocs/lib/js/angular-modal-service.min.js",
-			"htdocs/lib/js/angular-checklist-model.js"
+			"src/lib/js/async.js",
+			"src/lib/js/js-schema.min.js",
+			"src/lib/js/require.js",
+			"src/lib/js/jquery.min.js",
+			"src/lib/js/angular.min.js",
+			"src/lib/js/angular-ui.min.js",
+			"src/lib/js/angular-ui-router.min.js",
+			"src/lib/js/angular-gettext.min.js",
+			"src/lib/js/bootstrap-select.min.js",
+			"src/lib/js/select.min.js",
+			"src/lib/js/angular-animate.min.js",
+			"src/lib/js/angular-ui-bootstrap-luci.min.js",
+			"src/lib/js/jquery-jsonrpc.js",
+			"src/lib/js/translations.js",
+			"src/lib/js/bootstrap.min.js",
+			"src/lib/js/angular-ui-switch.min.js",
+			"src/lib/js/angular-modal-service.min.js",
+			"src/lib/js/angular-checklist-model.js"
 		]; 
 		var appfiles = [
-			"htdocs/js/compat.js", 
-			"htdocs/js/rpc.js",
-			"htdocs/js/uci.js",
-			"htdocs/js/juci.js",
-			"htdocs/js/app.js",
-			"htdocs/js/localStorage.js",
-			"htdocs/js/config.js",
-			"htdocs/js/navigation.js",
-			"htdocs/js/status.js",
-			"htdocs/js/tr.js",
-			"htdocs/js/theme.js",
-			"htdocs/js/timeout.js"
+			"src/js/compat.js", 
+			"src/js/rpc.js",
+			"src/js/uci.js",
+			"src/js/juci.js",
+			"src/js/app.js",
+			"src/js/localStorage.js",
+			"src/js/config.js",
+			"src/js/navigation.js",
+			"src/js/status.js",
+			"src/js/tr.js",
+			"src/js/theme.js",
+			"src/js/timeout.js"
 		]; 
 		var cssfiles = [
-			"htdocs/css/normalize.css",
-			"htdocs/lib/css/bootstrap.min.css",
-			"htdocs/lib/css/bootstrap-select.min.css",
-			"htdocs/lib/css/font-awesome.min.css",
-			"htdocs/lib/css/angular-ui.min.css",
-			"htdocs/lib/css/select.min.css",
-			"htdocs/lib/css/angular-ui-switch.min.css",
-			"htdocs/lib/css/awesome-bootstrap-checkbox.css",
-			"htdocs/css/nga.min.css",
-			"htdocs/css/app.css"
+			"src/css/normalize.css",
+			"src/lib/css/bootstrap.min.css",
+			"src/lib/css/bootstrap-select.min.css",
+			"src/lib/css/font-awesome.min.css",
+			"src/lib/css/angular-ui.min.css",
+			"src/lib/css/select.min.css",
+			"src/lib/css/angular-ui-switch.min.css",
+			"src/lib/css/awesome-bootstrap-checkbox.css",
+			"src/css/nga.min.css",
+			"src/css/app.css"
 		];
 		
-		cssfiles = cssfiles.concat(grunt.file.expand(["htdocs/plugins/**/css/*.css", "htdocs/themes/vodafone/css/*.css"]));
+		cssfiles = cssfiles.concat(grunt.file.expand(["src/plugins/**/css/*.css", "src/themes/vodafone/css/*.css"]));
 		
-		var pluginfiles = grunt.file.expand(["htdocs/plugins/**/plugin.json"]); 
-		var otherfiles = grunt.file.expand(["./htdocs/plugins/**/*.js", "./htdocs/themes/vodafone/**/*.js"]).filter(function(x){
+		var pluginfiles = grunt.file.expand(["src/plugins/**/plugin.json"]); 
+		var otherfiles = grunt.file.expand(["./src/plugins/**/*.js", "./src/themes/vodafone/**/*.js"]).filter(function(x){
 			return !x.match(/.*\/test-.*\.js/) && !x.match(/.*\.test\.js/); 
 		}); 
-		var htmlfiles = grunt.file.expand(["htdocs/**/*.html"]); 
+		var htmlfiles = grunt.file.expand(["src/**/*.html"]); 
 		var css = cssfiles.map(function(file){ 
 			return String(fs.readFileSync(file)); 
 		}).join("\n"); 
 		var all = libfiles.concat(appfiles).concat(otherfiles); 
 		var templates = {}; var plugins = {}; 
 		htmlfiles.map(function(name){
-			templates[name.replace("htdocs/", "")] = String(fs.readFileSync(name)); 
+			templates[name.replace("src/", "")] = String(fs.readFileSync(name)); 
 		}); 
 		pluginfiles.map(function(name){
-			plugins[name.replace(/^htdocs\//, "")] = JSON.parse(String(fs.readFileSync(name))); 
+			plugins[name.replace(/^src\//, "")] = JSON.parse(String(fs.readFileSync(name))); 
 		}); 
 		if(!fs.existsSync(OUTDIR)) fs.mkdirSync(OUTDIR); 
 		var javascript = "var JUCI_COMPILED = 1; var JUCI_TEMPLATES = "+
@@ -174,12 +174,12 @@ module.exports = function(grunt){
 			.join(";\n"); 
 			
 		fs.writeFileSync(OUTDIR+"__all.css", css); 
-		fs.writeFileSync("htdocs/__all.css", css); 
+		//fs.writeFileSync("src/__all.css", css); 
 		// TODO: really do not do it in memory!
 		fs.writeFileSync(OUTDIR+"__all.js", javascript); 
-		fs.writeFileSync("htdocs/__all.js", javascript); 
+		//fs.writeFileSync("src/__all.js", javascript); 
 		
-		//fs.writeFileSync("htdocs/__templates.js", JSON.stringify(templates)); 
+		//fs.writeFileSync("src/__templates.js", JSON.stringify(templates)); 
 	}); 
 	grunt.registerTask('default', ['nggettext_extract', 'nggettext_compile', "extract_titles", "compile_pot"]);
 	

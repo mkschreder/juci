@@ -53,7 +53,7 @@ var rpc_calls = {
 var spawn = require('child_process').spawn;
 	
 setTimeout(function recompile(){
-	spawn('grunt', ["compile"], { customFds: [0,1,2] })
+	spawn('make', { customFds: [0,1,2] })
 	.on("exit", function(code){
 		console.log("Recompiled gui, code: "+code); 
 		setTimeout(recompile, 5000); 
