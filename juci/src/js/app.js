@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 // TODO: make this automatic
-if(!window.JUCI_COMPILED) window.JUCI_COMPILED = 0; 
+if(!window.JUCI_COMPILED) window.JUCI_COMPILED = 1; 
 //if(!global.JUCI_PLUGINS) global.JUCI_COMPILED = 0; 
 
 $.jsonRPC.setup({
@@ -38,7 +38,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		var DEVMODE = (JUCI_COMPILED)?"":"devgui.html"; 
 		window.location.href = DEVMODE+"#!/"+page; 
 	}
-	
+	/*
 	$stateProvider.state("404", {
 		url: "/404", 
 		views: {
@@ -68,7 +68,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 				
 			}
 		},
-	}); 
+	}); */
 	$urlRouterProvider.otherwise("404"); 
 })
 .run(function($templateCache){
@@ -88,11 +88,11 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 .run(function($rootScope, $state, gettextCatalog, $tr, gettext, $rpc, $config, $location, $navigation, $templateCache){
 	console.log("RUN"); 
 	
-	if(JUCI_COMPILED && JUCI_TEMPLATES !== undefined){
+	/*if(JUCI_COMPILED && JUCI_TEMPLATES !== undefined){
 		Object.keys(JUCI_TEMPLATES).map(function(x){
 			$templateCache.put(x, JUCI_TEMPLATES[x]); 
 		}); 
-	}
+	}*/
 	
 	// TODO: maybe use some other way to gather errors than root scope? 
 	$rootScope.errors = []; 

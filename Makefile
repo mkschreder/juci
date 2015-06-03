@@ -1,13 +1,15 @@
-DIRS-y:=juci juci-theme-vodafone
+DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-system juci-mod-status juci-mod-network juci-theme-vodafone 
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
-all: htdocs node_modules $(DIRS-y);
+all: htdocs acl.d node_modules $(DIRS-y);
 
 htdocs: 
 	mkdir -p htdocs
 
-
+acl.d: 
+	mkdir -p acl.d 
+	
 node_modules: package.json
 	npm install
 	
@@ -15,6 +17,7 @@ node_modules: package.json
 $(DIRS-y): 
 	make -C $@
 	cp -Rp $@/htdocs/* htdocs/
+	cp -Rp $@/menu.json acl.d/$@.json
 	./juci-update htdocs 
 	
 clean: 

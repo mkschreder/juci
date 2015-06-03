@@ -1,11 +1,11 @@
 TARGET:=juci-theme-vodafone
-CSS:=htdocs/css/$(TARGET).css
-JS:=htdocs/js/01-$(TARGET).js
-HTML:=htdocs/js/10-$(TARGET)-tpl.js
+CSS:=htdocs/css/90-$(TARGET).css
+JS:=htdocs/js/90-$(TARGET).js
+HTML:=htdocs/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(CSS) $(JS) $(TEMPLATES);
+all: files $(CSS) $(JS) $(HTML);
 
 .PHONY: files
 files: 
@@ -16,7 +16,7 @@ files:
 
 STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js src/widgets/*.js)
-TEMPLATES:=$(wildcard src/widgets/*.html)
+TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
 $(CSS): $(STYLES)
 	cat $(STYLES) > $@

@@ -1,0 +1,38 @@
+<luci-layout-with-sidebar>
+	<div ng-controller="PhoneCallLogPageCtrl">
+		<luci-config-section>
+			<luci-config-heading>{{ 'Call Log' | translate }}</luci-config-heading>
+			<luci-config-info>{{ 'phone.call_log.info' | translate }}</luci-config-info>
+			<luci-config-lines>
+				<luci-config-line title="{{'Show calls for'|translate}}">
+					<luci-dropdown type="button" placeholder="{{'Pick phone'|translate}}" size="lg" ng-model="phoneList" ng-selected="phoneFilterSelected" on-select="onChangeFilter()"/>
+					<!--<ui-select ng-model="phoneFilterSelected" search="disabled" theme="bootstrap" style="width: 300px;" on-select="onChangeFilter($item, $model)">
+						<ui-select-match placeholder="All Phones">{{$select.selected.from}}</ui-select-match>
+						<ui-select-choices repeat="phone in phoneList" refresh-delay="0"><div >{{phone.from}}</div></ui-select-choices>
+					</ui-select>-->
+				</luci-config-line>
+			</luci-config-lines>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th translate>Date</th>
+					<th translate>Time</th>
+					<th translate>External Number</th>
+					<th translate>Your number</th>
+					<th translate>Duration</th>
+				</tr>
+				<tr ng-repeat="log in call_log | filter:phoneFilter">
+					<td>
+						<i class='fa fa-arrow-left' ng-class="log.class" ng-show="log.direction == 'OUTGOING'"></i>
+						<i class='fa fa-arrow-right' ng-class="log.class" ng-show="log.direction == 'INCOMING'"></i>
+					</td>
+					<td>{{log.date}}</td>
+					<td>{{log.time}}</td>
+					<td>{{log.to}}</td>
+					<td>{{log.from}}</td>
+					<td>{{log.duration}}</td>
+				</tr>
+			</table>
+		</luci-config-section>
+	</div>
+</luci-layout-with-sidebar>

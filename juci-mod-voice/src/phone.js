@@ -19,16 +19,15 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
- 
+/*
 JUCI.app.config(function($stateProvider) {
-	var plugin_root = $juci.module("phone").plugin_root; 
 	$stateProvider.state("phone", {
 		url: "/phone", 
 		onEnter: function($state){
 			$juci.redirect("phone-call-log"); 
 		},
 	}); 
-}); 
+}); */
 	
 // add the uci classes for voice client
 UCI.$registerConfig("voice_client"); 

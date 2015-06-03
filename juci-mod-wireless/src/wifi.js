@@ -1,4 +1,4 @@
-JUCI.app
+/*JUCI.app
 .config(function($stateProvider) {
 	$stateProvider.state("wifi", {
 		url: "/wifi", 
@@ -6,7 +6,7 @@ JUCI.app
 			$juci.redirect("wifi-general"); 
 		}
 	}); 
-}); 
+}); */
 
 (function(){
 	UCI.$registerConfig("wireless"); 

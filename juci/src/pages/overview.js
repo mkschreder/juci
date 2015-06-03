@@ -1,4 +1,4 @@
-$juci.module("core")
+JUCI.app
 .controller("OverviewPageCtrl", function($scope, $rpc, $uci, $config, gettext, $tr){
 	$scope.themeUrl = ""; 
 	$scope.config = $config; 
@@ -129,3 +129,5 @@ $juci.module("core")
 		}); 
 	} refresh(); 
 }); 
+
+JUCI.page("overview", "pages/overview.html"); 

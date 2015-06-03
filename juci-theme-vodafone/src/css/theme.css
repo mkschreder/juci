@@ -1,6 +1,6 @@
 @font-face {
     font-family: "vodafont";
-    src: url("/themes/vodafone/fonts/vodafonelt-webfont.woff") format('woff');
+    src: url("/fonts/vodafonelt-webfont.woff") format('woff');
 }
 
 body {
@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, .navbar-nav {
 }
 
 div.logo {
-	background-image: url('/themes/vodafone/img/vf-logo.png'); 
+	background-image: url('/img/vf-logo.png'); 
 	background-size: 100%; 
 	height: 32px; 
 	width: 32px; 
@@ -102,7 +102,7 @@ div.logo {
 #logo {
 	background: scroll;
 	background-color: transparent;
-	background-image: url("/themes/vodafone/img/vf-logo.png");
+	background-image: url("/img/vf-logo.png");
 	background-origin: padding-box;
 	background-position: 0 30px;
 	background-repeat: no-repeat;

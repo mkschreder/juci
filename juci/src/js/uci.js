@@ -612,6 +612,7 @@
 						// NOTE: this can not throw because we need to sync all configs that we can sync
 						// TODO: decide on whether to always resolve if at least one config compiles
 						// or to always reject if at least one config fails. 
+						console.error("invalid config name "+cf); 
 						next(); 
 						return; 
 					}; 

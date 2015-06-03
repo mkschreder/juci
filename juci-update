@@ -1,11 +1,11 @@
 #!/bin/sh
 
-rm $1/__all.js
+rm -f $1/__all.js
 for file in $1/js/*; do
 	cat $file >> $1/__all.js
 done
 
-rm $1/__all.css
+rm -f $1/__all.css
 for file in $1/css/*; do
 	cat $file >> $1/__all.css
 done

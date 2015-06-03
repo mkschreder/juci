@@ -1,10 +1,21 @@
 OUTDIR:=htdocs
-CSS:=$(OUTDIR)/css/0-juci.css
+CSS:=$(OUTDIR)/css/00-juci.css
 JS:=$(OUTDIR)/js/00-juci.js
-HTML:=$(OUTDIR)/js/10-juci-tpl.js
+HTML:=$(OUTDIR)/js/01-juci-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
-STYLES:=$(wildcard src/lib/css/*.css) $(wildcard src/css/*.css) 
+
+STYLES:=
+STYLES+=src/css/normalize.css
+STYLES+=src/lib/css/bootstrap.min.css
+STYLES+=src/lib/css/bootstrap-select.min.css
+STYLES+=src/lib/css/font-awesome.min.css
+STYLES+=src/lib/css/angular-ui.min.css
+STYLES+=src/lib/css/select.min.css
+STYLES+=src/lib/css/angular-ui-switch.min.css
+STYLES+=src/lib/css/awesome-bootstrap-checkbox.css
+STYLES+=src/css/nga.min.css
+STYLES+=src/css/app.css
 
 JAVASCRIPT:=
 JAVASCRIPT+=src/lib/js/async.js
@@ -40,7 +51,7 @@ JAVASCRIPT+=src/js/timeout.js
 JAVASCRIPT+=$(wildcard src/widgets/*.js) $(wildcard src/pages/*.js)
 
 INDEX:=$(OUTDIR)/index.html
-TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
+TEMPLATES:=$(wildcard src/html/*.html) $(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 JUCI_TEMPLATE_CC:=../juci-build-tpl-cache
 
 all: $(OUTDIR) files $(CSS) $(JS) $(INDEX) $(HTML);
@@ -56,7 +67,7 @@ files:
 	$(CP) ./src/img/ $(OUTDIR)/
 	$(CP) ./src/fonts/ $(OUTDIR)/
 	$(CP) ./src/index.html $(OUTDIR)/
-	$(CP) ./src/config.json $(OUTDIR)/
+	#$(CP) ./src/config.json $(OUTDIR)/
 	
 	
 $(CSS): $(STYLES)

@@ -6,9 +6,12 @@
 	
 	function JUCIMain(){
 		this.plugins = {}; 
+		this.templates = {}; 
+		this.pages = {}; 
 	}
 	
 	JUCIMain.prototype.module = function(name, root, data){
+		console.error("WARNING: JUCI.module() is deprecated! ["+name+"]"); 
 		var self = this; 
 		if(data){
 			data.plugin_root = root; 
@@ -17,7 +20,7 @@
 		var plugin = self.plugins[name]; 
 		var juci = self; 
 		return {
-			plugin_root: ((plugin||{}).plugin_root||"plugins/"+name+"/"), 
+			plugin_root: "", //((plugin||{}).plugin_root||"plugins/"+name+"/"), 
 			directive: function(name, fn){
 				return angular.module("luci").directive(name, fn);
 			}, 
@@ -35,6 +38,21 @@
 			}
 		}
 	}; 
+	
+	JUCIMain.prototype.page = function(name, template, redirect){
+		console.log("Registering page "+name+": "+template); 
+		var page = {
+			template: template, 
+			url: name
+		}; 
+		if(redirect) page.redirect = redirect; 
+		this.pages[name] = page; 
+	}
+	
+	JUCIMain.prototype.template = function(name, code){
+		var self = this; 
+		self.templates[name] = code; 
+	}
 	
 	JUCIMain.prototype.$init = function(){
 		var scripts = []; 
@@ -61,7 +79,8 @@
 			}, 
 			function(next){
 				var count = 0; 
-				if(JUCI_COMPILED && JUCI_PLUGINS) {
+				next(); 
+				/*if(JUCI_COMPILED && JUCI_PLUGINS) {
 					function dirname(path) { var dir = path.split("/"); dir.pop(); return dir.join("/");}
 					Object.keys(JUCI_PLUGINS).map(function(plugin){
 						var dir = dirname(plugin);
@@ -104,7 +123,7 @@
 					}); 
 				}, function(){
 					next(); 
-				}); 
+				}); */
 			}, 
 			function(next){
 				$rpc.$authenticate().done(function(){
@@ -167,6 +186,7 @@
 						Object.keys(data.menu).map(function(key){
 							var menu = data.menu[key]; 
 							var view = menu.view; 
+							var redirect = menu.redirect; 
 							var path = key; 
 							//console.log("MENU: "+path); 
 							var obj = {
@@ -177,6 +197,8 @@
 								index: data.menu[key].index || 0, 
 							}; 
 							$juci.navigation.register(obj); 
+							if(redirect) redirect = redirect.replace(/\//g, "-"); 
+							JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
 						}); 
 						//console.log("NAV: "+JSON.stringify($navigation.tree())); 
 						//$rootScope.$apply(); 
@@ -207,6 +229,64 @@
 			"gettext", 
 			"checklist-model"
 		]); 
+		app.config(function($stateProvider){
+			
+			Object.keys(scope.JUCI.pages).map(function(name){
+				var page = scope.JUCI.pages[name]; 
+				$stateProvider.state(name, {
+					url: "/"+page.url, 
+					views: {
+						"content": {
+							templateUrl: page.template
+						}
+					},
+					// Perfect! This loads our controllers on demand! :) 
+					// Leave this code here because it serves as a valuable example
+					// of how this can be done. 
+					/*resolve: {
+						deps : function ($q, $rootScope) {
+							var deferred = $q.defer();
+							require([plugin_root + "/" + page.view + ".js"], function (tt) {
+								$rootScope.$apply(function () {
+										deferred.resolve();
+								});
+								deferred.resolve()
+							});
+							return deferred.promise;
+						}
+					},*/
+					onEnter: function($uci, $rootScope, $tr, gettext){
+						if(page.redirect) {
+							//alert("page redirect to "+page.redirect); 
+							$juci.redirect(page.redirect); 
+							return; 
+						}
+						
+						$rootScope.errors.splice(0, $rootScope.errors.length); 
+						
+						// this will touch the session so that it does not expire
+						$rpc.$authenticate().done(function(){
+							$uci.$revert(); 
+						}).fail(function(){
+							$juci.redirect("login");
+						});
+						
+						document.title = $tr(name.replace(/\//g, ".")+".title")+" - "+$tr(gettext("application.name")); 
+					}, 
+					onExit: function($interval){
+						JUCI.interval.$clearAll(); 
+					}
+				});
+			}); 
+		}); 
+		app.run(function($templateCache){
+			var self = scope.JUCI; 
+			Object.keys(self.templates).map(function(k){
+				console.log("Registering template "+k); 
+				$templateCache.put(k, self.templates[k]); 
+			}); 
+			
+		}); 
 		app.factory('$rpc', function(){
 			return scope.UBUS; 
 		});
