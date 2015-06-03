@@ -1,12 +1,11 @@
 TARGET:=juci-theme-vodafone
 CSS:=htdocs/css/$(TARGET).css
-JS:=htdocs/js/$(TARGET).js
-TEMPLATES:=htdocs/js/$(TARGET)-tpl.js
+JS:=htdocs/js/01-$(TARGET).js
+HTML:=htdocs/js/10-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(CSS) $(JS) $(TEMPLATES)
-	echo "Done!" > /dev/null
+all: files $(CSS) $(JS) $(TEMPLATES);
 
 .PHONY: files
 files: 
@@ -17,7 +16,7 @@ files:
 
 STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js src/widgets/*.js)
-HTML:=$(wildcard src/widgets/*.html)
+TEMPLATES:=$(wildcard src/widgets/*.html)
 
 $(CSS): $(STYLES)
 	cat $(STYLES) > $@
@@ -25,5 +24,8 @@ $(CSS): $(STYLES)
 $(JS): $(CODE)
 	cat $(CODE) > $@
 	
-$(TEMPLATES): $(HTML)
-	./build.js $(HTML) $(TEMPLATES)
+$(HTML): $(TEMPLATES)
+	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
+
+clean: 
+	rm -rf htdocs

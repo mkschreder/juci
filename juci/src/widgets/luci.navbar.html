@@ -1,0 +1,38 @@
+<div class="navbar navbar-default" ng-controller="NavigationCtrl">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only" translate>Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		
+		<a class="navbar-brand" href="/#!overview">
+			<div class="logo"></div>
+		</a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav" auto-active>
+			<li class="dropdown" ng-repeat="item in tree.children_list track by $index">
+				<a href="#!{{item.path}}" role="button" >{{item.text | translate}} </a>
+				<!--<a href="#!{{item.path}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{item.text | translate}}  <span class="caret"></a>
+				<ul class="dropdown-menu" role="menu">
+					<li ng-repeat="item2 in item.children_list | orderBy:'text':!reverse">
+						<a href="#!{{item2.path}}">{{item2.text | translate}}</a>
+					</li>
+				</ul>-->
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right" auto-active>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{'Theme' | translate}}  <span class="caret"/></a>
+				<ul class="dropdown-menu" role="menu">
+					<li >
+						<a href="" data-theme="default" class="theme-link">Default</a>
+						<a href="" data-theme="vodafone" class="theme-link">Vodafone</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -8,7 +8,7 @@ var input = process.argv.splice(2, process.argv.length - 3);
 
 if(input.length == 0) throw new Error("Please specify at least one input file and one output file!"); 
 
-console.log(input+" > "+output); 
+//console.log(input+" > "+output); 
 
 var templates = {}; 
 input.map(function(x){

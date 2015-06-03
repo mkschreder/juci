@@ -1,3 +1,5 @@
+#!/usr/bin/node
+
 var express = require('express');
 var app = express();
 var JSON = require("JSON"); 
