@@ -1,4 +1,4 @@
-angular.module("luci").config(function($stateProvider) {
+/*angular.module("luci").config(function($stateProvider) {
 	$stateProvider.state("settings", {
 		url: "/settings", 
 		onEnter: function($state){
@@ -6,3 +6,4 @@ angular.module("luci").config(function($stateProvider) {
 		},
 	});
 }); 
+*/

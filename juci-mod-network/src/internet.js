@@ -1,4 +1,4 @@
-JUCI.app
+/*JUCI.app
 .config(function($stateProvider) {
 	var plugin_root = $juci.module("internet").plugin_root; 
 	$stateProvider.state("internet", {
@@ -7,7 +7,7 @@ JUCI.app
 			$juci.redirect("internet-firewall"); 
 		}
 	}); 
-});
+});*/
 
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {

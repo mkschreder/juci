@@ -1,6 +1,7 @@
 {
     "internet": {
         "title": "Internet",
+        "redirect": "internet/firewall", 
         "index": 30
     },
     "internet/firewall": {

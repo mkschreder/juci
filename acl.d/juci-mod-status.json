@@ -1,6 +1,7 @@
 {
     "status": {
         "title": "Status",
+        "redirect": "status/status", 
         "index": 60
     },
     "status/status": {

@@ -2,6 +2,7 @@
     "wifi": {
         "title": "WiFi",
         "files": [ "/etc/config/wireless" ], 
+        "redirect": "wifi/general", 
         "index": 40
     },
     "wifi/general": {

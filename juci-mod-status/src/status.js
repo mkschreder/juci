@@ -1,5 +1,5 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
-
+/*
 JUCI.app
 .config(function($stateProvider) {
 	$stateProvider.state("status", {
@@ -9,3 +9,4 @@ JUCI.app
 		},
 	}); 
 }); 
+*/

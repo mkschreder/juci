@@ -1,6 +1,7 @@
 {
     "settings": {
         "title": "Settings",
+        "redirect": "settings/password", 
         "index": 50
     },
     "settings/password": {

@@ -197,7 +197,7 @@
 								index: data.menu[key].index || 0, 
 							}; 
 							$juci.navigation.register(obj); 
-							if(redirect) redirect = redirect.replace(/\//g, "-"); 
+							if(redirect) redirect = redirect.replace(/\//g, "-").replace(/_/g, "-"); 
 							JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
 						}); 
 						//console.log("NAV: "+JSON.stringify($navigation.tree())); 
@@ -232,12 +232,12 @@
 		app.config(function($stateProvider){
 			
 			Object.keys(scope.JUCI.pages).map(function(name){
-				var page = scope.JUCI.pages[name]; 
-				$stateProvider.state(name, {
-					url: "/"+page.url, 
+				var page = scope.JUCI.pages[name];
+				var state = {
+					url: "/"+page.url,
 					views: {
 						"content": {
-							templateUrl: page.template
+							templateUrl: (page.redirect)?"pages/default.html":page.template
 						}
 					},
 					// Perfect! This loads our controllers on demand! :) 
@@ -271,12 +271,14 @@
 							$juci.redirect("login");
 						});
 						
-						document.title = $tr(name.replace(/\//g, ".")+".title")+" - "+$tr(gettext("application.name")); 
+						document.title = $tr(name.replace(/\//g, ".").replace(/-/g, ".")+".title")+" - "+$tr(gettext("application.name")); 
 					}, 
 					onExit: function($interval){
 						JUCI.interval.$clearAll(); 
 					}
-				});
+				};  
+				
+				$stateProvider.state(name, state);
 			}); 
 		}); 
 		app.run(function($templateCache){
