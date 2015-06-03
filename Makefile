@@ -2,7 +2,7 @@ DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-system juci-mod-status ju
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
-all: htdocs menu.d node_modules $(DIRS-y);
+all: htdocs menu.d $(DIRS-y);
 
 htdocs: 
 	mkdir -p htdocs
@@ -10,8 +10,8 @@ htdocs:
 menu.d: 
 	mkdir -p menu.d 
 	
-node_modules: package.json
-	npm install
+#node_modules: package.json
+#	npm install
 	
 .PHONY: $(DIRS-y)
 $(DIRS-y): 
