@@ -1,11 +1,12 @@
 #!/bin/sh
 
+WWW="$1"
 if [ -n "$1" ]; then
-	WWW=$1
+	WWW="$1"
 elif [ -d /www ]; then
-	WWW=/www
+	WWW="/www"
 elif [ -d /var/www ]; then
-	WWW=/var/www
+	WWW="/var/www"
 fi
 
 rm -f $WWW/__all.js
