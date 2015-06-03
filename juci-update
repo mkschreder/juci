@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -n "$1"]; then
+if [ -n "$1" ]; then
 	WWW=$1
 elif [ -d /www ]; then
 	WWW=/www
