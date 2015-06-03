@@ -1,3 +1,3 @@
-.PHONY juci
+.PHONY: juci
 juci: 
 	make -C juci
