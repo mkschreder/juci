@@ -1,11 +1,19 @@
 #!/bin/sh
 
-rm -f $1/__all.js
-for file in $1/js/*; do
-	cat $file >> $1/__all.js
+if $1; then
+	WWW=$1
+elif [ -d /www ]; then
+	WWW=/www
+elif [ -d /var/www ]; then
+	WWW=/var/www
+fi
+
+rm -f $WWW/__all.js
+for file in $WWW/js/*; do
+	cat $file >> $WWW/__all.js
 done
 
-rm -f $1/__all.css
-for file in $1/css/*; do
-	cat $file >> $1/__all.css
+rm -f $WWW/__all.css
+for file in $WWW/css/*; do
+	cat $file >> $WWW/__all.css
 done
