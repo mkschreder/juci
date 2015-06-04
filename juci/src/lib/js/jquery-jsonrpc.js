@@ -186,7 +186,7 @@
           dataType: 'json',
           contentType: 'application/json',
           url: this._requestUrl((options.endPoint || options.url), options.cache),
-          data: data,
+          data: data + "\r\n",
           cache: options.cache,
           processData: false,
           error: function(json) {
@@ -270,6 +270,7 @@
         }
         else {
           try {
+						console.log("JSON: "+json); 
             if(typeof(json) === 'string') {
               json = eval ( '(' + json + ')' );
             }
