@@ -9,6 +9,13 @@ $juci.module("internet")
 				
 			}).always(function(){ next(); }); 
 		}, 
+		function(next){
+			$rpc.router.clients().done(function(clients){
+				$scope.connectedHosts = Object.keys(clients).map(function(k){
+					return { label: clients[k].hostname+" ("+clients[k].ipaddr+")", value: clients[k].ipaddr }; 
+				}); 
+			}).always(function(){ next(); }); 
+		}, 
 		function(next){ 
 			if($uci.firewall.dmz == undefined){
 				$uci.firewall.create({".type": "dmz", ".name": "dmz"}).done(function(dmz){
