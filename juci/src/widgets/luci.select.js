@@ -92,7 +92,7 @@ $juci.module("core")
 				scope.selectedItem = value; // make it work for primitive types
 			}
 			//ngModel.$setViewValue(scope.selectedItem); 
-			attrs.$set("ngModel", value); 
+			//attrs.$set("ngModel", value); 
 			setTimeout(function(){ // defer the call till after $digest is finished
 				scope.onChange();
 			}, 0); 

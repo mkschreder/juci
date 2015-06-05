@@ -32,10 +32,10 @@ $juci.module("core")
 	});  
 	$scope.onChangeMode = function(){
 		var selected = $scope.selectedModeValue;
-        console.log("selected value", selected);
-        if(selected == "logout") {
-            console.log("logging out");
-            $rpc.$logout().always(function(){
+		console.log("selected value", selected);
+		if(selected == "logout") {
+			console.log("logging out");
+			$rpc.$logout().always(function(){
 				$window.location.href="/";
 			});
 		} else {

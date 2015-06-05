@@ -25,11 +25,17 @@ $juci.module("wifi")
 	$scope.selectedTimeFrame = []; 
 	$scope.data = {}; 
 	
+	var dayTranslation = {
+		"everyday": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], 
+		"workday": ["mon", "tue", "wed", "thu", "fri"], 
+		"weekend": ["sat", "sun"]
+	}; 
+	
 	$scope.allTimeFrames = [
-		{ label: gettext("Individual Days"), value: [] }, 
-		{ label: gettext("Every Day"), value: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] }, 
-		{ label: gettext("Every Workday"), value: ["mon", "tue", "wed", "thu", "fri"] }, 
-		{ label: gettext("All Weekend"), value: ["sat", "sun"] }
+		{ label: gettext("Individual Days"), value: "individual" }, 
+		{ label: gettext("Every Day"), value: "everyday" }, 
+		{ label: gettext("Every Workday"), value: "workday" }, 
+		{ label: gettext("All Weekend"), value: "weekend" }
 	]; 
 	$scope.allDayNames = [
 		{ label: gettext("Monday"), value: "mon" }, 
@@ -59,10 +65,14 @@ $juci.module("wifi")
 		} 
 	});
 	 
-	$scope.onChangeDays = function(value){
-		console.log("Changing days to: "+JSON.stringify($scope.selectedTimeFrame));  
+	$scope.onChangeDays = function(){ 
+		setTimeout(function(){
+			var value = $scope.selectedTimeFrame; 
+		console.log("Changing days to: "+JSON.stringify(value));  
 		//$scope.schedule.days.value.splice(0,$scope.schedule.days.value.length); 
-		$scope.schedule.days.value = $scope.selectedTimeFrame; 
+		if(dayTranslation[value])
+			$scope.schedule.days.value = dayTranslation[value]; 
+		}, 0); 
 		//Object.assign($scope.schedule.days.value, $scope.selectedTimeFrame); 
 	}
 }); 
