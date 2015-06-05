@@ -3,6 +3,11 @@
 (function($juci){
 	function JUCIConfig(){
 		this.system = {}; 
+		var defaults = {
+			showlogin: true, 
+			defaultuser: "admin"
+		}; 
+		Object.assign(this, defaults); 
 	}
 	JUCIConfig.prototype.$init = function(){
 		var deferred = $.Deferred(); 

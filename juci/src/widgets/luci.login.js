@@ -42,7 +42,7 @@ JUCI.app
 			"host": "" 
 		}; 
 		$scope.showlogin = $config.showlogin; 
-		$scope.form.username = $config.defaultuser; 
+		$scope.form.username = $config.defaultuser||"admin"; 
 		
 		$scope.errors = []; 
 		$scope.showHost = 0; 
