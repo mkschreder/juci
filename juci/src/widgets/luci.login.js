@@ -33,7 +33,7 @@ JUCI.app
 			controllerAs: "ctrl"
 		}; 
 	})
-	.controller("LoginControl", function($scope, $state, 
+	.controller("LoginControl", function($scope, $config, $state, 
 		$window, $rpc, $localStorage, gettext){
 		$scope.form = { 
 			"username": "", 
@@ -41,6 +41,9 @@ JUCI.app
 			"remember": 0, 
 			"host": "" 
 		}; 
+		$scope.showlogin = $config.showlogin; 
+		$scope.form.username = $config.defaultuser; 
+		
 		$scope.errors = []; 
 		$scope.showHost = 0; 
 		if($rpc.local){

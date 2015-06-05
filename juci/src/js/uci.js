@@ -58,6 +58,8 @@
 		"juci": {
 			"settings": {
 				"theme":					{ dvalue: "", type: String }, 
+				"showlogin":			{ dvalue: true, type: Boolean }, 
+				"defaultuser":		{ dvalue: "admin", type: String }, 
 				"lang":						{ dvalue: "", type: String }, 
 				"themes":					{ dvalue: [], type: Array }, 
 				"plugins":				{ dvalue: [], type: Array }, 

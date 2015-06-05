@@ -42,6 +42,7 @@
 				Object.keys(data).map(function(k) { self[k] = data[k]; }); 
 				deferred.resolve(); 
 			}).fail(function(){
+				throw new Error("Could not retreive file config.json"); 
 				deferred.reject(); 
 			}); 
 		}
