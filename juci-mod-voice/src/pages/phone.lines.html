@@ -12,7 +12,7 @@
 						{{line.extension.value}}
 					</luci-config-line>
 					<luci-config-line title="Outgoing Calls Number">
-						<luci-select ng-model="line.sip_account.value" ng-items="allSipAccounts"/>
+						<luci-select ng-model="line.sip_account.value" ng-items="allSipAccounts" placeholder="{{'Pick Outgoing Number'|translate}}"/>
 					</luci-config-line>
 					<luci-config-line title="Call Waiting">
 						<switch ng-model="line.callwaiting.value" class="green"/>

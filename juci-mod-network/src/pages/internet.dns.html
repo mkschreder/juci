@@ -33,8 +33,7 @@
 						<input type="text" class="form-control" ng-model="ddns.service_name.value" placeholder="{{'For example'}} noip.com"/>
 					</div>
 					<div ng-hide="enterDNSProvider">
-						<luci-select ng-model="ddns.service_name.value" 
-							ng-items="allServices" placeholder="{{'Choose DNS Provider'|translate}}" ></luci-select>
+						<luci-select ng-model="ddns.service_name.value" ng-items="allServices" placeholder="{{'Choose DNS Provider'|translate}}" ></luci-select>
 					</div>
 					<div class="checkbox checkbox-info">
 						<input type="checkbox" value="1" ng-model="enterDNSProvider"/>

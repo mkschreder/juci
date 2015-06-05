@@ -6,11 +6,27 @@
 body {
 	font-size: 16px;
 	font-family: "Arial","Helvetica" !important; 
-	text-shadow: 1px 1px 1px #888;
 }
 
 h1, h2, h3, h4, h5, .navbar-nav {
 	font-family: "vodafont" !important;
+}
+
+.panel-default  {
+	background-color: #eee; 
+	box-shadow: 2px 2px #888;
+}
+
+.panel-default > .panel-heading {
+	background-color: #ddd; 
+}
+
+.btn-default, .btn-primary {
+	box-shadow: 2px 2px 0px #999;
+}
+
+.vf-content {
+	text-shadow: 2px 2px 1px #bbb;
 }
 
 .top-bar { 

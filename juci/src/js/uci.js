@@ -20,6 +20,7 @@
 			function split(value) { return value.split(":").map(function(x){ return Number(x); }); };
 			var from = split(parts[0]);
 			var to = split(parts[1]); 
+			if(from.length != 2 || to.length != 2) return gettext("Please use ':' to separate hours and minutes!"); 
 			if(from[0] >= 0 && from[0] < 24 && to[0] >= 0 && to[0] < 24 && from[1] >= 0 && from[1] < 60 && to[1] >= 0 && to[1] < 60){
 				if((from[0]*60+from[1]) < (to[0]*60+to[1])) {
 					return null; 

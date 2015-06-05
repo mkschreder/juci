@@ -13,7 +13,7 @@
 			<luci-config-heading>{{ 'Setup Scheduling' | translate }}</luci-config-heading>
 			<luci-config-lines>
 				<luci-config-line title="{{'During this time the WiFi is'|translate}}">
-					<luci-select ng-model="status.sched_status.value" ng-items="statusItems"></luci-select>
+					<luci-select ng-model="status.sched_status.value" ng-items="statusItems" placeholder="{{'Choose Schedule Mode'|translate}}"></luci-select>
 				</luci-config-line>
 			</luci-config-lines>
 			<table class="table">
@@ -26,15 +26,15 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="item in schedules">
-							<td>{{ item.days.value.join(",") }}</td>
-							<td>{{ item.time.value }}</td>
-							<!--<td>{{ item.enabled.value }}</td>-->
-							<td style="width: 1%"><button class="btn btn-default" ng-click="onEditSchedule(item)"><i class="fa fa-pencil" style="{{editColor}}"></i></button></td>
-							<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteSchedule(item)"><i class="fa fa-trash-o"></i></button></td>
+						<td>{{ item.days.value.join(",") }}</td>
+						<td>{{ item.time.value }}</td>
+						<!--<td>{{ item.enabled.value }}</td>-->
+						<td style="width: 1%"><button class="btn btn-default" ng-click="onEditSchedule(item)"><i class="fa fa-pencil" style="{{editColor}}"></i></button></td>
+						<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteSchedule(item)"><i class="fa fa-trash-o"></i></button></td>
 					</tr>
 					<tr>
-							<td colspan="3"></td>
-							<td style="width: 1%"><button class="btn btn-default" ng-click="onAddSchedule()"><i class="fa fa-plus"></i></button></td>
+						<td colspan="3"></td>
+						<td style="width: 1%"><button class="btn btn-default" ng-click="onAddSchedule()"><i class="fa fa-plus"></i></button></td>
 					</tr>
 				</tbody>
 			</table>

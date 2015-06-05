@@ -8,7 +8,7 @@ JUCI.app
 			onChange: "&", 
 			placeholder: "@"
 		}, 
-		require: ["ngModel"], 
+		require: ["ngModel", "?placeholder"], 
 		template: '<div class="btn-group" style="white-space: nowrap;">'+
 			'<button class="btn btn-default button-label {{size_class}}" style="display: inline-block; float:none; " data-toggle="dropdown">{{(selectedText || placeholder) | translate}}</button>'+
 			'<button class="btn btn-default dropdown-toggle" style="display: inline-block; float:none;" data-toggle="dropdown"><span class="caret"></span></button>'+
@@ -17,13 +17,14 @@ JUCI.app
 		link: function($scope, elem, attrs) {
 			$scope.select = function(item){
 				$scope.selectedText = item.label; 
-				var model = $parse($scope.ngModel); 
+				var model = $parse(attrs.ngModel); 
 				model.assign($scope.$parent, item.value); 
-				console.log("Model ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)); 
+				console.log("Model ["+"$parent."+attrs.ngModel+"]: "+model($scope.$parent)); 
 				$scope.onChange({$item: item, $value: item.value}); 
 			}
 			function updateSelected(items){
-				var model = $parse($scope.ngModel); 
+				if(!items || !(items instanceof Array)) return; 
+				var model = $parse(attrs.ngModel); 
 				var selected = items.find(function(i){
 					console.log("CHeck if ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)+" == "+ i.value); 
 					return angular.equals(model($scope.$parent), i.value); 

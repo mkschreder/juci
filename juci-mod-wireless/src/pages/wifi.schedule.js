@@ -3,8 +3,8 @@
 JUCI.app
 .controller("WifiSchedulePageCtrl", function($scope, $uci, gettext){
 	$scope.statusItems = [
-		{ label: gettext("Enabled"), value: 1 },
-		{ label: gettext("Disabled"), value: 0 }
+		{ label: gettext("Enabled"), value: true },
+		{ label: gettext("Disabled"), value: false }
 	]; 
 	$scope.timeSpan = { }; 
 	

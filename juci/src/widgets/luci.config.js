@@ -71,8 +71,9 @@ $juci.module("core")
 .directive("luciConfigApply", function(){
 	var plugin_root = $juci.module("core").plugin_root; 
 	return {
-		template: '<div><div class="btn-toolbar pull-right" >'+
-			'<button class="btn btn-lg btn-primary" ng-click="onApply()" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button><button class="btn btn-lg btn-default" ng-click="onCancel()">{{ "Cancel" | translate }}</button>'+
+		template: '<div><div class="btn-toolbar" >'+
+			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()">{{ "Cancel" | translate }}</button>'+
+			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
 			'</div><div style="clear: both;"></div></div>', 
 		replace: true, 
 		scope: {

@@ -22,7 +22,6 @@ $juci.module("wifi")
 		}*/
 	};  
 }).controller("uciWirelessScheduleEdit", function($scope, gettext, $uci){
-	$scope.selectedTimeFrame = []; 
 	$scope.data = {}; 
 	
 	var dayTranslation = {
@@ -66,9 +65,10 @@ $juci.module("wifi")
 	});
 	 
 	$scope.onChangeDays = function($value){
-		console.log("Changing days to: "+JSON.stringify($value));  
+		console.log("Changing days to: "+JSON.stringify($value) + " "+ $scope.selectedTimeFrame);  
 		//$scope.schedule.days.value.splice(0,$scope.schedule.days.value.length); 
-		//$scope.schedule.days.value = $value; 
+		$scope.selectedTimeFrame = $value; 
+		$scope.schedule.days.value = dayTranslation[$value]; 
 		//Object.assign($scope.schedule.days.value, $scope.selectedTimeFrame); 
 	}
 }); 

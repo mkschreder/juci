@@ -2,7 +2,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="btn-group pull-right">
-				<span class="btn">
+				<span class="btn" disabled>
 					<i ng-class="interface.disabled.value?'wifi-disabled':'wifi-enabled'" class="fa fa-wifi fa-2x"/>
 				</span>
 				<span class="btn " ng-click="expanded = !expanded">
@@ -39,9 +39,6 @@
 				</luci-config-line>
 			</luci-config-lines>
 			<luci-errors ng-model="errors"/>
-		</div>
-		<div class="panel-footer" ng-show="expanded">
-			<luci-config-apply on-pre-apply="onPreApply()"></luci-config-apply>
 		</div>
 	</div>
 </div>

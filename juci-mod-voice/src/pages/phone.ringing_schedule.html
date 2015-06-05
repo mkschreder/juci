@@ -9,7 +9,7 @@
 					<switch name="enabled" ng-model="settings.enabled.value" class="green"></switch>
 				</luci-config-line>
 				<luci-config-line title="{{'During this time ringing is '|translate}}"  ng-show="settings.enabled.value">
-					<luci-select ng-model="settings.status.value" ng-items="enabledDisabledItems"></luci-select>
+					<luci-select ng-model="settings.status.value" ng-items="enabledDisabledItems" placeholder="{{'Select Schedule Mode'|translate}}"></luci-select>
 				</luci-config-line>
 			</luci-config-lines>
 			<table class="table" ng-show="settings.enabled.value">
@@ -44,7 +44,7 @@
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
 			<luci-config-lines>
 				<luci-config-line title="Phone Number">
-					<luci-select ng-model="schedule.sip_service_provider.value" ng-items="allSipAccounts" placeholder="Pick Phone Number"/>
+					<luci-select ng-model="schedule.sip_service_provider.value" ng-items="allSipAccounts" placeholder="{{'Pick Phone Number'|translate}}"/>
 				</luci-config-line>
 			</luci-config-line>
 			<uci-wireless-schedule-edit ng-model="schedule" schedule="schedule" valid="scheduleValid"></uci-wireless-schedule-edit>

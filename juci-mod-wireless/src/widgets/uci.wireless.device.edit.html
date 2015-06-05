@@ -1,13 +1,13 @@
 <div>
 	<luci-config-lines>
 		<luci-config-line title="{{'Wifi Mode'|translate}}">
-			<luci-select ng-model="device.hwmode.value" ng-items="allModes"/>
+			<luci-select ng-model="device.hwmode.value" ng-items="allModes" placeholder="{{'Pick Hardware Mode'|translate}}"/>
 		</luci-config-line>
 		<luci-config-line title="{{'Bandwidth'|translate}}">
-			<luci-select ng-model="device.bandwidth.value" ng-items="allBandwidths"/>
+			<luci-select ng-model="device.bandwidth.value" ng-items="allBandwidths" placeholder="{{'Pick Bandwidth'|translate}}"/>
 		</luci-config-line>
 		<luci-config-line title="{{'Channel'|translate}}">
-			<luci-select ng-model="device.channel.value" ng-items="allChannels"/>
+			<luci-select ng-model="device.channel.value" ng-items="allChannels" placeholder="{{'Pick Channel'|translate}}"/>
 		</luci-config-line>
 	</luci-config-lines>
 </div>
