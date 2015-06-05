@@ -2,7 +2,7 @@
 	<!--<div class="modal-body">-->
 		<luci-config-lines>
 			<luci-config-line title="{{'Time Frame'|translate}}">
-				<luci-select ng-model="selectedTimeFrame" on-change="onChangeDays()" ng-items="allTimeFrames" placeholder="{{'Preselected Days'|translate}}"></luci-select>
+				<luci-select ng-model="schedule.days.value" on-change="onChangeDays($value)" ng-items="allTimeFrames" placeholder="{{'Preselected Days'|translate}}"></luci-select>
 			</luci-config-line>
 			<luci-config-line title="{{'Days'|translate}}" no-pull >
 				<div class="row" ng-class="{'field-error': schedule.days.error}" >

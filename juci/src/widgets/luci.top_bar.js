@@ -18,18 +18,12 @@ $juci.module("core")
 		
 		$scope.$apply(); 
 	}); 
+	$scope.selectedModeValue = "basic";
 	$scope.guiModes = [
 		{label: gettext("Basic Mode"), value: "basic"},
 		{label: gettext("Expert Mode"), value: "expert"},
 		{label: gettext("Log out"), value: "logout"}
-	]; 
-	Object.keys($scope.guiModes).map(function(k){
-		var m = $scope.guiModes[k];
-        if (!$config.mode) {
-            $config.mode = "basic"; // by default
-        }
-		if(m.value == $config.mode) $scope.selectedModeValue = m;
-	});  
+	];   
 	$scope.onChangeMode = function(){
 		var selected = $scope.selectedModeValue;
 		console.log("selected value", selected);

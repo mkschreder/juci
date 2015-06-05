@@ -1,4 +1,49 @@
-$juci.module("core")
+JUCI.app
+.directive("luciSelect", function($parse){
+	return {
+		restrict: 'E', 
+		scope: {
+			ngModel: "@", 
+			ngItems: "=", 
+			onChange: "&", 
+			placeholder: "@"
+		}, 
+		require: ["ngModel"], 
+		template: '<div class="btn-group" style="white-space: nowrap;">'+
+			'<button class="btn btn-default button-label {{size_class}}" style="display: inline-block; float:none; " data-toggle="dropdown">{{(selectedText || placeholder) | translate}}</button>'+
+			'<button class="btn btn-default dropdown-toggle" style="display: inline-block; float:none;" data-toggle="dropdown"><span class="caret"></span></button>'+
+			'<ul class="dropdown-menu"><li ng-repeat="item in ngItems"><a tabindex="-1" ng-click="select(item)" href="">{{item.label}}</a></li></ul>'+
+			'</div>', 
+		link: function($scope, elem, attrs) {
+			$scope.select = function(item){
+				$scope.selectedText = item.label; 
+				var model = $parse($scope.ngModel); 
+				model.assign($scope.$parent, item.value); 
+				console.log("Model ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)); 
+				$scope.onChange({$item: item, $value: item.value}); 
+			}
+			function updateSelected(items){
+				var model = $parse($scope.ngModel); 
+				var selected = items.find(function(i){
+					console.log("CHeck if ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)+" == "+ i.value); 
+					return angular.equals(model($scope.$parent), i.value); 
+				}); 
+				if(selected) $scope.selectedText = selected.label;  
+				else $scope.selectedText = $scope.placeholder; 
+			}
+			$scope.$watch("ngItems", function(items){
+				if(!items || !(items instanceof Array)) return; 
+				console.log("set items: "+items); 
+				updateSelected(items); 
+			}); 
+			$scope.$watch("$parent."+$scope.ngModel, function(value){
+				updateSelected($scope.ngItems); 
+			}); 
+		}
+	}; 
+}); 
+
+/*$juci.module("core")
 .directive('luciSelect', function ($compile) {
 	return {
 	restrict: 'E',
@@ -38,17 +83,10 @@ $juci.module("core")
 				scope.itemList = value.map(function(x){
 					//console.log(JSON.stringify(x)+" "+JSON.stringify(scope.selectedItem));
 					if(typeof x == "object" && "value" in x){
-						/*if(scope.selectedItem != undefined && scope.selectedItem.value == x.value)
-							scope.selectedText = scope.selectedItem.label || scope.placeholder;
-						else if(scope.selectedItem == x.value){
-							scope.selectedText = x.label || scope.placeholder; 
-						}*/
+						
 						//console.log(JSON.stringify(x)+" "+JSON.stringify(scope.selectedItem));
 						return { label: x.label, value: x.value }; 
 					} else {
-						/*if(scope.selectedItem == x){
-							scope.selectedText = scope.selectedItem || scope.placeholder; 
-						}*/
 						return { label: x, value: x }; 
 					}
 				}); 
@@ -100,4 +138,4 @@ $juci.module("core")
 		//scope.selectVal(scope.selectedItem);
 	}
 	};
-});
+});*/

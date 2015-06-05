@@ -65,14 +65,10 @@ $juci.module("wifi")
 		} 
 	});
 	 
-	$scope.onChangeDays = function(){ 
-		setTimeout(function(){
-			var value = $scope.selectedTimeFrame; 
-		console.log("Changing days to: "+JSON.stringify(value));  
+	$scope.onChangeDays = function($value){
+		console.log("Changing days to: "+JSON.stringify($value));  
 		//$scope.schedule.days.value.splice(0,$scope.schedule.days.value.length); 
-		if(dayTranslation[value])
-			$scope.schedule.days.value = dayTranslation[value]; 
-		}, 0); 
+		//$scope.schedule.days.value = $value; 
 		//Object.assign($scope.schedule.days.value, $scope.selectedTimeFrame); 
 	}
 }); 

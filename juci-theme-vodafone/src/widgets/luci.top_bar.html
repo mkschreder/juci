@@ -4,7 +4,7 @@
 			<div class="col-xs-1"></div>
 			<div class="col-xs-10">
 				<div class="outer-select">
-					<luci-select ng-model="selectedModeValue" ng-items="guiModes" on-change="onChangeMode()"></luci-select>
+					<luci-select ng-model="selectedModeValue" ng-items="guiModes" on-change="onChangeMode($value)" placeholder="{{'Select User Mode'|translate}}></luci-select>
 				</div>
 				<div class="box-model">{{ model }}</div>
 			</div>

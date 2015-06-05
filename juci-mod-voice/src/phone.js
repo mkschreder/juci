@@ -156,7 +156,7 @@ UCI.voice_client.$registerSectionType("speed_dial", {
 
 UCI.voice_client.$registerSectionType("ringing_status", {
 	"enabled": { dvalue: false, type: Boolean }, 
-	"status": { dvalue: 0, type: Number }
+	"status": { dvalue: false, type: Boolean }
 }); 
 
 UCI.voice_client.$registerSectionType("ringing_schedule", {
