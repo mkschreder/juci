@@ -1,5 +1,5 @@
-$juci.app
-.controller("InternetPortMappingPageCtrl", function($scope, $uci, ModalService, $rpc){
+JUCI.app
+.controller("InternetPortMappingPageCtrl", function($scope, $uci, $rpc){
 	function reload(){
 		$uci.sync("firewall").done(function(){
 			$scope.redirects = $uci.firewall["@redirect"];
@@ -16,41 +16,38 @@ $juci.app
 		}).done(function(section){
 			$scope.rule = section; 
 			$scope.rule[".new"] = true; 
-			$scope.rule[".edit"] = true; 
-			$scope.showModal = 1;
+			//$scope.rule[".edit"] = true; 
 			$scope.$apply(); 
 		}); 
 	};
 	
 	$scope.onEditRule = function(rule){
 		$scope.rule = rule; 
-		rule[".edit"] = true; 
+		//$scope.rule[".edit"] = true; 
+		console.log($scope.rule[".name"]); 
+		console.log(Object.keys($scope.redirects).map(function(k) { return $scope.redirects[k][".name"]; })); 
 	};
 	
 	$scope.onDeleteRule = function(rule){
 		rule.$delete().done(function(){
-			$uci.save(); 
-			$scope.$apply(); 
+			
 		}); 
 	};
 	
-	$scope.onAcceptEdit = function(rule){
-		$uci.save().done(function(){
-			rule[".edit"] = false; 
-			$scope.$apply(); 
-		}); 
+	$scope.onAcceptEdit = function(){
+		$scope.errors = $scope.rule.$getErrors(); 
+		if($scope.errors.length) return; 
+		$scope.rule = null; 
+		$scope.$apply();  
 	};
 	
-	$scope.onCancelEdit = function(rule){
-		rule[".edit"] = false; 
-		if(rule[".new"]){
-			rule.$delete().done(function(){
+	$scope.onCancelEdit = function(){
+		$scope.rule = null; 
+		if($scope.rule[".new"]){
+			$scope.rule.$delete().done(function(){
+				$scope.rule = null; 
 				$scope.$apply(); 
 			}); 
-		} else {
-			rule.$sync().done(function(){
-				$scope.$apply(); 
-			}); 
-		}
+		} 
 	}
 }); 

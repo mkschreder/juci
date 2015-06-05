@@ -4,9 +4,6 @@
 	//var JUCI = exports.JUCI; 
 	var $rpc = scope.UBUS; 
 	
-	// just for the extractor
-	var gettext = function(str) { return str; }; 
-	
 	function DefaultValidator(){
 		this.validate = function(field){
 			return null; // return null to signal that there was no error
@@ -45,32 +42,16 @@
 	}
 
 	function PortValidator(){
-		var PORT_REGEX = /^\d{1,5}$/;
-
 		this.validate = function(field){
-			if(field.value == undefined || !field.value.split) return null; 
-			var parts = field.value.split("-");
-			if (parts.length > 1) {  // check if it is a port range or not
-				for (var i = 0; i < parts.length; i++) {
-					var outcome = this.validatePort(parts[i]);
-					if (outcome != null) { return outcome; }
-				}
-			} else {
-				return this.validatePort(parts)
+			if(field.value == undefined) return null; 
+			var parts = field.value.split("-").map(function(x){
+				return parseInt(x); 
+			}).filter(function(x){ return x >= 1 && x < 65535; });
+			if(parts.length != 1 && parts.length != 2){
+				return gettext("Port value must be a valid port number or port range between 1 and 65536"); 
 			}
+			return null; 
 		};
-
-		this.validatePort = function(port) {
-			if (PORT_REGEX.test(port)) { // valid regex
-				if (port <= 0 || port > 65535) {
-					return gettext("Port value must be between 0 and 65536");
-				} else {
-					return null;
-				}
-			} else {
-				return gettext("Port value is invalid");
-			}
-		}
 	}
 	
 	var section_types = {
@@ -104,63 +85,7 @@
 				"iptv":						{ dvalue: "", type: String }
 			}
 		}, 
-		"firewall": {
-			"defaults": {
-				"syn_flood":		{ dvalue: true, type: Boolean }, 
-				"input":				{ dvalue: "ACCEPT", type: String }, 
-				"output":				{ dvalue: "ACCEPT", type: String }, 
-				"forward":			{ dvalue: "REJECT", type: String }, 
-			}, 
-			"zone": {
-				"name":					{ dvalue: "", type: String }, 
-				"input":				{ dvalue: "ACCEPT", type: String }, 
-				"output":				{ dvalue: "ACCEPT", type: String }, 
-				"forward":			{ dvalue: "REJECT", type: String }, 
-				"network": 			{ dvalue: [], type: Array }, 
-				"masq":					{ dvalue: true, type: Boolean }, 
-				"mtu_fix": 			{ dvalue: true, type: Boolean }
-			}, 
-			"redirect": {
-				"name":					{ dvalue: "", type: String }, 
-				"src":					{ dvalue: "", type: String }, 
-				"dest":					{ dvalue: "", type: String }, 
-				"src_ip":				{ dvalue: "", type: String },
-				"src_dport":		{ dvalue: 0, type: String, validator: PortValidator },
-				"proto":				{ dvalue: "", type: String }, 
-				"dest_ip":			{ dvalue: "", type: String }, 
-				"dest_port":		{ dvalue: 0, type: String, validator: PortValidator }, 
-			}, 
-			"include": {
-				"path": 				{ dvalue: "", type: String }, 
-				"type": 				{ dvalue: "", type: String }, 
-				"family": 			{ dvalue: "", type: String }, 
-				"reload": 			{ dvalue: true, type: Boolean }
-			}, 
-			"dmz": {
-				"enabled": 			{ dvalue: false, type: Boolean }, 
-				"host": 				{ dvalue: "", type: String } // TODO: change to ip address
-			}, 
-			"rule": {
-				"name":					{ dvalue: "", type: String }, 
-				"src":					{ dvalue: "lan", type: String }, 
-				"src_ip":				{ dvalue: "", type: String }, 
-				"src_port":			{ dvalue: 0, type: Number }, 
-				"proto":				{ dvalue: "tcp", type: String }, 
-				"dest":					{ dvalue: "*", type: String }, 
-				"dest_ip":			{ dvalue: "", type: String }, 
-				"dest_port":		{ dvalue: 0, type: Number }, 
-				"target":				{ dvalue: "REJECT", type: String }, 
-				"family": 			{ dvalue: "ipv4", type: String }, 
-				"icmp_type": 		{ dvalue: [], type: Array },
-				"enabled": 			{ dvalue: true, type: Boolean },
-				"hidden": 			{ dvalue: true, type: Boolean }, 
-				"limit":				{ dvalue: "", type: String }
-			}, 
-			"settings": {
-				"disabled":			{ dvalue: false, type: Boolean },
-				"ping_wan":			{ dvalue: false, type: Boolean }
-			}
-		}, 
+		
 		"system": {
 			"system": {
 				"timezone":		{ dvalue: '', type: String },
@@ -322,8 +247,9 @@
 			var self = this; 
 			var type = self[".section_type"]; 
 			Object.keys(type).map(function(k){
-				if(self[k] && self[k].error){
-					errors.push(self[k].error); 
+				var err = self[k].error; 
+				if(err){
+					errors.push(err); 
 				}
 			}); 
 			return errors; 
@@ -397,6 +323,15 @@
 				}
 			}
 			if(section[".name"]) delete self[section[".name"]]; 
+		}
+		
+		UCIConfig.prototype.$getErrors = function(){
+			var errors = [];
+			var self = this;  
+			Object.keys(self).map(function(x){
+				if(self[x].constructor == UCI.Section) errors = errors.concat(self[x].$getErrors()); 
+			}); 
+			return errors; 
 		}
 		
 		UCIConfig.prototype.$sync = function(){
@@ -671,6 +606,7 @@
 		var writes = []; 
 		var add_requests = []; 
 		var resync = {}; 
+		var errors = []; 
 		
 		async.series([
 			function(next){ // commit configs that need committing first
@@ -695,8 +631,16 @@
 				});
 			}, 
 			function(next){ // send all changes to the server
+				console.log("Checking for errors..."); 
 				Object.keys(self).map(function(k){
 					if(self[k].constructor == UCI.Config){
+						var err = self[k].$getErrors(); 
+						console.log("Errors: "+err); 
+						if(err && err.length) {
+							alert(err); 
+							errors.concat(err);
+							return; 
+						} 
 						var reqlist = self[k].$getWriteRequests(); 
 						reqlist.map(function(x){ writes.push(x); });  
 					}
@@ -729,12 +673,12 @@
 					}).fail(function(err){
 						next("could not commit config: "+err); 
 					}); 
-				}, function(err){
+				}, function(){
 					console.log("Commit done!"); 
 					// this is to always make sure that we do this outside of this code flow
 					setTimeout(function(){
-						if(err) deferred.reject(err); 
-						else deferred.resolve(err); 
+						if(errors && errors.length) deferred.reject(errors); 
+						else deferred.resolve(); 
 					},0); 
 				}); 
 			}

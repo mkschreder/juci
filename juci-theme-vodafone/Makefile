@@ -15,7 +15,7 @@ files:
 	$(CP) ./src/fonts htdocs/
 
 STYLES:=$(wildcard src/css/*.css) 
-CODE:=$(wildcard src/*.js src/widgets/*.js)
+CODE:=$(wildcard src/*.js src/pages/*.js src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
 $(CSS): $(STYLES)

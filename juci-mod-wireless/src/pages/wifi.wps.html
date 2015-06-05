@@ -43,7 +43,7 @@
 						<switch id="enabled" name="enabled" ng-model="boardpanel.settings.wpsdevicepin.value" ng-change="save()" class="green"></switch>
 					</luci-config-line>
 					<luci-config-line title="{{'Generated PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
-						<input type="text" class="form-control input-lg"  ng-model="generatedPIN" />
+						<input type="text" class="form-control input-lg"  ng-model="generatedPIN" readonly />
 					</luci-config-line>
 					<luci-config-line title="{{'Generate New PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
 						<button class="btn btn-lg btn-default" ng-click="onGeneratePIN()" translate>Generate</button>

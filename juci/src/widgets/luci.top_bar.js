@@ -1,8 +1,7 @@
 $juci.module("core")
 .directive("luciTopBar", function($compile){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/luci.top_bar.html", 
+		templateUrl: "/widgets/luci.top_bar.html", 
 		controller: "luciTopBarController", 
 		replace: true
 	 };  
@@ -15,7 +14,6 @@ $juci.module("core")
 		} else {
 			$scope.model = ($config.system.name || "") + " " + ($config.system.hardware || ""); 
 		}
-		
 		$scope.$apply(); 
 	}); 
 	$scope.selectedModeValue = "basic";

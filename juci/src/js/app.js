@@ -100,6 +100,11 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		$rootScope.errors.push({message: data}); 
 		//console.log("ERROR: "+ev.name+": "+JSON.stringify(Object.keys(ev.currentScope))); 
 	}); 
+	$rootScope.$on("errors", function(ev, errors){
+		if(errors && (errors instanceof Array)){
+			$rootScope.errors.concat(errors.map(function(x){ return { message: x }; })); 
+		}
+	}); 
 	// set current language
 	gettextCatalog.currentLanguage = "en"; 
 	gettextCatalog.debug = true;

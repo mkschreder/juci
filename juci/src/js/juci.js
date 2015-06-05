@@ -131,7 +131,7 @@
 					// pick the correct theme in the init script. TODO: perhaps do this somewhere else? 
 					$rpc.router.info().done(function(info){
 						//console.log("Router info: "+JSON.stringify(info.system)); 
-						if(info && info.system) $juci.config.system = info.system; 
+						if(info && info.system) JUCI.config.system = info.system; 
 						next(); 
 					}).fail(function(){
 						console.error("Could not get system info. This gui depends on questd. You likely do not have it installed on your system!"); 

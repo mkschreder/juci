@@ -17,14 +17,10 @@ $juci.module("wifi")
 		$rpc.router.radios().done(function(result){
 			if(device[".name"] in result){
 				var settings = result[device[".name"]]; 
-				$scope.allChannels = [gettext("auto")].concat(settings.channels); 
-				$scope.allModes = settings.hwmodes; 
-				$scope.allBandwidths = settings.bwcaps; 
-			} else {
-				$scope.allChannels = [ "auto"  ]; 
-				$scope.allModes = ["802.11gn", "802.11bg", "802.11bgn", "802.11n"]; 
-				$scope.allBandwidths = [ "20", "40", "80" ]; 
-			}
+				$scope.allChannels = [gettext("auto")].concat(settings.channels).map(function(x){ return { label: x, value: x }; }); 
+				$scope.allModes = settings.hwmodes.map(function(x){ return { label: x, value: x }; }); ; 
+				$scope.allBandwidths = settings.bwcaps.map(function(x){ return { label: x, value: x }; }); ; 
+			} 
 			$scope.$apply(); 
 		}); 
 	}); 

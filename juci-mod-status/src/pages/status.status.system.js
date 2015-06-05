@@ -23,7 +23,7 @@ JUCI.app
 		], function(err, next){
 			$scope.systemStatusTbl.rows = [
 				[$tr(gettext("Hostname")), info.system.name],
-				[$tr(gettext("Model")), info.system.nvramver],
+				[$tr(gettext("Model")), info.system.hardware],
 				[$tr(gettext("Firmware Version")), info.system.firmware],
 				[$tr(gettext("Kernel Version")), info.system.kernel],
 				[$tr(gettext("Local Time")), new Date(sys.localtime)],

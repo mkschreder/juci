@@ -10,7 +10,9 @@ if (!Date.prototype.toLocaleFormat) {
 		};
 	}());
 }*/
-
+// just for the extractor
+function gettext(str) { return str; }; 
+	
 if(!Object.assign){
 	Object.assign = function (target, source) {
 		function ToObject(val) {

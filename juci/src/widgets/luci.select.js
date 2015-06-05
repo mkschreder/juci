@@ -19,14 +19,14 @@ JUCI.app
 				$scope.selectedText = item.label; 
 				var model = $parse(attrs.ngModel); 
 				model.assign($scope.$parent, item.value); 
-				console.log("Model ["+"$parent."+attrs.ngModel+"]: "+model($scope.$parent)); 
+				//console.log("Model ["+"$parent."+attrs.ngModel+"]: "+model($scope.$parent)); 
 				$scope.onChange({$item: item, $value: item.value}); 
 			}
 			function updateSelected(items){
 				if(!items || !(items instanceof Array)) return; 
 				var model = $parse(attrs.ngModel); 
 				var selected = items.find(function(i){
-					console.log("CHeck if ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)+" == "+ i.value); 
+					//console.log("Check if ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)+" == "+ i.value); 
 					return angular.equals(model($scope.$parent), i.value); 
 				}); 
 				if(selected) $scope.selectedText = selected.label;  
@@ -34,7 +34,7 @@ JUCI.app
 			}
 			$scope.$watch("ngItems", function(items){
 				if(!items || !(items instanceof Array)) return; 
-				console.log("set items: "+items); 
+				//console.log("set items: "+items); 
 				updateSelected(items); 
 			}); 
 			$scope.$watch("$parent."+$scope.ngModel, function(value){

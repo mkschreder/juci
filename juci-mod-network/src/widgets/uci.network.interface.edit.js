@@ -23,7 +23,7 @@ JUCI.app
 					$scope.staticDHCP = $uci.dhcp["@host"]; 
 					$scope.hosts = Object.keys(clients).map(function(k){
 						return {
-							label: clients[k].hostname, 
+							label: clients[k].hostname || clients[k].ipaddr, 
 							value: clients[k]
 						}; 
 					}); 

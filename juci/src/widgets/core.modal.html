@@ -5,11 +5,12 @@
 				<button ng-hide="hideCloseBtn" type="button" class="close" ng-click="onDismiss()" aria-hidden="true">&times;</button>
 				<h3 class="modal-title">{{title|translate}}</h3>
 			</div>
-			<div ng-show="formIncluded" ng-transclude></div>
-			<div ng-hide="formIncluded" class="modal-body" ng-transclude></div>
-			<div ng-hide="formIncluded" class="modal-footer">
-				<button class="btn btn-primary" ng-show="acceptLabel" ng-click="onAccept()">{{acceptLabel}}</button>
-				<button class="btn btn-default" ng-show="dismissLabel" ng-click="onDismiss()">{{dismissLabel}}</button>
+			<div class="modal-body" ng-transclude></div>
+			<div class="modal-footer">
+				<div class="btn-toolbar">
+					<button class="btn btn-primary btn-lg" ng-show="acceptLabel" ng-click="onAccept()">{{acceptLabel}}</button>
+					<button class="btn btn-default btn-lg" ng-show="dismissLabel" ng-click="onDismiss()">{{dismissLabel}}</button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -19,10 +19,14 @@ JUCI.app
 			$scope.$emit("Could not find WAN network on this device"); 
 		}
 		if ($uci.ddns && $uci.ddns["@service"]) {
-			/*$scope.allServices = $uci.ddns["@service"].map(function(x){
-				return { label: x.service_name.value, value: x.service_name.value };
-			}); */ 
-			$scope.ddns = $uci.ddns["@service"][0];
+			// currently we have just a hack to support the providers. TODO: later add support for many providers. 
+			var provider = $uci.ddns["@service"][0]; 
+			if(!$scope.allServices.find(function(x){
+				return x.value == provider.service_name.value; 
+			})){
+				$scope.allServices.push({ label: provider.service_name.value, value: provider.service_name.value }); 
+			}; 
+			$scope.ddns = provider;
 			$scope.$apply(); 
 		} else {
 			$uci.ddns.create({".type": "service"}).done(function(section){

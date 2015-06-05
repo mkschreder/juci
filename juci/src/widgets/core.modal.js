@@ -13,14 +13,14 @@ $juci.module("core")
 			onAccept: "&", 
 			onDismiss: "&", 
 			title: "@",
-			hideCloseBtn : "@",
-			formIncluded : "@"
+			hideCloseBtn : "@"
 		}, 
 		controller: "ModalController", 
-		link: function postLink(scope, element, attrs) {
+		link: function (scope, element, attrs) {
 			scope.element = element;
 			scope.$watch("ngShow", function(value){
-				if(value == true)
+				console.log("core.modal.show: "+value); 
+				if(value)
 					$(element).modal('show');
 				else
 					$(element).modal('hide');

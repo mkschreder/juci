@@ -1,19 +1,22 @@
-$juci.app.directive("uciFirewallNatRuleEdit", function($compile, $parse){
+JUCI.app
+.directive("uciFirewallNatRuleEdit", function($compile, $parse){
 	var plugin_root = $juci.module("internet").plugin_root; 
 	return {
 		templateUrl: plugin_root+"/widgets/uci.firewall.nat.rule.edit.html", 
 		scope: {
-			rule: "=ngModel"
+			ngModel: "=ngModel"
 		}, 
 		controller: "uciFirewallNatRuleEdit", 
 		replace: true, 
-		require: "^ngModel"
 	 };  
 }).controller("uciFirewallNatRuleEdit", function($scope, $uci, $rpc, $log){
 	$scope.portIsRange = 0;
-	$scope.$watch("rule", function(rule){
-		if(rule && rule.src_dport && rule.dest_port && rule.src_dport.value && rule.dest_port.value){
-			$scope.portIsRange = (rule.src_dport.value.indexOf("-") != -1) || (rule.dest_port.value.indexOf("-") != -1); 
+	$scope.$watch("ngModel", function(value){
+		if(!value) return; 
+		var ngModel = value; 
+		if(ngModel && ngModel.src_dport && ngModel.dest_port && ngModel.src_dport.value && ngModel.dest_port.value){
+			
+			$scope.portIsRange = (ngModel.src_dport.value.indexOf("-") != -1) || (ngModel.dest_port.value.indexOf("-") != -1); 
 		}
 	}); 
 	$scope.protocolChoices = [
@@ -21,11 +24,7 @@ $juci.app.directive("uciFirewallNatRuleEdit", function($compile, $parse){
 		{ label: "TCP", value: "tcp"}, 
 		{ label: "TCP + UDP", value: "tcpudp" }
 	]; 
-	$scope.patterns = {
-		ipaddress: /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/,
-		port: /^\d{1,5}$/
-	};
-	$scope.deviceChoices = [{label: "test", value: "id"}];
+	$scope.deviceChoices = [];
 	$rpc.router.clients().done(function(clients){
 		var choices = []; 
 		Object.keys(clients).map(function(x) {

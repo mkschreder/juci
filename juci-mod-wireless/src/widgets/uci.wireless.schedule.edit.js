@@ -4,7 +4,7 @@ $juci.module("wifi")
 	return {
 		templateUrl: plugin_root+"/widgets/uci.wireless.schedule.edit.html", 
 		scope: {
-			schedule: "=schedule", 
+			schedule: "=ngModel", 
 		}, 
 		controller: "uciWirelessScheduleEdit", 
 		replace: true, 

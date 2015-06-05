@@ -20,7 +20,7 @@
  * 02110-1301 USA
  */
  
-$juci.module("phone")
+JUCI.app
 .controller("PhoneRingingScheduleCtrl", function($scope, $uci, gettext){
 	$scope.allSipAccountsMap = {}; 
 	$scope.enabledDisabledItems = [

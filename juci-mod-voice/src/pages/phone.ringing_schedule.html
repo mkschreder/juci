@@ -47,7 +47,7 @@
 					<luci-select ng-model="schedule.sip_service_provider.value" ng-items="allSipAccounts" placeholder="{{'Pick Phone Number'|translate}}"/>
 				</luci-config-line>
 			</luci-config-line>
-			<uci-wireless-schedule-edit ng-model="schedule" schedule="schedule" valid="scheduleValid"></uci-wireless-schedule-edit>
+			<uci-wireless-schedule-edit ng-model="schedule" ></uci-wireless-schedule-edit>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
 		</modal>
 	</div>
