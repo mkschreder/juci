@@ -270,7 +270,7 @@
         }
         else {
           try {
-						console.log("JSON: "+json); 
+						//console.log("JSON: "+json); 
             if(typeof(json) === 'string') {
               json = eval ( '(' + json + ')' );
             }

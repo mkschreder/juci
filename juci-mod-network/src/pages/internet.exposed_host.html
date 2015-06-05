@@ -22,7 +22,7 @@
 					<input type="text" class="form-control" placeholder="{{'ip.address.label'|translate}}" ng-model="firewall.dmz.host.value"/>
 				</luci-config-line>
 				<luci-config-line title="{{'Set to Existing Host'|translate}}">
-					<luci-select ng-model="firewall.dmz.host.value" ng-items="connectedHosts" on-change="onChangeHost()"/>
+					<luci-select ng-model="firewall.dmz.host.value" ng-items="connectedHosts" on-change="onChangeHost()" placeholder="{{'Select Existing Host'|translate}}"/>
 				</luci-config-line>
 			</luci-config-lines>
 		</luci-config-section>
