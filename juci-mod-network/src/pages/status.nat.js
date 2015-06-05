@@ -2,6 +2,7 @@ JUCI.app
 .controller("StatusNATPageCtrl", function($scope, $rpc, $tr, gettext){
 	$scope.conntrack = { count: 0, limit: 0 }; 
 	
+	/*
 	$rpc.router.clients().done(function(table){
 		var clients = []; 
 		Object.keys(table).map(function(x){
@@ -11,10 +12,11 @@ JUCI.app
 		$scope.clients = clients; 
 		$scope.conntrack.count = clients.reduce(function(prev, cur){ return prev + (cur.active_cons||0); }, 0); 
 		$scope.$apply(); 
-	}); 
+	}); */
 	
 	$rpc.luci2.network.conntrack_count().done(function(res){
 		$scope.conntrack.limit = res.limit; 
+		$scope.conntrack.count = res.count; 
 		$scope.$apply(); 
 	});
 	
