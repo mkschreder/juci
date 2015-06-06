@@ -67,7 +67,8 @@ files:
 	$(CP) ./src/img/ $(OUTDIR)/
 	$(CP) ./src/fonts/ $(OUTDIR)/
 	$(CP) ./src/index.html $(OUTDIR)/
-	#$(CP) ./src/config.json $(OUTDIR)/
+	# TODO: this needs to be replaced later with /etc/config/juci with proper acl permissions
+	$(CP) ./juci.config.json $(OUTDIR)/config.json
 	
 	
 $(CSS): $(STYLES)

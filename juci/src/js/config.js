@@ -5,7 +5,10 @@
 		this.system = {}; 
 		var defaults = {
 			showlogin: true, 
-			defaultuser: "admin"
+			defaultuser: "admin", 
+			wan_interface: "wan", 
+			voice_interface: "wan", 
+			iptv_interface: "wan"
 		}; 
 		Object.assign(this, defaults); 
 	}
@@ -13,10 +16,6 @@
 		var deferred = $.Deferred(); 
 		var self = this; 
 		console.log("Init CONFIG"); 
-		
-		self["wan_interface"] = "wan"; 
-		self["voice_interface"] = "wan"; 
-		self["iptv_interface"] = "wan"; 
 		
 		UCI.sync(["juci", "boardpanel"]).done(function(){
 			if(UCI.juci && UCI.juci.settings){
@@ -39,16 +38,11 @@
 			loadJSON(); 
 		}); 
 		function loadJSON(){
-			console.log("Using settings from config.json on router"); 
-			$.get("/config.json", {
-				format: "json"
-			}).done(function(data){
+			$.get("/config.json", { format: "json" }).always(function(data){
 				if(!data || data == undefined) throw new Error("Could not get config.json!"); 
+				console.log("Using settings from config.json on router"); 
 				Object.keys(data).map(function(k) { self[k] = data[k]; }); 
 				deferred.resolve(); 
-			}).fail(function(){
-				throw new Error("Could not retreive file config.json"); 
-				deferred.reject(); 
 			}); 
 		}
 		
