@@ -10,22 +10,22 @@ JUCI.app
 		replace: true, 
 		require: "^ngModel"
 	 };  
-}).controller("uciNetworkInterfaceEdit", function($scope, $uci, $rpc, $log, gettext){
+})
+.controller("uciNetworkInterfaceEdit", function($scope, $uci, $rpc, $log, gettext){
 	$scope.expanded = true; 
 	$scope.existingHost = { }; 
 	
-	$scope.$watch("interface", function(interface){
+	$scope.$watch("interface", function(iface){
 		$rpc.router.clients().done(function(clients){
 			$uci.sync("dhcp").done(function(){
-				if($uci.dhcp && (interface[".name"] in $uci.dhcp)){
-					//alert($scope.interface[".name"]); 
-					$scope.dhcp = $uci.dhcp[interface[".name"]]; 
+				if(iface[".name"] in $uci.dhcp){
+					$scope.dhcp = $uci.dhcp[iface[".name"]]; 
 					$scope.staticDHCP = $uci.dhcp["@host"].filter(function(x){ 
 						return x.network.value == $scope.interface['.name']; 
 					}); 
 					$scope.hosts = Object.keys(clients).filter(function(k){
 						// filter out only clients that are connected to this network
-						return clients[k].network == interface['.name']; 
+						return clients[k].network == iface['.name']; 
 					}).map(function(k){
 						return {
 							label: clients[k].hostname || clients[k].ipaddr, 

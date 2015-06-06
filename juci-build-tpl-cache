@@ -1,6 +1,7 @@
 #!/usr/bin/node
 
 var fs = require("fs"); 
+
 //var JSON = require("JSON"); 
 
 var output = process.argv[process.argv.length - 1]; 
@@ -13,7 +14,7 @@ if(input.length == 0) throw new Error("Please specify at least one input file an
 var templates = {}; 
 input.map(function(x){
 	var name = x.replace(/^src\//, ""); 
-	templates[name] = String(fs.readFileSync(x)); 
+	templates[name] = String(fs.readFileSync(x)).replace(/\t|\n/gi, ""); 
 }); 
 
 var code = ""; 

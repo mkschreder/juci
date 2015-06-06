@@ -25,7 +25,7 @@ TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
 $(JS): $(CODE)
 	cat $(CODE) > $@
-	
+
 $(HTML): $(TEMPLATES)
 	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
 
