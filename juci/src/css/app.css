@@ -19,6 +19,10 @@
 	border-left: 4px solid rgba(255, 0, 0, 0.6); 
 }
 
+.juci-config-line-error {
+	background-color: red; 
+}
+
 .no-side-padding {
     padding-left: 0;
     padding-right: 0;

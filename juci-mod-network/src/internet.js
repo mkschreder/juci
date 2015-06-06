@@ -49,8 +49,8 @@ UCI.dhcp.$registerSectionType("dnsmasq", {
 });
 UCI.dhcp.$registerSectionType("dhcp", {
 	"interface":		{ dvalue: "lan", type: String, required: true},
-	"start":		{ dvalue: 100, type: Number },
-	"limit":		{ dvalue: 150, type: Number },
+	"start":		{ dvalue: 100, type: Number, validator: UCI.validators.NumberLimitValidator(1, 255) },
+	"limit":		{ dvalue: 150, type: Number, validator: UCI.validators.NumberLimitValidator(1, 255) },
 	"leasetime":		{ dvalue: "12h", type: String, required: true},
 	"ignore":		{ dvalue: false, type: Boolean }
 });
@@ -60,6 +60,7 @@ UCI.dhcp.$registerSectionType("domain", {
 });
 UCI.dhcp.$registerSectionType("host", {
 	"name":		{ dvalue: "", type: String, required: false},
+	"network": { dvalue: "lan", type: String, required: true }, 
 	"mac":		{ dvalue: "", type: String, required: true},
 	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator }  // TODO: change to ip address
 }); 

@@ -76,7 +76,7 @@ $(CSS): $(STYLES)
 
 $(JS): $(JAVASCRIPT)
 	rm -f $(JS); touch $(JS)
-	for file in $(JAVASCRIPT); do echo $$file; cat $$file >> $(JS); echo $$'\n' >> $(JS); done
+	for file in $(JAVASCRIPT); do echo $$file; cat $$file >> $(JS); echo ';' >> $(JS); done
 	
 $(INDEX): src/index.html
 	cp $(INDEX) src/index.html

@@ -42,7 +42,6 @@ JUCI.app
 	};
 	
 	$scope.onCancelEdit = function(){
-		$scope.rule = null; 
 		if($scope.rule[".new"]){
 			$scope.rule.$delete().done(function(){
 				$scope.rule = null; 

@@ -38,11 +38,14 @@
 			loadJSON(); 
 		}); 
 		function loadJSON(){
-			$.get("/config.json", { format: "json" }).always(function(data){
+			$.get("/config.json", { format: "json" }).done(function(data){
 				if(!data || data == undefined) throw new Error("Could not get config.json!"); 
 				console.log("Using settings from config.json on router"); 
 				Object.keys(data).map(function(k) { self[k] = data[k]; }); 
 				deferred.resolve(); 
+			}).fail(function(err){
+				console.error("Could not parse config: "+err); 
+				deferred.reject(); 
 			}); 
 		}
 		

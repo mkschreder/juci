@@ -43,35 +43,47 @@ $juci.module("core")
 	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<div><div class="row" style="margin-top: 20px; ">'+
-			'<div class="{{labelClass}}">'+
+			'<div class="{{labelClass}} {{errorClass}}">'+
 				'<label style="{{labelStyle}}">{{title}}</label>'+
 				'<p style="font-size: 12px">{{help}}</p>'+
 			'</div>'+
-			'<div class="col-xs-6">'+
+			'<div class="col-xs-6 ">'+
 				'<div class="{{pullClass}}" ng-transclude></div>'+
-			'</div></div></div>', 
+			'</div></div>'+
+			'<div class="alert alert-danger" style="font-size: 0.8em" ng-show="error">{{error}}</div>'+
+			'</div>', 
 		replace: true, 
 		scope: {
 			title: "@", 
-			help: "@"
+			help: "@", 
+			error: "="
 		}, 
 		transclude: true, 
 		link: function (scope, element, attrs) {
 			if(!("noPull" in attrs)) scope.pullClass = "pull-right";
-            if(!("indent" in attrs)) {
-                scope.labelClass = "col-xs-6";
-                scope.labelStyle = "font-size:1.2em";
-            } else {
-                scope.labelClass = "col-xs-5 col-xs-offset-1";
-                scope.labelStyle = "font-size:1em;transform:translateY(30%);";
-            }
-        }
+			if(!("indent" in attrs)) {
+				scope.labelClass = "col-xs-6";
+				scope.labelStyle = "font-size:1.2em";
+			} else {
+				scope.labelClass = "col-xs-5 col-xs-offset-1";
+				scope.labelStyle = "font-size:1em;transform:translateY(30%);";
+			}
+			scope.$watch("error", function(value){
+				if(value){
+					scope.errorClass = "field-error"; 
+				} else {
+					scope.errorClass = ""; 
+				}
+			}); 
+		}
 	 };  
 })
 .directive("luciConfigApply", function(){
 	var plugin_root = $juci.module("core").plugin_root; 
 	return {
-		template: '<div><div class="btn-toolbar" >'+
+		template: '<div>'+
+			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
+			'<div class="btn-toolbar" >'+
 			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()">{{ "Cancel" | translate }}</button>'+
 			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
 			'</div><div style="clear: both;"></div></div>', 
@@ -83,13 +95,18 @@ $juci.module("core")
 	 }; 
 }).controller("luciConfigApplyController", function($scope, $uci){
 	$scope.onApply = function(){
-		if($scope.onPreApply) $scope.onPreApply(); 
+		//if($scope.onPreApply) $scope.onPreApply(); 
 		$scope.busy = 1; 
 		try {
 			$uci.save().done(function(){
 				console.log("Saved uci configuration!"); 
-			}).fail(function(){
+			}).fail(function(errors){
+				$scope.errors = errors; 
+				$scope.$emit("errors", errors); 
 				console.error("Could not save uci configuration!"); 
+				(errors||[]).map(function(x){
+					console.error(x); 
+				}); 
 			}).always(function(){
 				$scope.busy = 0; 
 				setTimeout(function(){$scope.$apply();}, 0); 

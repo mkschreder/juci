@@ -54,6 +54,15 @@
 		};
 	}
 	
+	function NumberLimitValidator(min, max){
+		return function(){
+			this.validate = function(field){
+				if(field.value >= min && field.value <= max) return null; 
+				return gettext("Number value is not within valid range") + " ("+min+"-"+max+")"; 
+			}
+		}
+	}
+	
 	var section_types = {
 		"juci": {
 			"settings": {
@@ -251,7 +260,7 @@
 			Object.keys(type).map(function(k){
 				var err = self[k].error; 
 				if(err){
-					errors.push(err); 
+					errors.push(k+": "+err); 
 				}
 			}); 
 			return errors; 
@@ -331,7 +340,11 @@
 			var errors = [];
 			var self = this;  
 			Object.keys(self).map(function(x){
-				if(self[x].constructor == UCI.Section) errors = errors.concat(self[x].$getErrors()); 
+				if(self[x].constructor == UCI.Section) {
+					errors = errors.concat(self[x].$getErrors().map(function(e){
+						return self[".name"]+"."+x+"."+e; 
+					})); 
+				}
 			}); 
 			return errors; 
 		}
@@ -637,10 +650,11 @@
 				Object.keys(self).map(function(k){
 					if(self[k].constructor == UCI.Config){
 						var err = self[k].$getErrors(); 
-						console.log("Errors: "+err); 
 						if(err && err.length) {
-							alert(err); 
-							errors.concat(err);
+							err.map(function(e){
+								console.error("UCI error ["+k+"]: "+e); 
+							}); 
+							errors = errors.concat(err);
 							return; 
 						} 
 						var reqlist = self[k].$getWriteRequests(); 
@@ -692,7 +706,8 @@
 	scope.UCI.validators = {
 		WeekDayListValidator: WeekDayListValidator, 
 		TimespanValidator: TimespanValidator, 
-		PortValidator: PortValidator
+		PortValidator: PortValidator, 
+		NumberLimitValidator: NumberLimitValidator
 	}; 
 	/*if(exports.JUCI){
 		var JUCI = exports.JUCI; 

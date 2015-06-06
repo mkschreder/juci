@@ -20,8 +20,13 @@ JUCI.app
 				if($uci.dhcp && interface[".name"] in $uci.dhcp){
 					//alert($scope.interface[".name"]); 
 					$scope.dhcp = $uci.dhcp[interface[".name"]]; 
-					$scope.staticDHCP = $uci.dhcp["@host"]; 
-					$scope.hosts = Object.keys(clients).map(function(k){
+					$scope.staticDHCP = $uci.dhcp["@host"].filter(function(x){ 
+						return x.network.value == $scope.interface['.name']; 
+					}); 
+					$scope.hosts = Object.keys(clients).filter(function(k){
+						// filter out only clients that are connected to this network
+						return clients[k].network == interface['.name']; 
+					}).map(function(k){
 						return {
 							label: clients[k].hostname || clients[k].ipaddr, 
 							value: clients[k]
@@ -41,7 +46,6 @@ JUCI.app
 	];  
 	$scope.onAddStaticDHCP = function(){
 		$uci.dhcp.create({".type": "host"}).done(function(section){
-			console.log("Added static dhcp"); 
 			$scope.$apply(); 
 		}); 
 	}
@@ -56,6 +60,7 @@ JUCI.app
 		$uci.dhcp.create({
 			".type": "host", 
 			name: item.hostname, 
+			network: $scope.interface['.name'], 
 			mac: item.macaddr, 
 			ip: item.ipaddr
 		}).done(function(section){
