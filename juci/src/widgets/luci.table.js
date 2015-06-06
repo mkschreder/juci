@@ -46,7 +46,7 @@ $juci.module("core")
 			templateUrl: plugin_root+"/widgets/luci.table.html", 
 			replace: true, 
 			controller: "TableControl",
-			controllerAs: "ctrl",
+			controllerAs: "ctrl"
 			/*link: function(scope, element, attributes){
 				 $compile('<luci-progress value="50" total="100"></luci-progress>')(scope, function(cloned, scope){ 
 					 element.html(cloned); 

@@ -126,7 +126,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 					url: "/"+url, 
 					views: {
 						"content": {
-							templateUrl: plugin_root + "/" + page.view + ".html", 
+							templateUrl: plugin_root + "/" + page.view + ".html"
 						}
 					},
 					// Perfect! This loads our controllers on demand! :) 

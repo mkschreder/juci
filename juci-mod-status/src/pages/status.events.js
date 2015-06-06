@@ -8,7 +8,7 @@ JUCI.app
 	
 	var groups = {
 		"system": ["dropbear", "peripheral_manager"], 
-		"network": ["netifd", "brcmnetlink", "dnsmasq-dhcp", "dnsmasq"], 
+		"network": ["netifd", "brcmnetlink", "dnsmasq-dhcp", "dnsmasq"]
 	}; 
 	
 	JUCI.interval.repeat("syslog", 1000, function(done){
@@ -58,7 +58,7 @@ JUCI.app
 		{ label: "System", value: "system" }, 
 		//{ label: "WAN", value: "wan" }, 
 		{ label: "Network", value: "network" }, 
-		{ label: "Other", value: "other" }, 
+		{ label: "Other", value: "other" }
 		//{ label: "LAN", value: "lan" }, 
 		//{ label: "Voice", value: "voice" }, 
 		//{ label: "Data", value: "data" }, 

@@ -27,7 +27,7 @@ JUCI.app
 				[$tr(gettext("Firmware Version")), info.system.firmware],
 				[$tr(gettext("Kernel Version")), info.system.kernel],
 				[$tr(gettext("Local Time")), new Date(sys.localtime)],
-				[$tr(gettext("Uptime")), info.system.uptime],
+				[$tr(gettext("Uptime")), info.system.uptime]
 				//[$tr(gettext("Load Average")), sys.load[0] + " " + sys.load[1] + " " + sys.load[2]]
 			]; 
 			$scope.systemMemoryTbl.rows = [

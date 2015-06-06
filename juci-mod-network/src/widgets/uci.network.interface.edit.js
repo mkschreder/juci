@@ -17,7 +17,7 @@ JUCI.app
 	$scope.$watch("interface", function(interface){
 		$rpc.router.clients().done(function(clients){
 			$uci.sync("dhcp").done(function(){
-				if($uci.dhcp && interface[".name"] in $uci.dhcp){
+				if($uci.dhcp && (interface[".name"] in $uci.dhcp)){
 					//alert($scope.interface[".name"]); 
 					$scope.dhcp = $uci.dhcp[interface[".name"]]; 
 					$scope.staticDHCP = $uci.dhcp["@host"].filter(function(x){ 

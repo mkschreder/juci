@@ -142,7 +142,7 @@ UCI.voice_client.$registerSectionType("features", {
 	"callforward_enabled":	{ dvalue: true, type: Boolean },
 	"redial_enabled":	{ dvalue: true, type: Boolean },
 	"callreturn_enabled":	{ dvalue: true, type: Boolean },
-	"advanced_register_settings":	{ dvalue: true, type: Boolean },
+	"advanced_register_settings":	{ dvalue: true, type: Boolean }
 }); 
 UCI.voice_client.$registerSectionType("log", {
 	"console":		{ dvalue: "notice,warning,error", type: String },

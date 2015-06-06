@@ -81,7 +81,7 @@ UCI.firewall.$registerSectionType("defaults", {
 	"syn_flood":		{ dvalue: true, type: Boolean }, 
 	"input":				{ dvalue: "ACCEPT", type: String }, 
 	"output":				{ dvalue: "ACCEPT", type: String }, 
-	"forward":			{ dvalue: "REJECT", type: String }, 
+	"forward":			{ dvalue: "REJECT", type: String }
 }); 
 UCI.firewall.$registerSectionType("zone", {
 	"name":					{ dvalue: "", type: String }, 
@@ -100,7 +100,7 @@ UCI.firewall.$registerSectionType("redirect", {
 	"src_dport":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
 	"proto":				{ dvalue: "", type: String }, 
 	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
-	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }, 
+	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }
 }); 
 UCI.firewall.$registerSectionType("include", {
 	"path": 				{ dvalue: "", type: String }, 

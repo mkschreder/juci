@@ -58,7 +58,7 @@ JUCI.app
 		}); 
 	}
 	async.series([
-		function(next){ $rpc.uci.configs().done(function(list){configs = list.configs; next(); }); }, 
+		function(next){ $rpc.uci.configs().done(function(list){configs = list.configs; next(); }); }
 	], function(){
 		$scope.error = ""; 
 		$scope.sections = configs.map(function(x){return {label: x, id: x};}); 

@@ -2,8 +2,15 @@ DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-m
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
-all: htdocs menu.d $(DIRS-y);
-
+all: htdocs menu.d $(DIRS-y)
+	./juci-update htdocs
+	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js > htdocs/__compiled.js
+	#yui-compressor htdocs/__all.css > htdocs/__compiled.css
+	#mv htdocs/__compiled.css htdocs/__all.css
+	#mv htdocs/__compiled.js htdocs/__all.js
+	#rm -rf htdocs/js
+	#rm -rf htdocs/css
+	
 htdocs: 
 	mkdir -p htdocs
 
@@ -18,7 +25,7 @@ $(DIRS-y):
 	make -C $@
 	cp -Rp $@/htdocs/* htdocs/
 	cp -Rp $@/menu.json menu.d/$@.json
-	./juci-update htdocs 
 	
+
 clean: 
 	for dir in $(DIRS-y); do make -C $$dir clean; rm -rf htdocs/; done

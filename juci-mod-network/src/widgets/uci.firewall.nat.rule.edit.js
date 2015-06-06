@@ -7,7 +7,7 @@ JUCI.app
 			ngModel: "=ngModel"
 		}, 
 		controller: "uciFirewallNatRuleEdit", 
-		replace: true, 
+		replace: true
 	 };  
 }).controller("uciFirewallNatRuleEdit", function($scope, $uci, $rpc, $log){
 	$scope.portIsRange = 0;

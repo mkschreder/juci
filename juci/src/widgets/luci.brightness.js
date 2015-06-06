@@ -13,7 +13,7 @@ JUCI.app
 		}, 
 		templateUrl: plugin_root+"/widgets/luci.brightness.html", 
 		replace: true, 
-		controller: "luciBrightness",
+		controller: "luciBrightness"
 	}; 
 })
 .controller("luciBrightness", function($scope){

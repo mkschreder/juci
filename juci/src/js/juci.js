@@ -194,7 +194,7 @@
 								href: path.replace(/\//g, "-").replace(/_/g, "-"), 
 								modes: data.menu[key].modes || [ ], 
 								text: data.menu[key].title, 
-								index: data.menu[key].index || 0, 
+								index: data.menu[key].index || 0
 							}; 
 							$juci.navigation.register(obj); 
 							if(redirect) redirect = redirect.replace(/\//g, "-").replace(/_/g, "-"); 
