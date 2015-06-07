@@ -25,7 +25,7 @@ JUCI.app
 					}); 
 					$scope.hosts = Object.keys(clients).filter(function(k){
 						// filter out only clients that are connected to this network
-						return clients[k].network == iface['.name']; 
+						return clients[k].network == iface['.name'] && clients[k].connected; 
 					}).map(function(k){
 						return {
 							label: clients[k].hostname || clients[k].ipaddr, 

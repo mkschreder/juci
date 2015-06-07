@@ -41,38 +41,43 @@
 			<div ng-hide="dhcp.ignore.value">
 				<hr/>
 				<h3 translate>Static DHCP</h3>
-				<table class="table">
-					<thead>
-						<th translate>Device Name</th>
-						<th translate>MAC Address</th>
-						<th translate>IP Address</th>
-						<th width="1%"></th>
-					</thead>
-					<tr ng-repeat="host in staticDHCP">
-						<td>
-							<input type="text" class="form-control" ng-model="host.name.value"/>
-						</td>
-						<td>
-							<input type="text" class="form-control" ng-model="host.mac.value"/>
-						</td>
-						<td>
-							<input type="text" class="form-control" ng-model="host.ip.value"/>
-						</td>
-						<td style="white-space: nowrap">
-							<!--<button class="btn btn-default" style="display: inline-block; float: none;" ng-click="onAddExistingHost()"><i class="fa fa-plus"></i></button>-->
-							<button class="btn btn-default" style="display: inline-block; float: none;" ng-click="onRemoveStaticDHCP(host)"><i class="fa fa-trash-o"></i></button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"></td>
-						<td style="text-align: right;">
-							<luci-select ng-model="existingHost" ng-items="hosts" on-change="onAddExistingHost()" placeholder="{{'Add existing host'|translate}}"/>
-						</td>
-						<td style="text-align: right;">
-							<button class="btn btn-default" ng-click="onAddStaticDHCP()"><i class="fa fa-plus"></i></button>
-						</td>
-					</tr>
-				</table>
+				<div class="row visible-sm visible-md visible-lg">
+					<div class="col-sm-4" ><label translate>Device Name</label></div>
+					<div class="col-sm-4" ><label translate>MAC Address</label></div>
+					<div class="col-sm-3" ><label translate>IP Address</label></div>
+					<div class="col-sm-1" width="1%"></div>
+				</div>
+				<div class="row " ng-repeat="host in staticDHCP">
+					<div class="col-sm-4 form-group">
+						<label class="visible-xs" translate>Device Name</label>
+						<input type="text" class="form-control" ng-model="host.name.value"/>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label class="visible-xs" translate>MAC Address</label>
+						<input type="text" class="form-control" ng-model="host.mac.value"/>
+					</div>
+					<div class="col-sm-3 form-group">
+						<label class="visible-xs" translate>IP Address</label>
+						<input type="text" class="form-control" ng-model="host.ip.value"/>
+					</div>
+					<div class="col-sm-1 form-group" style="white-space: nowrap">
+						<!--<button class="btn btn-default" style="display: inline-block; float: none;" ng-click="onAddExistingHost()"><i class="fa fa-plus"></i></button>-->
+						<button class="btn btn-default pull-right" style="display: inline-block; float: none;" ng-click="onRemoveStaticDHCP(host)"><i class="fa fa-trash-o"></i></button>
+						<label class="visible-xs" translate>Modify</label>
+					</div>
+					<div class="col-xs-12 visible-xs">
+						<hr style="width: 100%; border-bottom: 1px solid #ccc; clear: both;"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8"></div>
+					<div class="col-sm-3 form-group" style="text-align: right;">
+						<luci-select ng-model="existingHost" ng-items="hosts" on-change="onAddExistingHost()" placeholder="{{'Add Connected Host'|translate}}"/>
+					</div>
+					<div class="col-sm-1 form-group" style="text-align: right;">
+						<button class="btn btn-default" ng-click="onAddStaticDHCP()"><i class="fa fa-plus"></i></button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

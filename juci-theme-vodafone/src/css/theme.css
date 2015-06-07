@@ -51,6 +51,17 @@ h1, h2, h3, h4, h5, .navbar-nav {
 	padding: 9px !important; 
 }
 
+@media screen and (max-width: 768px){
+	.footer{
+		text-align: center !important;
+	}
+}
+@media screen and (min-width: 768px){
+	.footer-right{
+		text-align: right !important;
+	}
+}
+
 /*** fill entire nav **/
 .navbar .navbar-inner {
 	padding: 0;
