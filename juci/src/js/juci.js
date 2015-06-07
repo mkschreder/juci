@@ -230,7 +230,6 @@
 			"checklist-model"
 		]); 
 		app.config(function($stateProvider){
-			
 			Object.keys(scope.JUCI.pages).map(function(name){
 				var page = scope.JUCI.pages[name];
 				var state = {
@@ -274,6 +273,7 @@
 						document.title = $tr(name.replace(/\//g, ".").replace(/-/g, ".")+".title")+" - "+$tr(gettext("application.name")); 
 					}, 
 					onExit: function($interval){
+						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 					}
 				};  
@@ -281,7 +281,14 @@
 				$stateProvider.state(name, state);
 			}); 
 		}); 
-		app.run(function($templateCache){
+		// override default handler and throw the error out of angular to 
+		// the global error handler
+		app.factory('$exceptionHandler', function() {
+			return function(exception) {
+				throw exception+": \n\n"+exception.stack;
+			};
+		});
+		app.run(function($templateCache, $rootScope){
 			var self = scope.JUCI; 
 			Object.keys(self.templates).map(function(k){
 				console.log("Registering template "+k); 

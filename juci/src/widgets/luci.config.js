@@ -76,7 +76,7 @@ $juci.module("core")
 				}
 			}); 
 		}
-	 };  
+	};  
 })
 .directive("luciConfigApply", function(){
 	var plugin_root = $juci.module("core").plugin_root; 

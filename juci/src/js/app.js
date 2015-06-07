@@ -96,6 +96,12 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	
 	// TODO: maybe use some other way to gather errors than root scope? 
 	$rootScope.errors = []; 
+	
+	// register a global error handler so we can show all errors
+	window.onerror = function(err){
+		$rootScope.errors.push({ message: err+":\n\n"+err.stack });
+		alert(err);  
+	}
 	$rootScope.$on("error", function(ev, data){
 		$rootScope.errors.push({message: data}); 
 		//console.log("ERROR: "+ev.name+": "+JSON.stringify(Object.keys(ev.currentScope))); 
