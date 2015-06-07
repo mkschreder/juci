@@ -44,7 +44,7 @@ $juci.module("core")
 	return {
 		template: '<div><div class="row" style="margin-top: 20px; ">'+
 			'<div class="col-xs-6 {{errorClass}}">'+
-				'<label>{{title}}</label>'+
+				'<label style="font-size: 1.2em">{{title}}</label>'+
 				'<p style="font-size: 12px">{{help}}</p>'+
 			'</div>'+
 			'<div class="col-xs-6 ">'+
