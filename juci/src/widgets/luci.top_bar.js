@@ -8,14 +8,14 @@ $juci.module("core")
 })
 .controller("luciTopBarController", function($scope, $config, $uci, $rpc, $window, $localStorage, $state, gettext){
 	$scope.model = $config.hardware_model; 
-	$scope.selectedModeValue = "basic";
+	$scope.selectedModeValue = $localStorage.getItem("mode");;
 	$scope.guiModes = [
 		{label: gettext("Basic Mode"), value: "basic"},
 		{label: gettext("Expert Mode"), value: "expert"},
 		{label: gettext("Log out"), value: "logout"}
 	];   
-	$scope.onChangeMode = function(){
-		var selected = $scope.selectedModeValue;
+	$scope.onChangeMode = function(selected){
+		$scope.selectedModeValue = selected; 
 		console.log("selected value", selected);
 		if(selected == "logout") {
 			console.log("logging out");

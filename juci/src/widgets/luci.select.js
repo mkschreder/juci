@@ -26,8 +26,8 @@ JUCI.app
 				if(!items || !(items instanceof Array)) return; 
 				var model = $parse(attrs.ngModel); 
 				var selected = items.find(function(i){
-					//console.log("Check if ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)+" == "+ i.value); 
-					return angular.equals(model($scope.$parent), i.value); 
+					console.log("Check if ["+"$parent."+$scope.ngModel+"]: "+model($scope.$parent)+" == "+ i.value); 
+					return angular.equals(model($scope.$parent), i.value) || (model($scope.$parent) == i.value); 
 				}); 
 				if(selected) $scope.selectedText = selected.label;  
 				else $scope.selectedText = $scope.placeholder; 
@@ -37,7 +37,8 @@ JUCI.app
 				//console.log("set items: "+items); 
 				updateSelected(items); 
 			}); 
-			$scope.$watch("$parent."+$scope.ngModel, function(value){
+			$scope.$parent.$watch(attrs.ngModel, function(value){
+				console.log("Select parent updated: "+value); 
 				updateSelected($scope.ngItems); 
 			}); 
 		}

@@ -47,6 +47,8 @@ JUCI.app
 				$scope.rule = null; 
 				$scope.$apply(); 
 			}); 
-		} 
+		} else {
+			$scope.rule = null; 
+		}
 	}
 }); 

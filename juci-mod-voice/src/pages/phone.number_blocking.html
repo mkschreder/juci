@@ -13,16 +13,18 @@
 			<luci-config-lines ng-show="filter.block_outgoing.value">
 				<hr/>
 				<luci-config-line title="Do not allow connections to these numbers">
-					<div class="row" ng-repeat="rule in outgoingRules track by rule['.name']">
+					<div class="row form-group" ng-repeat="rule in outgoingRules track by rule['.name']">
 						<div class="form-group form-inline">
-							<input type="text" class="form-control" ng-model="rule.extension.value" ng-blur="onSave()" placeholder="{{'Phone Extension'|translate}}"/>
-							<button class="btn btn-default" ng-click="onDeleteOutgoingRule(rule)"><i class="fa fa-trash"></i></button>
+							<div class="col-xs-10">
+								<input type="text" class="form-control" ng-model="rule.extension.value" ng-blur="onSave()" placeholder="{{'Phone Extension'|translate}}"/>
+							</div>
+							<div class="col-xs-2">
+								<button class="btn btn-default" ng-click="onDeleteOutgoingRule(rule)"><i class="fa fa-trash"></i></button>
+							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="form-group form-inline">
-							<button class="btn btn-default pull-right" ng-click="onAddOutgoingRule()"><i class="fa fa-plus"></i></button>
-						</div>
+					<div class="row form-group form-inline">
+						<button class="btn btn-default pull-right" ng-click="onAddOutgoingRule()"><i class="fa fa-plus"></i></button>
 					</div>
 				</luci-config-line>
 				<hr/>

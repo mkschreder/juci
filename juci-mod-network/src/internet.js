@@ -115,11 +115,11 @@ UCI.firewall.$registerSectionType("dmz", {
 UCI.firewall.$registerSectionType("rule", {
 	"name":					{ dvalue: "", type: String }, 
 	"src":					{ dvalue: "lan", type: String }, 
-	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
+	"src_ip":				{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
 	"src_port":			{ dvalue: 0, type: Number }, 
 	"proto":				{ dvalue: "tcp", type: String }, 
 	"dest":					{ dvalue: "*", type: String }, 
-	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
+	"dest_ip":			{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
 	"dest_port":		{ dvalue: 0, type: Number }, 
 	"target":				{ dvalue: "REJECT", type: String }, 
 	"family": 			{ dvalue: "ipv4", type: String }, 

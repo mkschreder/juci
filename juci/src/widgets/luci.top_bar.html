@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-5" style="font-size: 28px; padding-top: 10px;">{{ model }}</div>
 			<div style="float: right; margin-top: 10px; "> 
-				<luci-select ng-model="selectedModeValue" ng-items="guiModes" on-change="onChangeMode()" placeholder="{{'Select Mode'|translate}}"></luci-select>
+				<luci-select ng-model="selectedModeValue" ng-items="guiModes" on-change="onChangeMode($value)" placeholder="{{'Select Mode'|translate}}"></luci-select>
 			</div>
 		</div>
 	</div>
