@@ -6,9 +6,9 @@
 				<th style="text-align: center;" ng-repeat="label in data.columns  track by $index" class="{{ cellClass($index) }}" >
 					{{ label | translate }}</th>
 			</thead>
-			<tr ng-repeat="row in data.rows ">
+			<tr ng-repeat="row in data.rows track by $index">
 				<td ng-repeat="cell in row track by $index" class="{{ cellClass($index) }}"  dynamic="cell">
-					 
+					
 				</td>
 			</tr>
 		</table>

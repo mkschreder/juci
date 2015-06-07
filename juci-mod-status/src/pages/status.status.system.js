@@ -20,7 +20,7 @@ JUCI.app
 			function (cb){$rpc.router.info().done(function(res){info = res; cb();}).fail(function(res){cb();});},
 			function (cb){$rpc.system.info().done(function(res){sys = res; cb();}).fail(function(res){cb();});},
 			function (cb){$rpc.luci2.system.diskfree().done(function(res){disk = res; cb();}).fail(function(res){cb();});}
-		], function(err, next){
+		], function(err){
 			$scope.systemStatusTbl.rows = [
 				[$tr(gettext("Hostname")), info.system.name],
 				[$tr(gettext("Model")), info.system.hardware],
@@ -41,7 +41,6 @@ JUCI.app
 				[$tr(gettext("Temporary Usage (/tmp)")), '<luci-progress value="'+Math.round(disk.tmp.used / 1000)+'" total="'+ Math.round(disk.tmp.total / 1000) +'" units="kB"></luci-progress>']
 			]; 
 			$scope.$apply(); 
-		}, function(){
 			resume(); 
 		});
 	}); 

@@ -11,6 +11,9 @@ all: htdocs menu.d $(DIRS-y)
 	#mv htdocs/__compiled.js htdocs/__all.js
 	rm -rf htdocs/js
 	rm -rf htdocs/css
+
+debug: htdocs menu.d $(DIRS-y)
+	./juci-update htdocs
 	
 htdocs: 
 	mkdir -p htdocs

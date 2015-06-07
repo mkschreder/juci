@@ -27,6 +27,7 @@ $juci.module("core")
 			replace: true,
 			link: function (scope, element, attrs) {
 				scope.$watch(attrs.dynamic, function(html) {
+					console.log("Recompile html"); 
 					element.html(html);
 					$compile(element.contents())(scope);
 				});
@@ -34,7 +35,6 @@ $juci.module("core")
 		};
 	})
 	.directive("luciTable", function($compile){
-		var plugin_root = $juci.module("core").plugin_root; 
 		return {
 			// accepted parameters for this tag
 			scope: {
@@ -43,7 +43,7 @@ $juci.module("core")
 				title: "@", 
 				noequalize: "="
 			}, 
-			templateUrl: plugin_root+"/widgets/luci.table.html", 
+			templateUrl: "widgets/luci.table.html", 
 			replace: true, 
 			controller: "TableControl",
 			controllerAs: "ctrl"
