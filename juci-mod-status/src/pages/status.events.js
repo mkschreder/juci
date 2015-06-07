@@ -80,7 +80,8 @@ JUCI.app
 	function onChange(){
 		console.log(JSON.stringify($scope.selectedLogTypes) + $scope.selectedShowType); 
 	}
-	$scope.onTypeChanged = function(){
+	$scope.onTypeChanged = function(type){
+		$scope.selectedShowType = type; 
 		onChange(); 
 	}
 	$scope.$watchCollection("selectedLogTypes", function(){ onChange(); }); 

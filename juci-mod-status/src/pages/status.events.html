@@ -15,7 +15,7 @@
 						</div>
 				</luci-config-line>
 				<luci-config-line title="Events to Show">
-					<luci-select ng-model="selectedShowType" ng-items="allEventTypes" placeholder="Select events to show" on-change="onTypeChanged()"></luci-select>
+					<luci-select ng-model="selectedShowType" ng-items="allEventTypes" placeholder="{{'Select events to show'|translate}}" on-change="onTypeChanged($value)"></luci-select>
 				</luci-config-line>
 			</luci-config-lines>
 		</luci-config-section>
