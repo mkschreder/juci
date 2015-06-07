@@ -3,12 +3,12 @@
 }
 
 .radio-info input[type="radio"] + label::after {
-	background-color: #64bd63;
+	background-color: #A8B400;
 }
 .radio-info input[type="radio"]:checked + label::before {
 	border-color: #808080;
 }
 .radio-info input[type="radio"]:checked + label::after {
-	background-color: #64bd63;
+	background-color: #A8B400;
 }
 
