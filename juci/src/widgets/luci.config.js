@@ -43,8 +43,8 @@ $juci.module("core")
 	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<div><div class="row" style="margin-top: 20px; ">'+
-			'<div class="{{labelClass}} {{errorClass}}">'+
-				'<label style="{{labelStyle}}">{{title}}</label>'+
+			'<div class="col-xs-6 {{errorClass}}">'+
+				'<label>{{title}}</label>'+
 				'<p style="font-size: 12px">{{help}}</p>'+
 			'</div>'+
 			'<div class="col-xs-6 ">'+
@@ -61,13 +61,6 @@ $juci.module("core")
 		transclude: true, 
 		link: function (scope, element, attrs) {
 			if(!("noPull" in attrs)) scope.pullClass = "pull-right";
-			if(!("indent" in attrs)) {
-				scope.labelClass = "col-xs-6";
-				scope.labelStyle = "font-size:1.2em";
-			} else {
-				scope.labelClass = "col-xs-5 col-xs-offset-1";
-				scope.labelStyle = "font-size:1em;transform:translateY(30%);";
-			}
 			scope.$watch("error", function(value){
 				if(value){
 					scope.errorClass = "field-error"; 

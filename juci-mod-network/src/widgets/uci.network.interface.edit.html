@@ -47,18 +47,20 @@
 					<div class="col-sm-3" ><label translate>IP Address</label></div>
 					<div class="col-sm-1" width="1%"></div>
 				</div>
-				<div class="row " ng-repeat="host in staticDHCP">
+				<div class="row " ng-repeat="host in staticDHCP | filter:{ 'network': { 'value': interface['.name']}}">
 					<div class="col-sm-4 form-group">
 						<label class="visible-xs" translate>Device Name</label>
-						<input type="text" class="form-control" ng-model="host.name.value"/>
+						<input type="text" class="form-control" ng-model="host.name.value" placeholder="{{'Hostname'|translate}}"/>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label class="visible-xs" translate>MAC Address</label>
-						<input type="text" class="form-control" ng-model="host.mac.value"/>
+						<input type="text" class="form-control" ng-model="host.mac.value" placeholder="{{'MAC'|translate}}"/>
+						<luci-error value="host.mac.error"/>
 					</div>
 					<div class="col-sm-3 form-group">
 						<label class="visible-xs" translate>IP Address</label>
-						<input type="text" class="form-control" ng-model="host.ip.value"/>
+						<input type="text" class="form-control" ng-model="host.ip.value" placeholder="{{'IP Address'|translate}}"/>
+						<luci-error value="host.ip.error"/>
 					</div>
 					<div class="col-sm-1 form-group" style="white-space: nowrap">
 						<!--<button class="btn btn-default" style="display: inline-block; float: none;" ng-click="onAddExistingHost()"><i class="fa fa-plus"></i></button>-->
@@ -70,12 +72,12 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-8"></div>
-					<div class="col-sm-3 form-group" style="text-align: right;">
+					<div class="col-sm-7"></div>
+					<div class="col-sm-4 form-group" style="text-align: right;">
 						<luci-select ng-model="existingHost" ng-items="hosts" on-change="onAddExistingHost()" placeholder="{{'Add Connected Host'|translate}}"/>
 					</div>
-					<div class="col-sm-1 form-group" style="text-align: right;">
-						<button class="btn btn-default" ng-click="onAddStaticDHCP()"><i class="fa fa-plus"></i></button>
+					<div class="col-sm-1 form-group" >
+						<button class="btn btn-default pull-right" ng-click="onAddStaticDHCP()"><i class="fa fa-plus"></i></button>
 					</div>
 				</div>
 			</div>

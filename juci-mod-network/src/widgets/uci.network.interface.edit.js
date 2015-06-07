@@ -20,9 +20,7 @@ JUCI.app
 			$uci.sync("dhcp").done(function(){
 				if(iface[".name"] in $uci.dhcp){
 					$scope.dhcp = $uci.dhcp[iface[".name"]]; 
-					$scope.staticDHCP = $uci.dhcp["@host"].filter(function(x){ 
-						return x.network.value == $scope.interface['.name']; 
-					}); 
+					$scope.staticDHCP = $uci.dhcp["@host"]; 
 					$scope.hosts = Object.keys(clients).filter(function(k){
 						// filter out only clients that are connected to this network
 						return clients[k].network == iface['.name'] && clients[k].connected; 
@@ -45,8 +43,16 @@ JUCI.app
 		{ label: gettext("Forever"), value: "24h" } // TODO: implement this on server side
 	];  
 	$scope.onAddStaticDHCP = function(){
-		$uci.dhcp.create({".type": "host"}).done(function(section){
+		var interface = "lan"; 
+		if($scope.interface) interface = $scope.interface[".name"]; 
+		$uci.dhcp.create({
+			".type": "host", 
+			"network": interface
+		}).done(function(section){
+			console.log("Added new dhcp section"); 
 			$scope.$apply(); 
+		}).fail(function(err){
+			console.error("Failed to add new static dhcp entry: "+err); 
 		}); 
 	}
 	$scope.onRemoveStaticDHCP = function(host){

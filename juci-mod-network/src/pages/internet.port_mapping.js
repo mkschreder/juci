@@ -7,7 +7,7 @@ JUCI.app
 		}); 
 	} reload(); 
 	
-	$scope.onAddRule = function(){
+	$scope.onAddRule = function(net){
 		$uci.firewall.create({
 			".type": "redirect", 
 			"src": "wan", 

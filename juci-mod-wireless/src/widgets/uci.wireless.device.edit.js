@@ -10,16 +10,16 @@ $juci.module("wifi")
 		replace: true, 
 		require: "^ngModel"
 	 };  
-}).controller("WifiDeviceEditController", function($scope, $rpc, gettext){
+}).controller("WifiDeviceEditController", function($scope, $rpc, $tr, gettext){
 	$scope.$watch("device", function(device){
 		if(!device) return; 
 		
 		$rpc.router.radios().done(function(result){
 			if(device[".name"] in result){
 				var settings = result[device[".name"]]; 
-				$scope.allChannels = [gettext("auto")].concat(settings.channels).map(function(x){ return { label: x, value: x }; }); 
-				$scope.allModes = [gettext("auto")].concat(settings.hwmodes).map(function(x){ return { label: x, value: x }; }); ; 
-				$scope.allBandwidths = settings.bwcaps.map(function(x){ return { label: x, value: x }; }); ; 
+				$scope.allChannels = [gettext("auto")].concat(settings.channels).map(function(x){ return { label: $tr(x), value: x }; }); 
+				$scope.allModes = [gettext("auto")].concat(settings.hwmodes).map(function(x){ return { label: $tr(x), value: x }; }); ; 
+				$scope.allBandwidths = settings.bwcaps.map(function(x){ return { label: $tr(x), value: x }; }); ; 
 			} 
 			$scope.$apply(); 
 		}); 

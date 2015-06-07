@@ -16,6 +16,15 @@ UCI.validators.IPAddressValidator = function(){
 	}
 }; 
 
+UCI.validators.MACAddressValidator = function(){
+	this.validate = function(field){
+		if(!(typeof field.value == "string") ||
+			!field.value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/)) 
+			return gettext("Value must be a valid MAC-48 address"); 
+		return null; 
+	}
+}; 
+
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {
 	"is_lan":					{ dvalue: false, type: Boolean }, 
@@ -61,7 +70,7 @@ UCI.dhcp.$registerSectionType("domain", {
 UCI.dhcp.$registerSectionType("host", {
 	"name":		{ dvalue: "", type: String, required: false},
 	"network": { dvalue: "lan", type: String, required: true }, 
-	"mac":		{ dvalue: "", type: String, required: true},
+	"mac":		{ dvalue: "", type: String, required: true, validator: UCI.validators.MACAddressValidator },
 	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator }  // TODO: change to ip address
 }); 
 

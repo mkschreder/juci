@@ -83,7 +83,10 @@ $juci.module("wifi")
 	}; 
 	
 	$rpc.router.clients().done(function(clients){
-		$scope.client_list = Object.keys(clients).map(function(x){ 
+		$scope.client_list = Object.keys(clients)
+			.filter(function(k){
+				return clients[k].connected; 
+			}).map(function(x){ 
 			return {
 				checked: false, 
 				client: clients[x]
@@ -93,8 +96,13 @@ $juci.module("wifi")
 	}); 
 	
 	$scope.onDeleteHost = function(host){
-		$scope.maclist = ($scope.maclist||[]).filter(function(x) { return x.macaddr != host.macaddr; }); 
-		host.maclist.value = host.maclist.value.filter(function(x) { return x != host.macaddr; }); 
+		$scope.maclist = ($scope.maclist||[]).filter(function(x) { 
+			return x.macaddr != host.macaddr; 
+		}); 
+		$scope.interface.maclist.value = 
+			$scope.interface.maclist.value.filter(function(x) { 
+				return x != host.macaddr; 
+			}); 
 	}
 	
 	$scope.onAddClients = function(){
