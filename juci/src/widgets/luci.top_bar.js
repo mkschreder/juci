@@ -8,7 +8,7 @@ $juci.module("core")
 })
 .controller("luciTopBarController", function($scope, $config, $uci, $rpc, $window, $localStorage, $state, gettext){
 	$scope.model = $config.hardware_model; 
-	$scope.selectedModeValue = $localStorage.getItem("mode");;
+	$scope.selectedModeValue = $localStorage.getItem("mode") || "basic";
 	$scope.guiModes = [
 		{label: gettext("Basic Mode"), value: "basic"},
 		{label: gettext("Expert Mode"), value: "expert"},
