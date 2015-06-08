@@ -2,3 +2,7 @@ htdocs
 node_modules
 acl.d
 menu.d
+po/all.pot
+po/titles.pot
+po/template.pot
+po/*.mo
