@@ -18,3 +18,10 @@ rm -f $WWW/__all.css
 for file in $WWW/css/*; do
 	cat $file >> $WWW/__all.css
 done
+
+rm -rf ${WWW}/js
+rm -rf ${WWW}/css
+
+for file in `find ${WWW} -type f`; do
+	gzip ${file}
+done
