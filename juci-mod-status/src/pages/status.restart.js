@@ -4,7 +4,7 @@ JUCI.app
 .controller("StatusRestartPageCtrl", function($scope, $rpc){
 	$scope.onRestart = function(){
 		$scope.showConfirmation = 1; 
-		/*$rpc.juci2.system.reboot().done(function(){
+		/*$rpc.juci.system.reboot().done(function(){
 			console.log("Restarting the system..."); 
 		}); */
 	}
@@ -31,7 +31,7 @@ JUCI.app
 		$scope.showRestartProgress = 1; 
 		$scope.showConfirmation = 0; 
 		$scope.progress = 0; 
-		$rpc.juci2.system.reboot().done(function(){
+		$rpc.juci.system.reboot().done(function(){
 			var rpc = true; 
 			$scope.message = "Waiting for reboot..."; 
 			$scope.$apply(); 

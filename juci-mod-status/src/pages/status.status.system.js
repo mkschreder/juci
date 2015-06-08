@@ -19,7 +19,7 @@ JUCI.app
 		async.parallel([
 			function (cb){$rpc.router.info().done(function(res){info = res; cb();}).fail(function(res){cb();});},
 			function (cb){$rpc.system.info().done(function(res){sys = res; cb();}).fail(function(res){cb();});},
-			function (cb){$rpc.juci2.system.diskfree().done(function(res){disk = res; cb();}).fail(function(res){cb();});}
+			function (cb){$rpc.juci.system.diskfree().done(function(res){disk = res; cb();}).fail(function(res){cb();});}
 		], function(err){
 			$scope.systemStatusTbl.rows = [
 				[$tr(gettext("Hostname")), info.system.name],

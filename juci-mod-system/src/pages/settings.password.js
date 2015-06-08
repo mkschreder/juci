@@ -36,7 +36,7 @@ JUCI.app
 		if($scope.modal.password != $scope.modal.password2) alert($tr(gettext("Passwords do not match!"))); 
 		else {
 			// TODO: change to correct username
-			$rpc.juci2.system.password_set({user: $rpc.$session.data.username, password: $scope.modal.password, curpass: $scope.modal.old_password}).done(function(data){
+			$rpc.juci.system.password_set({user: $rpc.$session.data.username, password: $scope.modal.password, curpass: $scope.modal.old_password}).done(function(data){
 				$scope.showModal = 0; 
 				$scope.$apply(); 
 				$rpc.$logout().done(function(){

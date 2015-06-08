@@ -179,9 +179,9 @@
 			}, 
 			function(next){
 				// get the menu navigation
-				if($rpc.juci2){
+				if($rpc.juci){
 					console.log("Getting menu.."); 
-					$rpc.juci2.ui.menu().done(function(data){
+					$rpc.juci.ui.menu().done(function(data){
 						//console.log(JSON.stringify(data)); 
 						Object.keys(data.menu).map(function(key){
 							var menu = data.menu[key]; 

@@ -21,9 +21,9 @@ JUCI.app
 	
 	JUCI.interval.repeat("status.system.refresh", 1000, function(resume){
 		async.parallel([
-			function (cb){$rpc.juci2.network.conntrack_count().done(function(res){conntrack = res; cb();}).fail(function(res){cb();});},
+			function (cb){$rpc.juci.network.conntrack_count().done(function(res){conntrack = res; cb();}).fail(function(res){cb();});},
 			function (cb){$rpc.router.clients().done(function(res){clients = res; cb();}).fail(function(res){cb();});},
-			function (cb){$rpc.juci2.network.dhcp_leases().done(function(res){leases = res.leases || []; cb();}).fail(function(res){cb();});}
+			function (cb){$rpc.juci.network.dhcp_leases().done(function(res){leases = res.leases || []; cb();}).fail(function(res){cb();});}
 		], function(err, next){
 			$scope.systemConnectionsTbl.rows = [
 				[$tr(gettext("Active Connections")), '<juci-progress value="'+ conntrack.count +'" total="'+conntrack.limit+'"></juci-progress>']

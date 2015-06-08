@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(express.static(__dirname + '/htdocs'));
 
 var rpc_calls = {
-	/*"juci2.ui.menu": function(params, next){
+	/*"juci.ui.menu": function(params, next){
 		var menu = {}; 
 		// combine all menu files we have locally
 		fs.readdir("share/menu.d", function(err, files){
