@@ -5,8 +5,6 @@ export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache
 all: htdocs menu.d $(DIRS-y)
 	./juci-compile
 	./juci-update htdocs
-	$(INSTALL_DIR) htdocs/cgi-bin/
-	$(CP) juci_redirect.sh htdocs/cgi-bin/luci
 	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js --js_output_file htdocs/__compiled.js
 	#yui-compressor htdocs/__all.css > htdocs/__compiled.css
 	#mv htdocs/__compiled.css htdocs/__all.css
