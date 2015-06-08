@@ -9,8 +9,8 @@ all: htdocs menu.d $(DIRS-y)
 	#yui-compressor htdocs/__all.css > htdocs/__compiled.css
 	#mv htdocs/__compiled.css htdocs/__all.css
 	#mv htdocs/__compiled.js htdocs/__all.js
-	rm -rf htdocs/js
-	rm -rf htdocs/css
+	#rm -rf htdocs/js
+	#rm -rf htdocs/css
 
 debug: htdocs menu.d $(DIRS-y)
 	./juci-update htdocs

@@ -10,18 +10,16 @@ module.exports = function(grunt){
 			pot: {
 				files: {
 					'po/template.pot': [
-						'js/*.js',
-						'src/plugins/**/*.html', 
-						'src/plugins/**/*.js', 
-						'src/themes/**/*.html', 
-						'src/themes/**/*.js']
+						'juci*/src/**/*.js',
+						'juci*/src/**/*.html'
+					]
 				}
 			}
 		}, 
 		nggettext_compile: {
 			all: {
 				files: {
-					'src/lib/js/translations.js': ['po/*.po']
+					'htdocs/js/99-translations.js': ['po/*.po']
 				}
 			}
 		}, 
@@ -29,8 +27,7 @@ module.exports = function(grunt){
 			options: {
 				files: {
 					'po/titles.pot': [
-						"share/menu.d/*.json", 
-						"src/plugins/**/menu.json"
+						"menu.d/*.json"
 					]
 				}
 			}
@@ -47,12 +44,16 @@ module.exports = function(grunt){
 					glob(pattern, null, function(err, files){
 						console.log(JSON.stringify(files)); 
 						files.map(function(file){
-							var obj = JSON.parse(fs.readFileSync(file)); 
-							output.push("# "+file); 
-							Object.keys(obj).map(function(k){
-								output.push("msgid \""+k.replace(/\//g, ".")+".title\""); 
-								output.push("msgstr \"\""); 
-							});  
+							try {
+								var obj = JSON.parse(fs.readFileSync(file)); 
+								output.push("# "+file); 
+								Object.keys(obj).map(function(k){
+									output.push("msgid \""+k.replace(/\//g, ".").replace(/_/g, ".")+".title\""); 
+									output.push("msgstr \"\""); 
+								});  
+							} catch(e){
+								console.log("WARNING: failed to process "+file+": "+e); 
+							}
 						}); 
 						next(); 
 					}); 

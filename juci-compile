@@ -1,5 +1,7 @@
 #!/bin/bash
 
+grunt 
+
 for file in `find htdocs/js/ -name "*.js"`; do 
 	echo "Compiling JS ${file}.."
 	uglifyjs ${file} > ${file}.out
