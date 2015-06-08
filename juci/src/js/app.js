@@ -6,7 +6,7 @@ if(!window.JUCI_COMPILED) window.JUCI_COMPILED = 1;
 
 $.jsonRPC.setup({
   endPoint: '/ubus',
-  namespace: 'luci'
+  namespace: 'juci'
 });
 
 window.$ = $; 
@@ -30,7 +30,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	$juci.decorator = function(name, func){
 		return $provide.decorator(name, func); 
 	}
-	$juci.$config = angular.module("luci").config; 
+	$juci.$config = angular.module("juci").config; 
 	$juci.$stateProvider = $stateProvider; 
 
 	$juci.$urlRouterProvider = $urlRouterProvider; 
@@ -176,13 +176,13 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	};  
 })
 // TODO: figure out how to avoid forward declarations of things we intend to override. 
-.directive("luciFooter", function(){ return {} })
-.directive("luciLayoutNaked", function(){ return {} })
-.directive("luciLayoutSingleColumn", function(){ return {} })
-.directive("luciLayoutWithSidebar", function(){ return {} })
-.directive("luciNav", function(){ return {} })
-.directive("luciNavbar", function(){ return {} })
-.directive("luciTopBar", function(){ return {} })
+.directive("juciFooter", function(){ return {} })
+.directive("juciLayoutNaked", function(){ return {} })
+.directive("juciLayoutSingleColumn", function(){ return {} })
+.directive("juciLayoutWithSidebar", function(){ return {} })
+.directive("juciNav", function(){ return {} })
+.directive("juciNavbar", function(){ return {} })
+.directive("juciTopBar", function(){ return {} })
 .directive('ngOnload', [function(){
 	return {
 		scope: {
@@ -209,7 +209,7 @@ JUCI.app.directive('autofocus', ['$timeout', function($timeout) {
 
 angular.element(document).ready(function() {
 	JUCI.$init().done(function(){
-		angular.bootstrap(document, ["luci"]);
+		angular.bootstrap(document, ["juci"]);
 	}).fail(function(){
 		alert("JUCI failed to initialize! look in browser console for more details (this should not happen!)"); 
 	}); 

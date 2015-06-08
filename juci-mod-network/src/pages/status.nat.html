@@ -1,16 +1,16 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="StatusNATPageCtrl">
-		<luci-config-section>
+		<juci-config-section>
 			<h2 translate>Connections</h2>
-			<luci-config-lines>
-				<luci-config-line title="{{'Active Connections'|translate}}" no-pull>
-					<luci-progress value="conntrack.count" total="conntrack.limit"></luci-progress>
-				</luci-config-line>
-			</luci-config-line>
-		</luci-config-section>
-		<luci-config-section>
-			<luci-config-heading>{{ 'Connections for each Device' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'status.nat.connections.info' | translate }}</luci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'Active Connections'|translate}}" no-pull>
+					<juci-progress value="conntrack.count" total="conntrack.limit"></juci-progress>
+				</juci-config-line>
+			</juci-config-line>
+		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Connections for each Device' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'status.nat.connections.info' | translate }}</juci-config-info>
 			<table class="table" style="font-size: 12px;">
 				<thead >
 					<th>#</th>
@@ -25,10 +25,10 @@
 					<td style="text-align: center;">{{cl.active_cons||0}}</td>
 				</tr>
 			</table>
-		</luci-config-section>
-		<luci-config-section style="display: none;">
-			<luci-config-heading>{{ 'NAT Connection Table' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'status.nat.info' | translate }}</luci-config-info>
+		</juci-config-section>
+		<juci-config-section style="display: none;">
+			<juci-config-heading>{{ 'NAT Connection Table' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'status.nat.info' | translate }}</juci-config-info>
 			<table class="table" style="font-size: 12px">
 				<thead>
 					<!--<th>IPV6</th>-->
@@ -57,6 +57,6 @@
 					<td>{{con.tx_bytes}}</td>
 				</tr>
 			</table>
-		</luci-config-section>
+		</juci-config-section>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

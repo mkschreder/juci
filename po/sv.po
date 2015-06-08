@@ -205,7 +205,7 @@ msgid "Advanced"
 msgstr "Avancerat"
 
 msgid "application.name"
-msgstr "LuCI-Express"
+msgstr "juci-Express"
 
 msgid "encryption.none"
 msgstr "Ingen"
@@ -237,7 +237,7 @@ msgid ""
 "forwarded: {{ nonforwardedPorts || 'None'}}."
 msgstr ""
 
-#: htdocs/plugins/core/widgets/luci.input.radio.html:3
+#: htdocs/plugins/core/widgets/juci.input.radio.html:3
 msgid "<strong>{{label}}</strong>"
 msgstr ""
 
@@ -308,12 +308,12 @@ msgstr "Lösenord för backupfil (för krypterad fil)"
 msgid "Banner File"
 msgstr "Banner-fil"
 
-#: htdocs/plugins/core/widgets/luci.top_bar.html:13
-#: htdocs/themes/vodafone/widgets/luci.top_bar.html:13
+#: htdocs/plugins/core/widgets/juci.top_bar.html:13
+#: htdocs/themes/vodafone/widgets/juci.top_bar.html:13
 msgid "Basic"
 msgstr "Bas"
 
-#: htdocs/plugins/core/widgets/luci.top_bar.js:22
+#: htdocs/plugins/core/widgets/juci.top_bar.js:22
 msgid "Basic Mode"
 msgstr "Basic Mode"
 
@@ -541,7 +541,7 @@ msgstr "Brandvägg"
 msgid "Enabled"
 msgstr "Aktiv"
 
-#: htdocs/plugins/core/widgets/luci.input.port.html:9
+#: htdocs/plugins/core/widgets/juci.input.port.html:9
 msgid "End port"
 msgstr "Slutport"
 
@@ -576,7 +576,7 @@ msgstr "Varje dag"
 msgid "Every Workday"
 msgstr "Varje arbetsdag"
 
-#: htdocs/plugins/core/widgets/luci.top_bar.js:23
+#: htdocs/plugins/core/widgets/juci.top_bar.js:23
 msgid "Expert Mode"
 msgstr "Expert"
 
@@ -647,7 +647,7 @@ msgstr "Genererad PIN-kod"
 msgid "Group IP"
 msgstr "Grupp-IP"
 
-#: htdocs/plugins/core/widgets/luci.login.html:14
+#: htdocs/plugins/core/widgets/juci.login.html:14
 msgid "Host"
 msgstr "Namn"
 
@@ -757,8 +757,8 @@ msgstr "Lokal port"
 msgid "Log"
 msgstr "Logg"
 
-#: htdocs/plugins/core/widgets/luci.login.html:4
-#: htdocs/plugins/core/widgets/luci.top_bar.js:24
+#: htdocs/plugins/core/widgets/juci.login.html:4
+#: htdocs/plugins/core/widgets/juci.top_bar.js:24
 msgid "Log out"
 msgstr "Logga ut"
 
@@ -839,7 +839,7 @@ msgstr "Ingen uppdatering hittades!"
 msgid "Noise"
 msgstr "Brus"
 
-#: htdocs/plugins/core/widgets/luci.footer.js:21
+#: htdocs/plugins/core/widgets/juci.footer.js:21
 msgid "Not connected"
 msgstr "Ej uppkopplad"
 
@@ -870,7 +870,7 @@ msgstr "Ihopkoppa"
 msgid "Pair (within 2 minutes)"
 msgstr "Ihopkoppla (inom 2 minuter)"
 
-#: htdocs/plugins/core/widgets/luci.login.html:22
+#: htdocs/plugins/core/widgets/juci.login.html:22
 #: htdocs/plugins/internet/pages/internet.dns.html:40
 msgid "Password"
 msgstr "Lösenord"
@@ -930,11 +930,11 @@ msgstr "Pingresultat"
 msgid "Please add a comment describing this configuration"
 msgstr "Kommentar som beskriver konfigurationen"
 
-#: htdocs/plugins/core/widgets/luci.login.js:83
+#: htdocs/plugins/core/widgets/juci.login.js:83
 msgid "Please enter correct username and password!"
 msgstr "Knappa in rätt användarnamn och lösenord! "
 
-#: htdocs/plugins/core/widgets/luci.login.html:7
+#: htdocs/plugins/core/widgets/juci.login.html:7
 msgid "Please sign in"
 msgstr "Logga in"
 
@@ -942,7 +942,7 @@ msgstr "Logga in"
 msgid "Port"
 msgstr "Port"
 
-#: htdocs/plugins/core/widgets/luci.input.port.html:14
+#: htdocs/plugins/core/widgets/juci.input.port.html:14
 msgid "Port (1-65535)"
 msgstr "Port (1-65535)"
 
@@ -1099,7 +1099,7 @@ msgstr "Delad"
 msgid "Show calls for"
 msgstr "Visa samtal för"
 
-#: htdocs/plugins/core/widgets/luci.login.html:30
+#: htdocs/plugins/core/widgets/juci.login.html:30
 msgid "Sign in"
 msgstr "Logga in"
 
@@ -1111,7 +1111,7 @@ msgstr "Signal"
 msgid "Source"
 msgstr "Källa"
 
-#: htdocs/plugins/core/widgets/luci.input.port.html:5
+#: htdocs/plugins/core/widgets/juci.input.port.html:5
 msgid "Start port"
 msgstr "Startport"
 
@@ -1185,8 +1185,8 @@ msgstr "Timeout"
 msgid "Today"
 msgstr "Idag"
 
-#: htdocs/plugins/core/widgets/luci.navbar.html:4
-#: htdocs/themes/vodafone/widgets/luci.navbar.html:4
+#: htdocs/plugins/core/widgets/juci.navbar.html:4
+#: htdocs/themes/vodafone/widgets/juci.navbar.html:4
 msgid "Toggle navigation"
 msgstr "Toggla navigation"
 
@@ -1250,7 +1250,7 @@ msgstr "Upptid"
 msgid "Usage"
 msgstr "Användning"
 
-#: htdocs/plugins/core/widgets/luci.login.html:18
+#: htdocs/plugins/core/widgets/juci.login.html:18
 #: htdocs/plugins/internet/pages/internet.dns.html:37
 msgid "Username"
 msgstr "Användarnamn"
@@ -1311,7 +1311,7 @@ msgstr ""
 msgid "Wednesday"
 msgstr "onsdag"
 
-#: htdocs/plugins/core/widgets/luci.login.html:3
+#: htdocs/plugins/core/widgets/juci.login.html:3
 msgid "You are logged in!"
 msgstr "Du är inloggad!"
 
@@ -1385,27 +1385,27 @@ msgstr ""
 "I det här avsnittet visas en lista över verktyg som kan användas för att "
 "kontrollera status för din nätverksanslutning."
 
-#: htdocs/plugins/core/widgets/luci.input.port.range.html:15
+#: htdocs/plugins/core/widgets/juci.input.port.range.html:15
 msgid "error.port.range.end.invalid"
 msgstr "Felaktigt portintervall"
 
-#: htdocs/plugins/core/widgets/luci.input.port.range.html:14
+#: htdocs/plugins/core/widgets/juci.input.port.range.html:14
 msgid "error.port.range.end.required"
 msgstr "Slut på portintervall behövs"
 
-#: htdocs/plugins/core/widgets/luci.input.port.range.html:13
+#: htdocs/plugins/core/widgets/juci.input.port.range.html:13
 msgid "error.port.range.start.invalid"
 msgstr "Felaktig start på portintervall"
 
-#: htdocs/plugins/core/widgets/luci.input.port.range.html:12
+#: htdocs/plugins/core/widgets/juci.input.port.range.html:12
 msgid "error.port.range.start.required"
 msgstr "Start av portintervall krävs"
 
-#: htdocs/plugins/core/widgets/luci.input.port.range.html:16
+#: htdocs/plugins/core/widgets/juci.input.port.range.html:16
 msgid "error.port.range.startgreaterthanend"
 msgstr "Start av portintervall större än slut"
 
-#: htdocs/plugins/core/widgets/luci.input.timespan.html:2
+#: htdocs/plugins/core/widgets/juci.input.timespan.html:2
 msgid "from"
 msgstr "från"
 
@@ -1598,7 +1598,7 @@ msgstr ""
 "I det här avsnittet visas en lista över verktyg som kan användas för att "
 "kontrollera status för din nätverksanslutning."
 
-#: htdocs/plugins/core/widgets/luci.input.timespan.html:4
+#: htdocs/plugins/core/widgets/juci.input.timespan.html:4
 msgid "to"
 msgstr "till"
 

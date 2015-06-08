@@ -1,56 +1,56 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="InternetDNSPageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'DNS' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'dns.config.info' | translate }}</luci-config-info>
-			<luci-config-lines>
-				<luci-config-line title="{{'DNS configuration'|translate}}">
+		<juci-config-section>
+			<juci-config-heading>{{ 'DNS' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'dns.config.info' | translate }}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'DNS configuration'|translate}}">
 					<div class="col-md-6">
-						<luci-input-radio ng-model="wan.peerdns" label="{{'Automatic' | translate}}" value="0" />
+						<juci-input-radio ng-model="wan.peerdns" label="{{'Automatic' | translate}}" value="0" />
 					</div>
 					<div class="col-md-5 col-lg-offset-1">
-						<luci-input-radio ng-model="wan.peerdns" label="{{'Manual' | translate}}" value="1" />
+						<juci-input-radio ng-model="wan.peerdns" label="{{'Manual' | translate}}" value="1" />
 					</div>
-				</luci-config-line>
-				<luci-config-line title="{{'DNS Servers'|translate}} #{{$index}}" ng-show="wan.peerdns.value == 1" >
+				</juci-config-line>
+				<juci-config-line title="{{'DNS Servers'|translate}} #{{$index}}" ng-show="wan.peerdns.value == 1" >
 					<div ng-repeat="dns in dnsServers track by $index" class="form-group">
 						<input type="text" class="form-control" ng-model="dns.value" ng-blur="onDNSBlur()" placeholder="{{'DNS Server'|translate}} #{{$index}}"/>
 					</div>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-section>
-			<luci-config-heading>{{ 'DDNS (Dynamic DNS)' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'ddns.config.info' | translate }}</luci-config-info>
-			<luci-config-lines>
-				<luci-config-line title="{{'Dynamic DNS'|translate}}">
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'DDNS (Dynamic DNS)' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'ddns.config.info' | translate }}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'Dynamic DNS'|translate}}">
 					<switch ng-model="ddns.enabled.value" class="green" ng-change="onApply()"></switch>
-				</luci-config-line>
-			</luci-config-lines>
-			<luci-config-lines ng-show="ddns.enabled.value">
-				<luci-config-line title="{{'Provider'|translate}}">
+				</juci-config-line>
+			</juci-config-lines>
+			<juci-config-lines ng-show="ddns.enabled.value">
+				<juci-config-line title="{{'Provider'|translate}}">
 					<div ng-show="enterDNSProvider">
 						<input type="text" class="form-control" ng-model="ddns.service_name.value" placeholder="{{'For example'}} noip.com"/>
 					</div>
 					<div ng-hide="enterDNSProvider">
-						<luci-select ng-model="ddns.service_name.value" ng-items="allServices" placeholder="{{'Choose DNS Provider'|translate}}" ></luci-select>
+						<juci-select ng-model="ddns.service_name.value" ng-items="allServices" placeholder="{{'Choose DNS Provider'|translate}}" ></juci-select>
 					</div>
 					<div class="checkbox checkbox-info">
 						<input type="checkbox" value="1" ng-model="enterDNSProvider"/>
 						<label translate>Enter DDNS Provider</label>
 					</div>
-				</luci-config-line>
-				<luci-config-line title="{{'Domain name'|translate}}">
+				</juci-config-line>
+				<juci-config-line title="{{'Domain name'|translate}}">
 						<input type="text" class="form-control" ng-model="ddns.domain.value" placeholder="{{'Add domain name'|translate}}" />
-				</luci-config-line>
-				<luci-config-line title="{{'Username'|translate}}">
+				</juci-config-line>
+				<juci-config-line title="{{'Username'|translate}}">
 						<input type="text" class="form-control" ng-model="ddns.username.value" placeholder="{{'Add username'|translate}}" />
-				</luci-config-line>
-				<luci-config-line title="{{'Password'|translate}}">
+				</juci-config-line>
+				<juci-config-line title="{{'Password'|translate}}">
 						<input type="password" class="form-control" ng-model="ddns.password.value" placeholder="{{'Add password'|translate}}" />
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

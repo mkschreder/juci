@@ -1,17 +1,17 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="InternetFirewallPageCtrl">
 		<h2 translate>Firewall settings</h2>
 		<p translate>Your EasyBox provides extensive firewall functionality which protects against common attacks. Vodafone recommends not to turn off firewall.</p>
-		<luci-config-section>
-			<luci-config-lines>
-				<luci-config-line title="{{'Enable firewall'|translate}}">
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable firewall'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="firewallSwitchState" ng-change="onFirewallToggle" class="green"></switch>
-				</luci-config-line>
-				<luci-config-line title="{{rule.name.value | translate}}" ng-repeat="rule in firewall['@rule']"  ng-hide="rule.hidden.value">
+				</juci-config-line>
+				<juci-config-line title="{{rule.name.value | translate}}" ng-repeat="rule in firewall['@rule']"  ng-hide="rule.hidden.value">
 					<switch id="enabled" name="enabled" ng-model="rule.enabled.value"  class="green"></switch>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
 		<!--<table class="table">
 			<tr>
 				<td>
@@ -28,6 +28,6 @@
 				</td>
 			</tr>
 		</table>-->
-		<luci-config-apply></luci-config-apply>
+		<juci-config-apply></juci-config-apply>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

@@ -1,11 +1,11 @@
-angular.module("luci").config(function($provide){
+angular.module("juci").config(function($provide){
 	var overrides = {
-		"luciFooterDirective": "/widgets/luci.footer.html", 
-		"luciLayoutNakedDirective": "/widgets/luci.layout.naked.html", 
-		"luciLayoutSingleColumnDirective": "/widgets/luci.layout.single_column.html", 
-		"luciLayoutWithSidebarDirective": "/widgets/luci.layout.with_sidebar.html", 
-		"luciNavbarDirective": "/widgets/luci.navbar.html",
-		"luciTopBarDirective": "/widgets/luci.top_bar.html"
+		"juciFooterDirective": "/widgets/juci.footer.html", 
+		"juciLayoutNakedDirective": "/widgets/juci.layout.naked.html", 
+		"juciLayoutSingleColumnDirective": "/widgets/juci.layout.single_column.html", 
+		"juciLayoutWithSidebarDirective": "/widgets/juci.layout.with_sidebar.html", 
+		"juciNavbarDirective": "/widgets/juci.navbar.html",
+		"juciTopBarDirective": "/widgets/juci.top_bar.html"
 	}; 
 	var plugin_root = ""; //"/themes/vodafone/"; 
 	Object.keys(overrides).map(function(k){

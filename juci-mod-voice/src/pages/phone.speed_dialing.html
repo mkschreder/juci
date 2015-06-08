@@ -1,13 +1,13 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="PhoneSpeedDialingCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Speed Dialing' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'phone.speed_dialing.info' | translate }}</luci-config-info>
-			<luci-config-lines>
-				<luci-config-line title="{{'Speed Dialing'|translate}}">
+		<juci-config-section>
+			<juci-config-heading>{{ 'Speed Dialing' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'phone.speed_dialing.info' | translate }}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'Speed Dialing'|translate}}">
 					<switch ng-model="speed_dialing" class="green"/>
-				</luci-config-line>
-			</luci-config-lines>
+				</juci-config-line>
+			</juci-config-lines>
 			<div class="row" ng-show="speed_dialing">
 				<div class="col-md-6" ng-repeat="dial in speed_dials">
 					<div class="col-md-3">#{{dial.tone}}</div>
@@ -16,12 +16,12 @@
 					</div>
 				</div>
 			</div>
-			<luci-config-lines  ng-show="speed_dialing">
-				<luci-config-line title="{{'Remove all entries from speed dial list'|translate}}">
+			<juci-config-lines  ng-show="speed_dialing">
+				<juci-config-line title="{{'Remove all entries from speed dial list'|translate}}">
 					<button class="btn btn-lg btn-default" ng-click="onClearAll()" translate>Clear</button>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

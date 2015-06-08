@@ -1,4 +1,4 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="InternetPortMappingPageCtrl">
 		<h2 translate>Port Mapping</h2>
 		<p translate>Port mapping allows remote computers to connect to a specific device within your private network.</p>
@@ -10,10 +10,10 @@
 				<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
 			</div>
 			<div class="panel-footer">
-				<luci-config-apply ></luci-config-apply>
+				<juci-config-apply ></juci-config-apply>
 			</div>
 		</div>-->
-		<luci-config-section ng-show="redirects">
+		<juci-config-section ng-show="redirects">
 			<table class="table">
 				<thead>
 					<th translate>Local IP</th>
@@ -38,11 +38,11 @@
 					</tr>
 				</tbody>
 			</table>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 		<modal title="Add / Edit Port Mapping" ng-show="rule" on-accept="onAcceptEdit()" on-dismiss="onCancelEdit()" dismiss-label="Cancel" accept-label="Save">
 			<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>
 		</modal>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

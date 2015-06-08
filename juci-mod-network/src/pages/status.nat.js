@@ -14,13 +14,13 @@ JUCI.app
 		$scope.$apply(); 
 	}); */
 	
-	$rpc.luci2.network.conntrack_count().done(function(res){
+	$rpc.juci2.network.conntrack_count().done(function(res){
 		$scope.conntrack.limit = res.limit; 
 		$scope.conntrack.count = res.count; 
 		$scope.$apply(); 
 	});
 	
-	$rpc.luci2.network.conntrack_table().done(function(table){
+	$rpc.juci2.network.conntrack_table().done(function(table){
 		if(table && table.entries){
 			$scope.connections = table.entries.sort(function(a, b){ return (a.src+a.dest) < (b.src+b.dest); }).map(function(x){
 				switch(x.protocol){

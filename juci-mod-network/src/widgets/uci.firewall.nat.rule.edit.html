@@ -2,7 +2,7 @@
 	<div class="form-group">
 		<label for="device" class="control-label col-xs-4" translate>Device</label>
 		<div class="col-xs-8" id="device">
-			<luci-select ng-model="ngModel.dest_ip.value" ng-items="deviceChoices" placeholder="Select connected device"></luci-select>
+			<juci-select ng-model="ngModel.dest_ip.value" ng-items="deviceChoices" placeholder="Select connected device"></juci-select>
 		</div>
 	</div>
 	<div class="form-group">
@@ -14,7 +14,7 @@
 	<div class="form-group">
 		<label for="protocol" class="control-label col-xs-4" translate>Protocol</label>
 		<div class="col-xs-8" id="protocol">
-			<luci-select ng-model="ngModel.proto.value" ng-items="protocolChoices" placeholder="Select protocol"></luci-select>
+			<juci-select ng-model="ngModel.proto.value" ng-items="protocolChoices" placeholder="Select protocol"></juci-select>
 		</div>
 	</div>
 	<div class="form-group">
@@ -29,14 +29,14 @@
 		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Public port</label>
 		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Public port range</label>
 		<div class="col-xs-8" ng-class="{'field-error': ngModel.src_dport.error}" >
-			<luci-input-port ng-model="ngModel.src_dport.value" port-range="portIsRange"/>
+			<juci-input-port ng-model="ngModel.src_dport.value" port-range="portIsRange"/>
 		</div>
 	</div>
 	<div class="form-group" >
 		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Private port</label>
 		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Private port range</label>
 		<div class="col-xs-8" ng-class="{'field-error': ngModel.dest_port.error}" >
-			<luci-input-port ng-model="ngModel.dest_port.value" port-range="portIsRange"/>
+			<juci-input-port ng-model="ngModel.dest_port.value" port-range="portIsRange"/>
 		</div>
 	</div>
 </div>

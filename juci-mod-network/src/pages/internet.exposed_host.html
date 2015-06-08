@@ -1,31 +1,31 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="InternetExHostPageCtrl">
-		<luci-config-heading>{{'Exposed Host'|translate}}</luci-config-heading>
-		<luci-config-section >
-			<luci-config-info>{{'internet.exposed_host.info'|translate}}</luci-config-info>
-			<luci-config-lines>
-				<luci-config-line title="{{'Exposed Host Function'|translate}}">
+		<juci-config-heading>{{'Exposed Host'|translate}}</juci-config-heading>
+		<juci-config-section >
+			<juci-config-info>{{'internet.exposed_host.info'|translate}}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'Exposed Host Function'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="firewall.dmz.enabled.value" class="green"></switch>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-section ng-show="firewall.dmz.enabled.value">
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section ng-show="firewall.dmz.enabled.value">
 			<div class="alert alert-danger">
 				<p translate><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Warning: By using the exposed host function you bypass the firewall of your {{config.friendly_name}}. Please make sure that your computer is protected against attacks from Internet. The following ports will not be forwarded: {{ nonforwardedPorts || 'None'}}.</p>
 			</div>
 			<p translate>Choose the local IP address that should be exposed to Internet. Additionally you should configure this IP address as static DHCP address for your device (see Settings/Network).</p>
-			<luci-config-lines>
-				<luci-config-line title="{{'Public IP Address'|translate}}">
+			<juci-config-lines>
+				<juci-config-line title="{{'Public IP Address'|translate}}">
 					<strong>{{wan.ip}}</strong>
-				</luci-config-line>
-				<luci-config-line title="{{'Local IP Address'|translate}}">
+				</juci-config-line>
+				<juci-config-line title="{{'Local IP Address'|translate}}">
 					<input type="text" class="form-control" placeholder="{{'ip.address.label'|translate}}" ng-model="firewall.dmz.host.value"/>
-				</luci-config-line>
-				<luci-config-line title="{{'Set to Existing Host'|translate}}">
-					<luci-select ng-model="firewall.dmz.host.value" ng-items="connectedHosts" on-change="onChangeHost()" placeholder="{{'Select Existing Host'|translate}}"/>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+				</juci-config-line>
+				<juci-config-line title="{{'Set to Existing Host'|translate}}">
+					<juci-select ng-model="firewall.dmz.host.value" ng-items="connectedHosts" on-change="onChangeHost()" placeholder="{{'Select Existing Host'|translate}}"/>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

@@ -1,17 +1,17 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="PhoneRingingScheduleCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Ringing Schedule' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'phone.schedule.info' | translate }}</luci-config-info>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Ringing Schedule' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'phone.schedule.info' | translate }}</juci-config-info>
 			<p>This page is not done yet. Waiting for voice API. </p>
-			<luci-config-lines>
-				<luci-config-line title="{{'Ringing Schedule'|translate}}">
+			<juci-config-lines>
+				<juci-config-line title="{{'Ringing Schedule'|translate}}">
 					<switch name="enabled" ng-model="settings.enabled.value" class="green"></switch>
-				</luci-config-line>
-				<luci-config-line title="{{'During this time ringing is '|translate}}"  ng-show="settings.enabled.value">
-					<luci-select ng-model="settings.status.value" ng-items="enabledDisabledItems" placeholder="{{'Select Schedule Mode'|translate}}"></luci-select>
-				</luci-config-line>
-			</luci-config-lines>
+				</juci-config-line>
+				<juci-config-line title="{{'During this time ringing is '|translate}}"  ng-show="settings.enabled.value">
+					<juci-select ng-model="settings.status.value" ng-items="enabledDisabledItems" placeholder="{{'Select Schedule Mode'|translate}}"></juci-select>
+				</juci-config-line>
+			</juci-config-lines>
 			<table class="table" ng-show="settings.enabled.value">
 				<thead>
 					<th translate>Day</th>
@@ -38,17 +38,17 @@
 					</tr>
 				</tbody>
 			</table>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 		<modal title="Add a new Ringing Schedule" ng-show="showScheduleDialog" on-accept="onAcceptSchedule()" 
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
-			<luci-config-lines>
-				<luci-config-line title="Phone Number">
-					<luci-select ng-model="schedule.sip_service_provider.value" ng-items="allSipAccounts" placeholder="{{'Pick Phone Number'|translate}}"/>
-				</luci-config-line>
-			</luci-config-line>
+			<juci-config-lines>
+				<juci-config-line title="Phone Number">
+					<juci-select ng-model="schedule.sip_service_provider.value" ng-items="allSipAccounts" placeholder="{{'Pick Phone Number'|translate}}"/>
+				</juci-config-line>
+			</juci-config-line>
 			<uci-wireless-schedule-edit ng-model="schedule" ></uci-wireless-schedule-edit>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
 		</modal>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

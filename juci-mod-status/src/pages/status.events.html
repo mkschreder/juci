@@ -1,10 +1,10 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="StatusEventsPageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Event Log' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'status.eventlog.info' | translate }}</luci-config-info>
-			<luci-config-lines>
-				<luci-config-line title="Categories to Show">
+		<juci-config-section>
+			<juci-config-heading>{{ 'Event Log' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'status.eventlog.info' | translate }}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="Categories to Show">
 					<div class="row" ng-class="{'field-error': schedule.days.error}" >
 							<div class="col-xs-4" ng-repeat="type in allLogTypes">
 								<div class="checkbox checkbox-info">
@@ -13,14 +13,14 @@
 								</div>
 							</div>
 						</div>
-				</luci-config-line>
-				<luci-config-line title="Events to Show">
-					<luci-select ng-model="selectedShowType" ng-items="allEventTypes" placeholder="{{'Select events to show'|translate}}" on-change="onTypeChanged($value)"></luci-select>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-section>
-			<luci-config-heading>{{'Log' | translate}}</luci-config-heading>
+				</juci-config-line>
+				<juci-config-line title="Events to Show">
+					<juci-select ng-model="selectedShowType" ng-items="allEventTypes" placeholder="{{'Select events to show'|translate}}" on-change="onTypeChanged($value)"></juci-select>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{'Log' | translate}}</juci-config-heading>
 			<table class="table">
 				<thead>
 					<th translate>Date</th>
@@ -35,6 +35,6 @@
 					<td>{{line[3]}}</td>
 				</tr>
 			</table>
-		</luci-config-section>
+		</juci-config-section>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

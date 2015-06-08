@@ -1,27 +1,27 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="PhoneNumbersPageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Phone Numbers' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'phone.numbers.info' | translate }}</luci-config-info>
-			<luci-expandable title="{{num.name.value}}" ng-repeat="num in phone_numbers track by $index">
-				<luci-config-lines>
-					<luci-config-line title="Name">
+		<juci-config-section>
+			<juci-config-heading>{{ 'Phone Numbers' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'phone.numbers.info' | translate }}</juci-config-info>
+			<juci-expandable title="{{num.name.value}}" ng-repeat="num in phone_numbers track by $index">
+				<juci-config-lines>
+					<juci-config-line title="Name">
 						<input type="text" class="form-control" ng-model="num.name.value"/>
-					</luci-config-line>
-					<luci-config-line title="Phone Number">
+					</juci-config-line>
+					<juci-config-line title="Phone Number">
 						{{num.username.value}}
-					</luci-config-line>
-					<luci-config-line title="Incoming Phone Lines">
+					</juci-config-line>
+					<juci-config-line title="Incoming Phone Lines">
 						<div class="form-group col-md-6 " ng-repeat="line in phone_lines track by $index">
 							<div class="checkbox checkbox-info">
 								<input type="checkbox" checklist-model="num.call_lines.value" checklist-value="('BRCM/'+$index)"/>
 								<label>{{line.name.value}}</label>
 							</div>
 						</div>
-					</luci-config-line>
-				</luci-config-lines>
-			</luci-expandable>
-		</luci-config-section>
-		<luci-config-apply/>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-expandable>
+		</juci-config-section>
+		<juci-config-apply/>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

@@ -14,31 +14,31 @@
 			<div style="clear: both;"></div>
 		</div>
 		<div class="panel-body " ng-show="expanded" >
-			<luci-config-lines>
-				<luci-config-line title="{{'Enabled'|translate}}"><switch ng-model="interface.disabled.value" class="green" inverted></switch></luci-config-line>
-			</luci-config-lines>
-			<luci-config-lines ng-hide="interface.disabled.value">
-				<luci-config-line title="{{'wifi-iface.ssid'|translate}}">
+			<juci-config-lines>
+				<juci-config-line title="{{'Enabled'|translate}}"><switch ng-model="interface.disabled.value" class="green" inverted></switch></juci-config-line>
+			</juci-config-lines>
+			<juci-config-lines ng-hide="interface.disabled.value">
+				<juci-config-line title="{{'wifi-iface.ssid'|translate}}">
 					<input type="text" class="form-control" placeholder="Wifi Name" ng-model="interface.ssid.value" maxlength="32"/>
-				</luci-config-line>
-				<luci-config-line title="{{'wifi-iface.closed'|translate}}">
+				</juci-config-line>
+				<juci-config-line title="{{'wifi-iface.closed'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="interface.closed.value" class="green" inverted></switch>
-				</luci-config-line>
-				<luci-config-line title="{{'wifi-iface.device'|translate}}">
-					<luci-select ng-model="interface.device.value" ng-items="devices" placeholder="Choose Radio"></luci-select>
-				</luci-config-line>
-				<luci-config-line title="{{'wifi-iface.encryption'|translate}}">
-					<luci-select ng-model="interface.encryption.value" ng-items="cryptoChoices" placeholder="Choose Protection"/>
-				</luci-config-line>
-				<luci-config-line title="{{'wifi-iface.key'|translate}}" ng-show="interface.encryption.value != 'none'">
+				</juci-config-line>
+				<juci-config-line title="{{'wifi-iface.device'|translate}}">
+					<juci-select ng-model="interface.device.value" ng-items="devices" placeholder="Choose Radio"></juci-select>
+				</juci-config-line>
+				<juci-config-line title="{{'wifi-iface.encryption'|translate}}">
+					<juci-select ng-model="interface.encryption.value" ng-items="cryptoChoices" placeholder="Choose Protection"/>
+				</juci-config-line>
+				<juci-config-line title="{{'wifi-iface.key'|translate}}" ng-show="interface.encryption.value != 'none'">
 					<input type="{{(!showPassword)?'password':'text'}}" class="form-control" placeholder="{{'wifi-iface.key'|translate}}" ng-model="interface.key.value" />
 					<div class="checkbox checkbox-info">
 						<input type="checkbox" ng-model="showPassword" />
 						<label><strong>{{'Display Characters'|translate}}</strong></label>
 					</div>
-				</luci-config-line>
-			</luci-config-lines>
-			<luci-errors ng-model="errors"/>
+				</juci-config-line>
+			</juci-config-lines>
+			<juci-errors ng-model="errors"/>
 		</div>
 	</div>
 </div>

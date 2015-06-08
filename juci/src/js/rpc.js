@@ -273,7 +273,7 @@
 		var JUCI = exports.JUCI; 
 		JUCI.ubus = rpc; 
 		console.log(JSON.stringify(JUCI.app)); 
-		// luci rpc module for communicating with the server
+		// juci rpc module for communicating with the server
 		if(JUCI.app) {
 			JUCI.app.factory('$rpc', function($rootScope, $config, gettext){
 				return window.rpc; 

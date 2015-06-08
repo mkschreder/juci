@@ -1,26 +1,26 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="SettingsEnergyCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Energy Settings' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'settings.energy.info' | translate }}</luci-config-info>
-		</luci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Energy Settings' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'settings.energy.info' | translate }}</juci-config-info>
+		</juci-config-section>
 		<p translate ng-hide="boardpanel">Missing uci config boardpanel.</p>
-		<luci-config-section  ng-show="boardpanel">
-			<luci-config-lines>
-				<luci-config-line title="{{'USB Port'|translate}}">
+		<juci-config-section  ng-show="boardpanel">
+			<juci-config-lines>
+				<juci-config-line title="{{'USB Port'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="boardpanel.settings.usb_port.value" class="green" ng-change="onSave()"></switch>
-				</luci-config-line>
-				<luci-config-line title="{{'Status-LED'|translate}}">
+				</juci-config-line>
+				<juci-config-line title="{{'Status-LED'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="boardpanel.settings.status_led.value" class="green" ng-change="onSave()"></switch>
-				</luci-config-line>
-				<luci-config-line title="{{'Power-LED'|translate}}">
+				</juci-config-line>
+				<juci-config-line title="{{'Power-LED'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="boardpanel.settings.power_led.value" class="green" ng-change="onSave()"></switch>
-				</luci-config-line>
-				<luci-config-line title="{{'Power-LED Brightness'|translate}}" no-pull ng-show="boardpanel.settings.power_led.value">
-					<luci-brightness ng-model="boardpanel.settings.power_led_br.value" min="0" max="100" ng-change="onSave()"></luci-brightness>
+				</juci-config-line>
+				<juci-config-line title="{{'Power-LED Brightness'|translate}}" no-pull ng-show="boardpanel.settings.power_led.value">
+					<juci-brightness ng-model="boardpanel.settings.power_led_br.value" min="0" max="100" ng-change="onSave()"></juci-brightness>
 					<!--<switch id="enabled" name="enabled" ng-model="boardpanel.settings.power_led_br.value" class="green"></switch>-->
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

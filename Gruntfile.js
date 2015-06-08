@@ -112,7 +112,7 @@ module.exports = function(grunt){
 			"src/lib/js/bootstrap-select.min.js",
 			"src/lib/js/select.min.js",
 			"src/lib/js/angular-animate.min.js",
-			"src/lib/js/angular-ui-bootstrap-luci.min.js",
+			"src/lib/js/angular-ui-bootstrap-juci.min.js",
 			"src/lib/js/jquery-jsonrpc.js",
 			"src/lib/js/translations.js",
 			"src/lib/js/bootstrap.min.js",

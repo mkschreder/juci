@@ -1,24 +1,24 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="WifiGeneralPageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'General WiFi Settings' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'wifi.general.info' | translate }}</luci-config-info>
-		</luci-config-section>
-		<luci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'General WiFi Settings' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'wifi.general.info' | translate }}</juci-config-info>
+		</juci-config-section>
+		<juci-config-section>
 			<div class="alert alert-warning" ng-show="status.schedule.value">
 				<p translate>You have wifi-scheduling enabled. This means that your wifi will be automatically turned on and off based on your schedule settings</p>
 			</div>
-			<luci-config-lines>
-				<luci-config-line title="{{'Wifi Network'|translate}}">
+			<juci-config-lines>
+				<juci-config-line title="{{'Wifi Network'|translate}}">
 					<switch ng-model="status.wlan.value" class="green" ng-change="onApply"></switch>
-				</luci-config-line>
-				<luci-config-line ng-show="boardpanel" title="{{'Enable WiFi On/Off button on EasyBox'|translate}}">
+				</juci-config-line>
+				<juci-config-line ng-show="boardpanel" title="{{'Enable WiFi On/Off button on EasyBox'|translate}}">
 					<switch ng-model="boardpanel.settings.wifibutton.value" class="green" ng-change="onApply"></switch>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-section ng-show="status.wlan.value">
-			<luci-config-heading>{{ 'Setup' | translate }}</luci-config-heading>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section ng-show="status.wlan.value">
+			<juci-config-heading>{{ 'Setup' | translate }}</juci-config-heading>
 			<p translate>wifi.general.setup.info</p>
 			<br/>
 			<div class="alert alert-info" ng-show="info">
@@ -29,7 +29,7 @@
 					<uci-wireless-interface ng-model="iface"></uci-wireless-interface>
 				</div>
 			</div>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

@@ -22,10 +22,10 @@
 		return {
 			plugin_root: "", //((plugin||{}).plugin_root||"plugins/"+name+"/"), 
 			directive: function(name, fn){
-				return angular.module("luci").directive(name, fn);
+				return angular.module("juci").directive(name, fn);
 			}, 
 			controller: function(name, fn){
-				return angular.module("luci").controller(name, fn); 
+				return angular.module("juci").controller(name, fn); 
 			}, 
 			state: function(name, obj){
 				if(obj.templateUrl && plugin.plugin_root) obj.templateUrl = plugin.plugin_root + "/" + obj.templateUrl; 
@@ -179,9 +179,9 @@
 			}, 
 			function(next){
 				// get the menu navigation
-				if($rpc.luci2){
+				if($rpc.juci2){
 					console.log("Getting menu.."); 
-					$rpc.luci2.ui.menu().done(function(data){
+					$rpc.juci2.ui.menu().done(function(data){
 						//console.log(JSON.stringify(data)); 
 						Object.keys(data.menu).map(function(key){
 							var menu = data.menu[key]; 
@@ -219,7 +219,7 @@
 	
 	scope.JUCI = scope.$juci = new JUCIMain(); 
 	if(typeof angular !== "undefined"){
-		var app = scope.JUCI.app = angular.module("luci", [
+		var app = scope.JUCI.app = angular.module("juci", [
 			"ui.bootstrap",
 			"ui.router", 
 			'ui.select',

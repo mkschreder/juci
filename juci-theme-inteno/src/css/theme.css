@@ -1,0 +1,82 @@
+body {
+	font-size: 16px;
+}
+
+div.logo {
+	background-image: url('../img/inteno_white.png'); 
+	background-size: 100% auto; 
+	height: 20px; 
+	width: 91px; 
+}
+.top-bar { 
+	margin-bottom: 20px; 
+	background-color: #EBEBEB;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px; 
+}
+
+.navbar-default {
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.juci-nav a {
+	color: #444; 
+}
+.nav > li.open > a {
+	color: #ee0000 !important; 
+}
+.navbar .nav > li.open > a {
+	color: #fff !important; 
+}
+
+
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+h3.detail-strong,
+h4.detail-strong{
+    color: #333;
+    font-weight: bold;
+}
+
+h3.detail-strong {
+    font-size: 1.5em;
+}
+
+h4.detail-strong {
+    font-size: 1.2em;
+}
+
+.radio label.detail-strong-input {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.radio label.detail-strong-input span {
+    margin-top: -4px;
+}
+
+.radio.radio-inline.radio-align {
+    margin-top: 10px;
+}
+
+div.error {
+    color: #a94442;
+}

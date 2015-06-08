@@ -1,4 +1,4 @@
-LuCi Express (or just JuCi)
+juci Express (or just JuCi)
 ------------
 
 This is a universal javascript client interface for broadband routers. It is an application written in javascript using angularjs, that communicates with your OpenWRT router over ubus calls (JSONRPC2.0).  
@@ -96,7 +96,7 @@ JuCi is a javascript application that gets loaded inside index.html file in htdo
 
 There is one main javascript file and one html file for every page/widget/directive. In plugins you will usually not access angular directly but instead use $juci global variable to register controllers, directives and routes. This is because plugins are loaded dynamically when the application is already running and therefore we can not instantiate controllers in the usual way by using angular.module(..).controller(..) - use $juci.controller(..) instead. 
 
-The menu system in the gui is actually created on the router side and retreived using luci2.ui.menu rpc call. This is based on the luci2 way of doing this task. It allows us to have dynamic menus that are automatically generated to match the functions of the router. 
+The menu system in the gui is actually created on the router side and retreived using juci2.ui.menu rpc call. This is based on the juci2 way of doing this task. It allows us to have dynamic menus that are automatically generated to match the functions of the router. 
 
 License Notice
 --------------

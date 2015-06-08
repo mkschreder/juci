@@ -1,54 +1,54 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="SettingsUpgradeCtrl">
-		<luci-config-section> 
-			<luci-config-heading>{{ 'Firmware Upgrade' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'settings.upgrade.info' | translate }}</luci-config-info>
-			<luci-config-lines>
-				<luci-config-line title="{{'Current Firmware Version'|translate}}">
+		<juci-config-section> 
+			<juci-config-heading>{{ 'Firmware Upgrade' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'settings.upgrade.info' | translate }}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'Current Firmware Version'|translate}}">
 					<strong>{{config.system.firmware}}</strong>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-section>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section>
 			<h2>{{'Manual Firmware Upgrade'|translate}}</h2>
 			<p>{{'settings.upgrade.manual.info'|translate}}</p>
 			<iframe name="postiframe" id="postiframe" style="display: none;" ></iframe>
-			<form target="postiframe" name="uploadForm" action="/cgi-bin/luci-upload" method="post" enctype="multipart/form-data" >
+			<form target="postiframe" name="uploadForm" action="/cgi-bin/juci-upload" method="post" enctype="multipart/form-data" >
 				<input type="hidden" name="sessionid" value="{{sessionID}}" />
 				<input type="hidden" name="filename" value="{{uploadFilename}}" />
-				<luci-config-lines>
-					<luci-config-line title="{{'Pick firmware file to upload'|translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{'Pick firmware file to upload'|translate}}">
 						<input type="file" class="btn btn-default btn-file"  name="filedata" />
-					</luci-config-line>
-					<luci-config-line title="{{'Start upgrade'|translate}}">
+					</juci-config-line>
+					<juci-config-line title="{{'Start upgrade'|translate}}">
 						<button ng-click="onUploadUpgrade()" class="btn btn-lg btn-default">{{'Upgrade'|translate}}</button>
-					</luci-config-line>
-				</luci-config-lines>
+					</juci-config-line>
+				</juci-config-lines>
 			</form>
-		</luci-config-section>
-		<luci-config-section>
+		</juci-config-section>
+		<juci-config-section>
 			<h2>{{'Online Update'|translate}}</h2>
 			<p>{{'settings.upgrade.online.info'|translate}}</p>
-			<luci-config-lines>
-				<luci-config-line title="{{onlineUpgrade}}">
+			<juci-config-lines>
+				<juci-config-line title="{{onlineUpgrade}}">
 					<button ng-hide="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onOnlineCheck()">
 						<i class="fa fa-spinner fa-spin" ng-show="onlineCheckInProgress"/>{{'Check for Upgrade'|translate}}</button>
 					<button ng-show="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onUpgradeOnline()">{{'Install Upgrade'|translate}}</button>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-section>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section>
 			<h2>{{'USB Firmware Upgrade'|translate}}</h2>
 			<p>{{'settings.upgrade.usb.info'|translate}}</p>
-			<luci-config-lines>
-				<luci-config-line title="{{usbUpgrade}}" ng-show="usbUpgradeAvailable">
+			<juci-config-lines>
+				<juci-config-line title="{{usbUpgrade}}" ng-show="usbUpgradeAvailable">
 					<button class="btn btn-lg btn-default" ng-click="onUpgradeUSB()">{{'Install Upgrade'|translate}}</button>
-				</luci-config-line>
-				<luci-config-line title="{{usbUpgrade}}" ng-hide="usbUpgradeAvailable">
+				</juci-config-line>
+				<juci-config-line title="{{usbUpgrade}}" ng-hide="usbUpgradeAvailable">
 					<button class="btn btn-lg btn-default" ng-click="onCheckUSB()"><i class="fa fa-spinner fa-spin" ng-show="usbCheckInProgress"/>{{'Check for Upgrade'|translate}}</button>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
 		<modal title="Firmware Upgrade" ng-show="showUpgradeStatus">
 			<center>
 				<p style="text-align: center;" ng-show="!error">{{message}}</p>
@@ -58,4 +58,4 @@
 			</center>
 		</modal>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

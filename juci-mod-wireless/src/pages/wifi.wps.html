@@ -1,68 +1,68 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="WifiWPSPageCtrl">
-		<luci-config>
-			<luci-config-section>
-				<luci-config-heading>{{ 'WPS' | translate }}</luci-config-heading>
-				<luci-config-info>{{ 'wifi.wps.info' | translate }}</luci-config-info>
-				<luci-config-lines>
-					<luci-config-line title="{{'WPS Function'|translate}}">
+		<juci-config>
+			<juci-config-section>
+				<juci-config-heading>{{ 'WPS' | translate }}</juci-config-heading>
+				<juci-config-info>{{ 'wifi.wps.info' | translate }}</juci-config-info>
+				<juci-config-lines>
+					<juci-config-line title="{{'WPS Function'|translate}}">
 						<switch id="enabled" name="enabled" ng-model="wireless.status.wps.value" class="green" ng-change="save()"></switch>
-					</luci-config-line>
-				</luci-config-lines>
-			</luci-config-section>
-			<luci-config-section ng-show="progress == 1">
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="progress == 1">
 				<p translate>wifi.wps.in.progress</p>
-			</luci-config-section>
-			<luci-config-section ng-show="wireless.status.wps.value && progress != 1">
-				<luci-config-lines ng-repeat="interface in wireless['@wifi-iface']">
-					<luci-config-line title="{{'Enable WPS on '|translate}} {{interface.ssid.value}}">
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value && progress != 1">
+				<juci-config-lines ng-repeat="interface in wireless['@wifi-iface']">
+					<juci-config-line title="{{'Enable WPS on '|translate}} {{interface.ssid.value}}">
 						<switch id="enabled" name="enabled" ng-model="interface.wps_pbc.value" class="green" ng-change="save()" ></switch>
-					</luci-config-line>
-				</luci-config-lines>
-			</luci-config-section>
-			<luci-config-section ng-show="wireless.status.wps.value">
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value">
 				<h2 translate>WPS-PBC: Push Button on Device</h2>
 				<p translate>wifi.wps.pbc.info</p>
-				<luci-config-lines>
-					<luci-config-line title="{{'Enable WPS button on router'|translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{'Enable WPS button on router'|translate}}">
 						<switch id="enabled" name="enabled" ng-model="boardpanel.settings.wpsbutton.value" class="green" ng-change="save()" ></switch>
-					</luci-config-line>
-					<luci-config-line ng-show="boardpanel.settings.wpsbutton.value" title="{{'Pressing WiFi on/off button on your router for long time activates pairing '|translate}}" >
+					</juci-config-line>
+					<juci-config-line ng-show="boardpanel.settings.wpsbutton.value" title="{{'Pressing WiFi on/off button on your router for long time activates pairing '|translate}}" >
 						<switch id="enabled" name="enabled" ng-model="boardpanel.settings.wifibutton.value" class="green" ng-change="save()" ></switch>
-					</luci-config-line>
-					<luci-config-line title="{{'Pair (within 2 minutes)'|translate}}" ng-show="boardpanel.settings.wpsbutton.value">
+					</juci-config-line>
+					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}" ng-show="boardpanel.settings.wpsbutton.value">
 						<button class="btn btn-lg btn-default col-xs-12" ng-click="onPairPBC()" translate>Pair</button>
-					</luci-config-line>
-				</luci-config-lines>
-			</luci-config-section>
-			<luci-config-section ng-show="wireless.status.wps.value">
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value">
 				<h2 translate>WPS-REG: Router provides PIN</h2>
 				<p translate>wifi.wps.pin.info</p>
-				<luci-config-lines>
-					<luci-config-line ng-show="boardpanel" title="{{'WPS Using Generated PIN'|translate}}">
+				<juci-config-lines>
+					<juci-config-line ng-show="boardpanel" title="{{'WPS Using Generated PIN'|translate}}">
 						<switch id="enabled" name="enabled" ng-model="boardpanel.settings.wpsdevicepin.value" ng-change="save()" class="green"></switch>
-					</luci-config-line>
-					<luci-config-line title="{{'Generated PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
+					</juci-config-line>
+					<juci-config-line title="{{'Generated PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
 						<input type="text" class="form-control input-lg"  ng-model="generatedPIN" readonly />
-					</luci-config-line>
-					<luci-config-line title="{{'Generate New PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
+					</juci-config-line>
+					<juci-config-line title="{{'Generate New PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
 						<button class="btn btn-lg btn-default" ng-click="onGeneratePIN()" translate>Generate</button>
-					</luci-config-line>
-				</luci-config-lines>
-			</luci-config-section>
-			<luci-config-section ng-show="wireless.status.wps.value">
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value">
 				<h2 translate>WPS-PIN: Another Device provides PIN</h2>
 				<p translate>wifi.wps.otherpin.info</p>
-				<luci-config-lines>
-					<luci-config-line title="{{'Enter your device PIN'|translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{'Enter your device PIN'|translate}}">
 						<input type="text" class="form-control input-lg" ng-model="data.userPIN" placeholder="{{'Enter your PIN here'|translate}}"/>
-					</luci-config-line>
-					<luci-config-line title="{{'Pair (within 2 minutes)'|translate}}">
+					</juci-config-line>
+					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}">
 						<button class="btn btn-lg btn-default" ng-click="onPairUserPIN()" translate>Pair</button>
-					</luci-config-line>
-				</luci-config-lines>
-			</luci-config-section>
-		</luci-config>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+		</juci-config>
 		<modal title="{{'Attempting to Pair'|translate}}" ng-show="progress > 0 && progress != 2 && progress < 8" dismiss-label="Cancel" on-dismiss="onCancelWPS()">
 			<div style="text-align: center;">
 				<div ng-show="progress != 0" >
@@ -73,4 +73,4 @@
 			</div>
 		</modal>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

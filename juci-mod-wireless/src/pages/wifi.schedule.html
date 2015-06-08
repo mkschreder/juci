@@ -1,21 +1,21 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="WifiSchedulePageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Schedule' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'wifi.schedule.info' | translate }}</luci-config-info>
-			<luci-config-lines>
-				<luci-config-line title="{{'Schedule Function'|translate}}">
+		<juci-config-section>
+			<juci-config-heading>{{ 'Schedule' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'wifi.schedule.info' | translate }}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'Schedule Function'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="status.schedule.value" class="green"></switch>
-				</luci-config-line>
-			</luci-config-lines>
-		</luci-config-section>
-		<luci-config-section ng-show="status.schedule.value">
-			<luci-config-heading>{{ 'Setup Scheduling' | translate }}</luci-config-heading>
-			<luci-config-lines>
-				<luci-config-line title="{{'During this time the WiFi is'|translate}}">
-					<luci-select ng-model="status.sched_status.value" ng-items="statusItems" placeholder="{{'Choose Schedule Mode'|translate}}"></luci-select>
-				</luci-config-line>
-			</luci-config-lines>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section ng-show="status.schedule.value">
+			<juci-config-heading>{{ 'Setup Scheduling' | translate }}</juci-config-heading>
+			<juci-config-lines>
+				<juci-config-line title="{{'During this time the WiFi is'|translate}}">
+					<juci-select ng-model="status.sched_status.value" ng-items="statusItems" placeholder="{{'Choose Schedule Mode'|translate}}"></juci-select>
+				</juci-config-line>
+			</juci-config-lines>
 			<table class="table">
 				<thead>
 					<th translate>Day</th>
@@ -38,12 +38,12 @@
 					</tr>
 				</tbody>
 			</table>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 		<modal title="Add a new WiFi Schedule" ng-show="showScheduleDialog" on-accept="onAcceptSchedule()" 
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
 			<uci-wireless-schedule-edit ng-model="schedule"></uci-wireless-schedule-edit>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
 		</modal>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

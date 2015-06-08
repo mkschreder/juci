@@ -1,8 +1,8 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="StatusVoicePageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Voice Status' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'status.voice.info' | translate }}</luci-config-info>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Voice Status' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'status.voice.info' | translate }}</juci-config-info>
 			<h3>{{'Your Phone Numbers'|translate}}</h3>
 			<table class="table">
 				<tr>
@@ -21,10 +21,10 @@
 					</td>
 				</tr>
 			</table>
-		</luci-config-section>
-		<luci-config-section>
-			<luci-config-heading>{{ 'Voice Lines' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'status.voice_lines.info' | translate }}</luci-config-info>
+		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Voice Lines' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'status.voice_lines.info' | translate }}</juci-config-info>
 			<h3>{{'Your Phone Lines'|translate}}</h3>
 			<table class="table">
 				<tr>
@@ -36,6 +36,6 @@
 					<td style="text-align: center;">{{line.sub_0_state}}</td>
 				</tr>
 			</table>
-		</luci-config-section>
+		</juci-config-section>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

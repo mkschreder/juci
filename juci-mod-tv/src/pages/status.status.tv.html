@@ -1,8 +1,8 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="StatusTVPageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Vodafone TV Status' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'status.tv.info' | translate }}</luci-config-info>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Vodafone TV Status' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'status.tv.info' | translate }}</juci-config-info>
 			<!--<h3>{{'Connection Status'|translate}}</h3>-->
 			<h3>{{'Vodafone TV Channels'|translate}}</h3>
 			<table class="table">
@@ -21,6 +21,6 @@
 					<td>{{row.timeout}}</td>
 				</tr>
 			</table>
-		</luci-config-section>
+		</juci-config-section>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

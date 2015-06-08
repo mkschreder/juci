@@ -12,7 +12,7 @@ JUCI.app
 	}; 
 	
 	JUCI.interval.repeat("syslog", 1000, function(done){
-		$rpc.luci2.system.syslog().done(function(result){
+		$rpc.juci2.system.syslog().done(function(result){
 			if(result && result.log){
 				$scope.logs = result.log.split("\n").map(function(line){
 					var fields = line.match(/(\w* \w* \w* \d{2}:\d{2}:\d{2} \d{4}) ([^\s]*) ([^\s:]*): (.*)/); 

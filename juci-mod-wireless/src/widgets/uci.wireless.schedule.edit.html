@@ -1,10 +1,10 @@
 <form name="ruleForm" class="form-horizontal" novalidate>
 	<!--<div class="modal-body">-->
-		<luci-config-lines>
-			<luci-config-line title="{{'Time Frame'|translate}}">
-				<luci-select ng-model="selectedTimeFrame" on-change="onChangeDays($value)" ng-items="allTimeFrames" placeholder="{{'Preselected Days'|translate}}"></luci-select>
-			</luci-config-line>
-			<luci-config-line title="{{'Days'|translate}}" no-pull >
+		<juci-config-lines>
+			<juci-config-line title="{{'Time Frame'|translate}}">
+				<juci-select ng-model="selectedTimeFrame" on-change="onChangeDays($value)" ng-items="allTimeFrames" placeholder="{{'Preselected Days'|translate}}"></juci-select>
+			</juci-config-line>
+			<juci-config-line title="{{'Days'|translate}}" no-pull >
 				<div class="row" ng-class="{'field-error': schedule.days.error}" >
 					<div class="col-xs-6 " ng-repeat="day in allDayNames">
 						<div class="checkbox checkbox-info">
@@ -13,10 +13,10 @@
 						</div>
 					</div>
 				</div>
-			</luci-config-line>
-			<luci-config-line title="{{'Time'|translate}}" no-pull>
-				<luci-input-timespan ng-model="schedule.time" luci-timespan-validator="schedule.time.value"></luci-input-timespan>
-			</luci-config-line>
-		</luci-config-lines>
+			</juci-config-line>
+			<juci-config-line title="{{'Time'|translate}}" no-pull>
+				<juci-input-timespan ng-model="schedule.time" juci-timespan-validator="schedule.time.value"></juci-input-timespan>
+			</juci-config-line>
+		</juci-config-lines>
 	<!--</div>-->
 </form>

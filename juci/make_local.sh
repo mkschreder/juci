@@ -6,4 +6,4 @@ for file in $FILES; do
 	echo "<script src=\"$file\"></script>"
 done
 
-#cat $FILES > htdocs/lib/luci-autogen.js
+#cat $FILES > htdocs/lib/juci-autogen.js

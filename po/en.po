@@ -353,7 +353,7 @@ msgstr ""
 msgid "Banner File"
 msgstr ""
 
-#: juci/src/widgets/luci.top_bar.js:13
+#: juci/src/widgets/juci.top_bar.js:13
 msgid "Basic Mode"
 msgstr ""
 
@@ -582,7 +582,7 @@ msgstr ""
 msgid "Enabled"
 msgstr ""
 
-#: juci/src/widgets/luci.input.port.html:11
+#: juci/src/widgets/juci.input.port.html:11
 msgid "End port"
 msgstr ""
 
@@ -619,7 +619,7 @@ msgstr ""
 msgid "Every Workday"
 msgstr ""
 
-#: juci/src/widgets/luci.top_bar.js:14
+#: juci/src/widgets/juci.top_bar.js:14
 msgid "Expert Mode"
 msgstr ""
 
@@ -689,7 +689,7 @@ msgstr ""
 msgid "Group IP"
 msgstr ""
 
-#: juci/src/widgets/luci.login.html:14
+#: juci/src/widgets/juci.login.html:14
 msgid "Host"
 msgstr ""
 
@@ -818,7 +818,7 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: juci/src/widgets/luci.login.html:4 juci/src/widgets/luci.top_bar.js:15
+#: juci/src/widgets/juci.login.html:4 juci/src/widgets/juci.top_bar.js:15
 msgid "Log out"
 msgstr ""
 
@@ -911,7 +911,7 @@ msgstr ""
 msgid "Noise"
 msgstr ""
 
-#: juci/src/widgets/luci.footer.js:21
+#: juci/src/widgets/juci.footer.js:21
 msgid "Not connected"
 msgstr ""
 
@@ -954,7 +954,7 @@ msgid "Parse error"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:49
-#: juci/src/widgets/luci.login.html:22 juci/src/widgets/luci.login.html:23
+#: juci/src/widgets/juci.login.html:22 juci/src/widgets/juci.login.html:23
 msgid "Password"
 msgstr ""
 
@@ -1036,7 +1036,7 @@ msgstr ""
 msgid "Please add a comment describing this configuration"
 msgstr ""
 
-#: juci/src/widgets/luci.login.js:86
+#: juci/src/widgets/juci.login.js:86
 msgid "Please enter correct username and password!"
 msgstr ""
 
@@ -1048,7 +1048,7 @@ msgstr ""
 msgid "Please pick days between mon-sun"
 msgstr ""
 
-#: juci/src/widgets/luci.login.html:7
+#: juci/src/widgets/juci.login.html:7
 msgid "Please sign in"
 msgstr ""
 
@@ -1064,7 +1064,7 @@ msgstr ""
 msgid "Port"
 msgstr ""
 
-#: juci/src/widgets/luci.input.port.html:16
+#: juci/src/widgets/juci.input.port.html:16
 msgid "Port (1-65535)"
 msgstr ""
 
@@ -1225,7 +1225,7 @@ msgstr ""
 msgid "Select Existing Host"
 msgstr ""
 
-#: juci/src/widgets/luci.top_bar.html:6
+#: juci/src/widgets/juci.top_bar.html:6
 msgid "Select Mode"
 msgstr ""
 
@@ -1237,7 +1237,7 @@ msgstr ""
 msgid "Select Theme"
 msgstr ""
 
-#: juci-theme-vodafone/src/widgets/luci.top_bar.html:6
+#: juci-theme-vodafone/src/widgets/juci.top_bar.html:6
 msgid "Select User Mode"
 msgstr ""
 
@@ -1266,7 +1266,7 @@ msgstr ""
 msgid "Show calls for"
 msgstr ""
 
-#: juci/src/widgets/luci.login.html:30
+#: juci/src/widgets/juci.login.html:30
 msgid "Sign in"
 msgstr ""
 
@@ -1278,7 +1278,7 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
-#: juci/src/widgets/luci.input.port.html:5
+#: juci/src/widgets/juci.input.port.html:5
 msgid "Start port"
 msgstr ""
 
@@ -1366,8 +1366,8 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: juci-theme-vodafone/src/widgets/luci.navbar.html:4
-#: juci/src/widgets/luci.navbar.html:4
+#: juci-theme-vodafone/src/widgets/juci.navbar.html:4
+#: juci/src/widgets/juci.navbar.html:4
 msgid "Toggle navigation"
 msgstr ""
 
@@ -1429,7 +1429,7 @@ msgid "Usage"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:46
-#: juci/src/widgets/luci.login.html:18 juci/src/widgets/luci.login.html:19
+#: juci/src/widgets/juci.login.html:18 juci/src/widgets/juci.login.html:19
 msgid "Username"
 msgstr ""
 
@@ -1463,7 +1463,7 @@ msgstr ""
 msgid "Voice Status"
 msgstr ""
 
-#: juci-theme-vodafone/src/widgets/luci.footer.html:10
+#: juci-theme-vodafone/src/widgets/juci.footer.html:10
 msgid "WAN IP Address"
 msgstr ""
 
@@ -1498,7 +1498,7 @@ msgstr ""
 msgid "Wednesday"
 msgstr ""
 
-#: juci/src/widgets/luci.login.html:3
+#: juci/src/widgets/juci.login.html:3
 msgid "You are logged in!"
 msgstr ""
 
@@ -1558,31 +1558,31 @@ msgstr ""
 msgid "dsl.status.info"
 msgstr "This status page shows technical parameters of your DSL connection."
 
-#: juci/src/widgets/luci.input.port.range.html:15
+#: juci/src/widgets/juci.input.port.range.html:15
 #, fuzzy
 msgid "error.port.range.end.invalid"
 msgstr "Port invalid"
 
-#: juci/src/widgets/luci.input.port.range.html:14
+#: juci/src/widgets/juci.input.port.range.html:14
 #, fuzzy
 msgid "error.port.range.end.required"
 msgstr "Port required"
 
-#: juci/src/widgets/luci.input.port.range.html:13
+#: juci/src/widgets/juci.input.port.range.html:13
 #, fuzzy
 msgid "error.port.range.start.invalid"
 msgstr "Port invalid"
 
-#: juci/src/widgets/luci.input.port.range.html:12
+#: juci/src/widgets/juci.input.port.range.html:12
 #, fuzzy
 msgid "error.port.range.start.required"
 msgstr "Port required"
 
-#: juci/src/widgets/luci.input.port.range.html:16
+#: juci/src/widgets/juci.input.port.range.html:16
 msgid "error.port.range.startgreaterthanend"
 msgstr "Error, start port is greater than end port."
 
-#: juci/src/widgets/luci.input.timespan.html:2
+#: juci/src/widgets/juci.input.timespan.html:2
 msgid "from"
 msgstr "From"
 
@@ -1770,7 +1770,7 @@ msgstr ""
 msgid "status.voice_lines.info"
 msgstr "Status of your voice lines."
 
-#: juci/src/widgets/luci.input.timespan.html:4
+#: juci/src/widgets/juci.input.timespan.html:4
 msgid "to"
 msgstr "To"
 

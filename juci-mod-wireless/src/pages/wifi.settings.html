@@ -1,8 +1,8 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="WifiSettingsPageCtrl">
-		<luci-config-section>
-			<luci-config-heading>{{'Settings'|translate}}</luci-config-heading>
-			<luci-config-info>{{'wifi.settings.info'|translate}}</luci-config-info>
+		<juci-config-section>
+			<juci-config-heading>{{'Settings'|translate}}</juci-config-heading>
+			<juci-config-info>{{'wifi.settings.info'|translate}}</juci-config-info>
 			<div ng-repeat="dev in devices">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -20,7 +20,7 @@
 					</div>
 				</div>
 			</div>
-		</luci-config-section>
-		<luci-config-apply></luci-config-apply>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>

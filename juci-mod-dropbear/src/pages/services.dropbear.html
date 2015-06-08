@@ -1,47 +1,47 @@
-<luci-layout-with-sidebar>
+<juci-layout-with-sidebar>
 	<div ng-controller="DropbearSettings">
-		<luci-config-section>
-			<luci-config-heading>{{ 'Dropbear' | translate }}</luci-config-heading>
-			<luci-config-info>{{ 'settings.dropbear.info' | translate }}</luci-config-info>
-			<luci-config-line title="{{'Enabled'|translate}}" help="Set to 0 to disable starting dropbear at system boot.">
+		<juci-config-section>
+			<juci-config-heading>{{ 'Dropbear' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'settings.dropbear.info' | translate }}</juci-config-info>
+			<juci-config-line title="{{'Enabled'|translate}}" help="Set to 0 to disable starting dropbear at system boot.">
 				<switch ng-model="dropbear.enable.value" class="green" ng-change="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Verbose logging'|translate}}" help="Set to 1 to enable verbose output by the start script.">
+			</juci-config-line>
+			<juci-config-line title="{{'Verbose logging'|translate}}" help="Set to 1 to enable verbose output by the start script.">
 				<switch ng-model="dropbear.verbose.value" class="green" ng-change="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Banner File'|translate}}" help="Name of a file to be printed before the user has authenticated successfully.">
+			</juci-config-line>
+			<juci-config-line title="{{'Banner File'|translate}}" help="Name of a file to be printed before the user has authenticated successfully.">
 				<input class="form-control" ng-model="dropbear.BannerFile.value" ng-blur="onApply()"></input>
-			</luci-config-line>
-			<luci-config-line title="{{'Password Authentication'|translate}}" help="Set to 0 to disable authenticating with passwords.">
+			</juci-config-line>
+			<juci-config-line title="{{'Password Authentication'|translate}}" help="Set to 0 to disable authenticating with passwords.">
 				<switch ng-model="dropbear.PasswordAuth.value" ng-change="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Port'|translate}}" help="Port number to listen on.">
+			</juci-config-line>
+			<juci-config-line title="{{'Port'|translate}}" help="Port number to listen on.">
 				<input class="form-control" ng-model="dropbear.Port.value" ng-blur="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Root Password Auth'|translate}}" help="Set to 0 to disable authenticating as root with passwords.">
+			</juci-config-line>
+			<juci-config-line title="{{'Root Password Auth'|translate}}" help="Set to 0 to disable authenticating as root with passwords.">
 				<switch ng-model="dropbear.RootPasswordAuth.value" ng-change="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Root Login'|translate}}" help="Set to 0 to disable SSH logins as root.">
+			</juci-config-line>
+			<juci-config-line title="{{'Root Login'|translate}}" help="Set to 0 to disable SSH logins as root.">
 				<switch ng-model="dropbear.RootLogin.value" ng-change="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Gateway Ports'|translate}}" help="Set to 1 to allow remote hosts to connect to forwarded ports.">
+			</juci-config-line>
+			<juci-config-line title="{{'Gateway Ports'|translate}}" help="Set to 1 to allow remote hosts to connect to forwarded ports.">
 				<switch ng-model="dropbear.GatewayPorts.value" ng-change="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Interface'|translate}}" help="Tells dropbear to listen only on the specified interface.">
+			</juci-config-line>
+			<juci-config-line title="{{'Interface'|translate}}" help="Tells dropbear to listen only on the specified interface.">
 				<input class="form-control" ng-model="dropbear.Interface.value" ng-blur="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'RSA Key File'|translate}}" help="Path to RSA file">
+			</juci-config-line>
+			<juci-config-line title="{{'RSA Key File'|translate}}" help="Path to RSA file">
 				<input class="form-control" ng-model="dropbear.rsakeyfile.value" ng-blur="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'DSS Key File'|translate}}" help="Path to DSS/DSA file">
+			</juci-config-line>
+			<juci-config-line title="{{'DSS Key File'|translate}}" help="Path to DSS/DSA file">
 				<input class="form-control" ng-model="dropbear.dsskeyfile.value" ng-blur="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Connection Keep Alive'|translate}}" help="Keep Alive timout">
+			</juci-config-line>
+			<juci-config-line title="{{'Connection Keep Alive'|translate}}" help="Keep Alive timout">
 				<input class="form-control" ng-model="dropbear.SSHKeepAlive.value" ng-blur="onApply()"></switch>
-			</luci-config-line>
-			<luci-config-line title="{{'Idle Timeout'|translate}}" help="Idle timeout">
+			</juci-config-line>
+			<juci-config-line title="{{'Idle Timeout'|translate}}" help="Idle timeout">
 				<input class="form-control" ng-model="dropbear.IdleTimeout.value" ng-blur="onApply()"></switch>
-			</luci-config-line>
-		</luci-config-section>
+			</juci-config-line>
+		</juci-config-section>
 	</div>
-</luci-layout-with-sidebar>
+</juci-layout-with-sidebar>
