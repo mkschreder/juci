@@ -57,6 +57,7 @@
 	JUCIMain.prototype.$init = function(){
 		var scripts = []; 
 		var deferred = $.Deferred(); 
+		var $rpc = scope.UBUS; 
 		async.series([
 			function(next){
 				scope.UBUS.$init().done(function(){

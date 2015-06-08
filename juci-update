@@ -22,6 +22,7 @@ done
 rm -rf ${WWW}/js
 rm -rf ${WWW}/css
 
-for file in `find ${WWW} -type f`; do
-	gzip ${file}
+for file in `find ${WWW} -type f | grep -v "\.gz"`; do
+	echo "Compressing ${file}..."; 
+	gzip -f ${file}
 done
