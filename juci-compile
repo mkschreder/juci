@@ -1,5 +1,6 @@
 #!/bin/bash
 
+npm install
 grunt 
 
 for file in `find htdocs/js/ -name "*.js"`; do 
