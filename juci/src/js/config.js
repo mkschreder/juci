@@ -61,11 +61,21 @@
 					} else {
 						$.get("/config.json", { format: "json" }).done(function(data){
 							if(!data || data == undefined) throw new Error("Could not get config.json!"); 
+							if(typeof data !== "object") {
+								console.log("Data is not an object. Assuming json string.."); 
+								try {
+									data = JSON.parse(data); 
+								} catch(e){
+									console.error(e);
+									deferred.reject(); 
+									return;  
+								}
+							} 
 							console.log("Using settings from config.json on router"); 
 							Object.keys(data).map(function(k) { self[k] = data[k]; }); 
 							deferred.resolve(); 
 						}).fail(function(err){
-							console.error("Could not parse config: "+err); 
+							console.error("Could not parse config: "+JSON.stringify(err)); 
 							deferred.reject(); 
 						}); 
 					}

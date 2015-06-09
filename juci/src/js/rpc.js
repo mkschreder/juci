@@ -151,7 +151,8 @@
 				"keys": ""
 			}).done(function(result){
         if(!("username" in (result.data||{}))) {
-					console.log("Session: Not authenticated!");
+					// username must be returned in the response. If it is not returned then rpcd is of wrong version. 
+					//alert(gettext("You have been logged out due to inactivity")); 
 					RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; // reset sid to 000..
 					scope.localStorage.setItem("sid", RPC_SESSION_ID); 
 					deferred.reject(); 
