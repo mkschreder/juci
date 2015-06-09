@@ -3,7 +3,7 @@
 set -e 
 
 WWW="$1"
-MODE="$2"
+MODE="$2" || "RELEASE"
 
 if [ -n "$1" ]; then
 	WWW="$1"
@@ -14,21 +14,47 @@ elif [ -d /var/www ]; then
 fi
 
 rm -f $WWW/__all.js
-for file in $WWW/js/*; do
-	cat $file >> $WWW/__all.js
+for file in $WWW/js/*.js; do
+	if [ -e $file ]; then cat $file >> $WWW/__all.js; fi
 done
 
 rm -f $WWW/__all.css
-for file in $WWW/css/*; do
-	cat $file >> $WWW/__all.css
+for file in $WWW/css/*.css; do
+	if [ -e $file ]; then cat $file >> $WWW/__all.css; fi
 done
 
 if [ "$MODE" == "RELEASE" ]; then
-	rm -rf ${WWW}/js
-	rm -rf ${WWW}/css
+	if [ -e ${WWW}/js ]; then find ${WWW}/js/*.js | xargs rm -f; fi
+	if [ -e ${WWW}/css ]; then find ${WWW}/css/*.css | xargs rm -f; fi
 
 	for file in `find ${WWW} -type f | grep -v "\.gz"`; do
 		echo "Compressing ${file}..."; 
 		gzip -f ${file}
 	done
 fi
+
+# now update the index file to include any extra files
+INDEX=${WWW}/index.html
+gunzip -f ${INDEX}.gz
+mkdir -p ${WWW}/js;
+mkdir -p ${WWW}/css;
+
+STYLES_HTML='<link href="__all.css" rel="stylesheet" type="text/css" />'
+SCRIPTS_HTML='<script src="__all.js"></script>'
+for file in `find ${WWW}/css -name "*.css*"`; do
+	echo "Adding $file to index"
+	style=${file#${WWW}}
+	style=${style%.gz}
+	STYLES_HTML="${STYLES_HTML}<link href=\"${style}\" rel=\"stylesheet\" type=\"text/css\" />"
+done
+sed -i.bak -e "/<!-- STYLES_BEGIN -->/,/<!-- STYLES_END -->/c\<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->" ${INDEX} 
+
+for file in `find ${WWW}/js -name "*.js*"`; do
+	echo "Adding $file to index"
+	path=${file#${WWW}}
+	path=${style%.gz}
+	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${path}\"></script>"
+done
+sed -i.bak -e "/<!-- SCRIPTS_BEGIN -->/,/<!-- SCRIPTS_END -->/c\<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->" ${INDEX} 
+
+gzip -f ${INDEX}

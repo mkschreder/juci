@@ -31,7 +31,6 @@ $(DIRS-y):
 	make -C $@
 	cp -Rp $@/htdocs/* htdocs/
 	cp -Rp $@/menu.json menu.d/$@.json
-	
 
 clean: 
 	for dir in $(DIRS-y); do make -C $$dir clean; rm -rf htdocs/; done

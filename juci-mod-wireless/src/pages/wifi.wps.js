@@ -1,14 +1,14 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiWPSPageCtrl", function($scope, $uci, $rpc, $interval, gettext){
+.controller("WifiWPSPageCtrl", function($scope, $uci, $rpc, $interval, gettext, $tr){
 	var wps_status_strings = {
-		0: gettext("wps.status.init"),
-		1: gettext("wps.status.processing"),
-		2: gettext("wps.status.success"),
-		3: gettext("wps.status.fail"),
-		4: gettext("wps.status.timeout"),
-		7: gettext("wps.status.msgdone")
+		0: $tr(gettext("wps.status.init")),
+		1: $tr(gettext("wps.status.processing")),
+		2: $tr(gettext("wps.status.success")),
+		3: $tr(gettext("wps.status.fail")),
+		4: $tr(gettext("wps.status.timeout")),
+		7: $tr(gettext("wps.status.msgdone"))
 	}; 
 	
 	$scope.data = {
