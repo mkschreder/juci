@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e 
+#set -e 
 
 WWW="$1"
 MODE="$2" || "RELEASE"
@@ -15,17 +15,17 @@ fi
 
 rm -f $WWW/__all.js
 for file in $WWW/js/*.js; do
-	if [ -e $file ]; then cat $file >> $WWW/__all.js; fi
+	cat $file >> $WWW/__all.js
 done
 
 rm -f $WWW/__all.css
 for file in $WWW/css/*.css; do
-	if [ -e $file ]; then cat $file >> $WWW/__all.css; fi
+	cat $file >> $WWW/__all.css
 done
 
 if [ "$MODE" == "RELEASE" ]; then
-	if [ -e ${WWW}/js ]; then find ${WWW}/js/*.js | xargs rm -f; fi
-	if [ -e ${WWW}/css ]; then find ${WWW}/css/*.css | xargs rm -f; fi
+	find ${WWW}/js/*.js | xargs rm -f
+	find ${WWW}/css/*.css | xargs rm -f
 
 	for file in `find ${WWW} -type f | grep -v "\.gz"`; do
 		echo "Compressing ${file}..."; 
@@ -35,26 +35,68 @@ fi
 
 # now update the index file to include any extra files
 INDEX=${WWW}/index.html
-gunzip -f ${INDEX}.gz
+#gunzip -f ${INDEX}.gz
 mkdir -p ${WWW}/js;
 mkdir -p ${WWW}/css;
 
-STYLES_HTML='<link href="__all.css" rel="stylesheet" type="text/css" />'
-SCRIPTS_HTML='<script src="__all.js"></script>'
+HTML='<!doctype html>
+<html lang="en" >
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title >juci Express</title><!--ng-bind="title"-->
+	<base href="/">
+	<!-- STYLES_BEGIN -->
+	<link href="__all.css" rel="stylesheet" type="text/css" />
+	<!-- STYLES_END -->
+</head>
+<body role="document" ng-cloak >
+	<div ui-view="content" style="min-height: 1000px;"></div>
+	
+	<div style="margin-bottom: 40px"></div>
+	<!-- SCRIPTS_BEGIN -->
+	<script src="__all.js"></script>
+	<!-- SCRIPTS_END -->
+</body>
+</html>'
+
+STYLES_HTML="<link href='__all.css' rel='stylesheet' type='text/css' />"
+SCRIPTS_HTML="<script src='__all.js'></script>"
 for file in `find ${WWW}/css -name "*.css*"`; do
 	echo "Adding $file to index"
 	style=${file#${WWW}}
 	style=${style%.gz}
-	STYLES_HTML="${STYLES_HTML}<link href=\"${style}\" rel=\"stylesheet\" type=\"text/css\" />"
+	STYLES_HTML="${STYLES_HTML}<link href='${style}' rel='stylesheet' type='text/css' />"
 done
-sed -i.bak -e "/<!-- STYLES_BEGIN -->/,/<!-- STYLES_END -->/c\<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->" ${INDEX} 
+
+#sed "/<!-- STYLES_BEGIN -->/,/<!-- STYLES_END -->/c<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->" ${INDEX} 
+#cat ${INDEX} | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->/" 
+#cat /www/index.html | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->test<!-- STYLES_END -->/g" 
 
 for file in `find ${WWW}/js -name "*.js*"`; do
 	echo "Adding $file to index"
-	path=${file#${WWW}}
-	path=${style%.gz}
-	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${path}\"></script>"
+	JSFILE=${file#${WWW}}
+	JSFILE=${JSFILE%.gz}
+	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${JSFILE}\"></script>"
 done
-sed -i.bak -e "/<!-- SCRIPTS_BEGIN -->/,/<!-- SCRIPTS_END -->/c\<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->" ${INDEX} 
+#cat ${INDEX} | tr -d '\n' | sed "s/<!-- SCRIPTS_BEGIN -->.*<!-- SCRIPTS_END -->/<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->/" 
+
+# workaround because stupid f**ing sed is not working on busybox #@"#"!"¤¤"#!"¤!½!!!
+echo "<!doctype html>
+<html lang='en' >
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
+	<title >juci Express</title><!--ng-bind='title'-->
+	<base href='/'>
+	${STYLES_HTML}
+</head>
+<body role='document' ng-cloak >
+	<div ui-view='content' style='min-height: 1000px;'></div>
+	
+	<div style='margin-bottom: 40px'></div>
+	${SCRIPTS_HTML}
+</body>
+</html>" > ${INDEX}
 
 gzip -f ${INDEX}

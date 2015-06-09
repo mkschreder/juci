@@ -1,4 +1,4 @@
-DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-network juci-theme-vodafone 
+DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-network 
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
