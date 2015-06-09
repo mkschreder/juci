@@ -256,7 +256,7 @@ app.post('/ubus', function(req, res) {
 				"Content-Type": "application/json"
 			},
 			//json: true,   // <--Very important!!!
-			body: JSON.stringify(data)+"\r\n\r\n"
+			body: JSON.stringify(data)
 		}, function (error, response, body) {
 			if(error){ 
 				console.log("ERROR: "+error+": "+body+": "+response); 

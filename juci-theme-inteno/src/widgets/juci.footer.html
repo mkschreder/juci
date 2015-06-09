@@ -1,0 +1,19 @@
+<div class="container footer">
+	<div class="row">
+		<div class="col-sm-6 col-xs-12 form-group">
+			<span ng-repeat="lang in languages">
+				<a style="text-decoration: {{isActiveLanguage(lang)?'underline':'none'}}; color: inherit;" href="" ng-click="setLanguage(lang)">{{lang.title|translate}}</a>{{$last ? '' : ' | '}}
+			</span>
+		</div>
+		<div class="col-sm-6 col-xs-12 form-group footer-right" >
+			<div class="row">{{firmware}}</div>
+			<div class="row"><span translate>WAN IP Address</span>: {{wanip}}</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<!--<juci-theme-picker></juci-theme-picker>-->
+		</div>
+	</div>
+</div>
+ 

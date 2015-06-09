@@ -1,6 +1,10 @@
 #!/bin/sh
 
+set -e 
+
 WWW="$1"
+MODE="$2"
+
 if [ -n "$1" ]; then
 	WWW="$1"
 elif [ -d /www ]; then
@@ -19,10 +23,12 @@ for file in $WWW/css/*; do
 	cat $file >> $WWW/__all.css
 done
 
-rm -rf ${WWW}/js
-rm -rf ${WWW}/css
+if [ "$MODE" == "RELEASE" ]; then
+	rm -rf ${WWW}/js
+	rm -rf ${WWW}/css
 
-for file in `find ${WWW} -type f | grep -v "\.gz"`; do
-	echo "Compressing ${file}..."; 
-	gzip -f ${file}
-done
+	for file in `find ${WWW} -type f | grep -v "\.gz"`; do
+		echo "Compressing ${file}..."; 
+		gzip -f ${file}
+	done
+fi
