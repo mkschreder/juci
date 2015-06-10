@@ -2,10 +2,6 @@ DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-m
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
-ifeq ($(MAKECMDGOALS),inteno)
-	DIRS-y += juci-theme-inteno 
-endif
-
 ifeq ($(DEFAULT_THEME),y)
 	DIRS-y += juci-theme-inteno
 endif
