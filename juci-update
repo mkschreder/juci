@@ -13,20 +13,17 @@ elif [ -d /var/www ]; then
 	WWW="/var/www"
 fi
 
-rm -f $WWW/__all.js
-for file in $WWW/js/*.js; do
-	cat $file >> $WWW/__all.js
-done
+#rm -f $WWW/__all.js
+#for file in $WWW/js/*.js; do
+#	cat $file >> $WWW/__all.js
+#done
 
-rm -f $WWW/__all.css
-for file in $WWW/css/*.css; do
-	cat $file >> $WWW/__all.css
-done
+#rm -f $WWW/__all.css
+#for file in $WWW/css/*.css; do
+#	cat $file >> $WWW/__all.css
+#done
 
 if [ "$MODE" == "RELEASE" ]; then
-	find ${WWW}/js/*.js | xargs rm -f
-	find ${WWW}/css/*.css | xargs rm -f
-
 	for file in `find ${WWW} -type f | grep -v "\.gz"`; do
 		echo "Compressing ${file}..."; 
 		gzip -f ${file}
@@ -99,4 +96,4 @@ echo "<!doctype html>
 </body>
 </html>" > ${INDEX}
 
-#gzip -f ${INDEX}
+gzip -f ${INDEX}

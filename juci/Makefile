@@ -1,6 +1,7 @@
 OUTDIR:=htdocs
-CSS:=$(OUTDIR)/css/00-juci.css
-JS:=$(OUTDIR)/js/00-juci.js
+CSS:=$(OUTDIR)/css/01-juci.css
+JS:=$(OUTDIR)/js/01-juci.js
+JSLIB:=$(OUTDIR)/js/00-juci-libs.js
 HTML:=$(OUTDIR)/js/01-juci-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
@@ -17,25 +18,27 @@ STYLES+=src/lib/css/awesome-bootstrap-checkbox.css
 STYLES+=src/css/nga.min.css
 STYLES+=src/css/app.css
 
-JAVASCRIPT:=
-JAVASCRIPT+=src/lib/js/async.js
-JAVASCRIPT+=src/lib/js/js-schema.min.js
-JAVASCRIPT+=src/lib/js/require.js
-JAVASCRIPT+=src/lib/js/jquery.min.js
-JAVASCRIPT+=src/lib/js/angular.min.js
-JAVASCRIPT+=src/lib/js/angular-ui.min.js
-JAVASCRIPT+=src/lib/js/angular-ui-router.min.js
-JAVASCRIPT+=src/lib/js/angular-gettext.min.js
-JAVASCRIPT+=src/lib/js/bootstrap-select.min.js
-JAVASCRIPT+=src/lib/js/select.min.js
-JAVASCRIPT+=src/lib/js/angular-animate.min.js
-JAVASCRIPT+=src/lib/js/angular-ui-bootstrap-juci.min.js
-JAVASCRIPT+=src/lib/js/jquery-jsonrpc.js
+JSLIBS:=
+JSLIBS+=src/lib/js/async.js
+JSLIBS+=src/lib/js/js-schema.min.js
+JSLIBS+=src/lib/js/require.js
+JSLIBS+=src/lib/js/jquery.min.js
+JSLIBS+=src/lib/js/angular.min.js
+JSLIBS+=src/lib/js/angular-ui.min.js
+JSLIBS+=src/lib/js/angular-ui-router.min.js
+JSLIBS+=src/lib/js/angular-gettext.min.js
+JSLIBS+=src/lib/js/bootstrap-select.min.js
+JSLIBS+=src/lib/js/select.min.js
+JSLIBS+=src/lib/js/angular-animate.min.js
+JSLIBS+=src/lib/js/angular-ui-bootstrap-juci.min.js
+JSLIBS+=src/lib/js/jquery-jsonrpc.js
 #JAVASCRIPT+=src/lib/js/translations.js
-JAVASCRIPT+=src/lib/js/bootstrap.min.js
-JAVASCRIPT+=src/lib/js/angular-ui-switch.min.js
-JAVASCRIPT+=src/lib/js/angular-modal-service.min.js
-JAVASCRIPT+=src/lib/js/angular-checklist-model.js
+JSLIBS+=src/lib/js/bootstrap.min.js
+JSLIBS+=src/lib/js/angular-ui-switch.min.js
+JSLIBS+=src/lib/js/angular-modal-service.min.js
+JSLIBS+=src/lib/js/angular-checklist-model.js
+
+JAVASCRIPT:=
 JAVASCRIPT+=src/js/compat.js
 JAVASCRIPT+=src/js/rpc.js
 JAVASCRIPT+=src/js/uci.js
@@ -54,7 +57,9 @@ INDEX:=$(OUTDIR)/index.html
 TEMPLATES:=$(wildcard src/html/*.html) $(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 JUCI_TEMPLATE_CC:=../juci-build-tpl-cache
 
-all: $(OUTDIR) files $(CSS) $(JS) $(INDEX) $(HTML);
+all: $(OUTDIR) files $(CSS) $(JSLIB) $(JS) $(INDEX) $(HTML)
+	cat $(HTML) >> $(JS)
+	rm -f $(HTML)
 
 $(OUTDIR): 
 	mkdir $(OUTDIR)
@@ -77,7 +82,11 @@ $(CSS): $(STYLES)
 $(JS): $(JAVASCRIPT)
 	rm -f $(JS); touch $(JS)
 	for file in $(JAVASCRIPT); do echo $$file; cat $$file >> $(JS); echo ';' >> $(JS); done
-	
+
+$(JSLIB): $(JSLIBS)
+	rm -f $(JSLIB); touch $(JSLIB)
+	for file in $(JSLIBS); do echo $$file; cat $$file >> $(JSLIB); echo ';' >> $(JSLIB); done
+
 $(INDEX): src/index.html
 	cp $(INDEX) src/index.html
 

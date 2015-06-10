@@ -5,8 +5,10 @@ HTML:=htdocs/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(CSS) $(JS) $(HTML);
-
+all: files $(CSS) $(JS) $(HTML)
+	cat $(HTML) >> $(JS)
+	rm -f $(HTML)
+	
 .PHONY: files
 files: 
 	$(INSTALL_DIR) ./htdocs/css

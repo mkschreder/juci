@@ -6,7 +6,10 @@ HTML:=$(OUTDIR)/js/51-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(OUTDIR) $(JS) $(HTML);
+all: files $(OUTDIR) $(JS) $(HTML)
+	cat $(HTML) >> $(JS)
+	rm -f $(HTML)
+	
 
 $(OUTDIR): 
 	mkdir -p $(OUTDIR)
