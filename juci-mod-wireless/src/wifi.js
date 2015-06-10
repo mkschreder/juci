@@ -80,7 +80,7 @@
 			case "psk": 
 			case "psk2": 
 			case "mixed-psk": {
-				if(!section.key.value || !(section.key.value.length > 8 && section.key.value.length < 64))
+				if(!section.key.value || !(section.key.value.length >= 8 && section.key.value.length < 64))
 					throw new Error("WPA key must be 8-63 characters long!"); 
 			} break; 
 			default: 

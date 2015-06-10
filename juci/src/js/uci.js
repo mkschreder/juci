@@ -263,6 +263,10 @@
 					errors.push(k+": "+err); 
 				}
 			}); 
+			if(self[".validator"] && (self[".validator"] instanceof Function)){
+				var e = self[".validator"](self); 
+				if(e) errors.push(e); 
+			}
 			return errors; 
 		}
 		

@@ -57,7 +57,7 @@ INDEX:=$(OUTDIR)/index.html
 TEMPLATES:=$(wildcard src/html/*.html) $(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 JUCI_TEMPLATE_CC:=../juci-build-tpl-cache
 
-all: $(OUTDIR) files $(CSS) $(JSLIB) $(JS) $(INDEX) $(HTML)
+all: $(OUTDIR) files $(CSS) $(JSLIB) $(JS) $(HTML)
 	cat $(HTML) >> $(JS)
 	rm -f $(HTML)
 
@@ -71,7 +71,7 @@ files:
 	$(INSTALL_DIR) $(OUTDIR)/js/
 	$(CP) ./src/img/ $(OUTDIR)/
 	$(CP) ./src/fonts/ $(OUTDIR)/
-	$(CP) ./src/index.html $(OUTDIR)/
+	#$(CP) ./src/index.html $(OUTDIR)/
 	# TODO: this needs to be replaced later with /etc/config/juci with proper acl permissions
 	$(CP) ./juci.config.json $(OUTDIR)/config.json
 	
@@ -86,9 +86,6 @@ $(JS): $(JAVASCRIPT)
 $(JSLIB): $(JSLIBS)
 	rm -f $(JSLIB); touch $(JSLIB)
 	for file in $(JSLIBS); do echo $$file; cat $$file >> $(JSLIB); echo ';' >> $(JSLIB); done
-
-$(INDEX): src/index.html
-	cp $(INDEX) src/index.html
 
 $(HTML): $(TEMPLATES)
 	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML)

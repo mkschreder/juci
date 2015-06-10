@@ -88,6 +88,7 @@ $juci.module("core")
 	 }; 
 }).controller("juciConfigApplyController", function($scope, $uci){
 	$scope.onApply = function(){
+		$scope.$emit("errors_begin"); 
 		//if($scope.onPreApply) $scope.onPreApply(); 
 		$scope.busy = 1; 
 		try {

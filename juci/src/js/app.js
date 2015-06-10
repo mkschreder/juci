@@ -111,6 +111,9 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 			$rootScope.errors.concat(errors.map(function(x){ return { message: x }; })); 
 		}
 	}); 
+	$rootScope.$on("errors_begin", function(ev){
+		$rootScope.errors.splice(0, $rootScope.errors.length); 
+	}); 
 	// set current language
 	gettextCatalog.currentLanguage = "en"; 
 	gettextCatalog.debug = true;
