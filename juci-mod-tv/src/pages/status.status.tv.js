@@ -7,6 +7,7 @@ JUCI.app
 			$scope.$emit("error", gettext("Unable to retreive igmptable from device!")); 
 			return; 
 		} 
-		$scope.igmptable = result.igmptable; 
+		$scope.igmptable = result.table; 
+		$scope.$apply(); 
 	}); 
 }); 

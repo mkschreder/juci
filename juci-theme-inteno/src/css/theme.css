@@ -2,7 +2,10 @@
     font-family: "eurostyle";
     src: url("/fonts/eurostyle.woff") format('woff');
 }
-
+@font-face {
+    font-family: "inteno";
+    src: url("/fonts/eurostyle.woff") format('woff');
+}
 body {
 	font-size: 16px;
 }

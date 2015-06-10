@@ -6,9 +6,9 @@
 					<div class="col-sm-3 pull-right overview-status-box">
 						<div class="row" ng-repeat="row in statusBoxItems">
 							<div class="col-sm-2">
-								<i class="fa fa-{{row.icon}}"/>
+								<i class="fa {{row.icon}}"/>
 							</div>
-							<div class="col-sm-8">{{row.label}}</div>
+							<div class="col-sm-8" style="font-family: 'inteno'; padding-left: 0px; ">{{row.label}}</div>
 							<div class="col-sm-2" style="text-align: right;">
 								<i class="fa fa-circle"/>
 							</div>
