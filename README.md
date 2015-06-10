@@ -8,6 +8,7 @@ It includes a nodejs server which you can do for local testing and for forwardin
 If offers you the following: 
 
 * Extremely resource-efficient for your device - your router only needs to run the core functions (which can be written in C!) and the gui itself is running entirely inside the client's browser). You router only computes and sends the minimum information necessary. 
+* Full mobile support
 * Easy to work with - the code uses angular.js and html5, making it extremely easy to add new gui elements to the gui. 
 * Full control and flexibility - yet many ready-made components: allowing you to pick yourself which level you want to develop on. There are no restrictions to the look and feel of your gui. 
 * Dynamic theming - you can switch color themes at runtime. 
@@ -16,9 +17,19 @@ If offers you the following:
 Getting started
 ---------------
 
+Ideally you should get iopsys (OpenWRT based) sdk and build juci from there. This updated version is heavily based on updated versions of openwrt packages found in iopsys sdk and so you should use that primarily. (kinda-sorta-like-this: git clone http://ihgsp.inteno.se/git/iopsysAA.git iop && cd iop && git checkout BB && ./iop_get_feeds.sh && make).. 
+
+Building compiled and gzipped htdocs: 
+	
+	make 
+
+Building uncompressed htdocs (for use with local server - the local server script runs this automatically at intervals): 
+	
+	make debug
+
 To run local server for testing the gui: 
 
-	sudo apt-get install nodejs npm 
+	sudo apt-get install nodejs npm uglifyjs yui-compressor 
 
 In the main folder run: 
 
@@ -32,7 +43,7 @@ If you want to auto generate language "po" files, install grunt command line too
 	
 No you can run the server using: 
 	
-	node server.js 
+	./juci-local-server
 	
 You may need to use 'nodejs' command instead of 'node' depending on your distro. 
 
