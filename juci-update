@@ -60,9 +60,9 @@ HTML='<!doctype html>
 </body>
 </html>'
 
-STYLES_HTML="<link href='__all.css' rel='stylesheet' type='text/css' />"
-SCRIPTS_HTML="<script src='__all.js'></script>"
-for file in `find ${WWW}/css -name "*.css*"`; do
+STYLES_HTML="" #"<link href='__all.css' rel='stylesheet' type='text/css' />"
+SCRIPTS_HTML="" #"<script src='__all.js'></script>"
+for file in `find ${WWW}/css -name "*.css*" | sort`; do
 	echo "Adding $file to index"
 	style=${file#${WWW}}
 	style=${style%.gz}
@@ -73,7 +73,7 @@ done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->/" 
 #cat /www/index.html | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->test<!-- STYLES_END -->/g" 
 
-for file in `find ${WWW}/js -name "*.js*"`; do
+for file in `find ${WWW}/js -name "*.js*" | sort`; do
 	echo "Adding $file to index"
 	JSFILE=${file#${WWW}}
 	JSFILE=${JSFILE%.gz}
@@ -99,4 +99,4 @@ echo "<!doctype html>
 </body>
 </html>" > ${INDEX}
 
-gzip -f ${INDEX}
+#gzip -f ${INDEX}

@@ -1,5 +1,35 @@
-<juci-layout-single-column>
+<juci-layout-naked>
 	<div ng-controller="OverviewPageCtrl">
-		Inteno 
+		<div class="overview-banner">
+			<div class="container">
+				<div class="row" style="padding-top: 20px;">
+					<div class="col-sm-3 pull-right overview-status-box">
+						<div class="row" ng-repeat="row in statusBoxItems">
+							<div class="col-sm-2">
+								<i class="fa fa-{{row.icon}}"/>
+							</div>
+							<div class="col-sm-8">{{row.label}}</div>
+							<div class="col-sm-2" style="text-align: right;">
+								<i class="fa fa-circle"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-sm-4 overview-box">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+							<i class="fa fa-wifi" style="margin-right: 10px;"/>WiFi
+						</h3>
+					</div>
+					<div class="panel-body ">
+						panel body 
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</juci-layout-single-column>
+</juci-layout-naked>

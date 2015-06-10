@@ -1,0 +1,25 @@
+#!/usr/bin/node
+
+var fs = require("fs"); 
+
+//var JSON = require("JSON"); 
+
+var output = process.argv[process.argv.length - 1]; 
+var input = process.argv.splice(2, process.argv.length - 3); 
+
+if(input.length == 0) throw new Error("Please specify at least one input file and one output file!"); 
+
+//console.log(input+" > "+output); 
+
+var templates = {}; 
+input.map(function(x){
+	var name = x.replace(/^src\//, ""); 
+	templates[name] = String(fs.readFileSync(x)); 
+}); 
+
+var code = ""; 
+Object.keys(templates).map(function(k){
+	code += "JUCI.template(\""+k+"\", "+JSON.stringify(templates[k].replace(/\t/gi, ""))+");"; 
+}); 
+
+fs.writeFileSync(output, code); 

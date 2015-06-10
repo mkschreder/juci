@@ -12,6 +12,7 @@ files:
 	$(INSTALL_DIR) ./htdocs/css
 	$(INSTALL_DIR) ./htdocs/js
 	$(CP) ./src/img htdocs/
+	$(CP) ./src/fonts htdocs/
 
 STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js src/pages/*.js src/widgets/*.js)
@@ -24,7 +25,7 @@ $(JS): $(CODE)
 	cat $(CODE) > $@
 	
 $(HTML): $(TEMPLATES)
-	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
+	./juci-theme-build-templates $(TEMPLATES) $(HTML) 
 
 clean: 
 	rm -rf htdocs
