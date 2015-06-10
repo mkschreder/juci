@@ -36,27 +36,6 @@ INDEX=${WWW}/index.html
 mkdir -p ${WWW}/js;
 mkdir -p ${WWW}/css;
 
-HTML='<!doctype html>
-<html lang="en" >
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title >juci Express</title><!--ng-bind="title"-->
-	<base href="/">
-	<!-- STYLES_BEGIN -->
-	<link href="__all.css" rel="stylesheet" type="text/css" />
-	<!-- STYLES_END -->
-</head>
-<body role="document" ng-cloak >
-	<div ui-view="content" style="min-height: 1000px;"></div>
-	
-	<div style="margin-bottom: 40px"></div>
-	<!-- SCRIPTS_BEGIN -->
-	<script src="__all.js"></script>
-	<!-- SCRIPTS_END -->
-</body>
-</html>'
-
 STYLES_HTML="" #"<link href='__all.css' rel='stylesheet' type='text/css' />"
 SCRIPTS_HTML="" #"<script src='__all.js'></script>"
 for file in `find ${WWW}/css -name "*.css*" | sort`; do

@@ -2,13 +2,11 @@ TARGET:=juci-mod-wireless
 OUTDIR:=htdocs
 CSS:=$(OUTDIR)/css/50-$(TARGET).css
 JS:=$(OUTDIR)/js/50-$(TARGET).js
-HTML:=$(OUTDIR)/js/51-$(TARGET)-tpl.js
+HTML:=$(OUTDIR)/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(OUTDIR) $(JS) $(HTML)
-	cat $(HTML) >> $(JS)
-	rm -f $(HTML)
+all: files $(OUTDIR) $(JS) $(HTML);
 	
 $(OUTDIR): 
 	mkdir -p $(OUTDIR)

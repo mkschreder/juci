@@ -1,13 +1,11 @@
 TARGET:=juci-theme-inteno
-CSS:=htdocs/css/90-$(TARGET).css
-JS:=htdocs/js/90-$(TARGET).js
+CSS:=htdocs/css/80-$(TARGET).css
+JS:=htdocs/js/80-$(TARGET).js
 HTML:=htdocs/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(CSS) $(JS) $(HTML)
-	cat $(HTML) >> $(JS)
-	rm -f $(HTML)
+all: files $(CSS) $(JS) $(HTML);
 	
 .PHONY: files
 files: 
