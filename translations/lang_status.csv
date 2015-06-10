@@ -1,0 +1,661 @@
+ID;en-de;de-de;tr-de;en-nz;en-es;es-es;en-it;it-it;..;..;..;..;..;..
+601001;Status;Status der EasyBox;EasyBox cihazının durumu;Status;Status;Estado;Status;Stato;Status der EasyBox;Easybox Status;EasyBox cihazının durumu;Status der EasyBox;Easybox Status;PlusBox Status
+601002;Find an overview of all your EasyBox parameters. This may help you in optimizing or trouble shooting your EasyBox. ;Sehen Sie hier einen Überblick über alle Parameter der EasyBox. Dies kann auch helfen, Ihre EasyBox zu optimieren, oder eventuelle Probleme zu erkennen. ;Burada, EasyBox cihazının tüm parametrelerini görebilirsiniz. Bu bilgiler, cihazınızı optimize etmenize veya muhtemel sorunları tespit etmenize de yardımcı olabilir. ;Find an overview of all your EasyBox parameters. This may help you in optimizing or trouble shooting your EasyBox. ;Find an overview of all your router parameters. This may help you in optimizing or trouble shooting your router.;Vea un resumen de todos los parámetros del router. Esto puede ayudarle a optimizar o solucionar errores en el router.;Find an overview of all your EasyBox parameters. This may help you in optimizing or trouble shooting your EasyBox. ;;Sehen Sie hier einen Überblick über alle Parameter der EasyBox. Dies kann auch helfen, Ihre EasyBox zu optimieren, oder eventuelle Probleme zu erkennen. ;This page provides an overview of main parameters of your Easybox. This can help you to optimize your Easybox or identify potential problems.;Burada, EasyBox cihazının tüm parametrelerini görebilirsiniz. Bu bilgiler, cihazınızı optimize etmenize veya muhtemel sorunları tespit etmenize de yardımcı olabilir. ;Sehen Sie hier einen Überblick über alle Parameter der EasyBox. Dies kann auch helfen, Ihre EasyBox zu optimieren, oder eventuelle Probleme zu erkennen. ;This page provides an overview of main parameters of your Easybox. This can help you to optimize your Easybox or identify potential problems.;This page provides an overview of main parameters of your PlusBox. This can help you to optimize your PlusBox or identify potential problems.
+601003;Internet;Internet;İnternet;Internet;Internet;Internet;Internet;Internet;Internet;Internet;İnternet;Internet;Internet;Internet
+601004;IP Address;IP-Adresse;IP adresi;IP Address;IP Address;Dirección IP;IP Address;Indirizzo IP;IP-Adresse;IP Address;IP adresi;IP-Adresse;IP Address;IP Address
+601005;Primary DNS IP Address;Primärer DNS;Birincil DNS;Primary DNS IP Address;Primary DNS IP Address;Dirección IP DNS primario;Primary DNS IP Address;DSN primario;Primärer DNS;Primary DNS IP Address;Birincil DNS;Primärer DNS;Primary DNS IP Address;Primary DNS IP Address
+601006;Secondary DNS IP Address;Sekundärer DNS;İkincil DNS;Secondary DNS IP Address;Secondary DNS IP Address;Dirección IP DNS secundario;Secondary DNS IP Address;DNS secondario;Sekundärer DNS;Secondary DNS IP Address;İkincil DNS;Sekundärer DNS;Secondary DNS IP Address;Secondary DNS IP Address
+601007;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall
+601008;LAN;LAN;LAN;LAN;LAN;LAN;LAN;LAN;Netzwerk;LAN Network;Network;Netzwerk;LAN Network;LAN Network
+601009;IP Network;IP Netzwerk;IP ağ;IP Network;IP Network;Red IP;IP Network;;IP Netzwerk;IP Network;IP ağ;IP Netzwerk;IP Network;IP Network
+601010;Default Gateway;Gateway;Gateway;Default Gateway;Default Gateway;Default Gateway;Default Gateway;;Gateway;Default Gateway;Gateway;Gateway;Default Gateway;Default Gateway
+601011;MAC Address;MAC-Adresse;MAC adresi;MAC Address;MAC Address;Dirección MAC;MAC Address;Indirizzo MAC;MAC-Adresse;MAC Address;MAC adresi;MAC-Adresse;MAC Address;MAC Address
+601012;DHCP Server;DHCP Server;DHCP sunucusu;DHCP Server;DHCP Server;Servidor DHCP;DHCP Server;Server DHCP;DHCP Server;DHCP Server;DHCP sunucusu;DHCP Server;DHCP Server;DHCP Server
+601013;WiFi;W-LAN;WiFi;WiFi;WiFi;WiFi;WiFi;WiFi;Heim WLAN;Main WiFi;WiFi;Heim WLAN;Main WiFi;WLAN
+601014;Status;Status;Durum;Status;Status;Estado;Status;Stato;Status;Status;Durum;Status;Status;Status
+601015;Name;Name;İsim;Name;SSID;SSID;Name;Nome rete;Name;Name;İsim;Name;Name;Name
+601016;Guest WiFi;Gast W-LAN;Misafir WiFi;Guest WiFi;Guest WiFi;WiFi Invitado;Guest WiFi;WiFi Ospiti;Gast WLAN;Guest WiFi;Misafir WiFi;Gast WLAN;Guest WiFi;Guest WLAN
+601017;System;System;Sistem;System;System;Sistema;System;Sistema;System;System;Sistem;System;System;System
+601018;Serial Number;Seriennummer;Seri numara;Serial Number;Serial Number;Número de Serie;Serial Number;Numeri di serie;Seriennummer;Serial Number;Seri numara;Seriennummer;Serial Number;Serial Number
+601019;Firmware version;Firmware-Version;Firmware versiyonu;Firmware version;Firmware version;Versión del firmware;Firmware version;Versione firmware;Firmware-Version;Firmware version;Firmware versiyonu;Firmware-Version;Firmware version;Firmware version
+601020;Bootloader Version;Bootloader-Version;Boot Code versiyonu;Bootloader Version;Bootloader Version;Versión de Bootloader;Bootloader Version;Versione Bootloader;Bootloader-Version;Bootloader Version;Boot Code versiyonu;Bootloader-Version;Bootloader Version;Bootloader Version
+601021;Hardware Type & Version;Hardware-Typ & Version;Hardware versiyonu;Hardware Type & Version;Hardware Type & Version;Versión de Hardware;Hardware Type & Version;Revisione hardware;Hardware-Typ & Version;Hardware Type & Version;Hardware versiyonu;Hardware-Typ & Version;Hardware Type & Version;Hardware Type & Version
+601022;Uptime since last reboot;Zeit seit letztem Neustart;Son yeni başlatmadan beri geçen süre;Uptime since last reboot;Uptime since last reboot;Uptime desde el último reinicio;Uptime since last reboot;Acceso da;Zeit seit letztem Neustart;Uptime since last reboot;Son yeni başlatmadan beri geçen süre;Zeit seit letztem Neustart;Uptime since last reboot;Uptime since last reboot
+601023;CPU Usage;CPU Auslastung;CPU kullanımı;CPU Usage;CPU Usage;Uso de CPU;CPU Usage;Utilizzo CPU;CPU Auslastung;CPU Usage;CPU kullanımı;CPU Auslastung;CPU Usage;CPU Usage
+601024;Memory Usage;Speicher Auslastung;Bellek kullanımı;Memory Usage;Memory Usage;Uso de la memoria;Memory Usage;Utilizzo Memoria;Speicher Auslastung;Memory Usage;Bellek kullanımı;Speicher Auslastung;Memory Usage;Memory Usage
+601025;days, 3 hours and 5 minutes;Tage, 3 Stunden und 5 Minuten;Gün, 3 saat ve 5 dakika;days, 3 hours and 5 minutes;days, 3 hours and 5 minutes;días, 3 horas y 5 minutos;days, 3 hours and 5 minutes;;Tage, 3 Stunden und 5 Minuten;days, 3 hours and 5 minutes;Gün, 3 saat ve 5 dakika;Tage, 3 Stunden und 5 Minuten;days, 3 hours and 5 minutes;days, 3 hours and 5 minutes
+601026;IP Network;IP-Netzwerk;IP ağ;IP Network;IP Network;Red IP;IP Network;;IP-Netzwerk;IP Network;IP ağ;IP-Netzwerk;IP Network;IP Network
+601027;DHCP Server;DHCP Server;DHCP sunucusu;DHCP Server;DHCP Server;Servidor DHCP;DHCP Server;Server DHCP;DHCP Server;DHCP Server;DHCP sunucusu;DHCP Server;DHCP Server;DHCP Server
+601028;Security;Sicherheit;Güvenlik;Security;Security;Seguridad;Security;Sicurezza;Sicherheit;Security;Güvenlik;Sicherheit;Security;Security
+601029;Gateway;Gateway;Gateway;Gateway;Gateway;Gateway;Gateway;;Gateway;Gateway;Gateway;Gateway;Gateway;Gateway
+601030;Backup Status;Backup Status;Yedekleme durumu;Backup Status;Backup Status;Estado de backup;Backup Status;;Backup Status;Backup Status;Yedekleme durumu;Backup Status;Backup Status;Backup Status
+601031;WiFi Name;W-LAN Name;WiFi adı;WiFi Name;WiFi Name;Nombre WiFi;WiFi Name;;WLAN Name;WiFi Name;WiFi adı;WLAN Name;WiFi Name;WiFi Name
+601032;Data & Voice;Daten & Sprache;Veri & Konuşma;Data & Voice;Data & Voice;Datos y Voz;Data & Voice;;Daten & Sprache;Data & Voice;Veri & Konuşma;Daten & Sprache;Data & Voice;Data & Voice
+601033;Data;Daten;Veri;Data;Data;Datos;Data;;Daten;Data;Veri;Daten;Data;Data
+601034;Voice;Sprache;Konuşma;Voice;Voice;Voz;Voice;;Sprache;Voice;Konuşma;Sprache;Voice;Voice
+601035;No Backup;Kein Backup;Yedekleme yok;No Backup;No Backup;No Backup;No Backup;;Kein Backup;No Backup;Yedekleme yok;Kein Backup;No Backup;No Backup
+601036;On;an;Aç;On;On;Activado;On;;an;On;Aç;an;On;On
+601037;Off;aus;Kapa;Off;Off;Desactivado;Off;;aus;Off;Kapa;aus;Off;Off
+601038;NA;NA;NA;NA;Wireless Driver Version;Versión de driver WiFi;NA;;NA;NA;NA;NA;NA;Ping Gateway
+601039;NA;NA;NA;NA;Date & Time;Fecha y Hora;NA;;NA;NA;NA;NA;NA;This test will execute a ping to the deafult gateway.
+601040;NA;NA;NA;NA;LAN Port 1;Puerto LAN 1;NA;;NA;NA;NA;NA;NA;Test Call
+601041;NA;NA;NA;NA;LAN Port 2;Puerto LAN 2;NA;;NA;NA;NA;NA;NA;A test call will be generated to check if voice connections are possible
+601042;NA;NA;NA;NA;LAN Port 3;Puerto LAN 3;NA;;NA;NA;NA;NA;NA;DNS Server Query
+601043;NA;NA;NA;NA;LAN Port 3;Puerto LAN 3;NA;;NA;NA;NA;NA;NA;The DNS query test will check if address resolution is working.
+601044;NA;NA;NA;NA;LAN Port 4;Puerto LAN 4;NA;;NA;NA;NA;NA;NA;DNS Query
+601045;NA;NA;NA;NA;Active;Activo;NA;;NA;NA;NA;NA;NA;Ping Gateway in Progress
+601046;NA;NA;NA;NA;Inactive;Inactivo;NA;;NA;NA;NA;NA;NA;Ping Gateway Successful
+601047;NA;NA;NA;NA;WAN IP Address;Dirección IP WAN;NA;;NA;NA;NA;NA;NA;Ping Gateway Failed
+601048;NA;NA;NA;NA;Reboot Cause;Causa del reinicio;NA;;NA;NA;NA;NA;NA;The Ping Gateway failed to complete
+601049;NA;NA;NA;NA;Web Upgrade;Actualización web;NA;;NA;NA;NA;NA;NA;Test Call in Progress
+601050;NA;NA;NA;NA;Channel;Canal;NA;;NA;Channel;NA;NA;Channel;Channel
+601051;NA;NA;NA;NA;Bandwidth;BW;NA;;NA;Bandwidth;NA;NA;Bandwidth;Bandwidth
+601052;NA;NA;NA;NA;IPv6 Link Local Address;IPv6 Link Local Address;NA;NA;NA;NA;NA;NA;NA;Test Call Failed
+601053;NA;NA;NA;NA;IPv6 Gateway;IPv6 Gateway;NA;NA;NA;NA;NA;NA;NA;The Test Call failed to complete.
+601054;NA;NA;NA;NA;IPv6 prefix delegation;IPv6 prefix delegation;NA;NA;NA;NA;NA;NA;NA;Test Call Successful
+601055;NA;NA;NA;NA;IPv6 DNS Address;IPv6 DNS Address;NA;NA;NA;NA;NA;NA;NA;The Test Call was successful
+601056;NA;NA;NA;NA;DHCPv6 Server;DHCPv6 Server;NA;NA;NA;NA;NA;NA;NA;DNS Server Query in Progress
+601057;NA;NA;NA;NA;Router Advertisement;Router Advertisement;NA;NA;NA;NA;NA;NA;NA;DNS Server Query Failed
+601058;NA;NA;NA;NA;IPv6 Default Gateway;IPv6 Default Gateway;NA;NA;NA;NA;NA;NA;NA;The DNS Server Query failed.
+601059;NA;NA;NA;NA;VF WiFi network status;Estado Red Vodafone WiFi;NA;NA;NA;NA;NA;NA;NA;DNS Server Query Successful
+601060;NA;NA;NA;NA;On;Activado;NA;NA;NA;NA;NA;NA;NA;The DNS Server Query was successful.
+601061;NA;NA;NA;NA;Max BW;Max BW;NA;NA;NA;NA;NA;NA;NA;Telephony
+601062;NA;NA;NA;NA;VF WiFi key status;Estado VF WiFi Key;NA;NA;NA;NA;NA;NA;NA;Your decorated numer
+601063;NA;NA;NA;NA;OK;Correcto;NA;NA;NA;NA;NA;NA;NA;DSL Mode
+601064;NA;NA;NA;NA;NA;NA;NA;NA;ID 601064;No Connection;ID 601064;NA;NA;No Connection
+601065;NA;NA;NA;NA;NA;NA;NA;NA;2.4 Ghz Bandwidth;2,4 Ghz Bandbreite;2,4 Ghz Bant geniÅŸliÄŸi;NA;NA;2,4 Ghz Bandbreite
+601066;NA;NA;NA;NA;NA;NA;NA;NA;5 Ghz Bandwidth;5 Ghz Bandbreite;5 Ghz Bant geniÅŸliÄŸi;NA;NA;5 Ghz Bandbreite
+601067;NA;NA;NA;NA;NA;NA;NA;NA;2.4 Ghz Channel;2,4 Ghz Kanal;2,4 Ghz Kanal;NA;NA;2,4 Ghz Kanal
+601068;NA;NA;NA;NA;NA;NA;NA;NA;5 Ghz Channel;5 Ghz Kanal;5 Ghz Kanal;NA;NA;5 Ghz Kanal
+601069;NA;NA;NA;NA;NA;NA;NA;NA;;;;NA;NA;
+602001;LTE Status;LTE Status;4G ve 3G durumu;LTE Status;LTE Status;Estado LTE;NA;NA;LTE Status;LTE Status;4G ve 3G durumu;LTE Status;LTE Status;LTE Status
+602002;Use the information below to optimize the router connection. You can optimize the positioning of the router also directly on your EasyBox LCD screen.;Mit diesen Informationen können Sie die Verbindungsqualität Ihrer EasyBox optimieren. Sie können dies Werte auch direkt auf der LCD-Anzeige Ihrer EasyBox ablesen, um den optimalen Standort zu ermitteln.;Bu bilgiler ile, EasyBox cihazınızın bağlantı kalitesini en iyi duruma getirebilirsiniz. En iyi yeri belirlemek için isterseniz bu değerleri doğrudan EasyBox cihazınızın ekranından da okuyabilirsiniz.;Use the information below to optimize the router connection. You can optimize the positioning of the router also directly on your EasyBox LCD screen.;Use the information below to optimize the router connection. You can optimize the positioning of the router also directly on your router LCD screen.;Utilice la siguiente información para optimizar la conexión del router. Usted puede optimizar el posicionamiento del router también directamente en la pantalla LCD del router.;Use the information below to optimize the router connection. You can optimize the positioning of the router also directly on your EasyBox LCD screen.;;Mit diesen Informationen können Sie die Verbindungsqualität Ihrer EasyBox optimieren. Sie können dies Werte auch direkt auf der LCD-Anzeige Ihrer EasyBox ablesen, um den optimalen Standort zu ermitteln.;Use the information below to optimize the Easybox connection. You can optimize the positioning of the router also directly on your EasyBox LCD screen.;Bu bilgiler ile, EasyBox cihazınızın bağlantı kalitesini en iyi duruma getirebilirsiniz. En iyi yeri belirlemek için isterseniz bu değerleri doğrudan EasyBox cihazınızın ekranından da okuyabilirsiniz.;Mit diesen Informationen können Sie die Verbindungsqualität Ihrer EasyBox optimieren. Sie können dies Werte auch direkt auf der LCD-Anzeige Ihrer EasyBox ablesen, um den optimalen Standort zu ermitteln.;Use the information below to optimize the Easybox connection. You can optimize the positioning of the router also directly on your EasyBox LCD screen.;Use the information below to optimize the PlusBox connection. You can optimize the positioning of the router also directly on your PlusBox LCD screen.
+602003;LTE Status;LTE Status;4G durumu;LTE Status;LTE Status;Estado LTE;LTE Status;;LTE Status;LTE Status;4G durumu;LTE Status;LTE Status;LTE Status
+602004;Connection;Verbindung;Bağlantı;Connection;Connection;Conexión;Connection;;Verbindung;Connection;Bağlantı;Verbindung;Connection;Connection
+602005;Data;Daten ;Veri;Data;Data;Datos;Data;;Daten ;Data;Veri;Daten ;Data;Data
+602006;Voice;Sprache;Konuşma;Voice;Voice;Voz;Voice;;Sprache;Voice;Konuşma;Sprache;Voice;Voice
+602007;SIM IMSI;SIM IMSI;SIM IMSI;SIM IMSI;SIM IMSI;SIM IMSI;SIM IMSI;;SIM IMSI;SIM IMSI;SIM IMSI;SIM IMSI;SIM IMSI;SIM IMSI
+602008;UMTS Status;UMTS Status;3G durumu;UMTS Status;UMTS Status;Estado 3G;UMTS Status;;UMTS Status;UMTS Status;3G durumu;UMTS Status;UMTS Status;UMTS Status
+602009;UMTS;UMTS;3G;UMTS;UMTS;UMTS;UMTS;;UMTS;UMTS;3G;UMTS;UMTS;UMTS
+602010;not available;nicht verfügbar;mevcut değil;not available;not available;no disponible;not available;;nicht verfügbar;not available;mevcut değil;nicht verfügbar;not available;not available
+602011;available;verfügbar;mevcut;available;available;disponible;available;;verfügbar;available;mevcut;verfügbar;available;available
+602012;Valid service;Gültiger Dienst;Geçerli hizmet;Valid service;Valid service;Servicio válido;Valid service;;Gültiger Dienst;Valid service;Geçerli hizmet;Gültiger Dienst;Valid service;Valid service
+602013;LTE 2600 FDD;LTE 2600 FDD;4G 2600 FDD;LTE 2600 FDD;LTE 2600 FDD;LTE 2600 FDD;LTE 2600 FDD;;LTE 2600 FDD;LTE 2600 FDD;4G 2600 FDD;LTE 2600 FDD;LTE 2600 FDD;LTE 2600 FDD
+602014;LTE 2600 TDD;LTE 2600 TDD;4G 2600 TDD;LTE 2600 TDD;LTE 2600 TDD;LTE 2600 TDD;LTE 2600 TDD;;LTE 2600 TDD;LTE 2600 TDD;4G 2600 TDD;LTE 2600 TDD;LTE 2600 TDD;LTE 2600 TDD
+602015;LTE 800;LTE 800;4G 800;LTE 800;LTE 800;LTE 800;LTE 800;;LTE 800;LTE 800;4G 800;LTE 800;LTE 800;LTE 800
+602016;DSL Status;DSL Status;DSL durumu;DSL Status;DSL Status;Estado DSL;DSL Status;;DSL Status;DSL Status;DSL durumu;DSL Status;DSL Status;DSL Status
+602017;DSL Mode;DSL Mode;DSL modu;DSL Mode;DSL Mode;Modo DSL;DSL Mode;;DSL Mode;DSL Mode;DSL modu;DSL Mode;DSL Mode;DSL Mode
+602018;DSL Status Information;DSL Status Information;DSL durum bilgisi;DSL Status Information;DSL Status Information;Información de estado de DSL;DSL Status Information;;DSL Status Information;DSL Status Information;DSL durum bilgisi;DSL Status Information;DSL Status Information;DSL Status Information
+602019;Configured;Konfiguriert;Yapılandırma;Configured;Configured;Configurado;Configured;;Konfiguriert;Configured;Yapılandırma;Konfiguriert;Configured;Configured
+602020;Current;Aktuell;Güncel;Current;Current;Actual;Current;;Aktuell;Current;Güncel;Aktuell;Current;Current
+602021;Line Status;Line Status;Line Status;Line Status;Line Status;Estado de la línea;Line Status;;Line Status;Line Status;Line Status;Line Status;Line Status;Line Status
+602022;Link Type;Link Type;Link Type;Link Type;Link Type;Tipo de enlace;Link Type;;Link Type;Link Type;Link Type;Link Type;Link Type;Link Type
+602023;Bit Rate;Bit Rate;Bit Rate;Bit Rate;Bit Rate;Bit Rate;Bit Rate;;Bit Rate;Bit Rate;Bit Rate;Bit Rate;Bit Rate;Bit Rate
+602024;Downstream;Downstream;Downstream;Downstream;Downstream;Downstream;Downstream;;Downstream;Downstream;Downstream;Downstream;Downstream;Downstream
+602025;Upstream;Upstream;Upstream;Upstream;Upstream;Upstream;Upstream;;Upstream;Upstream;Upstream;Upstream;Upstream;Upstream
+602026;Actual Data Rate;Aktuelle Datenrate;Güncel Data Rate;Actual Data Rate;Actual Data Rate;Velocidad de datos real;Actual Data Rate;;Aktuelle Datenrate;Actual Data Rate;Güncel Data Rate;Aktuelle Datenrate;Actual Data Rate;Actual Data Rate
+602027;Operating Data;DSL-Daten;Operating Data;Operating Data;Operating Data;Datos Operativos;Operating Data;;DSL-Daten;Operating Data;Operating Data;DSL-Daten;Operating Data;Operating Data
+602028;SNR Margin;SNR Margin;Noise Margin;SNR Margin;SNR Margin;Margen SNR;SNR Margin;;SNR Margin;SNR Margin;Noise Margin;SNR Margin;SNR Margin;SNR Margin
+602029;Loop Attenuation;Leitungsdämpfung;Attenuation;Loop Attenuation;Loop Attenuation;Atenuación de bucle;Loop Attenuation;;Leitungsdämpfung;Loop Attenuation;Attenuation;Leitungsdämpfung;Loop Attenuation;Loop Attenuation
+602030;Error Counter;Fehlerzähler;Error Display;Error Counter;Error Counter;Contador de errores;Error Counter;;Fehlerzähler;Error Counter;Error Display;Fehlerzähler;Error Counter;Error Counter
+602031;Indicator Name;Indicator Name;Indicator Name;Indicator Name;Indicator Name;Nombre del Indicador;Indicator Name;;Indicator Name;Indicator Name;Indicator Name;Indicator Name;Indicator Name;Indicator Name
+602032;FEC Corrections;FEC Corrections;FEC Corrections;FEC Corrections;FEC Corrections;FEC Corrections;FEC Corrections;;FEC Corrections;FEC Corrections;FEC Corrections;FEC Corrections;FEC Corrections;FEC Corrections
+602033;CRC Error;CRC Error;CRC Error;CRC Error;CRC Error;CRC Error;CRC Error;;CRC Error;CRC Error;CRC Error;CRC Error;CRC Error;CRC Error
+602034;Statistics;Statistik;İstatistik;Statistics;Statistics;Estadísticas;Statistics;;Statistik;Statistics;İstatistik;Statistik;Statistics;Statistics
+602035;Transmitted Cells;Gesendete Zellen;Gönderilen hücreler;Transmitted Cells;Transmitted Cells;Transmitted Cells;Transmitted Cells;;Gesendete Zellen;Transmitted Cells;Gönderilen hücreler;Gesendete Zellen;Transmitted Cells;Transmitted Cells
+602036;Received Cells;Empfangene Zellen;Alınan hücreler;Received Cells;Received Cells;Received Cells;Received Cells;;Empfangene Zellen;Received Cells;Alınan hücreler;Empfangene Zellen;Received Cells;Received Cells
+602037;Cell Counter;Zellen-Zähler;Hücre sayacı;Cell Counter;Cell Counter;Cell Counter;Cell Counter;;Zellen-Zähler;Cell Counter;Hücre sayacı;Zellen-Zähler;Cell Counter;Cell Counter
+602038;Placeholder text for UMTS Status. VF must provide correct text.;;;;NA;NA;Placeholder text for UMTS Status. VF must provide correct text.;;;Placeholder text for UMTS Status. VF must provide correct text.;;;Placeholder text for UMTS Status. VF must provide correct text.;Placeholder text for UMTS Status. VF must provide correct text.
+602039;No LTE SIM Card;Keine LTE SIM-Karte;4G SIM kartı yok;No LTE SIM Card;No LTE SIM Card;No hay tarjeta SIM LTE;No LTE SIM Card;;Keine LTE SIM-Karte;No LTE SIM Card;4G SIM kartı yok;Keine LTE SIM-Karte;No LTE SIM Card;No LTE SIM Card
+602040;Initiating LTE connection;LTE Verbindung wird aufgebaut;4G bağlantısı kuruluyor;Initiating LTE connection;Initiating LTE connection;Iniciando conexión LTE;Initiating LTE connection;;LTE Verbindung wird aufgebaut;Initiating LTE connection;4G bağlantısı kuruluyor;LTE Verbindung wird aufgebaut;Initiating LTE connection;Initiating LTE connection
+602041;SIM is waiting for PIN;SIM-Karte wartet auf PIN-Eingabe;SIM kartı PIN kodunun girilmesini bekliyor;SIM is waiting for PIN;SIM is waiting for PIN;SIM está esperando PIN;SIM is waiting for PIN;;SIM-Karte wartet auf PIN-Eingabe;SIM is waiting for PIN;SIM kartı PIN kodunun girilmesini bekliyor;SIM-Karte wartet auf PIN-Eingabe;SIM is waiting for PIN;SIM is waiting for PIN
+602042;Not initialized;Nicht initialisiert;İlk yükleme yapılmadı;Not initialized;Not initialized;No inicializado;Not initialized;;Nicht initialisiert;Not initialized;İlk yükleme yapılmadı;Nicht initialisiert;Not initialized;Not initialized
+602043;Idle;Idle;Idle;Idle;Idle;Inactivo;Idle;;Idle;Idle;Idle;Idle;Idle;Idle
+602044;Silent;Silent;Silent;Silent;Silent;Silencioso;Silent;;Silent;Silent;Silent;Silent;Silent;Silent
+602045;Handshaking;Handshaking;Handshaking;Handshaking;Handshaking;Handshaking;Handshaking;;Handshaking;Handshaking;Handshaking;Handshaking;Handshaking;Handshaking
+602046;Full initializing;Full initializing;Full initializing;Full initializing;Full initializing;Inicialización completa;Full initializing;;Full initializing;Full initializing;Full initializing;Full initializing;Full initializing;Full initializing
+602047;Short initializing;Short initializing;Short initializing;Short initializing;Short initializing;Inicialización rápida;Short initializing;;Short initializing;Short initializing;Short initializing;Short initializing;Short initializing;Short initializing
+602048;Discovering;Discovering;Discovering;Discovering;Discovering;Discovering;Discovering;;Discovering;Discovering;Discovering;Discovering;Discovering;Discovering
+602049;Training;Training;Training;Training;Training;Training;Training;;Training;Training;Training;Training;Training;Training
+602050;Show Time;Show Time;Show Time;Show Time;Show Time;Show Time;Show Time;;Show Time;Show Time;Show Time;Show Time;Show Time;Show Time
+602051;Show Time;Show Time;Show Time;Show Time;Show Time;Show Time;Show Time;;Show Time;Show Time;Show Time;Show Time;Show Time;Show Time
+602052;Fast re-train;Fast re-train;Fast re-train;Fast re-train;Fast re-train;Fast re-train;Fast re-train;;Fast re-train;Fast re-train;Fast re-train;Fast re-train;Fast re-train;Fast re-train
+602053;L2 power management state;L2 power management state;L2 power management state;L2 power management state;L2 power management state;L2 power management state;L2 power management state;;L2 power management state;L2 power management state;L2 power management state;L2 power management state;L2 power management state;L2 power management state
+602054;Running diagnosis;Running diagnosis;Running diagnosis;Running diagnosis;Running diagnosis;Ejecución de diagnóstico;Running diagnosis;;Running diagnosis;Running diagnosis;Running diagnosis;Running diagnosis;Running diagnosis;Running diagnosis
+602055;Diagnosis complete;Diagnosis complete;Diagnosis complete;Diagnosis complete;Diagnosis complete;Diagnóstico completo;Diagnosis complete;;Diagnosis complete;Diagnosis complete;Diagnosis complete;Diagnosis complete;Diagnosis complete;Diagnosis complete
+602056;Re-synchronizing;Re-synchronizing;Re-synchronizing;Re-synchronizing;Re-synchronizing;Re-sincronización;Re-synchronizing;;Re-synchronizing;Re-synchronizing;Re-synchronizing;Re-synchronizing;Re-synchronizing;Re-synchronizing
+602057;Line test;Line test;Line test;Line test;Line test;Test de línea;Line test;;Line test;Line test;Line test;Line test;Line test;Line test
+602058;Loop test;Loop test;Loop test;Loop test;Loop test;Test de bucle;Loop test;;Loop test;Loop test;Loop test;Loop test;Loop test;Loop test
+602059;L3 power management;L3 power management;L3 power management;L3 power management;L3 power management;L3 power management;L3 power management;;L3 power management;L3 power management;L3 power management;L3 power management;L3 power management;L3 power management
+602060;Not available;Not available;Not available;Not available;Not available;No disponible;Not available;;Not available;Not available;Not available;Not available;Not available;Not available
+602061;Fast path;Fast path;Fast path;Fast path;Fast path;Fast path;Fast path;;Fast path;Fast path;Fast path;Fast path;Fast path;Fast path
+602062;Interleaved path;Interleaved path;Interleaved path;Interleaved path;Interleaved path;Interleaved path;Interleaved path;;Interleaved path;Interleaved path;Interleaved path;Interleaved path;Interleaved path;Interleaved path
+602063;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN;ADSL / ISDN
+602064;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error;xDSL FEC Error
+602065;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error;xDSL CRC-8 Error
+602066;ATM HEC Error;ATM HEC Error;ATM HEC Error;ATM HEC Error;ATM HEC Error;ATM HEC Error;ATM HEC Error;;ATM HEC Error;ATM HEC Error;ATM HEC Error;ATM HEC Error;ATM HEC Error;ATM HEC Error
+602067;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error;PTM CRC-n Error
+602068;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error;PTM CRC-np Error
+602069;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error;PTM CV-n Error
+602070;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error;PTM CV-np Error
+602071;Only UMTS connection;Nur UMTS Verbindung;Sadece 3G bağlantısı;Only UMTS connection;Only UMTS connection;Sólo conexión UMTS;Only UMTS connection;;Nur UMTS Verbindung;Only UMTS connection;Sadece 3G bağlantısı;Nur UMTS Verbindung;Only UMTS connection;Only UMTS connection
+602072;SHOWTIME;SHOWTIME;SHOWTIME;SHOWTIME;SHOWTIME;SHOWTIME;SHOWTIME;;SHOWTIME;SHOWTIME;SHOWTIME;SHOWTIME;SHOWTIME;SHOWTIME
+602073;ADSL;ADSL;ADSL;ADSL;ADSL;ADSL;ADSL;;ADSL;ADSL;ADSL;ADSL;ADSL;ADSL
+602074;RTX in use;RTX in Gebrauch;RTX;RTX in use;RTX in use;RTX en uso;RTX in use;;RTX in Gebrauch;RTX in use;RTX;RTX in Gebrauch;RTX in use;RTX in use
+602075;oftware Download Serv;Nicht verbunden;Bağlı değil;Not Connected;Not Connected;No conectado;Not Connected;;Nicht verbunden;Not connected;Bağlı değil;Nicht verbunden;Not connected;Not connected
+602076;G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);;G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT);G.992.1 (ADSL G.DMT)
+602077;G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);;G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite);G.992.2 (ADSL G.lite)
+602078;G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);;G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis);G.992.3 (ADSL G.DMT.bis)
+602079;G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);;G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL);G.992.3 (RE-ADSL)
+602080;G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);;G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+);G.992.5 (ADSL2+)
+602081;G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);;G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4);G.992.4 (ADSL4)
+602082;T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);;T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413);T1.413 (ADSL ANSI T1.413)
+602083;G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);;G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL);G.993.5 (VDSL)
+602084;Down;Down;Down;Down;Down;Down;Down;;Down;Down;Down;Down;Down;Down
+602085;Data Consumption;Datenverbrauch;Veri tüketimi;Data Consumption;Data Consumption;Datos de consumo;Data Consumption;;Datenverbrauch;Data Consumption;Veri tüketimi;Datenverbrauch;Data Consumption;Data Consumption
+602086;To obtain the current status of your data, please click the button.;Um den aktuellen Status Ihres verbrauchten Datenvolumens zu ermitteln, klicken Sie bitte hier.;Verilerinizin mevcut durumunu elde etmek için, düğmesine tıklayınız.;To obtain the current status of your data, please click the button.;To obtain the current status of your data, please click the button.;Para obtener el estado actual de sus datos, por favor haga clic en el botón.;To obtain the current status of your data, please click the button.;;Um den aktuellen Status Ihres verbrauchten Datenvolumens zu ermitteln, klicken Sie bitte hier.;To obtain the current status of your data, please click the button.;Verilerinizin mevcut durumunu elde etmek için, düğmesine tıklayınız.;Um den aktuellen Status Ihres verbrauchten Datenvolumens zu ermitteln, klicken Sie bitte hier.;To obtain the current status of your data, please click the button.;To obtain the current status of your data, please click the button.
+602087;center.vodafone.de;center.vodafone.de;center.vodafone.de;center.vodafone.de;;;center.vodafone.de;;center.vodafone.de;center.vodafone.de;center.vodafone.de;center.vodafone.de;center.vodafone.de;center.vodafone.de
+602088;Billing cycle;Abrechnungszyklus;Fatura dönemi;Billing cycle;Billing cycle;Ciclo de facturación;Billing cycle;;Abrechnungszyklus;Billing cycle;Fatura dönemi;Abrechnungszyklus;Billing cycle;Billing cycle
+602089;Maximum data volume;Maximales Datenvolumen;Maksimum veri hacmi;Maximum data volume;Maximum data volume;Volumen máximo de datos;Maximum data volume;;Maximales Datenvolumen;Maximum data volume;Maksimum veri hacmi;Maximales Datenvolumen;Maximum data volume;Maximum data volume
+602090;Consumed data volume;verbrauchtes Datenvolumen;Tüketilen veri hacmi;Consumed data volume;Consumed data volume;Volumen de datos consumidos;Consumed data volume;;verbrauchtes Datenvolumen;Consumed data volume;Tüketilen veri hacmi;verbrauchtes Datenvolumen;Consumed data volume;Consumed data volume
+602091;To purchase additional data volume, please click the button.;Wenn Sie zusätzliches Datenvolumen kaufen möchten, klicken Sie bitte hier;Ek veri hacmi satın almak için, düğmesine tıklayınız.;To purchase additional data volume, please click the button.;To purchase additional data volume, please click the button.;Para adquirir volumen de datos adicional, por favor haga clic en el botón.;To purchase additional data volume, please click the button.;;Wenn Sie zusätzliches Datenvolumen kaufen möchten, klicken Sie bitte hier;To purchase additional data volume, please click the button.;Ek veri hacmi satın almak için, düğmesine tıklayınız.;Wenn Sie zusätzliches Datenvolumen kaufen möchten, klicken Sie bitte hier;To purchase additional data volume, please click the button.;To purchase additional data volume, please click the button.
+602092;You have crossed your maximum data volume. Your internet speed has been reduced.;Sie haben das maximale Datenvolumen verbraucht. Ihre Datenrate wurde reduziert.;Maksimum veri hacmi geçti. Internet hızı düşürüldü.;You have crossed your maximum data volume. Your internet speed has been reduced.;You have crossed your maximum data volume. Your internet speed has been reduced.;Usted ha excedido su volumen de datos máximo. Su velocidad de Internet se ha reducido.;You have crossed your maximum data volume. Your internet speed has been reduced.;;Sie haben das maximale Datenvolumen verbraucht. Ihre Datenrate wurde reduziert.;You have crossed your maximum data volume. Your internet speed has been reduced.;Maksimum veri hacmi geçti. Internet hızı düşürüldü.;Sie haben das maximale Datenvolumen verbraucht. Ihre Datenrate wurde reduziert.;You have crossed your maximum data volume. Your internet speed has been reduced.;You have crossed your maximum data volume. Your internet speed has been reduced.
+602093;Fibre Status Information;;;Fibre Status Information;Fibre Status Information;Información del estado de Fibra;Fibre Status Information;;;Fibre Status Information;;;Fibre Status Information;Fibre Status Information
+602094;Fibre Status;;;Fibre Status;Fibre Status;Estado de Fibra;Fibre Status;;;Fibre Status;;;Fibre Status;Fibre Status
+602095;NA;NA;NA;NA;NA;NA;NA;;NA;NA;NA;NA;NA;Link Status
+602096;Transmitted Frames;Transmitted Frames;Transmitted Frames;Transmitted Frames;Transmitted Frames;Transmitted Frames;Transmitted Frames;;Transmitted Frames;Transmitted Frames;Transmitted Frames;Transmitted Frames;Transmitted Frames;Transmitted Frames
+602097;Received Frames;Received Frames;Received Frames;Received Frames;Received Frames;Received Frames;Received Frames;;Received Frames;Received Frames;Received Frames;Received Frames;Received Frames;Received Frames
+602098;Frame Counter;Frame Counter;Frame Counter;Frame Counter;Frame Counter;Frame Counter;Frame Counter;;Frame Counter;Frame Counter;Frame Counter;Frame Counter;Frame Counter;Frame Counter
+602099;The request to obtain data consumption information failed. You're not using the LTE network. ;Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Sie nutzen kein LTE-Netz.;"
+Veri tüketim bilgi alınamıyor. 4G şebekesini kullanmıyorsunuz.";The request to obtain data consumption information failed. You're not using the LTE network. ;NA;NA;The request to obtain data consumption information failed. You're not using the LTE network. ;;Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Sie nutzen kein LTE-Netz.;The request to obtain data consumption information failed. You're not using the LTE network. ;"
+Veri tüketim bilgi alınamıyor. 4G şebekesini kullanmıyorsunuz.";Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Sie nutzen kein LTE-Netz.;The request to obtain data consumption information failed. You're not using the LTE network. ;The request to obtain data consumption information failed. You're not using the LTE network. 
+602100;The request to obtain data consumption information failed. You're not using the UMTS network. ;Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Sie nutzen kein UMTS-Netz.;"
+Veri tüketim bilgi alınamıyor. 3G şebekesini kullanmıyorsunuz.";The request to obtain data consumption information failed. You're not using the UMTS network. ;NA;NA;The request to obtain data consumption information failed. You're not using the UMTS network. ;;Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Sie nutzen kein UMTS-Netz.;The request to obtain data consumption information failed. You're not using the UMTS network. ;"
+Veri tüketim bilgi alınamıyor. 3G şebekesini kullanmıyorsunuz.";Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Sie nutzen kein UMTS-Netz.;The request to obtain data consumption information failed. You're not using the UMTS network. ;The request to obtain data consumption information failed. You're not using the UMTS network. 
+602101;The request to obtain data consumption information failed. Please try again later. ;Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.;"
+Veri tüketim bilgi alınamıyor. Lütfen sonra tekrar deneyiniz.";The request to obtain data consumption information failed. Please try again later. ;NA;NA;The request to obtain data consumption information failed. Please try again later. ;;Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.;The request to obtain data consumption information failed. Please try again later. ;"
+Veri tüketim bilgi alınamıyor. Lütfen sonra tekrar deneyiniz.";Ihre Anfrage zur Anzeige des verbrauchten Datenvolumens ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.;The request to obtain data consumption information failed. Please try again later. ;The request to obtain data consumption information failed. Please try again later. 
+602102;NA;NA;NA;NA;Network Operator;Operador de red;NA;;NA;NA;NA;NA;NA;Modem in Showtime
+602103;NA;NA;NA;NA;Signal Strength;Intensidad de señal;NA;;NA;NA;NA;NA;NA;Downstream
+602104;NA;NA;NA;NA;SNR;SNR;NA;;NA;NA;NA;NA;NA;Upstream
+602105;NA;NA;NA;NA;Power;Power;NA;;NA;NA;NA;NA;NA;Cell Counter
+602106;NA;NA;NA;NA;Connection Time;Tiempo de conexión;NA;;NA;NA;NA;NA;NA;Transmitted Cells
+602107;NA;NA;NA;NA;TX Speed;Velocidad de transmisión;NA;;NA;NA;NA;NA;NA;Received Cells
+602108;NA;NA;NA;NA;RX Speed;Velocidad de redcepción;NA;;NA;NA;NA;NA;NA;Status
+602109;NA;NA;NA;NA;IP Address;Dirección IP;NA;;NA;NA;NA;NA;NA;UP
+602110;NA;NA;NA;NA;DNS;DNS;NA;;NA;NA;NA;NA;NA;Update Interval
+602111;NA;NA;NA;NA;Manufacturer;Fabricante;NA;;NA;NA;NA;NA;NA;seconds
+602112;NA;NA;NA;NA;Model;Modelo;NA;;NA;NA;NA;NA;NA;Date/Time
+602113;NA;NA;NA;NA;IMEI;IMEI;NA;;NA;NA;NA;NA;NA;ISDN Interfaces
+602114;NA;NA;NA;NA;Firmware Version;Versión de Firmware;NA;;NA;NA;NA;NA;NA;not active
+602115;NA;NA;NA;NA;Status;Estado;NA;;NA;NA;NA;NA;NA;active
+602116;NA;NA;NA;NA;IMSI;IMSI;NA;;NA;NA;NA;NA;NA;NA
+602117;NA;NA;NA;NA;PIN Status;Estado PIN;NA;;NA;NA;NA;NA;NA;NA
+602118;NA;NA;NA;NA;PIN Enabled;PIN habilitado;NA;;NA;NA;NA;NA;NA;NA
+602119;NA;NA;NA;NA;PIN Status;Estado PIN;NA;;NA;NA;NA;NA;NA;NA
+602120;NA;NA;NA;NA;PIN Correct;PIN correcto;NA;;NA;NA;NA;NA;NA;NA
+602121;NA;NA;NA;NA;Awaiting PIN;Introduzca el PIN;NA;;NA;NA;NA;NA;NA;NA
+602122;NA;NA;NA;NA;PIN Disabled;PIN deshabilitado;NA;;NA;NA;NA;NA;NA;NA
+602123;NA;NA;NA;NA;SIM Blocked. Awaiting PUK;SIM bloqueada. Introduzca el PUK;NA;;NA;NA;NA;NA;NA;NA
+602124;NA;NA;NA;NA;SIM Permanently Blocked;SIM permanentemente bloqueada;NA;;NA;NA;NA;NA;NA;NA
+602125;NA;NA;NA;NA;SIM Card Not Present;No hay tarjeta SIM;NA;;NA;NA;NA;NA;NA;NA
+602126;NA;NA;NA;NA;SIM Card Invalid;Tarjeta SIM inválida;NA;;NA;NA;NA;NA;NA;NA
+602127;DSL Connection;DSL-Verbindung;DSL bağlantısı;NA;NA;NA;NA;NA;DSL-Verbindung;DSL Connection;DSL bağlantısı;DSL-Verbindung;DSL Connection;DSL Connection
+602128;active;aktiv;aktif;NA;NA;NA;NA;NA;aktiv;active;aktif;aktiv;active;active
+602129;Reconnect;Neu verbinden;Tekrar bağlan;NA;NA;NA;NA;NA;Neu verbinden;Reconnect;Tekrar bağlan;Neu verbinden;Reconnect;Reconnect
+602130;NA;NA;NA;NA;Status;Estado;NA;NA;NA;NA;NA;NA;NA;NA
+602131;NA;NA;NA;NA;MaxBitRate;MaxBitRate;NA;NA;NA;NA;NA;NA;NA;NA
+602132;NA;NA;NA;NA;DuplexMode;DuplexMode;NA;NA;NA;NA;NA;NA;NA;NA
+602133;NA;NA;NA;NA;Half;Half;NA;NA;NA;NA;NA;NA;NA;NA
+602134;NA;NA;NA;NA;Full;Full;NA;NA;NA;NA;NA;NA;NA;NA
+602135;NA;NA;NA;NA;Up;Up;NA;NA;NA;NA;NA;NA;NA;NA
+602136;NA;NA;NA;NA;Down;Down;NA;NA;NA;NA;NA;NA;NA;NA
+602137;NA;NA;NA;NA;Statistics;Estadísticas;;;NA;NA;NA;NA;NA;NA
+602138;NA;NA;NA;NA;Tx;Tx;;;NA;NA;NA;NA;NA;NA
+602139;NA;NA;NA;NA;pkts;pkts;;;NA;NA;NA;NA;NA;NA
+602140;NA;NA;NA;NA;byte;byte;;;NA;NA;NA;NA;NA;NA
+602141;NA;NA;NA;NA;error;error;;;NA;NA;NA;NA;NA;NA
+602142;NA;NA;NA;NA;Discard;Discard;;;NA;NA;NA;NA;NA;NA
+602143;NA;NA;NA;NA;Rx;Rx;;;NA;NA;NA;NA;NA;NA
+602144;NA;NA;NA;NA;pkts;pkts;;;NA;NA;NA;NA;NA;NA
+602145;NA;NA;NA;NA;bytes;bytes;;;NA;NA;NA;NA;NA;NA
+602146;NA;NA;NA;NA;error;error;;;NA;NA;NA;NA;NA;NA
+602147;NA;NA;NA;NA;Discard;Discard;;;NA;NA;NA;NA;NA;NA
+602148;NA;NA;NA;NA;NA;NA;NA;NA;Auf dieser Statusseite werden wichtige technische Parameter der DSL-Verbindung angezeigt.;This status page shows technical parameters of your DSL connection.;Bu sayfada DSL bağlantının durumunu öğrenebilirsiniz.;Auf dieser Statusseite werden wichtige technische Parameter der DSL-Verbindung angezeigt.;This status page shows technical parameters of your DSL connection.;This status page shows technical parameters of your DSL connection.
+603001;Voice Status;Telefonie Status;Telefon durumu;Voice Status;Voice Status;Estado de voz;Voice Status;Stato Servizi Voce;Telefon-Status;Voice Status;Telefon durumu;Telefon-Status;Voice Status;Voice Status
+603002;Here you find the overview of your active phone numbers. For any configurations you would like to make, please go to the Phone menu.;Hier sehen Sie einen Überblick über Ihre aktiven Rufnummern. Zur Änderung Ihrer Telefoneinstellungen gehen Sie bitte in das Menu Sprache.;Burada etkin telefon numaralarınıza ilişkin bir genel bakış mevcuttur. Telefon ayarlarınızı değiştirmek için lütfen Konuşma menüsüne giriniz.;Here you find the overview of your active phone numbers. For any configurations you would like to make, please go to the Phone menu.;Here you find the overview of your active phone numbers. For any configurations you would like to make, please go to the Phone menu.;Aquí encontrará la descripción de sus números de teléfono activos. Para cualquier configuración vaya al menú Teléfono.;Here you find the overview of your active phone numbers. For any configurations you would like to make, please go to the Phone menu.;;Auf dieser Statusseite bekommen Sie einen Überblick über Ihre aktiven Rufnummern und Telefonanschlüsse. Zur Änderung Ihrer Telefoneinstellungen gehen Sie bitte in das Menü Telefon.;Here you find an overview of your active phone numbers. For any change you would like to make to the current section, please visit Phone menu.;Burada etkin telefon numaralarınıza ilişkin bir genel bakış mevcuttur. Telefon ayarlarınızı değiştirmek için lütfen Konuşma menüsüne giriniz.;Auf dieser Statusseite bekommen Sie einen Überblick über Ihre aktiven Rufnummern und Telefonanschlüsse. Zur Änderung Ihrer Telefoneinstellungen gehen Sie bitte in das Menü Telefon.;Here you find an overview of your active phone numbers. For any change you would like to make to the current section, please visit Phone menu.;Here you find an overview of your active phone numbers. For any change you would like to make to the current section, please visit Phone menu.
+603003;Phone Number Status;Status Rufnummer;Telefon numarası durumu;Phone Number Status;Phone Number Status;Estado de número de teléfono;Phone Number Status;;Ihre Rufnummer(n);Your Phone Numbers;Telefon numaranız;Ihre Rufnummer(n);Your Phone Numbers;Your Phone Numbers
+603004;Phone Number;Rufnummer;Telefon numarası;Phone Number;Phone Number;Número de teléfono;Phone Number;Numero di telefono;Rufnummer;Phone Number;Telefon numarası;Rufnummer;Phone Number;Phone Number
+603005;Name;Name;İsim;Name;Name;Nombre;Name;Nome;Rufnummername;Name;Numara isim;Rufnummername;Name;Name
+603006;Status;Status;Durum;Status;Status;Estado;Status;Stato;Status;Status;Durum;Status;Status;Status
+603007;Active;Aktiv;Etkin;Active;Active;Activo;Active;Attivo;Aktiv;Active;Etkin;Aktiv;Active;Active
+603008;Fail;Fehlerhaft;Hatalı;Fail;Fail;Fallo;Fail;Non attivo;Fehlerhaft;Inactive;Hatalı;Fehlerhaft;Inactive;Inactive
+603009;TEL 1;Tel 1;Tel 1;TEL 1;TEL 1;TEL 1;TEL 1;;Tel 1;TEL 1;TEL 1;Tel 1;TEL 1;TEL 1
+603010;TEL 2;Tel 2;Tel 2;TEL 2;TEL 2;TEL 2;TEL 2;;Tel 2;TEL 2;TEL 2;Tel 2;TEL 2;TEL 2
+603011;NA;NA;NA;NA;Connection Through;Conexión a través de;NA;;NA;NA;NA;NA;NA;NA
+603012;NA;NA;NA;NA;ADSL;ADSL;NA;;NA;NA;NA;NA;NA;NA
+603013;NA;NA;NA;NA;Line;Línea;NA;;NA;NA;NA;NA;NA;NA
+603014;NA;NA;NA;NA;On hook;Colgado;NA;;NA;NA;NA;NA;NA;NA
+603015;NA;NA;NA;NA;Off hook;Descolgado;NA;;NA;NA;NA;NA;NA;NA
+603016;SIP Client Status;SIP Client Status;SIP İstemci Durumu;NA;NA;NA;NA;;SIP Client Status;SIP Client Status;SIP İstemci Durumu;SIP Client Status;SIP Client Status;SIP Client Status
+603017;NA;NA;NA;NA;On;Activo;NA;;NA;NA;NA;NA;NA;NA
+603018;NA;NA;NA;NA;Off;No activo;NA;;NA;NA;NA;NA;NA;NA
+603019;NA;NA;NA;NA;Service Status;Estado;NA;;NA;NA;NA;NA;NA;NA
+603020;NA;NA;NA;NA;ON (VoIP);Activo (VoIP);NA;;NA;NA;NA;NA;NA;NA
+603021;NA;NA;NA;NA;NA;NA;NA;NA;Telefonanschlüsse;Phone Connections;Telefon Bağlantıları;Telefonanschlüsse;Phone Connections;Phone Connections
+603022;NA;NA;NA;NA;NA;NA;NA;NA;Anschluss;Connection;Bağlantı;Anschluss;Connection;Connection
+603023;NA;NA;NA;NA;NA;NA;NA;NA;Status;Status;Durum;Status;Status;Status
+603024;NA;NA;NA;NA;NA;NA;NA;NA;angeschlossen;connected;Bağlı;angeschlossen;connected;connected
+603025;NA;NA;NA;NA;NA;NA;NA;NA;nicht angeschlossen;disconnected;Kesildi;nicht angeschlossen;disconnected;disconnected
+603026;NA;NA;NA;NA;NA;NA;NA;NA;Telefonstatus;Phone Status;Telefon durumu;Telefonstatus;Phone Status;Phone Status
+603027;NA;NA;NA;NA;NA;NA;NA;NA;Registriert;Registered;Kayıtlı;NA;NA;Registered
+603028;NA;NA;NA;NA;NA;NA;NA;NA;Nicht registriert;Unregistered;Kayıtlı deği;NA;NA;Unregistered
+604001;Diagnostic Utility;Diagnose-Tool;Teşhis aracı;Diagnostic Utility;Diagnostic Utility;Utilidad de diagnóstico;Diagnostic Utility;;Diagnose-Programme;Diagnostic Utility;Teşhis aracı;Diagnose-Programme;Diagnostic Utility;Diagnostic Utility
+604002;These tools allow you to test your network's connection status.;Mit diesem Diagnoseprogramm können Sie den Status Ihrer Netzwerkverbindung prüfen. ;Bu teşhis programı ile, ağ bağlantınızın durumunu kontrol edebilirsiniz. ;These tools allow you to test your network's connection status.;These tools allow you to test your network's connection status.;Estas herramientas le permiten comprobar el estado de conexión de la red.;These tools allow you to test your network's connection status.;;Mit diesen Diagnose-Programmen können Sie den Status Ihrer Netzwerkverbindung prüfen. ;This section shows a list of tools which can be used to check the status of your network connection.;Bu teşhis programı ile, ağ bağlantınızın durumunu kontrol edebilirsiniz. ;Mit diesen Diagnose-Programmen können Sie den Status Ihrer Netzwerkverbindung prüfen. ;This section shows a list of tools which can be used to check the status of your network connection.;This section shows a list of tools which can be used to check the status of your network connection.
+604003;Automated Diagnosis;Automatische Diagnose;Otomatik teşhis;Automated Diagnosis;Automated Diagnosis;Diagnóstico Automático;Automated Diagnosis;;Automatische Diagnose;Automated Diagnosis;Otomatik teşhis;Automatische Diagnose;Automated Diagnosis;Automated Diagnosis
+604004;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;Diese Diagnose dauert bis zu 2 Minuten und kann nicht mehr unterbrochen werden, wenn gestartet.;Bu teşhis işlemi 2 dakikaya kadar sürebilir ve bir kez başlatıldıktan sonra artık iptal edilemez.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;Este diagnóstico puede tardar unos 2 minutos y no se puede cancelar una vez que se ha iniciado.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;;Diese Diagnose dauert bis zu 2 Minuten und kann nicht mehr unterbrochen werden, wenn gestartet.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;Bu teşhis işlemi 2 dakikaya kadar sürebilir ve bir kez başlatıldıktan sonra artık iptal edilemez.;Diese Diagnose dauert bis zu 2 Minuten und kann nicht mehr unterbrochen werden, wenn gestartet.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.
+604005;Diagnose;Diagnose;Teşhis;Diagnose;Diagnose;Diagnosticar;Diagnose;;Diagnose;Diagnose;Teşhis;Diagnose;Diagnose;Diagnose
+604006;Diagnosis in Progress;Diagnose wird durchgeführt;Teşhis gerçekleştiriliyor;Diagnosis in Progress;Diagnosis in Progress;Diagnóstico en proceso;Diagnosis in Progress;;Diagnose wird durchgeführt;Diagnosis in Progress;Teşhis gerçekleştiriliyor;Diagnose wird durchgeführt;Diagnosis in Progress;Diagnosis in Progress
+604007;Diagnosis Complete;Diagnose abgeschlossen;Teşhis tamamlandı;Diagnosis Complete;Diagnosis Complete;Diagnóstico completo;Diagnosis Complete;;Diagnose abgeschlossen;Diagnosis Completed;Teşhis tamamlandı;Diagnose abgeschlossen;Diagnosis Completed;Diagnosis Completed
+604008;Your EasyBox detected the following issue(s).;Folgende Fehler bzw. Informationen liegen vor:;Aşağıdaki hatalar tespit edildi;Your EasyBox detected the following issue(s).;Your router detected the following issue(s).;Su router detectó el siguiente problema (s).;Your EasyBox detected the following issue(s).;;Folgende Fehler bzw. Informationen liegen vor:;Your EasyBox detected the following issue(s).;Aşağıdaki hatalar tespit edildi;Folgende Fehler bzw. Informationen liegen vor:;Your EasyBox detected the following issue(s).;Your PlusBox detected the following issue(s).
+604009;Please note these error codes, as they can help Customer Care to assist you.;Bitte notieren Sie die Fehlercodes und teilen sie unseren Kundenbetreuern zur schnellen Analyse mit;Lütfen hata kodlarını not ediniz ve bu bilgileri hızlı bir analiz yapabilmeleri için müşteri temsilcilerimize bildiriniz.;Please note these error codes, as they can help Customer Care to assist you.;Please note these error codes, as they can help Customer Care to assist you.;Tenga en cuenta estos códigos de error, ya que pueden ser de ayuda para  Atención al cliente.;Please note these error codes, as they can help Customer Care to assist you.;;Bitte notieren Sie die Fehlercodes und teilen sie unseren Kundenbetreuern zur schnellen Analyse mit;Please take note of these error codes, as they can help Customer Care to troubleshoot network issues.;Lütfen hata kodlarını not ediniz ve bu bilgileri hızlı bir analiz yapabilmeleri için müşteri temsilcilerimize bildiriniz.;Bitte notieren Sie die Fehlercodes und teilen sie unseren Kundenbetreuern zur schnellen Analyse mit;Please take note of these error codes, as they can help Customer Care to troubleshoot network issues.;Please take note of these error codes, as they can help Customer Care to troubleshoot network issues.
+604010;Error Code;Fehlercode;Hata kodu;Error Code;Error Code;Código de error;Error Code;;Fehlercode;Error Code;Hata kodu;Fehlercode;Error Code;Error Code
+604011;Diagnosis Complete;Diagnose abgeschlossen;Teşhis tamamlandı;Diagnosis Complete;Diagnosis Complete;Diagnóstico completo;Diagnosis Complete;;Diagnose abgeschlossen;Diagnosis Complete;Teşhis tamamlandı;Diagnose abgeschlossen;Diagnosis Complete;Diagnosis Complete
+604012;Your EasyBox detected no issues.;Es wurden keine Fehler gefunden;Herhangi bir hata bulunmadı.;Your EasyBox detected no issues.;Your router detected no issues.;Su router no ha detectado ningún problema.;Your EasyBox detected no issues.;;Es wurden keine Fehler gefunden;Your EasyBox detected no issues.;Herhangi bir hata bulunmadı.;Es wurden keine Fehler gefunden;Your EasyBox detected no issues.;Your PlusBox detected no issues.
+604013;Ping Test;Ping-Test;Ping testi;Ping Test;Ping Test;Ping Test;Ping Test;;Ping-Test;Ping Test;Ping testi;Ping-Test;Ping Test;Ping Test
+604014;Please enter a hostname or IP address to execute the Ping test.;Bitte geben Sie einen Domänennamen oder eine gültige IP-Adresse ein, um den Ping-Test zu starten.;Ping testini başlatmak için lütfen bir host adı veya geçerli bir IP adresi giriniz.;Please enter a hostname or IP address to execute the Ping test.;Please enter a hostname or IP address to execute the Ping test.;Por favor escriba el nombre o dirección IP para ejecutar la prueba de ping.;Please enter a hostname or IP address to execute the Ping test.;;Bitte geben Sie einen Domänennamen oder eine gültige IP-Adresse ein, um den Ping-Test zu starten.;Please enter a valid hostname or IP address to execute the Ping test.;Ping testini başlatmak için lütfen bir host adı veya geçerli bir IP adresi giriniz.;Bitte geben Sie einen Domänennamen oder eine gültige IP-Adresse ein, um den Ping-Test zu starten.;Please enter a valid hostname or IP address to execute the Ping test.;Please enter a valid hostname or IP address to execute the Ping test.
+604015;Ping;Ping-Test;Ping testi;Ping;Ping;Ping;Ping;;Ping-Test;Ping;Ping testi;Ping-Test;Ping;Ping
+604016;Ping Test in Progress;Ping-Test wird durchgeführt;Ping testi gerçekleştiriliyor;Ping Test in Progress;Ping Test in Progress;Ping Test in Progress;Ping Test in Progress;;Ping-Test wird durchgeführt;Ping Test in Progress;Ping testi gerçekleştiriliyor;Ping-Test wird durchgeführt;Ping Test in Progress;Ping Test in Progress
+604017;Ping Test Failed;Ping-Test abgebrochen;Ping testi iptal edildi;Ping Test Failed;Ping Test Failed;Ping Test Failed;Ping Test Failed;;Ping-Test abgebrochen;Ping Test Failed;Ping testi iptal edildi;Ping-Test abgebrochen;Ping Test Failed;Ping Test Failed
+604018;The ping test failed to complete. Please check the IP address you specified, and try again.;Der Ping-Test konnte nicht durchgeführt werden. Bitte überprüfen Sie die eingegebene IP-Adresse und versuchen es erneut.;Ping testi gerçekleştirilemedi. Lütfen girilen IP adresini kontrol ediniz ve tekrar deneyiniz.;The ping test failed to complete. Please check the IP address you specified, and try again.;The ping test failed to complete. Please check the IP address you specified, and try again.;La prueba de ping no se pudo completar. Por favor, compruebe la dirección IP que ha especificado y vuelva a intentarlo.;The ping test failed to complete. Please check the IP address you specified, and try again.;;Der Ping-Test konnte nicht durchgeführt werden. Bitte überprüfen Sie die eingegebene IP-Adresse und versuchen Sie es erneut.;The ping test failed to complete. Please check the IP address you specified and try again.;Ping testi gerçekleştirilemedi. Lütfen girilen IP adresini kontrol ediniz ve tekrar deneyiniz.;Der Ping-Test konnte nicht durchgeführt werden. Bitte überprüfen Sie die eingegebene IP-Adresse und versuchen Sie es erneut.;The ping test failed to complete. Please check the IP address you specified and try again.;The ping test failed to complete. Please check the IP address you specified and try again.
+604019;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+604020;Ping Test Successful;Ping-Test erfolgreich;Ping testi başarılı;Ping Test Successful;Ping Test Successful;Prueba de ping finalizó con éxito;Ping Test Successful;;Ping-Test erfolgreich;Ping Test Successful;Ping testi başarılı;Ping-Test erfolgreich;Ping Test Successful;Ping test successful to www.vodafone.de
+604021;DNS Server;DNS Server;DNS sunucusu;DNS Server;DNS Server;Servidor DNS;DNS Server;;DNS-Server;DNS Server;DNS sunucusu;DNS-Server;DNS Server;DNS Server
+604022;IP Address;IP Adresse;IP adresi;IP Address;IP Address;Dirección IP;IP Address;;IP-Adresse;IP Address;IP adresi;IP-Adresse;IP Address;IP Address
+604023;Packet Sucess Rate;Packet Sucess Rate;Packet Success Rate;Packet Sucess Rate;Packet Sucess Rate;Packet Sucess Rate;Packet Sucess Rate;;Erfolgsrate;Packet Success Rate;Packet Success Rate;Erfolgsrate;Packet Success Rate;Packet Success Rate
+604024;Packet Size;Packet Size;Packet Size;Packet Size;Packet Size;Packet Size;Packet Size;;Paketgröße;Packet Size;Packet Size;Paketgröße;Packet Size;Packet Size
+604025;Average Roundtrip Time;Durchschnittliche Durchlaufszeit;Ortalama işlem süresi;Average Roundtrip Time;Average Roundtrip Time;Average Roundtrip Time;Average Roundtrip Time;;Durchschnittliche Laufzeit;Average Roundtrip Time;Ortalama işlem süresi;Durchschnittliche Laufzeit;Average Roundtrip Time;Average Roundtrip Time
+604026;from;von;değer;from;from;de;from;;von;from;değer;von;from;from
+604027;ms;ms;ms;ms;ms;ms;ms;;ms;ms;ms;ms;ms;ms
+604028;Tracing Tool;Tracing Tool;Tracing Tool;Tracing Tool;Tracing Tool;Herramienta de traceo;Tracing Tool;;Tracing Tool;Tracing Tool;Tracing Tool;Tracing Tool;Tracing Tool;Tracing Tool
+604029;Connection Type;Verbindungsart;Bağlantı türü;Connection Type;Connection Type;Tipo de conexión;Connection Type;;Verbindungsart;Connection Type;Bağlantı türü;Verbindungsart;Connection Type;Connection Type
+604030;Please choose the connection type and location where you would like to save the tracing to. The tracing will then begin automatically in a separate popup window.;Bitte wählen Sie die Verbindungsart und den Speicherort, wo die Prüfdaten abgelegt werden sollen. Die Prüfung startet dann automatisch in einem separaten Fenster.;Lütfen bağlantı türünü ve kontrol değerlerinin kaydedileceği yeri seçiniz. Kontrol işlemi ayrı bir pencerede otomatik olarak başlatılır.;Please choose the connection type and location where you would like to save the tracing to. The tracing will then begin automatically in a separate popup window.;Please choose the connection type and location where you would like to save the tracing to. The tracing will then begin automatically in a separate popup window.;Por favor, elija el tipo de conexión y la ubicación en la que desea guardar el traceo. El traceo comenzará automáticamente en una nueva ventana;Please choose the connection type and location where you would like to save the tracing to. The tracing will then begin automatically in a separate popup window.;;Bitte wählen Sie die Verbindungsart und den Speicherort, wo die Prüfdaten abgelegt werden sollen. Die Prüfung startet dann automatisch in einem separaten Fenster.;Please choose the connection type and location where you would like to save the tracing. The tracing will then begin automatically in a separate popup window.;Lütfen bağlantı türünü ve kontrol değerlerinin kaydedileceği yeri seçiniz. Kontrol işlemi ayrı bir pencerede otomatik olarak başlatılır.;Bitte wählen Sie die Verbindungsart und den Speicherort, wo die Prüfdaten abgelegt werden sollen. Die Prüfung startet dann automatisch in einem separaten Fenster.;Please choose the connection type and location where you would like to save the tracing. The tracing will then begin automatically in a separate popup window.;Please choose the connection type and location where you would like to save the tracing. The tracing will then begin automatically in a separate popup window.
+604031;Tracing in Progress;Prüfung wird durchgeführt;Kontrol işlemi gerçekleştiriliyor;Tracing in Progress;Tracing in Progress;Traceo en proceso;Tracing in Progress;;Prüfung wird durchgeführt;Tracing in Progress;Kontrol işlemi gerçekleştiriliyor;Prüfung wird durchgeführt;Tracing in Progress;Tracing in Progress
+604032;Your EasyBox is now recording all connection events.;Ihre EasyBox zeichnet nun alle Verbindungsereignisse auf.;EasyBox cihazınız şimdi tüm bağlantı olaylarını kaydediyor.;Your EasyBox is now recording all connection events.;Your router is now recording all connection events.;Su router está grabando todos los eventos de conexión.;Your EasyBox is now recording all connection events.;;Ihre EasyBox zeichnet nun alle Verbindungsereignisse auf.;Your EasyBox is now recording all connection events.;EasyBox cihazınız şimdi tüm bağlantı olaylarını kaydediyor.;Ihre EasyBox zeichnet nun alle Verbindungsereignisse auf.;Your EasyBox is now recording all connection events.;Your PlusBox is now recording all connection events.
+604033;This process runs in the background, so you can close this window. A message box below the menu will indicate this process is still running, and on this message box you can press Stop at any time. You can then view the results file.;Dieser Prozess läuft im Hintergrund, deshalb können Sie dieses Fenster schließen. Ein Hinweis unter dem Menu zeigt, dass der Prozess noch läuft, dort können Sie den Prozess jederzeit stoppen und sich die Ergebnisse anzeigen lassen.;Bu işlem arka planda çalıştığı için bu pencereyi kapatabilirsiniz. Menünün altında görünen bir not işlemin devam ettiğini gösterir. Orada işlemi istediğiniz zaman durdurabilir ve sonuçları görüntüleyebilirsiniz.;This process runs in the background, so you can close this window. A message box below the menu will indicate this process is still running, and on this message box you can press Stop at any time. You can then view the results file.;This process runs in the background, so you can close this window. A message box below the menu will indicate this process is still running, and on this message box you can press Stop at any time. You can then view the results file.;Este proceso se ejecuta en segundo plano, por lo que se puede cerrar esta ventana. Un cuadro de mensaje que aparece bajo el menú indicará si el proceso está aún en marcha, y en este cuadro de mensaje puede pulsar STOP en cualquier momento. A continuación, puede ver el archivo de resultados.;This process runs in the background, so you can close this window. A message box below the menu will indicate this process is still running, and on this message box you can press Stop at any time. You can then view the results file.;;Dieser Prozess läuft im Hintergrund, deshalb können Sie dieses Fenster schließen. Ein Hinweis unter dem Menu zeigt, dass der Prozess noch läuft, dort können Sie den Prozess jederzeit stoppen und sich die Ergebnisse anzeigen lassen.;This process runs in the background, so you can close this window. A message box below the menu will indicate this process is still running, and on this message box you can press Stop at any time. You can then view the results file.;Bu işlem arka planda çalıştığı için bu pencereyi kapatabilirsiniz. Menünün altında görünen bir not işlemin devam ettiğini gösterir. Orada işlemi istediğiniz zaman durdurabilir ve sonuçları görüntüleyebilirsiniz.;Dieser Prozess läuft im Hintergrund, deshalb können Sie dieses Fenster schließen. Ein Hinweis unter dem Menu zeigt, dass der Prozess noch läuft, dort können Sie den Prozess jederzeit stoppen und sich die Ergebnisse anzeigen lassen.;This process runs in the background, so you can close this window. A message box below the menu will indicate this process is still running, and on this message box you can press Stop at any time. You can then view the results file.;This process runs in the background, so you can close this window. A message box below the menu will indicate this process is still running, and on this message box you can press Stop at any time. You can then view the results file.
+604034;Your EasyBox is now recording all connection events. You can press Stop at any time and view the results file. ;Ihre EasyBox zeichnet nun alle Verbindungsereignisse auf. Sie können jederzeit stoppen und sich die Ergebnisse anzeigen lassen.;EasyBox cihazınız şimdi tüm bağlantı olaylarını kaydediyor. İşlemi istediğiniz zaman durdurabilir ve sonuçları görüntüleyebilirsiniz.;Your EasyBox is now recording all connection events. You can press Stop at any time and view the results file. ;Your router is now recording all connection events. You can press Stop at any time and view the results file.;Su router está grabando todos los eventos de conexión. Puede pulsar Detener en cualquier momento y ver el archivo de resultados.;Your EasyBox is now recording all connection events. You can press Stop at any time and view the results file. ;;Ihre EasyBox zeichnet nun alle Verbindungsereignisse auf. Sie können jederzeit stoppen und sich die Ergebnisse anzeigen lassen.;Your EasyBox is now recording all connection events. You can press Stop at any time and view the results file. ;EasyBox cihazınız şimdi tüm bağlantı olaylarını kaydediyor. İşlemi istediğiniz zaman durdurabilir ve sonuçları görüntüleyebilirsiniz.;Ihre EasyBox zeichnet nun alle Verbindungsereignisse auf. Sie können jederzeit stoppen und sich die Ergebnisse anzeigen lassen.;Your EasyBox is now recording all connection events. You can press Stop at any time and view the results file. ;Your PlusBox is now recording all connection events. You can press Stop at any time and view the results file. 
+604035;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+604036;Bytes;Bytes;Bytes;Bytes;Bytes;Bytes;Bytes;;Bytes;Bytes;Bytes;Bytes;Bytes;Bytes
+604037;WAN/Data;WAN/Data;WAN/Data;WAN/Data;WAN/Data;WAN/Data;WAN/Data;;WAN/Data;WAN/Data;WAN/Data;WAN/Data;WAN/Data;WAN/Data
+604038;WAN/Voice;WAN/Voice;WAN/Voice;WAN/Voice;WAN/Voice;WAN/Voice;WAN/Voice;;WAN/Voice;WAN/Voice;WAN/Voice;WAN/Voice;WAN/Voice;WAN/Voice
+604039;LAN/Main;LAN/Main;LAN/Main;LAN/Main;LAN/Main;LAN/Main;LAN/Main;;LAN/Main;LAN/Main;LAN/Main;LAN/Main;LAN/Main;LAN/Main
+604040;LAN/Guest;LAN/Guest;LAN/Guest;LAN/Guest;LAN/Guest;LAN/Guest;LAN/Guest;;LAN/Guest;LAN/Guest;LAN/Guest;LAN/Guest;LAN/Guest;LAN/Guest
+604041;UMTS;UMTS;3G;UMTS;UMTS;UMTS;UMTS;;UMTS;UMTS;3G;UMTS;UMTS;UMTS
+604042;ANY;ANY;ANY;ANY;ANY;CUALQUIER;ANY;;ANY;ANY;ANY;ANY;ANY;ANY
+604043;Diagnosis Failed.;Diagnose fehlgeschlagen;Teşhis başarısız;Diagnosis Failed.;Diagnosis Failed.;Fallo de diagnóstico;Diagnosis Failed.;;Diagnose fehlgeschlagen;Diagnosis Failed.;Teşhis başarısız;Diagnose fehlgeschlagen;Diagnosis Failed.;Diagnosis Failed.
+604044;Diagnosis failed to complete.;Diagnose nicht fertiggestellt;Teşhis tamamlanmadı;Diagnosis failed to complete.;Diagnosis failed to complete.;El diagnóstico no se pudo completar.;Diagnosis failed to complete.;;Diagnose nicht fertiggestellt;Diagnosis failed to complete.;Teşhis tamamlanmadı;Diagnose nicht fertiggestellt;Diagnosis failed to complete.;Diagnosis failed to complete.
+604045;(no description available);keine Beschreibung verfügbar;Açıklama mevcut değildir;(no description available);(no description available);(Sin descripción);(no description available);;keine Beschreibung verfügbar;(no description available);Açıklama mevcut değildir;keine Beschreibung verfügbar;(no description available);(no description available)
+604046;Please provide a valid hostname or IP address for a ping target.;Bitte einen gültigen Hostnamen oder eine IP Adresse für ping test eingeben;Lütfen geçerli bir Hostname veya IP adresi kullanın;Please provide a valid hostname or IP address for a ping target.;Please provide a valid hostname or IP address for a ping target.;Proporcione una dirección de host o dirección IP válida para un objetivo ping.;Please provide a valid hostname or IP address for a ping target.;;Bitte einen gültigen Hostnamen oder eine IP Adresse für ping test eingeben;Please provide a valid hostname or IP address for a ping target.;Lütfen geçerli bir Hostname veya IP adresi kullanın;Bitte einen gültigen Hostnamen oder eine IP Adresse für ping test eingeben;Please provide a valid hostname or IP address for a ping target.;Please provide a valid hostname or IP address for a ping target.
+604047;Guest WiFi;Gast W-LAN;Misafir WiFi;Guest WiFi;Guest WiFi;WiFi de invitados;Guest WiFi;;Gast WLAN;Guest WiFi;Misafir WiFi;Gast WLAN;Guest WiFi;Guest WiFi
+604048;LAN;LAN;LAN;LAN;LAN;LAN;LAN;;LAN;LAN;LAN;LAN;LAN;LAN
+604049;WAN;WAN;WAN;WAN;WAN;WAN;WAN;;WAN;WAN;WAN;WAN;WAN;WAN
+604050;Vodafone TV Test;Vodafone TV Test;Vodafone TV Test;Vodafone TV Test;Vodafone TV Test;Prueba de Vodafone TV;Vodafone TV Test;;Vodafone TV Test;Vodafone TV Test;Vodafone TV Test;Vodafone TV Test;Vodafone TV Test;Vodafone TV Test
+604051;Vodafone TV Test Running;Vodafone TV Test läuft;Vodafone TV test çalışması;Vodafone TV Test Running;Vodafone TV Test Running;Prueba de Vodafone TV en ejecución;Vodafone TV Test Running;;Vodafone TV Test läuft;Vodafone TV Test Running;Vodafone TV test çalışması;Vodafone TV Test läuft;Vodafone TV Test Running;Vodafone TV Test Running
+604052;Vodafone TV Test Failed;Vodafone TV Test fehlgeschlagen;Vodafone TV Test başarısız;Vodafone TV Test Failed;Vodafone TV Test Failed;La Prueba de Vodafone TV ha fallado;Vodafone TV Test Failed;;Vodafone TV Test fehlgeschlagen;Vodafone TV Test Failed;Vodafone TV Test başarısız;Vodafone TV Test fehlgeschlagen;Vodafone TV Test Failed;Vodafone TV Test Failed
+604053;The Vodafone TV test failed to complete. Please check the IP address you specified, and try again.;Der Vodafone TV Test konnte nicht durchgeführt werden. Überprüfen sie bitte ihre Netzwerkeinstellungen und versuchen es erneut. ;Vodafone TV test tamamlayamadı. Belirttiğiniz IP adresini kontrol edin ve tekrar deneyin.;The Vodafone TV test failed to complete. Please check the IP address you specified, and try again.;The Vodafone TV test failed to complete. Please check the IP address you specified, and try again.;La prueba de Vodafone TV no se pudo completar. Por favor, compruebe la dirección IP que ha especificado y vuelva a intentarlo.;The Vodafone TV test failed to complete. Please check the IP address you specified, and try again.;;Der Vodafone TV Test konnte nicht durchgeführt werden. Überprüfen sie bitte ihre Netzwerkeinstellungen und versuchen Sie es erneut. ;The Vodafone TV test failed to complete. Please check the IP address you specified, and try again.;Vodafone TV test tamamlayamadı. Belirttiğiniz IP adresini kontrol edin ve tekrar deneyin.;Der Vodafone TV Test konnte nicht durchgeführt werden. Überprüfen sie bitte ihre Netzwerkeinstellungen und versuchen Sie es erneut. ;The Vodafone TV test failed to complete. Please check the IP address you specified, and try again.;The Vodafone TV test failed to complete. Please check the IP address you specified, and try again.
+604054;Vodafone TV Test Successful;Vodafone TV Test erfolgreich;Vodafone TV Test başarılı;Vodafone TV Test Successful;Vodafone TV Test Successful;Prueba de Vodafone TV finalizada con éxito;Vodafone TV Test Successful;;Vodafone TV Test erfolgreich;Vodafone TV Test Successful;Vodafone TV Test başarılı;Vodafone TV Test erfolgreich;Vodafone TV Test Successful;Vodafone TV Test Successful
+604055;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;Diese Diagnose dauert bis zu 2 Minuten und kann nach dem Start nicht mehr unterbrochen werden.;Bu teşhis 2 dakika kadar sürebilir ve kapatılamaz. ;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;Este diagnóstico suele tardar unos 2 minutos y no se puede cancelar una vez que se ha iniciado.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;;Diese Diagnose dauert bis zu 2 Minuten und kann nach dem Start nicht mehr unterbrochen werden.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;Bu teşhis 2 dakika kadar sürebilir ve kapatılamaz. ;Diese Diagnose dauert bis zu 2 Minuten und kann nach dem Start nicht mehr unterbrochen werden.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.;This diagnosis should take up to 2 minutes and cannot be cancelled once it has been started.
+604056;Tracing attempt failed;Tracing Versuch fehlgeschlagen;Girişimi Tracing başarısız;Tracing attempt failed;Tracing attempt failed;Intento de traceo fallido;Tracing attempt failed;;Tracing Versuch fehlgeschlagen;Tracing attempt failed;Girişimi Tracing başarısız;Tracing Versuch fehlgeschlagen;Tracing attempt failed;Tracing attempt failed
+604057;WAN VF TV Status;WAN VF TV Status;WAN VF TV Status;WAN VF TV Status;WAN VF TV Status;Estado de WAN VF TV;WAN VF TV Status;;WAN VF TV Status;WAN VF TV Status;WAN VF TV Status;WAN VF TV Status;WAN VF TV Status;WAN VF TV Status
+604058;Up;Aktiv;Aktif;Up;Up;Up;Up;;Aktiv;Up;Aktif;Aktiv;Up;Up
+604059;Down;Ausgefallen;Olağandışı;Down;Down;Down;Down;;Ausgefallen;Down;Olağandışı;Ausgefallen;Down;Down
+604060;Failed;Fehlerhaft;Hatalı;Failed;;;Failed;;Fehlerhaft;Failed;Hatalı;Fehlerhaft;Failed;Failed
+604061;OK;OK;Tamam;OK;;;OK;;OK;OK;Tamam;OK;OK;OK
+604062;NOK;NOK;Iyi değil;NOK;;;NOK;;NOK;NOK;Iyi değil;NOK;NOK;NOK
+604063;EPG;EPG;EPG;EPG;;;EPG;;EPG;EPG;EPG;EPG;EPG;EPG
+604064;Notification Server;Notification Server;Notification Server;Notification Server;;;Notification Server;;Notification Server;Notification Server;Notification Server;Notification Server;Notification Server;Notification Server
+604065;Software Download Server;Software Download Server;Software Download Server;Software Download Server;;;Software Download Server;;Software Download Server;Software Download Server;Software Download Server;Software Download Server;Software Download Server;Software Download Server
+604066;NTP Server;NTP Server;NTP Server;NTP Server;;;NTP Server;;NTP Server;NTP Server;NTP Server;NTP Server;NTP Server;NTP Server
+604067;Secure GW;Secure GW;Secure GW;Secure GW;;;Secure GW;;Secure GW;Secure GW;Secure GW;Secure GW;Secure GW;Secure GW
+604068;WAN/IPTV;WAN/IPTV;WAN/IPTV;WAN/IPTV;WAN/IPTV;WAN/IPTV;WAN/IPTV;;WAN/IPTV;WAN/IPTV;WAN/IPTV;WAN/IPTV;WAN/IPTV;WAN/IPTV
+605001;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+605002;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+605003;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+606001;Event Log;Ereignis-Logbuch;Olaylar günlüğü;Event Log;Event Log;Syslog;Event Log;;Ereignis-Logbuch;Event Log;Olaylar günlüğü;Ereignis-Logbuch;Event Log;Event Log
+606002;Select the categories for which you would like to view the event log.;Wählen Sie die Kategorien, welche Sie im Ereignis-Logbuch angezeigt bekommen möchten.;Olaylar günlüğünde gösterilmesini istediğiniz kategorileri seçiniz.;Select the categories for which you would like to view the event log.;Select the categories for which you would like to view the event log.;Seleccione las categorías que le gustaría ver en el log.;Select the categories for which you would like to view the event log.;;Wählen Sie die Kategorien, welche Sie im Ereignis-Logbuch angezeigt bekommen möchten.;Select the categories for which you would like to view the event log.;Olaylar günlüğünde gösterilmesini istediğiniz kategorileri seçiniz.;Wählen Sie die Kategorien, welche Sie im Ereignis-Logbuch angezeigt bekommen möchten.;Select the categories for which you would like to view the event log.;Select the categories for which you would like to view the event log.
+606003;Categories to Show;Anzuzeigende Kategorien;Gösterilecek kategoriler;Categories to Show;Categories to Show;Categorías para Mostrar;Categories to Show;;Anzuzeigende Kategorien;Categories to Show;Gösterilecek kategoriler;Anzuzeigende Kategorien;Categories to Show;Categories to Show
+606004;System;System;Sistem;System;System;Sistema;System;;System;System;Sistem;System;System;System
+606005;WAN;WAN;WAN;WAN;WAN;WAN;WAN;;WAN;WAN;WAN;WAN;WAN;WAN
+606006;LAN;LAN;LAN;LAN;LAN;LAN;LAN;;LAN;LAN;LAN;LAN;LAN;LAN
+606007;Voice;Sprache;Konuşma;Voice;Voice;Voice;Voice;;Sprache;Voice;Konuşma;Sprache;Voice;Voice
+606008;Data;Daten ;Veri;Data;Data;Data;Data;;Daten ;Data;Veri;Daten ;Data;Data
+606009;ACS;ACS;ACS;ACS;ACS;ACS;ACS;;ACS;ACS;ACS;ACS;ACS;ACS
+606010;UMTS;UMTS;3G;UMTS;UMTS;UMTS;UMTS;;UMTS;UMTS;3G;UMTS;UMTS;UMTS
+606011;Events to Show;Angezeigte Ereignisse;Gösterilen olaylar;Events to Show;Events to Show;Eventos para mostrar;Events to Show;;Angezeigte Ereignisse;Events to Show;Gösterilen olaylar;Angezeigte Ereignisse;Events to Show;Events to Show
+606012;Only Errors and Warnings;Nur Fehler und Warnungen;Sadece hatalar ve uyarılar;Only Errors and Warnings;Only Errors and Warnings;Sólo errores y advertencias;Only Errors and Warnings;;Nur Fehler und Warnungen;Only Errors and Warnings;Sadece hatalar ve uyarılar;Nur Fehler und Warnungen;Only Errors and Warnings;Only Errors and Warnings
+606013;All Events;Alle Ereignisse;Tüm olaylar;All Events;All Events;Todos los eventos;All Events;;Alle Ereignisse;All Events;Tüm olaylar;Alle Ereignisse;All Events;All Events
+606014;Event Log;Ereignis-Logbuch;Olaylar günlüğü;Event Log;Event Log;Syslog;Event Log;;Ereignis-Logbuch;Event Log;Olaylar günlüğü;Ereignis-Logbuch;Event Log;Event Log
+606015;Date;Datum;Tarih;Date;Date;Fecha;Date;;Datum;Date;Tarih;Datum;Date;Date
+606016;Time;Uhrzeit;Saat;Time;Time;Hora;Time;;Uhrzeit;Time;Saat;Uhrzeit;Time;Time
+606017;Log Details;Details;Ayrıntılar;Log Details;Log Details;Detalles sesión;Log Details;;Details;Log Details;Ayrıntılar;Details;Log Details;Log Details
+606018;Category;Kategorie;Kategori;Category;Category;Categoría;Category;;Kategorie;Category;Kategori;Kategorie;Category;Category
+606019;Possible intrusion attempt;Möglicher Eindringversuch;Olası içeri sızma denemesi;Possible intrusion attempt;Possible intrusion attempt;Posible intento de intrusión;Possible intrusion attempt;;Möglicher Eindringversuch;Possible intrusion attempt;Olası içeri sızma denemesi;Möglicher Eindringversuch;Possible intrusion attempt;Possible intrusion attempt
+606020;Failed to dial number;Nummer nicht gewählt;Numara aranmadı;Failed to dial number;Failed to dial number;No se ha podido marcar el número;Failed to dial number;;Nummer nicht gewählt;Failed to dial number;Numara aranmadı;Nummer nicht gewählt;Failed to dial number;Failed to dial number
+606021;login success;Login erfolgreich;Sisteme giriş başarılı;login success;login success;Registro con éxito;login success;;Login erfolgreich;login success;Sisteme giriş başarılı;Login erfolgreich;login success;login success
+606022;Sending ACK to;ACK gesendet zu;ACK gönderildi;Sending ACK to;Sending ACK to;Enviando ACK a;Sending ACK to;;ACK gesendet zu;Sending ACK to;ACK gönderildi;ACK gesendet zu;Sending ACK to;Sending ACK to
+606023;Save to File;Speichern auf Datei;Dosyaya kaydet;Save to File;Save to File;Guardar en archivo;Save to File;;Speichern auf Datei;Save to File;Dosyaya kaydet;Speichern auf Datei;Save to File;Save to File
+606024;Delete;Löschen;Silent;Delete;Delete;Borrar;Delete;;Löschen;Delete;Silent;Löschen;Delete;Delete
+606025;Are you sure you want to delete this log?;Sind Sie sicher, dass Sie dieses Logbuch löschen wollen?;Bu olaylar günlüğünü silmek istediğinizden emin misiniz?;Are you sure you want to delete this log?;Are you sure you want to delete this log?;¿Está seguro que desea eliminar este registro?;Are you sure you want to delete this log?;;Sind Sie sicher, dass Sie dieses Logbuch löschen wollen?;Are you sure you want to delete this log?;Bu olaylar günlüğünü silmek istediğinizden emin misiniz?;Sind Sie sicher, dass Sie dieses Logbuch löschen wollen?;Are you sure you want to delete this log?;Are you sure you want to delete this log?
+606026;Your list was last deleted at %s on %s and no events have occurred since.;Ihre Liste wurde um %s Uhr am %s gelöscht, seitdem sind keine Ereignisse aufgetreten.;Listeniz %s tarihinde saat %s silindi, o zamandan beri herhangi bir olay gerçekleşmedi.;Your list was last deleted at %s on %s and no events have occurred since.;Your list was last deleted at %s on %s and no events have occurred since.;Su lista fue eliminada por última vez en %s en %s, y no hay eventos desde entonces.;Your list was last deleted at %s on %s and no events have occurred since.;;Ihre Liste wurde um %s Uhr am %s gelöscht, seitdem sind keine Ereignisse aufgetreten.;Your list was last deleted at %s on %s and no events have occurred since.;Listeniz %s tarihinde saat %s silindi, o zamandan beri herhangi bir olay gerçekleşmedi.;Ihre Liste wurde um %s Uhr am %s gelöscht, seitdem sind keine Ereignisse aufgetreten.;Your list was last deleted at %s on %s and no events have occurred since.;Your list was last deleted at %s on %s and no events have occurred since.
+606027;USB;USB;USB;USB;USB;USB;USB;;USB;USB;USB;USB;USB;USB
+606028;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall;;Firewall;Firewall;Firewall;Firewall;Firewall;Firewall
+606029;IPTV;IPTV;IPTV;IPTV;IPTV;IPTV;IPTV;;IPTV;IPTV;IPTV;IPTV;IPTV;IPTV
+606030;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+606031;Received connection request;connection request emfangen;Bağlantı isteği cevaplanmistir;Received connection request;Received connection request;Recibida Solicitud de conexión;Received connection request;;connection request emfangen;Received connection request;Bağlantı isteği cevaplanmistir;connection request emfangen;Received connection request;Received connection request
+606032;Current connection request URL: %s1;aktuelle connection request URL: %s1;Aktüel bağlantı isteği URL: %s1;Current connection request URL: %s1;Current connection request URL: %s1;Solicitud de conexión actual URL: %s1;Current connection request URL: %s1;;aktuelle connection request URL: %s1;Current connection request URL: %s1;Aktüel bağlantı isteği URL: %s1;aktuelle connection request URL: %s1;Current connection request URL: %s1;Current connection request URL: %s1
+606033;Inform message %s1 sent to ACS;Info-Nachricht %s1 gesendet zu ACS;ACS´e %s1 bilgi mesajı gönderildi;Inform message %s1 sent to ACS;Inform message %s1 sent to ACS;Inform mensaje %s1 enviado a ACS;Inform message %s1 sent to ACS;;Info-Nachricht %s1 gesendet zu ACS;Inform message %s1 sent to ACS;ACS´e %s1 bilgi mesajı gönderildi;Info-Nachricht %s1 gesendet zu ACS;Inform message %s1 sent to ACS;Inform message %s1 sent to ACS
+606034;No Events;keine neuen Ereignisse;Hareket yok;No Events;No Events;No hay Eventos;No Events;;keine neuen Ereignisse;No Events;Hareket yok;keine neuen Ereignisse;No Events;No Events
+606035;Severity;Stärke;güç;Severity;Severity;Severity;Severity;;Stärke;Severity;güç;Stärke;Severity;Severity
+606036;error;Fehler;Hata;error;error;error;error;;Fehler;error;Hata;Fehler;error;error
+606037;warning;Warnung;Uyarı;warning;warning;warning;warning;;Warnung;warning;Uyarı;Warnung;warning;warning
+606038;information;Information;Bilgi;information;information;information;information;;Information;information;Bilgi;Information;information;information
+606039;debug;Diagnose;Hata ayıklama;debug;debug;debug;debug;;Diagnose;debug;Hata ayıklama;Diagnose;debug;debug
+606040;NA;NA;NA;NA;NA;NA;NA;NA;Erkannter Angriff: %s1;Detected attack: %s1; Saldırı tespit edilmiş: %s1;NA;NA;Detected attack: %s1
+606041;NA;NA;NA;NA;NA;NA;NA;NA;DDNS wurde aktualisiert, domain=%s1, IP=%s2;DDNS was updated, domain=%s1, IP=%s2;DDNS güncellenmiştir, domain=%s1, response=%s2;NA;NA;DDNS was updated, domain=%s1, IP=%s2
+606042;NA;NA;NA;NA;NA;NA;NA;NA;DDNS wurde nicht aktualisiert, domain=%s1, IP=%s2;DDNS was not updated, domain=%s1, response=%s2;DDNS güncellenmemistir, domain=%s1, response=%s2;NA;NA;DDNS was not updated, domain=%s1, response=%s2
+606043;NA;NA;NA;NA;NA;NA;NA;NA;DDNS Aktualisierung ist fehlgeschlagen, domain=%s1, IP=%s2;DDNS failed to update, domain=%s1, response=%s2;DDNS güncellimde hata oluşmuştur, domain=%s1, response=%s2;NA;NA;DDNS failed to update, domain=%s1, response=%s2
+607001;NAT Mapping Table;NAT Verknüpfungstabelle;NAT eşleştirme tablosu;NAT Mapping Table;NAT Mapping Table;Asignaciones de la tabla NAT;NAT Mapping Table;;NAT Verknüpfungstabelle;NAT Mapping Table;NAT eşleştirme tablosu;NAT Verknüpfungstabelle;NAT Mapping Table;NAT Mapping Table
+607002;The NAT Mapping Table displays the current NAT address mappings.;Die NAT Verknüpfungstabelle zeigt die gegenwärtigen NAT-Adressverknüpfungen an.;NAT eşleştirme tablosu, mevcut NAT adres eşleşmelerini gösterir.;The NAT Mapping Table displays the current NAT address mappings.;The NAT Mapping Table displays the current NAT address mappings.;La tabla de asignación de NAT muestra las asignaciones actuales de direcciones NAT.;The NAT Mapping Table displays the current NAT address mappings.;;Diese Seite zeigt die derzeit aktiven Verbindungen pro Gerät an. Außerdem können Sie sich hier die vollständige NAT Verknüpfungstabelle herunterladen.;This page shows the active connection for each device. Moreover you may download the full NAT address table.;NAT eşleştirme tablosu, mevcut NAT adres eşleşmelerini gösterir.;Diese Seite zeigt die derzeit aktiven Verbindungen pro Gerät an. Außerdem können Sie sich hier die vollständige NAT Verknüpfungstabelle herunterladen.;This page shows the active connection for each device. Moreover you may download the full NAT address table.;This page shows the active connection for each device. Moreover you may download the full NAT address table.
+607003;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+607004;Host Name;Host Name;Host Name;Host Name;Host Name;Host Name;Host Name;;Gerätename;Device Name;Host Name;Gerätename;Device Name;Device Name
+607005;IP Address;IP-Adresse;IP adresi;IP Address;IP Address;Dirección IP;IP Address;;IP-Adresse;IP Address;IP adresi;IP-Adresse;IP Address;IP Address
+607006;Number of Connections;Anzahl Verbindungen;Bağlantı sayısı;Number of Connections;Number of Connections;Número de conexiones;Number of Connections;;Anzahl Verbindungen;Number of Connections;Bağlantı sayısı;Anzahl Verbindungen;Number of Connections;Number of Connections
+607007;Download the complete NAT address mapping table in CSV format;Herunterladen der kompletten NAT Verknüpfungstabelle im csv-Format;CSV formatındaki komple NAT eşleştirme tablosunu indir;Download the complete NAT address mapping table in CSV format;Download the complete NAT address mapping table in CSV format;Descargue la tabla NAT completa en formato CSV;Download the complete NAT address mapping table in CSV format;;NAT Verknüpfungstabelle im CSV-Format herunterladen;Download NAT address table in CSV format;CSV formatındaki komple NAT eşleştirme tablosunu indir;NAT Verknüpfungstabelle im CSV-Format herunterladen;Download NAT address table in CSV format;Download NAT address table in CSV format
+607008;Download;Herunterladen;İndir;Download;Download;Descargar;Download;;Herunterladen;Download;İndir;Herunterladen;Download;Download
+607009;Active Connections;Aktive Verbindungen;Etkin bağlantılar;Active Connections;Active Connections;Conexiones activas;Active Connections;;Aktive Verbindungen;Active Connections;Etkin bağlantılar;Aktive Verbindungen;Active Connections;Active Connections
+607010;Connections Per Host;Verbindungen je Host;Host başına bağlantı;Connections Per Host;Connections Per Host;Conexiones por host;Connections Per Host;;Verbindungen pro Gerät;Connections for each Device;Host başına bağlantı;Verbindungen pro Gerät;Connections for each Device;Connections for each Device
+607011;Active Connections;Aktive Verbindungen;Etkin bağlantılar;Active Connections;Active Connections;Conexiones activas;Active Connections;;Aktive Verbindungen;Active Connections;Etkin bağlantılar;Aktive Verbindungen;Active Connections;Active Connections
+607012;No active connections;Keine aktiven Verbindungen;Etkin bağlantı yok;No active connections;No active connections;No hay conexiones activas;No active connections;;Keine aktiven Verbindungen;No active connections;Etkin bağlantı yok;Keine aktiven Verbindungen;No active connections;No active connections
+607013;NA;NA;NA;NA;Neigh Table;Neigh Table;NA;NA;NA;NA;NA;NA;NA;NA
+607014;NA;NA;NA;NA;Hostname;Hostname;NA;NA;NA;NA;NA;NA;NA;NA
+607015;NA;NA;NA;NA;IPv6 Global Address;IPv6 Global Addr;NA;NA;NA;NA;NA;NA;NA;NA
+607016;NA;NA;NA;NA;IPv6 Link Local Addr;IPv6 Link Local Addr;NA;NA;NA;NA;NA;NA;NA;NA
+607017;NA;NA;NA;NA;# Connections;# connections;NA;NA;NA;NA;NA;NA;NA;NA
+608001;Restart;Neustart;Yeniden başlatma;Restart;Restart;Reiniciar;Restart;;Neustart;Restart;Yeniden başlatma;Neustart;Restart;Restart
+608002;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+608003;Click here to restart your EasyBox;Klicken Sie hier, um Ihre EasyBox neu zu starten;EasyBox cihazınızı yeniden başlatmak için burayı tıklayınız;Click here to restart your EasyBox;Click here to restart your router;Haga clic aquí para reiniciar el router;Click here to restart your EasyBox;;Klicken Sie hier, um Ihre EasyBox neu zu starten.;Click here to restart your EasyBox.;EasyBox´unuzu yeniden başlatmak için burayı tıklayınız;Klicken Sie hier, um Ihre EasyBox neu zu starten.;Click here to restart your EasyBox.;Click here to restart your PlusBox.
+608004;Restart;Neustart;Yeniden başlatma;Restart;Restart;Reiniciar;Restart;;Neu starten;Restart;Yeniden başlatma;Neu starten;Restart;Restart
+608005;Restarting in Progress;Neustart wird durchgeführt;Yeniden başlatma işlemi gerçekleştiriliyor;Restarting in Progress;Restarting in Progress;Reinicio en Progreso;Restarting in Progress;;Neustart wird durchgeführt;Restarting in Progress;Yeniden başlatma işlemi gerçekleştiriliyor;Neustart wird durchgeführt;Restarting in Progress;Restarting in Progress
+608006;Do not turn off your EasyBox.;Schalten Sie Ihre EasyBox nicht aus.;EasyBox cihazınızı kapatmayınız.;Do not turn off your EasyBox.;Do not turn off your router.;No apague el router.;Do not turn off your EasyBox.;;Schalten Sie Ihre EasyBox bitte nicht aus.;Do not turn off your EasyBox.;EasyBox cihazınızı kapatmayınız.;Schalten Sie Ihre EasyBox bitte nicht aus.;Do not turn off your EasyBox.;Do not turn off your PlusBox.
+608007;Restarting EasyBox Failed;Neustart der EasyBox fehlgeschlagen;Router'ın yeniden başlatılması başarısız;Restarting EasyBox Failed;Restarting your router Failed;Error al reiniciar el router.;Restarting EasyBox Failed;;Neustart der EasyBox fehlgeschlagen;Restarting EasyBox Failed;Router'ın yeniden başlatılması başarısız;Neustart der EasyBox fehlgeschlagen;Restarting EasyBox Failed;Restarting PlusBox Failed
+608008;Are you sure you want to restart you EasyBox?;;EasyBox´unuzu yeniden başlatmak etmekten emin misiniz?;NA;NA;NA;NA;NA;Sind Sie sicher Sie wollen die EasyBox neu starten?;Are you sure you want to restart your EasyBox?;EasyBox´unuzu yeniden başlatmak etmekten emin misiniz?;Sind Sie sicher Sie wollen die EasyBox neu starten?;Are you sure you want to restart your EasyBox?;Are you sure you want to restart your PlusBox?
+608009;NA;NA;NA;NA;NA;NA;NA;NA;Hier können Sie Ihre DSL-Verbindung erneut verbinden und Ihre EasyBox neu starten. Hinweis: Telefon-, Internet- und Netzwerkverbindungen werden in dieser Zeit unterbrochen. ;This page allows to restart your DSL connection and reboot your Easybox. Please note that for the entire process all phone, internet and TV services will be temporarily unavailable. ;Bu sayfa DSL bağlantınızı ve EasyBox´unuzu yeniden başlatmak için izin verir.;Hier können Sie Ihre DSL-Verbindung erneut verbinden und Ihre EasyBox neu starten. Hinweis: Telefon-, Internet- und Netzwerkverbindungen werden in dieser Zeit unterbrochen. ;This page allows to restart your DSL connection and reboot your Easybox. Please note that for the entire process all phone, internet and TV services will be temporarily unavailable. ;This page allows to restart your DSL connection and reboot your PlusBox. Please note that for the entire process all phone, internet and TV services will be temporarily unavailable. 
+608010;NA;NA;NA;NA;NA;NA;NA;NA;aktiv;active;aktif;aktiv;active;active
+608011;NA;NA;NA;NA;NA;NA;NA;NA;Neu verbinden;Reconnect;Yeniden bağlamak;Neu verbinden;Reconnect;Reconnect
+608012;NA;NA;NA;NA;NA;NA;NA;NA;DSL-Verbindung;DSL Connection;"DSL bağlantısı
+";DSL-Verbindung;DSL Connection;DSL Connection
+608013;NA;NA;NA;NA;NA;NA;NA;NA;EasyBox;EasyBox;EasyBox;EasyBox;EasyBox;PlusBox
+608014;NA;NA;NA;NA;NA;NA;NA;NA;EasyBox;EasyBox;EasyBox;EasyBox;EasyBox;PlusBox
+609001;Correction Needed;Korrektur erforderlich;Düzeltme gerekiyor;Correction Needed;Correction Needed;Corrección necesaria;Correction Needed;;Korrektur erforderlich;Correction Needed;Düzeltme gerekiyor;Korrektur erforderlich;Correction Needed;Correction Needed
+609002;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+609003;You must enter a password.;Sie müssen ein Kennwort eingeben;Yeni bir şifre girmek zorundasınız.;You must enter a password.;You must enter a password.;Debe introducir una contraseña.;You must enter a password.;;Sie müssen ein Kennwort eingeben;You must enter a password.;Yeni bir şifre girmek zorundasınız.;Sie müssen ein Kennwort eingeben;You must enter a password.;You must enter a password.
+610001;About;Über;Hakkında;About;About;Acerca de;About;;Über;About;Hakkında;Über;About;About
+610002;The software of this product is based on open-source software. The respective licence terms and conditions are outlined below. For more information follow the link to the software vendor.;Die Software dieses Produkts verwendet Open-Source-Software. Die dadurch notwendigen Lizenzhinweise sind untenstehend aufgeführt. Bei Fragen zum Source-Code folgen sie dem Link zum Software-Hersteller.;Bu kulanan Software Open RG bazlıdır ve böylece gerekli olan lisans uyarısı aşağıda açıklanmıştır. Kaynak kodu ile ilgili sorularınız için yazılım üreticisine yönlendiren linki takip ediniz.;The software of this product is based on open-source software. The respective licence terms and conditions are outlined below. For more information follow the link to the software vendor.;The software of this product is based on open-source software. The respective licence terms and conditions are outlined below. For more information follow the link to the software vendor.;El software de este producto está basado en software de código abierto. Los respectivos términos y condiciones de la licencia se resumen a continuación. Para obtener más información, siga el enlace para el proveedor de software.;The software of this product is based on open-source software. The respective licence terms and conditions are outlined below. For more information follow the link to the software vendor.;;Die Software dieses Produkts verwendet Open-Source-Software. Die dadurch notwendigen Lizenzhinweise sind untenstehend aufgeführt. Bei Fragen zum Source-Code folgen sie dem Link zum Software-Hersteller.;The software of this product is based on open-source software. The respective licence terms and conditions are outlined below. For more information follow the link to the software vendor.;Bu kulanan Software Open RG bazlıdır ve böylece gerekli olan lisans uyarısı aşağıda açıklanmıştır. Kaynak kodu ile ilgili sorularınız için yazılım üreticisine yönlendiren linki takip ediniz.;Die Software dieses Produkts verwendet Open-Source-Software. Die dadurch notwendigen Lizenzhinweise sind untenstehend aufgeführt. Bei Fragen zum Source-Code folgen sie dem Link zum Software-Hersteller.;The software of this product is based on open-source software. The respective licence terms and conditions are outlined below. For more information follow the link to the software vendor.;The software of this product is based on open-source software. The respective licence terms and conditions are outlined below. For more information follow the link to the software vendor.
+610003;GNU Code Requests;;GNU Code Requests;GNU Code Requests;GNU Code Requests;Petición de código GNU;GNU Code Requests;;GNU Code Requests;GNU Code Requests;GNU Code Requests;GNU Code Requests;GNU Code Requests;GNU Code Requests
+610004;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;;Bu kulanan Software GNU Genel Kamu Lisansı (GPL) ve Kısıtlı Genel Kamu Lisansı (LGPL) kod konusunu içeren. Bu üründe GPL ve LGPL kaynak kodu kabın bir kopyasını isterseniz bakınız:;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;Este producto contiene código sujeto al GNU General Public License (GPL) y Lesser General Public License (LGPL).Si desea una copia del código GPL y LGPL contenido en este producto, por favor póngase en contacto con:;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;Bu kulanan Software GNU Genel Kamu Lisansı (GPL) ve Kısıtlı Genel Kamu Lisansı (LGPL) kod konusunu içeren. Bu üründe GPL ve LGPL kaynak kodu kabın bir kopyasını isterseniz bakınız:;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:;This product contains code subject to the GNU General Public License (GPL) and Lesser General Public License (LGPL). If you would like a copy of the GPL and LGPL source code container in this product, please refer to:
+611001;Vodafone TV Status;Vodafone TV Status;Vodafone TV durumu;Vodafone TV Status;Vodafone TV Status;Estado de Vodafone TV;Vodafone TV Status;;Vodafone TV Status;Vodafone TV Status;Vodafone TV durumu;Vodafone TV Status;Vodafone TV Status;Vodafone TV Status
+611002;You can use the Status screen to see the connection status of the Vodafone TV Services, such as connectivity and availability of the service.;Auf dieser Statusseite werden die technischen Parameter der Vodafone TV, so wie Verbindungsstatus und Verfügbarkeit des Dienstes angezeigt.;Bu sayfada bağlantı ve Vodafone TV hizmetleri ve bağlantı durumunu görebilirsiniz.;You can use the Status screen to see the connection status of the Vodafone TV Services, such as connectivity and availability of the service.;You can use the Status screen to see the connection status of the Vodafone TV Services, such as connectivity and availability of the service.;Puede utilizar la pantalla de estado para ver el estado de conexión de los servicios de Vodafone TV, como la conectividad y la disponibilidad del servicio.;You can use the Status screen to see the connection status of the Vodafone TV Services, such as connectivity and availability of the service.;;Auf dieser Statusseite werden die technischen Parameter der Vodafone TV, so wie Verbindungsstatus und Verfügbarkeit des Dienstes angezeigt.;This page shows the connection status of Vodafone TV services active on your DSL line.;Bu sayfada bağlantı ve Vodafone TV hizmetleri ve bağlantı durumunu görebilirsiniz.;Auf dieser Statusseite werden die technischen Parameter der Vodafone TV, so wie Verbindungsstatus und Verfügbarkeit des Dienstes angezeigt.;This page shows the connection status of Vodafone TV services active on your DSL line.;This page shows the connection status of Vodafone TV services active on your DSL line.
+611003;Status of the connection;Verbindungstatus;Bağlantı durumu;Status of the connection;Status of the connection;Estado de la conexión;Status of the connection;;Verbindungstatus;Connection Status ;Bağlantı durumu;Verbindungstatus;Connection Status ;Connection Status 
+611004;Connected;Verbunden;Bağlı;Connected;Connected;Conectado;Connected;;Verbunden;Connected;Bağlı;Verbunden;Connected;Connected
+611005;Vodafone TV Channels;Vodafone TV Kanäle;Vodafone TV kanalları;Vodafone TV Channels;Vodafone TV Channels;Canales de Vodafone TV;Vodafone TV Channels;;Vodafone TV Kanäle;Vodafone TV Channels;Vodafone TV kanalları;Vodafone TV Kanäle;Vodafone TV Channels;Vodafone TV Channels
+611006;Group IP;Group IP;Group IP;Group IP;Group IP;Grupo IP;Group IP;;Group IP;Group IP;Group IP;Group IP;Group IP;Group IP
+611007;Bandwidth Usage (kbps);Genutzte Bandbreite (kbps);Bandwidth kullanımı (kbps);Bandwidth Usage (kbps);Bandwidth Usage (kbps);Uso de Ancho de Banda (kbps);Bandwidth Usage (kbps);;Genutzte Bandbreite (kbps);Bandwidth Usage (kbps);Bandwidth kullanımı (kbps);Genutzte Bandbreite (kbps);Bandwidth Usage (kbps);Bandwidth Usage (kbps)
+611008;PID/CC Error;PID/CC Fehler;PID/CC hata;PID/CC Error;PID/CC Error;PID/CC Error;PID/CC Error;;PID/CC Fehler;PID/CC Error;PID/CC hata;PID/CC Fehler;PID/CC Error;PID/CC Error
+611009;LAN Port;LAN Port;LAN Port;LAN Port;LAN Port;Puerto LAN;LAN Port;;LAN Port;LAN Port;LAN Port;LAN Port;LAN Port;LAN Port
+611010;Client IP;Client IP;Client IP;Client IP;Client IP;Cliente IP;Client IP;;Client IP;Client IP;Client IP;Client IP;Client IP;Client IP
+611011;No channels found.;No channels found.;Kanal bulunamadı.;No channels found.;No channels found.;No se encontraron canales;No channels found.;;No channels found.;No channels found.;Kanal bulunamadı.;No channels found.;No channels found.;No channels found.
+611012;Client MAC;;Client MAC;Client MAC;Client MAC;;Client MAC;;Client MAC;Client MAC;Client MAC;Client MAC;Client MAC;Client MAC
+611013;NA;NA;NA;NA;NA;NA;NA;;WAN IPTV;WAN IPTV;WAN IPTV;NA;NA;WAN IPTV
+611014;NA;NA;NA;NA;NA;NA;NA;;Nicht verbunden;Not Connected;Bağlı değil;NA;NA;Not Connected
+612001;NA;NA;NA;NA;ADSL Status;Estado ADSL;NA;;NA;NA;NA;NA;NA;NA
+612002;NA;NA;NA;NA;ADSL;ADSL;NA;;NA;NA;NA;NA;NA;NA
+612003;NA;NA;NA;NA;ADSL Sync cuts from last reboot;Cortes  ADSL desde el último reinicio;NA;;NA;NA;NA;NA;NA;NA
+612004;NA;NA;NA;NA;Time from last ADSL cut;Tiempo desde el último corte ADSL;NA;;NA;NA;NA;NA;NA;NA
+612005;NA;NA;NA;NA;ADSL Mode;Modo ADSL;NA;;NA;NA;NA;NA;NA;NA
+612006;NA;NA;NA;NA;Mode;Modo;NA;;NA;NA;NA;NA;NA;NA
+612007;NA;NA;NA;NA;ADSL_G.dmt;ADSL_G.dmt;NA;;NA;NA;NA;NA;NA;NA
+612008;NA;NA;NA;NA;Status;Estado;NA;;NA;NA;NA;NA;NA;NA
+612009;NA;NA;NA;NA;No Signal;Sin señal;NA;;NA;NA;NA;NA;NA;NA
+612010;NA;NA;NA;NA;Line Coding;Codificación de línea;NA;;NA;NA;NA;NA;NA;NA
+612011;NA;NA;NA;NA;DMT;DMT;NA;;NA;NA;NA;NA;NA;NA
+612012;NA;NA;NA;NA;Total SES;Total SES;NA;;NA;NA;NA;NA;NA;NA
+612013;NA;NA;NA;NA;Total ES;Total ES;NA;;NA;NA;NA;NA;NA;NA
+612014;NA;NA;NA;NA;Auto CRC errors;Auto CRC errors;NA;;NA;NA;NA;NA;NA;NA
+612015;NA;NA;NA;NA;Auto FEC errors;Auto FEC errors;NA;;NA;NA;NA;NA;NA;NA
+612016;NA;NA;NA;NA;Auto HEC errors;Auto HEC errors;NA;;NA;NA;NA;NA;NA;NA
+612017;NA;NA;NA;NA;CRC errors;CRC errors;NA;;NA;NA;NA;NA;NA;NA
+612018;NA;NA;NA;NA;FEC errors;FEC errors;NA;;NA;NA;NA;NA;NA;NA
+612019;NA;NA;NA;NA;HEC errors;HEC errors;NA;;NA;NA;NA;NA;NA;NA
+612020;NA;NA;NA;NA;Cell delin;Cell delin;NA;;NA;NA;NA;NA;NA;NA
+612021;NA;NA;NA;NA;Init errors;Init errors;NA;;NA;NA;NA;NA;NA;NA
+612022;NA;NA;NA;NA;Init timeoutes;Init timeoutes;NA;;NA;NA;NA;NA;NA;NA
+612023;NA;NA;NA;NA;Link retrain;Link retrain;NA;;NA;NA;NA;NA;NA;NA
+612024;NA;NA;NA;NA;Loss of framing;Loss of framing;NA;;NA;NA;NA;NA;NA;NA
+612025;NA;NA;NA;NA;downstream;dowstream;NA;;NA;NA;NA;NA;NA;NA
+612026;NA;NA;NA;NA;upstream;upstream;NA;;NA;NA;NA;NA;NA;NA
+612027;NA;NA;NA;NA;SNR margin;Margen de SNR;NA;;NA;NA;NA;NA;NA;NA
+612028;NA;NA;NA;NA;Attenuation;Atenuación;NA;;NA;NA;NA;NA;NA;NA
+612029;NA;NA;NA;NA;Output power;Output power;NA;;NA;NA;NA;NA;NA;NA
+612030;NA;NA;NA;NA;Attainable rate;Velocidad máxima;NA;;NA;NA;NA;NA;NA;NA
+612031;NA;NA;NA;NA;Rate;Velocidad;NA;;NA;NA;NA;NA;NA;NA
+612032;NA;NA;NA;NA;Total Cells;Total Cells;NA;;NA;NA;NA;NA;NA;NA
+612033;NA;NA;NA;NA;dB;dB;NA;;NA;NA;NA;NA;NA;NA
+612034;NA;NA;NA;NA;dBmV;dBmV;NA;;NA;NA;NA;NA;NA;NA
+612035;NA;NA;NA;NA;bit/s;bit/s;NA;;NA;NA;NA;NA;NA;NA
+612036;NA;NA;NA;NA;Reset counter;Resetear contador;NA;;NA;NA;NA;NA;NA;NA
+612037;NA;NA;NA;NA;Line Quality;Parámetros de Línea;NA;;NA;NA;NA;NA;NA;NA
+612038;NA;NA;NA;NA;Current Rate;Velocidad actual;NA;;NA;NA;NA;NA;NA;NA
+612039;NA;NA;NA;NA;Maximum Rate;Velocidad máxima;NA;;NA;NA;NA;NA;NA;NA
+612040;NA;NA;NA;NA;Signal-to-Noise Ratio;SNR;NA;;NA;NA;NA;NA;NA;NA
+612041;NA;NA;NA;NA;Power;Power;NA;;NA;NA;NA;NA;NA;NA
+612042;NA;NA;NA;NA;kbps;kbps;NA;;NA;NA;NA;NA;NA;NA
+612043;NA;NA;NA;NA;Attenuation;Atenuación;NA;;NA;NA;NA;NA;NA;NA
+612044;NA;NA;NA;NA;CRC Errors in last %s minute(s);Errores CRC en los últimos %s minuto(s);NA;;NA;NA;NA;NA;NA;NA
+612045;NA;NA;NA;NA;dBm;dBm;NA;;NA;NA;NA;NA;NA;NA
+612046;NA;NA;NA;NA;Link Power State;Link Power;NA;;NA;NA;NA;NA;NA;NA
+612047;NA;NA;NA;NA;Errors;Errors;NA;;NA;NA;NA;NA;NA;NA
+612048;NA;NA;NA;NA;OCD Errors;OCD Errors;NA;;NA;NA;NA;NA;NA;NA
+612049;NA;NA;NA;NA;LCD Errors;LCD Errors;NA;;NA;NA;NA;NA;NA;NA
+612050;NA;NA;NA;NA;Data Cells;Data Cells;NA;;NA;NA;NA;NA;NA;NA
+612051;NA;NA;NA;NA;Bit Errors;Bit Errors;NA;;NA;NA;NA;NA;NA;NA
+612052;NA;NA;NA;NA;;NA;NA;;NA;NA;NA;NA;NA;NA
+612053;NA;NA;NA;NA;Super Frames;Super Frames;NA;;NA;NA;NA;NA;NA;NA
+612054;NA;NA;NA;NA;Super Frame Errors;Super Frame Errors;NA;;NA;NA;NA;NA;NA;NA
+612055;NA;NA;NA;NA;RS Words;RS Words;NA;;NA;NA;NA;NA;NA;NA
+612056;NA;NA;NA;NA;RS Correctable Errors;RS Correctable Errors;NA;;NA;NA;NA;NA;NA;NA
+612057;NA;NA;NA;NA;RS Uncorrectable Errors;RS Uncorrectable Errors;NA;;NA;NA;NA;NA;NA;NA
+612058;NA;NA;NA;NA;;NA;NA;;NA;NA;NA;NA;NA;NA
+612059;NA;NA;NA;NA;Reset Statistics;Reset Statistics;NA;;NA;NA;NA;NA;NA;NA
+612060;NA;NA;NA;NA;Total UAS;Total UAS;NA;;NA;NA;NA;NA;NA;NA
+612061;NA;NA;NA;NA;K (number of bytes in DMT frame);K (number of bytes in DMT frame);NA;;NA;NA;NA;NA;NA;NA
+612062;NA;NA;NA;NA;R (number of bytes in RS code word);R (number of bytes in RS code word);NA;;NA;NA;NA;NA;NA;NA
+612063;NA;NA;NA;NA;S (RS code word size in DMT frame);S (RS code word size in DMT frame);NA;;NA;NA;NA;NA;NA;NA
+612064;NA;NA;NA;NA;D (interleaver depth);D (interleaver depth);NA;;NA;NA;NA;NA;NA;NA
+612065;NA;NA;NA;NA;Delay;Delay;NA;;NA;NA;NA;NA;NA;NA
+612066;NA;NA;NA;NA;ms;ms;NA;;NA;NA;NA;NA;NA;NA
+612067;NA;NA;NA;NA;Number of Cuts;Número de cortes;NA;;NA;NA;NA;NA;NA;NA
+612068;NA;NA;NA;NA;dBm;dBm;NA;;NA;NA;NA;NA;NA;NA
+612069;NA;NA;NA;NA;ADSL Uptime;ADSL Uptime;NA;;NA;NA;NA;NA;NA;NA
+613001;NA;NA;NA;NA;WAN Status;Estado WAN;NA;;NA;NA;NA;NA;NA;NA
+613002;NA;NA;NA;NA;Description;Descripción;NA;;NA;NA;NA;NA;NA;NA
+613003;NA;NA;NA;NA;Type;Tipo;NA;;NA;NA;NA;NA;NA;NA
+613004;NA;NA;NA;NA;IPv4 Mask;Máscara IPv4;NA;;NA;NA;NA;NA;NA;NA
+613005;NA;NA;NA;NA;NAT;NAT;NA;;NA;NA;NA;NA;NA;NA
+613006;NA;NA;NA;NA;Firewall;Firewall;NA;;NA;NA;NA;NA;NA;NA
+613007;NA;NA;NA;NA;Status;Estado;NA;;NA;NA;NA;NA;NA;NA
+613008;NA;NA;NA;NA;IPv4 Address;Dirección IPv4;NA;;NA;NA;NA;NA;NA;NA
+613009;NA;NA;NA;NA;Connection Uptime;Tiempo de conexión;NA;;NA;NA;NA;NA;NA;NA
+613010;NA;NA;NA;NA;DHCP Lease Time;Tiempo de Lease;NA;;NA;NA;NA;NA;NA;NA
+613011;NA;NA;NA;NA;DNS Server;Servidor DNS;NA;;NA;NA;NA;NA;NA;NA
+613012;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613013;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613014;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613015;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613016;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613017;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613018;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613019;NA;NA;NA;NA;PPPoE;PPPoE;NA;;NA;NA;NA;NA;NA;NA
+613020;NA;NA;NA;NA;IPoA;IPoA;NA;;NA;NA;NA;NA;NA;NA
+613021;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613022;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613023;NA;NA;NA;NA;Enabled;Activado;NA;;NA;NA;NA;NA;NA;NA
+613024;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613025;NA;NA;NA;NA;Disabled;Desact.;NA;;NA;NA;NA;NA;NA;NA
+613026;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613027;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613028;NA;NA;NA;NA;Down;Bajada;NA;;NA;NA;NA;NA;NA;NA
+613029;NA;NA;NA;NA;Up;Subida;NA;;NA;NA;NA;NA;NA;NA
+613030;NA;NA;NA;NA;;;NA;;NA;NA;NA;NA;NA;NA
+613031;NA;NA;NA;NA;WAN Connection Details;Estado WAN;NA;;NA;NA;NA;NA;NA;NA
+613032;NA;NA;NA;NA;Interface;Interfaz;NA;;NA;NA;NA;NA;NA;NA
+613033;NA;NA;NA;NA;Recvd. Bytes;Bytes Rx;NA;;NA;NA;NA;ID 613033;Recvd. Bytes;NA
+613034;NA;NA;NA;NA;Pkts;Pkts;NA;;NA;NA;NA;ID 613034;Pkts;NA
+613035;NA;NA;NA;NA;Errs;Errs;NA;;NA;NA;NA;ID 613035;Errs;NA
+613036;NA;NA;NA;NA;Drops;Drops;NA;;NA;NA;NA;ID 613036;Drops;NA
+613037;NA;NA;NA;NA;Trans. Bytes;Bytes Tx;NA;;NA;NA;NA;ID 613037;Trans. Bytes;NA
+613038;NA;NA;NA;NA;ATM statistics;Estadísticas ATM;NA;;NA;NA;NA;NA;NA;NA
+613039;NA;NA;NA;NA;In Octets;In Octets;NA;;NA;NA;NA;NA;NA;NA
+613040;NA;NA;NA;NA;Out Octets;Out Octets;NA;;NA;NA;NA;NA;NA;NA
+613041;NA;NA;NA;NA;In Packets;In Packets;NA;;NA;NA;NA;NA;NA;NA
+613042;NA;NA;NA;NA;Out Packets;Out Packets;NA;;NA;NA;NA;NA;NA;NA
+613043;NA;NA;NA;NA;In ATM Cells;In ATM Cells;NA;;NA;NA;NA;NA;NA;NA
+613044;NA;NA;NA;NA;Out ATM Cells;Out ATM Cells;NA;;NA;NA;NA;NA;NA;NA
+613045;NA;NA;NA;NA;In Packets Errors;In Packets Errors;NA;;NA;NA;NA;NA;NA;NA
+613046;NA;NA;NA;NA;In Cell Errors;In Cell Errors;NA;;NA;NA;NA;NA;NA;NA
+613047;NA;NA;NA;NA;Reset Statistics;Reset Statistics;NA;;NA;NA;NA;NA;NA;NA
+613048;NA;NA;NA;NA;IPv6 WAN Connection Details;Detalles de la conexión WAN IPv6;NA;;NA;NA;NA;NA;NA;NA
+613049;NA;NA;NA;NA;IPv6 Global Addr;IPv6 Global Addr;NA;;NA;NA;NA;NA;NA;NA
+613050;NA;NA;NA;NA;IPv6 Link Local Addr;IPv6 Link Local Addr;NA;;NA;NA;NA;NA;NA;NA
+613051;NA;NA;NA;NA;IPv6 Default Gateway;IPv6 Default Gateway;NA;;NA;NA;NA;NA;NA;NA
+613052;NA;NA;NA;NA;IPv6 DNS Servers;IPv6 DNS Servers;NA;;NA;NA;NA;NA;NA;NA
+613053;NA;NA;NA;NA;Devices;Devices;NA;NA;NA;NA;NA;NA;NA;NA
+613054;NA;NA;NA;NA;VF WiFi network EAP SSID;VF WiFi network EAP SSID;NA;NA;NA;NA;NA;NA;NA;NA
+613055;NA;NA;NA;NA;VF WiFi network Open SSID;VF WiFi network Open SSID;NA;NA;NA;NA;NA;NA;NA;NA
+613056;NA;NA;NA;NA;VF WiFi network;VF WiFi network;NA;NA;NA;NA;NA;NA;NA;NA
+613057;NA;NA;NA;NA;;;NA;NA;NA;NA;NA;NA;NA;NA
+614001;NA;NA;NA;NA;LAN Status;Estado LAN;NA;;NA;NA;NA;NA;NA;NA
+614002;NA;NA;NA;NA;Device info ARP;Table ARP;NA;;NA;NA;NA;NA;NA;NA
+614003;NA;NA;NA;NA;IP address;Dirección IP;NA;;NA;NA;NA;NA;NA;NA
+614004;NA;NA;NA;NA;HW Type;Tipo HW;NA;;NA;NA;NA;NA;NA;NA
+614005;NA;NA;NA;NA;Flags;Flags;NA;;NA;NA;NA;NA;NA;NA
+614006;NA;NA;NA;NA;HW Address;Dirección MAC;NA;;NA;NA;NA;NA;NA;NA
+614007;NA;NA;NA;NA;Device;Dispositivo;NA;;NA;NA;NA;NA;NA;NA
+614008;NA;NA;NA;NA;Device info DHCP Leases;Tabla DHCP;NA;;NA;NA;NA;NA;NA;NA
+614009;NA;NA;NA;NA;Host Name;HostName;NA;;NA;NA;NA;NA;NA;NA
+614010;NA;NA;NA;NA;MAC Address;Dirección MAC;NA;;NA;NA;NA;NA;NA;NA
+614011;NA;NA;NA;NA;IP address;Dirección IP;NA;;NA;NA;NA;NA;NA;NA
+614012;NA;NA;NA;NA;Type;Tipo;NA;;NA;NA;NA;NA;NA;NA
+614013;NA;NA;NA;NA;Status;Estado;NA;;NA;NA;NA;NA;NA;NA
+614014;NA;NA;NA;NA;Expires in;Expira en;NA;;NA;NA;NA;NA;NA;NA
+614015;NA;NA;NA;NA;LAN statistics;Estadísticas LAN;NA;;NA;NA;NA;ID 614015;LAN Network statistics;NA
+614016;NA;NA;NA;NA;Interface;Interfaz;NA;;NA;NA;NA;ID 614016;Interface;NA
+614017;NA;NA;NA;NA;IPv6 LAN Connection Details;Detalles de la conexión LAN IPv6;NA;;NA;NA;NA;NA;NA;NA
+614018;NA;NA;NA;NA;IPv6 Global Addr;IPv6 Global Addr;NA;;NA;NA;NA;NA;NA;NA
+614019;NA;NA;NA;NA;IPv6 Unique Local Addr;IPv6 Unique Local Addr;NA;;NA;NA;NA;NA;NA;NA
+614020;NA;NA;NA;NA;IPv6 Link Local Addr;IPv6 Link Local Addr;NA;;NA;NA;NA;NA;NA;NA
+614021;NA;NA;NA;NA;IPv6 DHCP Addr Pool;IPv6 DHCP Addr Pool;NA;;NA;NA;NA;NA;NA;NA
+614022;NA;NA;NA;NA;IPv6 Default Gateway;IPv6 Default Gateway;NA;;NA;NA;NA;NA;NA;NA
+614023;NA;NA;NA;NA;IPv6 DNS Servers;IPv6 DNS Servers;NA;;NA;NA;NA;NA;NA;NA
+614024;NA;NA;NA;NA;IPv6 LAN statistics;IPv6. Estadísticas LAN;NA;;NA;NA;NA;NA;NA;NA
+614025;NA;NA;NA;NA;Interface;Interface;NA;;NA;NA;NA;NA;NA;NA
+614026;NA;NA;NA;NA;Rx Bytes;Rx Bytes;NA;;NA;NA;NA;NA;NA;NA
+614027;NA;NA;NA;NA;pkts;pkts;NA;;NA;NA;NA;NA;NA;NA
+614028;NA;NA;NA;NA;errors;errors;NA;;NA;NA;NA;NA;NA;NA
+614029;NA;NA;NA;NA;drops;drops;NA;;NA;NA;NA;NA;NA;NA
+614030;NA;NA;NA;NA;Rx Bytes;Rx Bytes;NA;;NA;NA;NA;NA;NA;NA
+614031;NA;NA;NA;NA;pkts;pkts;NA;;NA;NA;NA;NA;NA;NA
+614032;NA;NA;NA;NA;errors;errors;NA;;NA;NA;NA;NA;NA;NA
+614033;NA;NA;NA;NA;drops;drops;NA;;NA;NA;NA;NA;NA;NA
+614034;NA;NA;NA;NA;errors;errors;NA;;NA;NA;NA;NA;NA;NA
+614035;NA;NA;NA;NA;Vodafone WiFi network devices;Conexiones Red Vodafone WiFi;NA;;NA;NA;NA;NA;NA;NA
+614036;NA;NA;NA;NA;Host Name;Host Name;NA;;NA;NA;NA;NA;NA;NA
+614037;NA;NA;NA;NA;Status;Estado;NA;;NA;NA;NA;NA;NA;NA
+614038;NA;NA;NA;NA;Expires in;Expira en;NA;NA;NA;NA;NA;NA;NA;NA
+614039;NA;NA;NA;NA;Inactive;Inactivo;NA;NA;NA;NA;NA;NA;NA;NA
+614040;NA;NA;NA;NA;Active;Activo;NA;NA;NA;NA;NA;NA;NA;NA
+615001;NA;NA;NA;NA;Routing;Routing;NA;;NA;NA;NA;NA;NA;NA
+615002;NA;NA;NA;NA;Device Info Route;Información del Router;NA;;NA;NA;NA;NA;NA;NA
+615003;NA;NA;NA;NA;Destination IP ;IP Destino;NA;;NA;NA;NA;NA;NA;NA
+615004;NA;NA;NA;NA;Destination Subnet Mask;Máscara de subred;NA;;NA;NA;NA;NA;NA;NA
+615005;NA;NA;NA;NA;Subnet Mask;Máscara de subred;NA;;NA;NA;NA;NA;NA;NA
+615006;NA;NA;NA;NA;Metric;Métrica;NA;;NA;NA;NA;NA;NA;NA
+615007;NA;NA;NA;NA;Policy;Política;NA;;NA;NA;NA;NA;NA;NA
+615008;NA;NA;NA;NA;Gateway IP;Gateway IP;NA;;NA;NA;NA;NA;NA;NA
+615009;NA;NA;NA;NA;Interface;Interfaz;NA;;NA;NA;NA;NA;NA;NA
+615010;NA;NA;NA;NA;Source IP;IP de origen;NA;;NA;NA;NA;NA;NA;NA
+615011;NA;NA;NA;NA;Source Subnet Mask;Máscara de subred de origen;NA;;NA;NA;NA;NA;NA;NA
+615012;NA;NA;NA;NA;Status;Estado;NA;;NA;NA;NA;NA;NA;NA
+615013;NA;NA;NA;NA;Type;Tipo;NA;;NA;NA;NA;NA;NA;NA
+615014;NA;NA;NA;NA;Destination IP;Ip destino;;;NA;NA;NA;NA;NA;NA
+615015;NA;NA;NA;NA;Metric;Métrica;;;NA;NA;NA;NA;NA;NA
+615016;NA;NA;NA;NA;Gateway IP;Gateway IP;;;NA;NA;NA;NA;NA;NA
+615017;NA;NA;NA;NA;Interface;interface;;;NA;NA;NA;NA;NA;NA
+616001;NA;NA;NA;NA;VOIP Diagnostics;Diagnóstico VoIP;NA;;NA;NA;NA;NA;NA;NA
+616002;NA;NA;NA;NA;Select Log Level;Seleccione el nivel de logs;NA;;NA;NA;NA;NA;NA;NA
+616003;NA;NA;NA;NA;Low;Bajo;NA;;NA;NA;NA;NA;NA;NA
+616004;NA;NA;NA;NA;High;Alto;NA;;NA;NA;NA;NA;NA;NA
+616005;NA;NA;NA;NA;All Info;Toda la información;NA;;NA;NA;NA;NA;NA;NA
+616006;NA;NA;NA;NA;History Info;Histórico;NA;;NA;NA;NA;NA;NA;NA
+616007;NA;NA;NA;NA;Off;Apagado;NA;;NA;NA;NA;NA;NA;NA
+616008;NA;NA;NA;NA;Mid;Mid;NA;;NA;NA;NA;NA;NA;NA
+616009;NA;NA;NA;NA;Telephony Diagnose;Diagnóstico de servicio telefónico;NA;;NA;NA;NA;NA;NA;NA
+616010;NA;NA;NA;NA;Ring on;Ring on;NA;;NA;NA;NA;NA;NA;NA
+616011;NA;NA;NA;NA;Ring off;Ring off;NA;;NA;NA;NA;NA;NA;NA
+617001;PLC Monitoring;;"Powerline adaptör
+";NA;NA;NA;NA;;Powerline Adapter;Powerline Adapters;"Powerline adaptör
+";Powerline Adapter;Powerline Adapters;Powerline Adapters
+617002;If PLC devices have been recognized, you can find here the information collected;;Tanınan PLC cihazları varsa, burada bilgileri bulabilirsiniz.;NA;NA;NA;NA;;Auf dieser Seite sehen Sie die Liste, der in Ihr Heimnetzwerk aktiven Powerline Adapter (PLC) und deren Netzwerk-Informationen.;This page shows the list of Powerline Adapters (PLC) recognized in your home network and information on powerline network topology.;Bu sayfada Powerline adaptörü (PLC) ve ağ bilgi aktif listesini görebilirsiniz.;Auf dieser Seite sehen Sie die Liste, der in Ihr Heimnetzwerk aktiven Powerline Adapter (PLC) und deren Netzwerk-Informationen.;This page shows the list of Powerline Adapters (PLC) recognized in your home network and information on powerline network topology.;This page shows the list of Powerline Adapters (PLC) recognized in your home network and information on powerline network topology.
+617003;Enable PLC Monitoring;;Powerline adaptör diyagnozu;NA;NA;NA;NA;;Powerline Adapter Diagnose;PLC Monitoring;Powerline adaptör diyagnozu;Powerline Adapter Diagnose;PLC Monitoring;PLC Monitoring
+617004;Enable the PLC Monitoring functionality;;PLC Kontrol işlevi etkinleştirmek;NA;NA;NA;NA;;Anschalten der Powerline Adapter Diagnose;Enable the PLC Monitoring functionality;"
+Powerline adaptör diyagnozunu açın
+";Anschalten der Powerline Adapter Diagnose;Enable the PLC Monitoring functionality;Enable the PLC Monitoring functionality
+617005;Privacy Setting;;Gizlilik ayarları;NA;NA;NA;NA;;Einstellungen Privatsphäre;Privacy Setting;Gizlilik ayarları;Einstellungen Privatsphäre;Privacy Setting;Privacy Setting
+617006;When enabled, the privacy setting hide information about devices in the LAN that Vodafone Support can see.;;LAN cihazlar ayar hakkında gizlilik bilgi etkinleştirildiğinde Vodafone´dan destek görebilirsiniz.;NA;NA;NA;NA;;Bei Anschaltung der Privatsphäre werden die Informationen Ihres Powerline Adapters nicht an die Vodafone Kundenbetreuung zur Verfügung gestellt.;When enabled, the privacy setting hides information about local devices of your home network to the Vodafone Customer Support.;Bu gizlilik ayarı etkinleştirirseniz Vodafone müşteri hizmetleri Powerline bilgilerini alamaz.;Bei Anschaltung der Privatsphäre werden die Informationen Ihres Powerline Adapters nicht an die Vodafone Kundenbetreuung zur Verfügung gestellt.;When enabled, the privacy setting hides information about local devices of your home network to the Vodafone Customer Support.;When enabled, the privacy setting hides information about local devices of your home network to the Vodafone Customer Support.
+617007;Enable Privacy setting;;Gizlilik ayarı etkinleştirin;NA;NA;NA;NA;;Anschalten der Privatsphäre für PLC;Enable Privacy setting;Gizlilik ayarı etkinleştirin;Anschalten der Privatsphäre für PLC;Enable Privacy setting;Enable Privacy setting
+617008;Refresh;;Ağ bilgilerini güncelleyin;NA;NA;NA;NA;;Aktualisierung der Netzwerk-Informationen;Network Topology Refresh;Ağ bilgilerini güncelleyin;Aktualisierung der Netzwerk-Informationen;Network Topology Refresh;Network Topology Refresh
+617009;"If the information do not seem to be accurate, you can request another scan via the ""Refresh button""";;Burada ağ bilgilerini güncellebilirsiniz.;NA;NA;NA;NA;;Wenn die Netzwerk-Informationen nicht aktuell sind, dann starten Sie eine Aktualisierung.;"If the network topology information do not seem to be accurate, start a new scanning via  ""Refresh"" button.";Burada ağ bilgilerini güncellebilirsiniz.;Wenn die Netzwerk-Informationen nicht aktuell sind, dann starten Sie eine Aktualisierung.;"If the network topology information do not seem to be accurate, start a new scanning via  ""Refresh"" button.";"If the network topology information do not seem to be accurate, start a new scanning via  ""Refresh"" button."
+617010;Tel;;TEL;NA;NA;NA;NA;;Tel;Tel;TEL;Tel;Tel;Tel
+617011;MAC;;MAC;NA;NA;NA;NA;;MAC;MAC;MAC;MAC;MAC;MAC
+617012;Speed in MB/s(TX/RX);;Speed in MB/s(TX/RX);NA;NA;NA;NA;;Speed in MB/s(TX/RX);Speed in MB/s(TX/RX);Speed in MB/s(TX/RX);Speed in MB/s(TX/RX);Speed in MB/s(TX/RX);Speed in MB/s(TX/RX)
+617013;Chipset;;Chipset;NA;NA;NA;NA;;Chipset;Chipset;Chipset;Chipset;Chipset;Chipset
+617014;Firmware;;Firmware;NA;NA;NA;NA;;Firmware;Firmware;Firmware;Firmware;Firmware;Firmware
+617015;Stations;;Stations;NA;NA;NA;NA;;Stations;Stations;Stations;Stations;Stations;Stations
+617016;Refresh;;Yenile;;;;;;Aktualisierung;Refresh;Yenile;Aktualisierung;Refresh;Refresh
+618001;Port Mirroring;;"Port Mirroring
+";NA;Port Mirroring;Port mirroring;NA;;Port Mirroring;Port Mirroring;"Port Mirroring
+";Port Mirroring;Port Mirroring;Port Mirroring
+618002;NA;NA;NA;NA;With port mirroring you can dump all packetd of selected interface to LAN1 (Ex: -i ppp1);Con la funcionalidad de port mirroring puedes hacer un volcado de todos los paquetes de una interfaz al puerto LAN1 (Ej: -i ppp1);NA;;NA;NA;NA;NA;NA;NA
+618003;NA;NA;NA;NA;Port Mirroring;Port mirroring;NA;;NA;NA;NA;NA;NA;NA
+618004;NA;NA;NA;NA;Command;Comando;NA;;NA;NA;NA;NA;NA;NA
+618005;NA;NA;NA;NA;Stop;Detener;NA;;NA;NA;NA;NA;NA;NA
+618006;NA;NA;NA;NA;Start;Iniciar;NA;;NA;NA;NA;NA;NA;NA
+618007;NA;NA;NA;NA;Warning;Advertencia;;;;;;;;
+618008;NA;NA;NA;NA;Please don't forget to stop the capture.;No olvide detener la captura;;;;;;;;
+619001;NA;NA;NA;NA;NA;NA;NA;NA;Vodafone TV;Vodafone TV;Vodafone TV;Vodafone TV;Vodafone TV;Vodafone TV
+619002;NA;NA;NA;NA;NA;NA;NA;NA;Mit diesem Diagnoseprogramm können Sie den Status Ihrers Vodafone TV Produktes prüfen.;This page allows to verify the connection status of your Vodafone TV Services.;Bu sayfa Vodafone TV bağlantı durumunu diyagnoz eder.;Mit diesem Diagnoseprogramm können Sie den Status Ihrers Vodafone TV Produktes prüfen.;This page allows to verify the connection status of your Vodafone TV Services.;This page allows to verify the connection status of your Vodafone TV Services.
+619003;NA;NA;NA;NA;VF WiFi network status;Estado Red Vodafone WiFi;NA;NA;NA;NA;NA;ID 619003;VF WiFi network status;NA
+619004;NA;NA;NA;NA;Connected;Conectado;NA;NA;NA;NA;NA;ID 619004;Connected;NA
+619005;NA;NA;NA;NA;NA;VF WiFi key status;NA;NA;NA;NA;NA;ID 619005;VF WiFi key status;NA
+619006;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;ID 619006;OK;NA
+619007;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;ID 619007;VF WiFi network devices;NA
+619008;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;ID 619008;Host Name;NA
+619009;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;ID 619009;Status;NA
+619010;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;ID 619010;Expires in;NA
+619011;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;ID 619011;VF WiFi network;NA
+619012;NA;NA;NA;NA;aggregated;agregado;NA;NA;NA;NA;NA;NA;NA;NA
+619013;NA;NA;NA;NA;SSID;SSID;NA;NA;NA;NA;NA;NA;NA;NA
+619014;NA;NA;NA;NA;EAPSSID;EAPSSID;NA;NA;NA;NA;NA;NA;NA;NA
+619015;NA;NA;NA;NA;VF WiFi status;Estado Red Vodafone WiFi;NA;NA;NA;NA;NA;NA;NA;NA
+619016;NA;NA;NA;NA;Max BW;Max BW;NA;NA;NA;NA;NA;NA;NA;NA
+619017;NA;NA;NA;NA;Minimum Sync Speed;Minimum Sync Speed;NA;NA;NA;NA;NA;NA;NA;NA
+619018;NA;NA;NA;NA;On;On;NA;NA;NA;NA;NA;NA;NA;NA

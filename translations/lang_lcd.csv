@@ -1,0 +1,277 @@
+1000;en-de;de-de;tr-de;en-nz;en-es;es-es;en-it;it-it
+1001;Phone;Telefonie;Telefon;Phone;NA;NA;NA;NA
+1002;Voicemail;Nachrichten;Mesajlar;Voicemail;NA;NA;NA;NA
+1003;Settings;Einstellungen;Ayarlar;Settings;NA;NA;NA;NA
+1004;WiFi;W-LAN;WiFi;WiFi;NA;NA;NA;NA
+1005;Overview;Übersicht;Durum;Overview;NA;NA;NA;NA
+1006;Internet;Internet;İnternet;Internet;NA;NA;NA;NA
+1007;LTE;LTE;4G;LTE;NA;NA;NA;NA
+1008;DSL;DSL;DSL;DSL;NA;NA;NA;NA
+1009;UMTS;UMTS;3G;UMTS;NA;NA;NA;NA
+1010;Fibre;Fibre;Fibre;Fibre;NA;NA;NA;NA
+1011;NA;NA;NA;Messages;NA;NA;NA;NA
+2001;Private - Landline;Privat - Festnetz;Özel – Sabit hat;Private - Landline;NA;NA;NA;NA
+2002;Private - Mobile;Privat - Mobilfunk;Özel – Mobil hat;Private - Mobile;NA;NA;NA;NA
+2003;Work - Landline;Dienstlich - Festnetz;İş –  Sabit hat;Work - Landline;NA;NA;NA;NA
+2004;Work - Mobile;Dienstlich - Mobilfunk;İş –  Mobil hat;Work - Mobile;NA;NA;NA;NA
+2005;Delete;Löschen;Sil;Delete;NA;NA;NA;NA
+2006;Delete All;Alles löschen;Tümünü sil;Delete All;NA;NA;NA;NA
+2007;Are you really sure you want to delete the call?;Sind Sie sicher, dass Sie diesen Anruf löschen wollen?;Bu aramayı silmek istediğinizden emin misiniz?;Are you really sure you want to delete the call?;NA;NA;NA;NA
+2008;Are you really sure you want to delete all calls?;Sind Sie sicher, dass Sie alle Anrufe löschen wollen?;Tüm aramaları silmek istediğinizden emin misiniz?;Are you really sure you want to delete all calls?;NA;NA;NA;NA
+2009;The call previously selected has been deleted successfully!;Der zuvor gewählte Anruf wurde erfolgreich gelöscht.;Daha önce seçilen arama başarıyla silindi.;The call previously selected has been deleted successfully!;NA;NA;NA;NA
+2010;All calls previously selected have been deleted successfully!;Alle zuvor gewählte Anrufe wurden erfolgreich gelöscht.;Daha önce seçilen tüm aramalar başarıyla silindi.;All calls previously selected have been deleted successfully!;NA;NA;NA;NA
+2011;No calls;Keine Anrufe;Arama yok;No calls;NA;NA;NA;NA
+2012;Unknown;Unbekannt;Anonim;Unknown;NA;NA;NA;NA
+2013;Other;Andere;Diğer;Other;NA;NA;NA;NA
+2014;NA;NA;NA;All calls;NA;NA;NA;NA
+2015;NA;NA;NA;Calls Line 1;NA;NA;NA;NA
+2016;NA;NA;NA;Calls Line 2;NA;NA;NA;NA
+2017;NA;NA;NA;Line 1;NA;NA;NA;NA
+2018;NA;NA;NA;Line 2;NA;NA;NA;NA
+2019;NA;NA;NA;Call;NA;NA;NA;NA
+2020;NA;NA;NA;Calling;NA;NA;NA;NA
+2021;NA;NA;NA;Chris Ashley...;NA;NA;NA;NA
+3001;Please dial #123# on your phone to listen to this message or #807# to enter to the menu of the answering machine.;Bitte wählen Sie #123# um diese Nachricht abzuhören, bzw. #807# um ins AB-Menü zu gelangen.;Gelen mesajı dinlemek için lütfen EasyBox cihazına bağlı olan telefonunuzla #123# arayiniz. Diger servisler icin #807# arayiniz.;Please dial #123# on your phone connected to the EasyBox to listen to the voicemail.;NA;NA;NA;NA
+3002;32/40 Minutes;32/40 Minuten;32dak / 40dak;32/40 Minutes;NA;NA;NA;NA
+3003;Deactivate;Deaktivieren;Kapat;Deactivate;NA;NA;NA;NA
+3004;Activate;Aktivieren;Etkinleştir;Activate;NA;NA;NA;NA
+3005;Your Voicemail is currently switched off.;Ihr Anrufbeantworter ist momentan ausgeschaltet.;Telesekreteriniz şu anda kapalı.;Your Voicemail is currently switched off.;NA;NA;NA;NA
+3006;Capacity of voicemail:;Aufnahmekapazität:;Telesekreterin kayıt kapasitesi:;Capacity of voicemail:;NA;NA;NA;NA
+3007;Are you sure you want to delete the voicemail?;Sind Sie sicher, dass Sie diese Nachricht löschen wollen?;Bu mesajı silmek istediğinizden emin misiniz?;Are you sure you want to delete the voicemail?;NA;NA;NA;NA
+3008;Are you sure you want to delete all voicemails?;Sind Sie sicher, dass Sie alle Nachrichten löschen wollen?;Tüm mesajları silmek istediğinizden emin misiniz?;Are you sure you want to delete all voicemails?;NA;NA;NA;NA
+3009;No Voicemails;Keine Nachrichten;Mesaj yok;No Voicemails;NA;NA;NA;NA
+3010;Are you sure you want to deactivate the voicemail?;Sind Sie sicher, dass Sie den Anrufbeantworter deaktivieren möchten?;Telesekreterinizi kapatmak istiyormusunuz?;Are you sure you want to deactivate the voicemail?;NA;NA;NA;NA
+3011;NA;NA;NA;Vodafone Service;NA;NA;NA;NA
+3012;NA;NA;NA;Vodafone Music;NA;NA;NA;NA
+3013;NA;NA;NA;Dear Customer, we have a great new...;NA;NA;NA;NA
+3014;NA;NA;NA;Dear Customer. We have an amazing new service we can offer you. It's all about connecting to the people you love. If you're interested in getting to know more about it, just reply to his message!;NA;NA;NA;NA
+3015;NA;NA;NA;Hello, this is a great opportunity to...;NA;NA;NA;NA
+3016;NA;NA;NA;Interested in getting more out of...;NA;NA;NA;NA
+3017;NA;NA;NA;Reply;NA;NA;NA;NA
+3018;NA;NA;NA;Are you sure you want to delete the message?;NA;NA;NA;NA
+3019;NA;NA;NA;No messages;NA;NA;NA;NA
+3020;NA;NA;NA;Call TEL1;NA;NA;NA;NA
+3021;NA;NA;NA;Call TEL2;NA;NA;NA;NA
+3022;NA;NA;NA;TEL1...;NA;NA;NA;NA
+3023;NA;NA;NA;TEL2...;NA;NA;NA;NA
+4001;Information;Information;Bilgi;Information;NA;NA;NA;NA
+4002;Hardware Type & Version;Hardware-Typ & Version;Cihaz-Versiyonu;Hardware Type & Version;NA;NA;NA;NA
+4003;Firmware Version;Firmware-Version;Firmware-Versiyonu;Firmware Version;NA;NA;NA;NA
+4004;LTE Firmware & Version;LTE-Firmware & Version;4G-Firmware & Versiyonu;LTE Firmware & Version;NA;NA;NA;NA
+4005;Bootloader Version;Bootloader-Version;Bootloader-Versiyonu;Bootloader Version;NA;NA;NA;NA
+4006;Serial Number;Seriennummer;Seri numarasi;Serial Number;NA;NA;NA;NA
+4007;Firewall;Firewall;Firewall;Firewall;NA;NA;NA;NA
+4008;IPv4 Address (Internet);IPv4-Adresse (Internet);IPv4-Adresi (Internet);IPv4 Address (Internet);NA;NA;NA;NA
+4009;IPv6 Prefix (Internet);IPv6-Präfix (Internet);IPv6-Önek (Internet);IPv6 Prefix (Internet);NA;NA;NA;NA
+4010;IPv4 Address (LAN);IPv4-Adresse (LAN);IPv4-Adresi (LAN);IPv4 Address (LAN);NA;NA;NA;NA
+4011;IPv6 Subnet (LAN);IPv6 Subnet (LAN);IPv6 Alt ağ maskesi (LAN);IPv6 Subnet (LAN);NA;NA;NA;NA
+4012;Diagnosis;Diagnose;Teşhis;Diagnosis;NA;NA;NA;NA
+4013;Test in progress;Test wird durchgeführt;Test gerçekleştiriliyor;Test in progress;NA;NA;NA;NA
+4014;Error Code;Fehler-Code;Hata kod numarası;Error Code;NA;NA;NA;NA
+4015;Customer Service;Kundendienst;Müşteri Hizmetleri;Customer Service;NA;NA;NA;NA
+4016;Phone: 0800 172 1212;Tel. 0800 172 1212;Tel. 0800 172 1212;Phone: 0800 172 1212;NA;NA;NA;NA
+4017;Web: www.dsl-easybox.de;Web: www.dsl-easybox.de;Web: www.dsl-easybox.de;Web: www.dsl-easybox.de;NA;NA;NA;NA
+4018;Change Language;Sprache wechseln;Dil değiştir;Change Language;NA;NA;NA;NA
+4019;Deutsch;Deutsch;Deutsch;Deutsch;NA;NA;NA;NA
+4020;English;English;English;English;NA;NA;NA;NA
+4021;Türkçe;Türkçe;Türkçe;Türkçe;NA;NA;NA;NA
+4022;Screen Brightness;Display Helligkeit;Ekran parlaklığı;Screen Brightness;NA;NA;NA;NA
+4023;Please use your up & down buttons to change the screen brightness.;Bitte ändern Sie die Display-Helligkeit mit den up / down-Tasten.;Lütfen ekran parlaklığını up / down tuşları ile değiştiriniz.;Please use your up & down buttons to change the screen brightness.;NA;NA;NA;NA
+4024;Font Size;Schriftgröße;Yazı boyutu;Font Size;NA;NA;NA;NA
+4025;Do you want to switch to the large font mode?;Möchten Sie auf große Schriftgröße wechseln?;Daha büyük bir yazı boyutuna geçmek istiyor musunuz?;Do you want to switch to the large font mode?;NA;NA;NA;NA
+4026;Signal Strength;Signalstärke;Sinyal gücü;Signal Strength;NA;NA;NA;NA
+4027;Please use the signal strength indicator to find the best position for your EasyBox.;Bitte nutzen Sie die Signalstärke-Anzeige, um den optimalen Standort Ihrer EasyBox zu finden.;EasyBox cihazınız için en uygun yeri bulmak için lütfen sinyal gücü göstergesini kullanınız.;Please use the signal strength indicator to find the best position for your EasyBox.;NA;NA;NA;NA
+4028;Do you want to switch to the normal font mode?;Möchten Sie auf normale Schriftgröße wechseln?;Normal yazı boyutuna geçmek istiyor musunuz?;Do you want to switch to the normal font mode?;NA;NA;NA;NA
+4029;Contact us;Kontakt;Iletişim;Contact us;NA;NA;NA;NA
+4030;Your font size has been changed successfully!;Die Schriftgröße wurde erfolgreich geändert!;Yazı boyutu başarıyla değiştirilmiştir;Your font size has been changed successfully!;NA;NA;NA;NA
+4031;IPv4 Address (Guest WiFi);IPv4 Address (Gast W-LAN);IPv4-Adresi (Misafir-WiFi);IPv4 Address (Guest WiFi);NA;NA;NA;NA
+4032;IPv6 Address (Guest WiFi);IPv6 Address (Gast W-LAN);IPv6-Adresi (Misafir-WiFi);IPv6 Address (Guest WiFi);NA;NA;NA;NA
+4033;Uptime;Zeit seit letztem Neustart;Kulanım süresi;Uptime;NA;NA;NA;NA
+4034;EB904LTE A/J V01.01;EB904LTE A/J V01.01;EB904LTE A/J V01.01;EB904LTE A/J V01.01;NA;NA;NA;NA
+4035;AT904L-01.07 MFR;AT904L-01.07 MFR;AT904L-01.07 MFR;AT904L-01.07 MFR;NA;NA;NA;NA
+4036;Q/Q 01.23 / 124.887;Q/Q 01.23 / 124.887;Q/Q 01.23 / 124.887;Q/Q 01.23 / 124.887;NA;NA;NA;NA
+4037;V01.01;V01.01;V01.01;V01.01;NA;NA;NA;NA
+4038;R029456745677;R029456745677;R029,456,745,677;R029456745677;NA;NA;NA;NA
+4039;active;aktiv;aktif;active;NA;NA;NA;NA
+4040;178.14.180.216;178.14.180.216;178.14.180.216;178.14.180.216;NA;NA;NA;NA
+4041;2001:0db8:3962:1400::/56;2001:0db8:3962:1400::/56;2001:0db8:3962:1400::/56;2001:0db8:3962:1400::/56;NA;NA;NA;NA
+4042;192.168.2.1/24;192.168.2.1/24;192.168.2.1/24;192.168.2.1/24;NA;NA;NA;NA
+4043;2001:0db8:3962:1442::/64;2001:0db8:3962:1442::/64;2001:0db8:3962:1442::/64;2001:0db8:3962:1442::/64;NA;NA;NA;NA
+4044;192.168.3.1/24;192.168.3.1/24;192.168.3.1/24;192.168.3.1/24;NA;NA;NA;NA
+4045;2001:0db8:3962:1476::/64;2001:0db8:3962:1476::/64;2001:0db8:3962:1476::/64;2001:0db8:3962:1476::/64;NA;NA;NA;NA
+4046;3 days, 17 hours and 12 minutes;3 Tage, 17 Stunden und 12 Minuten;3 Gün, 17 Saat ve 12 dakika;3 days, 17 hours and 12 minutes;NA;NA;NA;NA
+4047;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.;Platzhalter...;"yer tutucu
+";This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.;NA;NA;NA;NA
+4048;inactive;inaktiv;etkisiz;inactive;NA;NA;NA;NA
+5001;Your WiFi is currently switched off.;Ihr W-LAN ist derzeit ausgeschaltet.;WiFi ağınız şu anda kapalı.;Your WiFi is currently switched off.;NA;NA;NA;NA
+5002;WiFi On;W-LAN ein;WiFi aç;Turn WiFi On;NA;NA;NA;NA
+5003;Please wait a few seconds.;Bitte einige Sekunden warten.;Lütfen birkaç saniye bekleyiniz.;Please wait a few seconds.;NA;NA;NA;NA
+5004;Security:;Sicherheit:;Güvenlik:;Security:;NA;NA;NA;NA
+5005;Secured;Gesichert;Güvenli;Secured;NA;NA;NA;NA
+5006;Unsecured;Ungesichert;Güvencesiz;Unsecured;NA;NA;NA;NA
+5007;WiFi Off;W-LAN aus;WiFi kapat;Turn WiFi Off;NA;NA;NA;NA
+5008;Are you sure you want to deactivate the WiFi?;Sind Sie sicher, dass Sie W-LAN ausschalten wollen?;WiFi bağlantısını kapatmak istediğinizden emin misiniz?;Are you sure you want to deactivate the WiFi?;NA;NA;NA;NA
+5009;WiFi Schedule is active. </br>Your WiFi is currently switched off.;W-LAN Zeitplan ist aktiv. </br>Ihr W-LAN ist derzeit ausgeschaltet.;WiFi zaman çizelgesi aktif. </br>WiFi baglantınız şu anda kapalı.;WiFi Schedule is active. </br>Your WiFi is currently switched off.;NA;NA;NA;NA
+5010;WPS Pairing;WPS verbinden;WPS bağlan;WPS Pairing;NA;NA;NA;NA
+5011;Please push now the pairing button on the device you want to pair with.;Bitte nun den WPS-Knopf an dem zu verbindenden Gerät betätigen.;Bağlamak istediğiniz cihazdaki WPS düğmesine 2 dakika içerisinde basınız.;Within 120 seconds please push the pairing button on the device you want to pair with.;NA;NA;NA;NA
+5012;Guest WiFi;Gast W-LAN;Misafir WiFi;Guest WiFi;NA;NA;NA;NA
+5013;Password:;Kennwort:;Şifre:;Password:;NA;NA;NA;NA
+5014;Guest WiFi is currently switched off.;Gast W-LAN ist momentan ausgeschaltet.;Misafir WiFi şu anda kapalı.;Guest WiFi is currently switched off;NA;NA;NA;NA
+5015;NA;NA;NA;WiFi Settings;NA;NA;NA;NA
+5016;NA;NA;NA;Refresh;NA;NA;NA;NA
+5017;NA;NA;NA;Do you really want to change the channel? Every device will be disconnected.;NA;NA;NA;NA
+5018;NA;NA;NA;Change in progress...;NA;NA;NA;NA
+5019;Please configure your Guest WiFi via the web user interface first.;Bitte zunächst Ihr Gast W-LAN über den PC konfigurieren.;Lütfen Misafir WiFI'yi bilgisayar üzerinden konfigüre ediniz.;Please configure your Guest WiFi via the web user interface first.;NA;NA;NA;NA
+6001;WiFi;W-LAN;WiFi;WiFi;NA;NA;NA;NA
+6002;Ethernet;Ethernet;Ethernet;Ethernet;NA;NA;NA;NA
+6003;USB;USB;USB;USB;NA;NA;NA;NA
+6004;Phone;Telefon;Telefon;Phone;NA;NA;NA;NA
+6005;No devices connected;Keine Geräte verbunden;Herhangi bir cihaz bağlı değil;No devices connected;NA;NA;NA;NA
+7001;Data Connection;Datenverbindung;Internet bağlantı;Data Connection;NA;NA;NA;NA
+7002;Voice Connection;Sprachverbindung;Telefon bağlantı;Voice Connection;NA;NA;NA;NA
+7003;LTE Signal Strength;LTE Signalstärke;4G sinyal gücü;LTE Signal Strength;NA;NA;NA;NA
+7004;UMTS Signal Strength;UMTS Signalstärke;3G sinyal gücü;UMTS Signal Strength;NA;NA;NA;NA
+7005;N/A;N/A;yok;N/A;NA;NA;NA;NA
+7006;Download;Download;İndirme Hızı;Download;NA;NA;NA;NA
+7007;Upload;Upload;Yükleme Hızı;Upload;NA;NA;NA;NA
+7008;45.3;45,3;45,3;45.3;NA;NA;NA;NA
+7009;10.0;10,0;10,0;10.0;NA;NA;NA;NA
+7010;Mbit/s;Mbit/s;Mbit/s;Mbit/s;NA;NA;NA;NA
+7011;0.0;0,0;0,0;0.0;NA;NA;NA;NA
+7012;NA;NA;NA;Data Connection;NA;NA;NA;NA
+7013;Status;Status;Durum;Status;NA;NA;NA;NA
+7014;Data Consumption;Datenverbrauch;Internet Paket kullanımı;Data Consumption;NA;NA;NA;NA
+7015;Billing cycle;Rechnungsintervall;Fatura dönemi;Billing cycle;NA;NA;NA;NA
+7016;Max. allowed consumption;Max. erlaubter Verbrauch;Maksimum tüketim;Max. allowed consumption;NA;NA;NA;NA
+7017;Data consumed;verbrauchtes Datenvolumen;Tükenmiş Internet Paketiniz;Data consumed;NA;NA;NA;NA
+7018;Reduced speed;reduzierte Datenübertragungsrate;Düşük hız;Reduced speed;NA;NA;NA;NA
+7019;Data volume exceeded. Your speed has been reduced.;Datenvolumen verbraucht. Ihre Datenübertragungsrate wurde reduziert.;Internet Paketiniz tükenmiştir. Indirme hızınız düşürülecektir.;Data volume exceeded. Your speed has been reduced.;NA;NA;NA;NA
+7020;To purchase additional data volume, please visit:;Um zusätzliches Datenvolumen zu bestellen, klicken Sie bitte hier:;Ek Internet Paket sipariş etmek için, lütfen buraya tıklayınız.;To purchase additional data volume, please visit:;NA;NA;NA;NA
+7021;center.vodafone.de;center.vodafone.de;center.vodafone.de;center.vodafone.co.nz;NA;NA;NA;NA
+7022;NA;NA;NA;NA;NA;NA;NA;NA
+7023;Data request in progress;Daten-Anforderung läuft;Data isteği başladı;Data request in progress;NA;NA;NA;NA
+8001;Start Setup;Setup starten;Kurulumu başlat;Start Setup;NA;NA;NA;NA
+8002;Font Size;Schriftgröße;Yazı boyutu;Font Size;NA;NA;NA;NA
+8003;Skip Setup;Setup abbrechen;Kurulumu iptal et;Skip Setup;NA;NA;NA;NA
+8004;"Please select ""Start Setup"" for configuration.";"Für die Einrichtung bitte ""Setup starten"" wählen.";"Kurulum için lütfen ""Kurulumu başlat""ı seçiniz.";"Please select ""Start Setup"" for configuration.";NA;NA;NA;NA
+8005;Would you like to configure your EasyBox by phone or PC?;Möchten Sie Ihre EasyBox per Telefon oder PC konfigurieren?;EasyBox cihaz konfigurasyonu Telefonla veya bilgisarayla gerçekleştirmek ister misiniz?;Would you like to configure your EasyBox by phone or PC?;NA;NA;NA;NA
+8006;Phone;Telefon;Telefon;Phone;NA;NA;NA;NA
+8007;PC;PC;PC;PC;NA;NA;NA;NA
+8008;ISDN;ISDN;ISDN;ISDN;NA;NA;NA;NA
+8009;Analogue;Analog;Analog;Analogue;NA;NA;NA;NA
+8010;Please plug your ISDN phone into the ISDN S0 connector and pick up your phone.;Bitte verbinden Sie Ihr ISDN-Telefon mit dem ISDN S0-Anschluß und heben den Hörer ab.;Lütfen ISDN telefonunuzu ISDN S0 hattına bağlayınız ve ahizeyi kaldırınız.;Please plug your ISDN phone into the ISDN S0 connector and pick up your phone.;NA;NA;NA;NA
+8011;Please plug your phone into the F port and pick up the phone.;Bitte verbinden Sie Ihr Telefon mit dem F-Anschluß und heben den Hörer ab.;Lütfen telefonunuzu F hattına bağlayınız ve ahizeyi kaldırınız.;Please plug your phone into the F port and pick up the phone.;NA;NA;NA;NA
+8012;Your phone is now connected. </br>Please listen to the instructions on the phone.;Ihr Telefon ist nun verbunden. Bitte folgen Sie den Anweisungen.;Telefonunuz şimdi bağlanmıştır. Lütfen talimatları takip ediniz.;Your phone is now connected. </br>Please listen to the instructions on the phone.;NA;NA;NA;NA
+8013;Configuration is in progress. Please do not disconnect your connection.;Konfiguration wird durchgeführt. Bitte die Verbindung nicht trennen.;Yapılandırma gerçekleştiriliyor. Lütfen bağlantıyı kesmeyiniz.;Configuration is in progress. Please do not disconnect your connection.;NA;NA;NA;NA
+8014;Ethernet;Ethernet;Ethernet;Ethernet;NA;NA;NA;NA
+8015;WiFi;W-LAN;WiFi;WiFi;NA;NA;NA;NA
+8016;Please plug one end of your ethernet cable into one of the yellow LAN ports and the other end into your PC.;Bitte verbinden Sie Ihr Ethernet-Kabel mit einem gelben LAN-Anschluss der EasyBox und Ihrem PC.;Lütfen Ethernet kablonuzu Easybox cihazının sarı LAN bağlantılara ve bilgisayarınıza bağlayınız.;Please plug one end of your ethernet cable into one of the yellow LAN ports and the other end into your PC.;NA;NA;NA;NA
+8017;Please connect your PC to the EasyBox WiFi using the Network key indicated on the sticker.;Bitte verbinden Sie Ihren PC mit der EasyBox über W-LAN, den Netzwerkschlüssel finden Sie auf dem Aufkleber.;Lütfen bilgisarayinizi WiFi üzerinden EasyBox cihazına bağlayınız. Ağ şifresi çıkartma üzerinde yazılıdır.;Please connect your PC to the EasyBox WiFi using the Network key indicated on the sticker.;NA;NA;NA;NA
+8018;"Your PC is now connected to the EasyBox. </br>Open your Internet browser and type in ""easy.box"" and follow the installation wizard.";"Ihr PC ist nun mit der EasyBox verbunden. </br>Öffnen Sie den Internet-Browser, geben Sie ""easy.box"" ein, und folgen den Anweisungen.";"Bilgisarayiniz şimdi EasyBox cihazına bağlanmıştır.</br>İnternet tarayıcısını açınız, ""easy.box"" yazınız ve talimatları takip ediniz.";"Your PC is now connected to the EasyBox. </br>Open your Internet browser and type in ""easy.box"" and follow the installation wizard.";NA;NA;NA;NA
+8019;You have successfully activated your EasyBox.;Sie haben Ihre EasyBox erfolgreich aktiviert.;EasyBox cihazınızı başarılı aktife ettiniz.;You have successfully activated your EasyBox.;NA;NA;NA;NA
+8020;The activation of your EasyBox was not successful.;Die Aktivierung ihrer EasyBox war nicht erfolgreich.;EasyBox cihazınız başarılı aktife olmadi.;The activation of your EasyBox was not successful.;NA;NA;NA;NA
+8021;NA;NA;NA;Would you like to configure your Vodafone Station via the Network Cable or WiFi?;NA;NA;NA;NA
+8022;NA;NA;NA;Network Cable;NA;NA;NA;NA
+8023;NA;NA;NA;Please connect your computer to the Vodafone Station using the white cable with yellow tages provided, as shown on the following screen.;NA;NA;NA;NA
+8024;NA;NA;NA;Please connect your computer to the Vodafone Station using the following settings:;NA;NA;NA;NA
+8025;NA;NA;NA;WiFi Name;NA;NA;NA;NA
+8026;NA;NA;NA;Password;NA;NA;NA;NA
+8027;NA;NA;NA;You're connected to the Vodafone Station. Now open a web browser and go to http://setup.wizard;NA;NA;NA;NA
+8028;Welcome to the Vodafone LTE World;;Vodafone LTE dünyasına hoş geldiniz;NA;NA;NA;NA;NA
+9001;Back;Zurück;Geri;Back;NA;NA;NA;NA
+9002;Delete;Löschen;Sil;Delete;NA;NA;NA;NA
+9003;Options;Optionen;Seçenekler;Options;NA;NA;NA;NA
+9004;Contact us;Kontakt;Iletişim;Contact us;NA;NA;NA;NA
+9005;Guest WiFi;Gast W-LAN;Misafir WiFi;Guest WiFi;NA;NA;NA;NA
+9006;Diagnosis;Diagnose;Teşhis;Diagnosis;NA;NA;NA;NA
+9007;Voicemails;Nachrichten;Mesajlar;Voicemails;NA;NA;NA;NA
+9008;NA;NA;NA;Next;NA;NA;NA;NA
+9009;More data;Mehr Information;Diğer bilgi;;NA;NA;NA;NA
+1101;Delete;Löschen;Sil;Delete;NA;NA;NA;NA
+1102;Delete All;Alles löschen;Tümünü sil;Delete All;NA;NA;NA;NA
+1103;Cancel;Abbruch;İptal;Cancel;NA;NA;NA;NA
+1104;Yes;Ja;Evet;Yes;NA;NA;NA;NA
+1105;Cancel;Abbruch;İptal;Cancel;NA;NA;NA;NA
+1106;OK;OK;Tamam;OK;NA;NA;NA;NA
+1107;Apply;Bestätigen;Uygula;Apply;NA;NA;NA;NA
+1108;Voicemail;Nachrichten;Mesajlar;Voicemail;NA;NA;NA;NA
+1109;Close;Schließen;Kapat;Close;NA;NA;NA;NA
+1201;Chris Ashley is calling…;Chris Ashley ruft an..;Chris Ashley arıyor...;Chris Ashley is calling…;NA;NA;NA;NA
+1202;Unknown is calling…;Unbekannt ruft an..;Anonim arıyor...;Unknown is calling…;NA;NA;NA;NA
+1203;Info;Info;Bilgi;Info;NA;NA;NA;NA
+1204;LTE is currently not available. Please select the menu Internet for more information.;LTE ist momentan nicht verfügbar.  Weiter Informationen unter dem Menupunkt Internet.;4G şu anda mevcut değil. Daha fazla bilgi için İnternet menüsüne bakınız.;LTE is currently not available. Please select the menu Internet for more information.;NA;NA;NA;NA
+1205;%s has connected via WiFi.;%s wurde per W-LAN verbunden.;%s WiFi aracılığıyla bağlandı.;%s has connected via WiFi.;NA;NA;NA;NA
+1206;%s has disconnected from the WiFi.;%s wurde vom W-LAN getrennt.;%s WiFi ağından kaldırıldı.;%s has disconnected from the WiFi.;NA;NA;NA;NA
+1207;%s has connected via Ethernet.;%s wurde per Ethernet verbunden.;%s Ethernet aracılığıyla bağlandı.;%s has connected via Ethernet.;NA;NA;NA;NA
+1208;%s has disconnected from the Ethernet.;%s wurde vom Ethernet getrennt.;%s Ethernet kaldırıldı.;%s has disconnected from the Ethernet.;NA;NA;NA;NA
+1209;%s has connected via USB.;%s wurde per USB verbunden.;%s USB aracılığıyla bağlandı.;%s has connected via USB.;NA;NA;NA;NA
+1210;%s has disconnected from the USB.;%s wurde vom USB-Port getrennt.;%s USB'den kaldırıldı.;%s has disconnected from the USB.;NA;NA;NA;NA
+1211;A Vodafone UMTS Stick has been connected via USB.;Ein Vodafone UTMS-Stick wurde per USB verbunden.;USB aracılığıyla bir Vodafone 3G Stick bağlandı.;A Vodafone UMTS Stick has been connected via USB.;NA;NA;NA;NA
+1212;A Vodafone UMTS Stick has been disconnected from the USB.;Ein Vodafone UMTS-Stick wurde vom USB-Port getrennt.;USB'den bir Vodafone 3G Stick kaldırıldı.;A Vodafone UMTS Stick has been disconnected from the USB.;NA;NA;NA;NA
+1213;The WiFi network has been enabled through the WiFi schedule.;Das W-LAN wurde durch den W-LAN Zeitplan eingeschaltet.;WiFi ağı, WiFi zaman çizelgesi tarafından açıldı.;The WiFi network has been enabled through the WiFi schedule.;NA;NA;NA;NA
+1214;The Wifi network has been disabled through the WiFi schedule.;Das W-LAN wurde durch den W-LAN Zeitplan ausgeschaltet.;WiFi ağı, WiFi zaman çizelgesi tarafından kapatıldı.;The Wifi network has been disabled through the WiFi schedule.;NA;NA;NA;NA
+1215;WPS pairing was successful. The device is connected with the EasyBox.;WPS Verbindung war erfolgreich. Das Gerät ist mit der EasyBox verbunden.;WPS bağlantısı başarıyla gerçekleştirildi. Cihaz, EasyBox cihazına bağlandı.;WPS pairing was successful. The device is connected with the EasyBox.;NA;NA;NA;NA
+1216;WPS pairing was not successful. Please try again.;WPS Verbindung war nicht erfolgreich. Bitte erneut versuchen.;WPS bağlantısı başarısız. Lütfen tekrar deneyiniz.;WPS pairing was not successful. Please try again.;NA;NA;NA;NA
+1217;Firmware image found on USB device. Do you want to upgrade?;Firmware-Datei auf einem USB-Gerät gefunden. Möchten Sie die Firmware aktualisieren?;USB cihazı üzerinde Firmware dosyası bulundu. Firmware güncellemesi yapmak istiyor musunuz?;Firmware image found on USB device. Do you want to upgrade?;NA;NA;NA;NA
+1218;Accept internet connection via Vodafone UMTS stick?;Möchten Sie die Internetverbindung über UMTS herstellen?;Internet bağlantınızı 3G üzerine kurmak istiyormusunuz? ;Accept internet connection via Vodafone UMTS stick?;NA;NA;NA;NA
+1219;Your Voicemail is full. Please delete some voicemails.;Ihr Anrufbeantworter ist voll. Bitte löschen Sie Nachrichten.;Telesekreteriniz dolmuştur. Lütfen bazı mesajlarınızı siliniz.;Your Voicemail is full. Please delete some voicemails.;NA;NA;NA;NA
+1220;Chris Ashley;Chris Ashley;Chris Ashley;Chris Ashley;NA;NA;NA;NA
+1221;Unknown;Unbekannt;Anonim;Unknown;NA;NA;NA;NA
+1222;is calling...;ruft an..;Arıyor ...;is calling...;NA;NA;NA;NA
+1223;Wake Up Call: %s;Wecker: %s;Uyandırma: %s;Wake Up Call: %s;NA;NA;NA;NA
+1224;The inserted USB device is not supported.;Das angeschlossene USB Gerät wird nicht unterstützt;Kulanmak istediginiz USB  cihazı desteklenmiyor;The inserted USB device is not supported.;NA;NA;NA;NA
+1225;You can't do a firmware update during an ongoing phone call.;Keine Firmware-Aktualisierung möglich während eines Telefongesprächs.;"Telefon görüşmesi 
+sırasında Frmware güncelleme 
+yapamazsınız.";You can't do a firmware update during an ongoing phone call.;NA;NA;NA;NA
+1226;The inserted UMTS stick is not supported.;Der angeschlossene UMTS-Stick wird nicht unterstützt.;Takmış olduğunuz 3G Stick desteklenmiyor.;The inserted UMTS stick is not supported.;NA;NA;NA;NA
+1227;EasyBox is checking online for an available firmware upgrade.;Die EasyBox prüft online nach einer verfügbaren Fimware-Aktualisierung;EasyBox yeni Firmware kontrol ediyor.;EasyBox is checking online for an available firmware upgrade.;NA;NA;NA;NA
+1228;Your EasyBox is already running the latest firmware.;Ihre EasyBox hat die aktuelle Firmware;EasyBox'unuza en yeni Firmware yüklenmiştir.;Your EasyBox is already running the latest firmware.;NA;NA;NA;NA
+1229;A device has been connected via WiFi.;Ein Gerät wurde per W-LAN verbunden.;WiFi aracılığıyla yeni bir cihaz bağlandı.;A device has been connected via WiFi.;NA;NA;NA;NA
+1230;A device has been disconnected from the WiFi.;Ein Gerät wurde vom W-LAN getrennt.;WiFi ağından bir cihaz kaldırıldı.;A device has been disconnected from the WiFi.;NA;NA;NA;NA
+1231;A device has been connected via Ethernet.;Ein Gerät wurde per Ethernet verbunden.;Ethernet aracılığıyla yeni bir cihaz bağlandı.;A device has been connected via Ethernet.;NA;NA;NA;NA
+1232;A device has been disconnected from the Ethernet.;Ein Gerät wurde vom Ethernet getrennt.;Ethernetten bir cihaz kaldırıldı.;A device has been disconnected from the Ethernet.;NA;NA;NA;NA
+1233;A device has been connected via USB.;Ein Gerät wurde per USB verbunden.;USB aracılığıyla yeni bir cihaz bağlandı.;A device has been connected via USB.;NA;NA;NA;NA
+1234;A device has been disconnected from the USB.;Ein Gerät wurde vom USB-Port getrennt.;USB'den bir cihaz kaldırıldı.;A device has been disconnected from the USB.;NA;NA;NA;NA
+1235;NA;NA;NA;"Upgrade in progress...
+Please don’t unplug anything as this will interrupt the
+process.";NA;NA;NA;NA
+1236;NA;NA;NA;To enable Phone services, visit www.vodafone.nz;NA;NA;NA;NA
+1237;NA;NA;NA;To enable Message services, visit www.vodafone.nz;NA;NA;NA;NA
+1238;NA;NA;NA;No connection found. Please connect ethernet cable.;NA;NA;NA;NA
+1239;Data request failed. Please try again later.;Ihre Anfrage ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.;Veri isteği başarısız oldu. Lütfen sonra tekrar deneyiniz.;Data request failed. Please try again later.;NA;NA;NA;NA
+1240;Data request failed. You're not using the UMTS network.;Ihre Anfrage ist fehlgeschlagen. Sie nutzen kein UMTS-Netz;Veri isteği başarısız oldu. 3G şebekesini kullanmıyorsunuz.;Data request failed. You're not using the UMTS network.;NA;NA;NA;NA
+1241;Data request failed. You're not using the LTE network.;Ihre Anfrage ist fehlgeschlagen. Sie nutzen kein LTE-Netz.;Veri isteği başarısız oldu. 4G şebekesini kullanmıyorsunuz.;Data request failed. You're not using the LTE network.;NA;NA;NA;NA
+1301;Downloading Image…;Datei wird heruntergeladen…;Dosya indiriliyor...;Downloading Image…;NA;NA;NA;NA
+1302;Firmware upgrade failed. Aborting…;Firmware-Aktualisierung fehlgeschlagen. Abbrechen…;Firmware güncelleme başarısız. İptal ediliyor…;Firmware upgrade failed. Aborting…;NA;NA;NA;NA
+1303;Installing Image…;Firmware wird installiert…;Firmware kuruluyor…;Installing Image…;NA;NA;NA;NA
+1304;Resetting to factory settings…;Rücksetzen auf Werkseinstellungen…;Fabrika ayarları geri yükleniyor...;Resetting to factory settings…;NA;NA;NA;NA
+1305;Restarting…;Neustart…;Yeniden başlatılıyor…;Restarting…;NA;NA;NA;NA
+1306;Resetting…;Zurücksetzen…;Sıfırlanıyor…;Resetting…;NA;NA;NA;NA
+1307;Firmware upgrade in progress...;Firmware-Aktualisierung wird durchgeführt...;Yeni Firmware yükleniyor...;Firmware upgrade in progress...;NA;NA;NA;NA
+1308;Firmware upgrade successful.;Firmware-Aktualisierung war erfolgreich.;Yeni Firmware yüklendi.;Firmware upgrade successful.;NA;NA;NA;NA
+1309;Reset to factory defaults performed. Please release Reset button now to restart EasyBox.;Die EasyBox wurde auf Werkseinstellungen zurückgesetzt. Bitte lassen Sie den Reset-Knopf jetzt los, um die EasyBox neu zu starten.;EasyBox´unuz fabrika ayarlarına sıfırlandı. EasyBox´unuzu yeniden başlatmak için şimdi Reset düğmesini bırakın lütfen.;To initiate a factory reset, release the Reset button.;NA;NA;NA;NA
+1401;Your EasyBox is successfully configured and all services are available.;Ihre EasyBox ist komplett eingerichtet und alle Dienste stehen zur Verfügung.;EasyBox´unuz başarılı kurulmuştur ve bütün servisler hizmetinizdedir. ;Your EasyBox is successfully configured and all services are available.;NA;NA;NA;NA
+1402;FC820: Your EasyBox could not connect to the telephone network but your internet connection is working. Please switch off your device for 3 minutes before switching it on again.;FC820: Die Verbindung zum Telefonnetz ist zur Zeit nicht möglich. Bitte trennen Sie die EasyBox für 3 Minuten vom Netzteil.;FC820: EasyBox´unuz telefon hattına baglantı kuramıyor, ama Internet baglantınız kurulu. Lütfen EasyBox´unuzu 3 dakkika eletirikten ayirin. ;FC820: Your EasyBox could not connect to the telephone network but your internet connection is working. Please switch off your device for 3 minutes before switching it on again.;NA;NA;NA;NA
+1403;FC822: Your telephone service is not available. Please switch off your EasyBox for 3 minutes before switching it on again.;FC822: Ihr Telefon-Dienst ist momentan nicht möglich. Bitte trennen Sie die EasyBox für 3 Minuten vom Netzteil;FC822: Şu anda telefon hatınız servis dışı. Lütfen EasyBox´unuzu 3 dakkika eletirikten ayirin. ;FC822: Your telephone service is not available. Please switch off your EasyBox for 3 minutes before switching it on again.;NA;NA;NA;NA
+1404;FC870: Your EasyBox is receiving no signal or the signal is too low. Please restore the position of your EasyBox by using the position help.;FC870: Ihre Easybox empfängt kein oder ein zuschwaches Signal. Bitte richten Sie Ihre Easybox neu aus, benutzen Sie dabei die Ausrichthilfe.;FC870: EasyBox´unuz zayıf ve ya hiç sinyal almıyor. Lütfen daha verimli pozisyon bulmak için, pozisyon yardımını kullanın. ;FC870: Your EasyBox is receiving no signal or the signal is too low. Please restore the position of your EasyBox by using the position help.;NA;NA;NA;NA
+1405;FC871: Your LTE-SIM-Card had been removed. Please put your LTE-SIM-Card into the card slot.;FC871: Ihre LTE-SIM-Karte wurde entfernt. Bitte stecken Sie Ihre LTE-SIM-Karte in den dafür vorgesehen Steckplatz.;FC871: 4G kartınız çıkarılmıştır. Lütfen 4G kartınızı yine yerine takınız. ;FC871: Your LTE-SIM-Card had been removed. Please put your LTE-SIM-Card into the card slot.;NA;NA;NA;NA
+1406;FC872: Your LTE-SIM-Card hadn't been reconized. Please use the correct LTE-SIM-Card.;FC872: Ihre LTE-SIM-Karte wurde nicht erkannt. Bitte benutzen Sie die korrekte LTE-SIM-Karte.;FC872: 4G kartınız tanınmamıştır. Lütfen doğru 4G kartını kullanın. ;FC872: Your LTE-SIM-Card hadn't been reconized. Please use the correct LTE-SIM-Card.;NA;NA;NA;NA
+1407;FC873: No connection to the telephone network available right now.;FC873: Die Verbindung zum Telefon-Netz ist momentan nicht möglich.;FC873: Telefon hattına baglantı kurulanmıyor.;FC873: No connection to the telephone network available right now.;NA;NA;NA;NA
+1408;FC874: No connection to the telephone network is possible right now. ;FC873: Die Verbindung zum Telefon-Netz ist momentan nicht möglich.;FC874: Telefon hattına baglantı kurulanmıyor.;FC874: No connection to the telephone network is possible right now. ;NA;NA;NA;NA
+1409;FC819: An error in your service providers network occured. This error should not have any impact to your connection though.;FC819: Es liegt eine netzinterne Störung vor, welche die Funktion Ihres Anschlusses aber nicht beeinträchtigen dürfte.;FC819: Ağa sistemimizde arza var, ama sizin Telefon hattınızı etkilemiyecektir. ;FC819: An error in your service providers network occured. This error should not have any impact to your connection though.;NA;NA;NA;NA
+1410;FC821: One or more telephone numbers of your connection are not available. Please switch off your Easy-Box for 3 minutes before switching it on again.;FC821: Eine oder mehrere Telefonnummern Ihres Anschlusses sind ausser Funktion. Bitte trennen Sie die EasyBox für 3 Minuten vom Netzteil.;FC821: Hattınızda bir ve ya bir kaç telefon numaraları işlemde değildir. Lütfen EasyBox´unuzu 3 dakkika eletirikten ayirin. ;FC821: One or more telephone numbers of your connection are not available. Please switch off your Easy-Box for 3 minutes before switching it on again.;NA;NA;NA;NA
+1411;FC830: Status: There's no equipment recognized on theLAN-Ports.;FC830: Status: An den LAN-Ports Ihrer EasyBox wurde kein Gerät erkannt.;FC830: Statü: EasyBox´un LAN girişinde kulanımda olan cihaz bulunmadı.;FC830: Status: There's no equipment recognized on theLAN-Ports.;NA;NA;NA;NA
+1412;FC840: Status: Your wireless LAN is currently switched off.;FC840: Status: Das WLAN ist aktuell ausgeschaltet.;FC840: Statü: WiFi şuan kapalı;FC840: Status: Your wireless LAN is currently switched off.;NA;NA;NA;NA
+1413;FC860: No UMTS connection available right now.;FC860: Die Verbindung über Surf Sofort Stick ist momentan nicht möglich.;FC860: 3G hattına baglantı kurulanmıyor.;FC860: No UMTS connection available right now.;NA;NA;NA;NA
+1414;FC875: No Internet connection available right now.;FC875: Die Verbindung über Surf Sofort Stick ist momentan nicht möglich.;FC875: Internet´e baglantı kurulanmıyor.;FC875: No Internet connection available right now.;NA;NA;NA;NA
+1415;FC876: Your EasyBox is receiving no signal or the signal is too low. Please put the device to another place.;FC876: Ihre Easybox empfängt kein oder ein zu schwaches Signal. Bitte ändern Sie den Standort Ihrer EasyBox.;FC876: FC870: EasyBox´unuz zayıf ve ya hiç sinyal almıyor. Lütfen EasyBox´unu daha verm  bir pozisyona getirin. ;FC876: Your EasyBox is receiving no signal or the signal is too low. Please put the device to another place.;NA;NA;NA;NA
+1416;FC877: You have reached your montly data volume limit. For extending of the limit please contact the customer hotline.;FC877: Ihr monatliches Datenvolumen wurde überschritten. Bitte wenden Sie an die Kundenhotline.;FC877: Aylık data kontenjanınızı tüketilmiştir. Lütfen müşteri hattını arayın. ;FC877: You have reached your montly data volume limit. For extending of the limit please contact the customer hotline.;NA;NA;NA;NA
+1417;FC811: Please check the wiring of your telephone socket and the DSL-connector of your EasyBox.;FC811: Überprüfen Sie bitte die Verkabelung zwischen der Telefondose und der DSL-Buchse an ihrer EasyBox.;FC811: Lütfen EasyBox DSL-soketi ve Telefon kutusunun arasındaki kablolamayı kontrol edin.;FC811: Please check the wiring of your telephone socket and the DSL-connector of your EasyBox.;NA;NA;NA;NA
+1418;FC812: Please check the wiring of your telephone socket and the DSL-connector of your EasyBox.;FC812: Überprüfen Sie bitte die Verkabelung zwischen der Telefondose und der DSL-Buchse an ihrer EasyBox.;FC812: Lütfen EasyBox DSL-soketi ve Telefon kutusunun arasındaki kablolamayı kontrol edin.;FC812: Please check the wiring of your telephone socket and the DSL-connector of your EasyBox.;NA;NA;NA;NA
+1419;FC813: No connection to the telephone network available now.;FC813: Die Verbindung zum Telefon-Netz ist momentan nicht möglich.;FC813: Telefon hattına baglantı kurulanmıyor.;FC813: No connection to the telephone network available now.;NA;NA;NA;NA
+1420;FC814: No connection to the Internet network available right now.;FC814:Die Verbindung ins Internet ist momentan nicht möglich.;FC814: Internete baglantı kurulanmıyor.;FC814: No connection to the Internet network available right now.;NA;NA;NA;NA
+1421;FC815: No connection to the telephone network available now.;FC815: Die Verbindung zum Telefon-Netz ist momentan nicht möglich.;FC815: Telefon hattına baglantı kurulanmıyor.;FC815: No connection to the telephone network available now.;NA;NA;NA;NA
+1422;FC816: The internet connection is severly disrupted. Please check the wiring to the grey DSL connector of your EasyBox for other electronic devices interference or loose contacts.;FC816: Die Übertragung ins Internet ist erheblich gestört. Bitte kontrollieren Sie die Verkabelung bis zur grauen DSL-Buchse der EasyBox, zum Beispiel auf störende Elektrogeräte oder Wackelkontakte;FC816: Internet baglantısı arzalı. Başka elektronik cihazlar veya gevşek bağlantılar neden olabilir. Lütfen EasyBox gri DSL-soketi arasındaki kabloyu kontrol edin.;FC816: The internet connection is severly disrupted. Please check the wiring to the grey DSL connector of your EasyBox for other electronic devices interference or loose contacts.;NA;NA;NA;NA
+1423;FC817: Connection inoperable.;FC817: Der Anschluß ist momentan nicht betriebsbereit.;FC817: Hattınız şu anda hazır değil.;FC817: Connection inoperable.;NA;NA;NA;NA
+1424;FC818: No connection to the service provider available. Possibly you are using the EasyBox at a different connection.;FC818: Es kann keine Verbindung zum Netzbetreiber aufgebaut werden. Möglicherweise verwenden Sie die EasyBox an einem fremden Anschluss.;FC818: Hattınız şu anda operatörünize bağlı değil. EasyBox´u yanlış bir hatta kullanıyor olabilirsiniz.;FC818: No connection to the service provider available. Possibly you are using the EasyBox at a different connection.;NA;NA;NA;NA
+1425;FC851: No connection to the Vodafone TV service available. Please switch off your EasyBox for 3 minutes before switching it on again.;FC851: Die Verbindung zum Vodafone TV ist momentan nicht möglich. Bitte trennen Sie Ihre EasyBox für 3 Minuten vom Netzteil.;FC851: Vodafone TV´ya baglantı kurulanmıyor. Lütfen EasyBox´u 3 dakkika kapatın.;FC851: No connection to the Vodafone TV service available. Please switch off your EasyBox for 3 minutes before switching it on again.;NA;NA;NA;NA
