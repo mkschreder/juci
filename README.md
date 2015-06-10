@@ -14,10 +14,21 @@ If offers you the following:
 * Dynamic theming - you can switch color themes at runtime. 
 * Full language support - allowing for complete localization of your gui. Language file generation is even partially automatic (for html text). Also supporting dynamically changing language on page without having to reload the application. Also featuring quick debug mode for translations where you can see which strings are missing in currently used language pack. 
 
+Simple Summary
+------
+
+Addons can be developed on top of juci by creating package that installs js and css files into the router /www folder and then runs juci-update at postinstall (index.html is actually generated automatically). 
+
+Juci uses modified version of uhttpd that can serve gz files with proper content type based on actual gzipped content. 
+
+Juci also uses several newly added rpc calls that are only implemented on iopsys firmware from Inteno Broadband Technology. These packages are open source so you can get all off them from inteno sdk (see below). 
+
+Juci also uses modified version of rpcd, which too is available from iopsys sdk. 
+
 Getting started
 ---------------
 
-Ideally you should get iopsys (OpenWRT based) sdk and build juci from there. This updated version is heavily based on updated versions of openwrt packages found in iopsys sdk and so you should use that primarily. (kinda-sorta-like-this: git clone http://ihgsp.inteno.se/git/iopsysAA.git iop && cd iop && git checkout BB && ./iop_get_feeds.sh && make).. 
+Ideally you should get iopsys (OpenWRT based) sdk and build juci from there. This updated version is heavily based on updated versions of openwrt packages found in iopsys sdk and so you should use that primarily. (kinda-sorta-like-this: git clone http://ihgsp.inteno.se/git/iopsysAA.git iop && cd iop && git checkout BB && ./iop_get_feeds.sh && make)..  
 
 Building compiled and gzipped htdocs: 
 	
