@@ -48,8 +48,6 @@ msgid "General"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.schedule.html:4
-#: juci-theme-vodafone/src/pages/overview.html:37
-#: juci-theme-vodafone/src/pages/overview.html:98
 msgid "Schedule"
 msgstr ""
 
@@ -213,7 +211,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: juci/src/js/app.js:163 juci/src/js/juci.js:273
+#: juci/src/js/app.js:166 juci/src/js/juci.js:274
 msgid "application.name"
 msgstr "juci"
 
@@ -225,6 +223,9 @@ msgstr "English"
 
 msgid "language.se"
 msgstr "Svenska"
+
+msgid "language.de"
+msgstr "German"
 
 msgid "wifi.enc.none"
 msgstr "Off"
@@ -1237,7 +1238,7 @@ msgstr ""
 msgid "Select Theme"
 msgstr ""
 
-#: juci-theme-vodafone/src/widgets/juci.top_bar.html:6
+#: juci-theme-inteno/src/widgets/juci.top_bar.html:6
 msgid "Select User Mode"
 msgstr ""
 
@@ -1366,7 +1367,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: juci-theme-vodafone/src/widgets/juci.navbar.html:4
+#: juci-theme-inteno/src/widgets/juci.navbar.html:5
 #: juci/src/widgets/juci.navbar.html:4
 msgid "Toggle navigation"
 msgstr ""
@@ -1405,7 +1406,6 @@ msgid "Unable to retreive igmptable from device!"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.settings.js:12
-#: juci-theme-vodafone/src/pages/overview.js:46
 msgid "Unknown"
 msgstr ""
 
@@ -1463,7 +1463,7 @@ msgstr ""
 msgid "Voice Status"
 msgstr ""
 
-#: juci-theme-vodafone/src/widgets/juci.footer.html:10
+#: juci-theme-inteno/src/widgets/juci.footer.html:10
 msgid "WAN IP Address"
 msgstr ""
 
@@ -1596,27 +1596,6 @@ msgstr ""
 #: juci-mod-network/src/pages/internet.exposed_host.html:22
 msgid "ip.address.label"
 msgstr "IP address"
-
-#: juci-theme-vodafone/src/pages/overview.js:18
-#: juci-theme-vodafone/src/pages/overview.js:25
-#: juci-theme-vodafone/src/pages/overview.js:34
-#: juci-theme-vodafone/src/pages/overview.js:48
-#: juci-theme-vodafone/src/pages/overview.js:49
-#: juci-theme-vodafone/src/pages/overview.js:50
-#: juci-theme-vodafone/src/pages/overview.js:58
-#: juci-theme-vodafone/src/pages/overview.js:59
-#: juci-theme-vodafone/src/pages/overview.js:62
-msgid "off"
-msgstr "Off"
-
-#: juci-theme-vodafone/src/pages/overview.js:18
-#: juci-theme-vodafone/src/pages/overview.js:25
-#: juci-theme-vodafone/src/pages/overview.js:34
-#: juci-theme-vodafone/src/pages/overview.js:58
-#: juci-theme-vodafone/src/pages/overview.js:59
-#: juci-theme-vodafone/src/pages/overview.js:62
-msgid "on"
-msgstr "On"
 
 #: juci-mod-voice/src/pages/phone.call_log.html:5
 #: juci-mod-voice/src/pages/phone.html:5
@@ -2032,6 +2011,12 @@ msgstr "Allow"
 
 msgid "interface.macmode.deny"
 msgstr "Deny"
+
+#~ msgid "off"
+#~ msgstr "Off"
+
+#~ msgid "on"
+#~ msgstr "On"
 
 #~ msgid "none"
 #~ msgstr "None"

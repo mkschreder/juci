@@ -36,6 +36,7 @@ JUCI.app
 			}); 
 		} else {
 			$scope.settings = $uci.voice_client.RINGING_STATUS;
+			$scope.$apply(); 
 		} 
 		$scope.schedules = $uci.voice_client["@ringing_schedule"]; 
 		$scope.allSipAccountsMap = {}; 

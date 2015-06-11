@@ -9,7 +9,7 @@
 						<input type="text" class="form-control" ng-model="num.name.value"/>
 					</juci-config-line>
 					<juci-config-line title="Phone Number">
-						{{num.username.value}}
+						{{num.displayname.value||num.user.value||defaultNumber}}
 					</juci-config-line>
 					<juci-config-line title="Incoming Phone Lines">
 						<div class="form-group col-md-6 " ng-repeat="line in phone_lines track by $index">
