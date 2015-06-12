@@ -1,9 +1,18 @@
 juci Express (or just JuCi)
 ------------
 
-This is a universal javascript client interface for broadband routers. It is an application written in javascript using angularjs, that communicates with your OpenWRT router over ubus calls (JSONRPC2.0).  
+JUCI is a javascript interface for broadband routers.
 
-It includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
+JUCI is built with html5, angularjs and bootstrap: 
+![Mobile](/media/screenshot.jpg?raw=true "Mobile Login Page")
+
+JUCI is mobile ready: 
+![Mobile](/media/mobile_login.png?raw=true "Mobile Login Page")
+![Mobile](/media/mobile_1.png?raw=true "")
+![Mobile](/media/mobile_2.png?raw=true "")
+![Mobile](/media/mobile_3.png?raw=true "")
+
+JUCI includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
 
 If offers you the following: 
 
