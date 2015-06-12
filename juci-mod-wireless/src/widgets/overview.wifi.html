@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+			<i class="fa fa-wifi" style="margin-right: 10px;"/>{{'WiFi'|translate}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row" style="margin-bottom: 10px;">
+			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-calendar fa-2x"></i></div>
+			<div class="col-xs-7" style="padding-left: 0px">
+				<a class="overview-list-item-text" href="#!/wifi-schedule"><strong>{{'Schedule'|translate}}</strong></a>
+			</div>
+			<div class="col-xs-2">
+				<a class="label label-{{(wifi.status.schedule.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWIFISchedToggle()"><strong>{{wifiSchedStatus| translate}}</strong></a>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 10px;">
+			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-wifi fa-2x"></i></div>
+			<div class="col-xs-7" style="padding-left: 0px">
+				<a class="overview-list-item-text" href="#!/wifi-wps"><strong>WPS</strong></a>
+			</div>
+			<div class="col-xs-2">
+				<a class="label label-{{(wifi.status.wps.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWPSToggle()"><strong>{{wifiWPSStatus | translate}}</strong></a>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 10px;" ng-repeat="client in wireless.clients">
+			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-desktop fa-2x"></i></div>
+			<div class="col-xs-7" style="padding-left: 0px">{{client.hostname}}<br/>{{client.ipaddr}}</div>
+			<div ng-show="client.connected" class="col-xs-2" style="color: #a9b400;">
+				<wifi-signal-indicator ng-model="client.snr"></wifi-signal-indicator>
+			</div>
+			<div ng-show="!client.connected" class="col-xs-2" style="color:#eee;"><i class="fa fa-signal fa-2x"></i></div>
+		</div>
+	</div>
+</div>

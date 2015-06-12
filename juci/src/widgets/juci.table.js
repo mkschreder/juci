@@ -27,7 +27,7 @@ $juci.module("core")
 			replace: true,
 			link: function (scope, element, attrs) {
 				scope.$watch(attrs.dynamic, function(html) {
-					console.log("Recompile html"); 
+					//console.log("Recompile html"); 
 					element.html(html);
 					$compile(element.contents())(scope);
 				});

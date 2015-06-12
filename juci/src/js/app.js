@@ -4,6 +4,14 @@
 if(!window.JUCI_COMPILED) window.JUCI_COMPILED = 1; 
 //if(!global.JUCI_PLUGINS) global.JUCI_COMPILED = 0; 
 
+// a few functions for string conversions
+String.prototype.toDash = function(){
+	return this.replace(/([A-Z])/g, function($1){return "-"+$1.toLowerCase();});
+};
+String.prototype.toCamel = function(){
+	return this.replace(/(\-[a-z])/g, function($1){return $1.toUpperCase().replace('-','');});
+};
+
 $.jsonRPC.setup({
   endPoint: '/ubus',
   namespace: 'juci'

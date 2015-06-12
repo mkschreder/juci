@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+			<i class="fa fa-wifi" style="margin-right: 10px;"/>{{'Phone'|translate}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row" style="margin-bottom: 10px">
+			<div class="col-xs-2"><i class="fa fa-calendar fa-2x"></i></div>
+			<div class="col-xs-8">
+				<a class="overview-list-item-text" href="#!/phone-ringing-schedule"><strong>{{'Schedule'|translate}}</strong></a>
+			</div>
+			<div class="col-xs-2">
+				<a class="label label-{{(voice_client.RINGING_STATUS.enabled.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onPhoneToggle()"><strong>{{phoneSchedStatus | translate}}</strong></a>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 10px"  ng-repeat="sip in sipAccounts track by $index">
+			<div class="col-xs-2"><strong>S{{$index|uppercase}}: </strong></div>
+			<div class="col-xs-8"><strong>{{sip.user.value||'Unknown'}}</strong></div>
+		</div>
+	</div>
+</div>

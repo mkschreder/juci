@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+			<i class="fa fa-globe" style="margin-right: 10px;"/> {{wan_type}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row" ng-repeat="client in clients" style="margin-bottom: 10px;">
+			<div class="col-xs-2"><i class="fa fa-laptop fa-2x"></i></div>
+			<div class="col-xs-8">{{client.hostname || defaultHostName}}<br/>{{client.ipaddr}}</div>
+		</div>
+	</div>
+</div>
