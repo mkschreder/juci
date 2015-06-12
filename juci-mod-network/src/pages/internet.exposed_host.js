@@ -2,6 +2,7 @@ $juci.module("internet")
 .controller("InternetExHostPageCtrl", function($scope, $rpc, $config, $uci, $tr){
 	$scope.config = $config; 
 	$scope.wan = {}; 
+	$scope.connectedHosts = []; 
 	
 	async.series([
 		function(next){
@@ -11,13 +12,13 @@ $juci.module("internet")
 		}, 
 		function(next){
 			$rpc.router.clients().done(function(clients){
-				$scope.connectedHosts = 
-				Object.keys(clients).filter(function(x){
+				$scope.connectedHosts = Object.keys(clients).filter(function(x){
 					// use only connected hosts
-					return x.connected; 
+					return clients[x].connected; 
 				}).map(function(k){
 					return { label: clients[k].hostname+" ("+clients[k].ipaddr+")", value: clients[k].ipaddr }; 
 				}); 
+				$scope.$apply(); 
 			}).always(function(){ next(); }); 
 		}, 
 		function(next){ 
