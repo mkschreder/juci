@@ -6,11 +6,8 @@ JUCI is a javascript interface for broadband routers.
 JUCI is built with html5, angularjs and bootstrap: 
 ![Mobile](/media/screenshot.jpg?raw=true "Mobile Login Page")
 
-JUCI is mobile ready: 
-![Mobile](/media/mobile_login.png|width=25%)
-![Mobile](/media/mobile_1.png?raw=true|width=25%)
-![Mobile](/media/mobile_2.png?raw=true|width=25%)
-![Mobile](/media/mobile_3.png?raw=true|width=25%)
+JUCI is themeable and fully mobile-ready (responsive): 
+![Mobile](/media/mobile.jpg)
 
 JUCI includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
 
