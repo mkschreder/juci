@@ -1,6 +1,7 @@
-$juci.module("core")
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+JUCI.app
 .directive("juciConfig", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<div ng-transclude></div>', 
 		replace: true, 
@@ -8,7 +9,6 @@ $juci.module("core")
 	};  
 })
 .directive("juciConfigSection", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<div><div class="juci-config-section" ng-transclude></div><hr style="width: 100%; border-bottom: 1px solid #ccc; clear: both;"/></div>', 
 		replace: true, 
@@ -16,7 +16,6 @@ $juci.module("core")
 	 };  
 })
 .directive("juciConfigInfo", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<p class="juci-config-info" ng-transclude></p>', 
 		replace: true, 
@@ -24,7 +23,6 @@ $juci.module("core")
 	 };  
 })
 .directive("juciConfigHeading", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<h2 ng-transclude></h2>', 
 		replace: true, 
@@ -32,7 +30,6 @@ $juci.module("core")
 	 };  
 })
 .directive("juciConfigLines", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<div class="table" ><div ng-transclude></div></div>', 
 		replace: true, 
@@ -40,7 +37,6 @@ $juci.module("core")
 	 };  
 })
 .directive("juciConfigLine", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<div><div class="row" style="margin-top: 20px; ">'+
 			'<div class="col-xs-6 {{errorClass}}">'+
@@ -72,7 +68,6 @@ $juci.module("core")
 	};  
 })
 .directive("juciConfigApply", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		template: '<div>'+
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+

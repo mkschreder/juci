@@ -1,4 +1,6 @@
-$juci.module("core")
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+JUCI.app
 .directive('modal', function ($parse) {
 	var plugin_root = $juci.module("core").plugin_root; 
 	return {

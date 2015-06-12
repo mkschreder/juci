@@ -20,4 +20,14 @@ JUCI.app
 		}], function(){
 		$scope.$apply(); 
 	}); 
+	$scope.onPhoneToggle = function(){
+		var status = $uci.voice_client.RINGING_STATUS; 
+		if(status){
+			status.enabled.value = !status.enabled.value; 
+			$scope.phoneSchedStatus = ((status.enabled.value)?gettext("on"):gettext("off")); 
+			$uci.save().done(function(){
+				refresh(); 
+			}); 
+		}
+	}
 }); 

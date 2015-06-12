@@ -3,7 +3,8 @@ DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-m
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
 ifeq ($(DEFAULT_THEME),y)
-	DIRS-y += juci-theme-inteno
+	# for now temporarily we build any testing modules here as well
+	DIRS-y += juci-theme-inteno juci-mod-samba
 endif
 
 all: htdocs menu.d $(DIRS-y)

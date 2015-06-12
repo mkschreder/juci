@@ -8,6 +8,48 @@
 	}); 
 }); */
 
+JUCI.app.factory("$wireless", function(){
+	function Wireless(){
+		this.scheduleStatusText = gettext("off"); 
+		this.wpsStatusText = gettext("off"); 
+		
+	}
+	
+	JUCI.interval.repeat("wireless-refresh", 2000, function(done){
+		refresh(done); 
+	}); 
+	function refresh(done) {
+		$scope.wifiSchedStatus = gettext("off"); 
+		$scope.wifiWPSStatus = gettext("off"); 
+		async.series([
+			function(next){
+				$uci.sync(["wireless"]).done(function(){
+					$scope.wifi = $uci.wireless;  
+					if($uci.wireless && $uci.wireless.status) {
+						$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
+						$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
+					}
+				}).always(function(){ next(); }); 
+			}, 
+			function(next){
+				$rpc.router.clients().done(function(clients){
+					var all = Object.keys(clients).map(function(x) { return clients[x]; }); 
+					$scope.wireless.clients = all.filter(function(x){
+						return x.connected && x.wireless == true; 
+					}); 
+					next(); 
+				}).fail(function(){
+					next();
+				});; 
+			},
+		], function(){
+			$scope.$apply(); 
+			if(done) done(); 
+		}); 
+	} refresh(); 
+	return wifi; 
+}); 
+
 (function(){
 	UCI.$registerConfig("wireless"); 
 	UCI.wireless.$registerSectionType("wifi-status", {

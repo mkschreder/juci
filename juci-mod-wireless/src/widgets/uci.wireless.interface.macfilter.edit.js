@@ -1,4 +1,6 @@
-$juci.module("wifi")
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+JUCI.app
 .directive("uciWirelessInterfaceMacfilterEdit", function($compile){
 	var plugin_root = $juci.module("wifi").plugin_root; 
 	return {

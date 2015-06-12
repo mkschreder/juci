@@ -1,4 +1,6 @@
-$juci.app
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+JUCI.app
 .directive("wifiSignalIndicator", function($compile, $parse){
 	var plugin_root = $juci.module("wifi").plugin_root; 
 	return {
