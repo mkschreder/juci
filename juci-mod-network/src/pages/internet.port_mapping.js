@@ -37,8 +37,7 @@ JUCI.app
 	$scope.onAcceptEdit = function(){
 		$scope.errors = $scope.rule.$getErrors(); 
 		if($scope.errors.length) return; 
-		$scope.rule = null; 
-		$scope.$apply();  
+		$scope.rule = null;  
 	};
 	
 	$scope.onCancelEdit = function(){
