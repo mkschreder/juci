@@ -1,12 +1,14 @@
-juci Express (or just JuCi)
+LUCI-Express (or just JuCi)
 ------------
 
-JUCI is a javascript interface for broadband routers.
+JUCI is a JavaScript-based web interface for broadband routers running Iopsys OpenWRT.
 
 JUCI is built with html5, angularjs and bootstrap: 
+
 ![Mobile](/media/screenshot.jpg?raw=true "Mobile Login Page")
 
-JUCI is themeable and fully mobile-ready (responsive): 
+JUCI is theme-able and fully mobile-ready (responsive): 
+
 ![Mobile](/media/mobile.jpg)
 
 JUCI includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
