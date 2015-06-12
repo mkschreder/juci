@@ -1,0 +1,28 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="ServiceSambaPage">
+		<juci-config-section>
+			<juci-config-heading>{{ 'General Settings' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'services.samba.info' | translate }}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line title="{{'Name'|translate}}">
+					<input type="text" ng-model="samba.samba.name.value" class="form-control" placeholder="{{'Name'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Workgroup'|translate}}">
+					<input type="text" ng-model="samba.samba.workgroup.value" class="form-control" placeholder="{{'Workgroup'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Description'|translate}}">
+					<input type="text" ng-model="samba.samba.description.value" class="form-control" placeholder="{{'Description'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Homes'|translate}}">
+					<input type="text" ng-model="samba.samba.homes.value" class="form-control" placeholder="{{'Homes'|translate}}"/>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Samba Shares' | translate }}</juci-config-heading>
+		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Samba Users' | translate }}</juci-config-heading>
+		</juci-config-section>
+	</div>
+</juci-layout-with-sidebar>
