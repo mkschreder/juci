@@ -177,10 +177,10 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		}); 
 	}); 
 	
-	// this will touch the session so that it does not expire
-	$rpc.$authenticate().done(function(){
+	// load the right page from the start
+	if($rpc.$isLoggedIn()){
 		$juci.redirect(path||"overview"); 
-	}).fail(function(){
+	} else {
 		$juci.redirect("login");
 	});
 	
