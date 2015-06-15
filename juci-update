@@ -3,7 +3,19 @@
 #set -e 
 
 WWW="$1"
-MODE="$2" || "RELEASE"
+MODE="$2"
+MODE=${MODE:="RELEASE"}
+
+
+if [ "$MODE" == "RELEASE" ]; then
+	JS_WILDCARD="*.js.gz"
+	CSS_WILDCARD="*.css.gz"
+else
+	JS_WILDCARD="*.js"
+	CSS_WILDCARD="*.css"
+fi
+
+echo "Using mode: $MODE..."
 
 if [ -n "$1" ]; then
 	WWW="$1"
@@ -38,7 +50,7 @@ mkdir -p ${WWW}/css;
 
 STYLES_HTML="" #"<link href='__all.css' rel='stylesheet' type='text/css' />"
 SCRIPTS_HTML="" #"<script src='__all.js'></script>"
-for file in `find ${WWW}/css -name "*.css*" | grep -v '.gz' | sort`; do
+for file in `find ${WWW}/css -name "$CSS_WILDCARD" | sort`; do
 	echo "Adding $file to index"
 	style=${file#${WWW}}
 	style=${style%.gz}
@@ -49,7 +61,7 @@ done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->/" 
 #cat /www/index.html | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->test<!-- STYLES_END -->/g" 
 
-for file in `find ${WWW}/js -name "*.js*" | grep -v '.gz' | sort`; do
+for file in `find ${WWW}/js -name "$JS_WILDCARD" | sort`; do
 	echo "Adding $file to index"
 	JSFILE=${file#${WWW}}
 	JSFILE=${JSFILE%.gz}
