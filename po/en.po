@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 msgid "Overview"
 msgstr "Overview"
@@ -47,7 +47,9 @@ msgstr ""
 msgid "General"
 msgstr ""
 
+#: juci-mod-voice/src/widgets/overview.voice.html:11
 #: juci-mod-wireless/src/pages/wifi.schedule.html:4
+#: juci-mod-wireless/src/widgets/overview.wifi.html:11
 msgid "Schedule"
 msgstr ""
 
@@ -211,9 +213,9 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: juci/src/js/app.js:166 juci/src/js/juci.js:274
+#: juci/src/js/app.js:170 juci/src/js/juci.js:274
 msgid "application.name"
-msgstr "juci"
+msgstr "JUCI"
 
 msgid "encryption.none"
 msgstr "Off"
@@ -242,6 +244,9 @@ msgstr "WPA2"
 msgid "wifi.enc.mixed-psk"
 msgstr "WPA + WPA2"
 
+msgid "login.title"
+msgstr "JUCI Login"
+
 msgid "11b"
 msgstr "802.11b"
 
@@ -262,13 +267,13 @@ msgstr "802.11ac"
 
 #: juci-mod-wireless/src/pages/wifi.mac_filter.js:15
 #: juci-mod-wireless/src/pages/wifi.settings.js:11
-#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:28
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:30
 msgid "2.4GHz"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.mac_filter.js:14
 #: juci-mod-wireless/src/pages/wifi.settings.js:10
-#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:27
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:29
 msgid "5GHz"
 msgstr ""
 
@@ -326,7 +331,7 @@ msgstr ""
 msgid "Address Pool Start IP"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:37
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:39
 msgid "All Weekend"
 msgstr ""
 
@@ -354,7 +359,7 @@ msgstr ""
 msgid "Banner File"
 msgstr ""
 
-#: juci/src/widgets/juci.top_bar.js:13
+#: juci/src/widgets/juci.top_bar.js:15
 msgid "Basic Mode"
 msgstr ""
 
@@ -509,6 +514,11 @@ msgstr ""
 msgid "Days"
 msgstr ""
 
+#: juci-mod-samba/src/pages/services.samba.html:13
+#: juci-mod-samba/src/pages/services.samba.html:14
+msgid "Description"
+msgstr ""
+
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:3
 msgid "Device"
 msgstr ""
@@ -612,15 +622,15 @@ msgstr ""
 msgid "Event Log"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:35
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:37
 msgid "Every Day"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:36
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:38
 msgid "Every Workday"
 msgstr ""
 
-#: juci/src/widgets/juci.top_bar.js:14
+#: juci/src/widgets/juci.top_bar.js:16
 msgid "Expert Mode"
 msgstr ""
 
@@ -653,7 +663,7 @@ msgstr ""
 msgid "Firmware Version"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:44
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:46
 msgid "Friday"
 msgstr ""
 
@@ -667,6 +677,10 @@ msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:27
 msgid "Gateway Ports"
+msgstr ""
+
+#: juci-mod-samba/src/pages/services.samba.html:4
+msgid "General Settings"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:4
@@ -688,6 +702,11 @@ msgstr ""
 #: juci-mod-status/src/pages/status.status.tv.html:10
 #: juci-mod-tv/src/pages/status.status.tv.html:10
 msgid "Group IP"
+msgstr ""
+
+#: juci-mod-samba/src/pages/services.samba.html:16
+#: juci-mod-samba/src/pages/services.samba.html:17
+msgid "Homes"
 msgstr ""
 
 #: juci/src/widgets/juci.login.html:14
@@ -742,7 +761,7 @@ msgstr ""
 msgid "Incoming Calls"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:34
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:36
 msgid "Individual Days"
 msgstr ""
 
@@ -819,7 +838,7 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: juci/src/widgets/juci.login.html:4 juci/src/widgets/juci.top_bar.js:15
+#: juci/src/widgets/juci.login.html:4 juci/src/widgets/juci.top_bar.js:17
 msgid "Log out"
 msgstr ""
 
@@ -873,14 +892,20 @@ msgstr ""
 msgid "Modify"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:40
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:42
 msgid "Monday"
+msgstr ""
+
+#: juci-mod-voice/src/pages/phone.numbers.js:5
+msgid "N/A"
 msgstr ""
 
 #: juci-mod-network/src/pages/status.nat.html:30
 msgid "NAT Connection Table"
 msgstr ""
 
+#: juci-mod-samba/src/pages/services.samba.html:7
+#: juci-mod-samba/src/pages/services.samba.html:8
 #: juci-mod-voice/src/pages/status.status.voice.html:31
 #: juci-mod-voice/src/pages/status.status.voice.html:9
 msgid "Name"
@@ -1037,7 +1062,7 @@ msgstr ""
 msgid "Please add a comment describing this configuration"
 msgstr ""
 
-#: juci/src/widgets/juci.login.js:86
+#: juci/src/widgets/juci.login.js:66
 msgid "Please enter correct username and password!"
 msgstr ""
 
@@ -1193,7 +1218,15 @@ msgstr ""
 msgid "SNR Margin"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:45
+#: juci-mod-samba/src/pages/services.samba.html:22
+msgid "Samba Shares"
+msgstr ""
+
+#: juci-mod-samba/src/pages/services.samba.html:25
+msgid "Samba Users"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:47
 msgid "Saturday"
 msgstr ""
 
@@ -1308,7 +1341,7 @@ msgstr ""
 msgid "Storage"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:46
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:48
 msgid "Sunday"
 msgstr ""
 
@@ -1338,7 +1371,7 @@ msgid ""
 "continue?"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:43
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:45
 msgid "Thursday"
 msgstr ""
 
@@ -1384,7 +1417,7 @@ msgstr ""
 msgid "Tracing Tool"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:41
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:43
 msgid "Tuesday"
 msgstr ""
 
@@ -1400,11 +1433,13 @@ msgstr ""
 msgid "USB Port"
 msgstr ""
 
+#: juci-mod-samba/src/pages/services.samba.js:7
 #: juci-mod-status/src/pages/status.status.tv.js:7
 #: juci-mod-tv/src/pages/status.status.tv.js:7
 msgid "Unable to retreive igmptable from device!"
 msgstr ""
 
+#: juci-mod-network/src/widgets/overview.net.js:33
 #: juci-mod-wireless/src/pages/wifi.settings.js:12
 msgid "Unknown"
 msgstr ""
@@ -1494,8 +1529,17 @@ msgid ""
 "current password!"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:42
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:44
 msgid "Wednesday"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/overview.wifi.small.html:5
+msgid "Wireless"
+msgstr ""
+
+#: juci-mod-samba/src/pages/services.samba.html:10
+#: juci-mod-samba/src/pages/services.samba.html:11
+msgid "Workgroup"
 msgstr ""
 
 #: juci/src/widgets/juci.login.html:3
@@ -1537,8 +1581,8 @@ msgstr ""
 msgid "Your number"
 msgstr ""
 
-#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:20
-#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:21
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:22
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:23
 msgid "auto"
 msgstr "Auto"
 
@@ -1597,6 +1641,29 @@ msgstr ""
 msgid "ip.address.label"
 msgstr "IP address"
 
+#: juci-mod-voice/src/widgets/overview.voice.js:11
+#: juci-mod-voice/src/widgets/overview.voice.js:27
+#: juci-mod-wireless/src/widgets/overview.wifi.js:52
+#: juci-mod-wireless/src/widgets/overview.wifi.js:59
+#: juci-mod-wireless/src/widgets/overview.wifi.js:66
+#: juci-mod-wireless/src/widgets/overview.wifi.js:67
+#: juci-mod-wireless/src/widgets/overview.wifi.js:73
+#: juci-mod-wireless/src/widgets/overview.wifi.js:74
+#: juci-mod-wireless/src/wifi.js:13 juci-mod-wireless/src/wifi.js:14
+#: juci-mod-wireless/src/wifi.js:22 juci-mod-wireless/src/wifi.js:23
+#: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
+msgid "off"
+msgstr "Off"
+
+#: juci-mod-voice/src/widgets/overview.voice.js:27
+#: juci-mod-wireless/src/widgets/overview.wifi.js:52
+#: juci-mod-wireless/src/widgets/overview.wifi.js:59
+#: juci-mod-wireless/src/widgets/overview.wifi.js:73
+#: juci-mod-wireless/src/widgets/overview.wifi.js:74
+#: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
+msgid "on"
+msgstr "On"
+
 #: juci-mod-voice/src/pages/phone.call_log.html:5
 #: juci-mod-voice/src/pages/phone.html:5
 msgid "phone.call_log.info"
@@ -1624,6 +1691,10 @@ msgid "phone.speed_dialing.info"
 msgstr ""
 "This feature activates speed dialing to connect you faster to your preferred "
 "contacts."
+
+#: juci-mod-samba/src/pages/services.samba.html:5
+msgid "services.samba.info"
+msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:5
 msgid "settings.config.info"
@@ -1855,6 +1926,10 @@ msgstr "Exposed Host"
 msgid "internet.dns.title"
 msgstr "DNS & DDNS"
 
+# menu.d/juci-mod-samba.json
+msgid "services.samba.title"
+msgstr ""
+
 # share/menu.d/status.json
 msgid "status.title"
 msgstr "Status"
@@ -1962,6 +2037,12 @@ msgstr "Settings"
 msgid "overview.title"
 msgstr "Overview"
 
+msgid "services.title"
+msgstr ""
+
+msgid "services.status.title"
+msgstr ""
+
 #, fuzzy
 msgid "wifi-iface.wifi-iface.ssid"
 msgstr "WiFi Name (SSID)"
@@ -2011,12 +2092,6 @@ msgstr "Allow"
 
 msgid "interface.macmode.deny"
 msgstr "Deny"
-
-#~ msgid "off"
-#~ msgstr "Off"
-
-#~ msgid "on"
-#~ msgstr "On"
 
 #~ msgid "none"
 #~ msgstr "None"

@@ -134,6 +134,9 @@ msgstr ""
 msgid "wifi.enc.mixed-psk"
 msgstr ""
 
+msgid "login.title"
+msgstr ""
+
 msgid "11b"
 msgstr "802.11b"
 msgid "11g"

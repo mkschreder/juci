@@ -164,12 +164,8 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 					onEnter: function($uci, $rootScope){
 						$rootScope.errors.splice(0, $rootScope.errors.length); 
 						
-						// this will touch the session so that it does not expire
-						$rpc.$authenticate().done(function(){
-							$uci.$revert(); 
-						}).fail(function(){
-							$juci.redirect("login");
-						});
+						// do a revert of any changes upon each page load so that we make sure we start form "clean page"
+						$uci.$revert();
 						
 						document.title = $tr(k.replace(/\//g, ".")+".title")+" - "+$tr(gettext("application.name")); 
 					}, 
@@ -180,11 +176,20 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 			}
 		}); 
 	}); 
-	if($rpc.$isLoggedIn()){
+	
+	// this will touch the session so that it does not expire
+	$rpc.$authenticate().done(function(){
 		$juci.redirect(path||"overview"); 
-	} else {
-		$juci.redirect("login"); 
-	};  
+	}).fail(function(){
+		$juci.redirect("login");
+	});
+	
+	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
+	setInterval(function(){
+		$rpc.$authenticate().fail(function(){
+			$juci.redirect("login");
+		});
+	}, 5000); 
 })
 // TODO: figure out how to avoid forward declarations of things we intend to override. 
 .directive("juciFooter", function(){ return {} })
