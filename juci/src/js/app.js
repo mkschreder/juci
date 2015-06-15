@@ -182,7 +182,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		$juci.redirect(path||"overview"); 
 	} else {
 		$juci.redirect("login");
-	});
+	}
 	
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){
