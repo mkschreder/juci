@@ -30,7 +30,7 @@ JUCI.app
 	
 	$scope.onDeleteRule = function(rule){
 		rule.$delete().done(function(){
-			
+			$scope.$apply(); 
 		}); 
 	};
 	
