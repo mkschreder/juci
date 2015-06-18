@@ -9,7 +9,7 @@
 				<juci-config-line title="Outgoing Number Blocking">
 					<switch ng-model="filter.block_outgoing.value"></switch>
 				</juci-config-line>
-			<juci-config-lines>
+			</juci-config-lines>
 			<juci-config-lines ng-show="filter.block_outgoing.value">
 				<hr/>
 				<juci-config-line title="Do not allow connections to these numbers">
@@ -35,7 +35,7 @@
 				<juci-config-line title="Block connections to all special rate numbers">
 					<switch ng-model="filter.block_special_rate.value"></switch>
 				</juci-config-line>
-			<juci-config-lines>
+			</juci-config-lines>
 		</juci-config-section>
 		<juci-config-section>
 			<h2 translate>Incoming Calls</h2>
@@ -43,7 +43,7 @@
 				<juci-config-line title="Incoming Number Blocking">
 					<switch ng-model="filter.block_incoming.value"></switch>
 				</juci-config-line>
-			<juci-config-lines>
+			</juci-config-lines>
 			<juci-config-lines ng-show="filter.block_incoming.value">
 				<juci-config-line title="Do not allow connections from these numbers">
 					<div class="row" ng-repeat="rule in incomingRules">
@@ -58,7 +58,7 @@
 						</div>
 					</div>
 				</juci-config-line>
-			<juci-config-lines>
+			</juci-config-lines>
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>

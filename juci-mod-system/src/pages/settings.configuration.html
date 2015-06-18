@@ -47,8 +47,8 @@
 					<juci-config-line title="{{'Pick configuration backup to upload'|translate}}">
 						<input type="file" class="btn btn-default btn-file" name="filedata" />
 					</juci-config-line>
-					<juci-config-line title="{{'Backup file password (if encrypted)'|translate}}">
-						<input type="password" class="form-control" name="password" ng-model="restore.password" />
+					<juci-config-line title="{{'Backup file password'|translate}}">
+						<input type="password" class="form-control" name="password" ng-model="restore.password" placeholder="{{'Password (if encrypted)'|translate}}"/>
 					</juci-config-line>
 					<!--<juci-config-line title="{{'Start upgrade'|translate}}">
 						<input type="submit" class="btn btn-lg btn-default" value="{{'Upgrade'|translate}}"/>

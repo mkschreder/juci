@@ -26,8 +26,7 @@ div.logo {
 }
 
 .overview-banner {
-	background: url("../img/family_web.jpg") repeat scroll center center !important;
-	width: 100%; 
+	background: url("../img/overview_header.jpg") repeat scroll top center !important;
 	height: 400px; 
 	margin-bottom: 30px; 
 }

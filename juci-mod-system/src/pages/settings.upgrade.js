@@ -117,7 +117,25 @@ JUCI.app
 	
 	$scope.config = $config; 
 	
-	function upgradeStart(path){
+	function confirmKeep(){
+		var deferred = $.Deferred(); 
+		
+		$scope.onConfirmKeep = function(){
+			$scope.showConfirm = 0;
+			deferred.resolve(true); 
+		}
+		$scope.onConfirmWipe = function(){
+			$scope.showConfirm = 0;
+			deferred.resolve(false); 
+		}
+		
+		$scope.showConfirm = 1;
+		setTimeout(function(){ $scope.$apply(); }, 0); 
+		 
+		return deferred.promise(); 
+	}
+	
+	function upgradeStart(path, keep_configs){
 		$scope.showUpgradeStatus = 1; 
 		$scope.error = null; 
 		$scope.message = gettext("Verifying firmware image")+"...";					
@@ -125,8 +143,8 @@ JUCI.app
 		setTimeout(function(){ $scope.$apply(); }, 0); 
 		
 		console.log("Trying to upgrade from "+path); 
-
-		$rpc.juci.system.upgrade_start({"path": path}).done(function(result){
+		
+		$rpc.juci.system.upgrade_start({"path": path, "keep": ((keep_configs)?1:0)}).done(function(result){
 			// this will actually never succeed because server will be killed
 			console.error("upgrade_start returned success, which means that it actually probably failed but did not return an error"); 
 			$scope.error = (result.stdout||"") + (result.stderr||""); 
@@ -172,7 +190,9 @@ JUCI.app
 		}); 
 	} 
 	$scope.onUpgradeOnline = function(){
-		upgradeStart($scope.onlineUpgrade); 
+		confirmKeep().done(function(keep){
+			upgradeStart($scope.onlineUpgrade, keep); 
+		}); 
 	}
 	
 	$scope.onCheckUSB = function(){
@@ -191,7 +211,9 @@ JUCI.app
 		});
 	}
 	$scope.onUpgradeUSB = function(){
-		upgradeStart($scope.usbUpgrade); 
+		confirmKeep().done(function(keep){
+			upgradeStart($scope.usbUpgrade, keep); 
+		}); 
 	}
 	
 	$scope.onCheckUSB(); 
@@ -200,8 +222,8 @@ JUCI.app
 	$scope.onUploadComplete = function(result){
 		console.log("Upload completed: "+JSON.stringify(result)); 
 	}
-	$scope.onUploadUpgrade = function(){
-		$scope.showUpgradeStatus = 1; 
+	$scope.onUploadUpgrade = function(keep_configs){
+		//$scope.showUpgradeStatus = 1; 
 		$scope.message = "Uploading..."; 
 		$scope.progress = 'uploading'; 
 		$("#postiframe").bind("load", function(){
@@ -216,8 +238,14 @@ JUCI.app
 				//return;   
 			}
 			
-			upgradeStart($scope.uploadFilename); 
+			$scope.showUpgradeStatus = 0; 
+			$scope.$apply(); 
 			
+			confirmKeep().done(function(keep){
+				$scope.showUpgradeStatus = 1; 
+				//$scope.$apply(); 
+				upgradeStart($scope.uploadFilename, keep); 
+			}); 
 			$(this).unbind("load"); 
 		}); 
 		$("form[name='uploadForm']").submit();

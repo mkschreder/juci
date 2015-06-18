@@ -49,6 +49,9 @@
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
+		<modal title="Do you want to keep your configuration?" ng-show="showConfirm" on-accept="onConfirmKeep()" on-dismiss="onConfirmWipe()" accept-label="Yes" dismiss-label="No">
+			<p translate>If you answer yes then your confiruation will be saved before the upgrade and restored after the upgrade has completed. If you choose 'no' then all your current confiration will be reset to defaults.</p>
+		</modal>
 		<modal title="Firmware Upgrade" ng-show="showUpgradeStatus">
 			<center>
 				<p style="text-align: center;" ng-show="!error">{{message}}</p>

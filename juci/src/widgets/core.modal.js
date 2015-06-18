@@ -14,6 +14,7 @@ JUCI.app
 			ngShow: "=",
 			onAccept: "&", 
 			onDismiss: "&", 
+			noFooter: "@",
 			title: "@",
 			hideCloseBtn : "@"
 		}, 

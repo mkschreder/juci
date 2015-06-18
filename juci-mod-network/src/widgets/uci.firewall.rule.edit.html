@@ -1,0 +1,42 @@
+<div class="form-horizontal" >
+	<div class="form-group">
+		<label for="device" class="control-label col-xs-4" translate>Device</label>
+		<div class="col-xs-8" id="device">
+			<juci-select ng-model="ngModel.dest_ip.value" ng-items="deviceChoices" placeholder="Select connected device"></juci-select>
+		</div>
+	</div>
+	<div class="form-group">
+			<label for="ipAddress" class="control-label col-xs-4" translate>Local IP Address</label>
+			<div class="col-xs-8">
+				<input id="ipAddress" type="text" class="form-control" ng-model="ngModel.dest_ip.value" />
+			</div>
+	</div>
+	<div class="form-group">
+		<label for="protocol" class="control-label col-xs-4" translate>Protocol</label>
+		<div class="col-xs-8" id="protocol">
+			<juci-select ng-model="ngModel.proto.value" ng-items="protocolChoices" placeholder="Select protocol"></juci-select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="range" class="control-label col-xs-4">Type</label>
+		<div class="col-xs-8" id="range">
+			<div class="btn-group">
+				<button ng-repeat="item in [[false,'Port'], [true, 'Port range']]" class="btn btn-default" ng-model="portIsRange" btn-radio="item[0]" ng-click="onPortRangeClick(item[0])">{{item[1]}}</button>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" >
+		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Public port</label>
+		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Public port range</label>
+		<div class="col-xs-8" ng-class="{'field-error': ngModel.src_dport.error}" >
+			<juci-input-port ng-model="ngModel.src_dport.value" port-range="portIsRange"/>
+		</div>
+	</div>
+	<div class="form-group" >
+		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Private port</label>
+		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Private port range</label>
+		<div class="col-xs-8" ng-class="{'field-error': ngModel.dest_port.error}" >
+			<juci-input-port ng-model="ngModel.dest_port.value" port-range="portIsRange"/>
+		</div>
+	</div>
+</div>

@@ -122,9 +122,11 @@ UCI.firewall.$registerSectionType("dmz", {
 	"host": 				{ dvalue: "", type: String } // TODO: change to ip address
 }); 
 UCI.firewall.$registerSectionType("rule", {
+	"type": 				{ dvalue: "generic", type: String }, 
 	"name":					{ dvalue: "", type: String }, 
 	"src":					{ dvalue: "lan", type: String }, 
 	"src_ip":				{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
+	"src_mac": 			{ dvalue: [], type: Array }, 
 	"src_port":			{ dvalue: 0, type: Number }, 
 	"proto":				{ dvalue: "tcp", type: String }, 
 	"dest":					{ dvalue: "*", type: String }, 
@@ -135,9 +137,19 @@ UCI.firewall.$registerSectionType("rule", {
 	"icmp_type": 		{ dvalue: [], type: Array },
 	"enabled": 			{ dvalue: true, type: Boolean },
 	"hidden": 			{ dvalue: true, type: Boolean }, 
-	"limit":				{ dvalue: "", type: String }
+	"limit":				{ dvalue: "", type: String }, 
+	// scheduling
+	"weekdays":				{ dvalue: "", type: String }, 
+	"start_time":			{ dvalue: "", type: String }, 
+	"stop_time":			{ dvalue: "", type: String }, 
 }); 
 UCI.firewall.$registerSectionType("settings", {
 	"disabled":			{ dvalue: false, type: Boolean },
 	"ping_wan":			{ dvalue: false, type: Boolean }
 }); 
+UCI.firewall.$registerSectionType("urlblock", {
+	"enabled": { dvalue: false, type: Boolean }, 
+	"url": 					{ dvalue: [], type: Array }, 
+	"src_mac": 			{ dvalue: [], type: Array }, 
+}); 
+

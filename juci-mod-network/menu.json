@@ -26,5 +26,10 @@
 				"modes": [ "expert" ], 
         "acls": [ "hostnames" ],
         "index": 50
+    },
+    "internet/parental_control": {
+        "title": "Parental Control",
+        "acls": [ "firewall" ],
+        "index": 60
     }
 }
