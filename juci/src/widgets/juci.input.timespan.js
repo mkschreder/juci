@@ -22,12 +22,16 @@ $juci.app.directive("juciInputTimespan", function () {
 		} else {
 			$scope.data.to = $scope.data.from = ""; 
 		}
-	}); 
+	}, true); 
 	
 	(function(){
 		function updateTime(value){
 			if($scope.model){
-				if($scope.data.from && $scope.data.to) $scope.model.value = ($scope.data.from||"") + "-"+($scope.data.to||""); 
+				if($scope.data.from && $scope.data.to) {
+					$scope.model.value = ($scope.data.from||"") + "-"+($scope.data.to||""); 
+					$scope.model.start_time = $scope.data.from; 
+					$scope.model.end_time = $scope.data.to; 
+				}
 				else $scope.model.value = ""; 
 			}
 		}

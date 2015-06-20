@@ -81,11 +81,12 @@ JUCI.app
 		}, 
 		controller: "juciConfigApplyController"
 	 }; 
-}).controller("juciConfigApplyController", function($scope, $uci){
+}).controller("juciConfigApplyController", function($scope, $uci, $rootScope){
 	$scope.onApply = function(){
 		$scope.$emit("errors_begin"); 
 		//if($scope.onPreApply) $scope.onPreApply(); 
 		$scope.busy = 1; 
+		$scope.errors = []; 
 		try {
 			$uci.save().done(function(){
 				console.log("Saved uci configuration!"); 

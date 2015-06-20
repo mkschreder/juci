@@ -1,13 +1,29 @@
-/*JUCI.app
-.config(function($stateProvider) {
-	var plugin_root = $juci.module("internet").plugin_root; 
-	$stateProvider.state("internet", {
-		url: "/internet", 
-		onEnter: function(){
-			$juci.redirect("internet-firewall"); 
-		}
-	}); 
-});*/
+JUCI.app.factory("$network", function($rpc, $uci){
+	function _refreshClients(){
+		var deferred = $.Deferred(); 
+		$rpc.router.clients().done(function(clients){
+			deferred.resolve(Object.keys(clients).filter(function(x){
+				return clients[x]; 
+			}));  
+		}).fail(function(){ deferred.reject(); });
+		return deferred.promise(); 
+	}
+	
+	function NetworkBackend() {
+		this.clients = []; 
+	}
+	
+	NetworkBackend.prototype.getConnectedClients = function(){
+		var deferred = $.Deferred(); 
+		var self = this; 
+		_refreshClients().always(function(){
+			deferred.resolve(self.clients.filter(function(x){ return x.connected; })); 
+		}); 
+		return deferred.promise(); 
+	}
+	
+	return new NetworkBackend(); 
+}); 
 
 UCI.validators.IPAddressValidator = function(){
 	this.validate = function(field){
@@ -21,6 +37,20 @@ UCI.validators.MACAddressValidator = function(){
 		if(!(typeof field.value == "string") ||
 			!field.value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/)) 
 			return gettext("Value must be a valid MAC-48 address"); 
+		return null; 
+	}
+}; 
+
+UCI.validators.MACListValidator = function(){
+	this.validate = function(field){
+		if(field.value instanceof Array){
+			var errors = []; 
+			field.value.map(function(value){
+				if(!value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/))
+					errors.push(gettext("value must be a valid MAC-48 address")+": "+value); 
+			}); 
+			if(errors.length) return errors.join(", "); 
+		}
 		return null; 
 	}
 }; 
@@ -126,7 +156,7 @@ UCI.firewall.$registerSectionType("rule", {
 	"name":					{ dvalue: "", type: String }, 
 	"src":					{ dvalue: "lan", type: String }, 
 	"src_ip":				{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
-	"src_mac": 			{ dvalue: [], type: Array }, 
+	"src_mac": 			{ dvalue: [], type: Array, validator: UCI.validators.MACListValidator }, 
 	"src_port":			{ dvalue: 0, type: Number }, 
 	"proto":				{ dvalue: "tcp", type: String }, 
 	"dest":					{ dvalue: "*", type: String }, 
@@ -139,6 +169,7 @@ UCI.firewall.$registerSectionType("rule", {
 	"hidden": 			{ dvalue: true, type: Boolean }, 
 	"limit":				{ dvalue: "", type: String }, 
 	// scheduling
+	"parental": 			{ dvalue: false, type: String }, 
 	"weekdays":				{ dvalue: "", type: String }, 
 	"start_time":			{ dvalue: "", type: String }, 
 	"stop_time":			{ dvalue: "", type: String }, 
@@ -150,6 +181,6 @@ UCI.firewall.$registerSectionType("settings", {
 UCI.firewall.$registerSectionType("urlblock", {
 	"enabled": { dvalue: false, type: Boolean }, 
 	"url": 					{ dvalue: [], type: Array }, 
-	"src_mac": 			{ dvalue: [], type: Array }, 
+	"src_mac": 			{ dvalue: [], type: Array, validator: UCI.validators.MACListValidator }, 
 }); 
 

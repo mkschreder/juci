@@ -8,14 +8,14 @@
 				<div class="row" ng-class="{'field-error': schedule.days.error}" >
 					<div class="col-xs-6 " ng-repeat="day in allDayNames">
 						<div class="checkbox checkbox-info">
-							<input type="checkbox" {{(selectedTimeFrame != 'individual')?"disabled":""}} checklist-model="schedule.days.value" checklist-value="day.value">
+							<input type="checkbox" {{(selectedTimeFrame != 'individual')?"disabled":""}} checklist-model="days" checklist-value="day.value">
 							<label><strong>{{day.label}}</strong></label>
 						</div>
 					</div>
 				</div>
 			</juci-config-line>
 			<juci-config-line title="{{'Time'|translate}}" no-pull>
-				<juci-input-timespan ng-model="schedule.time" juci-timespan-validator="schedule.time.value"></juci-input-timespan>
+				<juci-input-timespan ng-model="time_span" ></juci-input-timespan>
 			</juci-config-line>
 		</juci-config-lines>
 	<!--</div>-->

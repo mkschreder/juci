@@ -107,7 +107,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	
 	// register a global error handler so we can show all errors
 	window.onerror = function(err){
-		$rootScope.errors.push({ message: err+":\n\n"+err.stack });
+		$rootScope.errors.push({ message: err+":\n\n"+(err.stack||"") });
 		alert(err);  
 	}
 	$rootScope.$on("error", function(ev, data){
@@ -117,6 +117,8 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	$rootScope.$on("errors", function(ev, errors){
 		if(errors && (errors instanceof Array)){
 			$rootScope.errors.concat(errors.map(function(x){ return { message: x }; })); 
+		} else {
+			$rootScope.errors.length = 0; 
 		}
 	}); 
 	$rootScope.$on("errors_begin", function(ev){

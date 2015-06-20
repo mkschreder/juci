@@ -1,30 +1,20 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.directive("uciWirelessScheduleEdit", function($compile){
-	var plugin_root = $juci.module("wifi").plugin_root; 
+.directive("juciScheduleEdit", function($compile){
 	return {
-		templateUrl: plugin_root+"/widgets/uci.wireless.schedule.edit.html", 
+		templateUrl: "/widgets/juci.schedule.edit.html", 
 		scope: {
 			schedule: "=ngModel"
 		}, 
-		controller: "uciWirelessScheduleEdit", 
+		controller: "juciScheduleEdit", 
 		replace: true, 
 		require: "^ngModel"
-		/*link: function(scope, elm, attrs, ctrl){
-			scope.ctrl = ctrl; 
-			ctrl.$validators.validate = function (modelValue, viewValue) {
-				console.log(JSON.stringify(modelValue) +"-"+viewValue); 
-				if (ctrl.$isEmpty(modelValue)) { // consider empty models to be valid
-						return true;
-				}
-				
-				return false;
-			}
-		}*/
 	};  
-}).controller("uciWirelessScheduleEdit", function($scope, gettext, $uci){
+}).controller("juciScheduleEdit", function($scope, gettext, $uci){
 	$scope.data = {}; 
+	$scope.time_span = { value: "" }; 
+	$scope.days = []; 
 	
 	var dayTranslation = {
 		"everyday": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], 
@@ -49,28 +39,32 @@ JUCI.app
 	]; 
 	$scope.selectedTimeFrame = $scope.allTimeFrames[0].value; 
 	
-	(function(){
-		function update_time(){
-			if($scope.schedule){
-				$scope.schedule.time.value = ($scope.data.timeFrom||"")+"-"+($scope.data.timeTo||""); 
-			}
-		}
-		
-		$scope.$watch("data.timeFrom", update_time, true); 
-		$scope.$watch("data.timeTo", update_time, true);
-	})(); 
-	
+	$scope.$watch("time_span.end_time", function(value){
+		if(!$scope.schedule) return; 
+		$scope.schedule.time_end = value; 
+	}); 
+	$scope.$watch("time_span.start_time", function(value){
+		if(!$scope.schedule) return; 
+		$scope.schedule.time_start = value; 
+	}); 
+	$scope.$watch("days", function(){
+		if(!$scope.schedule) return; 
+		$scope.schedule.days.splice(0, $scope.schedule.days.length); 
+		$scope.days.map(function(x){ $scope.schedule.days.push(x); }); 
+	}, true); 
 	$scope.$watch("schedule", function(value){
-		if(value != undefined && value.days && value.time){
-			$scope.data.days = value.days.value.map(function(x){ return x; }); 
-		} 
-	});
-	 
+		if(!value) return; 
+		$scope.time_span.value = (value.time_start||"")+"-"+(value.time_end||""); 
+		$scope.days.splice(0, $scope.days.length); 
+		value.days.map(function(x){ $scope.days.push(x); }); 
+		console.log("Schedule obj changed: "+JSON.stringify(Object.keys(value))); 
+	}); 
+	
+	// when predefined day selection is done 
 	$scope.onChangeDays = function($value){
 		console.log("Changing days to: "+JSON.stringify($value) + " "+ $scope.selectedTimeFrame);  
-		//$scope.schedule.days.value.splice(0,$scope.schedule.days.value.length); 
 		$scope.selectedTimeFrame = $value; 
-		$scope.schedule.days.value = dayTranslation[$value]; 
-		//Object.assign($scope.schedule.days.value, $scope.selectedTimeFrame); 
+		$scope.days.splice(0, $scope.schedule.days.length); 
+		dayTranslation[$value].map(function(x){ $scope.days.push(x); });
 	}
 }); 

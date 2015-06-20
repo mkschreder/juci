@@ -20,8 +20,8 @@ all: htdocs menu.d $(DIRS-y)
 inteno: all
 	
 debug: htdocs menu.d $(DIRS-y)
-	npm install 
-	grunt
+	#npm install 
+	#grunt
 	./juci-update htdocs DEBUG
 	
 htdocs: 

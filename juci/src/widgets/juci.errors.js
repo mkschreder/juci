@@ -2,13 +2,12 @@
 
 JUCI.app
 .directive("juciErrors", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		// accepted parameters for this tag
 		scope: {
 			ngModel: "="
 		}, 
-		templateUrl: plugin_root+"/widgets/juci.errors.html", 
+		templateUrl: "/widgets/juci.errors.html", 
 		replace: true, 
 		controller: "juciErrors"
 	}; 
@@ -20,7 +19,6 @@ JUCI.app
 
 JUCI.app
 .directive("juciError", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		// accepted parameters for this tag
 		scope: {

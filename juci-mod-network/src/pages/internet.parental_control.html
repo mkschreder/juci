@@ -9,9 +9,9 @@
 					<switch ng-model="firewall.urlblock.enabled.value" class="green"></switch>
 				</juci-config-line>
 			</juci-config-lines>
-			<div class="row">
+			<div class="row" ng-show="firewall.urlblock.enabled.value">
 				<div class="col-sm-4">
-					<div class="row" ng-repeat="r in urlList track by $index">
+					<div class="row form-group" ng-repeat="r in urlList track by $index">
 						<div class="col-sm-10">
 							<input type="text" class="form-control" ng-model="r.url" placeholder="{{'URL'|translate}}"/>
 						</div>
@@ -19,7 +19,7 @@
 							<button class="btn btn-default" ng-click="onDeleteURL(r.url)"><i class="fa fa-trash-o"></i></button>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row form-group">
 						<div class="col-sm-10"/>
 						<div class="col-sm-2">
 							<button class="btn btn-default" ng-click="onAddURL()"><i class="fa fa-plus"></i>
@@ -27,22 +27,7 @@
 					</div>
 				</div>
 				<div class="col-sm-4">
-					<div class="row" ng-repeat="r in macList track by $index">
-						<div class="col-sm-10">
-							<input type="text" class="form-control" ng-model="r.mac" placeholder="{{'URL'|translate}}"/>
-						</div>
-						<div class="col-sm-2">
-							<button class="btn btn-default" ng-click="onDeleteMAC(r.mac)"><i class="fa fa-trash-o"></i></button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-10">
-							<juci-select ng-model="selectedMAC" ng-items="connectedHosts" placeholder="{{'Select Existing Host'|translate}}" on-change="onSelectExistingMAC($value)"/>
-						</div>
-						<div class="col-sm-2">
-							<button class="btn btn-default" ng-click="onAddMAC()"><i class="fa fa-plus"></i>
-						</div>
-					</div>
+					<juci-maclist-edit ng-model="macList"/>
 				</div>
 			</div>
 		</juci-config-section>
@@ -61,11 +46,21 @@
 						<td>{{r.weekdays.value}}</td>
 						<td>{{r.start_time.value}}</td>
 						<td>{{r.stop_time.value}}</td>
-						<td><ul><li ng-repeat="mac in r.src_mac.value">{{mac}}</li></ul></td>
-						<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteAccessRule(r)"><i class="fa fa-trash-o"></i></button></td>
+						<td>
+							<div ng-repeat="mac in r.src_mac.value">
+								<div class="col-xs-2"><i class="fa fa-desktop"/></div>
+								<div class="col-xs-10" >{{mac}}</div>
+							</div>
+						</td>
+						<td style="width: 1%">
+							<button class="btn btn-default" ng-click="onEditAccessRule(r)"><i class="fa fa-pencil"></i></button>
+						</td>
+						<td style="width: 1%">
+							<button class="btn btn-default" ng-click="onDeleteAccessRule(r)"><i class="fa fa-trash-o"></i></button>
+						</td>
 					</tr>
 					<tr>
-						<td colspan="3"></td>
+						<td colspan="5"></td>
 						<td style="width: 1%"><button class="btn btn-default" ng-click="onAddAccessRule()"><i class="fa fa-plus"></i></button></td>
 					</tr>
 				</tbody>
@@ -73,7 +68,12 @@
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 		<modal title="Add / Edit MAC Filter Scheduling" ng-show="rule" on-accept="onAcceptEdit()" on-dismiss="onCancelEdit()" dismiss-label="Cancel" accept-label="Save">
-			<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
+			<juci-schedule-edit ng-model="rule"></juci-schedule-edit>
+			<juci-config-lines>
+				<juci-config-line title="MAC List">
+					<juci-maclist-edit ng-model="rule.macList"/>
+				</juci-config-line>
+			</juci-config-line>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>
 		</modal>
 	</div>

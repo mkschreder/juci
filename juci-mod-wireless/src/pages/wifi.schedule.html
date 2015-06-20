@@ -42,7 +42,7 @@
 		<juci-config-apply></juci-config-apply>
 		<modal title="Add a new WiFi Schedule" ng-show="showScheduleDialog" on-accept="onAcceptSchedule()" 
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
-			<uci-wireless-schedule-edit ng-model="schedule"></uci-wireless-schedule-edit>
+			<juci-schedule-edit ng-model="schedule"></juci-schedule-edit>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
 		</modal>
 	</div>

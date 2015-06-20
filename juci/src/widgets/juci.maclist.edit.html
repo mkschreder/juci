@@ -1,0 +1,19 @@
+<div>
+		<div class="col-xs-12 form-group" ng-repeat="r in macList track by $index">
+			<div class="col-sm-10">
+				<input type="text" class="form-control" ng-model="r.mac" placeholder="{{'MAC Address'|translate}}"/>
+				<span class="label label-danger" ng-show="validateMAC(r.mac)" translate>Invalid MAC address</span>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-default" ng-click="onDeleteMAC(r.mac)"><i class="fa fa-trash-o"></i></button>
+			</div>
+		</div>
+		<div class="col-xs-12 form-group">
+			<div class="col-sm-10">
+				<juci-select ng-model="selectedMAC" ng-items="connectedHosts" placeholder="{{'Select Existing Host'|translate}}" on-change="onSelectExistingMAC($value)"/>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-default" ng-click="onAddMAC()"><i class="fa fa-plus"></i>
+			</div>
+		</div>
+</div>

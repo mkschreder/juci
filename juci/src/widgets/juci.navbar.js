@@ -19,6 +19,7 @@ JUCI.app
 	return {
 		restrict: 'E', 
 		templateUrl: plugin_root+"/widgets/juci.navbar.html", 
+		controller: "NavigationCtrl",
 		replace: true
 	}; 
 })
