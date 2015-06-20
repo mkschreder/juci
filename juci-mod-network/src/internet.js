@@ -171,8 +171,8 @@ UCI.firewall.$registerSectionType("rule", {
 	// scheduling
 	"parental": 			{ dvalue: false, type: String }, 
 	"weekdays":				{ dvalue: "", type: String }, 
-	"start_time":			{ dvalue: "", type: String }, 
-	"stop_time":			{ dvalue: "", type: String }, 
+	"start_time":			{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
+	"stop_time":			{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
 }); 
 UCI.firewall.$registerSectionType("settings", {
 	"disabled":			{ dvalue: false, type: Boolean },

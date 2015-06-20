@@ -52,13 +52,22 @@ JUCI.app
 				}); 
 			}, true);
 			
-			$scope.accessRules = $uci.firewall["@rule"].filter(function(rule){
-				return rule.parental.value; 
-			}); 
+			function updateRules(){
+				$scope.accessRules = $uci.firewall["@rule"].filter(function(rule){
+					return rule.parental.value; 
+				}); 
+			} updateRules(); 
 			
 			$scope.onAddAccessRule = function(){
 				$uci.firewall.create({".type": "rule", "parental": true}).done(function(rule){
-					$scope.accessRules.push(rule); 
+					rule[".new"] = true; 
+					$scope.rule = {
+						time_start: rule.start_time.value, 
+						time_end: rule.stop_time.value, 
+						days: rule.weekdays.value.split(" "), 
+						macList: rule.src_mac.value.map(function(x){ return { mac: x }; }), 
+						uci_rule: rule
+					}; 
 					$scope.$apply(); 
 				}); 
 			}
@@ -73,12 +82,23 @@ JUCI.app
 				}; 
 			}
 			
+			$scope.onDeleteAccessRule = function(rule){
+				rule.$delete().done(function(){
+					updateRules(); 
+					$scope.$apply(); 
+				}); 
+			}
+			
 			$scope.onAcceptEdit = function(){
 				if($scope.rule.macList.find(function(k){
 					return $scope.validateMAC(k.mac); 
 				})) return; 
 				
 				var rule = $scope.rule.uci_rule; 
+				if(rule[".new"]) {
+					$scope.accessRules.push(rule); 
+					rule[".new"] = false; 
+				}
 				rule.src_mac.value = $scope.rule.macList.map(function(k){
 					return k.mac; 
 				}); 
@@ -89,6 +109,9 @@ JUCI.app
 			}
 			
 			$scope.onCancelEdit = function(){
+				if($scope.rule && $scope.rule.uci_rule && $scope.rule.uci_rule[".new"]){
+					$scope.rule.uci_rule.$delete(); 
+				}
 				$scope.rule = null; 
 			}
 			

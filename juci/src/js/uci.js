@@ -10,6 +10,18 @@
 		}
 	}
 	
+	function TimeValidator(){
+		this.validate = function(field){
+			var parts = field.value.split(":").map(function(x){ return Number(x); });
+			if(parts.length != 2) return gettext("Please use ':' to separate hours and minutes!"); 
+			if(parts[0] >= 0 && parts[0] < 24 && parts[1] >= 0 && parts[1] < 60){
+				return null; 
+			} else {
+				return gettext("please enter valid time in form hh:mm"); 
+			}
+		}
+	}
+	
 	function TimespanValidator(){
 		this.validate = function(field){
 			var parts = field.value.split("-"); 
@@ -148,6 +160,8 @@
 				this.uvalue = val; 
 			},
 			get error(){
+				// make sure we ignore errors if value is default and was not changed by user
+				//if(this.uvalue == this.dvalue) return null; 
 				return this.validator.validate(this); 
 			},
 			get valid(){
@@ -711,7 +725,8 @@
 		WeekDayListValidator: WeekDayListValidator, 
 		TimespanValidator: TimespanValidator, 
 		PortValidator: PortValidator, 
-		NumberLimitValidator: NumberLimitValidator
+		NumberLimitValidator: NumberLimitValidator, 
+		TimeValidator: TimeValidator
 	}; 
 	/*if(exports.JUCI){
 		var JUCI = exports.JUCI; 

@@ -151,6 +151,11 @@ div.error {
     color: #a94442;
 }
 
+.modal-backdrop {
+	width: 4000px; 
+	height: 4000px; 
+}
+
 .footer-right {
 	text-align: right; 
 }

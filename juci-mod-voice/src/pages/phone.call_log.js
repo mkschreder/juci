@@ -7,6 +7,7 @@ JUCI.app
 	$scope.phoneList = []; 
 	$scope.call_log = []; 
 	JUCI.interval.repeat("call_log", 2000, function(done){
+		if(!$rpc.asterisk) return; 
 		$rpc.asterisk.call_log.list().done(function(res){
 			var unique_phones = {}; 
 			$scope.call_log = res.call_log.map(function(log){

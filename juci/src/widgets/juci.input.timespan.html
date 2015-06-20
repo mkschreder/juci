@@ -1,6 +1,16 @@
 <div class="row" ng-class="{'field-error': model.error}" data-toggle="tooltip" data-placement="top" title="{{model.error}}">
-	<div class="col-xs-2"><label translate>from</label></div>
-	<div class="col-xs-4"><input class="form-control" type="text" ng-model="data.from" placeholder="09:00"/></div>
-	<div class="col-xs-2"><label translate>to</label></div>
-	<div class="col-xs-4"><input class="form-control" type="text" ng-model="data.to" placeholder="09:00"/></div>
+	<div class="col-xs-2">
+		<label translate>from</label>
+	</div>
+	<div class="col-xs-4">
+		<input class="form-control" type="text" ng-model="data.from" placeholder="09:00"/>
+		<span class="label label-danger" ng-show="validateTime(data.from)" translate>Required</span>
+	</div>
+	<div class="col-xs-2">
+		<label translate>to</label>
+	</div>
+	<div class="col-xs-4">
+		<input class="form-control" type="text" ng-model="data.to" placeholder="09:00"/>
+		<span class="label label-danger" ng-show="validateTime(data.from)" translate>Required</span>
+	</div>
 </div>

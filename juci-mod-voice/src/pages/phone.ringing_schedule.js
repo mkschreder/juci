@@ -36,7 +36,6 @@ JUCI.app
 			}); 
 		} else {
 			$scope.settings = $uci.voice_client.RINGING_STATUS;
-			$scope.$apply(); 
 		} 
 		$scope.schedules = $uci.voice_client["@ringing_schedule"]; 
 		$scope.allSipAccountsMap = {}; 
@@ -48,8 +47,15 @@ JUCI.app
 			$scope.allSipAccountsMap[x[".name"]] = x; 
 			return i; 
 		}); 
+		
+		$scope.getAccountName = function(item){
+			var provider = $scope.allSipAccountsMap[item.sip_service_provider.value]; 
+			if(provider) return provider.name.value; 
+			return ""; 
+		}
+		$scope.$apply(); 
 	}); 
-	
+	/*
 	$scope.onAcceptSchedule = function(){
 		//$uci.save().done(function(){
 		var schedule = $scope.schedule; 
@@ -90,6 +96,62 @@ JUCI.app
 		console.log("Editing: "+sched[".name"]); 
 		$scope.schedule = sched; 
 		$scope.showScheduleDialog = 1; 
+	}
+	$scope.onDeleteSchedule = function(sched){
+		sched.$delete().always(function(){
+			$scope.$apply(); 
+		}); 
+	}
+	*/
+	
+	
+	$scope.onAcceptSchedule = function(){
+		var item = $scope.schedule.uci_item; 
+		var view = $scope.schedule; 
+		if(item[".new"]) { 
+			item[".new"] = false; 
+		}
+		item.sip_service_provider.value = view.sip_service_provider; 
+		item.time.value = view.time_start + "-" + view.time_end; 
+		item.days.value = view.days; 
+		$scope.schedule = null; 
+	}
+	
+	$scope.onDismissSchedule = function(schedule){
+		if($scope.schedule.uci_item && $scope.schedule.uci_item[".new"]){
+			$scope.schedule.uci_item.$delete().done(function(){
+				$scope.$apply(); 
+			}); 
+		} 
+		$scope.schedule = null; 
+	}
+	
+	$scope.onAddSchedule = function(){
+		$uci.voice_client.create({".type": "ringing_schedule"}).done(function(item){
+			item[".new"] = true; 
+			var time = item.time.value.split("-"); 
+			$scope.schedule = {
+				time_start: time[0], 
+				time_end: time[1], 
+				days: item.days.value, 
+				uci_item: item
+			};
+			$scope.$apply(); 
+			console.log("Added new schedule!"); 
+		}).fail(function(err){
+			console.log("Failed to create schedule!"); 
+		}); ; 
+	}
+	
+	$scope.onEditSchedule = function(item){
+		console.log("Editing: "+item[".name"]); 
+		var time = item.time.value.split("-"); 
+		$scope.schedule = {
+			time_start: time[0], 
+			time_end: time[1], 
+			days: item.days.value, 
+			uci_item: item
+		};
 	}
 	$scope.onDeleteSchedule = function(sched){
 		sched.$delete().always(function(){

@@ -26,7 +26,7 @@
 					<tr ng-repeat="item in schedules">
 							<td>{{ item.days.value.join(",") }}</td>
 							<td>{{ item.time.value }}</td>
-							<td>{{ allSipAccountsMap[item.sip_service_provider.value].name.value }}</td>
+							<td>{{ getAccountName(item) }}</td>
 							<td>{{ ((settings.status.value)?"Enabled":"Disabled") | translate}}</td>
 							<!--<td>{{ item.enabled.value }}</td>-->
 							<td style="width: 1%"><button class="btn btn-default" ng-click="onEditSchedule(item)"><i class="fa fa-pencil" style="{{editColor}}"></i></button></td>
@@ -40,14 +40,14 @@
 			</table>
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
-		<modal title="Add a new Ringing Schedule" ng-show="showScheduleDialog" on-accept="onAcceptSchedule()" 
+		<modal title="Add a new Ringing Schedule" ng-show="schedule" on-accept="onAcceptSchedule()" 
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
 			<juci-config-lines>
 				<juci-config-line title="Phone Number">
-					<juci-select ng-model="schedule.sip_service_provider.value" ng-items="allSipAccounts" placeholder="{{'Pick Phone Number'|translate}}"/>
+					<juci-select ng-model="schedule.sip_service_provider" ng-items="allSipAccounts" placeholder="{{'Pick Phone Number'|translate}}"/>
 				</juci-config-line>
 			</juci-config-line>
-			<uci-wireless-schedule-edit ng-model="schedule" ></uci-wireless-schedule-edit>
+			<juci-schedule-edit ng-model="schedule" ></juci-schedule-edit>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
 		</modal>
 	</div>

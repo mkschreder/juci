@@ -18,34 +18,35 @@ JUCI.app
 	}); 
 	
 	$scope.onAcceptSchedule = function(){
-		//$uci.save().done(function(){
-		var schedule = $scope.schedule; 
-		var errors = schedule.$getErrors(); 
-		
-		if(errors && errors.length){
-			$scope.errors = errors; 
-		} else {
-			$scope.errors = []; 
-			$scope.showScheduleDialog = 0; 
+		var item = $scope.schedule.uci_item; 
+		var view = $scope.schedule; 
+		if(item[".new"]) { 
+			item[".new"] = false; 
 		}
+		item.time.value = view.time_start + "-" + view.time_end; 
+		item.days.value = view.days; 
+		$scope.schedule = null; 
 	}
 	
 	$scope.onDismissSchedule = function(schedule){
-		if($scope.schedule[".new"]){
-			$scope.schedule.$delete().done(function(){
-				$scope.showScheduleDialog = 0; 
+		if($scope.schedule.uci_item && $scope.schedule.uci_item[".new"]){
+			$scope.schedule.uci_item.$delete().done(function(){
 				$scope.$apply(); 
 			}); 
-		} else {
-			$scope.showScheduleDialog = 0; 
-		}
+		} 
+		$scope.schedule = null; 
 	}
 	
 	$scope.onAddSchedule = function(){
 		$uci.wireless.create({".type": "wifi-schedule"}).done(function(item){
-			$scope.schedule = item; 
-			$scope.schedule[".new"] = true; 
-			$scope.showScheduleDialog = 1; 
+			item[".new"] = true; 
+			var time = item.time.value.split("-"); 
+			$scope.schedule = {
+				time_start: time[0], 
+				time_end: time[1], 
+				days: item.days.value, 
+				uci_item: item
+			};
 			$scope.$apply(); 
 			console.log("Added new schedule!"); 
 		}).fail(function(err){
@@ -53,10 +54,15 @@ JUCI.app
 		}); ; 
 	}
 	
-	$scope.onEditSchedule = function(sched){
-		console.log("Editing: "+sched[".name"]); 
-		$scope.schedule = sched; 
-		$scope.showScheduleDialog = 1; 
+	$scope.onEditSchedule = function(item){
+		console.log("Editing: "+item[".name"]); 
+		var time = item.time.value.split("-"); 
+		$scope.schedule = {
+			time_start: time[0], 
+			time_end: time[1], 
+			days: item.days.value, 
+			uci_item: item
+		};
 	}
 	$scope.onDeleteSchedule = function(sched){
 		sched.$delete().always(function(){

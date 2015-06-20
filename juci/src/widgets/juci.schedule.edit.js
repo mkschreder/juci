@@ -65,6 +65,7 @@ JUCI.app
 		console.log("Changing days to: "+JSON.stringify($value) + " "+ $scope.selectedTimeFrame);  
 		$scope.selectedTimeFrame = $value; 
 		$scope.days.splice(0, $scope.schedule.days.length); 
-		dayTranslation[$value].map(function(x){ $scope.days.push(x); });
+		if(dayTranslation[$value]) 
+			dayTranslation[$value].map(function(x){ $scope.days.push(x); });
 	}
 }); 
