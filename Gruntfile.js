@@ -9,7 +9,7 @@ module.exports = function(grunt){
 		nggettext_extract: {
 			pot: {
 				files: {
-					'po/template.pot': [
+					'bin/po/template.pot': [
 						'juci*/src/**/*.js',
 						'juci*/src/**/*.html'
 					]
@@ -19,14 +19,14 @@ module.exports = function(grunt){
 		nggettext_compile: {
 			all: {
 				files: {
-					'htdocs/js/99-translations.js': ['po/*.po']
+					'bin/htdocs/js/99-translations.js': ['po/*.po']
 				}
 			}
 		}, 
 		extract_titles: {
 			options: {
 				files: {
-					'po/titles.pot': [
+					'bin/po/titles.pot': [
 						"menu.d/*.json"
 					]
 				}
@@ -79,10 +79,10 @@ module.exports = function(grunt){
 			}); 
 		}); */
 	}); 
-	grunt.registerTask("compile_pot", "Compiles all pot files into one 'all.pot'", function(){
+	grunt.registerTask("compile_pot", "Compiles all pot files into one template pot", function(){
 		var exec = require('child_process').exec;
 		var done = this.async(); 
-		exec("rm po/all.pot ; msgcat po/*.pot > po/all.pot", function(){
+		exec("rm bin/po/juci_all_strings.pot ; msgcat po/*.pot bin/po/*.pot > bin/po/juci_all_strings.pot", function(){
 			done(); 
 		}); 
 	}); 
@@ -98,90 +98,6 @@ module.exports = function(grunt){
 		}); 
 		console.log(files); 
 	});
-	grunt.registerTask("compile", "Compile all files into a single file", function(){
-		var OUTDIR = "htdocs/"; 
-		var libfiles = [
-			"src/lib/js/async.js",
-			"src/lib/js/js-schema.min.js",
-			"src/lib/js/require.js",
-			"src/lib/js/jquery.min.js",
-			"src/lib/js/angular.min.js",
-			"src/lib/js/angular-ui.min.js",
-			"src/lib/js/angular-ui-router.min.js",
-			"src/lib/js/angular-gettext.min.js",
-			"src/lib/js/bootstrap-select.min.js",
-			"src/lib/js/select.min.js",
-			"src/lib/js/angular-animate.min.js",
-			"src/lib/js/angular-ui-bootstrap-juci.min.js",
-			"src/lib/js/jquery-jsonrpc.js",
-			"src/lib/js/translations.js",
-			"src/lib/js/bootstrap.min.js",
-			"src/lib/js/angular-ui-switch.min.js",
-			"src/lib/js/angular-modal-service.min.js",
-			"src/lib/js/angular-checklist-model.js"
-		]; 
-		var appfiles = [
-			"src/js/compat.js", 
-			"src/js/rpc.js",
-			"src/js/uci.js",
-			"src/js/juci.js",
-			"src/js/app.js",
-			"src/js/localStorage.js",
-			"src/js/config.js",
-			"src/js/navigation.js",
-			"src/js/status.js",
-			"src/js/tr.js",
-			"src/js/theme.js",
-			"src/js/timeout.js"
-		]; 
-		var cssfiles = [
-			"src/css/normalize.css",
-			"src/lib/css/bootstrap.min.css",
-			"src/lib/css/bootstrap-select.min.css",
-			"src/lib/css/font-awesome.min.css",
-			"src/lib/css/angular-ui.min.css",
-			"src/lib/css/select.min.css",
-			"src/lib/css/angular-ui-switch.min.css",
-			"src/lib/css/awesome-bootstrap-checkbox.css",
-			"src/css/nga.min.css",
-			"src/css/app.css"
-		];
-		
-		cssfiles = cssfiles.concat(grunt.file.expand(["src/plugins/**/css/*.css", "src/themes/vodafone/css/*.css"]));
-		
-		var pluginfiles = grunt.file.expand(["src/plugins/**/plugin.json"]); 
-		var otherfiles = grunt.file.expand(["./src/plugins/**/*.js", "./src/themes/vodafone/**/*.js"]).filter(function(x){
-			return !x.match(/.*\/test-.*\.js/) && !x.match(/.*\.test\.js/); 
-		}); 
-		var htmlfiles = grunt.file.expand(["src/**/*.html"]); 
-		var css = cssfiles.map(function(file){ 
-			return String(fs.readFileSync(file)); 
-		}).join("\n"); 
-		var all = libfiles.concat(appfiles).concat(otherfiles); 
-		var templates = {}; var plugins = {}; 
-		htmlfiles.map(function(name){
-			templates[name.replace("src/", "")] = String(fs.readFileSync(name)); 
-		}); 
-		pluginfiles.map(function(name){
-			plugins[name.replace(/^src\//, "")] = JSON.parse(String(fs.readFileSync(name))); 
-		}); 
-		if(!fs.existsSync(OUTDIR)) fs.mkdirSync(OUTDIR); 
-		var javascript = "var JUCI_COMPILED = 1; var JUCI_TEMPLATES = "+
-			JSON.stringify(templates)+";"+
-			"var JUCI_PLUGINS = "+JSON.stringify(plugins)+";"+
-			all.map(function(name){ 
-				return fs.readFileSync(name); 
-			})
-			.join(";\n"); 
-			
-		fs.writeFileSync(OUTDIR+"__all.css", css); 
-		//fs.writeFileSync("src/__all.css", css); 
-		// TODO: really do not do it in memory!
-		fs.writeFileSync(OUTDIR+"__all.js", javascript); 
-		//fs.writeFileSync("src/__all.js", javascript); 
-		
-		//fs.writeFileSync("src/__templates.js", JSON.stringify(templates)); 
-	}); 
 	grunt.registerTask('default', ['nggettext_extract', 'nggettext_compile', "extract_titles", "compile_pot"]);
 	
 }
