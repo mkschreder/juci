@@ -12,9 +12,10 @@
 	
 	function TimeValidator(){
 		this.validate = function(field){
-			var parts = field.value.split(":").map(function(x){ return Number(x); });
-			if(parts.length != 2) return gettext("Please use ':' to separate hours and minutes!"); 
-			if(parts[0] >= 0 && parts[0] < 24 && parts[1] >= 0 && parts[1] < 60){
+			var parts = field.value.split(":");
+			if(parts.length != 2) return gettext("please specify both hour and minute value for time separated by ':'"); 
+			if(parts[0].length <= 2 && Number(parts[0]) >= 0 && Number(parts[0]) < 24 && 
+				parts[1].length <= 2 && Number(parts[1]) >= 0 && Number(parts[1]) < 60){
 				return null; 
 			} else {
 				return gettext("please enter valid time in form hh:mm"); 
@@ -23,21 +24,21 @@
 	}
 	
 	function TimespanValidator(){
+		var timeValidator = new TimeValidator(); 
 		this.validate = function(field){
 			var parts = field.value.split("-"); 
 			if(parts.length != 2) return gettext("Please specify both start time and end time for schedule!"); 
+			var err = timeValidator.validate({ value: parts[0] }) || 
+				timeValidator.validate({ value: parts[1] }); 
+			if(err) return err; 
+			
 			function split(value) { return value.split(":").map(function(x){ return Number(x); }); };
 			var from = split(parts[0]);
 			var to = split(parts[1]); 
-			if(from.length != 2 || to.length != 2) return gettext("Please use ':' to separate hours and minutes!"); 
-			if(from[0] >= 0 && from[0] < 24 && to[0] >= 0 && to[0] < 24 && from[1] >= 0 && from[1] < 60 && to[1] >= 0 && to[1] < 60){
-				if((from[0]*60+from[1]) < (to[0]*60+to[1])) {
-					return null; 
-				} else {
-					return gettext("Schedule start time must be lower than schedule end time!"); 
-				}
+			if((from[0]*60+from[1]) < (to[0]*60+to[1])) {
+				return null; 
 			} else {
-				return gettext("Please enter valid time value for start and end time!"); 
+				return gettext("Schedule start time must be lower than schedule end time!"); 
 			}
 		}
 	}
@@ -144,10 +145,16 @@
 			else this.validator = new DefaultValidator(); 
 		}
 		UCIField.prototype = {
-			$reset: function(value){
-				this.ovalue = this.uvalue = value; 
-				if(value != null && value instanceof Array) {
-					this.ovalue = []; Object.assign(this.ovalue, value); 
+			$reset: function(){
+				this.uvalue = this.ovalue; 
+				this.dirty = false; 
+			}, 
+			$update: function(value){
+				if(this.dvalue instanceof Array){
+					Object.assign(this.ovalue, value); 
+					Object.assign(this.uvalue, value); 
+				} else {
+					this.ovalue = this.uvalue = value; 
 				}
 				this.dirty = false; 
 			}, 
@@ -157,15 +164,22 @@
 			},
 			set value(val){
 				if(!this.dirty && this.ovalue != val) this.dirty = true; 
+				if(val instanceof Array) {
+					this.uvalue = []; 
+					Object.assign(this.uvalue, val); 
+					this.dirty = true; 
+				}
 				this.uvalue = val; 
 			},
 			get error(){
 				// make sure we ignore errors if value is default and was not changed by user
-				//if(this.uvalue == this.dvalue) return null; 
-				return this.validator.validate(this); 
+				if(this.uvalue == this.schema.dvalue) return null; 
+				if(this.validator) return this.validator.validate(this); 
+				return null; 
 			},
 			get valid(){
-				return this.validator.validate(this) == null; 
+				if(this.validator) return this.validator.validate(this) == null; 
+				return true; 
 			}
 		}
 		UCI.Field = UCIField; 
@@ -217,7 +231,7 @@
 							value = data[k]; 
 					}
 				}
-				field.$reset(value); 
+				field.$update(value); 
 			}); 
 		}
 		
@@ -267,6 +281,15 @@
 			return def.promise(); 
 		}
 		
+		UCISection.prototype.$reset = function(){
+			var self = this; 
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				if(self[k].$reset) 
+					self[k].$reset(); 
+			}); 
+		}
+		
 		UCISection.prototype.$getErrors = function(){
 			var errors = []; 
 			var self = this; 
@@ -277,9 +300,14 @@
 					errors.push(k+": "+err); 
 				}
 			}); 
-			if(self[".validator"] && (self[".validator"] instanceof Function)){
-				var e = self[".validator"](self); 
-				if(e) errors.push(e); 
+			var type = this[".section_type"]; 
+			if(type && type[".validator"] && (type[".validator"] instanceof Function)){
+				try {
+					var e = type[".validator"](self); 
+					if(e) errors.push(e); 
+				} catch(e){
+					errors.push(e); 
+				}
 			}
 			return errors; 
 		}
@@ -290,7 +318,7 @@
 			var self = this; 
 			var changed = {}; 
 			
-			if(type[".validator"] instanceof Function) type[".validator"](self); 
+			//if(type[".validator"] instanceof Function) type[".validator"](self); 
 			
 			Object.keys(type).map(function(k){
 				if(self[k] && self[k].dirty){ 
@@ -633,36 +661,22 @@
 		return deferred.promise(); 
 	}
 	
+	UCI.prototype.$revert = function(){
+		return $rpc.uci.rollback(); 
+	}
+	
+	UCI.prototype.$apply = function(){
+		return $rpc.uci.apply({rollback: 0, timeout: 5000}); 
+	}
+	
 	UCI.prototype.save = function(){
 		var deferred = $.Deferred(); 
 		var self = this; 
 		var writes = []; 
 		var add_requests = []; 
-		var resync = {}; 
 		var errors = []; 
 		
 		async.series([
-			function(next){ // commit configs that need committing first
-				var commit_list = []; 
-				Object.keys(self).map(function(k){
-					if(self[k].constructor == UCI.Config){
-						if(self[k][".need_commit"]) {
-							commit_list.push(self[k][".name"]); 
-							self[k][".need_commit"] = false; 
-						}
-					}
-				}); 
-				async.each(commit_list, function(config, next){
-					console.log("Committing changes to "+config); 
-					$rpc.uci.commit({config: config}).done(function(){
-						next(); 
-					}).fail(function(err){
-						next("could not commit config: "+err); 
-					});
-				}, function(){
-					next(); 
-				});
-			}, 
 			function(next){ // send all changes to the server
 				console.log("Checking for errors..."); 
 				Object.keys(self).map(function(k){
@@ -679,11 +693,11 @@
 						reqlist.map(function(x){ writes.push(x); });  
 					}
 				}); 
-				console.log("Will do following write requests: "+JSON.stringify(writes)); 
+				console.log("Writing changes: "+JSON.stringify(writes)); 
 				async.eachSeries(writes, function(cmd, next){
-					$rpc.uci.set(cmd).done(function(){
-						console.log("Wrote config "+cmd.config); 
-						resync[cmd.config] = true; 
+					$rpc.uci.set(cmd).done(function(response){
+						console.log("... "+cmd.config+": "+JSON.stringify(response)); 
+						self[cmd.config][".need_commit"] = true; 
 						next(); 
 					}).fail(function(){
 						console.error("Failed to write config "+cmd.config); 
@@ -694,26 +708,34 @@
 				}); 
 			}, 
 			function(next){
-				async.eachSeries(Object.keys(resync), function(config, next){
-					console.log("Committing changes to "+config); 
-					$rpc.uci.commit({config: config}).done(function(){
-						self[config][".need_commit"] = false; 
-						self[config].$sync().done(function(){
+				var errors = []; 
+				$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
+					async.eachSeries(Object.keys(self), function(config, next){
+						if(self[config].constructor != UCI.Config || !self[config][".need_commit"]) {
 							next(); 
+							return; 
+						}
+						console.log("Committing changes to "+config); 
+						$rpc.uci.commit({config: config}).done(function(){
+							self[config][".need_commit"] = false; 
+							self[config].$sync().done(function(){
+								next(); 
+							}).fail(function(err){
+								console.log("error synching config "+config+": "+err); 
+							}); 
 						}).fail(function(err){
-							console.log("error synching config "+config+": "+err); 
-							next("syncerror"); 
+							errors.push("could not commit config: "+err); 
+							next(); 
 						}); 
-					}).fail(function(err){
-						next("could not commit config: "+err); 
+						next(); 
+					}, function(){
+						console.log("Commit done!"); 
+						// this is to always make sure that we do this outside of this code flow
+						setTimeout(function(){
+							if(errors && errors.length) deferred.reject(errors); 
+							else deferred.resolve(); 
+						},0); 
 					}); 
-				}, function(){
-					console.log("Commit done!"); 
-					// this is to always make sure that we do this outside of this code flow
-					setTimeout(function(){
-						if(errors && errors.length) deferred.reject(errors); 
-						else deferred.resolve(); 
-					},0); 
 				}); 
 			}
 		]); 

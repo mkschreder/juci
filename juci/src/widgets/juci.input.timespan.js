@@ -16,12 +16,19 @@ $juci.app.directive("juciInputTimespan", function () {
 	$scope.validateTime = function(time){
 		return (new UCI.validators.TimeValidator()).validate({ value: time }); 
 	}
+	$scope.validateTimespan = function(time){
+		return (new UCI.validators.TimespanValidator()).validate({ value: time }); 
+	}
 	$scope.$watch("model", function(model){
 		if(model && model.value && model.value.split){
 			var value = model.value; 
 			var parts = value.split("-"); 
-			$scope.data.from = parts[0]||""; 
-			$scope.data.to = parts[1]||""; 
+			if(parts.length == 2){
+				$scope.data.from = parts[0]||""; 
+				$scope.data.to = parts[1]||""; 
+			} else {
+				$scope.data.from = value; 
+			}
 		} else {
 			$scope.data.to = $scope.data.from = ""; 
 		}
@@ -30,12 +37,9 @@ $juci.app.directive("juciInputTimespan", function () {
 	(function(){
 		function updateTime(value){
 			if($scope.model){
-				if($scope.data.from && $scope.data.to) {
-					$scope.model.value = ($scope.data.from||"") + "-"+($scope.data.to||""); 
-					$scope.model.start_time = $scope.data.from; 
-					$scope.model.end_time = $scope.data.to; 
-				}
-				else $scope.model.value = ""; 
+				$scope.model.start_time = $scope.data.from; 
+				$scope.model.end_time = $scope.data.to; 
+				$scope.model.value = ($scope.data.from||"") + "-"+($scope.data.to||""); 
 			}
 		}
 		$scope.$watch("data.from", updateTime); 

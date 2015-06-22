@@ -1,0 +1,22 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="ServicesStatusPage">
+		<h2 translate>Services</h2>
+		<table class="table">
+			<thead>
+				<th>#</th>
+				<th translate>Service</th>
+				<th translate>Command</th>
+				<th translate>Status</th>
+			</thead>
+			<tr ng-repeat="service in services track by $index">
+				<td>{{$index}}</td>
+				<td>{{service.name}}</td>
+				<td>{{service.command}}</td>
+				<td>
+					<i class="fa fa-times-circle" style="color: grey" ng-hide="service.running"/>
+					<i class="fa fa-check-circle text-success" ng-show="service.running"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</juci-layout-with-sidebar>

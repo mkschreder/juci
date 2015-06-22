@@ -133,7 +133,8 @@ JUCI.app
 			$scope.schedule = {
 				time_start: time[0], 
 				time_end: time[1], 
-				days: item.days.value, 
+				days: item.days.value,
+				sip_service_provider: item.sip_service_provider.value,  
 				uci_item: item
 			};
 			$scope.$apply(); 
@@ -150,6 +151,7 @@ JUCI.app
 			time_start: time[0], 
 			time_end: time[1], 
 			days: item.days.value, 
+			sip_service_provider: item.sip_service_provider.value, 
 			uci_item: item
 		};
 	}

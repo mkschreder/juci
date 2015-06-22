@@ -59,8 +59,15 @@ JUCI.app.factory("$wireless", function(){
 		"sched_status":	{ dvalue: false, type: Boolean }
 	}); 
 	UCI.wireless.$registerSectionType("wifi-schedule", {
-		"days":		{ dvalue: [], type: Array, allow: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], validator: UCI.validators.WeekDayListValidator},
-		"time":		{ dvalue: "", type: String, validator: UCI.validators.TimespanValidator}
+		"days":		{ dvalue: [], type: Array, 
+			allow: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], 
+			alidator: UCI.validators.WeekDayListValidator},
+		"time":		{ dvalue: "", type: String, validator: UCI.validators.TimespanValidator }
+	}, function validator(section){
+		if(section.days.value.length == 0){
+			return gettext("please pick at least one day to schedule on"); 
+		}
+		return null; 
 	}); 
 	UCI.wireless.$registerSectionType("wifi-device", {
 		"type": 			{ dvalue: "", type: String },
@@ -90,7 +97,7 @@ JUCI.app.factory("$wireless", function(){
 		"disabled":		{ dvalue: false, type: Boolean }
 	}); 
 	UCI.wireless.$registerSectionType("wifi-iface", {
-		"device": 		{ dvalue: "wl0", type: String, match: /^wl0|wl1$/ },
+		"device": 		{ dvalue: "wl0", type: String },
 		"network":		{ dvalue: "lan", type: String, allow: [ "lan", "guest" ] },
 		"mode":				{ dvalue: "ap", type: String, allow: [ "ap" ] },
 		"ssid":				{ dvalue: "Inteno", type: String },
@@ -112,18 +119,18 @@ JUCI.app.factory("$wireless", function(){
 	}, function validator(section){
 		// validate ssid
 		if(section.ssid.value.length >= 32) 
-			throw new Error("SSID string can be at most 32 characters long!"); 
+			return gettext("SSID string can be at most 32 characters long!"); 
 		// validate keys
 		switch(section.encryption.value){
 			case "wep": {
 				if(!section.key.value || !section.key.value.match(/[a-f0-9A-F]{10,26}/)) 
-					throw new Error("WEP encryption key must be 10-26 hexadecimal characters!"); 
+					return gettext("WEP encryption key must be 10-26 hexadecimal characters!"); 
 			} break;
 			case "psk": 
 			case "psk2": 
 			case "mixed-psk": {
 				if(!section.key.value || !(section.key.value.length >= 8 && section.key.value.length < 64))
-					throw new Error("WPA key must be 8-63 characters long!"); 
+					return gettext("WPA key must be 8-63 characters long!"); 
 			} break; 
 			default: 
 				break; 

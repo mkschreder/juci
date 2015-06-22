@@ -55,12 +55,15 @@
 			} else {
 				var o = obj.children[parts[0]]; 
 				var children = o.children; 
+				var children_list = o.children_list; 
 				Object.assign(o, item);
-				Object.assign(o.children, children); 
+				o.children = children; 
+				o.children_list = children_list; 
 				item = o; 
 			}
-					obj.children_list = Object.keys(obj.children).map(function (key) {
-							return obj.children[key]; });
+			obj.children_list = Object.keys(obj.children).map(function (key) {
+				return obj.children[key]; 
+			});
 			obj.children_list.sort(function(a, b){
 				return a.index - b.index; 
 			}); 

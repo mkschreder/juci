@@ -51,6 +51,14 @@ JUCI.app
 		if(!$scope.schedule) return; 
 		$scope.schedule.days.splice(0, $scope.schedule.days.length); 
 		$scope.days.map(function(x){ $scope.schedule.days.push(x); }); 
+		$scope.selectedTimeFrame = "individual"; 
+		Object.keys(dayTranslation).map(function(x){ 
+			var days = dayTranslation[x]; 
+			var equal = $scope.days.filter(function(day){
+				return dayTranslation[x].indexOf(day) != -1; 
+			}).length; 
+			if(equal == $scope.days.length && equal == dayTranslation[x].length) $scope.selectedTimeFrame = x; 
+		}); 
 	}, true); 
 	$scope.$watch("schedule", function(value){
 		if(!value) return; 

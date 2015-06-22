@@ -1,6 +1,6 @@
 {
-	"services/samba": {
+	"settings/samba": {
 			"title": "Samba", 
-			"index": 8
+			"index": 100
 	}
 }

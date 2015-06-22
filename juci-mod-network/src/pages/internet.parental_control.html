@@ -10,7 +10,7 @@
 				</juci-config-line>
 			</juci-config-lines>
 			<div class="row" ng-show="firewall.urlblock.enabled.value">
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<div class="row form-group" ng-repeat="r in urlList track by $index">
 						<div class="col-sm-10">
 							<input type="text" class="form-control" ng-model="r.url" placeholder="{{'URL'|translate}}"/>
@@ -26,7 +26,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<juci-maclist-edit ng-model="macList"/>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 					<juci-maclist-edit ng-model="rule.macList"/>
 				</juci-config-line>
 			</juci-config-line>
-			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>
+			<juci-errors ng-model="errors"/>
 		</modal>
 	</div>
 </juci-layout-with-sidebar>

@@ -1,33 +1,28 @@
 {
-    "settings": {
-        "title": "Settings",
-        "redirect": "settings/password", 
-        "index": 50
-    },
-    "settings/password": {
-        "title": "EasyBox Password",
-        "acls": [ "system" ],
-        "index": 10
-    },
-    "settings/upgrade": {
-        "title": "Firmware Upgrade",
-        "acls": [ "admin" ],
-        "index": 20
-    },
-    "settings/energy": {
-        "title": "Energy Settings",
-        "acls": [ "users" ],
-        "index": 30
-    },
-    "settings/configuration": {
-        "title": "Configuration",
-        "acls": [ "system" ],
-        "index": 40
-    },
-    "settings/network": {
-        "title": "Network",
-				"modes": [ "expert" ], 
-        "acls": [  ],
-        "index": 50
-    }
+	"settings/password": {
+			"title": "EasyBox Password",
+			"acls": [ "system" ],
+			"index": 10
+	},
+	"settings/upgrade": {
+			"title": "Firmware Upgrade",
+			"acls": [ "admin" ],
+			"index": 20
+	},
+	"settings/energy": {
+			"title": "Energy Settings",
+			"acls": [ "users" ],
+			"index": 30
+	},
+	"settings/configuration": {
+			"title": "Configuration",
+			"acls": [ "system" ],
+			"index": 40
+	},
+	"settings/network": {
+			"title": "Network",
+			"modes": [ "expert" ], 
+			"acls": [  ],
+			"index": 50
+	}
 }

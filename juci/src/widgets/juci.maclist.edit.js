@@ -11,8 +11,21 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("juciMaclistEdit", function($scope, $config, $uci, $rpc, $window, $localStorage, $state, gettext){ 
-	$scope.validateMAC = function(mac){ return (new UCI.validators.MACAddressValidator()).validate({ value: mac }); }
+.controller("juciMaclistEdit", function($scope, $config, $uci, $rpc, $network, $localStorage, $state, gettext){ 
+	
+	$network.getConnectedClients().done(function(clients){
+		$scope.connectedHosts = clients.map(function(client){
+			return { 
+				label: client.hostname+" ("+client.ipaddr+")", 
+				value: client.macaddr 
+			}; 
+		}); 
+		$scope.$apply(); 
+	});
+	
+	$scope.validateMAC = function(mac){ 
+		return (new UCI.validators.MACAddressValidator()).validate({ value: mac }); 
+	}
 	$scope.onAddMAC = function(){
 		$scope.macList.push({mac: ""}); 
 	}

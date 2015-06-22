@@ -1,10 +1,10 @@
 @font-face {
     font-family: "eurostyle";
-    src: url("/fonts/eurostyle.woff") format('woff');
+    src: url("/fonts/proximanova-regular-webfont.woff") format('woff');
 }
 @font-face {
     font-family: "inteno";
-    src: url("/fonts/eurostyle.woff") format('woff');
+    src: url("/fonts/proximanova-regular-webfont.woff") format('woff');
 }
 body {
 	font-size: 16px;
@@ -84,16 +84,30 @@ div.logo {
 .top-navbar .navbar-nav > .open > a:hover {
 	background-color: #eee; 
 	color: #111 !important; 
-	border-bottom: 2px solid red; 
 }
 
 .top-navbar .navbar-nav > .open > a:focus {
 	background-color: transparent; 
 }
 
-.top-navbar .navbar-nav {
-	margin-top: 20px; 
-	margin-left: 30px; 
+@media screen and (min-width: 968px) {
+  .top-navbar .navbar-nav {
+		margin-top: 20px; 
+		margin-left: 30px; 
+	}
+	.top-navbar .navbar-nav > .open > a, 
+	.top-navbar .navbar-nav > .open > a:hover {
+		border-bottom: 2px solid red; 
+	}
+}
+@media screen and (max-width: 968px) {
+	.top-navbar .navbar-nav > .open > a, 
+	.top-navbar .navbar-nav > .open > a:hover {
+		background-color: #ddd; 
+	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: transparent !important;
+	}
 }
 
 .animate-show {
@@ -154,6 +168,10 @@ div.error {
 .modal-backdrop {
 	width: 4000px; 
 	height: 4000px; 
+}
+
+.juci-content {
+	margin-top: 40px; 
 }
 
 .footer-right {

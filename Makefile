@@ -1,4 +1,4 @@
-DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-network 
+DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-network juci-mod-samba
 BIN:=bin
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
@@ -25,10 +25,10 @@ debug: $(BIN)/htdocs $(BIN)/menu.d $(DIRS-y)
 	#grunt
 	./juci-update $(BIN)/htdocs DEBUG
 	
-htdocs: 
+$(BIN)/htdocs: 
 	mkdir -p $(BIN)/htdocs
 
-menu.d: 
+$(BIN)/menu.d: 
 	mkdir -p $(BIN)/menu.d 
 	
 #node_modules: package.json

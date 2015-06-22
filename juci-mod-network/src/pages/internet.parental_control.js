@@ -2,11 +2,15 @@ JUCI.app
 .controller("InternetParentalControlPage", function($scope, $uci, $rpc, $network){
 	$scope.urlList = [];
 	$scope.macList = []; 
+	$scope.errors = []; 
 	$scope.connectedHosts = []; 
 	
 	$network.getConnectedClients().done(function(clients){
-		$scope.connectedHosts = clients.map(function(k){
-			return { label: clients[k].hostname+" ("+clients[k].ipaddr+")", value: clients[k].macaddr }; 
+		$scope.connectedHosts = clients.map(function(client){
+			return { 
+				label: (client.hostname||"*")+" ("+client.ipaddr+")", 
+				value: client.macaddr 
+			}; 
 		}); 
 		$scope.$apply(); 
 	});
@@ -32,6 +36,8 @@ JUCI.app
 			$scope.urlblock.src_mac.value.map(function(x){ $scope.macList.push({mac: x}); }); 
 			
 			$scope.validateMAC = function(mac) { return (new UCI.validators.MACAddressValidator()).validate({value: mac}); }
+			$scope.validateTimeSpan = function(range) { return (new UCI.validators.TimespanValidator()).validate({value: range})}; 
+			
 			$scope.onAddURL = function(){
 				$scope.urlList.push({url: ""}); 
 			}
@@ -105,12 +111,18 @@ JUCI.app
 				rule.start_time.value = $scope.rule.time_start; 
 				rule.stop_time.value = $scope.rule.time_end; 
 				rule.weekdays.value = $scope.rule.days.join(" "); 
-				$scope.rule = null; 
+				
+				$scope.errors = rule.$getErrors().concat($scope.validateTimeSpan($scope.rule.time_start+"-"+$scope.rule.time_end)).filter(function(x){ return x; }); 
+				if(!$scope.errors || $scope.errors.length == 0)
+					$scope.rule = null; 
 			}
 			
 			$scope.onCancelEdit = function(){
-				if($scope.rule && $scope.rule.uci_rule && $scope.rule.uci_rule[".new"]){
-					$scope.rule.uci_rule.$delete(); 
+				if($scope.rule && $scope.rule.uci_rule){
+					if($scope.rule.uci_rule[".new"])
+						$scope.rule.uci_rule.$delete(); 
+					else 
+						$scope.rule.uci_rule.$reset(); 
 				}
 				$scope.rule = null; 
 			}

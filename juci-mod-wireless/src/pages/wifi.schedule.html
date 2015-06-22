@@ -43,7 +43,7 @@
 		<modal title="Add a new WiFi Schedule" ng-show="schedule" on-accept="onAcceptSchedule()" 
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
 			<juci-schedule-edit ng-model="schedule"></juci-schedule-edit>
-			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors">{{e|translate}}</li></ul></div>
+			<juci-errors ng-model="errors"/>
 		</modal>
 	</div>
 </juci-layout-with-sidebar>

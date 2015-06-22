@@ -20,19 +20,29 @@ JUCI.app
 	$scope.onAcceptSchedule = function(){
 		var item = $scope.schedule.uci_item; 
 		var view = $scope.schedule; 
+		
+		item.time.value = view.time_start + "-" + view.time_end; 
+		item.days.value = view.days; 
+		$scope.errors = item.$getErrors(); 
+		
+		if($scope.errors && $scope.errors.length)
+			return; 
+		
+		$scope.schedule = null; 
 		if(item[".new"]) { 
 			item[".new"] = false; 
 		}
-		item.time.value = view.time_start + "-" + view.time_end; 
-		item.days.value = view.days; 
-		$scope.schedule = null; 
 	}
 	
 	$scope.onDismissSchedule = function(schedule){
-		if($scope.schedule.uci_item && $scope.schedule.uci_item[".new"]){
-			$scope.schedule.uci_item.$delete().done(function(){
-				$scope.$apply(); 
-			}); 
+		if($scope.schedule && $scope.schedule.uci_item ){
+			if($scope.schedule.uci_item[".new"]){
+				$scope.schedule.uci_item.$delete().done(function(){
+					$scope.$apply(); 
+				}); 
+			} else {
+				$scope.schedule.uci_item.$reset(); 
+			}
 		} 
 		$scope.schedule = null; 
 	}

@@ -4,11 +4,13 @@
 		<div class="overview-banner">
 			<div class="container">
 				<div class="row" style="padding-top: 20px;">
-					<div class="col-sm-3 pull-right overview-status-box">
-						<div class="row" ng-repeat="widget in overviewStatusWidgets">
+					<div class="col-sm-8 col-xs-1"/>
+					<div class="col-sm-3 col-xs-10 overview-status-box">
+						<div class="row" ng-repeat="widget in overviewStatusWidgets" style="padding-left: 10px; padding-right: 10px">
 							<div dynamic="widget"/>
 						</div>
 					</div>
+					<div class="col-xs-1"/>
 				</div>
 			</div>
 		</div>

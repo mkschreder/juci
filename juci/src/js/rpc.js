@@ -164,6 +164,7 @@
 				}  
 			}).fail(function err(result){
 				RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; 
+				console.error("Session access call failed: you will be logged out!"); 
 				deferred.reject(); 
 			}); 
 			return deferred.promise(); 
@@ -177,8 +178,8 @@
 				"password": opts.password
 			}).done(function(result){
 				RPC_SESSION_ID = result.ubus_rpc_session;
-				self.$session = result; 
 				scope.localStorage.setItem("sid", RPC_SESSION_ID); 
+				self.$session = result; 
 				//JUCI.localStorage.setItem("sid", self.sid); 
 				//if(result && result.acls && result.acls.ubus) setupUbusRPC(result.acls.ubus); 
 				deferred.resolve(self.sid); 

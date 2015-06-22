@@ -3,13 +3,9 @@
 		"title": "Overview",
 		"index": 10
 	},
-	"services": {
-		"title": "Services",
-		"redirect": "services/status", 
-		"index": 51
-	},
-	"services/status": {
-		"title": "Services",
-		"index": 0
+	"settings": {
+			"title": "Settings",
+			"redirect": "settings/password", 
+			"index": 50
 	}
 }

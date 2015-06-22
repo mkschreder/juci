@@ -13,8 +13,10 @@ JUCI.app
 	}; 
 })
 .controller("juciErrors", function($scope, $rootScope, $localStorage){
-	if($scope.ngModel) $scope.errors = $scope.ngModel; 
-	else $scope.errors = $rootScope.errors; 
+	$scope.$watch("ngModel", function(value){
+		if(value) $scope.errors = $scope.ngModel; 
+		else $scope.errors = $rootScope.errors; 
+	}); 
 }); 
 
 JUCI.app

@@ -7,10 +7,10 @@ JUCI.app
 		$scope.phone_numbers = $uci.voice_client["@sip_service_provider"]; 
 		$scope.allSipAccounts = $scope.phone_numbers.map(function(x){
 			return {
-				label: x.name.value, 
+				label: x.displayname.value||x.user.value||x.name.value, 
 				value: x[".name"]
 			}
-		}); 
+		});  
 		$scope.$apply(); 
 	}); 
 }); 

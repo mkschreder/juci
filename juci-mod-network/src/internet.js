@@ -1,10 +1,11 @@
 JUCI.app.factory("$network", function($rpc, $uci){
-	function _refreshClients(){
+	function _refreshClients(self){
 		var deferred = $.Deferred(); 
 		$rpc.router.clients().done(function(clients){
-			deferred.resolve(Object.keys(clients).filter(function(x){
+			self.clients = Object.keys(clients).map(function(x){
 				return clients[x]; 
-			}));  
+			}); 
+			deferred.resolve(self.clients);  
 		}).fail(function(){ deferred.reject(); });
 		return deferred.promise(); 
 	}
@@ -16,9 +17,11 @@ JUCI.app.factory("$network", function($rpc, $uci){
 	NetworkBackend.prototype.getConnectedClients = function(){
 		var deferred = $.Deferred(); 
 		var self = this; 
-		_refreshClients().always(function(){
-			deferred.resolve(self.clients.filter(function(x){ return x.connected; })); 
+		_refreshClients(self).done(function(clients){
+			
+			deferred.resolve(clients.filter(function(x){ return x.connected; })); 
 		}); 
+		
 		return deferred.promise(); 
 	}
 	
