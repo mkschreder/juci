@@ -8,7 +8,7 @@ ifeq ($(DEFAULT_THEME),y)
 	DIRS-y += juci-theme-inteno juci-mod-samba
 endif
 
-all: htdocs menu.d $(DIRS-y)
+all: bin/htdocs bin/menu.d $(DIRS-y)
 	./juci-compile
 	./juci-update $(BIN)/htdocs RELEASE
 	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js --js_output_file htdocs/__compiled.js
