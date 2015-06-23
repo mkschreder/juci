@@ -12,7 +12,7 @@ all: src $(SHARED_OBJECT) $(CGI_SCRIPT) $(ACL_LIST)
 	$(INSTALL_DIR) $(CGI_BIN)
 	ln -sf /usr/libexec/rpcd/$(MODULE_NAME) $(CGI_BIN)/juci-upload 
 	ln -sf /usr/libexec/rpcd/$(MODULE_NAME) $(CGI_BIN)/juci-backup 
-	
+
 .PHONY: src
 src: 
 	(cd src; cmake .; make)
