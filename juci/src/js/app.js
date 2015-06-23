@@ -96,7 +96,6 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 .run(function($rootScope, $state, gettextCatalog, $tr, gettext, $rpc, $config, $location, $navigation, $templateCache, $languages){
 	console.log("RUN"); 
 	
-	alert(JSON.stringify($languages.getLanguages())); 
 	/*if(JUCI_COMPILED && JUCI_TEMPLATES !== undefined){
 		Object.keys(JUCI_TEMPLATES).map(function(x){
 			$templateCache.put(x, JUCI_TEMPLATES[x]); 
