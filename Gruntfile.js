@@ -27,7 +27,7 @@ module.exports = function(grunt){
 			options: {
 				files: {
 					'bin/po/titles.pot': [
-						"menu.d/*.json"
+						"bin/menu.d/*.json"
 					]
 				}
 			}
