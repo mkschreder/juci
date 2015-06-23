@@ -3,9 +3,16 @@ BIN:=bin
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
-ifeq ($(DEFAULT_THEME),y)
-	# for now temporarily we build any testing modules here as well
-	DIRS-y += juci-theme-inteno juci-mod-samba
+ifneq ($(CONFIG_JUCI_THEME_SELECTED,y)
+	DIRS-y += juci-theme-inteno
+endif
+
+ifeq ($(CONFIG_JUCI_THEME_INTENO),y)
+	DIRS-y += juci-theme-inteno
+endif
+
+ifeq ($(CONFIG_JUCI_MOD_SAMBA),y)
+	DIRS-y += juci-mod-samba
 endif
 
 all: bin/htdocs bin/menu.d $(DIRS-y)
