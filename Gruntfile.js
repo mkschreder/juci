@@ -9,7 +9,7 @@ module.exports = function(grunt){
 		nggettext_extract: {
 			pot: {
 				files: {
-					'bin/po/template.pot': [
+					'po/template.pot': [
 						'juci*/src/**/*.js',
 						'juci*/src/**/*.html'
 					]
@@ -19,15 +19,15 @@ module.exports = function(grunt){
 		nggettext_compile: {
 			all: {
 				files: {
-					'bin/htdocs/js/99-translations.js': ['po/*.po']
+					'bin/www/js/99-translations.js': ['po/*.po']
 				}
 			}
 		}, 
 		extract_titles: {
 			options: {
 				files: {
-					'bin/po/titles.pot': [
-						"bin/menu.d/*.json"
+					'po/titles.pot': [
+						"bin/usr/share/rpcd/menu.d/*.json"
 					]
 				}
 			}

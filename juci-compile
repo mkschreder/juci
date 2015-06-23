@@ -5,13 +5,13 @@ set -e
 
 grunt 
 
-for file in `find bin/htdocs/js/ -name "*.js"`; do 
+for file in `find bin/www/js/ -name "*.js"`; do 
 	echo "Compiling JS ${file}.."
 	uglifyjs ${file} > ${file}.out
 	mv ${file}.out ${file}
 done
 
-for file in `find bin/htdocs/css/ -name "*.css"`; do 
+for file in `find bin/www/css/ -name "*.css"`; do 
 	echo "Compiling CSS ${file}.."
 	yui-compressor ${file} > ${file}.out
 	mv ${file}.out ${file}
