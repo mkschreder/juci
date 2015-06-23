@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-PROJECT(ubus-mod-juci C)
+PROJECT(juci-ubus-core C)
 
 
 ADD_SUBDIRECTORY(io)
@@ -9,8 +9,8 @@ ADD_DEFINITIONS(-Os -Wall -Wno-format-y2k -W -Wstrict-prototypes -Wmissing-proto
 
 SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
 
-ADD_LIBRARY(ubus-mod-juci MODULE juci.c)
-TARGET_LINK_LIBRARIES(ubus-mod-juci ubox ubus )
-SET_TARGET_PROPERTIES(ubus-mod-juci PROPERTIES OUTPUT_NAME ubus-mod-juci PREFIX "")
+ADD_LIBRARY(juci-ubus-core MODULE juci.c)
+TARGET_LINK_LIBRARIES(juci-ubus-core ubox ubus )
+SET_TARGET_PROPERTIES(juci-ubus-core PROPERTIES OUTPUT_NAME juci-ubus-core PREFIX "")
 
-INSTALL(TARGETS ubus-mod-juci LIBRARY DESTINATION lib)
+INSTALL(TARGETS juci-ubus-core LIBRARY DESTINATION lib)

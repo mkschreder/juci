@@ -4,7 +4,7 @@ PROJECT(luciexpress-io C)
 
 INCLUDE(CheckFunctionExists)
 
-ADD_DEFINITIONS(-Os -Wall -Werror --std=gnu99 -g3 -Wmissing-declarations)
+ADD_DEFINITIONS(-Os -Wall --std=gnu99 -g3 -Wmissing-declarations)
 
 SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
 

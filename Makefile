@@ -1,5 +1,8 @@
 DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-network 
 BIN:=bin
+UBUS_MODS:=
+
+-include Makefile.local
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 
@@ -15,7 +18,11 @@ ifeq ($(CONFIG_JUCI_MOD_SAMBA),y)
 	DIRS-y += juci-mod-samba
 endif
 
-all: bin/htdocs bin/menu.d $(DIRS-y)
+ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
+	UBUS_MODS += juci-ubus-core
+endif
+
+all: bin/htdocs bin/menu.d $(DIRS-y) $(UBUS_MODS)
 	./juci-compile
 	./juci-update $(BIN)/htdocs RELEASE
 	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js --js_output_file htdocs/__compiled.js
@@ -27,7 +34,7 @@ all: bin/htdocs bin/menu.d $(DIRS-y)
 
 inteno: all
 	
-debug: $(BIN)/htdocs $(BIN)/menu.d $(DIRS-y)
+debug: $(BIN)/htdocs $(BIN)/menu.d $(DIRS-y) $(UBUS_MODS)
 	#npm install 
 	#grunt
 	./juci-update $(BIN)/htdocs DEBUG
@@ -41,11 +48,14 @@ $(BIN)/menu.d:
 #node_modules: package.json
 #	npm install
 	
-.PHONY: $(DIRS-y)
+.PHONY: $(DIRS-y) $(UBUS_MODS)
 $(DIRS-y): 
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/htdocs/
 	cp -Rp $@/menu.json $(BIN)/menu.d/$@.json
 
+$(UBUS_MODS): 
+	make -C $@
+	
 clean: 
 	for dir in $(DIRS-y); do make -C $$dir clean; rm -rf bin; done
