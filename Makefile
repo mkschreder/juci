@@ -23,6 +23,7 @@ ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
 endif
 
 all: node_modules bin/htdocs bin/menu.d $(UBUS_MODS) $(DIRS-y) 
+	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"
 	./juci-compile 
 	./juci-update $(BIN)/htdocs RELEASE
 	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js --js_output_file htdocs/__compiled.js
