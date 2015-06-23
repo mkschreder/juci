@@ -22,8 +22,8 @@ ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
 	UBUS_MODS += juci-ubus-core
 endif
 
-all: bin/htdocs bin/menu.d $(DIRS-y) $(UBUS_MODS)
-	./juci-compile
+all: node_modules bin/htdocs bin/menu.d $(UBUS_MODS) $(DIRS-y) 
+	./juci-compile 
 	./juci-update $(BIN)/htdocs RELEASE
 	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js --js_output_file htdocs/__compiled.js
 	#yui-compressor htdocs/__all.css > htdocs/__compiled.css
@@ -32,9 +32,12 @@ all: bin/htdocs bin/menu.d $(DIRS-y) $(UBUS_MODS)
 	#rm -rf htdocs/js
 	#rm -rf htdocs/css
 
-inteno: all
+node_modules: package.json
+	npm install --production
 	
-debug: $(BIN)/htdocs $(BIN)/menu.d $(DIRS-y) $(UBUS_MODS)
+inteno: all
+
+debug: $(BIN)/htdocs $(BIN)/menu.d $(UBUS_MODS) $(DIRS-y) 
 	#npm install 
 	#grunt
 	./juci-update $(BIN)/htdocs DEBUG
@@ -50,11 +53,13 @@ $(BIN)/menu.d:
 	
 .PHONY: $(DIRS-y) $(UBUS_MODS)
 $(DIRS-y): 
+	@echo "Building SUBMODULE $@"
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/htdocs/
 	cp -Rp $@/menu.json $(BIN)/menu.d/$@.json
 
 $(UBUS_MODS): 
+	@echo "Building UBUS module $@"
 	make -C $@
 	
 clean: 
