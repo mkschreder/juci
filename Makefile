@@ -63,6 +63,7 @@ $(DIRS-y):
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
 	make -C $@
+	cp -Rp $@/build/* $(BIN)/
 	
 clean: 
 	rm -rf ./bin
