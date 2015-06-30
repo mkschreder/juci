@@ -5,12 +5,9 @@ UBUS_MODS:=
 -include Makefile.local
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
+export CFLAGS:=$(CFLAGS)
 
-ifneq ($(CONFIG_JUCI_THEME_SELECTED),y)
-	DIRS-y += juci-theme-inteno
-endif
-
-ifeq ($(CONFIG_JUCI_THEME_INTENO),y)
+ifeq  ($(CONFIG_JUCI_THEME_INTENO),y)
 	DIRS-y += juci-theme-inteno
 endif
 
@@ -56,12 +53,14 @@ debug: $(UBUS_MODS) $(DIRS-y)
 .PHONY: $(DIRS-y) $(UBUS_MODS) prepare
 $(DIRS-y): 
 	@echo "Building SUBMODULE $@"
+	@echo "CFLAGS: $(CFLAGS)"
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$@.json
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
+	@echo "CFLAGS: $(CFLAGS)"
 	make -C $@
 	cp -Rp $@/build/* $(BIN)/
 	
