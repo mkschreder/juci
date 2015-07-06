@@ -6,8 +6,17 @@
 		</juci-config-section>
 		<juci-expandable title="{{sec.name}}" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface">
 			<juci-config-lines ng-hide="sec.interface.errors" >
-				<juci-config-line title="{{'IP Address'|translate}}">
+				<juci-config-line ng-show="sec.interface["ipv4-address"][0]" 
+					title="{{'IP Address'|translate}}">
 					<strong>{{sec.interface["ipv4-address"][0].address}}</strong>
+				</juci-config-line>
+				<juci-config-line ng-show="sec.interface["ipv6-address"][0]" 
+					title="{{'IPv6 Address'|translate}}">
+					<strong>{{sec.interface["ipv6-address"][0].address + "/" + sec.interface["ipv6-address"][0].mask}}</strong>
+				</juci-config-line>
+				<juci-config-line ng-show="sec.interface["ipv6-prefix"][0]" 
+					title="{{'IPv6 Prefix'|translate}}">
+					<strong>{{sec.interface["ipv6-prefix"][0].address + "/" + sec.interface["ipv6-prefix"][0].mask}}</strong>
 				</juci-config-line>
 				<juci-config-line title="{{'Gateway'|translate}}" ng-show="sec.interface['route'][0].nexthop">
 					<strong>{{sec.interface["route"][0].nexthop}}</strong>
