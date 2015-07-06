@@ -16,6 +16,9 @@ all: src $(SHARED_OBJECT) $(CGI_SCRIPT) $(ACL_LIST)
 .PHONY: src
 src: 
 	(cd src; cmake .; make)
+
+clean: 
+	(cd src; make clean)
 	
 $(SHARED_OBJECT): 
 	$(INSTALL_DIR) $(shell dirname $@)

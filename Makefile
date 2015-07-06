@@ -5,6 +5,7 @@ UBUS_MODS:=
 -include Makefile.local
 
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
+export CC:=$(CC)
 export CFLAGS:=$(CFLAGS)
 
 ifeq  ($(CONFIG_JUCI_THEME_INTENO),y)
@@ -32,6 +33,7 @@ all: prepare node_modules $(UBUS_MODS) $(DIRS-y)
 
 prepare: 	
 	@echo "======= JUCI Buliding ========="
+	printenv
 	@echo "MODULES: $(DIRS-y)"
 	@echo "UBUS: $(UBUS_MODS)"
 	mkdir -p $(BIN)/www/
@@ -54,6 +56,7 @@ debug: $(UBUS_MODS) $(DIRS-y)
 $(DIRS-y): 
 	@echo "Building SUBMODULE $@"
 	@echo "CFLAGS: $(CFLAGS)"
+	make -C $@ clean
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$@.json
@@ -61,7 +64,9 @@ $(DIRS-y):
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
 	@echo "CFLAGS: $(CFLAGS)"
-	make -C $@
+	printenv
+	make -C $@ clean
+	make -C $@ 
 	cp -Rp $@/build/* $(BIN)/
 	
 clean: 
