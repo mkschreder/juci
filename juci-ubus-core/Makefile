@@ -18,7 +18,7 @@ src:
 	(cd src; cmake .; make)
 
 clean: 
-	(cd src; make clean)
+	(cd src; make -i clean)
 	
 $(SHARED_OBJECT): 
 	$(INSTALL_DIR) $(shell dirname $@)

@@ -56,7 +56,7 @@ debug: $(UBUS_MODS) $(DIRS-y)
 $(DIRS-y): 
 	@echo "Building SUBMODULE $@"
 	@echo "CFLAGS: $(CFLAGS)"
-	make -C $@ clean
+	make -i -C $@ clean
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$@.json
@@ -65,7 +65,7 @@ $(UBUS_MODS):
 	@echo "Building UBUS module $@"
 	@echo "CFLAGS: $(CFLAGS)"
 	printenv
-	make -C $@ clean
+	make -i -C $@ clean
 	make -C $@ 
 	cp -Rp $@/build/* $(BIN)/
 	
