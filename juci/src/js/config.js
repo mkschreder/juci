@@ -25,6 +25,7 @@
 						if(net.internet.value) self["wan_interface"] = net.internet.value; 
 						if(net.voice.value) self["voice_interface"] = net.voice.value; 
 						if(net.iptv.value) self["iptv_interface"] = net.iptv.value; 
+						if(net.ipv6.value) self["ipv6_interface"] = net.ipv6.value; 
 					}
 				}).always(function(){ next(); }); 
 			}, function(next){

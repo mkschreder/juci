@@ -106,7 +106,8 @@
 			"services": {
 				"internet":				{ dvalue: "", type: String },
 				"voice":					{ dvalue: "", type: String },
-				"iptv":						{ dvalue: "", type: String }
+				"iptv":						{ dvalue: "", type: String },
+				"ipv6":						{ dvalue: "", type: String }
 			}
 		}, 
 		

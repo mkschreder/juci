@@ -3,7 +3,7 @@
 JUCI.app
 .controller("StatsOverviewCtrl", function ($scope, $uci, $rpc, gettext, $config) {
 	//$scope.expanded = false; 
-	$scope.sections = [{}, {}, {}]; 
+	$scope.sections = [{}, {}, {}, {}]; 
 	
 	JUCI.interval.repeat("status.refresh", 2000, function(resume){
 		async.series([
@@ -20,13 +20,15 @@ JUCI.app
 				var sections = []; 
 				[
 					{ name: gettext("Internet"), value: $config.wan_interface }, 
+					{ name: gettext("Internet IPv6"), value: $config.ipv6_interface },
 					{ name: gettext("Voice"), value: $config.voice_interface }, 
 					{ name: gettext("IPTV"), value: $config.iptv_interface }
 				].forEach(function(x, c){ 
-					if(x.value) {
+					var iface = _interfaces.find(function(i){ return i.interface === x.value; }); 
+					if(x.value && iface) {
 						sections.push({
 							"name": x.name, 
-							"interface": _interfaces.find(function(i){ return i.interface === x.value; })
+							"interface": iface
 						});  
 					}
 				}); 

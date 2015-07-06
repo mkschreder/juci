@@ -148,7 +148,7 @@ enum {
 };
 
 static const struct blobmsg_policy rpc_upgrade_policy[__RPC_UPGRADE_MAX] = {
-	[RPC_UPGRADE_KEEP] = { .name = "keep",    .type = BLOBMSG_TYPE_BOOL },
+	[RPC_UPGRADE_KEEP] = { .name = "keep",    .type = BLOBMSG_TYPE_INT32 },
 	[RPC_UPGRADE_PATH] = { .name = "path",    .type = BLOBMSG_TYPE_STRING },
 };
 
@@ -1060,10 +1060,10 @@ rpc_juci_upgrade_start(struct ubus_context *ctx, struct ubus_object *obj,
 	blobmsg_parse(rpc_upgrade_policy, __RPC_UPGRADE_MAX, tb, blob_data(msg), blob_len(msg));
 
 	if (tb[RPC_UPGRADE_PATH] && strlen(blobmsg_data(tb[RPC_UPGRADE_PATH]))) {
-		strncpy(fwpath, blobmsg_data(tb[RPC_UPGRADE_PATH]),  sizeof(fwpath));
+		strncpy(fwpath, blobmsg_data(tb[RPC_UPGRADE_PATH]), sizeof(fwpath));
 	}
 
-	if (tb[RPC_UPGRADE_KEEP] && !blobmsg_data(tb[RPC_UPGRADE_KEEP]))
+	if (tb[RPC_UPGRADE_KEEP] && !blobmsg_get_u32(tb[RPC_UPGRADE_KEEP]))
 		keep = "-n";
 	
 	const char *cmd[4] = { "sysupgrade", keep, fwpath, NULL };
