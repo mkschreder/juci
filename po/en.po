@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid "Overview"
 msgstr "Overview"
@@ -41,6 +41,7 @@ msgstr "Network"
 # #-#-#-#-#  custom.pot  #-#-#-#-#
 # wifi
 #: juci-mod-wireless/src/pages/wifi.general.html:21
+#: juci-mod-wireless/src/pages/wifi.general.html:29
 msgid "Setup"
 msgstr ""
 
@@ -73,10 +74,13 @@ msgstr ""
 "manage up to 32 devices."
 
 #: juci-mod-wireless/src/pages/wifi.general.html:15
+#: juci-mod-wireless/src/pages/wifi.general.html:23
 msgid "Enable WiFi On/Off button on EasyBox"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:12
+#: juci-mod-wireless/src/pages/wifi.general.html:17
+#: juci-mod-wireless/src/pages/wifi.general.html:20
 msgid "Wifi Network"
 msgstr ""
 
@@ -148,6 +152,7 @@ msgid "DSL"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.js:23
+#: juci-mod-status/src/pages/status.status.js:24
 msgid "Voice"
 msgstr ""
 
@@ -183,6 +188,7 @@ msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:4
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:8
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:7
 msgid "Ringing Schedule"
 msgstr ""
 
@@ -213,7 +219,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: juci/src/js/app.js:170 juci/src/js/juci.js:274
+#: juci/src/js/app.js:174 juci/src/js/juci.js:274 juci/src/js/app.js:172
 msgid "application.name"
 msgstr "JUCI"
 
@@ -230,22 +236,19 @@ msgid "language.de"
 msgstr "German"
 
 msgid "wifi.enc.none"
-msgstr "Off"
+msgstr "No Encryption (Dangerous!)"
 
 msgid "wifi.enc.wep"
-msgstr "WEP"
+msgstr "WEP Open System"
 
 msgid "wifi.enc.psk"
-msgstr "WPA"
+msgstr "WPA Pre-Shared Key"
 
 msgid "wifi.enc.psk2"
-msgstr "WPA2"
+msgstr "WPA2 Pre-Shared Key"
 
 msgid "wifi.enc.mixed-psk"
-msgstr "WPA + WPA2"
-
-msgid "login.title"
-msgstr "JUCI Login"
+msgstr "WPA/WPA2 PSK Mixed"
 
 msgid "11b"
 msgstr "802.11b"
@@ -268,12 +271,14 @@ msgstr "802.11ac"
 #: juci-mod-wireless/src/pages/wifi.mac_filter.js:15
 #: juci-mod-wireless/src/pages/wifi.settings.js:11
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.js:30
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:45
 msgid "2.4GHz"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.mac_filter.js:14
 #: juci-mod-wireless/src/pages/wifi.settings.js:10
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.js:29
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:44
 msgid "5GHz"
 msgstr ""
 
@@ -332,6 +337,7 @@ msgid "Address Pool Start IP"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:39
+#: juci/src/widgets/juci.schedule.edit.js:29
 msgid "All Weekend"
 msgstr ""
 
@@ -348,18 +354,15 @@ msgid "Automatic"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:32
-msgid "Backup file password"
-msgstr ""
-
 #: juci-mod-system/src/pages/settings.configuration.html:50
-msgid "Backup file password (if encrypted)"
+msgid "Backup file password"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:12
 msgid "Banner File"
 msgstr ""
 
-#: juci/src/widgets/juci.top_bar.js:15
+#: juci/src/widgets/juci.top_bar.js:15 juci/src/widgets/juci.mode.picker.js:14
 msgid "Basic Mode"
 msgstr ""
 
@@ -421,7 +424,7 @@ msgstr ""
 msgid "Client IP"
 msgstr ""
 
-#: juci-mod-system/src/pages/settings.upgrade.html:57
+#: juci-mod-system/src/pages/settings.upgrade.html:60
 msgid "Close"
 msgstr ""
 
@@ -507,19 +510,24 @@ msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:17
 #: juci-mod-wireless/src/pages/wifi.schedule.html:21
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:16
 msgid "Day"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:7
+#: juci/src/widgets/juci.schedule.edit.html:7
 msgid "Days"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:13
 #: juci-mod-samba/src/pages/services.samba.html:14
+#: juci-mod-samba/src/pages/settings.samba.html:13
+#: juci-mod-samba/src/pages/settings.samba.html:14
 msgid "Description"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:3
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:3
 msgid "Device"
 msgstr ""
 
@@ -563,6 +571,7 @@ msgid "Duration"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:11
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:10
 msgid "During this time ringing is"
 msgstr ""
 
@@ -623,14 +632,16 @@ msgid "Event Log"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:37
+#: juci/src/widgets/juci.schedule.edit.js:27
 msgid "Every Day"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:38
+#: juci/src/widgets/juci.schedule.edit.js:28
 msgid "Every Workday"
 msgstr ""
 
-#: juci/src/widgets/juci.top_bar.js:16
+#: juci/src/widgets/juci.top_bar.js:16 juci/src/widgets/juci.mode.picker.js:15
 msgid "Expert Mode"
 msgstr ""
 
@@ -664,10 +675,12 @@ msgid "Firmware Version"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:46
+#: juci/src/widgets/juci.schedule.edit.js:36
 msgid "Friday"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.html:12
+#: juci-mod-status/src/pages/status.status.html:21
 msgid "Gateway"
 msgstr ""
 
@@ -680,6 +693,7 @@ msgid "Gateway Ports"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:4
+#: juci-mod-samba/src/pages/settings.samba.html:4
 msgid "General Settings"
 msgstr ""
 
@@ -706,6 +720,8 @@ msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:16
 #: juci-mod-samba/src/pages/services.samba.html:17
+#: juci-mod-samba/src/pages/settings.samba.html:16
+#: juci-mod-samba/src/pages/settings.samba.html:17
 msgid "Homes"
 msgstr ""
 
@@ -733,10 +749,11 @@ msgstr ""
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:61
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:62
 #: juci-mod-status/src/pages/status.status.html:9
+#: juci-mod-status/src/pages/status.status.html:10
 msgid "IP Address"
 msgstr ""
 
-#: juci-mod-network/src/internet.js:14
+#: juci-mod-network/src/internet.js:14 juci-mod-network/src/internet.js:33
 msgid "IP Address must be a valid ipv4 address!"
 msgstr ""
 
@@ -745,6 +762,7 @@ msgid "IP Subnet Mask"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.js:24
+#: juci-mod-status/src/pages/status.status.js:25
 msgid "IPTV"
 msgstr ""
 
@@ -757,11 +775,19 @@ msgstr ""
 msgid "Idle Timeout"
 msgstr ""
 
+#: juci-mod-system/src/pages/settings.upgrade.html:53
+msgid ""
+"If you answer yes then your confiruation will be saved before the upgrade "
+"and restored after the upgrade has completed. If you choose 'no' then all "
+"your current confiration will be reset to defaults."
+msgstr ""
+
 #: juci-mod-voice/src/pages/phone.number_blocking.html:41
 msgid "Incoming Calls"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:36
+#: juci/src/widgets/juci.schedule.edit.js:26
 msgid "Individual Days"
 msgstr ""
 
@@ -778,6 +804,11 @@ msgstr ""
 #, fuzzy
 msgid "Internal error"
 msgstr "Internet"
+
+#: juci-mod-network/src/pages/internet.parental_control.html:50
+#: juci-mod-network/src/pages/internet.parental_control.html:35
+msgid "Internet Access Scheduling"
+msgstr ""
 
 #: juci/src/js/rpc.js:42
 msgid "Invalid parameters"
@@ -806,6 +837,7 @@ msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:72
 #: juci-mod-status/src/pages/status.status.html:25
+#: juci-mod-status/src/pages/status.status.html:34
 msgid "Line Status"
 msgstr ""
 
@@ -823,6 +855,7 @@ msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:21
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:9
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:9
 msgid "Local IP Address"
 msgstr ""
 
@@ -839,6 +872,7 @@ msgid "Log"
 msgstr ""
 
 #: juci/src/widgets/juci.login.html:4 juci/src/widgets/juci.top_bar.js:17
+#: juci/src/widgets/juci.mode.picker.js:16
 msgid "Log out"
 msgstr ""
 
@@ -853,7 +887,13 @@ msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:46
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:56
+#: juci/src/widgets/juci.maclist.edit.html:4
 msgid "MAC Address"
+msgstr ""
+
+#: juci-mod-network/src/pages/internet.parental_control.html:56
+#: juci-mod-network/src/pages/internet.parental_control.html:41
+msgid "MAC Addresses"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:15
@@ -893,6 +933,7 @@ msgid "Modify"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:42
+#: juci/src/widgets/juci.schedule.edit.js:32
 msgid "Monday"
 msgstr ""
 
@@ -908,6 +949,8 @@ msgstr ""
 #: juci-mod-samba/src/pages/services.samba.html:8
 #: juci-mod-voice/src/pages/status.status.voice.html:31
 #: juci-mod-voice/src/pages/status.status.voice.html:9
+#: juci-mod-samba/src/pages/settings.samba.html:7
+#: juci-mod-samba/src/pages/settings.samba.html:8
 msgid "Name"
 msgstr ""
 
@@ -928,8 +971,8 @@ msgstr ""
 msgid "No active stations"
 msgstr ""
 
-#: juci-mod-system/src/pages/settings.upgrade.js:167
-#: juci-mod-system/src/pages/settings.upgrade.js:186
+#: juci-mod-system/src/pages/settings.upgrade.js:185
+#: juci-mod-system/src/pages/settings.upgrade.js:206
 msgid "No upgrade has been found!"
 msgstr ""
 
@@ -942,10 +985,11 @@ msgid "Not connected"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:19
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:18
 msgid "Number"
 msgstr ""
 
-#: juci/src/js/uci.js:61
+#: juci/src/js/uci.js:61 juci/src/js/uci.js:74
 msgid "Number value is not within valid range"
 msgstr ""
 
@@ -975,6 +1019,10 @@ msgstr ""
 msgid "Pair (within 2 minutes)"
 msgstr ""
 
+#: juci-mod-network/src/pages/internet.parental_control.html:3
+msgid "Parental Control"
+msgstr ""
+
 #: juci/src/js/rpc.js:40
 msgid "Parse error"
 msgstr ""
@@ -982,6 +1030,10 @@ msgstr ""
 #: juci-mod-network/src/pages/internet.dns.html:49
 #: juci/src/widgets/juci.login.html:22 juci/src/widgets/juci.login.html:23
 msgid "Password"
+msgstr ""
+
+#: juci-mod-system/src/pages/settings.configuration.html:51
+msgid "Password (if encrypted)"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:15
@@ -1029,6 +1081,7 @@ msgid "Pick Outgoing Number"
 msgstr "Phone Numbers"
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:47
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:46
 #, fuzzy
 msgid "Pick Phone Number"
 msgstr "Phone Numbers"
@@ -1070,7 +1123,7 @@ msgstr ""
 msgid "Please enter valid time value for start and end time!"
 msgstr ""
 
-#: juci/src/js/uci.js:39
+#: juci/src/js/uci.js:39 juci/src/js/uci.js:52
 msgid "Please pick days between mon-sun"
 msgstr ""
 
@@ -1078,7 +1131,7 @@ msgstr ""
 msgid "Please sign in"
 msgstr ""
 
-#: juci/src/js/uci.js:16
+#: juci/src/js/uci.js:16 juci/src/js/uci.js:30
 msgid "Please specify both start time and end time for schedule!"
 msgstr ""
 
@@ -1104,7 +1157,7 @@ msgid ""
 "your private network."
 msgstr ""
 
-#: juci/src/js/uci.js:51
+#: juci/src/js/uci.js:51 juci/src/js/uci.js:64
 msgid ""
 "Port value must be a valid port number or port range between 1 and 65536"
 msgstr ""
@@ -1118,6 +1171,7 @@ msgid "Power-LED Brightness"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:5
+#: juci/src/widgets/juci.schedule.edit.html:5
 msgid "Preselected Days"
 msgstr ""
 
@@ -1127,19 +1181,23 @@ msgid ""
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.html:15
+#: juci-mod-status/src/pages/status.status.html:24
 msgid "Primary DNS"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:36
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:36
 msgid "Private port"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:37
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:37
 msgid "Private port range"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:20
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:15
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:15
 msgid "Protocol"
 msgstr ""
 
@@ -1156,10 +1214,12 @@ msgid "Public Port"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:29
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:29
 msgid "Public port"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:30
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:30
 msgid "Public port range"
 msgstr ""
 
@@ -1219,14 +1279,17 @@ msgid "SNR Margin"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:22
+#: juci-mod-samba/src/pages/settings.samba.html:22
 msgid "Samba Shares"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:25
+#: juci-mod-samba/src/pages/settings.samba.html:26
 msgid "Samba Users"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:47
+#: juci/src/widgets/juci.schedule.edit.js:37
 msgid "Saturday"
 msgstr ""
 
@@ -1247,23 +1310,28 @@ msgstr ""
 msgid "Schedule Function"
 msgstr ""
 
-#: juci/src/js/uci.js:25
+#: juci/src/js/uci.js:25 juci/src/js/uci.js:41
 msgid "Schedule start time must be lower than schedule end time!"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.html:18
+#: juci-mod-status/src/pages/status.status.html:27
 msgid "Secondary DNS"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:25
+#: juci-mod-network/src/pages/internet.parental_control.html:40
+#: juci/src/widgets/juci.maclist.edit.html:13
 msgid "Select Existing Host"
 msgstr ""
 
 #: juci/src/widgets/juci.top_bar.html:6
+#: juci/src/widgets/juci.mode.picker.html:2
 msgid "Select Mode"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:12
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:11
 msgid "Select Schedule Mode"
 msgstr ""
 
@@ -1312,6 +1380,11 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
+#: juci-mod-network/src/pages/internet.parental_control.html:54
+#: juci-mod-network/src/pages/internet.parental_control.html:39
+msgid "Start Time"
+msgstr ""
+
 #: juci/src/widgets/juci.input.port.html:5
 msgid "Start port"
 msgstr ""
@@ -1337,11 +1410,17 @@ msgstr ""
 msgid "Status-LED"
 msgstr ""
 
+#: juci-mod-network/src/pages/internet.parental_control.html:55
+#: juci-mod-network/src/pages/internet.parental_control.html:40
+msgid "Stop Time"
+msgstr ""
+
 #: juci-mod-status/src/pages/status.status.system.html:10
 msgid "Storage"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:48
+#: juci/src/widgets/juci.schedule.edit.js:38
 msgid "Sunday"
 msgstr ""
 
@@ -1372,6 +1451,7 @@ msgid ""
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:45
+#: juci/src/widgets/juci.schedule.edit.js:35
 msgid "Thursday"
 msgstr ""
 
@@ -1380,10 +1460,13 @@ msgstr ""
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:18
 #: juci-mod-wireless/src/pages/wifi.schedule.html:22
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:17
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:17
+#: juci/src/widgets/juci.schedule.edit.html:17
 msgid "Time"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:4
+#: juci/src/widgets/juci.schedule.edit.html:4
 msgid "Time Frame"
 msgstr ""
 
@@ -1397,6 +1480,7 @@ msgid "Timeout"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.js:18
+#: juci-mod-voice/src/pages/phone.call_log.js:19
 msgid "Today"
 msgstr ""
 
@@ -1418,11 +1502,25 @@ msgid "Tracing Tool"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:43
+#: juci/src/widgets/juci.schedule.edit.js:33
 msgid "Tuesday"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:27
 msgid "Type"
+msgstr ""
+
+#: juci-mod-network/src/pages/internet.parental_control.html:16
+#: juci-mod-network/src/pages/internet.parental_control.html:32
+msgid "URL"
+msgstr ""
+
+#: juci-mod-network/src/pages/internet.parental_control.html:8
+msgid "URL Blocking"
+msgstr ""
+
+#: juci-mod-network/src/pages/internet.parental_control.html:6
+msgid "URL Blocking Function"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:41
@@ -1449,7 +1547,7 @@ msgstr ""
 msgid "Upgrade"
 msgstr ""
 
-#: juci-mod-system/src/pages/settings.upgrade.js:135
+#: juci-mod-system/src/pages/settings.upgrade.js:153
 msgid ""
 "Upgrade process has started. The web gui will not be available until the "
 "upgrade process has completed!"
@@ -1468,7 +1566,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: juci-mod-network/src/internet.js:23
+#: juci-mod-network/src/internet.js:23 juci-mod-network/src/internet.js:42
 msgid "Value must be a valid MAC-48 address"
 msgstr ""
 
@@ -1476,7 +1574,7 @@ msgstr ""
 msgid "Verbose logging"
 msgstr ""
 
-#: juci-mod-system/src/pages/settings.upgrade.js:123
+#: juci-mod-system/src/pages/settings.upgrade.js:141
 msgid "Verifying firmware image"
 msgstr ""
 
@@ -1530,7 +1628,13 @@ msgid ""
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:44
+#: juci/src/widgets/juci.schedule.edit.js:34
 msgid "Wednesday"
+msgstr ""
+
+#: juci-mod-network/src/pages/internet.parental_control.html:53
+#: juci-mod-network/src/pages/internet.parental_control.html:38
+msgid "Weekdays"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/overview.wifi.small.html:5
@@ -1539,6 +1643,8 @@ msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:10
 #: juci-mod-samba/src/pages/services.samba.html:11
+#: juci-mod-samba/src/pages/settings.samba.html:10
+#: juci-mod-samba/src/pages/settings.samba.html:11
 msgid "Workgroup"
 msgstr ""
 
@@ -1553,6 +1659,7 @@ msgid ""
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:9
+#: juci-mod-wireless/src/pages/wifi.general.html:14
 msgid ""
 "You have wifi-scheduling enabled. This means that your wifi will be "
 "automatically turned on and off based on your schedule settings"
@@ -1627,11 +1734,20 @@ msgid "error.port.range.startgreaterthanend"
 msgstr "Error, start port is greater than end port."
 
 #: juci/src/widgets/juci.input.timespan.html:2
+#: juci/src/widgets/juci.input.timespan.html:3
 msgid "from"
 msgstr "From"
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:5
 msgid "internet.exposed_host.info"
+msgstr ""
+"If you have a local network device that cannot run an Internet application "
+"properly behind the firewall, you can allow unrestricted Internet access to "
+"the network device (Exposed Host)."
+
+#: juci-mod-network/src/pages/internet.parental_control.html:4
+#, fuzzy
+msgid "internet.parental.control.info"
 msgstr ""
 "If you have a local network device that cannot run an Internet application "
 "properly behind the firewall, you can allow unrestricted Internet access to "
@@ -1693,6 +1809,7 @@ msgstr ""
 "contacts."
 
 #: juci-mod-samba/src/pages/services.samba.html:5
+#: juci-mod-samba/src/pages/settings.samba.html:5
 msgid "services.samba.info"
 msgstr ""
 
@@ -1821,6 +1938,7 @@ msgid "status.voice_lines.info"
 msgstr "Status of your voice lines."
 
 #: juci/src/widgets/juci.input.timespan.html:4
+#: juci/src/widgets/juci.input.timespan.html:9
 msgid "to"
 msgstr "To"
 
@@ -1838,6 +1956,9 @@ msgstr "Protection Mode"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:33
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:34
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:42
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:43
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:47
 msgid "wifi-iface.key"
 msgstr "WiFi Password"
 
@@ -1926,9 +2047,13 @@ msgstr "Exposed Host"
 msgid "internet.dns.title"
 msgstr "DNS & DDNS"
 
+#, fuzzy
+msgid "internet.parental.control.title"
+msgstr "Firewall"
+
 # menu.d/juci-mod-samba.json
 msgid "services.samba.title"
-msgstr ""
+msgstr "Samba"
 
 # share/menu.d/status.json
 msgid "status.title"
@@ -1938,7 +2063,7 @@ msgid "status.status.title"
 msgstr "Status"
 
 msgid "status.status.system.title"
-msgstr ""
+msgstr "System"
 
 msgid "status.status.dsl.title"
 msgstr "DSL Status"
@@ -2038,10 +2163,10 @@ msgid "overview.title"
 msgstr "Overview"
 
 msgid "services.title"
-msgstr ""
+msgstr "Services"
 
 msgid "services.status.title"
-msgstr ""
+msgstr "Status"
 
 #, fuzzy
 msgid "wifi-iface.wifi-iface.ssid"
@@ -2051,47 +2176,182 @@ msgid "wifi-iface.network"
 msgstr "WiFi Network"
 
 msgid "wifi-iface.mode"
-msgstr ""
+msgstr "Mode"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:34
 msgid "wifi-iface.cipher"
-msgstr ""
+msgstr "Cipher"
 
 msgid "wifi-iface.gtk_rekey"
-msgstr ""
+msgstr "Rekey Interval"
 
 msgid "wifi-iface.wps_pbc"
-msgstr ""
+msgstr "WPS"
 
 msgid "wifi-iface.wmf_bss_enable"
-msgstr ""
+msgstr "BSS"
 
 msgid "wifi-iface.bss_max"
-msgstr ""
+msgstr "BSS Max"
 
 #, fuzzy
 msgid "wifi-iface.instance"
 msgstr "Device"
 
 msgid "wifi-iface.up"
-msgstr ""
+msgstr "Up"
 
 msgid "wifi-iface.disabled"
 msgstr "Disabled"
 
 msgid "wifi-iface.macmode"
-msgstr ""
+msgstr "Mac Mode"
 
 msgid "wifi-iface.macfilter"
-msgstr ""
+msgstr "Mac Filter"
 
 msgid "wifi-iface.maclist"
-msgstr ""
+msgstr "Mac List"
 
 msgid "interface.macmode.allow"
 msgstr "Allow"
 
 msgid "interface.macmode.deny"
 msgstr "Deny"
+
+msgid "login.title"
+msgstr "JUCI Login"
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:32
+msgid "Auto"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:29
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:33
+msgid "CCMP (AES)"
+msgstr ""
+
+#: juci-mod-status/src/pages/status.status.services.html:8
+msgid "Command"
+msgstr ""
+
+#: juci-mod-status/src/pages/status.status.html:14
+msgid "IPv6 Address"
+msgstr ""
+
+#: juci-mod-status/src/pages/status.status.html:18
+msgid "IPv6 Prefix"
+msgstr ""
+
+#: juci-mod-status/src/pages/status.status.js:23
+#, fuzzy
+msgid "Internet IPv6"
+msgstr "Internet"
+
+#: juci/src/widgets/juci.maclist.edit.html:5
+msgid "Invalid MAC address"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:23
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:24
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:25
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:26
+msgid "Key"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:59
+msgid "Radius Port"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:62
+msgid "Radius Secret"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:56
+msgid "Radius Server"
+msgstr ""
+
+#: juci-mod-wireless/src/wifi.js:141
+msgid "SSID string can be at most 32 characters long!"
+msgstr ""
+
+#: juci-mod-wireless/src/pages/wifi.general.html:18
+msgid "Scheduled"
+msgstr ""
+
+#: juci-mod-status/src/pages/status.status.services.html:7
+#, fuzzy
+msgid "Service"
+msgstr "Overview"
+
+#: juci-mod-status/src/pages/status.status.services.html:3
+#, fuzzy
+msgid "Services"
+msgstr "Overview"
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:34
+msgid "TKIP/CCMP (AES)"
+msgstr ""
+
+#: juci-mod-wireless/src/wifi.js:146
+msgid "WEP encryption key must be 10-26 hexadecimal characters!"
+msgstr ""
+
+#: juci-mod-wireless/src/wifi.js:152
+msgid "WPA key must be 8-63 characters long!"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:59
+msgid ""
+"WPS will be disabled when using WEP encryption. Are you sure you want to "
+"continue?"
+msgstr ""
+
+#: juci/src/js/uci.js:21
+msgid "please enter valid time in form hh:mm"
+msgstr ""
+
+#: juci-mod-wireless/src/wifi.js:79
+msgid "please pick at least one day to schedule on"
+msgstr ""
+
+#: juci/src/js/uci.js:16
+msgid "please specify both hour and minute value for time separated by ':'"
+msgstr ""
+
+#: juci-mod-network/src/internet.js:53
+msgid "value must be a valid MAC-48 address"
+msgstr ""
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:60
+#, fuzzy
+msgid "wifi-iface.radius_port"
+msgstr "Device"
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:63
+#, fuzzy
+msgid "wifi-iface.radius_secret"
+msgstr "Frequency"
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:57
+#, fuzzy
+msgid "wifi-iface.radius_server"
+msgstr "Frequency"
+
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:69
+#, fuzzy
+msgid "wifi-iface.show_password"
+msgstr "WiFi Name (SSID)"
+
+# share/menu.d/settings.json
+#, fuzzy
+msgid "settings.samba.title"
+msgstr "Settings"
+
+# share/menu.d/status.vodafone.json
+#, fuzzy
+msgid "status.status.services.title"
+msgstr "Voice Status"
 
 #~ msgid "none"
 #~ msgstr "None"
