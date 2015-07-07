@@ -45,7 +45,7 @@
 				</div>
 				<div ng-show="interface.encryption.value == 'wep' || interface.encryption.value == 'wep-shared'">
 					<juci-config-line title="{{'wifi-iface.key'|translate}}">
-						<juci-select ng-model="interface.key.value" ng-items="keyChoices" placeholder="Choose Key"/>
+						<juci-select ng-model="interface.key_index.value" ng-items="keyChoices" placeholder="Choose Key"/>
 					</juci-config-line>
 					<juci-config-line ng-repeat="key in ['1', '2', '3', '4']" 
 						title="{{('wifi-iface.key'+key)|translate}}">

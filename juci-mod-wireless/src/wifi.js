@@ -143,8 +143,11 @@ JUCI.app.factory("$wireless", function($uci, $rpc, gettext){
 		// validate keys
 		switch(section.encryption.value){
 			case "wep": {
-				if(!section.key.value || !section.key.value.match(/[a-f0-9A-F]{10,26}/)) 
-					return gettext("WEP encryption key must be 10-26 hexadecimal characters!"); 
+				for(var id = 1; id <= 4; id++){
+					var key = section["key"+id]; 
+					if(key && key.value != "" && !key.value.match(/[a-f0-9A-F]{10,26}/)) 
+						return gettext("WEP encryption key #"+id+" must be 10-26 hexadecimal characters!"); 
+				}
 			} break;
 			case "psk": 
 			case "psk2": 

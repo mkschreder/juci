@@ -94,9 +94,6 @@ JUCI.app
 				$scope.errors = errors; 
 				$scope.$emit("errors", errors); 
 				console.error("Could not save uci configuration!"); 
-				(errors||[]).map(function(x){
-					console.error(x); 
-				}); 
 			}).always(function(){
 				$scope.busy = 0; 
 				setTimeout(function(){$scope.$apply();}, 0); 

@@ -20,10 +20,10 @@ JUCI.app
 		$scope.errors.push(err); 
 	}); 
 	$scope.keyChoices = [
-		{label: gettext("Key") + " #1", value: "1"},
-		{label: gettext("Key") + " #2", value: "2"},
-		{label: gettext("Key") + " #3", value: "3"},
-		{label: gettext("Key") + " #4", value: "4"}
+		{label: gettext("Key") + " #1", value: 1},
+		{label: gettext("Key") + " #2", value: 2},
+		{label: gettext("Key") + " #3", value: 3},
+		{label: gettext("Key") + " #4", value: 4}
 	];
 	$scope.psk2_ciphers = [
 		{label: gettext("CCMP (AES)"), value: "ccmp"}
@@ -78,7 +78,6 @@ JUCI.app
 			}
 			case "wep": 
 			case "wep-shared": {
-				$scope.interface.key.value = "1"; 
 				doConfirm(); 
 				break; 
 			}
