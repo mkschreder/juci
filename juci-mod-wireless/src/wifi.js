@@ -8,14 +8,25 @@
 	}); 
 }); */
 
-JUCI.app.factory("$wireless", function(){
+JUCI.app.factory("$wireless", function($uci, $rpc, gettext){
 	function Wireless(){
 		this.scheduleStatusText = gettext("off"); 
 		this.wpsStatusText = gettext("off"); 
-		
 	}
 	
-	JUCI.interval.repeat("wireless-refresh", 2000, function(done){
+	Wireless.prototype.getInfo = function(){
+		var deferred = $.Deferred(); 
+		$rpc.router.info().done(function(result){
+			var info = {
+				wpa_key: result.keys.wpa
+			}
+			deferred.resolve(info); 
+		}).fail(function(){
+			deferred.reject(); 
+		});  
+		return deferred.promise(); 
+	}
+	/*JUCI.interval.repeat("wireless-refresh", 2000, function(done){
 		refresh(done); 
 	}); 
 	function refresh(done) {
@@ -46,8 +57,8 @@ JUCI.app.factory("$wireless", function(){
 			$scope.$apply(); 
 			if(done) done(); 
 		}); 
-	} refresh(); 
-	return wifi; 
+	} refresh(); */
+	return new Wireless(); 
 }); 
 
 (function(){
@@ -101,11 +112,19 @@ JUCI.app.factory("$wireless", function(){
 		"network":		{ dvalue: "lan", type: String, allow: [ "lan", "guest" ] },
 		"mode":				{ dvalue: "ap", type: String, allow: [ "ap" ] },
 		"ssid":				{ dvalue: "Inteno", type: String },
-		"encryption":	{ dvalue: "mixed-psk", type: String, allow: [ "none", "wep", "psk", "psk2", "mixed-psk" ] },
+		"encryption":	{ dvalue: "mixed-psk", type: String, allow: [ "none", "wep", "wep-shared", "psk2", "mixed-psk", "wpa2", "mixed-wpa" ] },
 		"cipher":			{ dvalue: "auto", type: String, allow: [ "auto" ] },
 		"key":				{ dvalue: "", type: String },
+		"key1":				{ dvalue: "1111111111", type: String },
+		"key2":				{ dvalue: "2222222222", type: String },
+		"key3":				{ dvalue: "3333333333", type: String },
+		"key4":				{ dvalue: "4444444444", type: String },
+		"radius_server":				{ dvalue: "", type: String },
+		"radius_port":				{ dvalue: "", type: String },
+		"radius_secret":				{ dvalue: "", type: String },
 		"ifname":			{ dvalue: "", type: String },
 		"gtk_rekey":	{ dvalue: false, type: Boolean },
+		"net_rekey":	{ dvalue: 0, type: Number },
 		"wps_pbc":		{ dvalue: false, type: Boolean },
 		"wmf_bss_enable":{ dvalue: false, type: Boolean },
 		"bss_max":		{ dvalue: 0, type: Number },
