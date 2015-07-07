@@ -801,9 +801,8 @@ msgid "Interface"
 msgstr ""
 
 #: juci/src/js/rpc.js:43
-#, fuzzy
 msgid "Internal error"
-msgstr "Internet"
+msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:50
 #: juci-mod-network/src/pages/internet.parental_control.html:35
@@ -1062,29 +1061,25 @@ msgid "Phone Numbers"
 msgstr "Phone Numbers"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:7
-#, fuzzy
 msgid "Pick Bandwidth"
-msgstr "Choose Bandwidth"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:10
-#, fuzzy
 msgid "Pick Channel"
-msgstr "Choose Channel"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:4
 msgid "Pick Hardware Mode"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.lines.html:15
-#, fuzzy
 msgid "Pick Outgoing Number"
-msgstr "Phone Numbers"
+msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:47
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:46
-#, fuzzy
 msgid "Pick Phone Number"
-msgstr "Phone Numbers"
+msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:47
 msgid "Pick configuration backup to upload"
@@ -1746,12 +1741,8 @@ msgstr ""
 "the network device (Exposed Host)."
 
 #: juci-mod-network/src/pages/internet.parental_control.html:4
-#, fuzzy
 msgid "internet.parental.control.info"
-msgstr ""
-"If you have a local network device that cannot run an Internet application "
-"properly behind the firewall, you can allow unrestricted Internet access to "
-"the network device (Exposed Host)."
+msgstr "Here you can setup parental control settings. "
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:22
 msgid "ip.address.label"
@@ -2000,9 +1991,8 @@ msgstr ""
 
 # share/menu.d/status.json
 #: juci-mod-wireless/src/pages/wifi.wps.js:6
-#, fuzzy
 msgid "wps.status.init"
-msgstr "Status"
+msgstr "Initializing WPS"
 
 #: juci-mod-wireless/src/pages/wifi.wps.js:11
 msgid "wps.status.msgdone"
@@ -2036,20 +2026,17 @@ msgstr "Internet"
 msgid "internet.firewall.title"
 msgstr "Firewall"
 
-#, fuzzy
 msgid "internet.port.mapping.title"
 msgstr "Port Mapping"
 
-#, fuzzy
 msgid "internet.exposed.host.title"
 msgstr "Exposed Host"
 
 msgid "internet.dns.title"
 msgstr "DNS & DDNS"
 
-#, fuzzy
 msgid "internet.parental.control.title"
-msgstr "Firewall"
+msgstr "Parental Control"
 
 # menu.d/juci-mod-samba.json
 msgid "services.samba.title"
@@ -2115,28 +2102,21 @@ msgstr "Call Log"
 msgid "phone.call.log.title"
 msgstr "Call Log"
 
-#, fuzzy
 msgid "phone.number.blocking.title"
 msgstr ""
 "Stay in control of your bills and block outgoing calls to unwanted numbers."
 
-#, fuzzy
 msgid "phone.ringing.schedule.title"
 msgstr "Schedule"
 
-#, fuzzy
 msgid "phone.numbers.title"
-msgstr "Control your phone accounts."
+msgstr "Numbers"
 
-#, fuzzy
 msgid "phone.lines.title"
-msgstr "Configure phone lines."
+msgstr "Lines"
 
-#, fuzzy
 msgid "phone.speed.dialing.title"
-msgstr ""
-"This feature activates speed dialing to connect you faster to your preferred "
-"contacts."
+msgstr "Speed Dialing"
 
 # share/menu.d/wifi.json
 msgid "wifi.title"
@@ -2151,7 +2131,6 @@ msgstr "Schedule"
 msgid "wifi.wps.title"
 msgstr "WPS"
 
-#, fuzzy
 msgid "wifi.mac.filter.title"
 msgstr "MAC Filter"
 
@@ -2168,7 +2147,6 @@ msgstr "Services"
 msgid "services.status.title"
 msgstr "Status"
 
-#, fuzzy
 msgid "wifi-iface.wifi-iface.ssid"
 msgstr "WiFi Name (SSID)"
 
@@ -2194,7 +2172,6 @@ msgstr "BSS"
 msgid "wifi-iface.bss_max"
 msgstr "BSS Max"
 
-#, fuzzy
 msgid "wifi-iface.instance"
 msgstr "Device"
 
@@ -2244,9 +2221,8 @@ msgid "IPv6 Prefix"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.js:23
-#, fuzzy
 msgid "Internet IPv6"
-msgstr "Internet"
+msgstr "Internet IPv6"
 
 #: juci/src/widgets/juci.maclist.edit.html:5
 msgid "Invalid MAC address"
@@ -2280,14 +2256,12 @@ msgid "Scheduled"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.services.html:7
-#, fuzzy
 msgid "Service"
-msgstr "Overview"
+msgstr ""
 
 #: juci-mod-status/src/pages/status.status.services.html:3
-#, fuzzy
 msgid "Services"
-msgstr "Overview"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.js:34
 msgid "TKIP/CCMP (AES)"
@@ -2324,34 +2298,40 @@ msgid "value must be a valid MAC-48 address"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:60
-#, fuzzy
 msgid "wifi-iface.radius_port"
-msgstr "Device"
+msgstr "Radius Port"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:63
-#, fuzzy
 msgid "wifi-iface.radius_secret"
-msgstr "Frequency"
+msgstr "Radius Secret"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:57
-#, fuzzy
 msgid "wifi-iface.radius_server"
-msgstr "Frequency"
+msgstr "Radius Server"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:69
-#, fuzzy
 msgid "wifi-iface.show_password"
-msgstr "WiFi Name (SSID)"
+msgstr "Show Key Text"
 
 # share/menu.d/settings.json
-#, fuzzy
 msgid "settings.samba.title"
-msgstr "Settings"
+msgstr "Samba"
 
 # share/menu.d/status.vodafone.json
-#, fuzzy
 msgid "status.status.services.title"
-msgstr "Voice Status"
+msgstr "Services"
+
+msgid "wifi-iface.key1"
+msgstr "WiFi Key #1"
+
+msgid "wifi-iface.key2"
+msgstr "WiFi Key #2"
+
+msgid "wifi-iface.key3"
+msgstr "WiFi Key #3"
+
+msgid "wifi-iface.key4"
+msgstr "WiFi Key #4"
 
 #~ msgid "none"
 #~ msgstr "None"
