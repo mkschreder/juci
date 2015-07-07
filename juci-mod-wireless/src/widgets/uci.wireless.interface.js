@@ -52,18 +52,34 @@ JUCI.app
 		$scope.title = "wifi-iface.name="+$scope.interface[".name"]; 
 	});
 	$scope.$watch("interface.encryption.value", function(value, oldvalue){
+		function doConfirm(){
+			if($scope.interface.wps_pbc.value && !confirm(gettext("WPS will be disabled when using WEP encryption. Are you sure you want to continue?"))){
+				setTimeout(function(){
+					$scope.interface.encryption.value = oldvalue; 
+					$scope.$apply(); 
+				},0); 
+			} else {
+				$scope.interface.wps_pbc.value = false; 
+			}
+		}
 		switch(value){
+			case "none": {
+				if(oldvalue && value != oldvalue){
+					if(confirm("WARNING: Disabling encryption on your router will severely degrade your security. Are you sure you want to disable encryption on this interface?")){
+						doConfirm(); 
+					} else {
+						setTimeout(function(){
+							$scope.interface.encryption.value = oldvalue; 
+							$scope.$apply(); 
+						},0); 
+					}
+				}
+				break; 
+			}
 			case "wep": 
 			case "wep-shared": {
 				$scope.interface.key.value = "1"; 
-				if($scope.interface.wps_pbc.value && !confirm(gettext("WPS will be disabled when using WEP encryption. Are you sure you want to continue?"))){
-					setTimeout(function(){
-						$scope.interface.encryption.value = oldvalue; 
-						$scope.$apply(); 
-					},0); 
-				} else {
-					$scope.interface.wps_pbc.value = false; 
-				}
+				doConfirm(); 
 				break; 
 			}
 			case "mixed-psk": {
