@@ -709,7 +709,10 @@
 				}); 
 			}, 
 			function(next){
-				var errors = []; 
+				if(errors.length) {
+					deferred.reject(errors); 
+					return; 
+				}
 				$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
 					async.eachSeries(Object.keys(self), function(config, next){
 						if(self[config].constructor != UCI.Config || !self[config][".need_commit"]) {

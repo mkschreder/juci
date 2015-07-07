@@ -154,6 +154,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, gettext){
 			default: 
 				break; 
 		}
+		return null; 
 	}); 
 	
 	
