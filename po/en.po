@@ -2333,6 +2333,15 @@ msgstr "WiFi Key #3"
 msgid "wifi-iface.key4"
 msgstr "WiFi Key #4"
 
+msgid "wifi.enc.wep-shared"
+msgstr "WEP Shared Key"
+
+msgid "wifi.enc.wpa2"
+msgstr "WPA2 Radius "
+
+msgid "wifi.enc.mixed-wpa"
+msgstr "WPA2 Mixed"
+
 #~ msgid "none"
 #~ msgstr "None"
 
