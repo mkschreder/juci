@@ -115,6 +115,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, gettext){
 		"encryption":	{ dvalue: "mixed-psk", type: String, allow: [ "none", "wep", "wep-shared", "psk2", "mixed-psk", "wpa2", "mixed-wpa" ] },
 		"cipher":			{ dvalue: "auto", type: String, allow: [ "auto" ] },
 		"key":				{ dvalue: "", type: String },
+		"key_index": 	{ dvalue: 1, type: Number }, 
 		"key1":				{ dvalue: "1111111111", type: String },
 		"key2":				{ dvalue: "2222222222", type: String },
 		"key3":				{ dvalue: "3333333333", type: String },

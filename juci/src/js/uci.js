@@ -139,7 +139,7 @@
 			if(value != null && value instanceof Array) {
 				this.ovalue = []; Object.assign(this.ovalue, value); 
 			} 
-			this.dirty = false; 
+			this.is_dirty = false; 
 			this.uvalue = undefined; 
 			this.schema = schema; 
 			if(schema.validator) this.validator = new schema.validator(); 
@@ -148,7 +148,7 @@
 		UCIField.prototype = {
 			$reset: function(){
 				this.uvalue = this.ovalue; 
-				this.dirty = false; 
+				this.is_dirty = false; 
 			}, 
 			$update: function(value){
 				if(this.dvalue instanceof Array){
@@ -157,18 +157,18 @@
 				} else {
 					this.ovalue = this.uvalue = value; 
 				}
-				this.dirty = false; 
+				this.is_dirty = false; 
 			}, 
 			get value(){
 				if(this.uvalue == undefined) return this.ovalue;
 				else return this.uvalue; 
 			},
 			set value(val){
-				if(!this.dirty && this.ovalue != val) this.dirty = true; 
+				if(!this.is_dirty && this.ovalue != val) this.is_dirty = true; 
 				if(val instanceof Array) {
 					this.uvalue = []; 
 					Object.assign(this.uvalue, val); 
-					this.dirty = true; 
+					this.is_dirty = true; 
 				}
 				this.uvalue = val; 
 			},
@@ -181,6 +181,13 @@
 			get valid(){
 				if(this.validator) return this.validator.validate(this) == null; 
 				return true; 
+			}, 
+			set dirty(value){
+				this.is_dirty = value; 
+			},
+			get dirty(){
+				if(this.is_dirty || this.uvalue != this.ovalue) return true; 
+				return false; 
 			}
 		}
 		UCI.Field = UCIField; 
