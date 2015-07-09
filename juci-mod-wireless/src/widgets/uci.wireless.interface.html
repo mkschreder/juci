@@ -22,7 +22,7 @@
 					<input type="text" class="form-control" placeholder="Wifi Name" ng-model="interface.ssid.value" maxlength="32"/>
 				</juci-config-line>
 				<juci-config-line title="{{'wifi-iface.closed'|translate}}">
-					<switch id="enabled" name="enabled" ng-model="interface.closed.value" class="green" inverted></switch>
+					<switch id="enabled" name="enabled" ng-model="interface.closed.value" on-change="onShowSSIDToggle()" class="green" inverted></switch>
 				</juci-config-line>
 				<juci-config-line title="{{'wifi-iface.device'|translate}}">
 					<juci-select ng-model="interface.device.value" ng-items="devices" placeholder="Choose Radio"></juci-select>

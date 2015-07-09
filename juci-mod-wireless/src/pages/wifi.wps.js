@@ -16,6 +16,10 @@ JUCI.app
 	}
 	$scope.progress = 0; 
 	
+	$scope.wpsUnlocked = function(interface){
+		return ["wpa", "mixed-wpa"].indexOf(interface.encryption.value) == -1 && interface.closed.value != true; 
+	}
+	
 	$uci.sync(["wireless", "boardpanel"]).done(function(){
 		if($uci.boardpanel == undefined) $scope.$emit("error", "Boardpanel config is not present on this system!"); 
 		else $scope.boardpanel = $uci.boardpanel; 
@@ -52,7 +56,8 @@ JUCI.app
 		$rpc.wps.pbc();
 	}
 	$scope.onPairUserPIN = function(){
-		$rpc.wps.stapin({ pin: $scope.data.userPIN });
+		var pin = $scope.data.userPIN.replace("-", "").replace(" ", ""); 
+		$rpc.wps.stapin({ pin: pin });
 	}
 	$scope.onGeneratePIN = function(){
 		$rpc.wps.genpin().done(function(data){

@@ -51,23 +51,23 @@ JUCI.app
 		}); 
 		$scope.title = "wifi-iface.name="+$scope.interface[".name"]; 
 	});
-	$scope.$watch("interface.encryption.value", function(value, oldvalue){
-		function doConfirm(){
-			if($scope.interface.wps_pbc.value && !confirm(gettext("WPS will be disabled when using WEP encryption. Are you sure you want to continue?"))){
+	$scope.$watch("interface.closed.value", function(value, oldvalue){
+		if(value && value != oldvalue){
+			if($scope.interface.wps_pbc.value && !confirm(gettext("If you disable SSID broadcasting, WPS function will be disabled as well. You will need to enable it manually later. Are you sure you want to continue?"))){
 				setTimeout(function(){
-					$scope.interface.encryption.value = oldvalue; 
+					$scope.interface.closed.value = oldvalue; 
 					$scope.$apply(); 
 				},0); 
 			} else {
 				$scope.interface.wps_pbc.value = false; 
 			}
 		}
+	}); 
+	$scope.$watch("interface.encryption.value", function(value, oldvalue){
 		switch(value){
 			case "none": {
 				if(oldvalue && value != oldvalue){
-					if(confirm("WARNING: Disabling encryption on your router will severely degrade your security. Are you sure you want to disable encryption on this interface?")){
-						doConfirm(); 
-					} else {
+					if(!confirm("WARNING: Disabling encryption on your router will severely degrade your security. Are you sure you want to disable encryption on this interface?")){
 						setTimeout(function(){
 							$scope.interface.encryption.value = oldvalue; 
 							$scope.$apply(); 
@@ -78,7 +78,14 @@ JUCI.app
 			}
 			case "wep": 
 			case "wep-shared": {
-				doConfirm(); 
+				if($scope.interface.wps_pbc.value && !confirm(gettext("WPS will be disabled when using WEP encryption. Are you sure you want to continue?"))){
+					setTimeout(function(){
+						$scope.interface.encryption.value = oldvalue; 
+						$scope.$apply(); 
+					},0); 
+				} else {
+					$scope.interface.wps_pbc.value = false; 
+				}
 				break; 
 			}
 			case "mixed-psk": {

@@ -1,4 +1,4 @@
-DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-network 
+DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-network juci-mod-console
 BIN:=bin
 UBUS_MODS:=
 
