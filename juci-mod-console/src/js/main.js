@@ -36,6 +36,16 @@ jQuery(function($, undefined) {
 						self.terminal.focus(focus = !focus);
 					}
 				});
+				var oldprint = console.print; 
+				console.log = function(str){
+					self.terminal.echo("\x1b[32m"+str+"\x1b[m"); 
+				}
+				console.error = function(str){
+					self.terminal.echo("\x1b[31m"+str+"\x1b[m"); 
+				}
+				console.warning = function(str){
+					self.terminal.echo("\x1b[33m"+str+"\x1b[m"); 
+				}
 				$('body').data('tilda', this);
 				this.hide();
 				return self;
@@ -56,5 +66,6 @@ jQuery(function($, undefined) {
 				 term.echo('');
 			}
     });
+    
 	}); 
 });
