@@ -44,7 +44,7 @@ node_modules: package.json
 	
 inteno: all
 
-debug: $(UBUS_MODS) $(DIRS-y) 
+debug: prepare $(UBUS_MODS) $(DIRS-y) 
 	#npm install 
 	grunt
 	./juci-update $(BIN)/www DEBUG

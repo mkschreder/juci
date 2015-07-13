@@ -62,6 +62,7 @@ UCI.$registerConfig("network");
 UCI.network.$registerSectionType("interface", {
 	"is_lan":					{ dvalue: false, type: Boolean }, 
 	"ifname":					{ dvalue: '', type: String }, 
+	"device":					{ dvalue: '', type: String }, // WTF? This is set to ifname in ubus but not in uci 
 	"proto":					{ dvalue: 'dhcp', type: String }, 
 	"ipaddr":					{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask":				{ dvalue: '', type: String }, 

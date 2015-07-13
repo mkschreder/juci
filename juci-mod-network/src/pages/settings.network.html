@@ -2,6 +2,7 @@
 	<div ng-controller="SettingsNetworkCtrl">
 		<juci-config-heading>{{ 'Network Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'settings.network.info' | translate }}</juci-config-info>
+		<div id="mynetworkFA" style="width: 100%; height: 500px;"></div>
 		<juci-config-section>
 			<div ng-repeat="interface in interfaces">
 				<uci-network-interface-edit ng-model="interface"></uci-network-interface-edit>

@@ -16,6 +16,7 @@ JUCI.app
 	$scope.existingHost = { }; 
 	
 	$scope.$watch("interface", function(iface){
+		
 		$rpc.router.clients().done(function(clients){
 			$uci.sync("dhcp").done(function(){
 				if(iface[".name"] in $uci.dhcp){

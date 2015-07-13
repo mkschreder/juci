@@ -15,11 +15,13 @@ STYLES+=src/lib/css/angular-ui.min.css
 STYLES+=src/lib/css/select.min.css
 STYLES+=src/lib/css/angular-ui-switch.min.css
 STYLES+=src/lib/css/awesome-bootstrap-checkbox.css
+STYLES+=src/lib/css/vis.min.css
 STYLES+=src/css/nga.min.css
 STYLES+=src/css/app.css
 
 JSLIBS:=
 JSLIBS+=src/lib/js/async.js
+JSLIBS+=src/lib/js/vis.min.js
 JSLIBS+=src/lib/js/js-schema.min.js
 JSLIBS+=src/lib/js/require.js
 JSLIBS+=src/lib/js/jquery.min.js

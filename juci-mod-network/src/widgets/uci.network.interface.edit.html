@@ -81,6 +81,16 @@
 					</div>
 				</div>
 			</div>
+			<div >
+				<hr/>
+				<h3 translate>Interfaces</h3>
+				<div class="col-xs-6" ng-repeat="i in bridgedInterfaces">
+					<div class="checkbox checkbox-info">
+						<input type="checkbox" checklist-model="phyInterfaces" checklist-value="i.value">
+						<label><strong>{{i.label}}</strong></label>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
