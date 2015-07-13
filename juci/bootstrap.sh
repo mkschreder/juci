@@ -1,5 +1,6 @@
 #!/bin/bash	
 
+sudo apt-get install npm nodejs yui-compressor 
 npm install
 sudo npm install -g grunt-cli
 sudo npm install -g mocha 
