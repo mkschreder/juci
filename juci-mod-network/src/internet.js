@@ -115,15 +115,20 @@
 	}); 
 	
 	// register basic vlan support 
-	JUCI.app.run(function($network){
+	JUCI.app.run(function($network, $uci){
 		$network.subsystem(function(){
 			return {
 				getDevices: function(){
 					var deferred = $.Deferred(); 
+					var devices = []; 
 					$uci.sync("layer2_interface_vlan").done(function(){
 						$uci.layer2_interface_vlan["@vlan_interface"].map(function(i){
-							
+							devices.push({
+								get name(){ return i.ifname.value; }
+							}); 
 						}); 
+					}).always(function(){
+						deferred.resolve(devices); 
 					}); 
 					return deferred.promise(); 
 				}

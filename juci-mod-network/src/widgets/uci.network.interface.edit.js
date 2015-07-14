@@ -19,7 +19,8 @@ JUCI.app
 		if(!iface) return; 
 		$rpc.router.clients().done(function(clients){
 			$uci.sync("dhcp").done(function(){
-				$scope.phyInterfaces = $scope.interface.devices.map(function(x){ return { label: x.name, value: x.name }; }); 
+				if($scope.interface.devices && $scope.interface.devices instanceof Array)
+					$scope.phyInterfaces = $scope.interface.devices.map(function(x){ return { label: x.name, value: x.name }; }); 
 				$scope.bridgedInterfaces = $scope.phyInterfaces.map(function(x){ return x.value; }); 
 				if(iface[".name"] in $uci.dhcp){
 					$scope.dhcp = $uci.dhcp[iface[".name"]]; 

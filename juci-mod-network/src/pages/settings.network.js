@@ -17,7 +17,7 @@ JUCI.app
 		nodes.push({
 			data: {
 				id: "world", 
-				name: "WAN", 
+				name: "Public", 
 				parent: "root", 
 				weight: 100, 
 				mainColor: "#0000ff", 
@@ -34,6 +34,9 @@ JUCI.app
 				shape: "rectangle"
 			}
 		}); 
+		var freedevs = {}; 
+		$scope.devices.map(function(x){ freedevs[x.name] = x; }); 
+		
 		$scope.networks.map(function(i){
 			var net_id = i[".name"]; 
 			// add a wan connection if the interface is connected to wan
@@ -63,31 +66,43 @@ JUCI.app
 				data: item
 			}); 
 			
-			
-			var parts = []; 
-			if(i.device && i.device.value != "") parts = i.device.value.split(" "); 
-			else if(i.ifname.value) parts = i.ifname.value.split(" "); 
-			if(parts.length){
-				parts.map(function(p){
-					var eth_id = nodes.length; 
+			if(i.devices && i.devices instanceof Array){
+				
+				i.devices.map(function(dev){
+					// remove from list of free devices
+					delete freedevs[dev.name]; 
+					
+					var dev_id = nodes.length; 
 					var item = {
-						id: p, 
-						name: p, 
+						id: dev.name, 
+						name: dev.name, 
 						parent: net_id,
 						weight: 70, 
 						mainColor: '#F5A45D', 
 						shape: 'rectangle'
 					};
-					if(p.match(/.*eth.*/)) item.icon = "lan_port.png"; 
+					if(dev.name.match(/.*eth.*/)) item.icon = "lan_port.png"; 
 					
 					nodes.push({
 						data: item
 					}); 
-					
 				}); 
+				
 			}
 		});
-		
+		// now add all free devices as just floating items
+		Object.keys(freedevs).map(function(k){
+			nodes.push({
+				data: {
+					id: k, 
+					name: k, 
+					parent: "root", 
+					weight: 70, 
+					mainColor: '#aaaaaa', 
+					shape: 'rectangle'
+				}
+			}); 
+		}); 
 		nodes = nodes.map(function(n){
 			//if(!n.data.icon) n.data.icon = "none";
 			if(n.data.icon) n.data.icon = "/img/"+n.data.icon;  
@@ -166,16 +181,29 @@ JUCI.app
 					}
 					console.log( 'tapped ' + node.id() );
 				});
+				cy.on('tapstart', 'node', {}, function(ev){
+					var node = ev.cyTarget; 
+					console.log("Tapstart: "+node.id()); 
+				}); 
+				cy.on('tapend', 'node', {}, function(ev){
+					var node = ev.cyTarget; 
+					console.log("Tapend: "+node.id()); 
+					
+				}); 
 			}
 		});
 	}
+	
 	$uci.sync("network").done(function(){
 		$scope.network = $uci.network; 
 		$scope.interfaces = $uci.network['@interface'].filter(function(i){ return i.type.value != "" && i.is_lan.value == true}); 
-		$network.getNetworks().done(function(nets){
-			$scope.networks = nets; 
-			$scope.$apply(); 
-			drawCyGraph(); 
+		$network.getDevices().done(function(devices){
+			$scope.devices = devices; 
+			$network.getNetworks().done(function(nets){
+				$scope.networks = nets; 
+				$scope.$apply(); 
+				drawCyGraph(); 
+			}); 
 		}); 
 	}); 
 }); 
