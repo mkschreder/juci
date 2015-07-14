@@ -247,7 +247,7 @@
 			var deferred = $.Deferred(); 
 			var self = this; 
 
-			$rpc.uci.state({
+			$rpc.uci.get({
 				config: self[".config"][".name"], 
 				section: self[".name"]
 			}).done(function(data){
@@ -416,7 +416,7 @@
 				config: self[".name"]//, 
 				//ubus_rpc_session: $rpc.$sid()
 			}).always(function(){ // we have to use always because we always want to sync regardless if reverts work or not ( they will not if the config is readonly! )
-				$rpc.uci.state({
+				$rpc.uci.get({
 					config: self[".name"]
 				}).done(function(data){
 					var vals = data.values;

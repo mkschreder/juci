@@ -1,4 +1,4 @@
-TARGET:=juci-mod-network
+TARGET:=juci-mod-dsl
 OUTDIR:=htdocs
 CSS:=$(OUTDIR)/css/50-$(TARGET).css
 JS:=$(OUTDIR)/js/50-$(TARGET).js
@@ -6,8 +6,8 @@ HTML:=$(OUTDIR)/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(OUTDIR) $(JS) $(HTML) ;
-
+all: files $(OUTDIR) $(JS);
+	
 $(OUTDIR): 
 	mkdir -p $(OUTDIR)
 	
@@ -15,19 +15,17 @@ $(OUTDIR):
 files: 
 	$(INSTALL_DIR) ./$(OUTDIR)/css
 	$(INSTALL_DIR) ./$(OUTDIR)/js
-	$(INSTALL_DIR) ./$(OUTDIR)/img
-	cp -R src/images/* ./$(OUTDIR)/img/
 
-#STYLES:=$(wildcard src/css/*.css) 
-CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
-TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
+STYLES:=$(wildcard src/css/*.css) 
+CODE:=$(wildcard src/*.js) $(wildcard src/js/*.js)
+TEMPLATES:=$(wildcard src/widgets/*.html) 
 
-#$(CSS): $(STYLES)
-#	cat $(STYLES) > $@
+$(CSS): $(STYLES)
+	cat $(STYLES) > $@
 
 $(JS): $(CODE)
 	cat $(CODE) > $@
-	
+
 $(HTML): $(TEMPLATES)
 	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
 

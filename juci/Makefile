@@ -25,6 +25,7 @@ JSLIBS+=src/lib/js/vis.min.js
 JSLIBS+=src/lib/js/js-schema.min.js
 JSLIBS+=src/lib/js/require.js
 JSLIBS+=src/lib/js/jquery.min.js
+JSLIBS+=src/lib/js/cytoscape.min.js
 JSLIBS+=src/lib/js/angular.min.js
 JSLIBS+=src/lib/js/angular-ui.min.js
 JSLIBS+=src/lib/js/angular-ui-router.min.js

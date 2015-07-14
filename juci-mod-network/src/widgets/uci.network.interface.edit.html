@@ -12,8 +12,8 @@
 			</h3>
 			<div style="clear: both;"></div>
 		</div>
-		<div class="panel-body " ng-show="expanded" >
-			<juci-config-lines>
+		<div class="panel-body " ng-show="expanded && interface" >
+			<juci-config-lines ng-show="interface.proto.value == 'static'">
 				<juci-config-line title="{{'IP Address'|translate}}" error="interface.ipaddr.error">
 					<input class="form-control" ng-model="interface.ipaddr.value" placeholder="{{'Static IP Address'|translate}}"></input>
 				</juci-config-line>
@@ -24,7 +24,7 @@
 					<switch ng-model="dhcp.ignore.value" class="green" inverted></switch>
 				</juci-config-line>
 			</juci-config-lines>
-			<juci-config-lines ng-hide="dhcp.ignore.value">
+			<juci-config-lines ng-hide="!dhcp || dhcp.ignore.value">
 				<hr/>
 				<juci-config-line title="{{'Address Pool Start IP'|translate}}" error="dhcp.start.error">
 					<input class="form-control pull-right" style="width: 60px;" ng-model="dhcp.start.value"  placeholder="1"></input>
@@ -38,7 +38,7 @@
 					<juci-select ng-model="dhcp.leasetime.value" ng-items="dhcpLeaseTimes" placeholder="{{'Lease Time'|translate}}"/>
 				</juci-config-line>
 			</juci-config-lines>
-			<div ng-hide="dhcp.ignore.value">
+			<div ng-hide="!dhcp || dhcp.ignore.value">
 				<hr/>
 				<h3 translate>Static DHCP</h3>
 				<div class="row visible-sm visible-md visible-lg">
@@ -83,12 +83,10 @@
 			</div>
 			<div >
 				<hr/>
-				<h3 translate>Interfaces</h3>
-				<div class="col-xs-6" ng-repeat="i in bridgedInterfaces">
-					<div class="checkbox checkbox-info">
-						<input type="checkbox" checklist-model="phyInterfaces" checklist-value="i.value">
-						<label><strong>{{i.label}}</strong></label>
-					</div>
+				<h3 translate>Devices</h3>
+				<div class="checkbox checkbox-info" ng-repeat="i in phyInterfaces">
+					<input type="checkbox" checklist-model="bridgedInterfaces" checklist-value="i.value">
+					<label><strong>{{i.label}}</strong></label>
 				</div>
 			</div>
 		</div>

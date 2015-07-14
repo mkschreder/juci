@@ -1,14 +1,4 @@
-/*JUCI.app
-.config(function($stateProvider) {
-	$stateProvider.state("wifi", {
-		url: "/wifi", 
-		onEnter: function($state){
-			$juci.redirect("wifi-general"); 
-		}
-	}); 
-}); */
-
-JUCI.app.factory("$wireless", function($uci, $rpc, gettext){
+!function(){
 	function Wireless(){
 		this.scheduleStatusText = gettext("off"); 
 		this.wpsStatusText = gettext("off"); 
@@ -26,40 +16,64 @@ JUCI.app.factory("$wireless", function($uci, $rpc, gettext){
 		});  
 		return deferred.promise(); 
 	}
-	/*JUCI.interval.repeat("wireless-refresh", 2000, function(done){
-		refresh(done); 
-	}); 
-	function refresh(done) {
-		$scope.wifiSchedStatus = gettext("off"); 
-		$scope.wifiWPSStatus = gettext("off"); 
-		async.series([
-			function(next){
-				$uci.sync(["wireless"]).done(function(){
-					$scope.wifi = $uci.wireless;  
-					if($uci.wireless && $uci.wireless.status) {
-						$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
-						$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
-					}
-				}).always(function(){ next(); }); 
-			}, 
-			function(next){
-				$rpc.router.clients().done(function(clients){
-					var all = Object.keys(clients).map(function(x) { return clients[x]; }); 
-					$scope.wireless.clients = all.filter(function(x){
-						return x.connected && x.wireless == true; 
+	
+	JUCI.app.run(function($network, $uci){
+		$network.subsystem(function(){
+			return {
+				getDevices: function() {
+					var deferred = $.Deferred(); 
+					var devices = []; 
+					$uci.sync("wireless").done(function(result){
+						// in wireless, wifi-iface is actually the layer2 device. Pretty huh? :-) 
+						// oh, and network is what network the device belongs to. Even prettier. 
+						$uci.wireless["@wifi-iface"].map(function(device){
+							devices.push({
+								get name() { return device.device.value; }
+							}); 
+						}); 
+						deferred.resolve(devices); 
 					}); 
-					next(); 
-				}).fail(function(){
-					next();
-				});; 
-			},
-		], function(){
-			$scope.$apply(); 
-			if(done) done(); 
+					return deferred.promise(); 
+				}
+			}
 		}); 
-	} refresh(); */
-	return new Wireless(); 
-}); 
+	}); 
+	JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
+		/*JUCI.interval.repeat("wireless-refresh", 2000, function(done){
+			refresh(done); 
+		}); 
+		function refresh(done) {
+			$scope.wifiSchedStatus = gettext("off"); 
+			$scope.wifiWPSStatus = gettext("off"); 
+			async.series([
+				function(next){
+					$uci.sync(["wireless"]).done(function(){
+						$scope.wifi = $uci.wireless;  
+						if($uci.wireless && $uci.wireless.status) {
+							$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
+							$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
+						}
+					}).always(function(){ next(); }); 
+				}, 
+				function(next){
+					$rpc.router.clients().done(function(clients){
+						var all = Object.keys(clients).map(function(x) { return clients[x]; }); 
+						$scope.wireless.clients = all.filter(function(x){
+							return x.connected && x.wireless == true; 
+						}); 
+						next(); 
+					}).fail(function(){
+						next();
+					});; 
+				},
+			], function(){
+				$scope.$apply(); 
+				if(done) done(); 
+			}); 
+		} refresh(); */
+		return new Wireless(); 
+	}); 
+}(); 
 
 (function(){
 	UCI.$registerConfig("wireless"); 

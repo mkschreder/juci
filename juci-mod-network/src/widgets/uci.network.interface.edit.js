@@ -16,9 +16,11 @@ JUCI.app
 	$scope.existingHost = { }; 
 	
 	$scope.$watch("interface", function(iface){
-		
+		if(!iface) return; 
 		$rpc.router.clients().done(function(clients){
 			$uci.sync("dhcp").done(function(){
+				$scope.phyInterfaces = $scope.interface.devices.map(function(x){ return { label: x.name, value: x.name }; }); 
+				$scope.bridgedInterfaces = $scope.phyInterfaces.map(function(x){ return x.value; }); 
 				if(iface[".name"] in $uci.dhcp){
 					$scope.dhcp = $uci.dhcp[iface[".name"]]; 
 					$scope.staticDHCP = $uci.dhcp["@host"]; 
@@ -32,10 +34,20 @@ JUCI.app
 						}; 
 					}); 
 					$scope.$apply(); 
+				} else {
+					delete $scope["dhcp"]; 
+					$scope.$apply(); 
 				}
+				
 			}); 
 		}); 
 	}); 
+	
+	$scope.$watchCollection("bridgedInterfaces", function(value){
+		if(!value || !$scope.interface || !(value instanceof Array)) return; 
+		$scope.interface.ifname.value = value.join(" "); 
+	}); 
+	
 	$scope.dhcpLeaseTimes = [
 		{ label: "1 "+gettext("Hour"), value: "1h" }, 
 		{ label: "6 "+gettext("Hours"), value: "6h" }, 

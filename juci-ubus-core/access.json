@@ -394,13 +394,19 @@
 				"network",
 				"wireless",
 				"broadcom", 
-				"ddns"
+				"ddns",
+				"layer2_interface_adsl", 
+				"layer2_interface_vdsl",
+				"layer2_interface_vlan"
 			]
 		},
 		"write": {
 			"uci": [
 				"network",
-				"wireless"
+				"wireless",
+				"layer2_interface_adsl", 
+				"layer2_interface_vdsl",
+				"layer2_interface_vlan"
 			]
 		}
 	},

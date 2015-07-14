@@ -1,32 +1,136 @@
-JUCI.app.factory("$network", function($rpc, $uci){
-	function _refreshClients(self){
-		var deferred = $.Deferred(); 
-		$rpc.router.clients().done(function(clients){
-			self.clients = Object.keys(clients).map(function(x){
-				return clients[x]; 
-			}); 
-			deferred.resolve(self.clients);  
-		}).fail(function(){ deferred.reject(); });
-		return deferred.promise(); 
-	}
-	
-	function NetworkBackend() {
-		this.clients = []; 
-	}
-	
-	NetworkBackend.prototype.getConnectedClients = function(){
-		var deferred = $.Deferred(); 
-		var self = this; 
-		_refreshClients(self).done(function(clients){
-			
-			deferred.resolve(clients.filter(function(x){ return x.connected; })); 
-		}); 
+!function(){
+	JUCI.app.factory("$network", function($rpc, $uci){
+		function _refreshClients(self){
+			var deferred = $.Deferred(); 
+			$rpc.router.clients().done(function(clients){
+				self.clients = Object.keys(clients).map(function(x){
+					return clients[x]; 
+				}); 
+				deferred.resolve(self.clients);  
+			}).fail(function(){ deferred.reject(); });
+			return deferred.promise(); 
+		}
 		
-		return deferred.promise(); 
-	}
+		function NetworkDevice(){
+			this.name = ""; 
+		}
+		
+		function NetworkBackend() {
+			this.clients = []; 
+			this._subsystems = []; 
+			this._devices = null; 
+		}
+		
+		NetworkBackend.prototype.subsystem = function(proc){
+			if(!proc || !(proc instanceof Function)) throw new Error("Subsystem argument must be a function returning a subsystem object!"); 
+			var subsys = proc(); 
+			if(!subsys.getDevices) throw new Error("Subsystem must implement getDevices()"); 
+			this._subsystems.push(subsys); 
+		}
+		
+		NetworkBackend.prototype.getDevice = function(opts){
+			var deferred = $.Deferred(); 
+			var self = this; 
+			if(self._devices){
+				var dev = self._devices.find(function(x){ return x.name == opts.name; }); 
+				if(dev){
+					setTimeout(function(){deferred.resolve(dev); },0); 
+				} else {
+					setTimeout(function(){deferred.reject(); },0); 
+				}
+			} else {
+				self.getDevices().done(function(devices){
+					var dev = devices.find(function(x){ return x.name == opts.name; }); 
+					if(dev){
+						deferred.resolve(dev); 
+					} else {
+						deferred.reject(); 
+					}
+				}).fail(function(){
+					deferred.reject(); 
+				}); 
+			}
+			return deferred.promise(); 
+		}; 
+		
+		NetworkBackend.prototype.getDevices = function(){
+			var deferred = $.Deferred();  
+			var devices = []; 
+			var self = this; 
+			// go through each registered subsystem and get all devices from it. 
+			async.eachSeries(this._subsystems, function(subsys, next){
+				subsys.getDevices().done(function(devs){
+					devices = devices.concat(devs); 
+					//devs.map(function(d){ devices[d.name] = d; }); 
+				}).always(function(){ next(); }); 
+			}, function(){
+				self._devices = devices; 
+				deferred.resolve(devices); 
+			}); 
+			return deferred.promise(); 
+		}
+		
+		NetworkBackend.prototype.getNetworks = function(){
+			var deferred = $.Deferred(); 
+			var networks = []; 
+			var self = this; 
+			var devmap = {}; 
+			async.series([
+				function(next){
+					self.getDevices().done(function(devs){
+						devs.map(function(x){ devmap[x.name] = x; }); 
+					}).always(function(){ next(); }); 
+				}, function(next){
+					$uci.sync("network").done(function(){
+						$uci.network["@interface"].map(function(i){
+							i.devices = []; 
+							i.ifname.value.split(" ").map(function(name){
+								if(name in devmap) i.devices.push(devmap[name]); 
+							}); 
+							networks.push(i); 
+						}); 
+					}).always(function(){
+						next(); 
+					}); 
+				}
+			], function(){
+				deferred.resolve(networks); 
+			}); 
+						
+			return deferred.promise(); 
+		}
+		
+		NetworkBackend.prototype.getConnectedClients = function(){
+			var deferred = $.Deferred(); 
+			var self = this; 
+			_refreshClients(self).done(function(clients){
+				
+				deferred.resolve(clients.filter(function(x){ return x.connected; })); 
+			}); 
+			
+			return deferred.promise(); 
+		}
+		
+		return new NetworkBackend(); 
+	}); 
 	
-	return new NetworkBackend(); 
-}); 
+	// register basic vlan support 
+	JUCI.app.run(function($network){
+		$network.subsystem(function(){
+			return {
+				getDevices: function(){
+					var deferred = $.Deferred(); 
+					$uci.sync("layer2_interface_vlan").done(function(){
+						$uci.layer2_interface_vlan["@vlan_interface"].map(function(i){
+							
+						}); 
+					}); 
+					return deferred.promise(); 
+				}
+			}
+		}); 
+	}); 
+}(); 
 
 UCI.validators.IPAddressValidator = function(){
 	this.validate = function(field){
@@ -58,12 +162,21 @@ UCI.validators.MACListValidator = function(){
 	}
 }; 
 
+UCI.$registerConfig("layer2_interface_vlan"); 
+UCI.layer2_interface_vlan.$registerSectionType("vlan_interface", {
+	"name":					{ dvalue: '', type: String }, 
+	"ifname":					{ dvalue: '', type: String }, 
+	"baseifname":					{ dvalue: '', type: String }, 
+	"vlan8021q":					{ dvalue: '101', type: String }, 
+	"vlan8021p":					{ dvalue: '5', type: String }
+}); 
+
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {
 	"is_lan":					{ dvalue: false, type: Boolean }, 
 	"ifname":					{ dvalue: '', type: String }, 
 	"device":					{ dvalue: '', type: String }, // WTF? This is set to ifname in ubus but not in uci 
-	"proto":					{ dvalue: 'dhcp', type: String }, 
+	"proto":					{ dvalue: '', type: String }, 
 	"ipaddr":					{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask":				{ dvalue: '', type: String }, 
 	"type":						{ dvalue: '', type: String }, 
