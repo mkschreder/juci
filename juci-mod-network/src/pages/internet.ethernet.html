@@ -1,0 +1,29 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetLayer2">
+		<juci-config-heading>{{ 'Layer-2 Ethernet Devices' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'internet.ethernet.info' | translate }}</juci-config-info>
+		<juci-config-section>
+			<div ng-repeat="dev in devices" >
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="btn-group pull-right">
+							<span class="btn " ng-click="dev._expanded = !dev._expanded">
+								<i class="fa fa-caret-down fa-2x" ng-show="expanded"></i>
+								<i class="fa fa-caret-left fa-2x" ng-hide="expanded"></i>
+							</span>
+						</div>
+						<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">
+							{{dev.name}} ({{dev.type | uppercase}})
+						</h3>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="panel-body " ng-show="dev._expanded">
+						<network-device-edit ng-model="dev"></network-device-edit>
+					</div>
+				</div>
+			</div>
+		</juci-config-section>
+		<juci-errors></juci-errors>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

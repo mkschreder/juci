@@ -6,7 +6,7 @@ HTML:=$(OUTDIR)/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(OUTDIR) $(JS) $(HTML) ;
+all: files $(OUTDIR) $(JS) $(HTML) $(CSS);
 
 $(OUTDIR): 
 	mkdir -p $(OUTDIR)
@@ -18,12 +18,12 @@ files:
 	$(INSTALL_DIR) ./$(OUTDIR)/img
 	cp -R src/images/* ./$(OUTDIR)/img/
 
-#STYLES:=$(wildcard src/css/*.css) 
+STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
-#$(CSS): $(STYLES)
-#	cat $(STYLES) > $@
+$(CSS): $(STYLES)
+	cat $(STYLES) > $@
 
 $(JS): $(CODE)
 	cat $(CODE) > $@

@@ -6,7 +6,7 @@ HTML:=$(OUTDIR)/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(OUTDIR) $(JS);
+all: files $(OUTDIR) $(JS) $(HTML);
 	
 $(OUTDIR): 
 	mkdir -p $(OUTDIR)
@@ -17,7 +17,7 @@ files:
 	$(INSTALL_DIR) ./$(OUTDIR)/js
 
 STYLES:=$(wildcard src/css/*.css) 
-CODE:=$(wildcard src/*.js) $(wildcard src/js/*.js)
+CODE:=$(wildcard src/*.js) $(wildcard src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) 
 
 $(CSS): $(STYLES)

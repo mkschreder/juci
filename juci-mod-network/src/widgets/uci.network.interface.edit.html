@@ -84,9 +84,16 @@
 			<div >
 				<hr/>
 				<h3 translate>Devices</h3>
-				<div class="checkbox checkbox-info" ng-repeat="i in phyInterfaces">
-					<input type="checkbox" checklist-model="bridgedInterfaces" checklist-value="i.value">
-					<label><strong>{{i.label}}</strong></label>
+				<div class="row">
+					<div class="col-xs-2">
+						<ul>
+							<li ng-repeat="i in phyInterfaces">{{i.label}} <button ng-click="onRemoveDevice(i.value)"><i class="fa fa-times"></i></button></li>
+						</ul>
+					</div>
+					<div class="col-xs-4">
+						<juci-select ng-model="device_to_add" ng-items="addableDevices" placeholder="{{'Select device to add'|translate}}"></juci-select>
+						<button class="btn btn-default" ng-click="onAddDevice(device_to_add)"><i class="fa fa-plus"></i></button>
+					</div>
 				</div>
 			</div>
 		</div>

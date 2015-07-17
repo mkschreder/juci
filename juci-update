@@ -69,6 +69,11 @@ for file in `find ${WWW}/js -name "$JS_WILDCARD" | sort`; do
 done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- SCRIPTS_BEGIN -->.*<!-- SCRIPTS_END -->/<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->/" 
 
+# temporary fix for copying hardware config to config. Maybe we will move it there permanently later...
+if [ -f /lib/db/config/hw ]; then
+	cp /lib/db/config/hw /etc/config/hardware
+fi 
+
 # workaround because stupid f**ing sed is not working on busybox #@"#"!"¤¤"#!"¤!½!!!
 echo "<!doctype html>
 <html lang='en' >

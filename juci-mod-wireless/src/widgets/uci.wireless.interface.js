@@ -34,6 +34,7 @@ JUCI.app
 		{label: gettext("TKIP/CCMP (AES)"), value: "ccmp"}
 	];  
 	$scope.$watch("interface", function(value){
+		if(!value) return; 
 		try {
 			$scope.cryptoChoices = $scope.interface.encryption.schema.allow.map(function(x){
 				return { label: $tr("wifi.enc."+x), value: x };

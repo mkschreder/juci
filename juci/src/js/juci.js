@@ -228,6 +228,7 @@
 			"uiSwitch",
 			"ngAnimate", 
 			"gettext", 
+			"dndLists", 
 			"checklist-model"
 		]); 
 		app.config(function($stateProvider){

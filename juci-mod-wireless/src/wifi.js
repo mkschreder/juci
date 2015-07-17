@@ -1,21 +1,4 @@
 !function(){
-	function Wireless(){
-		this.scheduleStatusText = gettext("off"); 
-		this.wpsStatusText = gettext("off"); 
-	}
-	
-	Wireless.prototype.getInfo = function(){
-		var deferred = $.Deferred(); 
-		$rpc.router.info().done(function(result){
-			var info = {
-				wpa_key: result.keys.wpa
-			}
-			deferred.resolve(info); 
-		}).fail(function(){
-			deferred.reject(); 
-		});  
-		return deferred.promise(); 
-	}
 	
 	JUCI.app.run(function($network, $uci){
 		$network.subsystem(function(){
@@ -28,7 +11,9 @@
 						// oh, and network is what network the device belongs to. Even prettier. 
 						$uci.wireless["@wifi-iface"].map(function(device){
 							devices.push({
-								get name() { return device.device.value; }
+								get name() { return device.device.value; },
+								get type() { return "wireless"; }, 
+								base: device
 							}); 
 						}); 
 						deferred.resolve(devices); 
@@ -71,6 +56,24 @@
 				if(done) done(); 
 			}); 
 		} refresh(); */
+		function Wireless(){
+			this.scheduleStatusText = gettext("off"); 
+			this.wpsStatusText = gettext("off"); 
+		}
+		
+		Wireless.prototype.getInfo = function(){
+			var deferred = $.Deferred(); 
+			$rpc.router.info().done(function(result){
+				var info = {
+					wpa_key: result.keys.wpa
+				}
+				deferred.resolve(info); 
+			}).fail(function(){
+				deferred.reject(); 
+			});  
+			return deferred.promise(); 
+		}
+		
 		return new Wireless(); 
 	}); 
 }(); 

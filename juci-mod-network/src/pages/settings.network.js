@@ -194,6 +194,31 @@ JUCI.app
 		});
 	}
 	
+	$scope.models = {
+		selected: null,
+		lists: {"A": [], "B": []}
+	};
+
+	// Generate initial model
+	for (var i = 1; i <= 3; ++i) {
+		$scope.models.lists.A.push({label: "Item A" + i});
+		$scope.models.lists.B.push({label: "Item B" + i});
+	}
+	
+	$scope.deviceMoved = function(network, item, index){
+		network.devices.splice(index, 1); 
+		console.log("Drag moved: "+network[".name"]+" "+item.name); 
+	}
+	
+	$scope.deviceDropped = function(network, item, index){
+		console.log("Drag dropped: "+network[".name"]+" "+item.name); 
+		return item; 
+	}
+	
+	$scope.onShowNetworkSettings = function(network){
+		$scope.selected_network = network; 
+	}
+	
 	$uci.sync("network").done(function(){
 		$scope.network = $uci.network; 
 		$scope.interfaces = $uci.network['@interface'].filter(function(i){ return i.type.value != "" && i.is_lan.value == true}); 
@@ -201,8 +226,12 @@ JUCI.app
 			$scope.devices = devices; 
 			$network.getNetworks().done(function(nets){
 				$scope.networks = nets; 
+				$scope.networks.push({
+					".name": "unassigned", 
+					devices: []
+				}); 
 				$scope.$apply(); 
-				drawCyGraph(); 
+				//drawCyGraph(); 
 			}); 
 		}); 
 	}); 

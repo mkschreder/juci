@@ -1,4 +1,5 @@
 !function(){
+
 	JUCI.app.factory("$network", function($rpc, $uci){
 		function _refreshClients(self){
 			var deferred = $.Deferred(); 
@@ -53,6 +54,7 @@
 			return deferred.promise(); 
 		}; 
 		
+		// getEthernetDevices
 		NetworkBackend.prototype.getDevices = function(){
 			var deferred = $.Deferred();  
 			var devices = []; 
@@ -70,6 +72,7 @@
 			return deferred.promise(); 
 		}
 		
+		// getVirtualDevices
 		NetworkBackend.prototype.getNetworks = function(){
 			var deferred = $.Deferred(); 
 			var networks = []; 
@@ -115,21 +118,37 @@
 	}); 
 	
 	// register basic vlan support 
-	JUCI.app.run(function($network, $uci){
+	JUCI.app.run(function($network, $uci, $rpc){
 		$network.subsystem(function(){
 			return {
 				getDevices: function(){
 					var deferred = $.Deferred(); 
-					var devices = []; 
-					$uci.sync("layer2_interface_vlan").done(function(){
-						$uci.layer2_interface_vlan["@vlan_interface"].map(function(i){
+					var devices = [{
+						get name(){ return "lo"; }, 
+						get type(){ return "baseif"; }
+					}]; 
+					$rpc.router.boardinfo().done(function(boardinfo){
+						var names = boardinfo.ethernet.port_names.split(" "); 
+						var devs = boardinfo.ethernet.port_order.split(" "); 
+						devs.map(function(dev){
 							devices.push({
-								get name(){ return i.ifname.value; }
+								get name(){ return dev; },
+								get type(){ return "baseif"; }
 							}); 
 						}); 
-					}).always(function(){
-						deferred.resolve(devices); 
-					}); 
+						$uci.sync("layer2_interface_vlan").done(function(){
+							$uci.layer2_interface_vlan["@vlan_interface"].map(function(i){
+								devices.push({
+									get name(){ return i.ifname.value; }, 
+									get type(){ return "vlan"; }
+								}); 
+							}); 
+						}).always(function(){
+							deferred.resolve(devices); 
+						}); 
+					}).fail(function(){
+						deferred.reject(); 
+					}); ; 
 					return deferred.promise(); 
 				}
 			}

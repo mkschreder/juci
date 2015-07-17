@@ -1,0 +1,16 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetWanPage">
+		<juci-config-heading>{{ 'Network Settings' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'settings.network.info' | translate }}</juci-config-info>
+		<juci-config-section ng-show="selected_network">
+			<uci-network-interface-edit ng-model="selected_network"></uci-network-interface-edit>
+		</juci-config-section>
+		<juci-config-section>
+			<div ng-repeat="net in networks">
+				<uci-network-interface-edit ng-model="net"></uci-network-interface-edit>
+			</div>
+		</juci-config-section>
+		<juci-errors></juci-errors>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>
