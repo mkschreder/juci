@@ -1,0 +1,71 @@
+<div>
+	<juci-config-lines ng-show="interface.proto.value == 'static'">
+		<juci-config-line title="{{'IP Address'|translate}}" error="interface.ipaddr.error">
+			<input class="form-control" ng-model="interface.ipaddr.value" placeholder="{{'Static IP Address'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'IP Subnet Mask'|translate}}">
+			<strong>{{interface.netmask.value}}</strong>
+		</juci-config-line>
+		<juci-config-line title="{{'DHCP Server'|translate}}">
+			<switch ng-model="dhcp.ignore.value" class="green" inverted></switch>
+		</juci-config-line>
+	</juci-config-lines>
+	<juci-config-lines ng-hide="!dhcp || dhcp.ignore.value">
+		<hr/>
+		<juci-config-line title="{{'Address Pool Start IP'|translate}}" error="dhcp.start.error">
+			<input class="form-control pull-right" style="width: 60px;" ng-model="dhcp.start.value"  placeholder="1"></input>
+			<span style="font-size: 1.2em; margin-right: 10px; line-height: 2em;">{{interface.ipaddr.value.split(".").splice(0, 3).join(".")}}</span>
+		</juci-config-line>
+		<juci-config-line title="{{'Address Pool End IP'|translate}}" error="dhcp.limit.error">
+			<input class="form-control pull-right" style="width: 60px;" ng-model="dhcp.limit.value" placeholder="1"></input>
+			<span style="font-size: 1.2em; margin-right: 10px; line-height: 2em;">{{interface.ipaddr.value.split(".").splice(0, 3).join(".")}}</span>
+		</juci-config-line>
+		<juci-config-line title="{{'DHCP Lease Time'|translate}}">
+			<juci-select ng-model="dhcp.leasetime.value" ng-items="dhcpLeaseTimes" placeholder="{{'Lease Time'|translate}}"/>
+		</juci-config-line>
+	</juci-config-lines>
+	<div ng-hide="!dhcp || dhcp.ignore.value">
+		<hr/>
+		<h3 translate>Static DHCP</h3>
+		<div class="row visible-sm visible-md visible-lg">
+			<div class="col-sm-4" ><label translate>Device Name</label></div>
+			<div class="col-sm-4" ><label translate>MAC Address</label></div>
+			<div class="col-sm-3" ><label translate>IP Address</label></div>
+			<div class="col-sm-1" width="1%"></div>
+		</div>
+		<div class="row " ng-repeat="host in staticDHCP | filter:{ 'network': { 'value': interface['.name']}}">
+			<div class="col-sm-4 form-group">
+				<label class="visible-xs" translate>Device Name</label>
+				<input type="text" class="form-control" ng-model="host.name.value" placeholder="{{'Hostname'|translate}}"/>
+			</div>
+			<div class="col-sm-4 form-group">
+				<label class="visible-xs" translate>MAC Address</label>
+				<input type="text" class="form-control" ng-model="host.mac.value" placeholder="{{'MAC'|translate}}"/>
+				<juci-error value="host.mac.error"/>
+			</div>
+			<div class="col-sm-3 form-group">
+				<label class="visible-xs" translate>IP Address</label>
+				<input type="text" class="form-control" ng-model="host.ip.value" placeholder="{{'IP Address'|translate}}"/>
+				<juci-error value="host.ip.error"/>
+			</div>
+			<div class="col-sm-1 form-group" style="white-space: nowrap">
+				<!--<button class="btn btn-default" style="display: inline-block; float: none;" ng-click="onAddExistingHost()"><i class="fa fa-plus"></i></button>-->
+				<button class="btn btn-default pull-right" style="display: inline-block; float: none;" ng-click="onRemoveStaticDHCP(host)"><i class="fa fa-trash-o"></i></button>
+				<label class="visible-xs" translate>Modify</label>
+			</div>
+			<div class="col-xs-12 visible-xs">
+				<hr style="width: 100%; border-bottom: 1px solid #ccc; clear: both;"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-7"></div>
+			<div class="col-sm-4 form-group" style="text-align: right;">
+				<juci-select ng-model="existingHost" ng-items="hosts" on-change="onAddExistingHost()" placeholder="{{'Add Connected Host'|translate}}"/>
+			</div>
+			<div class="col-sm-1 form-group" >
+				<button class="btn btn-default pull-right" ng-click="onAddStaticDHCP()"><i class="fa fa-plus"></i></button>
+			</div>
+		</div>
+	</div>
+	
+</div>

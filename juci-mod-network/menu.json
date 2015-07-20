@@ -9,13 +9,13 @@
         "acls": [ "network" ],
         "index": 7
     },
-    "internet/lan": {
-        "title": "LAN",
+    "internet/network": {
+        "title": "Network",
         "acls": [ "network" ],
         "index": 8
     },
-    "internet/wan": {
-        "title": "WAN",
+    "internet/dhcp": {
+        "title": "DHCP",
         "acls": [ "network" ],
         "index": 9
     },

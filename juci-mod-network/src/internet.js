@@ -140,7 +140,8 @@
 							$uci.layer2_interface_vlan["@vlan_interface"].map(function(i){
 								devices.push({
 									get name(){ return i.ifname.value; }, 
-									get type(){ return "vlan"; }
+									get type(){ return "vlan"; }, 
+									base: i
 								}); 
 							}); 
 						}).always(function(){
