@@ -1,4 +1,4 @@
-TARGET:=juci-broadcom-dsl
+TARGET:=juci-broadcom-vlan
 OUTDIR:=htdocs
 CSS:=$(OUTDIR)/css/50-$(TARGET).css
 JS:=$(OUTDIR)/js/50-$(TARGET).js

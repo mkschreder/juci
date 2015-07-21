@@ -7,14 +7,16 @@ JUCI.app.run(function($network, $uci){
 				$uci.sync(["layer2_interface_vdsl", "layer2_interface_adsl"]).done(function(result){
 					$uci.layer2_interface_vdsl["@vdsl_interface"].map(function(device){
 						devices[device.ifname.value] = {
-							get name() { return device.ifname.value; }, 
+							get name() { return device.name.value; }, 
+							get id() { return device.ifname.value; }, 
 							get type() { return "vdsl"; }, 
 							base: device
 						}; 
 					}); 
 					$uci.layer2_interface_adsl["@atm_bridge"].map(function(device){
 						devices[device.ifname.value] = {
-							get name() { return device.ifname.value; }, 
+							get name() { return device.name.value; }, 
+							get id() { return device.ifname.value; }, 
 							get type() { return "adsl"; }, 
 							base: device
 						}; 

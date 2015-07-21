@@ -184,7 +184,12 @@
 					console.log("Getting menu.."); 
 					$rpc.juci.ui.menu().done(function(data){
 						//console.log(JSON.stringify(data)); 
-						Object.keys(data.menu).map(function(key){
+						var keys = Object.keys(data.menu).sort(function (a, b) { 
+							return b < a ; 
+						}); 
+						console.log(keys.join("\n")); 
+						
+						keys.map(function(key){
 							var menu = data.menu[key]; 
 							var view = menu.view; 
 							var redirect = menu.redirect; 

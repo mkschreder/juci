@@ -11,8 +11,8 @@
 						// oh, and network is what network the device belongs to. Even prettier. 
 						$uci.wireless["@wifi-iface"].map(function(device){
 							devices.push({
-								get label() { return device.ssid.value+"-"+device.device.value; },
-								get name() { return device.device.value; },
+								get name() { return device.ssid.value; },
+								get id() { return device.device.value; },
 								get type() { return "wireless"; }, 
 								base: device
 							}); 

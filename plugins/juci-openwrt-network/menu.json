@@ -5,12 +5,12 @@
         "index": 30
     },
     "internet/ethernet": {
-        "title": "Ethernet",
+        "title": "Devices",
         "acls": [ "network" ],
         "index": 7
     },
     "internet/network": {
-        "title": "Network",
+        "title": "Connections",
         "acls": [ "network" ],
         "index": 8
     },

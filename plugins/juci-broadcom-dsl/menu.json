@@ -1,4 +1,9 @@
 {
+	"internet/ethernet/dsl": {
+		"title": "DSL", 
+		"acls": [ "network" ], 
+		"index": 5
+	}, 
 	"status/status/dsl": {
 			"title": "DSL",
 			"acls": [ "status" ],

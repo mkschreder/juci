@@ -4,14 +4,12 @@ JUCI.app
 		$scope.devices = devices; 
 		
 		$scope.networkTypes = [
-			{ label: "Local", value: "lo" }, 
 			{ label: "Bridge", value: "bridge" }, 
 			{ label: "AnyWAN", value: "anywan" }
 		]; 
 		$scope.protocolTypes = [
-			{ label: "Static", value: "static" }, 
-			{ label: "DHCP", value: "dhcp" }, 
-			{ label: "DHCP6", value: "dhcp6" }
+			{ label: "Manual", value: "static" }, 
+			{ label: "Automatic (DHCP)", value: "dhcp" }
 		]; 
 			
 		$network.getNetworks().done(function(nets){
@@ -44,6 +42,13 @@ JUCI.app
 		}); 
 	}); 
 	
+	$scope.onEditConnection = function(conn){
+		$scope.current_connection = conn; 
+	}
+	
+	$scope.onCancelEdit = function(){
+		$scope.current_connection = null; 
+	}
 	
 	$scope.onAddDevice = function(net, dev){
 		if(!dev) return; 

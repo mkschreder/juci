@@ -3,7 +3,10 @@ DIRS-y:=juci \
 	plugins/juci-broadcom-wl \
 	plugins/juci-igmpsnoop \
 	plugins/juci-broadcom-dsl \
+	plugins/juci-broadcom-vlan \
 	plugins/juci-openwrt-network \
+	plugins/juci-mod-system \
+	plugins/juci-mod-status \
 	plugins/juci-jquery-console
 	
 BIN:=bin
@@ -42,6 +45,7 @@ endif
 ifeq ($(CONFIG_JUCI_BACKEND_BCM_DSL),y)
 	UBUS_MODS += backend/juci-broadcom-dsl
 endif
+
 
 all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
 	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"

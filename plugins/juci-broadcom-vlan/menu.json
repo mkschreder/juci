@@ -1,0 +1,7 @@
+{
+	"internet/ethernet/vlan": {
+			"title": "VLAN",
+			"acls": [ "status" ],
+			"index": 10
+	}
+}

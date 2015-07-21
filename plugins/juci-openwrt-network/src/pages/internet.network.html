@@ -3,56 +3,75 @@
 		<juci-config-heading>{{ 'Connections' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'settings.network.info' | translate }}</juci-config-info>
 		<juci-config-section>
-			<ul class="list-group">
-				<li class="list-group-item" ng-repeat="net in networks">
-					<button class="btn btn-default pull-right"><i class="fa fa-trash"/></button>
-					{{net[".name"]}}
-				</li>
-			</ul>
-			<div ng-repeat="net in networks">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<div class="btn-group pull-right">
-							<span class="btn " ng-click="net._expanded = !net._expanded">
-								<i class="fa fa-caret-down fa-2x" ng-show="net._expanded"></i>
-								<i class="fa fa-caret-left fa-2x" ng-hide="net._expanded"></i>
-							</span>
-						</div>
-						<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">
-							{{net[".name"] | uppercase}} {{'Network'|translate}}
-						</h3>
-						<div style="clear: both;"></div>
+			<div class="row" ng-hide="current_connection">
+				<div class="col-xs-9">
+					<div class="list-group" >
+						<a href="" class="list-group-item" ng-repeat="net in networks" ng-click="onEditConnection(net)"><i class="fa fa-trash pull-right"/>{{net[".name"]}}</a>
 					</div>
-					<div class="panel-body " ng-show="net._expanded" >
-						<juci-config-section>
-							<h2 translate>Network Settings</h2>
-							<juci-config-lines>
-								<juci-config-line title="{{'Type'|translate}}">
-									<juci-select ng-model="net.type.value" ng-items="networkTypes" placeholder="{'Choose Interface Type'|translate}"/>
-								</juci-config-line>
-								<juci-config-line title="{{'Configuration Protocol'|translate}}">
-									<juci-select ng-model="net.proto.value" ng-items="protocolTypes" placeholder="{'Choose Configuration Type'|translate}"/>
-								</juci-config-line>
-							</juci-config-lines>
-						</juci-config-section>
-						<uci-network-interface-edit ng-model="net"></uci-network-interface-edit>
-						<juci-config-section>
-							<h3 translate>Layer2 Devices</h3>
-							<div class="row">
-								<div class="col-xs-3">
-									<ul>
-										<li ng-repeat="i in net.addedDevices">{{i.label}} <button ng-click="onRemoveDevice(net, i.value)"><i class="fa fa-times"></i></button></li>
-									</ul>
-								</div>
-								<div class="col-xs-4">
-									<juci-select ng-model="device_to_add" ng-items="net.addableDevices" placeholder="{{'Select device to add'|translate}}"></juci-select>
-									<button class="btn btn-default" ng-click="onAddDevice(net, device_to_add)"><i class="fa fa-plus"></i></button>
-								</div>
-							</div>
-						</juci-config-section>
+				</div>
+				<div class="col-xs-3">
+					<div class="btn-group-vertical" style="width: 100%;">
+						<button class="btn btn-lg btn-default">Add</button>
 					</div>
 				</div>
 			</div>
+			<div ng-show="current_connection">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">
+							{{current_connection[".name"]}} Connection
+						</h3>
+					</div>
+					<div class="panel-body ">
+						<tabset>
+							<tab heading="General">Static content</tab>
+							<tab heading="Ethernet" ng-show="current_connection.type.value == 'default'">Static content</tab>
+							<tab heading="Bridge" ng-show="current_connection.type.value == 'bridge'">
+								<juci-config-lines>
+									<juci-config-line title="Bridged Connections"></juci-config-line>
+									<div class="row">
+										<div class="col-xs-9">
+											<ul class="list-group">
+												<li class="list-group-item" ng-repeat="dev in current_connection.addedDevices">{{dev.label}}</li>
+											</ul>
+										</div>
+										<div class="col-xs-3">
+											<div class="btn-group-vertical col-xs-12">
+												<button class="btn btn-lg btn-default">Add</button>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-3">
+											<ul>
+												<li ng-repeat="i in net.addedDevices">{{i.label}} <button ng-click="onRemoveDevice(net, i.value)"><i class="fa fa-times"></i></button></li>
+											</ul>
+										</div>
+										<div class="col-xs-4">
+											<juci-select ng-model="device_to_add" ng-items="net.addableDevices" placeholder="{{'Select device to add'|translate}}"></juci-select>
+											<button class="btn btn-default" ng-click="onAddDevice(net, device_to_add)"><i class="fa fa-plus"></i></button>
+										</div>
+									</div>
+								</juci-config-lines>
+							</tab>
+							<tab heading="IPv4 Settings">
+								<juci-config-lines>
+									<juci-config-line title="{{'Method'|translate}}">
+										<juci-select ng-model="current_connection.proto.value" ng-items="protocolTypes" placeholder="{'Choose Configuration Option'|translate}"/>
+									</juci-config-line>
+								</juci-config-lines>
+								<uci-network-interface-edit ng-model="current_connection" ></uci-network-interface-edit>
+							</tab>
+							<tab heading="IPv6 Settings">Static content</tab>
+						</tabset>
+					</div>
+					<div class="panel-footer">
+						<button type="button" class="btn btn-default" ng-click="onCancelEdit()"><i class="fa fa-angle-left"></i> <span translate>Back</span></button>
+					</div>
+				</div>
+				<br/>
+			</div>
+			
 		</juci-config-section>
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>

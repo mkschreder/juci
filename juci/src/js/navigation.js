@@ -38,13 +38,16 @@
 				if(obj.children.hasOwnProperty(parts[0])){
 					obj = obj.children[parts.shift()]; 
 				} else {
-					obj.children[parts[0]] = {
+					var item = {
 						children: {},
 						children_list: []
 					};
+					obj.children[parts[0]] = item; 
+					//obj.children_list.push(item); 
 					obj = obj.children[parts.shift()]; 
 				}
 			} 
+			// make sure that inserted item has empty child lists
 			if(!item.children) {
 				item.children = {}; 
 				item.children_list = []; 
