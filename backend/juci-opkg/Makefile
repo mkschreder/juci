@@ -10,9 +10,9 @@ $(BUILD_DIR):
 	mkdir -p $@
 	
 $(SHARED_OBJECT): $(OBJECT_FILES)
-	gcc $(LDFLAGS) -shared -o $(SHARED_OBJECT) $(OBJECT_FILES) 
+	$(CC) $(LDFLAGS) -shared -o $(SHARED_OBJECT) $(OBJECT_FILES) 
 	
 %.o: %.c
-	gcc $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean: ;
