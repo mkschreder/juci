@@ -31,6 +31,18 @@ ifeq ($(CONFIG_JUCI_BACKEND_OPKG),y)
 	UBUS_MODS += backend/juci-opkg
 endif
 
+ifeq ($(CONFIG_JUCI_BACKEND_SYSUPGRADE),y)
+	UBUS_MODS += backend/juci-sysupgrade
+endif
+
+ifeq ($(CONFIG_JUCI_BACKEND_BCM_WIRELESS),y)
+	UBUS_MODS += backend/juci-broadcom-wireless
+endif
+
+ifeq ($(CONFIG_JUCI_BACKEND_BCM_DSL),y)
+	UBUS_MODS += backend/juci-broadcom-dsl
+endif
+
 all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
 	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"
 	./juci-compile 

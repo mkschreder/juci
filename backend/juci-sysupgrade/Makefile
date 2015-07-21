@@ -1,24 +1,18 @@
-INSTALL_DIR:=mkdir -p
-CP:=cp -R 
-BUILD_DIR:=build
-MODULE_NAME:=juci-sysupgrade
+CFLAGS+=-Os -Wall -Wno-format-y2k -W -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wshadow -Wcast-align -Wchar-subscripts -Winline -Wnested-externs -Wredundant-decls -Wmissing-field-initializers -Wextra -Wformat=2 -Wno-format-nonliteral -Wpointer-arith -Wno-missing-braces --std=gnu99 -g3 -Wmissing-declarations -Iinclude -fPIC
+BUILD_DIR:=build/usr/lib/rpcd
+SHARED_OBJECT:=$(BUILD_DIR)/juci-sysupgrade.so
+SOURCE_FILES:=$(wildcard src/*.c)
+OBJECT_FILES:=$(patsubst %.c, %.o, $(SOURCE_FILES))
 
-ACL_LIST:=$(BUILD_DIR)/usr/share/rpcd/acl.d/$(MODULE_NAME).json
-SHARED_OBJECT:=$(BUILD_DIR)/usr/lib/rpcd/$(MODULE_NAME).so
+all: $(BUILD_DIR) $(SHARED_OBJECT)
 
-all: src $(SHARED_OBJECT) $(ACL_LIST)
-
-.PHONY: src
-src: 
-	(cd src; cmake .; make)
-
-clean: 
-	(cd src; make -i clean)
+$(BUILD_DIR): 
+	mkdir -p $@
 	
-$(SHARED_OBJECT): 
-	$(INSTALL_DIR) $(shell dirname $@)
-	$(CP) src/$(MODULE_NAME).so $(shell dirname $@)/
+$(SHARED_OBJECT): $(OBJECT_FILES)
+	gcc $(LDFLAGS) -shared -o $(SHARED_OBJECT) $(OBJECT_FILES) 
 	
-$(ACL_LIST): access.json
-	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/rpcd/acl.d/
-	$(CP) access.json $(ACL_LIST)
+%.o: %.c
+	gcc $(CFLAGS) -c $< -o $@
+
+clean: ;

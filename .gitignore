@@ -7,3 +7,5 @@ po/all.pot
 po/titles.pot
 po/template.pot
 po/*.mo
+*.so
+*.o
