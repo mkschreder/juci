@@ -15,7 +15,7 @@ all: src $(SHARED_OBJECT) $(CGI_SCRIPT) $(ACL_LIST)
 
 .PHONY: src
 src: 
-	(cd src; cmake .; make)
+	(cd src; cmake .; make VERBOSE=1)
 
 clean: 
 	(cd src; make -i clean)

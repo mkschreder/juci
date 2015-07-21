@@ -24,7 +24,7 @@ ifeq ($(CONFIG_JUCI_MOD_SAMBA),y)
 endif
 
 ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
-	#UBUS_MODS += backend/juci-core
+	UBUS_MODS += backend/juci-core
 endif
 
 ifeq ($(CONFIG_JUCI_BACKEND_OPKG),y)

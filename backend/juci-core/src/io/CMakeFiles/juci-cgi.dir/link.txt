@@ -1,1 +1,0 @@
-/usr/bin/cc     -L../juci-standalone-feed/libubox/ CMakeFiles/juci-cgi.dir/main.c.o CMakeFiles/juci-cgi.dir/multipart_parser.c.o  -o juci-cgi  -lubox -lubus 
