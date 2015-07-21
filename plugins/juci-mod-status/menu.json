@@ -14,11 +14,6 @@
 				"acls": [ "status" ], 
 				"index": 9
 		}, 
-    "status/status/dsl": {
-        "title": "DSL",
-        "acls": [ "status" ],
-        "index": 10
-    },
     "status/status/services": {
         "title": "Services",
         "acls": [ "status" ],

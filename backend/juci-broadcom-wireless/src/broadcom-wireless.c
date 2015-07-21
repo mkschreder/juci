@@ -27,6 +27,42 @@ static const struct blobmsg_policy pin_policy[__PIN_MAX] = {
 	[PIN] = { .name = "pin", .type = BLOBMSG_TYPE_STRING },
 };
 
+
+const char*
+chrCmd(const char *pFmt, ...)
+{
+	va_list ap;
+	char cmd[256] = {0};
+	int len=0, maxLen;
+
+	maxLen = sizeof(cmd);
+
+	va_start(ap, pFmt);
+
+	if (len < maxLen)
+	{
+		maxLen -= len;
+		vsnprintf(&cmd[len], maxLen, pFmt, ap);
+	}
+
+	va_end(ap);
+
+	FILE *pipe = 0;
+	static char buffer[128] = {0};
+	if ((pipe = popen(cmd, "r"))){
+		fgets(buffer, sizeof(buffer), pipe);
+		pclose(pipe);
+
+		remove_newline(buffer);
+		if (strlen(buffer))
+			return (const char*)buffer;
+		else
+			return "";
+	} else {
+		return ""; 
+	}
+}
+
 static int
 wps_status(struct ubus_context *ctx, struct ubus_object *obj,
 		  struct ubus_request_data *req, const char *method,
@@ -209,8 +245,6 @@ rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 {
 	int rv = 0;
 
-
-	
 	static struct ubus_method wps_object_methods[] = {
 		UBUS_METHOD_NOARG("status", wps_status),
 		UBUS_METHOD_NOARG("pbc", wps_pbc),

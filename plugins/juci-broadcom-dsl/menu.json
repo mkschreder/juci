@@ -1,0 +1,7 @@
+{
+	"status/status/dsl": {
+			"title": "DSL",
+			"acls": [ "status" ],
+			"index": 10
+	}
+}
