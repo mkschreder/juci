@@ -1,4 +1,11 @@
-DIRS-y:=juci juci-mod-voice juci-mod-wireless juci-mod-tv juci-mod-system juci-mod-status juci-mod-dsl juci-mod-network juci-mod-console
+DIRS-y:=juci \
+	plugins/juci-asterisk \
+	plugins/juci-broadcom-wl \
+	plugins/juci-igmpsnoop \
+	plugins/juci-broadcom-dsl \
+	plugins/juci-openwrt-network \
+	plugins/juci-jquery-console
+	
 BIN:=bin
 UBUS_MODS:=
 
@@ -9,15 +16,19 @@ export CC:=$(CC)
 export CFLAGS:=$(CFLAGS)
 
 ifeq  ($(CONFIG_JUCI_THEME_INTENO),y)
-	DIRS-y += juci-theme-inteno
+	DIRS-y += themes/juci-inteno
 endif
 
 ifeq ($(CONFIG_JUCI_MOD_SAMBA),y)
-	DIRS-y += juci-mod-samba
+	DIRS-y += plugins/juci-samba
 endif
 
 ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
-	UBUS_MODS += juci-ubus-core
+	#UBUS_MODS += backend/juci-core
+endif
+
+ifeq ($(CONFIG_JUCI_BACKEND_OPKG),y)
+	UBUS_MODS += backend/juci-opkg
 endif
 
 all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
@@ -59,7 +70,7 @@ $(DIRS-y):
 	make -i -C $@ clean
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
-	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$@.json
+	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
