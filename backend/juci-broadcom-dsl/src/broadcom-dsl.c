@@ -18,6 +18,15 @@ static struct blob_buf bb;
 static struct uci_context *cursor;
 
 
+void 
+remove_newline(char *buf)
+{
+	int len;
+	len = strlen(buf) - 1;
+	if (buf[len] == '\n') 
+		buf[len] = 0;
+}
+
 enum {
 	DSLSTATS_BEARER_0 = 0, 
 	DSLSTATS_BEARER_COUNT
