@@ -1,8 +1,14 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetNetworkPage">
-		<juci-config-heading>{{ 'IP Settings' | translate }}</juci-config-heading>
+		<juci-config-heading>{{ 'Connections' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'settings.network.info' | translate }}</juci-config-info>
 		<juci-config-section>
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="net in networks">
+					<button class="btn btn-default pull-right"><i class="fa fa-trash"/></button>
+					{{net[".name"]}}
+				</li>
+			</ul>
 			<div ng-repeat="net in networks">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -31,7 +37,7 @@
 						</juci-config-section>
 						<uci-network-interface-edit ng-model="net"></uci-network-interface-edit>
 						<juci-config-section>
-							<h3 translate>Devices</h3>
+							<h3 translate>Layer2 Devices</h3>
 							<div class="row">
 								<div class="col-xs-3">
 									<ul>
