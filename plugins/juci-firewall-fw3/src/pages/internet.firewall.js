@@ -1,6 +1,14 @@
-$juci.module("internet")
-.controller("InternetFirewallPageCtrl", function($scope, $uci, $config){
+JUCI.app
+.controller("InternetFirewallPageCtrl", function($scope, $uci, $firewall, $config){
 	$scope.firewallSwitchState = 0; 
+	$firewall.getZones().done(function(zones){
+		$scope.zones = zones; 
+		$scope.$apply(); 
+	}); 
+	$firewall.getRules().done(function(rules){
+		$scope.rules = rules; 
+		$scope.$apply(); 
+	}); 
 	$uci.sync("firewall").done(function(){
 		$scope.firewall = $uci.firewall; 
 		$scope.firewallSwitchState = $uci.firewall["@zone"].filter(function(zone){ 

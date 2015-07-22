@@ -1,0 +1,34 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetDHCPPage">
+		<juci-config-heading>{{ 'DHCP Server Settings' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'settings.dhcp.info' | translate }}</juci-config-info>
+		<div class="row" ng-hide="dhcp">
+			<div class="col-xs-9">
+				<div class="list-group" >
+					<a href="" class="list-group-item" ng-repeat="dhcp in dhcpConfigs" >
+						<button class="pull-right" ng-click="onRemoveDHCP(dhcp)"><i class="fa fa-trash"/></button>
+						<button class="pull-right" ng-click="onEditDHCP(dhcp)"><i class="fa fa-edit"/></button>
+						{{dhcp[".name"]}} ({{dhcp.interface.value}})
+					</a>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="btn-group-vertical" style="width: 100%;">
+					<button class="btn btn-lg btn-default" ng-click="onAddDHCP()">Add</button>
+				</div>
+			</div>
+		</div>
+		<div ng-show="dhcp">
+			<juci-config-lines >
+				<juci-config-line title="{{'Connection'|translate}}">
+					<juci-select ng-model="dhcp.interface.value" ng-items="availableNetworks" placeholder="{{'Network'|translate}}"></juci-select>
+				</juci-config-line>
+				<dhcp-basic-settings-edit ng-model="dhcp"/>
+			</juci-config-lines>
+			<dhcp-static-hosts-edit ng-model="dhcp"/>
+			
+		</div>
+		<juci-errors></juci-errors>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

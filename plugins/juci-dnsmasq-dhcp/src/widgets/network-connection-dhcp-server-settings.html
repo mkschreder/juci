@@ -1,0 +1,10 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'DHCP Server'|translate}}">
+			<switch ng-model="dhcpEnabled" class="green" ></switch>
+		</juci-config-line>
+	<juci-config-lines>
+	<div ng-show="dhcpEnabled">
+		<dhcp-basic-settings-edit  ng-model="dhcp" ng-connection="connection"/>
+	</div>
+</div>

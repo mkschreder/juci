@@ -1,17 +1,17 @@
 JUCI.app
-.directive("uciNetworkInterfaceEdit", function($compile, $parse){
+.directive("networkConnectionIp4SettingsEdit", function($compile, $parse){
 	var plugin_root = $juci.module("internet").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/uci.network.interface.edit.html", 
+		templateUrl: plugin_root+"/widgets/network-connection-ip4-settings-edit.html", 
 		scope: {
 			interface: "=ngModel"
 		}, 
-		controller: "uciNetworkInterfaceEdit", 
+		controller: "networkConnectionIp4SettingsEdit", 
 		replace: true, 
 		require: "^ngModel"
 	 };  
 })
-.controller("uciNetworkInterfaceEdit", function($scope, $uci, $network, $rpc, $log, gettext){
+.controller("networkConnectionIp4SettingsEdit", function($scope, $uci, $network, $rpc, $log, gettext){
 	$scope.expanded = true; 
 	$scope.existingHost = { }; 
 	

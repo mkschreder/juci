@@ -1,0 +1,17 @@
+{
+    "internet": {
+        "title": "Internet",
+        "redirect": "internet/firewall", 
+        "index": 30
+    },
+    "internet/ethernet": {
+        "title": "Devices",
+        "acls": [ "network" ],
+        "index": 7
+    },
+    "internet/network": {
+        "title": "Connections",
+        "acls": [ "network" ],
+        "index": 8
+    }
+}

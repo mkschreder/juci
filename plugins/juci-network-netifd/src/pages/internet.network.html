@@ -3,7 +3,7 @@
 		<juci-config-heading>{{ 'Connections' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'settings.network.info' | translate }}</juci-config-info>
 		<juci-config-section>
-			<div class="row" ng-hide="current_connection">
+			<div class="row" >
 				<div class="col-xs-9">
 					<div class="list-group" >
 						<a href="" class="list-group-item" ng-repeat="net in networks" ng-click="onEditConnection(net)"><i class="fa fa-trash pull-right"/>{{net[".name"]}}</a>
@@ -24,50 +24,40 @@
 					</div>
 					<div class="panel-body ">
 						<tabset>
-							<tab heading="General">Static content</tab>
-							<tab heading="Ethernet" ng-show="current_connection.type.value == 'default'">Static content</tab>
-							<tab heading="Bridge" ng-show="current_connection.type.value == 'bridge'">
-								<juci-config-lines>
-									<juci-config-line title="Bridged Connections"></juci-config-line>
+							<tab heading="General">
+								<div class="table">
 									<div class="row">
-										<div class="col-xs-9">
-											<ul class="list-group">
-												<li class="list-group-item" ng-repeat="dev in current_connection.addedDevices">{{dev.label}}</li>
-											</ul>
-										</div>
-										<div class="col-xs-3">
-											<div class="btn-group-vertical col-xs-12">
-												<button class="btn btn-lg btn-default">Add</button>
-											</div>
-										</div>
+										<div class="col-md-6">IPv4-Address: </div>
+										<div class="col-md-6">{{current_connection.$info["ipv4-address"][0].address}}</div>
 									</div>
-									<div class="row">
-										<div class="col-xs-3">
-											<ul>
-												<li ng-repeat="i in net.addedDevices">{{i.label}} <button ng-click="onRemoveDevice(net, i.value)"><i class="fa fa-times"></i></button></li>
-											</ul>
-										</div>
-										<div class="col-xs-4">
-											<juci-select ng-model="device_to_add" ng-items="net.addableDevices" placeholder="{{'Select device to add'|translate}}"></juci-select>
-											<button class="btn btn-default" ng-click="onAddDevice(net, device_to_add)"><i class="fa fa-plus"></i></button>
-										</div>
-									</div>
-								</juci-config-lines>
+								</div>
 							</tab>
+							<tab heading="proto.edit.{{current_connection.type.value}}.tab.title"><div dynamic="current_connection.$type_editor"/></tab>
 							<tab heading="IPv4 Settings">
 								<juci-config-lines>
 									<juci-config-line title="{{'Method'|translate}}">
 										<juci-select ng-model="current_connection.proto.value" ng-items="protocolTypes" placeholder="{'Choose Configuration Option'|translate}"/>
 									</juci-config-line>
 								</juci-config-lines>
-								<uci-network-interface-edit ng-model="current_connection" ></uci-network-interface-edit>
+								<network-connection-ip4-settings-edit ng-model="current_connection"/>
+								<network-connection-ip4-dns-edit ng-model="current_connection"/>
 							</tab>
-							<tab heading="IPv6 Settings">Static content</tab>
+							<tab heading="IPv6 Settings">
+								<juci-config-lines>
+									<juci-config-line title="{{'Method'|translate}}">
+										<juci-select ng-model="current_connection.proto6.value" ng-items="protocolTypes" placeholder="{'Choose Configuration Option'|translate}"/>
+									</juci-config-line>
+								</juci-config-lines>
+								<network-connection-ip6-settings-edit ng-model="current_connection" ></network-connection-ip6-settings-edit>
+							</tab>
+							<tab heading="Services">
+								<network-connection-dhcp-server-settings ng-connection="current_connection"/>
+							</tab>
 						</tabset>
 					</div>
-					<div class="panel-footer">
+					<!--<div class="panel-footer">
 						<button type="button" class="btn btn-default" ng-click="onCancelEdit()"><i class="fa fa-angle-left"></i> <span translate>Back</span></button>
-					</div>
+					</div>-->
 				</div>
 				<br/>
 			</div>

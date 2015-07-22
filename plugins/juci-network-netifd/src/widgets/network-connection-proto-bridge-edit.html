@@ -1,0 +1,17 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="Bridged Connections:"></juci-config-line>
+		<div class="row">
+			<div class="col-xs-9">
+				<ul class="list-group">
+					<li class="list-group-item" ng-repeat="dev in connection.addedDevices">{{dev.label}}</li>
+				</ul>
+			</div>
+			<div class="col-xs-3">
+				<div class="btn-group-vertical col-xs-12">
+					<button class="btn btn-lg btn-default">Add</button>
+				</div>
+			</div>
+		</div>
+	</juci-config-lines>
+</div>

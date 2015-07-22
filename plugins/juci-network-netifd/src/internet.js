@@ -187,6 +187,10 @@ UCI.network.$registerSectionType("interface", {
 	"proto":					{ dvalue: '', type: String }, 
 	"ipaddr":					{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask":				{ dvalue: '', type: String }, 
+	"gateway":				{ dvalue: '', type: String }, 
+	"ip6addr":				{ dvalue: '', type: String }, 
+	"ip6prefix":			{ dvalue: '', type: String }, 
+	"ip6gateway":			{ dvalue: '', type: String }, 
 	"type":						{ dvalue: '', type: String }, 
 	"ip6assign":			{ dvalue: 60, type: Number }, 
 	"bridge_instance": { dvalue: false, type: Boolean }, 
@@ -197,37 +201,6 @@ UCI.network.$registerSectionType("interface", {
 	"dns": 						{ dvalue: [], type: Array }
 }); 
 
-UCI.$registerConfig("dhcp"); 
-UCI.dhcp.$registerSectionType("dnsmasq", {
-	"domainneeded":		{ dvalue: true, type: Boolean },
-	"boguspriv":		{ dvalue: true, type: Boolean },
-	"localise_queries":	{ dvalue: true, type: Boolean },
-	"rebind_protection":	{ dvalue: false, type: Boolean },
-	"local":		{ dvalue: "/lan/", type: String, required: true},
-	"domain":		{ dvalue: "lan", type: String, required: true},
-	"expandhosts":		{ dvalue: true, type: Boolean },
-	"authoritative":	{ dvalue: true, type: Boolean },
-	"readethers":		{ dvalue: true, type: Boolean },
-	"leasefile":		{ dvalue: "/tmp/dhcp.leases", type: String, required: true},
-	"resolvfile":		{ dvalue: "/tmp/resolv.conf.auto", type: String, required: true}
-});
-UCI.dhcp.$registerSectionType("dhcp", {
-	"interface":		{ dvalue: "lan", type: String, required: true},
-	"start":		{ dvalue: 100, type: Number, validator: UCI.validators.NumberLimitValidator(1, 255) },
-	"limit":		{ dvalue: 150, type: Number, validator: UCI.validators.NumberLimitValidator(1, 255) },
-	"leasetime":		{ dvalue: "12h", type: String, required: true},
-	"ignore":		{ dvalue: false, type: Boolean }
-});
-UCI.dhcp.$registerSectionType("domain", {
-	"name":		{ dvalue: "", type: String, required: true},
-	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator }  // TODO: change to ip address
-});
-UCI.dhcp.$registerSectionType("host", {
-	"name":		{ dvalue: "", type: String, required: false},
-	"network": { dvalue: "lan", type: String, required: true }, 
-	"mac":		{ dvalue: "", type: String, required: true, validator: UCI.validators.MACAddressValidator },
-	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator }  // TODO: change to ip address
-}); 
 
 UCI.$registerConfig("ddns");
 UCI.ddns.$registerSectionType("service", {

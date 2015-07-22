@@ -1,0 +1,34 @@
+{
+	"internet/firewall": {
+		"title": "Firewall",
+		"acls": [ "network" ],
+		"index": 10
+	},
+	"internet/firewall/zones": {
+		"title": "Zones",
+		"acls": [ "network" ],
+		"index": 11
+	},
+	"internet/firewall/rules": {
+		"title": "Rules",
+		"acls": [ "network" ],
+		"index": 12
+	},
+	"internet/port_mapping": {
+		"title": "Port Mapping",
+		"modes": [ "expert" ], 
+		"acls": [ "network" ],
+		"index": 20
+	},
+	"internet/exposed_host": {
+		"title": "Exposed Host",
+		"modes": [ "expert" ], 
+		"acls": [ "network" ],
+		"index": 30
+	},
+	"internet/parental_control": {
+		"title": "Parental Control",
+		"acls": [ "firewall" ],
+		"index": 60
+	}
+}

@@ -1,5 +1,5 @@
 JUCI.app
-.controller("InternetNetworkPage", function($scope, $uci, $network, $config){
+.controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $config){
 	$network.getDevices().done(function(devices){
 		$scope.devices = devices; 
 		
@@ -22,17 +22,17 @@ JUCI.app
 					net.addableDevices = devs
 						.filter(function(dev){ 
 							var already_added = addedDevices.find(function(x){ 
-								return x == dev.name; 
+								return x == dev.id; 
 							}); 
 							if(!already_added){
 								return true; 
 							} else {
-								net.addedDevices.push( { label: dev.name, value: dev.name }); 
+								net.addedDevices.push( { label: dev.name, value: dev.id }); 
 								return false; 
 							}
 						})
 						.map(function(dev){ 
-							return { label: dev.name, value: dev.name }; 
+							return { label: dev.name, value: dev.id }; 
 						}); 
 					return net; 
 				}); 
@@ -43,7 +43,14 @@ JUCI.app
 	}); 
 	
 	$scope.onEditConnection = function(conn){
-		$scope.current_connection = conn; 
+		// set editing widget for the type specific part of the conneciton wizard
+		$rpc.network.interface.dump().done(function(ifaces){
+			var info = ifaces.interface.find(function(x){ return x.interface == conn[".name"]; }); 
+			$scope.current_connection = conn; 
+			conn.$type_editor = "<network-connection-proto-"+conn.type.value+"-edit ng-model='current_connection'/>"; 
+			conn.$info = info; 
+			$scope.$apply(); 
+		}); 
 	}
 	
 	$scope.onCancelEdit = function(){

@@ -721,10 +721,10 @@
 					return; 
 				}
 				// this will prevent making ubus call if there were no changes to apply 
-				if(writes.length == 0){
-					deferred.resolve(); 
-					return; 
-				}
+				//if(writes.length == 0 && !){
+				//	deferred.resolve(); 
+				//	return; 
+				//} commenting out because we do need to commit if new sections have been added
 				$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
 					async.eachSeries(Object.keys(self), function(config, next){
 						if(self[config].constructor != UCI.Config || !self[config][".need_commit"]) {

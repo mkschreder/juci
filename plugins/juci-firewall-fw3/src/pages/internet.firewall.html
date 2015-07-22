@@ -1,0 +1,25 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetFirewallPageCtrl">
+		<h2 translate>Firewall settings</h2>
+		<p translate>internet.firewall.info</p>
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable firewall'|translate}}">
+					<switch id="enabled" name="enabled" ng-model="firewallSwitchState" ng-change="onFirewallToggle" class="green"></switch>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section ng-show="firewallSwitchState">
+			<h2 translate>Zones</h2>
+			<p translate>internet.firewall.zones.info</p>
+			<juci-list-editor ng-items="zones" edit-control="firewall-zone-edit"/>
+		</juci-config-section>
+		<juci-config-section ng-show="firewallSwitchState">
+			<h2 translate>Rules</h2>
+			<p translate>internet.firewall.rules.info</p>
+			<juci-list-editor ng-items="rules" edit-control="firewall-rule-edit"/>
+		</juci-config-section>
+		
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

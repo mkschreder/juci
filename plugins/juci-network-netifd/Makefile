@@ -1,4 +1,4 @@
-TARGET:=juci-mod-network
+TARGET:=juci-network-netifd
 OUTDIR:=htdocs
 CSS:=$(OUTDIR)/css/50-$(TARGET).css
 JS:=$(OUTDIR)/js/50-$(TARGET).js
