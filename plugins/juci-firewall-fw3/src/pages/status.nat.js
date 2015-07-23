@@ -1,3 +1,5 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 JUCI.app
 .controller("StatusNATPageCtrl", function($scope, $rpc, $tr, gettext){
 	$scope.conntrack = { count: 0, limit: 0 }; 

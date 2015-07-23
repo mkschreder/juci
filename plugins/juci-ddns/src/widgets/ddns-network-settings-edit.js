@@ -11,8 +11,12 @@ JUCI.app
 	};
 })
 .controller("ddnsNetworkSettingsEdit", function($scope){
+	// hardcoded dns providers that we currently support (TODO: make dynamic list)
+	$scope.allServices = [
+		{ label: "noip.com", value: "noip.com" }
+	]; 
 	$scope.$watch("network", function(value){
 		if(!value) return; 
-		$scope.ddns = value.$ddns; 
+		$scope.ddns = value; 
 	}); 
 }); 

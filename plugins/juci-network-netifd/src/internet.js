@@ -223,8 +223,9 @@ UCI.network.$registerSectionType("interface", {
 	"vendorid":				{ dvalue: '', type: String }, 
 	"hostname":				{ dvalue: '', type: String }, 
 	"ipv6":						{ dvalue: false, type: Boolean },
-	"peerdns": 				{ dvalue: false, type: String }, 
-	"dns": 						{ dvalue: [], type: Array }
+	"peerdns": 				{ dvalue: true, type: String }, 
+	"dns": 						{ dvalue: [], type: Array }, 
+	"enabled": 				{ dvalue: true, type: Boolean }
 }); 
 
 

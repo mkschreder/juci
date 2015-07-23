@@ -2,7 +2,14 @@
 	<div ng-controller="InternetLANPage">
 		<juci-config-heading>{{ 'LAN Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.lan.info' | translate }}</juci-config-info>
-		
+		<juci-panel title="{{conn['.name']|uppercase}}" ng-repeat="conn in lan_networks" is-open="true">
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable This Network'|translate}}">
+					<switch ng-model="conn.enabled.value" class="green"/>
+				</juci-config-line>
+			</juci-config-lines>
+			<network-connection-ip4-settings-edit ng-model="conn"  ng-show="conn.proto.value == 'static'"></network-connection-ip4-settings-edit>
+		</juci-panel>
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>
 	</div>

@@ -1,3 +1,5 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 JUCI.app
 .controller("InternetDHCPPage", function($scope, $uci, $rpc, $network, $config){
 	$network.getNetworks().done(function(nets){

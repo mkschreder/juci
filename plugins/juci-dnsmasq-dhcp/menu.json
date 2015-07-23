@@ -1,6 +1,11 @@
 {
-	"internet/dhcp": {
+	"internet/lan/dhcp": {
 			"title": "DHCP Server",
+			"acls": [ "network" ],
+			"index": 9
+	},
+	"internet/lan/routes": {
+			"title": "Static Routes",
 			"acls": [ "network" ],
 			"index": 9
 	},

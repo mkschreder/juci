@@ -1,12 +1,17 @@
 {
+	"internet/lan/iptv": {
+		"title": "IPTV", 
+		"acls": [ "iptv" ], 
+		"index": 8
+	},
 	"status/status/tv": {
-			"title": "IPTV", 
-			"acls": [ "status" ], 
-			"index": 8
+		"title": "IPTV", 
+		"acls": [ "status" ], 
+		"index": 8
 	}, 
 	"status/status/voice": {
-			"title": "Voice", 
-			"acls": [ "status" ], 
-			"index": 9
+		"title": "Voice", 
+		"acls": [ "status" ], 
+		"index": 9
 	}
 }

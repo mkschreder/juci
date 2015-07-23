@@ -1,3 +1,5 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 JUCI.app
 .controller("InternetDNSPageCtrl", function ($scope, $uci, $log, $config) {
 	// hardcoded dns providers that we currently support (TODO: make dynamic list)

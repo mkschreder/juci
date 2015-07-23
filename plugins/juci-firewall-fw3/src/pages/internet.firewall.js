@@ -1,3 +1,5 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 JUCI.app
 .controller("InternetFirewallPageCtrl", function($scope, $uci, $firewall, $config){
 	$scope.firewallSwitchState = 0; 

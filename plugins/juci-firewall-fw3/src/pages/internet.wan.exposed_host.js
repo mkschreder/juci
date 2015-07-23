@@ -1,3 +1,5 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 $juci.module("internet")
 .controller("InternetExHostPageCtrl", function($scope, $rpc, $config, $uci, $tr){
 	$scope.config = $config; 

@@ -1,9 +1,4 @@
 <div>
-	<juci-config-lines>
-		<juci-config-line title="{{'Dynamic DNS'|translate}}">
-			<switch ng-model="ddns.enabled.value" class="green" ng-change="onApply()"></switch>
-		</juci-config-line>
-	</juci-config-lines>
 	<juci-config-lines ng-show="ddns.enabled.value">
 		<juci-config-line title="{{'Provider'|translate}}">
 			<div ng-show="enterDNSProvider">
@@ -18,13 +13,13 @@
 			</div>
 		</juci-config-line>
 		<juci-config-line title="{{'Domain name'|translate}}">
-				<input type="text" class="form-control" ng-model="ddns.domain.value" placeholder="{{'Add domain name'|translate}}" />
+				<input type="text" class="form-control" ng-model="ddns.domain.value" placeholder="{{'Domain name'|translate}}" />
 		</juci-config-line>
 		<juci-config-line title="{{'Username'|translate}}">
-				<input type="text" class="form-control" ng-model="ddns.username.value" placeholder="{{'Add username'|translate}}" />
+				<input type="text" class="form-control" ng-model="ddns.username.value" placeholder="{{'Username'|translate}}" />
 		</juci-config-line>
 		<juci-config-line title="{{'Password'|translate}}">
-				<input type="password" class="form-control" ng-model="ddns.password.value" placeholder="{{'Add password'|translate}}" />
+				<input type="password" class="form-control" ng-model="ddns.password.value" placeholder="{{'Password'|translate}}" />
 		</juci-config-line>
 	</juci-config-lines>
 </div>

@@ -1,0 +1,13 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Automatic DNS Configuration'|translate}}">
+			<switch ng-model="conn.peerdns.value" class="green"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Primary DNS'|translate}}" ng-hide="conn.peerdns.value">
+			<input type="text" class="form-control" ng-model="data.primaryDNS" placeholder="{{'Primary DNS IP'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Secondary DNS'|translate}}" ng-hide="conn.peerdns.value">
+			<input type="text" class="form-control" ng-model="data.secondaryDNS" placeholder="{{'Primary DNS IP'|translate}}"/>
+		</juci-config-line>
+	</juci-config-lines>
+</div>

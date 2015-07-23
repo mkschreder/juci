@@ -6,7 +6,11 @@ JUCI.app
 		templateUrl: "/widgets/juci.panel.html", 
 		replace: true, 
 		scope: {
-			title: "@"
+			title: "@", 
+			is_expanded: "@isOpen"
+		}, 
+		compile: function(element, attrs){
+			if(!attrs.isExpanded) attrs.isExpanded = true; 
 		}, 
 		transclude: true, 
 		controller: "juciPanel"

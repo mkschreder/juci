@@ -1,3 +1,5 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 JUCI.app
 .controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $config, gettext, prompt){
 	$network.getDevices().done(function(devices){

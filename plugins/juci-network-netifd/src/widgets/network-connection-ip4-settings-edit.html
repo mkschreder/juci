@@ -6,7 +6,7 @@
 		<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}">
 			<input class="form-control" ng-model="interface.netmask.value" placeholder="{{'Netmask'|translate}}"></input>
 		</juci-config-line>
-		<juci-config-line title="{{'IPv4 Default Gateway'|translate}}">
+		<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-hide="interface.is_lan.value">
 			<input class="form-control" ng-model="interface.gateway.value" placeholder="{{'Default Gateway'|translate}}"></input>
 		</juci-config-line>
 	</juci-config-lines>
