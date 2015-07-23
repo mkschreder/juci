@@ -1,1 +1,9 @@
-
+<div>
+	<juci-config-lines >
+		<juci-config-line title="{{'Connection'|translate}}">
+			<juci-select ng-model="dhcp.interface.value" ng-items="availableNetworks" placeholder="{{'Network'|translate}}"></juci-select>
+		</juci-config-line>
+		<dhcp-basic-settings-edit ng-model="dhcp"/>
+	</juci-config-lines>
+	<dhcp-static-hosts-edit ng-model="dhcp"/>
+</div>

@@ -37,30 +37,6 @@ JUCI.app
 		}); 
 	}
 	
-	$scope.onAddStaticDHCP = function(){
-		if(!$scope.dhcp || !$scope.existingHost) return; 
-		var host = $scope.existingHost;
-		$uci.dhcp.create({
-			".type": "host", 
-			dhcp: $scope.dhcp[".name"], 
-			network: $scope.dhcp.interface.value, 
-			mac: host.macaddr, 
-			ip: host.ipaddr
-		}).done(function(section){
-			console.log("Added new dhcp section"); 
-			$scope.dhcp.staticHosts.push(section); 
-			$scope.$apply(); 
-		}).fail(function(err){
-			console.error("Failed to add new static dhcp entry: "+err); 
-		}); 
-	}
-	$scope.onRemoveStaticDHCP = function(host){
-		if(!host || !$scope.dhcp) return; 
-		host.$delete().done(function(){
-			$scope.dhcp.staticHosts = $scope.dhcp.staticHosts.filter(function(x){ return x.mac.value != host.mac.value; }); 
-			$scope.$apply(); 
-		}); 
-	}
 	$scope.onExistingChanged = function(){
 		if(!$scope.dhcp) return; 
 		/*var item = $scope.existingHost; 

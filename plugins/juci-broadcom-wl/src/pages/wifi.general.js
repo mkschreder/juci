@@ -1,7 +1,20 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiGeneralPageCtrl", function($scope, $uci, $tr){
+.controller("WifiGeneralPageCtrl", function($scope, $uci, $wireless){
+	$wireless.getInterfaces().done(function(ifaces){
+		$wireless.getDevices().done(function(devs){
+			$scope.interfaces = ifaces; 
+			$scope.interfaces.map(function(i){
+				i.$device = devs.find(function(x){ return x[".name"] == i.device.value; }); 
+			}); 
+			$scope.status = $uci.wireless.status; 
+			if($uci.boardpanel) 
+				$scope.boardpanel = $uci.boardpanel; 
+			$scope.$apply(); 
+		}); 
+	}); 
+	/*
 	async.series([
 		function(next){
 			$uci.sync(["wireless", "boardpanel"]).done(function(){
@@ -35,7 +48,7 @@ JUCI.app
 			
 			next(); 
 		}
-	]); 
+	]); */
 	// for automatically saving switch state
 	$scope.onApply = function(){
 		$uci.save(); 

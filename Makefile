@@ -7,6 +7,7 @@ DIRS-y:=juci \
 	plugins/juci-network-netifd \
 	plugins/juci-firewall-fw3 \
 	plugins/juci-dnsmasq-dhcp \
+	plugins/juci-ddns \
 	plugins/juci-mod-system \
 	plugins/juci-mod-status \
 	plugins/juci-jquery-console

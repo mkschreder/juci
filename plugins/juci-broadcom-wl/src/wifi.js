@@ -62,6 +62,27 @@
 			this.wpsStatusText = gettext("off"); 
 		}
 		
+		Wireless.prototype.getDevices = function(){
+			var deferred = $.Deferred(); 
+			$uci.sync("wireless").done(function(){
+				$uci.wireless["@wifi-device"].map(function(x){
+					// TODO: this should be a uci "displayname" or something
+					if(x.band.value == "a") x[".frequency"] = gettext("5GHz"); 
+					else if(x.band.value == "b") x[".frequency"] = gettext("2.4GHz"); 
+				}); 
+				deferred.resolve($uci.wireless["@wifi-device"]); 
+			}); 
+			return deferred.promise(); 
+		}
+		
+		Wireless.prototype.getInterfaces = function(){
+			var deferred = $.Deferred(); 
+			$uci.sync("wireless").done(function(){
+				deferred.resolve($uci.wireless["@wifi-iface"]); 
+			}); 
+			return deferred.promise(); 
+		}
+		
 		Wireless.prototype.getInfo = function(){
 			var deferred = $.Deferred(); 
 			$rpc.router.info().done(function(result){

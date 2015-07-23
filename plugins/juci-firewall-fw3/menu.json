@@ -14,14 +14,14 @@
 		"acls": [ "network" ],
 		"index": 12
 	},
-	"internet/port_mapping": {
+	"internet/wan/port_mapping": {
 		"title": "Port Mapping",
 		"modes": [ "expert" ], 
 		"acls": [ "network" ],
 		"index": 20
 	},
-	"internet/exposed_host": {
-		"title": "Exposed Host",
+	"internet/wan/exposed_host": {
+		"title": "DMZ",
 		"modes": [ "expert" ], 
 		"acls": [ "network" ],
 		"index": 30

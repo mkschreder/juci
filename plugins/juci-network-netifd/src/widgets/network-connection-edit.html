@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">
+			{{conn[".name"]}} Connection
+		</h3>
+	</div>
+	<div class="panel-body ">
+		<tabset>
+			<tab heading="General">
+				<h3 translate>Status</h3>
+				<div class="alert alert-danger" ng-show="conn.$info.errors.length">
+					<ul>
+						<li ng-repeat="err in conn.$info.errors">Error ({{err.subsystem}}): {{err.code}}</li>
+					</ul>
+				</div>
+				<table class="table table-condensed">
+					<tr><td translate>Interface UP:</td><td>{{(conn.$info.up)?"YES":"NO"}}</td></tr>
+					<tr><td translate>Device:</td><td>{{conn.$info.l3_device}}</td></tr>
+					<tr><td translate>Protocol:</td><td>{{conn.$info.proto}}</td></tr>
+					<tr ng-repeat="addr in conn.$info['ipv4-address']"><td translate>IPv4-Address ({{$index}}):</td><td>{{addr.address}}</td></tr>
+					<tr ng-repeat="addr in conn.$info['ipv6-address']"><td translate>IPv6-Address ({{$index}}):</td><td>{{addr.address}}</td></tr>
+				</table>
+			</tab>
+			<tab heading="proto.edit.{{conn.type.value}}.tab.title"><div dynamic="conn.$type_editor"/></tab>
+			<tab heading="IPv4 Settings">
+				<juci-config-lines>
+					<juci-config-line title="{{'Method'|translate}}">
+						<juci-select ng-model="conn.proto.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
+					</juci-config-line>
+				</juci-config-lines>
+				<network-connection-ip4-settings-edit ng-model="conn"/>
+				<network-connection-ip4-dns-edit ng-model="conn"/>
+			</tab>
+			<tab heading="IPv6 Settings">
+				<juci-config-lines>
+					<juci-config-line title="{{'Method'|translate}}">
+						<juci-select ng-model="conn.proto6.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
+					</juci-config-line>
+				</juci-config-lines>
+				<network-connection-ip6-settings-edit ng-model="conn" ></network-connection-ip6-settings-edit>
+			</tab>
+			<tab heading="Services">
+				<network-connection-dhcp-server-settings ng-connection="conn"/>
+			</tab>
+		</tabset>
+	</div>
+	<!--<div class="panel-footer">
+		<button type="button" class="btn btn-default" ng-click="onCancelEdit()"><i class="fa fa-angle-left"></i> <span translate>Back</span></button>
+	</div>-->
+</div>

@@ -17,10 +17,20 @@
 		<div class="row" style="margin-bottom: 10px;">
 			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-wifi fa-2x"></i></div>
 			<div class="col-xs-7" style="padding-left: 0px">
-				<a class="overview-list-item-text" href="#!/wifi-wps"><strong>WPS</strong></a>
+				<a class="overview-list-item-text" href="#!/wifi-wps"><strong>WPS</strong></a><br/>
 			</div>
 			<div class="col-xs-2">
 				<a class="label label-{{(wifi.status.wps.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWPSToggle()"><strong>{{wifiWPSStatus | translate}}</strong></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<td>WPS pin:</td>
+						<td><span ng-show="wifi.status.wps.value" style="font-size: 0.8pn">{{wps.pin}}</span></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 10px;" ng-repeat="client in wireless.clients">

@@ -2,6 +2,11 @@
 	<div ng-controller="InternetDHCPPage">
 		<juci-config-heading>{{ 'DHCP Server Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'settings.dhcp.info' | translate }}</juci-config-info>
+		<juci-list-editor ng-items="dhcpConfigs" item-editor="dhcp-entry-edit" get-item-title="$item['.name']" 
+			on-create="onAddDHCP()" 
+			on-delete="onRemoveDHCP($item)" 
+			on-edit="onEditDHCP($item)"/>
+		<!--
 		<div class="row" ng-hide="dhcp">
 			<div class="col-xs-9">
 				<div class="list-group" >
@@ -27,7 +32,7 @@
 			</juci-config-lines>
 			<dhcp-static-hosts-edit ng-model="dhcp"/>
 			
-		</div>
+		</div>-->
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>
 	</div>

@@ -3,65 +3,7 @@
 		<juci-config-heading>{{ 'Connections' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'settings.network.info' | translate }}</juci-config-info>
 		<juci-config-section>
-			<div class="row" >
-				<div class="col-xs-9">
-					<div class="list-group" >
-						<a href="" class="list-group-item" ng-repeat="net in networks" ng-click="onEditConnection(net)"><i class="fa fa-trash pull-right"/>{{net[".name"]}}</a>
-					</div>
-				</div>
-				<div class="col-xs-3">
-					<div class="btn-group-vertical" style="width: 100%;">
-						<button class="btn btn-lg btn-default">Add</button>
-					</div>
-				</div>
-			</div>
-			<div ng-show="current_connection">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">
-							{{current_connection[".name"]}} Connection
-						</h3>
-					</div>
-					<div class="panel-body ">
-						<tabset>
-							<tab heading="General">
-								<div class="table">
-									<div class="row">
-										<div class="col-md-6">IPv4-Address: </div>
-										<div class="col-md-6">{{current_connection.$info["ipv4-address"][0].address}}</div>
-									</div>
-								</div>
-							</tab>
-							<tab heading="proto.edit.{{current_connection.type.value}}.tab.title"><div dynamic="current_connection.$type_editor"/></tab>
-							<tab heading="IPv4 Settings">
-								<juci-config-lines>
-									<juci-config-line title="{{'Method'|translate}}">
-										<juci-select ng-model="current_connection.proto.value" ng-items="protocolTypes" placeholder="{'Choose Configuration Option'|translate}"/>
-									</juci-config-line>
-								</juci-config-lines>
-								<network-connection-ip4-settings-edit ng-model="current_connection"/>
-								<network-connection-ip4-dns-edit ng-model="current_connection"/>
-							</tab>
-							<tab heading="IPv6 Settings">
-								<juci-config-lines>
-									<juci-config-line title="{{'Method'|translate}}">
-										<juci-select ng-model="current_connection.proto6.value" ng-items="protocolTypes" placeholder="{'Choose Configuration Option'|translate}"/>
-									</juci-config-line>
-								</juci-config-lines>
-								<network-connection-ip6-settings-edit ng-model="current_connection" ></network-connection-ip6-settings-edit>
-							</tab>
-							<tab heading="Services">
-								<network-connection-dhcp-server-settings ng-connection="current_connection"/>
-							</tab>
-						</tabset>
-					</div>
-					<!--<div class="panel-footer">
-						<button type="button" class="btn btn-default" ng-click="onCancelEdit()"><i class="fa fa-angle-left"></i> <span translate>Back</span></button>
-					</div>-->
-				</div>
-				<br/>
-			</div>
-			
+			<juci-list-editor ng-items="networks" item-editor="network-connection-edit" get-item-title="onGetItemTitle($item)" on-create="onAddConnection($item)" on-delete="onDeleteConnection($item)" on-edit="onEditConnection($item)"/>
 		</juci-config-section>
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>

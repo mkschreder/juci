@@ -103,6 +103,16 @@
 			return deferred.promise(); 
 		}
 		
+		
+		NetworkBackend.prototype.getClients = function(){
+			var deferred = $.Deferred(); 
+			var self = this; 
+			_refreshClients(self).done(function(clients){
+				deferred.resolve(clients); 
+			}); 
+			return deferred.promise(); 
+		}
+		
 		NetworkBackend.prototype.getConnectedClients = function(){
 			var deferred = $.Deferred(); 
 			var self = this; 
@@ -111,6 +121,22 @@
 				deferred.resolve(clients.filter(function(x){ return x.connected; })); 
 			}); 
 			
+			return deferred.promise(); 
+		}
+		
+		NetworkBackend.prototype.getLanNetworks = function(){
+			var deferred = $.Deferred(); 
+			this.getNetworks().done(function(nets){
+				deferred.resolve(nets.filter(function(x){ return x.is_lan.value == 1; })); 
+			}); 
+			return deferred.promise(); 
+		}
+		
+		NetworkBackend.prototype.getWanNetworks = function(){
+			var deferred = $.Deferred(); 
+			this.getNetworks().done(function(nets){
+				deferred.resolve(nets.filter(function(x){ return x.is_lan.value == 0; })); 
+			}); 
 			return deferred.promise(); 
 		}
 		

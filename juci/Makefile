@@ -31,6 +31,7 @@ JSLIBS+=src/lib/js/angular.min.js
 JSLIBS+=src/lib/js/angular-ui.min.js
 JSLIBS+=src/lib/js/angular-ui-router.min.js
 JSLIBS+=src/lib/js/angular-gettext.min.js
+JSLIBS+=src/lib/js/angular-prompt.js
 JSLIBS+=src/lib/js/bootstrap-select.min.js
 JSLIBS+=src/lib/js/select.min.js
 JSLIBS+=src/lib/js/angular-animate.min.js

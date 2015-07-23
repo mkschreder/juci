@@ -46,6 +46,7 @@ JUCI.app
 	$scope.wireless = {
 		clients: []
 	}; 
+	$scope.wps = {}; 
 	
 	$scope.onWPSToggle = function(){
 		$uci.wireless.status.wps.value = !$uci.wireless.status.wps.value; 
@@ -62,7 +63,7 @@ JUCI.app
 		}); 
 	}
 	
-	function refresh() {
+	!function refresh() {
 		$scope.wifiSchedStatus = gettext("off"); 
 		$scope.wifiWPSStatus = gettext("off"); 
 		async.series([
@@ -73,6 +74,11 @@ JUCI.app
 						$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
 						$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
 					}
+				}).always(function(){ next(); }); 
+			}, 
+			function(next){
+				$rpc.juci.broadcom.wps.showpin().done(function(result){
+					$scope.wps.pin = result.pin; 
 				}).always(function(){ next(); }); 
 			}, 
 			function(next){
@@ -89,5 +95,5 @@ JUCI.app
 		], function(){
 			$scope.$apply(); 
 		}); 
-	} refresh(); 
+	}(); 
 }); 

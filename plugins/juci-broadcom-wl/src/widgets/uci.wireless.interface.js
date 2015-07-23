@@ -33,6 +33,12 @@ JUCI.app
 		{label: gettext("CCMP (AES)"), value: "ccmp"},
 		{label: gettext("TKIP/CCMP (AES)"), value: "ccmp"}
 	];  
+	$wireless.getDevices().done(function(devices){
+		$scope.devices = devices.map(function(x){
+			return { label: x[".frequency"], value: x[".name"] }; 
+		}); 
+		$scope.$apply(); 
+	}); 
 	$scope.$watch("interface", function(value){
 		if(!value) return; 
 		try {
@@ -40,19 +46,10 @@ JUCI.app
 				return { label: $tr("wifi.enc."+x), value: x };
 			}); 
 		} catch(e) {} 
-		$scope.devices = $uci.wireless["@wifi-device"].map(function(x){
-			// TODO: this should be a uci "displayname" or something
-			if(x.band.value == "a") x[".label"] = gettext("5GHz"); 
-			else if(x.band.value == "b") x[".label"] = gettext("2.4GHz"); 
-			return { label: x[".label"], value: x[".name"] };
-		}); 
-		$uci.wireless["@wifi-iface"].map(function(x){
-			var dev = $uci.wireless[x.device.value]; 
-			x[".frequency"] = dev[".label"]; 
-		}); 
 		$scope.title = "wifi-iface.name="+$scope.interface[".name"]; 
 	});
 	$scope.$watch("interface.closed.value", function(value, oldvalue){
+		if(!$scope.interface) return; 
 		if(value && value != oldvalue){
 			if($scope.interface.wps_pbc.value && !confirm(gettext("If you disable SSID broadcasting, WPS function will be disabled as well. You will need to enable it manually later. Are you sure you want to continue?"))){
 				setTimeout(function(){
@@ -64,7 +61,9 @@ JUCI.app
 			}
 		}
 	}); 
-	$scope.$watch("interface.encryption.value", function(value, oldvalue){
+	
+	$scope.onEncryptionChanged = function(value, oldvalue){
+		if(!$scope.interface) return; 
 		switch(value){
 			case "none": {
 				if(oldvalue && value != oldvalue){
@@ -108,7 +107,8 @@ JUCI.app
 				break; 
 			}
 		}; 
-	}); 
+	}
+	 
 	$scope.onPreApply = function(){
 		$scope.errors.length = 0; 
 	}

@@ -9,11 +9,11 @@
 		<juci-config-line title="{{'wifi-iface.closed'|translate}}">
 			<switch id="enabled" name="enabled" ng-model="interface.closed.value" on-change="onShowSSIDToggle()" class="green" inverted></switch>
 		</juci-config-line>
-		<juci-config-line title="{{'wifi-iface.device'|translate}}">
+		<!--<juci-config-line title="{{'wifi-iface.device'|translate}}">
 			<juci-select ng-model="interface.device.value" ng-items="devices" placeholder="Choose Radio"></juci-select>
-		</juci-config-line>
+		</juci-config-line>-->
 		<juci-config-line title="{{'wifi-iface.encryption'|translate}}">
-			<juci-select ng-model="interface.encryption.value" ng-items="cryptoChoices" placeholder="Choose Protection"/>
+			<juci-select ng-model="interface.encryption.value" ng-items="cryptoChoices" placeholder="Choose Protection" on-change="onEncryptionChanged($value, $oldvalue)"/>
 		</juci-config-line>
 		<div ng-show="interface.encryption.value == 'psk2' || interface.encryption.value == 'mixed-psk'">
 			<juci-config-line title="{{'wifi-iface.cipher'|translate}}">

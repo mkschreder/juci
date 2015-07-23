@@ -234,6 +234,7 @@
 			"ngAnimate", 
 			"gettext", 
 			"dndLists", 
+			"cgPrompt", 
 			"checklist-model"
 		]); 
 		app.config(function($stateProvider){

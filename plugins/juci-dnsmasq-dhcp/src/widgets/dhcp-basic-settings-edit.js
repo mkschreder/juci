@@ -8,8 +8,7 @@ JUCI.app
 			connection: "=ngConnection"
 		}, 
 		templateUrl: "/widgets/dhcp-basic-settings-edit.html", 
-		controller: "dhcpBasicSettingsEdit", 
-		replace: true
+		controller: "dhcpBasicSettingsEdit"
 	};  
 })
 .controller("dhcpBasicSettingsEdit", function($scope, $network){

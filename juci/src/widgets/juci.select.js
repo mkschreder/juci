@@ -20,9 +20,9 @@ JUCI.app
 			$scope.select = function(item){
 				$scope.selectedText = item.label; 
 				var model = $parse(attrs.ngModel); 
-				model.assign($scope.$parent, item.value); 
 				//console.log("Model ["+"$parent."+attrs.ngModel+"]: "+model($scope.$parent)); 
-				$scope.onChange({$item: item, $value: item.value}); 
+				$scope.onChange({$item: item, $value: item.value, $oldvalue: model($scope.$parent)}); 
+				model.assign($scope.$parent, item.value); 
 			}
 			function updateSelected(items){
 				if(!items || !(items instanceof Array)) return; 

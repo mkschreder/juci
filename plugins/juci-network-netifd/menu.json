@@ -4,6 +4,16 @@
         "redirect": "internet/firewall", 
         "index": 30
     },
+    "internet/wan": {
+        "title": "WAN",
+        "acls": [ "network" ],
+        "index": 5
+    },
+    "internet/lan": {
+        "title": "LAN",
+        "acls": [ "network" ],
+        "index": 6
+    },
     "internet/ethernet": {
         "title": "Devices",
         "acls": [ "network" ],

@@ -39,6 +39,32 @@ JUCI.app
 				}
 			}); 
 			return deferred.promise(); 
+		}, 
+		
+		// we determine what networks are wan/lan/guest based on zones. This is currently hardcoded,
+		// but probably should not be in the future. This will break if the user has different zone names!
+		getLanZone: function(){ 
+			var deferred = $.Deferred(); 
+			sync().done(function(){
+				deferred.resolve($uci.firewall["@zone"].find(function(x){ return x.name.value == "lan"; })); 
+			}); 
+			return deferred.promise(); 
+		},
+		
+		getGuestZone: function(){ 
+			var deferred = $.Deferred(); 
+			sync().done(function(){
+				deferred.resolve($uci.firewall["@zone"].find(function(x){ return x.name.value == "guest"; })); 
+			}); 
+			return deferred.promise(); 
+		},
+		
+		getWanZone: function(){ 
+			var deferred = $.Deferred(); 
+			sync().done(function(){
+				deferred.resolve($uci.firewall["@zone"].find(function(x){ return x.name.value == "wan"; })); 
+			}); 
+			return deferred.promise(); 
 		}
 	}; 
 }); 

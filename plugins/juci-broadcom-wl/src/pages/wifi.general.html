@@ -8,7 +8,6 @@
 			<i class="fa fa-spinner fa-spin fa-2x"></i>
 		</div>
 		<div ng-show="status">
-			
 			<juci-config-section>
 				<div class="alert alert-warning" ng-show="status.schedule.value">
 					<p translate>You have wifi-scheduling enabled. This means that your wifi will be automatically turned on and off based on your schedule settings</p>
@@ -45,7 +44,7 @@
 										<i class="fa fa-caret-left fa-2x" ng-hide="expanded"></i>
 									</span>
 								</div>
-								<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">{{iface.ssid.value}} ({{iface[".frequency"]}})</h3>
+								<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">{{iface.ssid.value}} ({{iface.$device[".frequency"]}})</h3>
 								<div style="clear: both;"></div>
 							</div>
 							<div class="panel-body " ng-show="iface._expanded" >

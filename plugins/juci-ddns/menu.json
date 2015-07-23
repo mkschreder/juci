@@ -1,0 +1,7 @@
+{
+	"internet/wan/ddns": {
+			"title": "DDNS",
+			"acls": [ "network" ],
+			"index": 9
+	}
+}

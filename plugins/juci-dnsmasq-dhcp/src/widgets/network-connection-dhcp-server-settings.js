@@ -9,23 +9,23 @@ JUCI.app
 			connection: "=ngConnection"
 		}, 
 		templateUrl: "/widgets/network-connection-dhcp-server-settings.html", 
-		controller: "networkConnectionDhcpServerSettings", 
-		replace: true
+		controller: "networkConnectionDhcpServerSettings"
 	};  
 })
 .controller("networkConnectionDhcpServerSettings", function($scope, $network, $uci){
-	$scope.dhcpEnabled = false; 
+	$scope.data = {}; 
+	$scope.data.dhcpEnabled = false; 
 	$scope.$watch("connection", function(value){
 		if(!value) return; 
 		$uci.sync("dhcp").done(function(){
 			$scope.dhcp = $uci.dhcp["@dhcp"].find(function(x){
 				return x.interface.value == value[".name"]; 
 			}); 
-			$scope.dhcpEnabled = $scope.dhcp && !$scope.dhcp.ignore.value; 
+			$scope.data.dhcpEnabled = $scope.dhcp && !$scope.dhcp.ignore.value; 
 			$scope.$apply(); 
 		}); 
 	}); 
-	$scope.$watch("dhcpEnabled", function(value){
+	$scope.$watch("data.dhcpEnabled", function(value){
 		if(!$scope.dhcp) return; 
 		$scope.dhcp.ignore.value = value; 
 	}); 

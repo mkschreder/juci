@@ -1,24 +1,18 @@
 <div>
-	<div class="row" ng-hide="item">
+	<div class="row" >
 		<div class="col-xs-9">
 			<div class="list-group" >
-				<div class="list-group-item" ng-repeat="i in items" >
-					<div class="btn-group pull-right">
-						<button class="btn btn-default btn-xs" ng-click="onListEditItem(i)"><i class="fa fa-edit"/></button>
-						<button class="btn btn-default btn-xs" ng-click="onListRemoveItem(i)"><i class="fa fa-trash "/></button>
-					</div>
-					{{i.name.value}}
-				</div>
+				<a href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}</a>
 			</div>
 		</div>
 		<div class="col-xs-3">
-			<div class="btn-group-vertical" style="width: 100%;">
-				<button class="btn btn-lg btn-default" ng-click="onListAddItem()" translate>Add</button>
+			<div class="btn-group-vertical" style="width: 100%;" >
+				<button class="btn btn-lg btn-default" ng-click="onListAddItem()" ng-class="{disabled: !editable}" translate>Add</button>
+				<button class="btn btn-lg btn-default" ng-click="onListRemoveItem(item)" ng-class="{disabled: item == null || !editable}" translate>Delete</button>
 			</div>
 		</div>
 	</div>
 	<div ng-show="item">
 		<div dynamic="dynamicHtml"/>
-		<button class="btn btn-default" ng-click="onGoBack()">Back</button>
 	</div>
 </div>
