@@ -4,6 +4,11 @@
 			"acls": [ "system" ],
 			"index": 10
 	},
+	"settings/system": {
+			"title": "System",
+			"acls": [ "system" ],
+			"index": 15
+	},
 	"settings/upgrade": {
 			"title": "Firmware Upgrade",
 			"acls": [ "admin" ],

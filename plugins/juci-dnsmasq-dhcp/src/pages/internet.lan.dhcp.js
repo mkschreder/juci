@@ -2,7 +2,8 @@
 
 JUCI.app
 .controller("InternetDHCPPage", function($scope, $uci, $rpc, $network, $config){
-	$network.getNetworks().done(function(nets){
+	/*$network.getNetworks().done(function(nets){
+		$scope.networks = nets.filter(function(net){ return net.is_lan.value && net[".name"] != "loopback"; }); 
 		$scope.availableNetworks = nets.map(function(n){
 			return { label: n[".name"], value: n[".name"] }; 
 		}); 
@@ -27,31 +28,39 @@ JUCI.app
 				$scope.$apply(); 
 			}); 
 		}); 
-	}); 
+	}); */
+	$scope.data = {}; 
 	
-	$scope.onEditDHCP = function(dhcp){
-		$scope.dhcp = dhcp; 
-	}
-	
-	$scope.onRemoveDHCP = function(dhcp){
-		dhcp.$delete().done(function(){
+	$uci.sync("dhcp").done(function(){
+		$network.getNetworks().done(function(nets){
+			$scope.networks = nets.filter(function(net){ return net.is_lan.value && net[".name"] != "loopback"; }); 
+			$scope.networks = $scope.networks.map(function(net){
+				net.$dhcp = $uci.dhcp["@dhcp"].find(function(entry){
+					return entry.interface.value == net[".name"]; 
+				}); 
+				return net; 
+			}).filter(function(net){
+				return net.$dhcp;
+			});  
 			$scope.$apply(); 
 		}); 
+	}); 
+	
+	$scope.onSelectNetwork = function(net){
+		$scope.network = net; 
 	}
 	
-	$scope.onExistingChanged = function(){
-		if(!$scope.dhcp) return; 
-		/*var item = $scope.existingHost; 
-		$uci.dhcp.create({
-			".type": "host", 
-			name: item.hostname, 
-			dhcp: $scope.dhcp[".name"], 
-			network: $scope.dhcp.interface.value, 
-			mac: item.macaddr, 
-			ip: item.ipaddr
-		}).done(function(section){
-			console.log("Added static dhcp: "+JSON.stringify(item)); 
-			$scope.$apply(); 
-		}); */
-	} 
+	$scope.onToggleDHCP = function(){
+		if(!$scope.network) return; 
+		if($scope.data.dhcpEnabled && !$scope.network.$dhcp){
+			$uci.dhcp.create({
+				".type": "dhcp", 
+				"interface": $scope.network[".name"]
+			}).done(function(dhcp){
+				$scope.network.$dhcp = dhcp; 
+				$scope.$apply(); 
+			}); 
+		}
+	}
+	
 }); 

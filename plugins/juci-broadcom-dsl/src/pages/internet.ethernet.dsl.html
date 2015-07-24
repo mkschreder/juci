@@ -1,5 +1,18 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="BCMDSLPage">
-		
+		<juci-config-heading translate>DSL Device Settings</juci-config-heading>
+		<juci-config-info>{{ 'internet.ethernet.dsl.info' | translate }}</juci-config-info>
+		<juci-config-section>
+			<h2 translate>ADSL Devices</h2>
+			<juci-panel title="{{dev.name.value}} ({{dev.ifname.value}})" ng-repeat="dev in adsl_devices">
+				<network-device-adsl-edit ng-model="dev"></network-device-adsl-edit>
+			</juci-panel>
+		</juci-config-section>
+		<juci-config-section>
+			<h2 translate>VDSL Devices</h2>
+			<juci-panel title="{{dev.name.value}} ({{dev.ifname.value}})" ng-repeat="dev in vdsl_devices">
+				<network-device-vdsl-edit ng-model="dev"></network-device-vdsl-edit>
+			</juci-panel>
+		</juci-config-section>
 	</div>
 </juci-layout-with-sidebar>

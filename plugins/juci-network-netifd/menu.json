@@ -4,24 +4,29 @@
         "redirect": "internet/firewall", 
         "index": 30
     },
-    "internet/wan": {
-        "title": "WAN",
-        "acls": [ "network" ],
-        "index": 5
-    },
-    "internet/lan": {
-        "title": "LAN",
-        "acls": [ "network" ],
-        "index": 6
-    },
     "internet/ethernet": {
         "title": "Devices",
         "acls": [ "network" ],
-        "index": 7
+        "index": 5
     },
     "internet/network": {
         "title": "Connections",
         "acls": [ "network" ],
+        "index": 6
+    },
+    "internet/wan": {
+        "title": "WAN",
+        "acls": [ "network" ],
         "index": 8
+    },
+    "internet/lan": {
+        "title": "LAN",
+        "acls": [ "network" ],
+        "index": 9
+    },
+    "internet/services": {
+        "title": "Services",
+        "acls": [ "network" ],
+        "index": 100
     }
 }

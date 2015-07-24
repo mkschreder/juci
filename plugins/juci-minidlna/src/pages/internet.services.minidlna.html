@@ -1,0 +1,36 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="MiniDLNAConfigPage">
+		<h2 translate>MiniDLNA Settings</h2>
+		<p translate>minidlna.settings.info</p>
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable'|translate}}">
+					<switch ng-model="config.enabled.value" class="green"/>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-section ng-show="config.enabled.value">
+			<juci-config-lines>
+				<juci-config-line title="{{'Port'|translate}}">
+					<input type="text" class="form-control" ng-model="config.port.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Interfaces'|translate}}">
+					
+				</juci-config-line>
+				<juci-config-line title="{{'Friendly Name'|translate}}">
+					<input type="text" class="form-control" ng-model="config.friendly_name.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Root Container'|translate}}">
+					<input type="text" class="form-control" ng-model="config.root_container.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Media Directories'|translate}}">
+					<input type="text" class="form-control" ng-model="config.media_dir.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Album-Art Names'|translate}}">
+					<input type="text" class="form-control" ng-model="config.album_art_names.value"/>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

@@ -14,6 +14,6 @@ JUCI.app
 .controller("networkDeviceAdslEdit", function($scope){
 	$scope.$watch("device", function(value){
 		if(!value) return; 
-		$scope.conf = value.base; 
+		$scope.conf = value.base || value; 
 	}); 
 }); 

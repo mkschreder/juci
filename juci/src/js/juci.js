@@ -229,6 +229,7 @@
 			"ui.bootstrap",
 			"ui.router", 
 			'ui.select',
+			"ui.bootstrap.carousel", 
 			'angularModalService', 
 			"uiSwitch",
 			"ngAnimate", 

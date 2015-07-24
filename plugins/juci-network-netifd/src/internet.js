@@ -99,7 +99,7 @@
 			], function(){
 				deferred.resolve(networks); 
 			}); 
-						
+			
 			return deferred.promise(); 
 		}
 		
@@ -228,6 +228,12 @@ UCI.network.$registerSectionType("interface", {
 	"enabled": 				{ dvalue: true, type: Boolean }
 }); 
 
+UCI.network.$registerSectionType("route", {
+	"interface": 			{ dvalue: "", type: String }, 
+	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
+	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
+	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }
+}); 
 
 UCI.$registerConfig("ddns");
 UCI.ddns.$registerSectionType("service", {

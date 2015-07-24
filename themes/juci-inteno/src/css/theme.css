@@ -177,3 +177,8 @@ div.error {
 .footer-right {
 	text-align: right; 
 }
+
+.carousel-indicators {
+	top: auto;
+	bottom: 15px;
+}

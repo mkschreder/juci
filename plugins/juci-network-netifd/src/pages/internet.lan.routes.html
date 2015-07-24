@@ -2,7 +2,26 @@
 	<div ng-controller="InternetLANRoutesPage">
 		<juci-config-heading>{{ 'Static Routes' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.lan.routes.info' | translate }}</juci-config-info>
-		
+		<table class="table">
+			<thead>
+				<th translate>Connection</th>
+				<th translate>Target</th>
+				<th translate>Netmask</th>
+				<th translate>Gateway</th>
+				<th style="width: 1%"></th>
+			</thead>
+			<tr ng-repeat="route in routes">
+				<td><juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select></td>
+				<td><input type="text" class="form-control" ng-model="route.target.value"/></td>
+				<td><input type="text" class="form-control" ng-model="route.netmask.value"/></td>
+				<td><input type="text" class="form-control" ng-model="route.gateway.value"/></td>
+				<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"/></button></td>
+			</tr>
+			<tr>
+				<td colspan="4"></td>
+				<td><button class="btn btn-default" ng-click="onAddRoute()"><i class="fa fa-plus"/></button></td>
+			</tr>
+		</table>
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>
 	</div>

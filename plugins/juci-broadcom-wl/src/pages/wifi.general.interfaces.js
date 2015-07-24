@@ -19,34 +19,31 @@ JUCI.app
 	}
 	
 	$scope.onCreateInterface = function(){
-		$scope.open = function (size) {
-			var modalInstance = $modal.open({
-				animation: $scope.animationsEnabled,
-				templateUrl: 'widgets/wifi-radio-picker-modal.html',
-				controller: 'WifiRadioPickerModal',
-				size: size,
-				resolve: {
-					interfaces: function () {
-						return $scope.interfaces;
-					}
+		var modalInstance = $modal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'widgets/wifi-radio-picker-modal.html',
+			controller: 'WifiRadioPickerModal',
+			size: size,
+			resolve: {
+				interfaces: function () {
+					return $scope.interfaces;
 				}
-			});
+			}
+		});
 
-			modalInstance.result.then(function (data) {
-				$uci.wireless.create({
-					".type": "wifi-iface",
-					"device": data.radio, 
-					"ssid": data.ssid
-				}).done(function(interface){
-					//$scope.interfaces.push(interface); 
-					interface[".frequency"] = ($scope.devices.find(function(x){ return x[".name"] == interface.device.value; })||{})[".frequency"]; 
-					$scope.$apply(); 
-				}); 
-			}, function () {
-				console.log('Modal dismissed at: ' + new Date());
-			});
-		};
-		$scope.open(); 
+		modalInstance.result.then(function (data) {
+			$uci.wireless.create({
+				".type": "wifi-iface",
+				"device": data.radio, 
+				"ssid": data.ssid
+			}).done(function(interface){
+				//$scope.interfaces.push(interface); 
+				interface[".frequency"] = ($scope.devices.find(function(x){ return x[".name"] == interface.device.value; })||{})[".frequency"]; 
+				$scope.$apply(); 
+			}); 
+		}, function () {
+			console.log('Modal dismissed at: ' + new Date());
+		});
 		/*
 		prompt({
 			"title": gettext("New Wireless Interface"),
@@ -81,14 +78,10 @@ JUCI.app
 		});*/
 	}
 	
-	$scope.onDeleteConnection = function(conn){
+	$scope.onDeleteInterface = function(conn){
 		if(!conn) alert(gettext("Please select a connection in the list!")); 
-		if(confirm(gettext("Are you sure you want to delete this connection?"))){
+		if(confirm(gettext("Are you sure you want to delete this wireless interface?"))){
 			conn.$delete().done(function(){
-				$scope.networks = $scope.networks.filter(function(net){
-					return net[".name"] != conn[".name"]; 
-				}); 
-				$scope.current_connection = null; 
 				$scope.$apply(); 
 			}); 
 		}
