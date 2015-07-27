@@ -1,0 +1,22 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Name'|translate}}">
+			<input type="text" class="form-control" ng-model="zone.name.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Default Policy'|translate}}">
+			<table class="table">
+				<thead><th translate>Input</th><th translate>Output</th><th translate>Forward</th></thead>
+				<tbody>
+					<tr>
+						<td><juci-select ng-model="zone.input.value" ng-items="policys"></juci-select></td>
+						<td><juci-select ng-model="zone.output.value" ng-items="policys"></juci-select></td>
+						<td><juci-select ng-model="zone.forward.value" ng-items="policys"></juci-select></td>
+					</tr>
+				</tbody>
+			</table>
+		</juci-config-line>
+		<juci-config-line title="{{'Zone members:'|translate}}">
+		</juci-config-line>
+	</juci-config-lines>
+	<juci-list-editor ng-items="networks" get-item-title="getItemTitle($item)"></juci-list-editor>
+</div>

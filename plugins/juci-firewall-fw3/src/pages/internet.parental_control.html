@@ -9,27 +9,7 @@
 					<switch ng-model="firewall.urlblock.enabled.value" class="green"></switch>
 				</juci-config-line>
 			</juci-config-lines>
-			<div class="row" ng-show="firewall.urlblock.enabled.value">
-				<div class="col-sm-6">
-					<div class="row form-group" ng-repeat="r in urlList track by $index">
-						<div class="col-sm-10">
-							<input type="text" class="form-control" ng-model="r.url" placeholder="{{'URL'|translate}}"/>
-						</div>
-						<div class="col-sm-2">
-							<button class="btn btn-default" ng-click="onDeleteURL(r.url)"><i class="fa fa-trash-o"></i></button>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-sm-10"/>
-						<div class="col-sm-2">
-							<button class="btn btn-default" ng-click="onAddURL()"><i class="fa fa-plus"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<juci-maclist-edit ng-model="macList"/>
-				</div>
-			</div>
+			<firewall-urlfilter-editor ng-show="firewall.urlblock.enabled.value"/>
 		</juci-config-section>
 		<juci-config-section>
 			<h2 translate>Internet Access Scheduling</h2>

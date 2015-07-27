@@ -1,0 +1,10 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetFirewallZonesPage">
+		<h2 translate>Firewall Zones</h2>
+		<p translate>internet.firewall.zones.info</p>
+		<juci-config-section>
+			<juci-list-editor ng-items="zones" item-editor="firewall-zone-edit" get-item-title="getItemTitle($item)"/>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

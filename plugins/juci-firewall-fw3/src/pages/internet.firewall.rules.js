@@ -9,5 +9,8 @@ JUCI.app
 	$uci.sync("firewall").done(function(){
 		$scope.firewall = $uci.firewall; 
 		$scope.$apply(); 
-	}); 
+	});  
+	$scope.getItemTitle = function(item){
+		return item.name.value; 
+	}
 }); 

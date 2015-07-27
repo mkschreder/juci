@@ -1,8 +1,11 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetFirewallUrlblockPage">
-		<h2 translate>Service Filtering</h2>
-		<p translate>internet.firewall.svcfilter.info</p>
-		
+		<h2 translate>URL Filtering</h2>
+		<p translate>internet.firewall.urlfilter.info</p>
+		<juci-config-section>
+			<h3 translate>Add URL's to URL blocking list</h3>'
+			<firewall-urlfilter-editor></firewall-urlfilter-editor>
+		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

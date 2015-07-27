@@ -1,7 +1,7 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Device Name'|translate}}">
-			<span style="font-weight: bold;">{{conf.ifname.value}}</span>
+			<input type="text" class="font-control" ng-model="conf.ifname.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Base Device'|translate}}">
 			<juci-select ng-model="conf.baseifname.value" ng-items="baseDevices"/>

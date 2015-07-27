@@ -2,10 +2,8 @@
 	<div ng-controller="InternetFirewallRulesPage">
 		<h2 translate>Rules</h2>
 		<p translate>internet.firewall.rules.info</p>
-		<juci-config-section ng-show="firewallSwitchState">
-			<h2 translate>Rules</h2>
-			<p translate>internet.firewall.rules.info</p>
-			<juci-list-editor ng-items="rules" edit-control="firewall-rule-edit"/>
+		<juci-config-section>
+			<juci-list-editor ng-items="rules" item-editor="firewall-rule-edit" get-item-title="getItemTitle($item)"/>
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>
