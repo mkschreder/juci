@@ -51,38 +51,6 @@ JUCI.app
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());
 		});
-		/*
-		prompt({
-			"title": gettext("New Wireless Interface"),
-			"message": gettext("Enter SSID for your new interface:"),
-			"input": true,
-			"buttons": [
-				{
-					"label": gettext("Cancel"),
-					"cancel": true,
-					"primary": true
-				},
-				{
-					"label": gettext("OK"),
-					"cancel": false, 
-					"primary": true
-				}
-			]
-		}).then(function(result){
-			if(!result || result == ""){
-				alert(gettext("SSID can not be empty!")); 
-				return; 
-			}
-			if(($scope.interfaces.find(function(x){ return x.ssid.value == result && x.device; }) && confirm(gettext("Are you sure you want to create a new SSID with the same name and on the same radio?"))))
-			$uci.network.create({
-				".type": "interface",
-				".name": result
-			}).done(function(interface){
-				$scope.current_connection = interface; 
-				$scope.networks.push(interface); 
-				$scope.$apply(); 
-			}); 
-		});*/
 	}
 	
 	$scope.onDeleteInterface = function(conn){

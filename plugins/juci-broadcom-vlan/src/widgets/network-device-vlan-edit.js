@@ -31,12 +31,13 @@ JUCI.app
 	$scope.$watch("data.base_device", function(value){
 		if(!$scope.conf) return; 
 		$scope.conf.ifname.value = value+"."+$scope.data.device_id; 
+		$scope.conf.baseifname.value = value; 
 	}); 
 	$network.getDevices().done(function(devs){
 		$scope.baseDevices = devs
 			.filter(function(x){ return x.type == "baseif" && x.name != "loopback"; })
 			.map(function(x){
-				return { label: x.name, value: x.name }
+				return { label: x.name, value: x.id }
 			});
 		$scope.$apply();  
 	}); 

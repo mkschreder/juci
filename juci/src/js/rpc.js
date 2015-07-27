@@ -42,7 +42,7 @@
 									case 2: return gettext("Invalid parameters"); 
 									case 3: return gettext("Internal error"); 
 									case 4: return gettext("Object not found"); 
-									case 5: return gettext("Session not found"); 
+									case 5: return gettext("No changes to commit"); // or session not found? 
 									case 6: return gettext("Access denied"); 
 									case 7: return gettext("Timed out"); 
 									default: return gettext("RPC error #")+result.result[0]+": "+result.result[1]; 

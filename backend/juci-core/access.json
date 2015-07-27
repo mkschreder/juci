@@ -95,7 +95,9 @@
 				]
 			},
 			"uci": [
-				"juci"
+				"juci",
+				"minidlna", 
+				"upnpd"
 			]
 		},
 		"write": {
@@ -105,7 +107,9 @@
 				]
 			},
 			"uci": [
-				"juci"
+				"juci",
+				"minidlna", 
+				"upnpd"
 			]
 		}
 	},
