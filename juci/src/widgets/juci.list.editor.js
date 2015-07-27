@@ -8,7 +8,8 @@ JUCI.app
 			getItemTitle: "&getItemTitle", 
 			onCreate: "&onCreate", 
 			onDelete: "&onDelete", 
-			onUpdate: "&onUpdate"
+			onUpdate: "&onUpdate", 
+			onEditStart: "&onEditStart",
 		}, 
 		controller: "juciListEditor", 
 		templateUrl: "/widgets/juci.list.editor.html", 
@@ -21,16 +22,15 @@ JUCI.app
 .controller("juciListEditor", function($scope){
 	$scope.dynamicHtml = "<"+$scope.editor+" ng-model='item'/>"; 
 	$scope.onListAddItem = function(){
+		$scope.item = null; 
 		$scope.onCreate();
 	}
 	$scope.onListEditItem = function(i){
 		$scope.item = i; 
+		$scope.onEditStart({"$item": i}); 
 	}
 	$scope.onListRemoveItem = function(i){
 		$scope.onDelete({"$item": i});  
-		$scope.item = $scope.items.find(function(x){ return x == i }); 
-	}
-	$scope.onGoBack = function(){
-		$scope.item = null; 
+		$scope.item = null; //$scope.items.find(function(x){ return x == i }); 
 	}
 }); 

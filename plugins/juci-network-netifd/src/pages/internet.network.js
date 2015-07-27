@@ -9,10 +9,6 @@ JUCI.app
 			{ label: "Bridge", value: "bridge" }, 
 			{ label: "AnyWAN", value: "anywan" }
 		]; 
-		$scope.protocolTypes = [
-			{ label: "Manual", value: "static" }, 
-			{ label: "Automatic (DHCP)", value: "dhcp" }
-		]; 
 			
 		$network.getNetworks().done(function(nets){
 			$scope.networks = nets.filter(function(x){ return x.ifname.value != "lo" }); 
@@ -21,6 +17,7 @@ JUCI.app
 				$scope.networks = $scope.networks.map(function(net){ 
 					net.addedDevices = []; 
 					var addedDevices = net.ifname.value.split(" "); 
+					//net.$type_editor = "<network-connection-proto-"+net.type.value+"-edit/>";
 					net.addableDevices = devs
 						.filter(function(dev){ 
 							var already_added = addedDevices.find(function(x){ 
@@ -96,10 +93,9 @@ JUCI.app
 	
 	$scope.onEditConnection = function(conn){
 		// set editing widget for the type specific part of the conneciton wizard
+		$scope.current_connection = conn; 
 		$rpc.network.interface.dump().done(function(ifaces){
 			var info = ifaces.interface.find(function(x){ return x.interface == conn[".name"]; }); 
-			$scope.current_connection = conn; 
-			conn.$type_editor = "<network-connection-proto-"+conn.type.value+"-edit ng-model='current_connection'/>"; 
 			conn.$info = info; 
 			$scope.$apply(); 
 		}); 

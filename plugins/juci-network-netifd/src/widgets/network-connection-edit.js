@@ -15,8 +15,15 @@ JUCI.app
 	$scope.expanded = true; 
 	$scope.existingHost = { }; 
 	
-	$scope.$watch("interface", function(iface){
+	$scope.protocolTypes = [
+		{ label: "Manual", value: "static" }, 
+		{ label: "Automatic (DHCP)", value: "dhcp" }
+	]; 
+	
+	$scope.$watch("conn", function(iface){
 		if(!iface) return; 
+		iface.$type_editor = "<network-connection-type-"+iface.type.value+"-edit ng-model='conn'/>"; 
+		
 	}); 
 	
 	$scope.$watchCollection("bridgedInterfaces", function(value){

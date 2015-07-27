@@ -11,9 +11,23 @@ JUCI.app
 		replace: true
 	};  
 })
-.controller("networkDeviceVdslEdit", function($scope){
+.controller("networkDeviceVdslEdit", function($scope, $network){
+	$network.getDevices().done(function(devices){
+		var baseDevices = []; 
+		devices.map(function(device){
+			if(device.id.match(/.*ptm.*/)) {
+				var id = device.id.substr(0, device.id.lastIndexOf(".")); 
+				baseDevices.push({
+					label: id, 
+					value: id
+				});
+			}
+		}); 
+		$scope.baseDevices = baseDevices; 
+		$scope.$apply(); 
+	}); 
 	$scope.$watch("device", function(value){
 		if(!value) return; 
-		$scope.config = value.base; 
+		$scope.conf = value.base || value; 
 	}); 
 }); 

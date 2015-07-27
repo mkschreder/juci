@@ -152,7 +152,8 @@
 					var devices = [{
 						get name(){ return "loopback"; },
 						get id() { return "lo"; },  
-						get type(){ return "baseif"; }
+						get type(){ return "baseif"; }, 
+						base: { name: "loopback", id: "lo" }
 					}]; 
 					$rpc.router.boardinfo().done(function(boardinfo){
 						var names = boardinfo.ethernet.port_names.split(" "); 
@@ -161,7 +162,8 @@
 							devices.push({
 								get name(){ return names[i]; },
 								get id(){ return dev; },
-								get type(){ return "baseif"; }
+								get type(){ return "baseif"; },
+								base: { name: names[i], id: dev }
 							}); 
 						}); 
 						deferred.resolve(devices); 
@@ -223,7 +225,7 @@ UCI.network.$registerSectionType("interface", {
 	"vendorid":				{ dvalue: '', type: String }, 
 	"hostname":				{ dvalue: '', type: String }, 
 	"ipv6":						{ dvalue: false, type: Boolean },
-	"peerdns": 				{ dvalue: true, type: String }, 
+	"peerdns": 				{ dvalue: true, type: Boolean }, 
 	"dns": 						{ dvalue: [], type: Array }, 
 	"enabled": 				{ dvalue: true, type: Boolean }
 }); 

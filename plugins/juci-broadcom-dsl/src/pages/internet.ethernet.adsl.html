@@ -1,0 +1,9 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="BCMADSLPage">
+		<juci-config-heading translate>ADSL Devices</juci-config-heading>
+		<juci-config-info>{{ 'internet.ethernet.adsl.info' | translate }}</juci-config-info>
+		<juci-config-section>
+			<juci-list-editor ng-items="adsl_devices" get-item-title="getItemTitle($item)" item-editor="network-device-adsl-edit" on-create="onAddDevice()" on-delete="onDeleteDevice($item)"></juci-list-editor>
+		</juci-config-section>
+	</div>
+</juci-layout-with-sidebar>

@@ -1,8 +1,13 @@
 {
-	"internet/ethernet/dsl": {
-		"title": "DSL", 
+	"internet/ethernet/adsl": {
+		"title": "ADSL", 
 		"acls": [ "network" ], 
 		"index": 5
+	}, 
+	"internet/ethernet/vdsl": {
+		"title": "VDSL", 
+		"acls": [ "network" ], 
+		"index": 6
 	}, 
 	"status/status/dsl": {
 			"title": "DSL",

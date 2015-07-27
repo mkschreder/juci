@@ -71,6 +71,7 @@ JUCI.app
 	return {
 		template: '<div>'+
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
+			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
 			'<div class="btn-toolbar" >'+
 			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()">{{ "Cancel" | translate }}</button>'+
 			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
@@ -81,11 +82,12 @@ JUCI.app
 		}, 
 		controller: "juciConfigApplyController"
 	 }; 
-}).controller("juciConfigApplyController", function($scope, $uci, $rootScope){
+}).controller("juciConfigApplyController", function($scope, $uci, $rootScope, gettext){
 	$scope.onApply = function(){
 		$scope.$emit("errors_begin"); 
 		//if($scope.onPreApply) $scope.onPreApply(); 
 		$scope.busy = 1; 
+		$scope.success = null; 
 		$scope.errors = []; 
 		try {
 			$uci.save().done(function(){
@@ -96,6 +98,7 @@ JUCI.app
 				console.error("Could not save uci configuration!"); 
 			}).always(function(){
 				$scope.busy = 0; 
+				$scope.success = gettext("Settings have been applied successfully!"); 
 				setTimeout(function(){$scope.$apply();}, 0); 
 			}); 
 		} catch(e){

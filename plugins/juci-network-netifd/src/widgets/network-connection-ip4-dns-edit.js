@@ -11,5 +11,19 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionIp4DnsEdit", function($scope){
-	
+	$scope.$watch("conn", function(value){
+		if(!value) return; 
+		$scope.data = {
+			primaryDNS: value.dns.value[0] || "", 
+			secondaryDNS: value.dns.value[1] || ""
+		}; 
+	}); 
+	$scope.$watch("data.primaryDNS", function(value){
+		if(!$scope.conn) return; 
+		$scope.conn.dns.value = [$scope.data.primaryDNS, $scope.data.secondaryDNS]; 
+	}); 
+	$scope.$watch("data.secondaryDNS", function(value){
+		if(!$scope.conn) return; 
+		$scope.conn.dns.value = [$scope.data.primaryDNS, $scope.data.secondaryDNS]; 
+	}); 
 }); 
