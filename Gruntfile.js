@@ -10,8 +10,8 @@ module.exports = function(grunt){
 			pot: {
 				files: {
 					'po/template.pot': [
-						'juci*/src/**/*.js',
-						'juci*/src/**/*.html'
+						'plugins/juci*/src/**/*.js',
+						'plugins/juci*/src/**/*.html'
 					]
 				}
 			}

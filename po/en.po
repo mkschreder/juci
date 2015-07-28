@@ -41,6 +41,7 @@ msgstr "Network"
 # #-#-#-#-#  custom.pot  #-#-#-#-#
 # wifi
 #: juci-mod-wireless/src/pages/wifi.general.html:21
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:28
 msgid "Setup"
 msgstr ""
 
@@ -50,14 +51,19 @@ msgstr ""
 #: juci-mod-voice/src/widgets/overview.voice.html:11
 #: juci-mod-wireless/src/pages/wifi.schedule.html:4
 #: juci-mod-wireless/src/widgets/overview.wifi.html:11
+#: plugins/juci-asterisk/src/widgets/overview.voice.html:11
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:4
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:11
 msgid "Schedule"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:5
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:5
 msgid "WPS"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.mac_filter.html:3
+#: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.html:3
 msgid "MAC Filter"
 msgstr ""
 
@@ -73,10 +79,13 @@ msgstr ""
 "manage up to 32 devices."
 
 #: juci-mod-wireless/src/pages/wifi.general.html:15
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:22
 msgid "Enable WiFi On/Off button on EasyBox"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:12
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:16
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:19
 msgid "Wifi Network"
 msgstr ""
 
@@ -89,6 +98,7 @@ msgid "wifi.general.setup.info"
 msgstr "Configure your wireless interfaces."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:8
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:8
 msgid "WPS Function"
 msgstr ""
 
@@ -99,30 +109,37 @@ msgstr ""
 "connection methods."
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:3
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:3
 msgid "MAC Filtering"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:12
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:12
 msgid "Access for listed devices"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:17
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:17
 msgid "Currently added devices"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:39
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:39
 msgid "Add currently connected hosts to the list"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:3
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:3
 msgid "Wifi Mode"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:6
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:6
 msgid "Bandwidth"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:9
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:9
 msgid "Channel"
 msgstr ""
 
@@ -133,6 +150,7 @@ msgid "Apply"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:44
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 msgid "Cancel"
 msgstr ""
 
@@ -148,6 +166,7 @@ msgid "DSL"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.js:23
+#: plugins/juci-mod-status/src/pages/status.status.js:24
 msgid "Voice"
 msgstr ""
 
@@ -161,10 +180,12 @@ msgid "Events"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.restart.html:4
+#: plugins/juci-mod-status/src/pages/status.restart.html:4
 msgid "Restart"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.about.html:3
+#: plugins/juci-mod-status/src/pages/status.about.html:3
 msgid "About"
 msgstr ""
 
@@ -174,15 +195,20 @@ msgstr ""
 # phone
 #: juci-mod-voice/src/pages/phone.call_log.html:4
 #: juci-mod-voice/src/pages/phone.html:4
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:4
+#: plugins/juci-asterisk/src/pages/phone.html:4
 msgid "Call Log"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.number_blocking.html:3
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:3
 msgid "Number Blocking"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:4
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:8
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:4
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:7
 msgid "Ringing Schedule"
 msgstr ""
 
@@ -191,6 +217,8 @@ msgstr ""
 
 #: juci-mod-voice/src/pages/phone.speed_dialing.html:4
 #: juci-mod-voice/src/pages/phone.speed_dialing.html:7
+#: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:4
+#: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:7
 msgid "Speed Dialing"
 msgstr ""
 
@@ -199,22 +227,24 @@ msgid "EasyBox Password"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:4
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:4
 msgid "Firmware Upgrade"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.energy.html:4
+#: plugins/juci-mod-system/src/pages/settings.energy.html:4
 msgid "Energy Settings"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:4
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:4
 msgid "Configuration"
 msgstr ""
 
 msgid "Advanced"
 msgstr ""
 
-#: juci/src/js/app.js:174 juci/src/js/juci.js:274 juci/src/js/app.js:172
-#: juci/src/js/juci.js:282
+#: juci/src/js/app.js:174 juci/src/js/juci.js:274
 msgid "application.name"
 msgstr "JUCI"
 
@@ -266,12 +296,18 @@ msgstr "802.11ac"
 #: juci-mod-wireless/src/pages/wifi.mac_filter.js:15
 #: juci-mod-wireless/src/pages/wifi.settings.js:11
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.js:30
+#: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.js:15
+#: plugins/juci-broadcom-wl/src/pages/wifi.settings.js:11
+#: plugins/juci-broadcom-wl/src/wifi.js:71
 msgid "2.4GHz"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.mac_filter.js:14
 #: juci-mod-wireless/src/pages/wifi.settings.js:10
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.js:29
+#: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.js:14
+#: plugins/juci-broadcom-wl/src/pages/wifi.settings.js:10
+#: plugins/juci-broadcom-wl/src/wifi.js:70
 msgid "5GHz"
 msgstr ""
 
@@ -290,114 +326,147 @@ msgstr ""
 
 #: juci-mod-network/src/pages/status.nat.html:6
 #: juci-mod-status/src/pages/status.status.network.js:29
+#: plugins/juci-firewall-fw3/src/pages/status.nat.html:6
+#: plugins/juci-mod-status/src/pages/status.status.network.js:29
 msgid "Active Connections"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.html:10
+#: plugins/juci-mod-status/src/pages/status.status.network.html:10
 msgid "Active Stations"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:89
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:89
 msgid "Actual Data Rate"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:77
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:36
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:63
 msgid "Add Connected Host"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:44
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 msgid "Add clients to MAC filtering list"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:44
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:44
 msgid "Add domain name"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:50
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:50
 msgid "Add password"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:47
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:47
 msgid "Add username"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:33
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:5
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:19
 msgid "Address Pool End IP"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:29
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:2
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:15
 msgid "Address Pool Start IP"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:39
-#: juci/src/widgets/juci.schedule.edit.js:29
 msgid "All Weekend"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:66
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:67
 msgid "Attempting to Pair"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:7
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:7
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:7
 msgid "Automated Diagnostics"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:9
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:9
 msgid "Automatic"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:32
 #: juci-mod-system/src/pages/settings.configuration.html:50
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:32
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:50
 msgid "Backup file password"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:12
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:12
 msgid "Banner File"
 msgstr ""
 
-#: juci/src/widgets/juci.top_bar.js:15 juci/src/widgets/juci.mode.picker.js:14
+#: juci/src/widgets/juci.top_bar.js:15
 msgid "Basic Mode"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:86
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:86
 msgid "Bit Rate"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:36
+#: plugins/juci-mod-status/src/pages/status.status.system.js:36
 msgid "Buffered"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:105
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:105
 msgid "CRC Errors"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:112
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:112
 msgid "Cell Counter"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:109
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:109
 msgid "Cell Statistics"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.password.html:10
 #: juci-mod-system/src/pages/settings.password.html:14
+#: plugins/juci-mod-system/src/pages/settings.password.html:10
+#: plugins/juci-mod-system/src/pages/settings.password.html:14
 msgid "Change Password"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:35
 #: juci-mod-system/src/pages/settings.upgrade.html:48
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:35
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:48
 msgid "Check for Upgrade"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:36
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:8
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:36
 msgid "Choose DNS Provider"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.schedule.html:16
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:16
 msgid "Choose Schedule Mode"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:16
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:16
 msgid ""
 "Choose the local IP address that should be exposed to Internet. Additionally "
 "you should configure this IP address as static DHCP address for your device "
@@ -405,137 +474,187 @@ msgid ""
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.speed_dialing.html:21
+#: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:21
 msgid "Clear"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.restart.html:8
+#: plugins/juci-mod-status/src/pages/status.restart.html:8
 msgid "Click here to restart your device"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:11
 #: juci-mod-tv/src/pages/status.status.tv.html:11
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:11
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:11
 msgid "Client IP"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:60
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:60
 msgid "Close"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:29
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:29
 msgid "Comments"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:39
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:39
 msgid "Connection Keep Alive"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:6
 #: juci-mod-tv/src/pages/status.status.tv.html:6
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:6
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:6
 msgid "Connection Status"
 msgstr ""
 
 #: juci-mod-network/src/pages/status.nat.html:4
 #: juci-mod-status/src/pages/status.status.network.html:4
+#: plugins/juci-firewall-fw3/src/pages/status.nat.html:4
+#: plugins/juci-mod-status/src/pages/status.status.network.html:4
+#: plugins/juci-network-netifd/src/pages/internet.network.html:3
 msgid "Connections"
 msgstr ""
 
 #: juci-mod-network/src/pages/status.nat.html:12
+#: plugins/juci-firewall-fw3/src/pages/status.nat.html:12
 msgid "Connections for each Device"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:7
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:7
 msgid "Current Firmware Version"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:23
+#: plugins/juci-ddns/src/pages/internet.wan.ddns.html:4
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:23
 msgid "DDNS (Dynamic DNS)"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:37
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:8
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:23
 msgid "DHCP Lease Time"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.html:7
+#: plugins/juci-mod-status/src/pages/status.status.network.html:7
 msgid "DHCP Leases"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:23
+#: plugins/juci-dnsmasq-dhcp/src/widgets/network-connection-dhcp-server-settings.html:3
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:9
 msgid "DHCP Server"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:4
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:4
 msgid "DNS"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:17
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:17
 msgid "DNS Server"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:15
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:15
 msgid "DNS Servers"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:7
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:7
 msgid "DNS configuration"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:79
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:79
 msgid "DSL Mode"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.html:3
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.html:3
 msgid "DSL Status"
 msgstr "DSL Status"
 
 #: juci-mod-status/src/pages/status.status.dsl.js:69
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:69
 msgid "DSL Status Information"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:36
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:36
 msgid "DSS Key File"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:26
 #: juci-mod-voice/src/pages/phone.call_log.html:18
 #: juci-mod-voice/src/pages/phone.html:18
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:18
+#: plugins/juci-asterisk/src/pages/phone.html:18
+#: plugins/juci-mod-status/src/pages/status.events.html:26
 msgid "Date"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:17
 #: juci-mod-wireless/src/pages/wifi.schedule.html:21
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:16
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:21
 msgid "Day"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:7
-#: juci/src/widgets/juci.schedule.edit.html:7
 msgid "Days"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:13
 #: juci-mod-samba/src/pages/services.samba.html:14
+#: plugins/juci-samba/src/pages/settings.samba.html:13
+#: plugins/juci-samba/src/pages/settings.samba.html:14
 msgid "Description"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:3
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:3
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:3
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:3
 msgid "Device"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:45
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:52
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:3
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:3
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:11
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:4
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:31
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:38
 msgid "Device Name"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:11
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:11
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:11
 msgid "Diagnose"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:3
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:3
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:3
 msgid "Diagnostic Utility"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.js:28
 #: juci-mod-wireless/src/pages/wifi.schedule.js:7
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.js:28
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.js:7
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:20
 msgid "Disabled"
 msgstr ""
 
@@ -544,43 +663,57 @@ msgid "Display Characters"
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:11
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:11
 msgid "Domain"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:43
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:15
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:16
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:43
 msgid "Domain name"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:4
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:4
 msgid "Dropbear"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.html:22
 #: juci-mod-voice/src/pages/phone.html:22
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:22
+#: plugins/juci-asterisk/src/pages/phone.html:22
 msgid "Duration"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:11
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:10
 msgid "During this time ringing is"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.schedule.html:15
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:15
 msgid "During this time the WiFi is"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:26
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:26
 msgid "Dynamic DNS"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:27
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:28
 msgid "Enable WPS button on router"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:18
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:18
 msgid "Enable WPS on"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.firewall.html:7
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:7
+#: plugins/juci-vodafone/src/pages/internet.firewall.html:7
 msgid "Enable firewall"
 msgstr ""
 
@@ -588,6 +721,11 @@ msgstr ""
 #: juci-mod-voice/src/pages/phone.ringing_schedule.js:27
 #: juci-mod-wireless/src/pages/wifi.schedule.js:6
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:18
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.js:27
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.js:6
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:3
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.lan.dhcp.html:10
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:6
 msgid "Enabled"
 msgstr ""
 
@@ -596,117 +734,146 @@ msgid "End port"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:40
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:12
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:40
 msgid "Enter DDNS Provider"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:58
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:59
 msgid "Enter your PIN here"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:57
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:58
 msgid "Enter your device PIN"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:25
 #: juci-mod-status/src/pages/status.diagnostics.html:37
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:25
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:37
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:25
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:37
 msgid "Error"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:101
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:101
 msgid "Error Counter"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:4
+#: plugins/juci-mod-status/src/pages/status.events.html:4
 msgid "Event Log"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:37
-#: juci/src/widgets/juci.schedule.edit.js:27
 msgid "Every Day"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:38
-#: juci/src/widgets/juci.schedule.edit.js:28
 msgid "Every Workday"
 msgstr ""
 
-#: juci/src/widgets/juci.top_bar.js:16 juci/src/widgets/juci.mode.picker.js:15
+#: juci/src/widgets/juci.top_bar.js:16
 msgid "Expert Mode"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:3
 msgid "Exposed Host"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:7
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:7
 msgid "Exposed Host Function"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.html:20
 #: juci-mod-voice/src/pages/phone.html:20
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:20
+#: plugins/juci-asterisk/src/pages/phone.html:20
 msgid "External Number"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:104
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:104
 msgid "FEC Corrections"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:16
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:16
 msgid "Factory Settings"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.firewall.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:3
+#: plugins/juci-vodafone/src/pages/internet.firewall.html:3
 msgid "Firewall settings"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:27
+#: plugins/juci-mod-status/src/pages/status.status.system.js:27
 msgid "Firmware Version"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:46
-#: juci/src/widgets/juci.schedule.edit.js:36
 msgid "Friday"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.html:12
+#: plugins/juci-mod-status/src/pages/status.status.html:21
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:10
 msgid "Gateway"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.password.html:4
+#: plugins/juci-mod-system/src/pages/settings.password.html:4
 msgid "Gateway Password"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:27
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:27
 msgid "Gateway Ports"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:4
+#: plugins/juci-samba/src/pages/settings.samba.html:4
 msgid "General Settings"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:4
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:4
 msgid "General WiFi Settings"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:49
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:50
 msgid "Generate"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:48
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:49
 msgid "Generate New PIN"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:45
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:46
 msgid "Generated PIN"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:10
 #: juci-mod-tv/src/pages/status.status.tv.html:10
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:10
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:10
 msgid "Group IP"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:16
 #: juci-mod-samba/src/pages/services.samba.html:17
+#: plugins/juci-samba/src/pages/settings.samba.html:16
+#: plugins/juci-samba/src/pages/settings.samba.html:17
 msgid "Homes"
 msgstr ""
 
@@ -715,10 +882,14 @@ msgid "Host"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:20
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:20
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:20
 msgid "Host to ping"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:32
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:32
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:32
 msgid "Host to trace"
 msgstr ""
 
@@ -726,6 +897,11 @@ msgstr ""
 #: juci-mod-status/src/pages/status.status.network.js:9
 #: juci-mod-status/src/pages/status.status.system.js:25
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:20
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:20
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:12
+#: plugins/juci-mod-status/src/pages/status.status.network.js:9
+#: plugins/juci-mod-status/src/pages/status.status.system.js:25
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:39
 msgid "Hostname"
 msgstr ""
 
@@ -734,31 +910,46 @@ msgstr ""
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:61
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:62
 #: juci-mod-status/src/pages/status.status.html:9
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:20
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:21
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:6
+#: plugins/juci-mod-status/src/pages/status.status.html:10
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:3
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:33
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:47
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:48
 msgid "IP Address"
 msgstr ""
 
 #: juci-mod-network/src/internet.js:14
+#: plugins/juci-network-netifd/src/internet.js:192
 msgid "IP Address must be a valid ipv4 address!"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:20
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:6
 msgid "IP Subnet Mask"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.js:24
+#: plugins/juci-mod-status/src/pages/status.status.js:25
 msgid "IPTV"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:15
 #: juci-mod-status/src/pages/status.status.network.js:9
+#: plugins/juci-mod-status/src/pages/status.status.network.js:15
+#: plugins/juci-mod-status/src/pages/status.status.network.js:9
 msgid "IPv4-Address"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:42
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:42
 msgid "Idle Timeout"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:53
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:53
 msgid ""
 "If you answer yes then your confiruation will be saved before the upgrade "
 "and restored after the upgrade has completed. If you choose 'no' then all "
@@ -766,20 +957,23 @@ msgid ""
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.number_blocking.html:41
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:41
 msgid "Incoming Calls"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:36
-#: juci/src/widgets/juci.schedule.edit.js:26
 msgid "Individual Days"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:36
 #: juci-mod-system/src/pages/settings.upgrade.html:45
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:36
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:45
 msgid "Install Upgrade"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:30
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:30
 msgid "Interface"
 msgstr ""
 
@@ -788,6 +982,7 @@ msgid "Internal error"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:50
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:15
 msgid "Internet Access Scheduling"
 msgstr ""
 
@@ -800,127 +995,162 @@ msgid "Invalid request"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:28
+#: plugins/juci-mod-status/src/pages/status.status.system.js:28
 msgid "Kernel Version"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:12
 #: juci-mod-tv/src/pages/status.status.tv.html:12
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:12
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:12
 msgid "LAN Port"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:38
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:9
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:24
 msgid "Lease Time"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:9
+#: plugins/juci-mod-status/src/pages/status.status.network.js:9
 msgid "Leasetime remaining"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:72
 #: juci-mod-status/src/pages/status.status.html:25
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:72
+#: plugins/juci-mod-status/src/pages/status.status.html:34
 msgid "Line Status"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:11
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:11
 msgid "Load"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.uci.html:16
+#: plugins/juci-mod-system/src/pages/settings.uci.html:16
 msgid "Loading"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:19
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:19
 msgid "Local IP"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:21
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:9
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:9
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:21
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:9
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:9
 msgid "Local IP Address"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:29
+#: plugins/juci-mod-status/src/pages/status.status.system.js:29
 msgid "Local Time"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:21
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:21
 msgid "Local port"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:23
+#: plugins/juci-mod-status/src/pages/status.events.html:23
 msgid "Log"
 msgstr ""
 
 #: juci/src/widgets/juci.login.html:4 juci/src/widgets/juci.top_bar.js:17
-#: juci/src/widgets/juci.mode.picker.js:16
 msgid "Log out"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:97
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:97
 msgid "Loop Attenuation"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:57
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:24
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:24
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:16
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:43
 msgid "MAC"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:46
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:56
-#: juci/src/widgets/juci.maclist.edit.html:4
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:15
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:5
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:32
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:42
 msgid "MAC Address"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:56
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:21
 msgid "MAC Addresses"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:15
+#: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "MAC address"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:9
+#: plugins/juci-mod-status/src/pages/status.status.network.js:9
 msgid "MAC-Address"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:12
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:12
 msgid "Manual"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:13
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:13
 msgid "Manual Firmware Upgrade"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.html:7
+#: plugins/juci-mod-status/src/pages/status.status.system.html:7
 msgid "Memory"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:29
+#: plugins/juci-mod-status/src/pages/status.events.html:29
 msgid "Message"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.energy.html:7
+#: plugins/juci-mod-system/src/pages/settings.energy.html:7
 msgid "Missing uci config boardpanel."
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:26
+#: plugins/juci-mod-status/src/pages/status.status.system.js:26
 msgid "Model"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:68
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:27
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:54
 msgid "Modify"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:42
-#: juci/src/widgets/juci.schedule.edit.js:32
 msgid "Monday"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.numbers.js:5
+#: plugins/juci-asterisk/src/pages/phone.numbers.js:5
 msgid "N/A"
 msgstr ""
 
 #: juci-mod-network/src/pages/status.nat.html:30
+#: plugins/juci-firewall-fw3/src/pages/status.nat.html:30
 msgid "NAT Connection Table"
 msgstr ""
 
@@ -928,32 +1158,49 @@ msgstr ""
 #: juci-mod-samba/src/pages/services.samba.html:8
 #: juci-mod-voice/src/pages/status.status.voice.html:31
 #: juci-mod-voice/src/pages/status.status.voice.html:9
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:31
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:9
+#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:3
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:3
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:3
+#: plugins/juci-network-netifd/src/widgets/network-device-baseif-edit.html:3
+#: plugins/juci-network-netifd/src/widgets/network-device-ethernet-edit.html:3
+#: plugins/juci-samba/src/pages/settings.samba.html:7
+#: plugins/juci-samba/src/pages/settings.samba.html:8
 msgid "Name"
 msgstr ""
 
 #: juci-mod-network/src/pages/settings.network.html:3
+#: plugins/juci-network-netifd/src/pages/settings.network.html:3
 msgid "Network Settings"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:33
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:33
 msgid "New Password"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:11
 #: juci-mod-status/src/pages/status.status.network.js:43
+#: plugins/juci-mod-status/src/pages/status.status.network.js:11
+#: plugins/juci-mod-status/src/pages/status.status.network.js:43
 msgid "No active leases"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:56
+#: plugins/juci-mod-status/src/pages/status.status.network.js:56
 msgid "No active stations"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.js:185
 #: juci-mod-system/src/pages/settings.upgrade.js:206
+#: plugins/juci-mod-system/src/pages/settings.upgrade.js:178
+#: plugins/juci-mod-system/src/pages/settings.upgrade.js:199
 msgid "No upgrade has been found!"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:15
+#: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "Noise"
 msgstr ""
 
@@ -962,10 +1209,11 @@ msgid "Not connected"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:19
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:18
 msgid "Number"
 msgstr ""
 
-#: juci/src/js/uci.js:61 juci/src/js/uci.js:74
+#: juci/src/js/uci.js:61
 msgid "Number value is not within valid range"
 msgstr ""
 
@@ -974,28 +1222,36 @@ msgid "Object not found"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:30
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:30
 msgid "Online Update"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:93
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:93
 msgid "Operating Data"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.number_blocking.html:7
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:7
 msgid "Outgoing Calls"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:34
 #: juci-mod-wireless/src/pages/wifi.wps.html:61
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:35
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:62
 msgid "Pair"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:33
 #: juci-mod-wireless/src/pages/wifi.wps.html:60
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:34
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:61
 msgid "Pair (within 2 minutes)"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:3
 msgid "Parental Control"
 msgstr ""
 
@@ -1005,84 +1261,111 @@ msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:49
 #: juci/src/widgets/juci.login.html:22 juci/src/widgets/juci.login.html:23
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:21
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:22
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:49
 msgid "Password"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:51
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:51
 msgid "Password (if encrypted)"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:15
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:15
 msgid "Password Authentication"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.password.js:36
+#: plugins/juci-mod-system/src/pages/settings.password.js:36
 msgid "Passwords do not match!"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.number_blocking.html:19
 #: juci-mod-voice/src/pages/phone.number_blocking.html:51
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:19
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:51
 msgid "Phone Extension"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.lines.html:4
+#: plugins/juci-asterisk/src/pages/phone.lines.html:4
 msgid "Phone Lines"
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:10
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:10
 msgid "Phone Number"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.numbers.html:4
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:4
 msgid "Phone Numbers"
 msgstr "Phone Numbers"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:7
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:7
 msgid "Pick Bandwidth"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:10
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:10
 msgid "Pick Channel"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:4
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:4
 msgid "Pick Hardware Mode"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.lines.html:15
+#: plugins/juci-asterisk/src/pages/phone.lines.html:15
 msgid "Pick Outgoing Number"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:47
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:46
 msgid "Pick Phone Number"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:47
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:47
 msgid "Pick configuration backup to upload"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:20
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:20
 msgid "Pick firmware file to upload"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.html:8
 #: juci-mod-voice/src/pages/phone.html:8
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:8
+#: plugins/juci-asterisk/src/pages/phone.html:8
 msgid "Pick phone"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:21
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:21
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:21
 msgid "Ping"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:16
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:16
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:16
 msgid "Ping Test"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:24
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:24
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:24
 msgid "Ping results"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:28
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:28
 msgid "Please add a comment describing this configuration"
 msgstr ""
 
@@ -1094,7 +1377,7 @@ msgstr ""
 msgid "Please enter valid time value for start and end time!"
 msgstr ""
 
-#: juci/src/js/uci.js:39 juci/src/js/uci.js:52
+#: juci/src/js/uci.js:39
 msgid "Please pick days between mon-sun"
 msgstr ""
 
@@ -1102,7 +1385,7 @@ msgstr ""
 msgid "Please sign in"
 msgstr ""
 
-#: juci/src/js/uci.js:16 juci/src/js/uci.js:30
+#: juci/src/js/uci.js:16
 msgid "Please specify both start time and end time for schedule!"
 msgstr ""
 
@@ -1111,6 +1394,8 @@ msgid "Please use ':' to separate hours and minutes!"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:18
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:18
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:14
 msgid "Port"
 msgstr ""
 
@@ -1119,77 +1404,98 @@ msgid "Port (1-65535)"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:3
 msgid "Port Mapping"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:4
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:4
 msgid ""
 "Port mapping allows remote computers to connect to a specific device within "
 "your private network."
 msgstr ""
 
-#: juci/src/js/uci.js:51 juci/src/js/uci.js:64
+#: juci/src/js/uci.js:51
 msgid ""
 "Port value must be a valid port number or port range between 1 and 65536"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.energy.html:16
+#: plugins/juci-mod-system/src/pages/settings.energy.html:16
 msgid "Power-LED"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.energy.html:19
+#: plugins/juci-mod-system/src/pages/settings.energy.html:19
 msgid "Power-LED Brightness"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:5
-#: juci/src/widgets/juci.schedule.edit.html:5
 msgid "Preselected Days"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:30
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:31
 msgid ""
 "Pressing WiFi on/off button on your router for long time activates pairing"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.html:15
+#: plugins/juci-mod-status/src/pages/status.status.html:24
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:6
 msgid "Primary DNS"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:36
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:36
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:36
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:36
 msgid "Private port"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:37
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:37
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:37
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:37
 msgid "Private port range"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:20
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:15
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:15
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:20
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:15
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:15
 msgid "Protocol"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:31
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:3
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:31
 msgid "Provider"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:18
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:18
 msgid "Public IP Address"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:22
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:22
 msgid "Public Port"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:29
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:29
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:29
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:29
 msgid "Public port"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:30
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:30
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:30
+#: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:30
 msgid "Public port range"
 msgstr ""
 
@@ -1198,106 +1504,127 @@ msgid "RPC error #"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:33
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:33
 msgid "RSA Key File"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:15
+#: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "RX Rate"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:36
 #: juci-mod-system/src/pages/settings.configuration.html:37
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:36
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:37
 msgid "Re-type password"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.speed_dialing.html:20
+#: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:20
 msgid "Remove all entries from speed dial list"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:19
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:19
 msgid "Reset"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:18
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:18
 msgid "Reset restores the factory default settings of your gateway"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.restart.html:14
+#: plugins/juci-mod-status/src/pages/status.restart.html:14
 msgid ""
 "Restart takes about 3 minutes. When restart is completed the page will "
 "reload automatically."
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:10
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:10
 msgid "Restore settings from a configuration saved on a computer"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:24
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:24
 msgid "Root Login"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:21
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:21
 msgid "Root Password Auth"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:40
+#: plugins/juci-mod-status/src/pages/status.status.system.js:40
 msgid "Root Usage (/)"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:96
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:96
 msgid "SNR Margin"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:22
+#: plugins/juci-samba/src/pages/settings.samba.html:22
 msgid "Samba Shares"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:25
+#: plugins/juci-samba/src/pages/settings.samba.html:26
 msgid "Samba Users"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:47
-#: juci/src/widgets/juci.schedule.edit.js:37
 msgid "Saturday"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:8
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:44
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:8
 msgid "Save"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:23
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:23
 msgid "Save Configuration to Computer"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:7
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:7
 msgid "Save settings to computer with password protection"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.schedule.html:7
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:7
 msgid "Schedule Function"
 msgstr ""
 
-#: juci/src/js/uci.js:25 juci/src/js/uci.js:41
+#: juci/src/js/uci.js:25
 msgid "Schedule start time must be lower than schedule end time!"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.html:18
+#: plugins/juci-mod-status/src/pages/status.status.html:27
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:9
 msgid "Secondary DNS"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:25
 #: juci-mod-network/src/pages/internet.parental_control.html:40
-#: juci/src/widgets/juci.maclist.edit.html:13
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:25
 msgid "Select Existing Host"
 msgstr ""
 
 #: juci/src/widgets/juci.top_bar.html:6
-#: juci/src/widgets/juci.mode.picker.html:2
 msgid "Select Mode"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:12
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:11
 msgid "Select Schedule Mode"
 msgstr ""
 
@@ -1310,6 +1637,7 @@ msgid "Select User Mode"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:18
+#: plugins/juci-mod-status/src/pages/status.events.html:18
 msgid "Select events to show"
 msgstr ""
 
@@ -1318,19 +1646,24 @@ msgid "Session not found"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:24
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:24
 msgid "Set to Existing Host"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.schedule.html:13
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:13
 msgid "Setup Scheduling"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:35
+#: plugins/juci-mod-status/src/pages/status.status.system.js:35
 msgid "Shared"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.html:7
 #: juci-mod-voice/src/pages/phone.html:7
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:7
+#: plugins/juci-asterisk/src/pages/phone.html:7
 msgid "Show calls for"
 msgstr ""
 
@@ -1339,14 +1672,17 @@ msgid "Sign in"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:15
+#: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "Signal"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:28
+#: plugins/juci-mod-status/src/pages/status.events.html:28
 msgid "Source"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:54
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:19
 msgid "Start Time"
 msgstr ""
 
@@ -1356,51 +1692,64 @@ msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:53
 #: juci-mod-system/src/pages/settings.upgrade.html:23
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:53
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:23
 msgid "Start upgrade"
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:32
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:32
 msgid "State"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:43
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:2
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:29
 msgid "Static DHCP"
 msgstr ""
 
 #: juci-mod-network/src/widgets/uci.network.interface.edit.html:18
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:4
+#: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:4
 msgid "Static IP Address"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.energy.html:13
+#: plugins/juci-mod-system/src/pages/settings.energy.html:13
 msgid "Status-LED"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:55
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:20
 msgid "Stop Time"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.html:10
+#: plugins/juci-mod-status/src/pages/status.status.system.html:10
 msgid "Storage"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:48
-#: juci/src/widgets/juci.schedule.edit.js:38
 msgid "Sunday"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:37
+#: plugins/juci-mod-status/src/pages/status.status.system.js:37
 msgid "Swap"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.html:4
+#: plugins/juci-mod-status/src/pages/status.status.system.html:4
 msgid "System Status"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.network.js:15
+#: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "TX Rate"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:41
+#: plugins/juci-mod-status/src/pages/status.status.system.js:41
 msgid "Temporary Usage (/tmp)"
 msgstr ""
 
@@ -1409,13 +1758,13 @@ msgid "The page you were trying to access was not found!"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.js:14
+#: plugins/juci-mod-system/src/pages/settings.configuration.js:14
 msgid ""
 "This will reset your configuration to factory defaults. Do you want to "
 "continue?"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:45
-#: juci/src/widgets/juci.schedule.edit.js:35
 msgid "Thursday"
 msgstr ""
 
@@ -1424,12 +1773,14 @@ msgstr ""
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:18
 #: juci-mod-wireless/src/pages/wifi.schedule.html:22
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:17
-#: juci/src/widgets/juci.schedule.edit.html:17
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:19
+#: plugins/juci-asterisk/src/pages/phone.html:19
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:17
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:22
 msgid "Time"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:4
-#: juci/src/widgets/juci.schedule.edit.html:4
 msgid "Time Frame"
 msgstr ""
 
@@ -1439,10 +1790,13 @@ msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:14
 #: juci-mod-tv/src/pages/status.status.tv.html:14
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:14
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:14
 msgid "Timeout"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.js:18
+#: plugins/juci-asterisk/src/pages/phone.call_log.js:19
 msgid "Today"
 msgstr ""
 
@@ -1452,109 +1806,141 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:33
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:33
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:33
 msgid "Trace"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:36
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:36
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:36
 msgid "Trace results"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:28
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:28
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:28
 msgid "Tracing Tool"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:43
-#: juci/src/widgets/juci.schedule.edit.js:33
 msgid "Tuesday"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.events.html:27
+#: plugins/juci-mod-status/src/pages/status.events.html:27
 msgid "Type"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:16
 #: juci-mod-network/src/pages/internet.parental_control.html:32
+#: plugins/juci-firewall-fw3/src/widgets/firewall-urlfilter-editor.html:5
 msgid "URL"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:8
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:8
 msgid "URL Blocking"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:6
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:6
 msgid "URL Blocking Function"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:41
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:41
 msgid "USB Firmware Upgrade"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.energy.html:10
+#: plugins/juci-mod-system/src/pages/settings.energy.html:10
 msgid "USB Port"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.js:7
 #: juci-mod-status/src/pages/status.status.tv.js:7
 #: juci-mod-tv/src/pages/status.status.tv.js:7
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.js:7
+#: plugins/juci-mod-status/src/pages/status.status.tv.js:7
 msgid "Unable to retreive igmptable from device!"
 msgstr ""
 
 #: juci-mod-network/src/widgets/overview.net.js:33
 #: juci-mod-wireless/src/pages/wifi.settings.js:12
+#: plugins/juci-broadcom-wl/src/pages/wifi.settings.js:12
+#: plugins/juci-network-netifd/src/widgets/overview.net.js:33
 msgid "Unknown"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:54
 #: juci-mod-system/src/pages/settings.upgrade.html:24
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:54
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:24
 msgid "Upgrade"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.js:153
+#: plugins/juci-mod-system/src/pages/settings.upgrade.js:153
 msgid ""
 "Upgrade process has started. The web gui will not be available until the "
 "upgrade process has completed!"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:30
+#: plugins/juci-mod-status/src/pages/status.status.system.js:30
 msgid "Uptime"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.system.js:34
+#: plugins/juci-mod-status/src/pages/status.status.system.js:34
 msgid "Usage"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:46
 #: juci/src/widgets/juci.login.html:18 juci/src/widgets/juci.login.html:19
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:18
+#: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:19
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:46
 msgid "Username"
 msgstr ""
 
 #: juci-mod-network/src/internet.js:23
+#: plugins/juci-network-netifd/src/internet.js:201
 msgid "Value must be a valid MAC-48 address"
 msgstr ""
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:9
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:9
 msgid "Verbose logging"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.js:141
+#: plugins/juci-mod-system/src/pages/settings.upgrade.js:141
 msgid "Verifying firmware image"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:7
 #: juci-mod-tv/src/pages/status.status.tv.html:7
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:7
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:7
 msgid "Vodafone TV Channels"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:4
 #: juci-mod-tv/src/pages/status.status.tv.html:4
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:4
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:4
 msgid "Vodafone TV Status"
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:26
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:26
 msgid "Voice Lines"
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:4
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:4
 msgid "Voice Status"
 msgstr ""
 
@@ -1564,46 +1950,56 @@ msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:13
 #: juci-mod-tv/src/pages/status.status.tv.html:13
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:13
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:13
 msgid "WAN Port"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:42
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:43
 msgid "WPS Using Generated PIN"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:24
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:25
 msgid "WPS-PBC: Push Button on Device"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:54
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:55
 msgid "WPS-PIN: Another Device provides PIN"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:39
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:40
 msgid "WPS-REG: Router provides PIN"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.password.js:46
+#: plugins/juci-mod-system/src/pages/settings.password.js:46
 msgid ""
 "Was unable to set password. Please make sure you have entered correct "
 "current password!"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:44
-#: juci/src/widgets/juci.schedule.edit.js:34
 msgid "Wednesday"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.parental_control.html:53
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:18
 msgid "Weekdays"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/overview.wifi.small.html:5
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.small.html:5
 msgid "Wireless"
 msgstr ""
 
 #: juci-mod-samba/src/pages/services.samba.html:10
 #: juci-mod-samba/src/pages/services.samba.html:11
+#: plugins/juci-samba/src/pages/settings.samba.html:10
+#: plugins/juci-samba/src/pages/settings.samba.html:11
 msgid "Workgroup"
 msgstr ""
 
@@ -1612,58 +2008,72 @@ msgid "You are logged in!"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.number_blocking.html:31
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:31
 msgid ""
 "You can also block ranges of numbers.For example: \"0160#\" blocks all "
 "numbers starting with \"0160\"."
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:9
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:13
 msgid ""
 "You have wifi-scheduling enabled. This means that your wifi will be "
 "automatically turned on and off based on your schedule settings"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.firewall.html:4
+#: plugins/juci-vodafone/src/pages/internet.firewall.html:4
 msgid ""
 "Your EasyBox provides extensive firewall functionality which protects "
 "against common attacks. Vodafone recommends not to turn off firewall."
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:28
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:28
 msgid "Your Phone Lines"
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:6
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:6
 msgid "Your Phone Numbers"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.password.html:9
+#: plugins/juci-mod-system/src/pages/settings.password.html:9
 msgid "Your account"
 msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.html:21
 #: juci-mod-voice/src/pages/phone.html:21
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:21
+#: plugins/juci-asterisk/src/pages/phone.html:21
 msgid "Your number"
 msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:22
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:23
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js:22
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js:23
 msgid "auto"
 msgstr "Auto"
 
 #: juci-mod-network/src/pages/internet.dns.html:24
+#: plugins/juci-ddns/src/pages/internet.wan.ddns.html:5
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:24
 msgid "ddns.config.info"
 msgstr ""
 "DDNS allows you to access your EasyBox from the Internet using a domain name "
 "instead of IP address. You will need an account on a DDNS service provider."
 
 #: juci-mod-network/src/pages/internet.dns.html:5
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:5
 msgid "dns.config.info"
 msgstr ""
 "The DNS configuration is done automatically when you connect to the network. "
 "Alternatively you can manually configure your own DNS settings."
 
 #: juci-mod-status/src/pages/status.status.dsl.html:4
+#: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.html:4
 msgid "dsl.status.info"
 msgstr "This status page shows technical parameters of your DSL connection."
 
@@ -1688,11 +2098,11 @@ msgid "error.port.range.startgreaterthanend"
 msgstr "Error, start port is greater than end port."
 
 #: juci/src/widgets/juci.input.timespan.html:2
-#: juci/src/widgets/juci.input.timespan.html:3
 msgid "from"
 msgstr "From"
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:5
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:5
 msgid "internet.exposed_host.info"
 msgstr ""
 "If you have a local network device that cannot run an Internet application "
@@ -1700,10 +2110,12 @@ msgstr ""
 "the network device (Exposed Host)."
 
 #: juci-mod-network/src/pages/internet.parental_control.html:4
+#: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:4
 msgid "internet.parental.control.info"
 msgstr "Here you can setup parental control settings. "
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:22
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:22
 msgid "ip.address.label"
 msgstr "IP address"
 
@@ -1718,6 +2130,16 @@ msgstr "IP address"
 #: juci-mod-wireless/src/wifi.js:13 juci-mod-wireless/src/wifi.js:14
 #: juci-mod-wireless/src/wifi.js:22 juci-mod-wireless/src/wifi.js:23
 #: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
+#: plugins/juci-asterisk/src/widgets/overview.voice.js:11
+#: plugins/juci-asterisk/src/widgets/overview.voice.js:27
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:53
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:60
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:67
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:68
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:74
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:75
+#: plugins/juci-broadcom-wl/src/wifi.js:61
+#: plugins/juci-broadcom-wl/src/wifi.js:62
 msgid "off"
 msgstr "Off"
 
@@ -1727,42 +2149,56 @@ msgstr "Off"
 #: juci-mod-wireless/src/widgets/overview.wifi.js:73
 #: juci-mod-wireless/src/widgets/overview.wifi.js:74
 #: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
+#: plugins/juci-asterisk/src/widgets/overview.voice.js:27
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:53
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:60
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:74
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:75
 msgid "on"
 msgstr "On"
 
 #: juci-mod-voice/src/pages/phone.call_log.html:5
 #: juci-mod-voice/src/pages/phone.html:5
+#: plugins/juci-asterisk/src/pages/phone.call_log.html:5
+#: plugins/juci-asterisk/src/pages/phone.html:5
 msgid "phone.call_log.info"
 msgstr " "
 
 #: juci-mod-voice/src/pages/phone.lines.html:5
+#: plugins/juci-asterisk/src/pages/phone.lines.html:5
 msgid "phone.lines.info"
 msgstr "Configure phone lines."
 
 #: juci-mod-voice/src/pages/phone.number_blocking.html:4
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:4
 msgid "phone.number_blocking.info"
 msgstr ""
 "Stay in control of your bills and block outgoing calls to unwanted numbers."
 
 #: juci-mod-voice/src/pages/phone.numbers.html:5
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:5
 msgid "phone.numbers.info"
 msgstr "Control your phone accounts."
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:5
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:5
 msgid "phone.schedule.info"
 msgstr "Define schedules when your phones should or should not ring."
 
 #: juci-mod-voice/src/pages/phone.speed_dialing.html:5
+#: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:5
 msgid "phone.speed_dialing.info"
 msgstr ""
 "This feature activates speed dialing to connect you faster to your preferred "
 "contacts."
 
 #: juci-mod-samba/src/pages/services.samba.html:5
+#: plugins/juci-samba/src/pages/settings.samba.html:5
 msgid "services.samba.info"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.configuration.html:5
+#: plugins/juci-mod-system/src/pages/settings.configuration.html:5
 msgid "settings.config.info"
 msgstr ""
 "Save your settings, restore previously saved settings, and reset your "
@@ -1772,14 +2208,18 @@ msgstr ""
 "always save your last changed settings to a computer."
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:5
+#: plugins/juci-dropbear/src/pages/services.dropbear.html:5
 msgid "settings.dropbear.info"
 msgstr "Configure SSH access to the router."
 
 #: juci-mod-system/src/pages/settings.energy.html:5
+#: plugins/juci-mod-system/src/pages/settings.energy.html:5
 msgid "settings.energy.info"
 msgstr "Reduce power consumption by switching off unused functionality."
 
 #: juci-mod-network/src/pages/settings.network.html:4
+#: plugins/juci-network-netifd/src/pages/internet.network.html:4
+#: plugins/juci-network-netifd/src/pages/settings.network.html:4
 msgid "settings.network.info"
 msgstr ""
 "This page allows to configure IP addresses used in your home network. In "
@@ -1788,11 +2228,13 @@ msgstr ""
 "the same IP address to specific devices."
 
 #: juci-mod-system/src/pages/settings.password.html:5
+#: plugins/juci-mod-system/src/pages/settings.password.html:5
 msgid "settings.password.info"
 msgstr ""
 "Set a new Easybox password to restrict management access to the router."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:5
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:5
 msgid "settings.upgrade.info"
 msgstr ""
 "The Easybox automatically install the latest firmware release available. If "
@@ -1800,12 +2242,14 @@ msgstr ""
 "current settings will not be affected by software upgrading procedure."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:14
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:14
 msgid "settings.upgrade.manual.info"
 msgstr ""
 "It is possible to update the firmware from a saved update file. The latest "
 "available version can be found on www.dsl-easybox.de."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:31
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:31
 msgid "settings.upgrade.online.info"
 msgstr ""
 "Click \"Check for Update\" to start an online software upgrade. If a newer "
@@ -1813,6 +2257,7 @@ msgstr ""
 "(Internet connection required)."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:42
+#: plugins/juci-mod-system/src/pages/settings.upgrade.html:42
 msgid "settings.upgrade.usb.info"
 msgstr ""
 "It is possible to update the firmware from a file saved on a USB storage "
@@ -1822,22 +2267,30 @@ msgstr ""
 "directory (no search under subfolders)."
 
 #: juci-mod-status/src/pages/status.diagnostics.html:8
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:8
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:8
 msgid "status.diagnostics.auto.info"
 msgstr ""
 "This diagnosis should take up to 2 minutes and cannot be cancelled once it "
 "has been started."
 
 #: juci-mod-status/src/pages/status.diagnostics.html:4
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:4
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:4
 msgid "status.diagnostics.info"
 msgstr ""
 "This section shows a list of tools which can be used to check the status of "
 "your network connection."
 
 #: juci-mod-status/src/pages/status.diagnostics.html:17
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:17
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:17
 msgid "status.diagnostics.ping.info"
 msgstr "Please enter a valid hostname or IP address to execute the Ping test."
 
 #: juci-mod-status/src/pages/status.diagnostics.html:29
+#: plugins/juci-diagnostics/src/pages/status.diagnostics.html:29
+#: plugins/juci-mod-status/src/pages/status.diagnostics.html:29
 msgid "status.diagnostics.trace.info"
 msgstr ""
 "Please choose the connection type and location where you would like to save "
@@ -1845,18 +2298,22 @@ msgstr ""
 "window."
 
 #: juci-mod-status/src/pages/status.events.html:5
+#: plugins/juci-mod-status/src/pages/status.events.html:5
 msgid "status.eventlog.info"
 msgstr "Select the categories for which you would like to view the event log."
 
 #: juci-mod-network/src/pages/status.nat.html:13
+#: plugins/juci-firewall-fw3/src/pages/status.nat.html:13
 msgid "status.nat.connections.info"
 msgstr "This page shows the active connection for each device."
 
 #: juci-mod-network/src/pages/status.nat.html:31
+#: plugins/juci-firewall-fw3/src/pages/status.nat.html:31
 msgid "status.nat.info"
 msgstr "This page shows the active connection for each device."
 
 #: juci-mod-status/src/pages/status.restart.html:5
+#: plugins/juci-mod-status/src/pages/status.restart.html:5
 msgid "status.restart.info"
 msgstr ""
 "This page allows to restart your Internet connection and reboot your "
@@ -1864,6 +2321,7 @@ msgstr ""
 "services will be temporarily unavailable. "
 
 #: juci-mod-status/src/pages/status.status.html:5
+#: plugins/juci-mod-status/src/pages/status.status.html:5
 msgid "status.status.info"
 msgstr ""
 "This page provides an overview of main parameters of your Easybox. This can "
@@ -1871,62 +2329,76 @@ msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:5
 #: juci-mod-tv/src/pages/status.status.tv.html:5
+#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:5
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:5
 msgid "status.tv.info"
 msgstr ""
 "This page allows to verify the connection status of your Vodafone TV "
 "Services."
 
 #: juci-mod-voice/src/pages/status.status.voice.html:5
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:5
 msgid "status.voice.info"
 msgstr ""
 "Here you find an overview of your active phone numbers. For any change you "
 "would like to make to the current section, please visit Phone menu."
 
 #: juci-mod-voice/src/pages/status.status.voice.html:27
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:27
 msgid "status.voice_lines.info"
 msgstr "Status of your voice lines."
 
 #: juci/src/widgets/juci.input.timespan.html:4
-#: juci/src/widgets/juci.input.timespan.html:9
 msgid "to"
 msgstr "To"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:24
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:9
 msgid "wifi-iface.closed"
 msgstr "Broadcast SSID"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:27
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:12
 msgid "wifi-iface.device"
 msgstr "Frequency"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:30
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:15
 msgid "wifi-iface.encryption"
 msgstr "Protection Mode"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:33
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:34
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:27
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:28
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:32
 msgid "wifi-iface.key"
 msgstr "WiFi Password"
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:21
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:6
 msgid "wifi-iface.ssid"
 msgstr "WiFi Name (SSID)"
 
 #: juci-mod-wireless/src/pages/wifi.settings.html:5
+#: plugins/juci-broadcom-wl/src/pages/wifi.settings.html:5
 msgid "wifi.settings.info"
 msgstr ""
 "Below you can change parameters for the two WiFi frequencies 2.4 GHz and 5 "
 "GHz."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:14
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:14
 msgid "wifi.wps.in.progress"
 msgstr "Your EasyBox is now attempting to pair with other devices."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:55
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:56
 msgid "wifi.wps.otherpin.info"
 msgstr "Enter the WPS-PIN provided by the other device here."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:25
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:26
 msgid "wifi.wps.pbc.info"
 msgstr ""
 "To pair your device, press \"Pair\". Afterwards, press the corresponding "
@@ -1934,6 +2406,7 @@ msgstr ""
 "pairing for 2 minutes after you pressed Pair."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:40
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:41
 msgid "wifi.wps.pin.info"
 msgstr "Enter the WPS-PIN below on the device you wish to pair."
 
@@ -1971,6 +2444,7 @@ msgid "wps.status.unknown"
 msgstr "WPS Unknown"
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:72
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:73
 msgid "{{text_status}}"
 msgstr ""
 
@@ -2111,6 +2585,7 @@ msgstr "WiFi Network"
 msgid "wifi-iface.mode"
 msgstr "Mode"
 
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:19
 msgid "wifi-iface.cipher"
 msgstr "Cipher"
 
@@ -2159,37 +2634,575 @@ msgstr "AnyWAN"
 msgid "login.title"
 msgstr "JUCI Login"
 
-#: juci/src/widgets/juci.select.js:20
-msgid "-- Select One --"
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:13
+msgid "ACCEPT"
 msgstr ""
 
-#: juci/src/widgets/juci.list.editor.html:10
-msgid "Add"
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.adsl.html:3
+msgid "ADSL Devices"
 msgstr ""
 
-#: juci/src/widgets/juci.list.editor.html:11
-msgid "Delete"
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:18
+msgid "ATM Type"
 msgstr ""
 
-#: juci/src/widgets/juci.maclist.edit.html:5
-msgid "Invalid MAC address"
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:6
+msgid "Add URL's to URL blocking list"
 msgstr ""
 
-#: juci/src/js/rpc.js:45
-msgid "No changes to commit"
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:29
+msgid "Album-Art Names"
 msgstr ""
 
-#: juci/src/widgets/juci.config.js:101
-msgid "Settings have been applied successfully!"
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.js:15
+msgid ""
+"Are you sure you want to create a new SSID with the same name and on the "
+"same radio? This may result in undefined behaviour!"
 msgstr ""
 
-#: juci/src/js/uci.js:21
-msgid "please enter valid time in form hh:mm"
+#: plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js:72
+msgid "Are you sure you want to delete this device from bridge?"
 msgstr ""
 
-#: juci/src/js/uci.js:16
-msgid "please specify both hour and minute value for time separated by ':'"
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:32
+msgid "Auto"
 msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:3
+msgid "Automatic DNS Configuration"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:9
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:6
+#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:6
+#: plugins/juci-network-netifd/src/widgets/network-device-ethernet-edit.html:6
+msgid "Base Device"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:5
+msgid "Basic Config"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:29
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:33
+msgid "CCMP (AES)"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:17
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:28
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:37
+msgid "Choose Configuration Option"
+msgstr ""
+
+#: plugins/juci-mod-status/src/pages/status.status.services.html:8
+msgid "Command"
+msgstr ""
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-entry-edit.html:3
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:7
+msgid "Connection"
+msgstr ""
+
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.lan.dhcp.html:3
+msgid "DHCP Server Settings"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:21
+msgid "DNS Settings"
+msgstr "DNS Settings"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:9
+msgid "DSLAT"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:10
+msgid "Default Gateway"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:6
+msgid "Default Policy"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:6
+#: plugins/juci-network-netifd/src/widgets/network-device-baseif-edit.html:6
+msgid "Device ID"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:18
+msgid "Device:"
+msgstr ""
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:7
+msgid "Enable"
+msgstr ""
+
+#: plugins/juci-ddns/src/pages/internet.wan.ddns.html:8
+msgid "Enable DDNS Client"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:10
+msgid "Enable NAT"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.html:7
+msgid "Enable This Network"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:13
+msgid "Enable UPnP"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:7
+msgid "Enable WAN"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:33
+msgid "Encapsulation"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:15
+msgid "FORWARD"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.html:3
+msgid "Firewall Zones"
+msgstr ""
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:21
+msgid "Forever"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
+msgid "Forward"
+msgstr ""
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:20
+msgid "Friendly Name"
+msgstr ""
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:17
+msgid "Hour"
+msgstr ""
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:18
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:19
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:20
+msgid "Hours"
+msgstr ""
+
+#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:9
+#: plugins/juci-network-netifd/src/widgets/network-device-ethernet-edit.html:9
+msgid "ID"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:15
+msgid "IPQOS"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:3
+msgid "IPv4 Address"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:9
+msgid "IPv4 Default Gateway"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:6
+msgid "IPv4 Subnet Mask"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:20
+msgid "IPv4-Address ({{$index}}):"
+msgstr ""
+
+#: plugins/juci-mod-status/src/pages/status.status.html:14
+msgid "IPv6 Address"
+msgstr ""
+
+#: plugins/juci-mod-status/src/pages/status.status.html:18
+msgid "IPv6 Prefix"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:21
+msgid "IPv6-Address ({{$index}}):"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:54
+msgid ""
+"If you disable SSID broadcasting, WPS function will be disabled as well. You "
+"will need to enable it manually later. Are you sure you want to continue?"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
+msgid "Input"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:17
+msgid "Interface UP:"
+msgstr "Interface UP:"
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:17
+msgid "Interfaces"
+msgstr "Interfaces"
+
+#: plugins/juci-mod-status/src/pages/status.status.js:23
+msgid "Internet IPv6"
+msgstr "Internet IPv6"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:23
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:24
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:25
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:26
+msgid "Key"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.html:3
+msgid "LAN Settings"
+msgstr "LAN Settings"
+
+#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:3
+msgid "Layer-2 Ethernet Devices"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:30
+msgid "Link Type"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:27
+msgid "MBS"
+msgstr ""
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:26
+msgid "Media Directories"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:27
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:36
+msgid "Method"
+msgstr ""
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:3
+msgid "MiniDLNA Settings"
+msgstr "MiniDLNA Settings"
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:9
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:7
+msgid "Netmask"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.html:7
+msgid "Network device"
+msgstr "Network device"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:11
+msgid "New SSID"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:3
+msgid "New Wireless Interface"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
+msgid "Output"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:21
+msgid "PCR"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:12
+msgid "PTMPRIO"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:10
+msgid "Pick SSID"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:7
+msgid "Pick Wireless Radio"
+msgstr ""
+
+#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:7
+msgid "Pick base device"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.html:3
+msgid "Pick network device"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js:71
+msgid "Please select a connection in the list!"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:10
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:7
+msgid "Primary DNS IP"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:19
+msgid "Protocol:"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:14
+msgid "REJECT"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:44
+msgid "Radius Port"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:47
+msgid "Radius Secret"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:41
+msgid "Radius Server"
+msgstr ""
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:23
+msgid "Root Container"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.html:3
+msgid "Rules"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:24
+msgid "SCR"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/wifi.js:182
+msgid "SSID string can be at most 32 characters long!"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:17
+msgid "Scheduled"
+msgstr ""
+
+#: plugins/juci-mod-status/src/pages/status.status.services.html:7
+msgid "Service"
+msgstr "Service"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.svcfilter.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.wordfilter.html:3
+msgid "Service Filtering"
+msgstr ""
+
+#: plugins/juci-mod-status/src/pages/status.status.services.html:3
+#: plugins/juci-network-netifd/src/pages/internet.services.html:3
+msgid "Services"
+msgstr "Services"
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:3
+msgid "Static Routes"
+msgstr "Static Routes"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:34
+msgid "TKIP/CCMP (AES)"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:8
+msgid "Target"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:3
+msgid "URL Filtering"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:15
+msgid "VCI"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.vdsl.html:3
+msgid "VDSL Devices"
+msgstr ""
+
+#: plugins/juci-broadcom-vlan/src/pages/internet.ethernet.vlan.html:3
+msgid "VLAN Devices"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:12
+msgid "VPI"
+msgstr ""
+
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:41
+msgid "Voice service is not available!"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:16
+msgid "WAN Connection Type"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:3
+msgid "WAN Settings"
+msgstr "WAN Settings"
+
+#: plugins/juci-broadcom-wl/src/wifi.js:189
+msgid "WEP encryption key # must be 10-26 hexadecimal characters!"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/wifi.js:196
+msgid "WPA key must be 8-63 characters long!"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:81
+msgid ""
+"WPS will be disabled when using WEP encryption. Are you sure you want to "
+"continue?"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:14
+msgid ""
+"Warning: By using the exposed host function you bypass the firewall of your "
+"{{config.friendly_name}}. Please make sure that your computer is protected "
+"against attacks from Internet. The following ports will not be forwarded: "
+"{{ nonforwardedPorts || 'None'}}."
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/internet.ethernet.wifi.html:3
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.interfaces.html:3
+msgid "Wireless Interfaces"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.devices.html:3
+msgid "Wireless Radios"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.js:9
+msgid "You need to select a device to add!"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:18
+msgid "Zone members:"
+msgstr "Zone members:"
+
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.adsl.html:4
+msgid "internet.ethernet.adsl.info"
+msgstr "This page allows you to configure ADSL devices. "
+
+#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:4
+msgid "internet.ethernet.info"
+msgstr ""
+"Ethernet devices are the low level devices that you can use to access a "
+"network. These are MAC level devices and so do not have IP addresses. You "
+"should configure IP addresses in the connections section. "
+
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.vdsl.html:4
+msgid "internet.ethernet.vdsl.info"
+msgstr "This section allows you to configure VDSL interfaces. "
+
+#: plugins/juci-broadcom-vlan/src/pages/internet.ethernet.vlan.html:4
+msgid "internet.ethernet.vlan.info"
+msgstr "This section allows you to configure VLAN interfaces. "
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:4
+msgid "internet.firewall.info"
+msgstr ""
+"Firewall allows you to filter traffic, set up port forwarding or expose "
+"certain services to the outside world. "
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.html:4
+msgid "internet.firewall.rules.info"
+msgstr ""
+"Firewall rules are more fine grained filtering rules for filtering your "
+"traffic. "
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.svcfilter.html:4
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.wordfilter.html:4
+msgid "internet.firewall.svcfilter.info"
+msgstr ""
+"This filter allows you to filter out packets going out to a specific port. "
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:4
+msgid "internet.firewall.urlfilter.info"
+msgstr ""
+"URL filtering allows you to filter out dns requests to specific URL's. "
+"Warning: this still does not prevent the user from using an IP address "
+"directly. "
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.html:4
+msgid "internet.firewall.zones.info"
+msgstr ""
+"Here you can configure firewall zones. Each zone can contain multiple "
+"networks, or interfaces, which you have set up earlier. "
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.html:4
+msgid "internet.lan.info"
+msgstr ""
+"LAN interfaces are all interfaces facing your home - the LAN side of the "
+"router. In contrast to WAN, LAN side is much more open to access. "
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:4
+msgid "internet.lan.routes.info"
+msgstr ""
+"Static routes are useful if you have several networks accessible from your "
+"router and you want to correctly route packets between them. "
+
+#: plugins/juci-network-netifd/src/pages/internet.services.html:4
+msgid "internet.services.info"
+msgstr "Here you can configure network services. "
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:4
+msgid "internet.wan.info"
+msgstr ""
+"Here you can conveniently configure settings for interfaces facing the WAN "
+"(outside world). "
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:4
+msgid "minidlna.settings.info"
+msgstr ""
+"MiniDLNA allows you to share your media from a hard drive connected to your "
+"router."
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:24
+#, fuzzy
+msgid "network.interface.type.' + conn.type.value +'.tab.title"
+msgstr "AnyWAN"
+
+#: plugins/juci-broadcom-wl/src/wifi.js:118
+msgid "please pick at least one day to schedule on"
+msgstr ""
+
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.lan.dhcp.html:4
+msgid "settings.dhcp.info"
+msgstr ""
+"DHCP server settings are for configuring dhcp SERVER on a lan interface. "
+
+#: plugins/juci-network-netifd/src/internet.js:212
+msgid "value must be a valid MAC-48 address"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:45
+msgid "wifi-iface.radius_port"
+msgstr "Radius Port"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:48
+msgid "wifi-iface.radius_secret"
+msgstr "Radius Secret"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:42
+msgid "wifi-iface.radius_server"
+msgstr "Radius Server"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:54
+msgid "wifi-iface.show_password"
+msgstr "Show Key Text"
+
+#: plugins/juci-broadcom-wl/src/pages/internet.ethernet.wifi.html:4
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.interfaces.html:4
+msgid "wifi.interfaces.info"
+msgstr ""
+"Wireless interfaces are visible to the user in the form of wireless access "
+"point names. Each radio can have several SSIDs and each SSID interface can "
+"be configured as part of a network bridge or firewall group. "
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.devices.html:4
+msgid "wifi.radios.info"
+msgstr ""
+"This page allows you to configure wireless radios that you have installed on "
+"your system. A wireless radio is not the same thing as an access point. "
+"Access points are interfaces and each radio can have several interfaces on "
+"it. "
 
 msgid "internet.ethernet.adsl.title"
 msgstr "ADSL Devices"
@@ -2292,21 +3305,6 @@ msgstr "WPA2 Radius "
 
 msgid "wifi.enc.mixed-wpa"
 msgstr "WPA2 Mixed"
-
-#~ msgid "Internet IPv6"
-#~ msgstr "Internet IPv6"
-
-#~ msgid "wifi-iface.radius_port"
-#~ msgstr "Radius Port"
-
-#~ msgid "wifi-iface.radius_secret"
-#~ msgstr "Radius Secret"
-
-#~ msgid "wifi-iface.radius_server"
-#~ msgstr "Radius Server"
-
-#~ msgid "wifi-iface.show_password"
-#~ msgstr "Show Key Text"
 
 #~ msgid "none"
 #~ msgstr "None"

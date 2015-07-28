@@ -70,6 +70,7 @@ JUCI.app
 		nat: {
 			enable: function(value){
 				$uci.sync("firewall").done(function(){
+					$uci.firewall.settings.nat_enabled.value = value; 
 					$uci.firewall["@redirect"].map(function(rule){
 						rule.enabled.value = value; 
 					}); 
@@ -81,13 +82,28 @@ JUCI.app
 					var enabled = $uci.firewall["@redirect"].find(function(rule){
 						return rule.enabled.value; 
 					}); 
-					if(enabled) def.resolve(true); 
-					else def.resolve(false); 
+					if(enabled) {
+						$uci.firewall.settings.nat_enabled.value = true; // currently a workaround
+					}
+					def.resolve($uci.firewall.settings.nat_enabled.value); 
 				}); 
 				return def.promise(); 
 			}
 		}
 	}; 
+}); 
+
+JUCI.app.run(function($uci){
+	$uci.sync("firewall").done(function(){
+		if(!$uci.firewall.settings) {
+			$uci.firewall.create({
+				".type": "settings", 
+				".name": "settings"
+			}).done(function(settings){
+				$uci.save(); 
+			}); 
+		}
+	}); 
 }); 
 
 UCI.$registerConfig("firewall"); 
@@ -152,7 +168,8 @@ UCI.firewall.$registerSectionType("rule", {
 }); 
 UCI.firewall.$registerSectionType("settings", {
 	"disabled":			{ dvalue: false, type: Boolean },
-	"ping_wan":			{ dvalue: false, type: Boolean }
+	"ping_wan":			{ dvalue: false, type: Boolean }, 
+	"nat_enabled": 	{ dvalue: true, type: Boolean }
 }); 
 UCI.firewall.$registerSectionType("urlblock", {
 	"enabled": { dvalue: false, type: Boolean }, 

@@ -10,7 +10,7 @@
 			<juci-config-line title="{{'Enable NAT'|translate}}">
 				<switch ng-model="data.nat_enabled" class="green" ng-change="onEnableNAT()"/>
 			</juci-config-line>
-			<juci-config-line title="{{'Enable UPnP'|translate}}">
+			<juci-config-line title="{{'Enable UPnP'|translate}}" ng-show="upnp">
 				<switch ng-model="upnp.enable_upnp.value" class="green"/>
 			</juci-config-line>
 			<juci-config-line title="{{'WAN Connection Type'|translate}}">

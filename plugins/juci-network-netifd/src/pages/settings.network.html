@@ -2,38 +2,9 @@
 	<div ng-controller="SettingsNetworkCtrl">
 		<juci-config-heading>{{ 'Network Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'settings.network.info' | translate }}</juci-config-info>
-		<juci-config-section ng-show="selected_network">
-			<uci-network-interface-edit ng-model="selected_network"></uci-network-interface-edit>
-		</juci-config-section>
-		<!--<div id="cy"  style="width: 100%; height: 650px;"></div>-->
-		<div class="row simpleDemo">
-			<div ng-repeat="network in networks" class="col-md-6">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<a href="#" style="float: right;" ng-click="onShowNetworkSettings(network)"><i class="fa fa-gear"/></a>
-						<h3 class="panel-title">List {{network[".name"]}}</h3>
-					</div>
-					<div class="panel-body" >
-						<ul dnd-list="network.devices" 
-								dnd-drop="deviceDropped(network, item, index)">
-							<li ng-repeat="item in network.devices"
-								dnd-draggable="item"
-								dnd-moved="deviceMoved(network, item, $index)"
-								dnd-effect-allowed="move"
-								dnd-selected="models.selected = item"
-								ng-class="{'selected': models.selected === item}"
-								>
-								{{item.name}}
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		
 		<juci-config-section>
 			<div ng-repeat="interface in interfaces">
-				<uci-network-interface-edit ng-model="interface"></uci-network-interface-edit>
+				<network-connection-edit ng-model="interface"></network-connection-edit>
 			</div>
 		</juci-config-section>
 		<juci-errors></juci-errors>

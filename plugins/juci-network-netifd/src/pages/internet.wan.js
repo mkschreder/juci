@@ -9,7 +9,8 @@ JUCI.app
 	$scope.data = {}; 
 	
 	$upnp.getConfig().done(function(config){
-		$scope.upnp = config; 
+		$scope.upnp = config;
+		$scope.$apply();  
 	}); 
 	$firewall.nat.isEnabled().done(function(enabled){
 		$scope.data.nat_enabled = enabled; 

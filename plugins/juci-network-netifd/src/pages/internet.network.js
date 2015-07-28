@@ -94,11 +94,7 @@ JUCI.app
 	$scope.onEditConnection = function(conn){
 		// set editing widget for the type specific part of the conneciton wizard
 		$scope.current_connection = conn; 
-		$rpc.network.interface.dump().done(function(ifaces){
-			var info = ifaces.interface.find(function(x){ return x.interface == conn[".name"]; }); 
-			conn.$info = info; 
-			$scope.$apply(); 
-		}); 
+		
 	}
 	
 	$scope.onCancelEdit = function(){
