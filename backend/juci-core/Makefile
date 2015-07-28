@@ -29,5 +29,6 @@ $(CGI_SCRIPT):
 	$(CP) src/io/juci-cgi $@
 	
 $(ACL_LIST): access.json
+	@echo "Building acl list for module $(MODULE_NAME)..."
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/rpcd/acl.d/
 	$(CP) access.json $(ACL_LIST)

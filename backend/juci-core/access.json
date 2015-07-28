@@ -83,7 +83,7 @@
 		"description": "General system settings",
 		"read": {
 			"ubus": {
-				"router" [ 
+				"router": [ 
 					"boardinfo"
 				], 
 				"system": [
