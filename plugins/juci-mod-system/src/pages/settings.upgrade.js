@@ -144,7 +144,7 @@ JUCI.app
 		
 		console.log("Trying to upgrade from "+path); 
 		
-		$rpc.juci.system.upgrade_start({"path": path, "keep": ((keep_configs)?1:0)}).done(function(result){
+		$rpc.juci.sysupgrade.start({"path": path, "keep": ((keep_configs)?1:0)}).done(function(result){
 			// this will actually never succeed because server will be killed
 			console.error("upgrade_start returned success, which means that it actually probably failed but did not return an error"); 
 			$scope.error = (result.stdout||"") + (result.stderr||""); 
@@ -167,17 +167,10 @@ JUCI.app
 		});
 	}
 	
-	/*$uci.sync("system").done(function(){
-		if($uci.system.upgrade && $uci.system.upgrade.fw_upload_path.value){
-			$scope.uploadFilename = $uci.system.upgrade.fw_upload_path.value; 
-			console.log("Using upload path from config: "+$scope.uploadFilename); 
-		}
-	});*/ 
-	
 	$scope.onCheckOnline = function(){
 		$scope.onlineUpgradeAvailable = false;
 		$scope.onlineCheckInProgress = 1; 
-		$rpc.juci.system.upgrade_check({type: "online"}).done(function(response){
+		$rpc.juci.sysupgrade.check({type: "online"}).done(function(response){
 			if(response.stdout) {
 				$scope.onlineUpgrade = response.stdout.replace("\n", ""); 
 				$scope.onlineUpgradeAvailable = true;
@@ -198,7 +191,7 @@ JUCI.app
 	$scope.onCheckUSB = function(){
 		$scope.usbUpgradeAvailable = false;
 		$scope.usbCheckInProgress = 1; 
-		$rpc.juci.system.upgrade_check({type: "usb"}).done(function(response){
+		$rpc.juci.sysupgrade.check({type: "usb"}).done(function(response){
 			if(response.stdout) {
 				$scope.usbUpgrade = response.stdout.replace("\n", ""); 
 				$scope.usbUpgradeAvailable = true;

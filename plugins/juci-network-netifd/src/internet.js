@@ -156,17 +156,27 @@
 						base: { name: "loopback", id: "lo" }
 					}]; 
 					$rpc.router.boardinfo().done(function(boardinfo){
-						var names = boardinfo.ethernet.port_names.split(" "); 
-						var devs = boardinfo.ethernet.port_order.split(" "); 
-						devs.map(function(dev, i){
-							devices.push({
-								get name(){ return names[i]; },
-								get id(){ return dev; },
-								get type(){ return "baseif"; },
-								base: { name: names[i], id: dev }
+						$uci.sync("layer2_interface_ethernet").done(function(){
+							var names = boardinfo.ethernet.port_names.split(" "); 
+							var devs = boardinfo.ethernet.port_order.split(" "); 
+							devs.map(function(dev, i){
+								devices.push({
+									get name(){ return names[i]; },
+									get id(){ return dev; },
+									get type(){ return "baseif"; },
+									base: { name: names[i], id: dev }
+								}); 
 							}); 
+							$uci.layer2_interface_ethernet["@ethernet_interface"].map(function(i){
+								devices.push({
+									get name(){ return i.name.value; },
+									get id(){ return i.ifname.value; },
+									get type(){ return "baseif"; },
+									base: { name: i.name.value, id: i.ifname.value }
+								}); 
+							}); 
+							deferred.resolve(devices); 
 						}); 
-						deferred.resolve(devices); 
 					}).fail(function(){
 						deferred.reject(); 
 					}); ; 
@@ -235,6 +245,14 @@ UCI.network.$registerSectionType("route", {
 	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
 	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }
+}); 
+
+
+UCI.$registerConfig("layer2_interface_ethernet"); 
+UCI.layer2_interface_ethernet.$registerSectionType("ethernet_interface", {
+	"name":					{ dvalue: '', type: String }, 
+	"ifname":					{ dvalue: '', type: String }, 
+	"baseifname":					{ dvalue: '', type: String }
 }); 
 
 UCI.$registerConfig("ddns");

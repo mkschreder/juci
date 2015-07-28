@@ -31,8 +31,10 @@ JUCI.app
 					return false; 
 				}
 			}).map(function(dev){ 
-				return { label: dev.name, value: dev.id }; 
+				return { label: dev.name + " ("+dev.id+")", value: dev.id }; 
 			}); 
+			// update the value of the name list to the devices that we have actually been able to find
+			net.ifname.value = net.$addedDevices.map(function(dev){ return dev.id }).join(" "); 
 			$scope.$apply(); 
 		}); 
 	}; updateDevices($scope.connection); 

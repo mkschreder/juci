@@ -1,5 +1,5 @@
 JUCI.app
-.factory("$dsl", function($uci){
+.factory("$dsl", function($uci, $rpc){
 	return {
 		getDevices: function() {
 			var deferred = $.Deferred(); 

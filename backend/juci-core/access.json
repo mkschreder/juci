@@ -90,8 +90,12 @@
 					"info",
 					"board"
 				],
+				"juci.broadcom.dsl": [
+					"status"
+				], 
 				"juci.system": [
-					"init_list"
+					"init_list", 
+					"diskfree"
 				]
 			},
 			"uci": [
@@ -132,7 +136,7 @@
 					"list",
 					"sshkeys_get"
 				], 
-				"wps": [
+				"juci.broadcom.wps": [
 					"genpin", 
 					"setpin",
 					"pbc",
@@ -231,9 +235,8 @@
 		"description": "Firmware upgrade",
 		"read": {
 			"ubus": {
-				"juci.system": [
-					"upgrade_test",
-					"reset_test"
+				"juci.sysupgrade": [
+					"test"
 				]
 			}
 		},
@@ -242,10 +245,11 @@
 				"upload"
 			],
 			"ubus": {
+				"juci.sysupgrade": [
+					"start",
+					"clean"
+				], 
 				"juci.system": [
-					"upgrade_start",
-					"upgrade_clean",
-					"reset_start",
 					"reboot"
 				]
 			}
@@ -404,6 +408,7 @@
 				"ddns",
 				"layer2_interface_adsl", 
 				"layer2_interface_vdsl",
+				"layer2_interface_ethernet",
 				"layer2_interface_vlan"
 			]
 		},
@@ -413,6 +418,7 @@
 				"wireless",
 				"layer2_interface_adsl", 
 				"layer2_interface_vdsl",
+				"layer2_interface_ethernet",
 				"layer2_interface_vlan"
 			]
 		}
