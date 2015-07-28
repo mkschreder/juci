@@ -351,7 +351,7 @@ JUCI.app
 					var nets_map = {}; 
 					
 					nodes.push({
-						id: "root",
+						id: ".root",
 						label: $config.system.hardware,
 						group: 'static', 
 						x: 0, y: 50, 
@@ -360,14 +360,14 @@ JUCI.app
 					}); 
 					
 					nodes.push({
-						id: "wan", 
+						id: ".wan", 
 						label: "WAN", 
 						group: "static", 
 						x: 100, y: 50, 
 						physics: false, 
 						fixed: { x: false, y: false }
 					}); 
-					edges.push({ from: "root", to: "wan", smooth: { enabled: false }}); 
+					edges.push({ from: ".root", to: ".wan", smooth: { enabled: false }}); 
 					
 					nets.filter(function(net){
 						nets_map[net[".name"]] = net; 
@@ -382,7 +382,7 @@ JUCI.app
 							physics: false, 
 							fixed: { x: false, y: false }
 						}
-						edges.push({ from: "root", to: node.id, smooth: { enabled: false } });
+						edges.push({ from: ".root", to: node.id, smooth: { enabled: false } });
 						net_y += 80; 
 						nodes_map[node.id] = node; 
 						nodes.push(node); 
@@ -397,7 +397,7 @@ JUCI.app
 					].map(function(item){
 						var net = nets_map[item.iface]; 
 						var node = {
-							id: net[".name"],
+							id: item.name,
 							label: item.name + " (" + net.ifname.value.split(" ").join(",") + ")",
 							group: (stats[net[".name"]].up)?'networks':'networks_down', 
 							x: 200, 
@@ -405,7 +405,7 @@ JUCI.app
 							physics: false, 
 							fixed: { x: false, y: false }
 						}
-						edges.push({ from: "wan", to: node.id, smooth: { enabled: false } });
+						edges.push({ from: ".wan", to: node.id, smooth: { enabled: false } });
 						net_y += 80; 
 						nodes_map[node.id] = node; 
 						nodes.push(node); 

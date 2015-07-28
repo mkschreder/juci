@@ -161,10 +161,10 @@ rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 	};
 
 	static struct ubus_object_type juci_system_type =
-		UBUS_OBJECT_TYPE("luci-rpc-juci-system", juci_system_methods);
+		UBUS_OBJECT_TYPE("luci-rpc-juci-sysupgrade", juci_system_methods);
 
 	static struct ubus_object system_obj = {
-		.name = "juci.system",
+		.name = "juci.sysupgrade",
 		.type = &juci_system_type,
 		.methods = juci_system_methods,
 		.n_methods = ARRAY_SIZE(juci_system_methods),

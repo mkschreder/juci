@@ -24,6 +24,9 @@ JUCI.app
 				deferred.resolve(Object.keys(devices).map(function(k){ return devices[k]; })); 
 			}); 
 			return deferred.promise(); 
+		}, 
+		status: function(){
+			return $rpc.juci.broadcom.dsl.status(); 
 		}
 	}; 
 }).run(function($network, $uci, $dsl){
