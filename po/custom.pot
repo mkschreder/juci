@@ -70,6 +70,10 @@ msgid "Firewall"
 msgstr ""
 msgid "DSN"
 msgstr ""
+msgid "network.interface.type.bridge.tab.title"
+msgstr ""
+msgid "network.interface.type.anywan.tab.title"
+msgstr ""
 
 # status 
 msgid "DSL"

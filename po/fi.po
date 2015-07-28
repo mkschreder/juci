@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: JUCI\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: Inteno\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
+"Language: fi\n"
 
 msgid "Overview"
 msgstr "Overview"
@@ -38,6 +38,9 @@ msgstr "Theme"
 msgid "Network"
 msgstr "Network"
 
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# #-#-#-#-#  custom.pot  #-#-#-#-#
+# wifi
 # #-#-#-#-#  custom.pot  #-#-#-#-#
 # wifi
 #: juci-mod-wireless/src/pages/wifi.general.html:21
@@ -171,6 +174,10 @@ msgstr ""
 msgid "NAT"
 msgstr ""
 
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# #-#-#-#-#  custom.pot  #-#-#-#-#
+# phone
+# #-#-#-#-#  custom.pot  #-#-#-#-#
 # phone
 #: juci-mod-voice/src/pages/phone.call_log.html:4
 #: juci-mod-voice/src/pages/phone.html:4
@@ -216,49 +223,49 @@ msgstr ""
 #: juci/src/js/app.js:174 juci/src/js/juci.js:274 juci/src/js/app.js:172
 #: juci/src/js/juci.js:282
 msgid "application.name"
-msgstr "JUCI"
+msgstr ""
 
 msgid "encryption.none"
-msgstr "Off"
+msgstr ""
 
 msgid "language.en"
-msgstr "English"
+msgstr ""
 
 msgid "language.se"
-msgstr "Svenska"
+msgstr ""
 
 msgid "language.de"
-msgstr "German"
+msgstr ""
 
 msgid "wifi.enc.none"
-msgstr "No Encryption (Dangerous!)"
+msgstr ""
 
 msgid "wifi.enc.wep"
-msgstr "WEP Open System"
+msgstr ""
 
 msgid "wifi.enc.psk"
-msgstr "WPA Pre-Shared Key"
+msgstr ""
 
 msgid "wifi.enc.psk2"
-msgstr "WPA2 Pre-Shared Key"
+msgstr ""
 
 msgid "wifi.enc.mixed-psk"
-msgstr "WPA/WPA2 PSK Mixed"
+msgstr ""
 
 msgid "11b"
 msgstr "802.11b"
 
 msgid "11g"
-msgstr "802.11g"
+msgstr "802.11bg"
 
 msgid "11bg"
-msgstr "802.11b/g"
-
-msgid "11n"
 msgstr "802.11n"
 
-msgid "11a"
+msgid "11n"
 msgstr "802.11a"
+
+msgid "11a"
+msgstr "802.11c"
 
 msgid "11ac"
 msgstr "802.11ac"
@@ -485,7 +492,7 @@ msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.html:3
 msgid "DSL Status"
-msgstr "DSL Status"
+msgstr ""
 
 #: juci-mod-status/src/pages/status.status.dsl.js:69
 msgid "DSL Status Information"
@@ -1035,7 +1042,7 @@ msgstr ""
 
 #: juci-mod-voice/src/pages/phone.numbers.html:4
 msgid "Phone Numbers"
-msgstr "Phone Numbers"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:7
 msgid "Pick Bandwidth"
@@ -1649,63 +1656,56 @@ msgstr ""
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:22
 #: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:23
 msgid "auto"
-msgstr "Auto"
+msgstr ""
 
 #: juci-mod-network/src/pages/internet.dns.html:24
 msgid "ddns.config.info"
 msgstr ""
-"DDNS allows you to access your EasyBox from the Internet using a domain name "
-"instead of IP address. You will need an account on a DDNS service provider."
 
 #: juci-mod-network/src/pages/internet.dns.html:5
 msgid "dns.config.info"
 msgstr ""
-"The DNS configuration is done automatically when you connect to the network. "
-"Alternatively you can manually configure your own DNS settings."
 
 #: juci-mod-status/src/pages/status.status.dsl.html:4
 msgid "dsl.status.info"
-msgstr "This status page shows technical parameters of your DSL connection."
+msgstr ""
 
 #: juci/src/widgets/juci.input.port.range.html:15
 msgid "error.port.range.end.invalid"
-msgstr "Port range ending port invalid"
+msgstr ""
 
 #: juci/src/widgets/juci.input.port.range.html:14
 msgid "error.port.range.end.required"
-msgstr "Port range end port required"
+msgstr ""
 
 #: juci/src/widgets/juci.input.port.range.html:13
 msgid "error.port.range.start.invalid"
-msgstr "Invalid starting port"
+msgstr ""
 
 #: juci/src/widgets/juci.input.port.range.html:12
 msgid "error.port.range.start.required"
-msgstr "Port range starting port required"
+msgstr ""
 
 #: juci/src/widgets/juci.input.port.range.html:16
 msgid "error.port.range.startgreaterthanend"
-msgstr "Error, start port is greater than end port."
+msgstr ""
 
 #: juci/src/widgets/juci.input.timespan.html:2
 #: juci/src/widgets/juci.input.timespan.html:3
 msgid "from"
-msgstr "From"
+msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:5
 msgid "internet.exposed_host.info"
 msgstr ""
-"If you have a local network device that cannot run an Internet application "
-"properly behind the firewall, you can allow unrestricted Internet access to "
-"the network device (Exposed Host)."
 
 #: juci-mod-network/src/pages/internet.parental_control.html:4
 msgid "internet.parental.control.info"
-msgstr "Here you can setup parental control settings. "
+msgstr ""
 
 #: juci-mod-network/src/pages/internet.exposed_host.html:22
 msgid "ip.address.label"
-msgstr "IP address"
+msgstr ""
 
 #: juci-mod-voice/src/widgets/overview.voice.js:11
 #: juci-mod-voice/src/widgets/overview.voice.js:27
@@ -1719,7 +1719,7 @@ msgstr "IP address"
 #: juci-mod-wireless/src/wifi.js:22 juci-mod-wireless/src/wifi.js:23
 #: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
 msgid "off"
-msgstr "Off"
+msgstr ""
 
 #: juci-mod-voice/src/widgets/overview.voice.js:27
 #: juci-mod-wireless/src/widgets/overview.wifi.js:52
@@ -1728,35 +1728,32 @@ msgstr "Off"
 #: juci-mod-wireless/src/widgets/overview.wifi.js:74
 #: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
 msgid "on"
-msgstr "On"
+msgstr ""
 
 #: juci-mod-voice/src/pages/phone.call_log.html:5
 #: juci-mod-voice/src/pages/phone.html:5
 msgid "phone.call_log.info"
-msgstr " "
+msgstr ""
 
 #: juci-mod-voice/src/pages/phone.lines.html:5
 msgid "phone.lines.info"
-msgstr "Configure phone lines."
+msgstr ""
 
 #: juci-mod-voice/src/pages/phone.number_blocking.html:4
 msgid "phone.number_blocking.info"
 msgstr ""
-"Stay in control of your bills and block outgoing calls to unwanted numbers."
 
 #: juci-mod-voice/src/pages/phone.numbers.html:5
 msgid "phone.numbers.info"
-msgstr "Control your phone accounts."
+msgstr ""
 
 #: juci-mod-voice/src/pages/phone.ringing_schedule.html:5
 msgid "phone.schedule.info"
-msgstr "Define schedules when your phones should or should not ring."
+msgstr ""
 
 #: juci-mod-voice/src/pages/phone.speed_dialing.html:5
 msgid "phone.speed_dialing.info"
 msgstr ""
-"This feature activates speed dialing to connect you faster to your preferred "
-"contacts."
 
 #: juci-mod-samba/src/pages/services.samba.html:5
 msgid "services.samba.info"
@@ -1765,399 +1762,371 @@ msgstr ""
 #: juci-mod-system/src/pages/settings.configuration.html:5
 msgid "settings.config.info"
 msgstr ""
-"Save your settings, restore previously saved settings, and reset your "
-"EasyBox to its factory state.\n"
-"\n"
-"Your EasyBox can save your configuration to a computer. We recommend to "
-"always save your last changed settings to a computer."
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:5
 msgid "settings.dropbear.info"
-msgstr "Configure SSH access to the router."
+msgstr ""
 
 #: juci-mod-system/src/pages/settings.energy.html:5
 msgid "settings.energy.info"
-msgstr "Reduce power consumption by switching off unused functionality."
+msgstr ""
 
 #: juci-mod-network/src/pages/settings.network.html:4
 msgid "settings.network.info"
 msgstr ""
-"This page allows to configure IP addresses used in your home network. In "
-"case DHCP is used, EasyBox automatically assignes an IP address to devices "
-"connected to the network. Using static DHCP it is possible to always assign "
-"the same IP address to specific devices."
 
 #: juci-mod-system/src/pages/settings.password.html:5
 msgid "settings.password.info"
 msgstr ""
-"Set a new Easybox password to restrict management access to the router."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:5
 msgid "settings.upgrade.info"
 msgstr ""
-"The Easybox automatically install the latest firmware release available. If "
-"necessary, it is possible to update the Easybox firmware manually. Your "
-"current settings will not be affected by software upgrading procedure."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:14
 msgid "settings.upgrade.manual.info"
 msgstr ""
-"It is possible to update the firmware from a saved update file. The latest "
-"available version can be found on www.dsl-easybox.de."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:31
 msgid "settings.upgrade.online.info"
 msgstr ""
-"Click \"Check for Update\" to start an online software upgrade. If a newer "
-"firmware is found, it will be automatically installed on your EasyBox "
-"(Internet connection required)."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:42
 msgid "settings.upgrade.usb.info"
 msgstr ""
-"It is possible to update the firmware from a file saved on a USB storage "
-"attached to the USB port of your EasyBox. Click \"Install Update\" to start "
-"the automatic firmware upgrade. Please note that there should be only one "
-"firmware file on the storage and that one shall be located under the main "
-"directory (no search under subfolders)."
 
 #: juci-mod-status/src/pages/status.diagnostics.html:8
 msgid "status.diagnostics.auto.info"
 msgstr ""
-"This diagnosis should take up to 2 minutes and cannot be cancelled once it "
-"has been started."
 
 #: juci-mod-status/src/pages/status.diagnostics.html:4
 msgid "status.diagnostics.info"
 msgstr ""
-"This section shows a list of tools which can be used to check the status of "
-"your network connection."
 
 #: juci-mod-status/src/pages/status.diagnostics.html:17
 msgid "status.diagnostics.ping.info"
-msgstr "Please enter a valid hostname or IP address to execute the Ping test."
+msgstr ""
 
 #: juci-mod-status/src/pages/status.diagnostics.html:29
 msgid "status.diagnostics.trace.info"
 msgstr ""
-"Please choose the connection type and location where you would like to save "
-"the tracing. The tracing will then begin automatically in a separate popup "
-"window."
 
 #: juci-mod-status/src/pages/status.events.html:5
 msgid "status.eventlog.info"
-msgstr "Select the categories for which you would like to view the event log."
+msgstr ""
 
 #: juci-mod-network/src/pages/status.nat.html:13
 msgid "status.nat.connections.info"
-msgstr "This page shows the active connection for each device."
+msgstr ""
 
 #: juci-mod-network/src/pages/status.nat.html:31
 msgid "status.nat.info"
-msgstr "This page shows the active connection for each device."
+msgstr ""
 
 #: juci-mod-status/src/pages/status.restart.html:5
 msgid "status.restart.info"
 msgstr ""
-"This page allows to restart your Internet connection and reboot your "
-"Easybox. Please note that for the entire process all phone, internet and TV "
-"services will be temporarily unavailable. "
 
 #: juci-mod-status/src/pages/status.status.html:5
 msgid "status.status.info"
 msgstr ""
-"This page provides an overview of main parameters of your Easybox. This can "
-"help you to optimize your Easybox or identify potential problems."
 
 #: juci-mod-status/src/pages/status.status.tv.html:5
 #: juci-mod-tv/src/pages/status.status.tv.html:5
 msgid "status.tv.info"
 msgstr ""
-"This page allows to verify the connection status of your Vodafone TV "
-"Services."
 
 #: juci-mod-voice/src/pages/status.status.voice.html:5
 msgid "status.voice.info"
 msgstr ""
-"Here you find an overview of your active phone numbers. For any change you "
-"would like to make to the current section, please visit Phone menu."
 
 #: juci-mod-voice/src/pages/status.status.voice.html:27
 msgid "status.voice_lines.info"
-msgstr "Status of your voice lines."
+msgstr ""
 
 #: juci/src/widgets/juci.input.timespan.html:4
 #: juci/src/widgets/juci.input.timespan.html:9
 msgid "to"
-msgstr "To"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:24
 msgid "wifi-iface.closed"
-msgstr "Broadcast SSID"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:27
 msgid "wifi-iface.device"
-msgstr "Frequency"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:30
 msgid "wifi-iface.encryption"
-msgstr "Protection Mode"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:33
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:34
 msgid "wifi-iface.key"
-msgstr "WiFi Password"
+msgstr ""
 
 #: juci-mod-wireless/src/widgets/uci.wireless.interface.html:21
 msgid "wifi-iface.ssid"
-msgstr "WiFi Name (SSID)"
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.settings.html:5
 msgid "wifi.settings.info"
 msgstr ""
-"Below you can change parameters for the two WiFi frequencies 2.4 GHz and 5 "
-"GHz."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:14
 msgid "wifi.wps.in.progress"
-msgstr "Your EasyBox is now attempting to pair with other devices."
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:55
 msgid "wifi.wps.otherpin.info"
-msgstr "Enter the WPS-PIN provided by the other device here."
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:25
 msgid "wifi.wps.pbc.info"
 msgstr ""
-"To pair your device, press \"Pair\". Afterwards, press the corresponding "
-"button on the device you wish to connect. Your EasyBox will be open for "
-"pairing for 2 minutes after you pressed Pair."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:40
 msgid "wifi.wps.pin.info"
-msgstr "Enter the WPS-PIN below on the device you wish to pair."
+msgstr ""
 
-# share/menu.d/status.json
 #: juci-mod-wireless/src/pages/wifi.wps.js:9
 msgid "wps.status.fail"
 msgstr ""
-"No devices have connected to your EasyBox. If you still want to pair a "
-"device, click the Pair button again."
 
-# share/menu.d/status.json
 #: juci-mod-wireless/src/pages/wifi.wps.js:6
 msgid "wps.status.init"
-msgstr "Initializing WPS"
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.js:11
 msgid "wps.status.msgdone"
-msgstr "Pairing done"
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.js:7
 msgid "wps.status.processing"
-msgstr "Your EasyBox is now attempting to pair with other devices."
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.js:8
 msgid "wps.status.success"
-msgstr "Your EasyBox has successfully paired with another device."
+msgstr ""
 
-# share/menu.d/status.json
 #: juci-mod-wireless/src/pages/wifi.wps.js:10
 msgid "wps.status.timeout"
-msgstr "WPS pairing timeout."
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.js:38
 msgid "wps.status.unknown"
-msgstr "WPS Unknown"
+msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:72
 msgid "{{text_status}}"
 msgstr ""
 
-# share/menu.d/internet.json
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-network.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-network-netifd.json
 msgid "internet.title"
-msgstr "Internet"
+msgstr ""
 
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-firewall-fw3.json
 msgid "internet.firewall.title"
-msgstr "Firewall"
+msgstr ""
 
 msgid "internet.port.mapping.title"
-msgstr "Port Mapping"
+msgstr ""
 
 msgid "internet.exposed.host.title"
-msgstr "Exposed Host"
+msgstr ""
 
 msgid "internet.dns.title"
-msgstr "DNS & DDNS"
+msgstr ""
 
 msgid "internet.parental.control.title"
-msgstr "Parental Control"
+msgstr ""
 
 # menu.d/juci-mod-samba.json
 msgid "services.samba.title"
-msgstr "Samba"
+msgstr ""
 
-# share/menu.d/status.json
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-status.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-mod-status.json
 msgid "status.title"
-msgstr "Status"
+msgstr ""
 
 msgid "status.status.title"
-msgstr "Status"
+msgstr ""
 
 msgid "status.status.system.title"
-msgstr "System"
+msgstr ""
 
 msgid "status.status.dsl.title"
-msgstr "DSL Status"
+msgstr ""
 
 msgid "status.diagnostics.title"
-msgstr "Diagnostic Utility"
+msgstr ""
 
 msgid "status.events.title"
-msgstr "Event Log"
+msgstr ""
 
 msgid "status.restart.title"
-msgstr "Restart"
+msgstr ""
 
 msgid "status.about.title"
-msgstr "About"
+msgstr ""
 
 msgid "status.nat.title"
-msgstr "NAT Mapping Table"
+msgstr ""
 
-# share/menu.d/settings.json
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-system.json
 msgid "settings.title"
-msgstr "Settings"
+msgstr ""
 
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-mod-system.json
 msgid "settings.password.title"
-msgstr "EasyBox Password"
+msgstr ""
 
 msgid "settings.upgrade.title"
-msgstr "Firmware Update"
+msgstr ""
 
 msgid "settings.energy.title"
-msgstr "Energy Settings"
+msgstr ""
 
 msgid "settings.configuration.title"
-msgstr "Configuration"
+msgstr ""
 
 msgid "settings.network.title"
-msgstr "Network"
+msgstr ""
 
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-tv.json
 msgid "status.status.tv.title"
-msgstr "Vodafone TV"
+msgstr ""
 
-# share/menu.d/status.vodafone.json
 msgid "status.status.voice.title"
-msgstr "Voice Status"
+msgstr ""
 
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-voice.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-asterisk.json
 msgid "phone.title"
-msgstr "Call Log"
+msgstr ""
 
 msgid "phone.call.log.title"
-msgstr "Call Log"
+msgstr ""
 
 msgid "phone.number.blocking.title"
 msgstr ""
-"Stay in control of your bills and block outgoing calls to unwanted numbers."
 
 msgid "phone.ringing.schedule.title"
-msgstr "Schedule"
+msgstr ""
 
 msgid "phone.numbers.title"
-msgstr "Numbers"
+msgstr ""
 
 msgid "phone.lines.title"
-msgstr "Lines"
+msgstr ""
 
 msgid "phone.speed.dialing.title"
-msgstr "Speed Dialing"
+msgstr ""
 
-# share/menu.d/wifi.json
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-wireless.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-broadcom-wl.json
 msgid "wifi.title"
-msgstr "WiFi"
+msgstr ""
 
 msgid "wifi.general.title"
-msgstr "General"
+msgstr ""
 
 msgid "wifi.schedule.title"
-msgstr "Schedule"
+msgstr ""
 
 msgid "wifi.wps.title"
-msgstr "WPS"
+msgstr ""
 
 msgid "wifi.mac.filter.title"
-msgstr "MAC Filter"
+msgstr ""
 
 msgid "wifi.settings.title"
-msgstr "Settings"
+msgstr ""
 
-# share/menu.d/overview.json
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci.json
 msgid "overview.title"
-msgstr "Overview"
+msgstr ""
 
 msgid "services.title"
-msgstr "Services"
+msgstr ""
 
 msgid "services.status.title"
-msgstr "Status"
+msgstr ""
 
 msgid "wifi-iface.wifi-iface.ssid"
-msgstr "WiFi Name (SSID)"
+msgstr ""
 
 msgid "wifi-iface.network"
-msgstr "WiFi Network"
+msgstr ""
 
 msgid "wifi-iface.mode"
-msgstr "Mode"
+msgstr ""
 
 msgid "wifi-iface.cipher"
-msgstr "Cipher"
+msgstr ""
 
 msgid "wifi-iface.gtk_rekey"
-msgstr "Rekey Interval"
+msgstr ""
 
 msgid "wifi-iface.wps_pbc"
-msgstr "WPS"
+msgstr ""
 
 msgid "wifi-iface.wmf_bss_enable"
-msgstr "BSS"
+msgstr ""
 
 msgid "wifi-iface.bss_max"
-msgstr "BSS Max"
+msgstr ""
 
 msgid "wifi-iface.instance"
-msgstr "Device"
+msgstr ""
 
 msgid "wifi-iface.up"
-msgstr "Up"
+msgstr ""
 
 msgid "wifi-iface.disabled"
-msgstr "Disabled"
+msgstr ""
 
 msgid "wifi-iface.macmode"
-msgstr "Mac Mode"
+msgstr ""
 
 msgid "wifi-iface.macfilter"
-msgstr "Mac Filter"
+msgstr ""
 
 msgid "wifi-iface.maclist"
-msgstr "Mac List"
+msgstr ""
 
 msgid "interface.macmode.allow"
-msgstr "Allow"
+msgstr ""
 
 msgid "interface.macmode.deny"
-msgstr "Deny"
+msgstr ""
 
 msgid "network.interface.type.bridge.tab.title"
-msgstr "Bridge"
+msgstr ""
 
 msgid "network.interface.type.anywan.tab.title"
-msgstr "AnyWAN"
+msgstr ""
 
 msgid "login.title"
-msgstr "JUCI Login"
+msgstr ""
 
 #: juci/src/widgets/juci.select.js:20
 msgid "-- Select One --"
@@ -2191,145 +2160,108 @@ msgstr ""
 msgid "please specify both hour and minute value for time separated by ':'"
 msgstr ""
 
+# bin/usr/share/rpcd/menu.d/juci-broadcom-dsl.json
 msgid "internet.ethernet.adsl.title"
-msgstr "ADSL Devices"
+msgstr ""
 
 msgid "internet.ethernet.vdsl.title"
-msgstr "VDSL Devices"
+msgstr ""
 
+# bin/usr/share/rpcd/menu.d/juci-broadcom-vlan.json
 msgid "internet.ethernet.vlan.title"
-msgstr "VLAN Devices"
+msgstr ""
 
 msgid "wifi.general.devices.title"
-msgstr "Wireless Devices"
+msgstr ""
 
 msgid "wifi.general.interfaces.title"
-msgstr "Wireless Interfaces"
+msgstr ""
 
 msgid "internet.ethernet.wifi.title"
-msgstr "Wireless Devices"
+msgstr ""
 
+# bin/usr/share/rpcd/menu.d/juci-ddns.json
 msgid "internet.wan.ddns.title"
-msgstr "Dynamic DNS"
+msgstr ""
 
+# bin/usr/share/rpcd/menu.d/juci-dnsmasq-dhcp.json
 msgid "internet.lan.dhcp.title"
-msgstr "DHCP"
+msgstr ""
 
 msgid "internet.lan.routes.title"
-msgstr "Static Routes"
+msgstr ""
 
 msgid "internet.firewall.zones.title"
-msgstr "Firewall Zones"
+msgstr ""
 
 msgid "internet.firewall.rules.title"
-msgstr "Firewall Rules"
+msgstr ""
 
 msgid "internet.firewall.urlblock.title"
-msgstr "URL Blocking Filter"
+msgstr ""
 
 msgid "internet.firewall.wordfilter.title"
-msgstr "Forwarding Filter"
+msgstr ""
 
 msgid "internet.firewall.svcfilter.title"
-msgstr "Services Filter"
+msgstr ""
 
 msgid "internet.wan.port.mapping.title"
-msgstr "Port Mapping"
+msgstr ""
 
 msgid "internet.wan.exposed.host.title"
-msgstr "Exposed Host"
+msgstr ""
 
+# bin/usr/share/rpcd/menu.d/juci-igmpsnoop.json
 msgid "internet.lan.iptv.title"
-msgstr "IPTV"
+msgstr ""
 
+# bin/usr/share/rpcd/menu.d/juci-minidlna.json
 msgid "internet.services.minidlna.title"
-msgstr "MiniDLNA"
+msgstr ""
 
-# share/menu.d/status.vodafone.json
 msgid "status.status.services.title"
-msgstr "Services"
+msgstr ""
 
-# share/menu.d/settings.json
 msgid "settings.system.title"
-msgstr "System"
+msgstr ""
 
 msgid "internet.ethernet.title"
-msgstr "Ethernet Devices"
+msgstr ""
 
 msgid "internet.network.title"
-msgstr "Network"
+msgstr ""
 
 msgid "internet.wan.title"
-msgstr "WAN"
+msgstr ""
 
 msgid "internet.lan.title"
-msgstr "LAN"
+msgstr ""
 
 msgid "internet.services.title"
-msgstr "Services"
+msgstr ""
 
-# share/menu.d/settings.json
+# bin/usr/share/rpcd/menu.d/juci-samba.json
 msgid "settings.samba.title"
-msgstr "Samba"
+msgstr ""
 
 msgid "wifi-iface.key1"
-msgstr "WiFi Key #1"
+msgstr ""
 
 msgid "wifi-iface.key2"
-msgstr "WiFi Key #2"
+msgstr ""
 
 msgid "wifi-iface.key3"
-msgstr "WiFi Key #3"
+msgstr ""
 
 msgid "wifi-iface.key4"
-msgstr "WiFi Key #4"
+msgstr ""
 
 msgid "wifi.enc.wep-shared"
-msgstr "WEP Shared Key"
+msgstr ""
 
 msgid "wifi.enc.wpa2"
-msgstr "WPA2 Radius "
+msgstr ""
 
 msgid "wifi.enc.mixed-wpa"
-msgstr "WPA2 Mixed"
-
-#~ msgid "Internet IPv6"
-#~ msgstr "Internet IPv6"
-
-#~ msgid "wifi-iface.radius_port"
-#~ msgstr "Radius Port"
-
-#~ msgid "wifi-iface.radius_secret"
-#~ msgstr "Radius Secret"
-
-#~ msgid "wifi-iface.radius_server"
-#~ msgstr "Radius Server"
-
-#~ msgid "wifi-iface.show_password"
-#~ msgstr "Show Key Text"
-
-#~ msgid "none"
-#~ msgstr "None"
-
-#~ msgid "wep"
-#~ msgstr "WEP"
-
-#~ msgid "psk"
-#~ msgstr "PSK"
-
-#~ msgid "psk2"
-#~ msgstr "Passkey 2"
-
-#~ msgid "Choose Protection"
-#~ msgstr "Choose Protection"
-
-#~ msgid "wifi.wpspairmodal.failinfo"
-#~ msgstr ""
-#~ "No devices have connected to your EasyBox. If you still want to pair a "
-#~ "device, click the Pair button again."
-
-#~ msgid "wifi.wpspairmodal.progressinfo"
-#~ msgstr "Your EasyBox is now attempting to pair with other devices."
-
-#~ msgid "wifi.wpspairmodal.successinfo"
-#~ msgstr "Your EasyBox has successfully paired with another device."
+msgstr ""

@@ -164,11 +164,11 @@
 				else return this.uvalue; 
 			},
 			set value(val){
-				if(!this.is_dirty && this.ovalue != val) this.is_dirty = true; 
+				// always set dirty when changed 
+				this.is_dirty = true; 
 				if(val instanceof Array) {
 					this.uvalue = []; 
 					Object.assign(this.uvalue, val); 
-					this.is_dirty = true; 
 				}
 				this.uvalue = val; 
 			},

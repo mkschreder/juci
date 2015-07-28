@@ -1,6 +1,9 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Device Name'|translate}}">
+			<input type="text" class="font-control" ng-model="conf.name.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Device ID'|translate}}">
 			<input type="text" class="font-control" ng-model="conf.ifname.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Base Device'|translate}}">

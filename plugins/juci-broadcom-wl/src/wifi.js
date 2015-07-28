@@ -12,7 +12,7 @@
 						$uci.wireless["@wifi-iface"].map(function(device){
 							devices.push({
 								get name() { return device.ssid.value; },
-								get id() { return device.device.value; },
+								get id() { return device.ifname.value; },
 								get type() { return "wireless"; }, 
 								base: device
 							}); 
@@ -147,10 +147,11 @@
 		"disabled":		{ dvalue: false, type: Boolean }
 	}); 
 	UCI.wireless.$registerSectionType("wifi-iface", {
-		"device": 		{ dvalue: "wl0", type: String },
-		"network":		{ dvalue: "lan", type: String, allow: [ "lan", "guest" ] },
+		"device": 		{ dvalue: "", type: String },
+		"ifname": 		{ dvalue: "", type: String }, // name of the created device 
+		"network":		{ dvalue: "", type: String },
 		"mode":				{ dvalue: "ap", type: String, allow: [ "ap" ] },
-		"ssid":				{ dvalue: "Inteno", type: String },
+		"ssid":				{ dvalue: "", type: String },
 		"encryption":	{ dvalue: "mixed-psk", type: String, allow: [ "none", "wep", "wep-shared", "psk2", "mixed-psk", "wpa2", "mixed-wpa" ] },
 		"cipher":			{ dvalue: "auto", type: String, allow: [ "auto" ] },
 		"key":				{ dvalue: "", type: String },
