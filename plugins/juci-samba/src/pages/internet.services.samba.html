@@ -5,26 +5,27 @@
 			<juci-config-info>{{ 'services.samba.info' | translate }}</juci-config-info>
 			<juci-config-lines>
 				<juci-config-line title="{{'Name'|translate}}">
-					<input type="text" ng-model="samba.samba.name.value" class="form-control" placeholder="{{'Name'|translate}}"/>
+					<input type="text" ng-model="config.name.value" class="form-control" placeholder="{{'Name'|translate}}"/>
 				</juci-config-line>
 				<juci-config-line title="{{'Workgroup'|translate}}">
-					<input type="text" ng-model="samba.samba.workgroup.value" class="form-control" placeholder="{{'Workgroup'|translate}}"/>
+					<input type="text" ng-model="config.workgroup.value" class="form-control" placeholder="{{'Workgroup'|translate}}"/>
 				</juci-config-line>
 				<juci-config-line title="{{'Description'|translate}}">
-					<input type="text" ng-model="samba.samba.description.value" class="form-control" placeholder="{{'Description'|translate}}"/>
+					<input type="text" ng-model="config.description.value" class="form-control" placeholder="{{'Description'|translate}}"/>
 				</juci-config-line>
-				<juci-config-line title="{{'Homes'|translate}}">
-					<input type="text" ng-model="samba.samba.homes.value" class="form-control" placeholder="{{'Homes'|translate}}"/>
+				<juci-config-line title="{{'Share User Home Directory'|translate}}">
+					<input type="checkbox" ng-model="config.homes.value" class="form-control" />
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
 		<juci-config-section>
 			<juci-config-heading>{{ 'Samba Shares' | translate }}</juci-config-heading>
-			<p>TODO</p>
+			<juci-list-editor ng-items="shares" item-editor="samba-share-edit" get-item-title="getSambaShareTitle($item)"></juci-list-editor>
 		</juci-config-section>
 		<juci-config-section>
 			<juci-config-heading>{{ 'Samba Users' | translate }}</juci-config-heading>
 			<p>TODO</p>
 		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

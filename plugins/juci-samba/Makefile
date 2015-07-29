@@ -1,4 +1,4 @@
-TARGET:=juci-mod-samba
+TARGET:=$(shell basename $$PWD)
 OUTDIR:=htdocs
 CSS:=$(OUTDIR)/css/50-$(TARGET).css
 JS:=$(OUTDIR)/js/50-$(TARGET).js
@@ -16,12 +16,16 @@ files:
 	$(INSTALL_DIR) ./$(OUTDIR)/css
 	$(INSTALL_DIR) ./$(OUTDIR)/js
 
+#STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
+#$(CSS): $(STYLES)
+#	cat $(STYLES) > $@
+
 $(JS): $(CODE)
 	cat $(CODE) > $@
-	
+
 $(HTML): $(TEMPLATES)
 	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
 

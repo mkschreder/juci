@@ -25,10 +25,10 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<table class="table table-bordered table-condensed">
+				<table class="table table-condensed">
 					<tr>
-						<td>WPS pin:</td>
-						<td><span ng-show="wifi.status.wps.value" style="font-size: 0.8pn">{{wps.pin}}</span></td>
+						<td><strong translate>WPS pin:</strong></td>
+						<td style="text-align: right;"><span ng-show="wifi.status.wps.value" style="font-size: 0.8pn">{{wps.pin || "-"}}</span></td>
 					</tr>
 				</table>
 			</div>

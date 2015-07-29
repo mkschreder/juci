@@ -228,8 +228,9 @@
 							value = n; 
 							break; 
 						case Array: 
-							if(data[k] instanceof String) value = [data[k]]; 
+							if(!(data[k] instanceof Array)) value = [data[k]]; 
 							else value = data[k];  
+							if(!value) value = []; 
 							break; 
 						case Boolean: 
 							if(data[k] === "true" || data[k] === "1") value = true; 

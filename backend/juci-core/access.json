@@ -409,7 +409,8 @@
 				"layer2_interface_adsl", 
 				"layer2_interface_vdsl",
 				"layer2_interface_ethernet",
-				"layer2_interface_vlan"
+				"layer2_interface_vlan",
+				"samba"
 			]
 		},
 		"write": {
@@ -419,7 +420,8 @@
 				"layer2_interface_adsl", 
 				"layer2_interface_vdsl",
 				"layer2_interface_ethernet",
-				"layer2_interface_vlan"
+				"layer2_interface_vlan",
+				"samba"
 			]
 		}
 	},

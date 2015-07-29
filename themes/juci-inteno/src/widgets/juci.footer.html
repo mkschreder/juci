@@ -1,19 +1,27 @@
-<div class="container footer">
-	<div class="row">
-		<div class="col-sm-6 col-xs-12 form-group">
-			<span ng-repeat="lang in languages">
-				<a style="text-decoration: {{isActiveLanguage(lang)?'underline':'none'}}; color: inherit;" href="" ng-click="setLanguage(lang)">{{lang.title|translate}}</a>{{$last ? '' : ' | '}}
-			</span>
+<div style="width: 100%; height: 400px; background: #d6d6d6;
+background: -moz-linear-gradient(top, #d6d6d6 0%, #f9f9f9 27%, #ffffff 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d6d6d6), color-stop(27%,#f9f9f9), color-stop(100%,#ffffff));
+background: -webkit-linear-gradient(top, #d6d6d6 0%,#f9f9f9 27%,#ffffff 100%);
+background: -o-linear-gradient(top, #d6d6d6 0%,#f9f9f9 27%,#ffffff 100%);
+background: -ms-linear-gradient(top, #d6d6d6 0%,#f9f9f9 27%,#ffffff 100%);
+background: linear-gradient(to bottom, #d6d6d6 0%,#f9f9f9 27%,#ffffff 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#ffffff',GradientType=0 );; margin-bottom: 0px !important; ">
+	<div class="container footer" style=" padding-top: 40px; ">
+		<div class="row">
+			<div class="col-sm-6 col-xs-12 form-group">
+				<span ng-repeat="lang in languages">
+					<a style="text-decoration: {{isActiveLanguage(lang)?'underline':'none'}}; color: inherit;" href="" ng-click="setLanguage(lang)">{{lang.title|translate}}</a>{{$last ? '' : ' | '}}
+				</span>
+			</div>
+			<div class="col-sm-6 col-xs-12 form-group footer-right" >
+				<div class="row">{{firmware}}</div>
+				<div class="row"><span translate>WAN IP Address</span>: {{wanip}}</div>
+			</div>
 		</div>
-		<div class="col-sm-6 col-xs-12 form-group footer-right" >
-			<div class="row">{{firmware}}</div>
-			<div class="row"><span translate>WAN IP Address</span>: {{wanip}}</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<!--<juci-theme-picker></juci-theme-picker>-->
+		<div class="row">
+			<div class="col-xs-12">
+				<!--<juci-theme-picker></juci-theme-picker>-->
+			</div>
 		</div>
 	</div>
 </div>
- 

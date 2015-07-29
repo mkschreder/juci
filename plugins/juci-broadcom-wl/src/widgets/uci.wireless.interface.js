@@ -26,6 +26,7 @@ JUCI.app
 		{label: gettext("Key") + " #4", value: 4}
 	];
 	$scope.psk2_ciphers = [
+		{label: gettext("Auto"), value: "auto"},
 		{label: gettext("CCMP (AES)"), value: "ccmp"}
 	]; 
 	$scope.mixed_psk_ciphers = [
