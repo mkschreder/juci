@@ -310,8 +310,8 @@ JUCI.app
 			networks: {
 				shape: 'icon',
 				icon: {
-					face: 'FontAwesome',
-					code: '\uf1ad',
+					face: 'Ionicons',
+					code: '\uf341',
 					size: 30,
 					color: '#009900'
 				}
@@ -319,8 +319,8 @@ JUCI.app
 			networks_down: {
 				shape: 'icon',
 				icon: {
-					face: 'FontAwesome',
-					code: '\uf1ad',
+					face: 'Ionicons',
+					code: '\uf341',
 					size: 30,
 					color: '#990000'
 				}
@@ -330,6 +330,15 @@ JUCI.app
 				icon: {
 					face: 'FontAwesome',
 					code: '\uf1ad',
+					size: 30,
+					color: '#f0a30a'
+				}
+			},
+			wan: {
+				shape: 'icon',
+				icon: {
+					face: 'Ionicons',
+					code: '\uf38c',
 					size: 30,
 					color: '#f0a30a'
 				}
@@ -362,7 +371,7 @@ JUCI.app
 					nodes.push({
 						id: ".wan", 
 						label: "WAN", 
-						group: "static", 
+						group: "wan", 
 						x: 100, y: 50, 
 						physics: false, 
 						fixed: { x: false, y: false }
@@ -390,7 +399,25 @@ JUCI.app
 					
 					net_y = 0; 
 					// add wan networks
-					[
+					nets.filter(function(net){
+						nets_map[net[".name"]] = net; 
+						return net.is_lan.value == 0 && net[".name"] != "loopback"; 
+					}).map(function(net){
+						var node = {
+							id: net[".name"],
+							label: net[".name"] + " (" + net.ifname.value.split(" ").join(",") + ")",
+							group: (stats[net[".name"]].up)?'networks':'networks_down', 
+							x: 200, 
+							y: net_y, 
+							physics: false, 
+							fixed: { x: false, y: false }
+						}
+						edges.push({ from: ".wan", to: node.id, smooth: { enabled: false } });
+						net_y += 80; 
+						nodes_map[node.id] = node; 
+						nodes.push(node); 
+					}); 
+					/*[
 						{ name: "Internet", iface: $config.wan_interface}, 
 						{ name: "IPTV", iface: $config.iptv_interface},
 						{ name: "Voice", iface: $config.voice_interface}
@@ -409,7 +436,7 @@ JUCI.app
 						net_y += 80; 
 						nodes_map[node.id] = node; 
 						nodes.push(node); 
-					}); 
+					}); */
 					
 					clients.filter(function(client){
 						return client.connected; 

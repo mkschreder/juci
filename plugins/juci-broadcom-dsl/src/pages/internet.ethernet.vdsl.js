@@ -17,7 +17,7 @@ JUCI.app
 	
 	
 	$scope.onCreateDevice = function(){
-		$uci.layer2_interface_adsl.create({
+		$uci.layer2_interface_vdsl.create({
 			".type": "vdsl_interface",
 			"name": gettext("New device")
 		}).done(function(interface){

@@ -16,6 +16,7 @@ STYLES+=src/lib/css/select.min.css
 STYLES+=src/lib/css/angular-ui-switch.min.css
 STYLES+=src/lib/css/awesome-bootstrap-checkbox.css
 STYLES+=src/lib/css/vis.min.css
+STYLES+=src/css/ionicons.min.css
 STYLES+=src/css/nga.min.css
 STYLES+=src/css/app.css
 

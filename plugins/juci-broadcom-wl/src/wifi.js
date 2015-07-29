@@ -100,6 +100,20 @@
 	}); 
 }(); 
 
+JUCI.app.run(function($uci){
+	// make sure we create status section if it does not exist. 
+	$uci.sync("wireless").done(function(){
+		if(!$uci.wireless.status) {
+			$uci.wireless.create({
+				".type": "wifi-status", 
+				".name": "status"
+			}).done(function(){
+				$uci.save();
+			});  
+		} 
+	}); 
+}); 
+
 (function(){
 	UCI.$registerConfig("wireless"); 
 	UCI.wireless.$registerSectionType("wifi-status", {
