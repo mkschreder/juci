@@ -22,6 +22,7 @@ JUCI.app
 		{ label: "TCP", value: "tcp"}, 
 		{ label: "TCP + UDP", value: "tcpudp" }
 	]; 
+	
 	$scope.deviceChoices = [];
 	$rpc.router.clients().done(function(clients){
 		var choices = []; 

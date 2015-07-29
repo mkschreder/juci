@@ -18,5 +18,5 @@
 		<juci-config-line title="{{'Zone members:'|translate}}">
 		</juci-config-line>
 	</juci-config-lines>
-	<juci-list-editor ng-items="networks" get-item-title="getItemTitle($item)"></juci-list-editor>
+	<juci-list-editor ng-items="networks" get-item-title="getItemTitle($item)" on-create="onAddNetwork()" on-delete="onRemoveNetwork($item)"></juci-list-editor>
 </div>

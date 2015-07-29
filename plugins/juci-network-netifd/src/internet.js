@@ -90,6 +90,7 @@
 							i.ifname.value.split(" ").map(function(name){
 								if(name in devmap) i.devices.push(devmap[name]); 
 							}); 
+							if(i[".name"] == "loopback") return; 
 							networks.push(i); 
 						}); 
 					}).always(function(){
@@ -149,12 +150,14 @@
 			return {
 				getDevices: function(){
 					var deferred = $.Deferred(); 
+					var devices = []; 
+					/* Do not add loopback device for now because we hardly ever use it and it is basically filtered in all interfaces. 
 					var devices = [{
 						get name(){ return "loopback"; },
 						get id() { return "lo"; },  
 						get type(){ return "baseif"; }, 
 						base: { name: "loopback", id: "lo" }
-					}]; 
+					}]; */
 					$rpc.router.boardinfo().done(function(boardinfo){
 						$uci.sync("layer2_interface_ethernet").done(function(){
 							var names = boardinfo.ethernet.port_names.split(" "); 

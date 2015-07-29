@@ -143,17 +143,19 @@ UCI.firewall.$registerSectionType("dmz", {
 	"enabled": 			{ dvalue: false, type: Boolean }, 
 	"host": 				{ dvalue: "", type: String } // TODO: change to ip address
 }); 
+
 UCI.firewall.$registerSectionType("rule", {
 	"type": 				{ dvalue: "generic", type: String }, 
 	"name":					{ dvalue: "", type: String }, 
-	"src":					{ dvalue: "lan", type: String }, 
+	"src":					{ dvalue: "*", type: String }, 
 	"src_ip":				{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
 	"src_mac": 			{ dvalue: [], type: Array, validator: UCI.validators.MACListValidator }, 
-	"src_port":			{ dvalue: 0, type: Number }, 
-	"proto":				{ dvalue: "tcp", type: String }, 
+	"src_port":			{ dvalue: "", type: String }, // can be a range
 	"dest":					{ dvalue: "*", type: String }, 
 	"dest_ip":			{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
-	"dest_port":		{ dvalue: 0, type: Number }, 
+	"dest_mac":			{ dvalue: "", type: String },
+	"dest_port":		{ dvalue: "", type: String }, // can be a range
+	"proto":				{ dvalue: "any", type: String }, 
 	"target":				{ dvalue: "REJECT", type: String }, 
 	"family": 			{ dvalue: "ipv4", type: String }, 
 	"icmp_type": 		{ dvalue: [], type: Array },
@@ -162,9 +164,14 @@ UCI.firewall.$registerSectionType("rule", {
 	"limit":				{ dvalue: "", type: String }, 
 	// scheduling
 	"parental": 			{ dvalue: false, type: String }, 
-	"weekdays":				{ dvalue: "", type: String }, 
+	"start_date":		{ dvalue: "", type: String }, 
+	"stop_date":		{ dvalue: "", type: String }, 
 	"start_time":			{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
 	"stop_time":			{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
+	"weekdays":				{ dvalue: "", type: String }, 
+	"monthdays":		{ dvalue: "", type: String }, 
+	"utc_time":			{ dvalue: "", type: Boolean }, 
+	"enabled":				{ dvalue: true, type: Boolean }, 
 }); 
 UCI.firewall.$registerSectionType("settings", {
 	"disabled":			{ dvalue: false, type: Boolean },

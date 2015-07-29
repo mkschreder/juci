@@ -4,4 +4,89 @@
 			<input type="text" class="form-control" ng-model="rule.name.value"/>
 		</juci-config-line>
 	</juci-config-lines>
+	<juci-config-section>
+		<div class="row">
+			<div class="col-md-6">
+				<h3 translate>Source</h3>
+				<juci-config-lines>
+					<juci-config-line title="{{'Network'|translate}}">
+						<juci-select ng-model="rule.src.value" ng-items="sourceNetworks"></juci-select>
+					</juci-config-line>
+					<juci-config-line title="{{'IP'|translate}}">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" ng-model="data.src_ip_enabled"/>
+							</span>
+							<input type="text" class="form-control" ng-model="rule.src_ip.value" placeholder="{{'IP Address'|translate}}" ng-disabled="!data.src_ip_enabled"/>
+							<span class="input-group-addon">
+								<a href="" ng-click="onSelectSrcHost()"><i class="fa fa-desktop"/></a>
+							</span>
+						</div>
+					</juci-config-line>
+					<juci-config-line title="{{'MAC'|translate}}">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" ng-model="data.src_mac_enabled"/>
+							</span>
+							<input type="text" class="form-control" ng-model="rule.src_mac.value" placeholder="{{'MAC Address'|translate}}" ng-disabled="!data.src_mac_enabled"/>
+						</div>
+					</juci-config-line>
+					<juci-config-line title="{{'Port'|translate}}">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" ng-model="data.src_port_enabled"/>
+							</span>
+							<input type="text" class="form-control" ng-model="rule.src_port.value" placeholder="{{'Port'|translate}}" ng-disabled="!data.src_port_enabled"/>
+						</div>
+					</juci-config-line>
+				</juci-config-lines>
+			</div>
+			<div class="col-md-6">
+				<h3 translate>Destination</h3>
+				<juci-config-lines>
+					<juci-config-line title="{{'Network'|translate}}">
+						<juci-select ng-model="rule.dest.value" ng-items="destNetworks"></juci-select>
+					</juci-config-line>
+					<juci-config-line title="{{'IP'|translate}}">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" ng-model="data.dest_ip_enabled"/>
+							</span>
+							<input type="text" class="form-control" ng-model="rule.dest_ip.value" placeholder="{{'IP Address'|translate}}" ng-disabled="!data.dest_ip_enabled"/>
+							<span class="input-group-addon">
+								<a href="" ng-click="onSelectDestHost()"><i class="fa fa-desktop"/></a>
+							</span>
+						</div>
+					</juci-config-line>
+					<juci-config-line title="{{'MAC'|translate}}">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" ng-model="data.dest_mac_enabled"/>
+							</span>
+							<input type="text" class="form-control" ng-model="rule.dest_mac.value" placeholder="{{'MAC Address'|translate}}" ng-disabled="!data.dest_mac_enabled"/>
+						</div>
+					</juci-config-line>
+					<juci-config-line title="{{'Port'|translate}}">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" ng-model="data.dest_port_enabled"/>
+							</span>
+							<input type="text" class="form-control" ng-model="rule.dest_port.value" placeholder="{{'Port'|translate}}" ng-disabled="!data.dest_port_enabled"/>
+						</div>
+					</juci-config-line>
+				</juci-config-lines>
+			</div>
+		</div>
+	</juci-config-section>
+	<juci-config-lines>
+		<juci-config-line title="{{'Family'|translate}}">
+			<juci-select ng-model="rule.family.value" ng-items="familyChoices"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{'Protocol'|translate}}">
+			<juci-select ng-model="rule.proto.value" ng-items="protocolChoices"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{'Firewall Action'|translate}}">
+			<juci-select ng-model="rule.target.value" ng-items="targetChoices"></juci-select>
+		</juci-config-line>
+	</juci-config-lines>
 </div>

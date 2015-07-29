@@ -13,4 +13,24 @@ JUCI.app
 	$scope.getItemTitle = function(item){
 		return item.name.value; 
 	}
+	
+	
+	$scope.onCreateRule = function(){
+		$uci.firewall.create({
+			".type": "rule", 
+			"name": "new_rule"
+		}).done(function(rule){
+			$scope.$apply(); 
+		}); 
+	}
+	
+	$scope.onDeleteRule = function(rule){
+		if(!rule) alert(gettext("Please select a rule to delete!")); 
+		if(confirm(gettext("Are you sure you want to delete this rule?"))){
+			rule.$delete().done(function(){
+				$scope.$apply(); 
+			}); 
+		}
+	}
+	
 }); 

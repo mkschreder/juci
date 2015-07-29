@@ -93,16 +93,6 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		return _put.call($templateCache, name, value); 
 	}
 })
-.run(function(gettextCatalog){
-	/*var setStrings = gettextCatalog.setStrings; 
-	gettextCatalog.setStrings = function(lang, strings){
-		// fixup all translations to include router name
-		Object.keys(strings).map(function(str){
-			strings[str].replace("EasyBox", "FOOBAR"); 
-		}); 
-		setStrings.apply(gettextCatalog, [lang, strings]); 
-	}; */
-})
 .run(function($rootScope, $state, gettextCatalog, $tr, gettext, $rpc, $config, $location, $navigation, $templateCache, $languages){
 	console.log("RUN"); 
 	
