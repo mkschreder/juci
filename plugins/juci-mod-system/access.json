@@ -1,0 +1,41 @@
+{
+	"juci-mod-system": {
+		"description": "JUCI system module",
+		"read": {
+			"ubus": {
+				"juci.system": [
+					"syslog",
+					"dmesg",
+					"diskfree",
+					"process_list",
+					"process_signal",
+					"init_list",
+					"init_action",
+					"rclocal_get",
+					"rclocal_set",
+					"crontab_get",
+					"crontab_set",
+					"sshkeys_get",
+					"sshkeys_set",
+					"password_set",
+					"led_list",
+					"usb_list",
+					"backup_restore",
+					"backup_clean",
+					"backup_config_get",
+					"backup_config_set",
+					"backup_list",
+					"reset_test",
+					"reset_start",
+					"reboot"
+				], 
+				"juci.sysupgrade": [
+					"check", 
+					"test", 
+					"start", 
+					"clean"
+				]
+			}
+		}
+	}
+}

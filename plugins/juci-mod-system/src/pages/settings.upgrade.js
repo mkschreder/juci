@@ -150,20 +150,25 @@ JUCI.app
 			$scope.error = (result.stdout||"") + (result.stderr||""); 
 			$scope.$apply(); 
 		}).fail(function(response){
+			// clear all juci intervals 
+			JUCI.interval.$clearAll(); 
+						
 			$scope.message = gettext("Upgrade process has started. The web gui will not be available until the upgrade process has completed!");
 			$scope.$apply(); 
 			
-			JUCI.interval.repeat("upgrade", 1000, function(done){
-				$rpc.session.access().done(function(){
-					// it will not succeed anymore because box is rebooting
-				}).fail(function(result){
-					if(result.code && result.code == -32002) { // access denied error. We will get it when it boots up again. 
-						window.location.reload(); 
-					}
-				}).always(function(){
-					done(); 
+			setTimeout(function(){
+				JUCI.interval.repeat("upgrade", 1000, function(done){
+					$rpc.session.access().done(function(){
+						// it will not succeed anymore because box is rebooting
+					}).fail(function(result){
+						if(result.code && result.code == -32002) { // access denied error. We will get it when it boots up again. 
+							window.location.reload(); 
+						}
+					}).always(function(){
+						done(); 
+					}); 
 				}); 
-			}); 
+			}, 20000); // give it some 20 seconds to actually shut down
 		});
 	}
 	
@@ -216,7 +221,7 @@ JUCI.app
 		console.log("Upload completed: "+JSON.stringify(result)); 
 	}
 	$scope.onUploadUpgrade = function(keep_configs){
-		//$scope.showUpgradeStatus = 1; 
+		$scope.showUpgradeStatus = 1; 
 		$scope.message = "Uploading..."; 
 		$scope.progress = 'uploading'; 
 		$("#postiframe").bind("load", function(){

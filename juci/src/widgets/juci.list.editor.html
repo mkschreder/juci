@@ -7,8 +7,8 @@
 		</div>
 		<div class="col-xs-3">
 			<div class="btn-group-vertical" style="width: 100%;" >
-				<button class="btn btn-lg btn-default" ng-click="onListAddItem()" ng-class="{disabled: !editable}" translate>Add</button>
-				<button class="btn btn-lg btn-default" ng-click="onListRemoveItem(item)" ng-class="{disabled: item == null || !editable}" translate>Delete</button>
+				<button class="btn btn-lg btn-default" ng-click="onListAddItem()" ng-class="{disabled: !editable || !items}" translate>Add</button>
+				<button class="btn btn-lg btn-default" ng-click="onListRemoveItem(item)" ng-class="{disabled: item == null || !editable || !items}" translate>Delete</button>
 			</div>
 		</div>
 	</div>

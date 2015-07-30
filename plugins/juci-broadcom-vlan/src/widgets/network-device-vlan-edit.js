@@ -35,7 +35,7 @@ JUCI.app
 	}); 
 	$network.getDevices().done(function(devs){
 		$scope.baseDevices = devs
-			.filter(function(x){ return x.type == "baseif" && x.name != "loopback"; })
+			.filter(function(x){ return (x.type == "baseif" || x.type == "adsl" || x.type == "vdsl") && x.name != "loopback"; })
 			.map(function(x){
 				return { label: x.name, value: x.id }
 			});

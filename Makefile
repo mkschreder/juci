@@ -70,6 +70,7 @@ prepare:
 	@echo "UBUS: $(UBUS_MODS)"
 	mkdir -p $(BIN)/www/
 	mkdir -p $(BIN)/usr/share/rpcd/menu.d/
+	mkdir -p $(BIN)/usr/share/rpcd/acl.d/
 	
 node_modules: package.json
 	npm install --production
@@ -92,6 +93,7 @@ $(DIRS-y):
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
+	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"

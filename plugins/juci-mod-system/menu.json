@@ -1,6 +1,6 @@
 {
 	"settings/password": {
-			"title": "EasyBox Password",
+			"title": "Router Password",
 			"acls": [ "system" ],
 			"index": 10
 	},

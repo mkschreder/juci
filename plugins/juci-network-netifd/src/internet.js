@@ -174,7 +174,7 @@
 								devices.push({
 									get name(){ return i.name.value; },
 									get id(){ return i.ifname.value; },
-									get type(){ return "baseif"; },
+									get type(){ return "ethernet"; },
 									base: { name: i.name.value, id: i.ifname.value }
 								}); 
 							}); 

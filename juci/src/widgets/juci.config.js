@@ -109,11 +109,8 @@ JUCI.app
 		}
 	}
 	$scope.onCancel = function(){
-		$uci.$revert().done(function(){
-			
-		}); 
 		// simple way to reset
-		//window.location.reload(); 
+		window.location.reload(); 
 	}
 }); 
 

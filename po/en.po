@@ -69,7 +69,7 @@ msgstr ""
 
 msgid "wifi.general.info"
 msgstr ""
-"Your EasyBox supports the industry-wide WiFi standards, enabling easy "
+"Your router supports the industry-wide WiFi standards, enabling easy "
 "wireless connection of your devices."
 
 msgid "wifi.macfilter.info"
@@ -80,7 +80,7 @@ msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:15
 #: plugins/juci-broadcom-wl/src/pages/wifi.general.html:22
-msgid "Enable WiFi On/Off button on EasyBox"
+msgid "Enable WiFi On/Off button on your router"
 msgstr ""
 
 #: juci-mod-wireless/src/pages/wifi.general.html:12
@@ -104,7 +104,7 @@ msgstr ""
 
 msgid "wifi.wps.info"
 msgstr ""
-"Using WPS it is possible to easily connect wireless devices with EasyBox on "
+"Using WPS it is possible to easily connect wireless devices with your router on "
 "an encrypted channel. Below, you can choose and configure different "
 "connection methods."
 
@@ -170,7 +170,7 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
-msgid "Vodafone TV"
+msgid "IPTV"
 msgstr ""
 
 msgid "Diagnostics"
@@ -223,7 +223,7 @@ msgid "Speed Dialing"
 msgstr ""
 
 # settings
-msgid "EasyBox Password"
+msgid "Router Password"
 msgstr ""
 
 #: juci-mod-system/src/pages/settings.upgrade.html:4
@@ -716,6 +716,9 @@ msgstr ""
 #: plugins/juci-vodafone/src/pages/internet.firewall.html:7
 msgid "Enable firewall"
 msgstr ""
+
+msgid "language.fi"
+msgstr "Finish"
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:6
 #: juci-mod-voice/src/pages/phone.ringing_schedule.js:27
@@ -1924,14 +1927,14 @@ msgstr ""
 #: juci-mod-tv/src/pages/status.status.tv.html:7
 #: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:7
 #: plugins/juci-mod-status/src/pages/status.status.tv.html:7
-msgid "Vodafone TV Channels"
+msgid "TV Channels"
 msgstr ""
 
 #: juci-mod-status/src/pages/status.status.tv.html:4
 #: juci-mod-tv/src/pages/status.status.tv.html:4
 #: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:4
 #: plugins/juci-mod-status/src/pages/status.status.tv.html:4
-msgid "Vodafone TV Status"
+msgid "TV Status"
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:26
@@ -2024,8 +2027,8 @@ msgstr ""
 #: juci-mod-network/src/pages/internet.firewall.html:4
 #: plugins/juci-vodafone/src/pages/internet.firewall.html:4
 msgid ""
-"Your EasyBox provides extensive firewall functionality which protects "
-"against common attacks. Vodafone recommends not to turn off firewall."
+"Your router provides extensive firewall functionality which protects "
+"against common attacks. We do not recommend to turn off firewall."
 msgstr ""
 
 #: juci-mod-voice/src/pages/status.status.voice.html:28
@@ -2062,7 +2065,7 @@ msgstr "Auto"
 #: plugins/juci-dnsmasq-dhcp/src/pages/internet.dns.html:24
 msgid "ddns.config.info"
 msgstr ""
-"DDNS allows you to access your EasyBox from the Internet using a domain name "
+"DDNS allows you to access your router from the Internet using a domain name "
 "instead of IP address. You will need an account on a DDNS service provider."
 
 #: juci-mod-network/src/pages/internet.dns.html:5
@@ -2202,9 +2205,9 @@ msgstr ""
 msgid "settings.config.info"
 msgstr ""
 "Save your settings, restore previously saved settings, and reset your "
-"EasyBox to its factory state.\n"
+"router to its factory state.\n"
 "\n"
-"Your EasyBox can save your configuration to a computer. We recommend to "
+"Your router can save your configuration to a computer. We recommend to "
 "always save your last changed settings to a computer."
 
 #: juci-mod-dropbear/src/pages/services.dropbear.html:5
@@ -2223,7 +2226,7 @@ msgstr "Reduce power consumption by switching off unused functionality."
 msgid "settings.network.info"
 msgstr ""
 "This page allows to configure IP addresses used in your home network. In "
-"case DHCP is used, EasyBox automatically assignes an IP address to devices "
+"case DHCP is used, your router automatically assignes an IP address to devices "
 "connected to the network. Using static DHCP it is possible to always assign "
 "the same IP address to specific devices."
 
@@ -2231,29 +2234,28 @@ msgstr ""
 #: plugins/juci-mod-system/src/pages/settings.password.html:5
 msgid "settings.password.info"
 msgstr ""
-"Set a new Easybox password to restrict management access to the router."
+"Set a new password to restrict management access to the router."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:5
 #: plugins/juci-mod-system/src/pages/settings.upgrade.html:5
 msgid "settings.upgrade.info"
 msgstr ""
-"The Easybox automatically install the latest firmware release available. If "
-"necessary, it is possible to update the Easybox firmware manually. Your "
+"Your router automatically installs the latest firmware release available. If "
+"necessary, it is possible to update the router firmware manually. Your "
 "current settings will not be affected by software upgrading procedure."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:14
 #: plugins/juci-mod-system/src/pages/settings.upgrade.html:14
 msgid "settings.upgrade.manual.info"
 msgstr ""
-"It is possible to update the firmware from a saved update file. The latest "
-"available version can be found on www.dsl-easybox.de."
+"It is possible to update the firmware from a saved update file."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:31
 #: plugins/juci-mod-system/src/pages/settings.upgrade.html:31
 msgid "settings.upgrade.online.info"
 msgstr ""
 "Click \"Check for Update\" to start an online software upgrade. If a newer "
-"firmware is found, it will be automatically installed on your EasyBox "
+"firmware is found, it will be automatically installed on your router "
 "(Internet connection required)."
 
 #: juci-mod-system/src/pages/settings.upgrade.html:42
@@ -2261,7 +2263,7 @@ msgstr ""
 msgid "settings.upgrade.usb.info"
 msgstr ""
 "It is possible to update the firmware from a file saved on a USB storage "
-"attached to the USB port of your EasyBox. Click \"Install Update\" to start "
+"attached to the USB port of your router. Click \"Install Update\" to start "
 "the automatic firmware upgrade. Please note that there should be only one "
 "firmware file on the storage and that one shall be located under the main "
 "directory (no search under subfolders)."
@@ -2317,15 +2319,15 @@ msgstr "This page shows the active connection for each device."
 msgid "status.restart.info"
 msgstr ""
 "This page allows to restart your Internet connection and reboot your "
-"Easybox. Please note that for the entire process all phone, internet and TV "
+"router. Please note that for the entire process all phone, internet and TV "
 "services will be temporarily unavailable. "
 
 #: juci-mod-status/src/pages/status.status.html:5
 #: plugins/juci-mod-status/src/pages/status.status.html:5
 msgid "status.status.info"
 msgstr ""
-"This page provides an overview of main parameters of your Easybox. This can "
-"help you to optimize your Easybox or identify potential problems."
+"This page provides an overview of main parameters of your router. This can "
+"help you to optimize your router or identify potential problems."
 
 #: juci-mod-status/src/pages/status.status.tv.html:5
 #: juci-mod-tv/src/pages/status.status.tv.html:5
@@ -2333,7 +2335,7 @@ msgstr ""
 #: plugins/juci-mod-status/src/pages/status.status.tv.html:5
 msgid "status.tv.info"
 msgstr ""
-"This page allows to verify the connection status of your Vodafone TV "
+"This page allows to verify the connection status of your IPTV "
 "Services."
 
 #: juci-mod-voice/src/pages/status.status.voice.html:5
@@ -2390,7 +2392,7 @@ msgstr ""
 #: juci-mod-wireless/src/pages/wifi.wps.html:14
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:14
 msgid "wifi.wps.in.progress"
-msgstr "Your EasyBox is now attempting to pair with other devices."
+msgstr "Your router is now attempting to pair with other devices."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:55
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:56
@@ -2402,7 +2404,7 @@ msgstr "Enter the WPS-PIN provided by the other device here."
 msgid "wifi.wps.pbc.info"
 msgstr ""
 "To pair your device, press \"Pair\". Afterwards, press the corresponding "
-"button on the device you wish to connect. Your EasyBox will be open for "
+"button on the device you wish to connect. Your router will be open for "
 "pairing for 2 minutes after you pressed Pair."
 
 #: juci-mod-wireless/src/pages/wifi.wps.html:40
@@ -2414,7 +2416,7 @@ msgstr "Enter the WPS-PIN below on the device you wish to pair."
 #: juci-mod-wireless/src/pages/wifi.wps.js:9
 msgid "wps.status.fail"
 msgstr ""
-"No devices have connected to your EasyBox. If you still want to pair a "
+"No devices have connected to your router. If you still want to pair a "
 "device, click the Pair button again."
 
 # share/menu.d/status.json
@@ -2428,11 +2430,11 @@ msgstr "Pairing done"
 
 #: juci-mod-wireless/src/pages/wifi.wps.js:7
 msgid "wps.status.processing"
-msgstr "Your EasyBox is now attempting to pair with other devices."
+msgstr "Your router is now attempting to pair with other devices."
 
 #: juci-mod-wireless/src/pages/wifi.wps.js:8
 msgid "wps.status.success"
-msgstr "Your EasyBox has successfully paired with another device."
+msgstr "Your router has successfully paired with another device."
 
 # share/menu.d/status.json
 #: juci-mod-wireless/src/pages/wifi.wps.js:10
@@ -2504,7 +2506,7 @@ msgid "settings.title"
 msgstr "Settings"
 
 msgid "settings.password.title"
-msgstr "EasyBox Password"
+msgstr "Router Password"
 
 msgid "settings.upgrade.title"
 msgstr "Firmware Update"
@@ -2519,7 +2521,7 @@ msgid "settings.network.title"
 msgstr "Network"
 
 msgid "status.status.tv.title"
-msgstr "Vodafone TV"
+msgstr "IPTV"
 
 # share/menu.d/status.vodafone.json
 msgid "status.status.voice.title"
@@ -3323,11 +3325,11 @@ msgstr "WPA2 Mixed"
 
 #~ msgid "wifi.wpspairmodal.failinfo"
 #~ msgstr ""
-#~ "No devices have connected to your EasyBox. If you still want to pair a "
+#~ "No devices have connected to your router. If you still want to pair a "
 #~ "device, click the Pair button again."
 
 #~ msgid "wifi.wpspairmodal.progressinfo"
-#~ msgstr "Your EasyBox is now attempting to pair with other devices."
+#~ msgstr "Your router is now attempting to pair with other devices."
 
 #~ msgid "wifi.wpspairmodal.successinfo"
-#~ msgstr "Your EasyBox has successfully paired with another device."
+#~ msgstr "Your router has successfully paired with another device."
