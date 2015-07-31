@@ -622,10 +622,17 @@
 						console.error("invalid config name "+cf); 
 						next(); 
 						return; 
-					}; 
+					} else if(self[cf].$lastSync){
+						var SYNC_TIMEOUT = 200; // probably make this configurable
+						if(((new Date()).getTime() - self[cf].$lastSync.getTime()) > SYNC_TIMEOUT){
+							console.log("Using cached version of "+cf); 
+							next(); 
+							return; 
+						}
+					}
 					self[cf].$sync().done(function(){
 						console.log("Synched config "+cf); 
-						
+						self[cf].$lastSync = new Date(); 
 						next(); 
 					}).fail(function(){
 						console.error("Could not sync config "+cf); 
