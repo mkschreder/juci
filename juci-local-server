@@ -1,4 +1,5 @@
-#!/usr/bin/node
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
 var express = require('express');
 var app = express();
