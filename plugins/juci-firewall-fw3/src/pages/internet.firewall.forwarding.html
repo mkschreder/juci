@@ -1,0 +1,14 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetFirewallForwardingPage">
+		<h2 translate>Firewall Forwarding</h2>
+		<p translate>internet.firewall.forwarding.info</p>
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line ng-repeat="fwd in forwards" title="{{fwd.title}}">
+					<switch ng-model="fwd.enabled" class="green" ng-change="onToggleForward()"></switch>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

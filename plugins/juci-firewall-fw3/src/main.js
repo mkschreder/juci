@@ -122,6 +122,10 @@ UCI.firewall.$registerSectionType("zone", {
 	"masq":					{ dvalue: true, type: Boolean }, 
 	"mtu_fix": 			{ dvalue: true, type: Boolean }
 }); 
+UCI.firewall.$registerSectionType("forwarding", {
+	"src":					{ dvalue: "", type: String }, 
+	"dest":					{ dvalue: "", type: String }
+}); 
 UCI.firewall.$registerSectionType("redirect", {
 	"name":					{ dvalue: "", type: String }, 
 	"enabled":			{ dvalue: true, type: Boolean }, 

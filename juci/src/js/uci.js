@@ -413,6 +413,7 @@
 				if(self[x].constructor == UCI.Section) to_delete[x] = self[x]; 
 			}); 
 			//console.log("To delete: "+Object.keys(to_delete)); 
+		
 			$rpc.uci.revert({
 				config: self[".name"]//, 
 				//ubus_rpc_session: $rpc.$sid()

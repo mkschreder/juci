@@ -1,33 +1,34 @@
 {
 	"settings/password": {
-			"title": "Router Password",
-			"acls": [ "system" ],
-			"index": 10
+		"title": "Router Password",
+		"acls": [ "system" ],
+		"index": 10
 	},
 	"settings/system": {
-			"title": "System",
-			"acls": [ "system" ],
-			"index": 15
+		"title": "System",
+		"acls": [ "system" ],
+		"files": [ "/foobar/notexist" ], 
+		"index": 15
 	},
 	"settings/upgrade": {
-			"title": "Firmware Upgrade",
-			"acls": [ "admin" ],
-			"index": 20
+		"title": "Firmware Upgrade",
+		"acls": [ "admin" ],
+		"index": 20
 	},
 	"settings/energy": {
-			"title": "Energy Settings",
-			"acls": [ "users" ],
-			"index": 30
+		"title": "Energy Settings",
+		"acls": [ "users" ],
+		"index": 30
 	},
 	"settings/configuration": {
-			"title": "Configuration",
-			"acls": [ "system" ],
-			"index": 40
+		"title": "Configuration",
+		"acls": [ "system" ],
+		"index": 40
 	},
 	"settings/network": {
-			"title": "Network",
-			"modes": [ "expert" ], 
-			"acls": [  ],
-			"index": 50
+		"title": "Network",
+		"modes": [ "expert" ], 
+		"acls": [  ],
+		"index": 50
 	}
 }

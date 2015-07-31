@@ -2,7 +2,7 @@
 
 JUCI.app
 .controller("InternetLANRoutesPage", function($scope, $uci, $network, $config){
-	$network.getLanNetworks().done(function(lans){
+	$network.getNetworks().done(function(lans){
 		$scope.routes = $uci.network["@route"]; 
 		$scope.allNetworks = lans.filter(function(net){
 			return net[".name"] != "loopback"; 

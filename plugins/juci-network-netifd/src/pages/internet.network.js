@@ -1,15 +1,10 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $config, gettext, prompt){
+.controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $config, gettext, networkConnectionCreate){
 	$network.getDevices().done(function(devices){
 		$scope.devices = devices; 
 		
-		$scope.networkTypes = [
-			{ label: "Bridge", value: "bridge" }, 
-			{ label: "AnyWAN", value: "anywan" }
-		]; 
-			
 		$network.getNetworks().done(function(nets){
 			$scope.networks = nets.filter(function(x){ return x.ifname.value != "lo" }); 
 			$scope.$apply(); 
@@ -45,31 +40,11 @@ JUCI.app
 	}
 	
 	$scope.onAddConnection = function(){
-		prompt({
-			"title": gettext("New connection"),
-			"message": gettext("Enter ID for new connection (you can NOT change this later!):"),
-			"input": true,
-			"buttons": [
-				{
-					"label": gettext("Cancel"),
-					"cancel": true,
-					"primary": true
-				},
-				{
-					"label": gettext("OK"),
-					"cancel": false, 
-					"primary": true
-				}
-			]
-		}).then(function(result){
-			if(!result || result == ""){
-				alert(gettext("Name can not be empty!")); 
-				return; 
-			}
-			console.log("RES: "+result); 
+		networkConnectionCreate.show().done(function(data){
 			$uci.network.create({
 				".type": "interface",
-				".name": result
+				".name": data.name, 
+				"type": data.type
 			}).done(function(interface){
 				$scope.current_connection = interface; 
 				$scope.networks.push(interface); 

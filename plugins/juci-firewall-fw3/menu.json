@@ -14,6 +14,11 @@
 		"acls": [ "network" ],
 		"index": 12
 	},
+	"internet/firewall/forwarding": {
+		"title": "Forwarding",
+		"acls": [ "network" ],
+		"index": 13
+	},
 	"internet/firewall/urlblock": {
 		"title": "URL Filter",
 		"acls": [ "network" ],
@@ -21,12 +26,12 @@
 	},
 	"internet/firewall/wordfilter": {
 		"title": "Keyword Filter",
-		"acls": [ "network" ],
+		"files": [ "/foobar/notexist" ], 
 		"index": 14
 	},
 	"internet/firewall/svcfilter": {
 		"title": "Service Filter",
-		"acls": [ "network" ],
+		"files": [ "/foobar/notexist" ], 
 		"index": 15
 	},
 	"internet/wan/port_mapping": {

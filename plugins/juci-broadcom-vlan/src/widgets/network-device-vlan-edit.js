@@ -24,20 +24,21 @@ JUCI.app
 		$scope.data.device_id = parts[1]; 
 		$scope.data.base_device = parts[0]; 
 	}); 
-	$scope.$watch("data.device_id", function(value){
+	$scope.$watch("conf.vlan8021q.value", function(value){
 		if(!$scope.conf) return; 
 		$scope.conf.ifname.value = $scope.data.base_device+"."+value; 
 	}); 
 	$scope.$watch("data.base_device", function(value){
 		if(!$scope.conf) return; 
-		$scope.conf.ifname.value = value+"."+$scope.data.device_id; 
+		$scope.conf.ifname.value = value+"."+$scope.conf.vlan8021q.value; 
 		$scope.conf.baseifname.value = value; 
 	}); 
 	$network.getDevices().done(function(devs){
 		$scope.baseDevices = devs
-			.filter(function(x){ return (x.type == "baseif" || x.type == "adsl" || x.type == "vdsl") && x.name != "loopback"; })
+			.filter(function(x){ return (x.type == "ethernet" || x.type == "adsl" || x.type == "vdsl") && x.name != "loopback"; })
 			.map(function(x){
-				return { label: x.name, value: x.id }
+				var devid = x.id.substr(0, x.id.lastIndexOf(".")); 
+				return { label: x.name, value: devid }
 			});
 		$scope.$apply();  
 	}); 

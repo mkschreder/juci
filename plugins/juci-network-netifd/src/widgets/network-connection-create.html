@@ -1,0 +1,19 @@
+<div>
+	<div class="modal-header">
+		<h3 class="modal-title" translate>Create New Network Interface</h3>
+	</div>
+	<div class="modal-body">
+		<juci-config-lines>
+			<juci-config-line title="{{'Interface Name'|translate}}">
+				<input type="text" class="form-control" ng-model="data.name" />
+			</juci-config-line>
+			<juci-config-line title="{{'Interface Type'|translate}}">
+				<juci-select ng-model="data.type" ng-items="interfaceTypes" ></juci-select>
+			</juci-config-line>
+		</juci-config-lines>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">OK</button>
+		<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

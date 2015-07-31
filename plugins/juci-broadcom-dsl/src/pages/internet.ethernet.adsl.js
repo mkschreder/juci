@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("BCMADSLPage", function($scope, $uci, $dsl){
+.controller("BCMADSLPage", function($scope, $uci, $dsl, dslBaseDevicePicker){
 	$scope.getItemTitle = function(dev){
 		if(!dev) return "Unknown"; 
 		return dev.name.value + " (" +dev.ifname.value + ")"; 
@@ -17,9 +17,20 @@ JUCI.app
 	
 	
 	$scope.onCreateDevice = function(){
+		var baseifname = "atm"; 
+		var next_id = 0; 
+		// automatically pick an id for the new device
+		for(var id = 1; id < 255; id++){ 
+			if(!$uci.layer2_interface_adsl["@atm_bridge"].find(function(i){ return String(i.ifname.value).indexOf(baseifname + id) == 0; })){
+				next_id = id; 
+				break; 
+			}
+		}
 		$uci.layer2_interface_adsl.create({
 			".type": "atm_bridge",
-			"name": gettext("New device")
+			"name": gettext("New device"), 
+			"ifname": baseifname + next_id + ".1", 
+			"baseifname": baseifname + next_id
 		}).done(function(interface){
 			$scope.adsl_devices.push(interface); 
 			$scope.$apply(); 

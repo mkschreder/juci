@@ -4,10 +4,7 @@
 			<input type="text" class="font-control" ng-model="conf.name.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Device ID'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.ifname.value"/>
-		</juci-config-line>
-		<juci-config-line title="{{'Base Device'|translate}}">
-			<juci-select ng-model="conf.baseifname.value" ng-items="baseDevices"/>
+			<strong>{{conf.ifname.value}}</strong>
 		</juci-config-line>
 		<juci-config-line title="{{'VPI'|translate}}">
 			<input type="text" class="font-control" ng-model="conf.vpi.value"/>
@@ -15,10 +12,10 @@
 		<juci-config-line title="{{'VCI'|translate}}">
 			<input type="text" class="font-control" ng-model="conf.vci.value"/>
 		</juci-config-line>
-		<juci-config-line title="{{'ATM Type'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.atmtype.value"/>
+		<juci-config-line title="{{'Service Type'|translate}}">
+			<juci-select ng-model="conf.atmtype.value" ng-items="serviceTypes"/>
 		</juci-config-line>
-		<juci-config-line title="{{'PCR'|translate}}">
+		<!--<juci-config-line title="{{'PCR'|translate}}">
 			<input type="text" class="font-control" ng-model="conf.pcr.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'SCR'|translate}}">
@@ -26,12 +23,12 @@
 		</juci-config-line>
 		<juci-config-line title="{{'MBS'|translate}}">
 			<input type="text" class="font-control" ng-model="conf.mbs.value"/>
+		</juci-config-line>-->
+		<juci-config-line title="{{'Select DSL Link Type'|translate}}">
+			<juci-select ng-model="conf.link_type.value" ng-items="linkTypes"/>
 		</juci-config-line>
-		<juci-config-line title="{{'Link Type'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.link_type.value"/>
-		</juci-config-line>
-		<juci-config-line title="{{'Encapsulation'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.encapseoa.value"/>
+		<juci-config-line title="{{'Encapsulation Mode'|translate}}">
+			<juci-select ng-model="conf.encapseoa.value" ng-items="encapModes"/>
 		</juci-config-line>
 	</juci-config-lines>
 </div>

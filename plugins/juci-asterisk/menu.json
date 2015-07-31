@@ -2,39 +2,45 @@
 	"phone": {
 		"title": "Phone", 
 		"redirect": "phone/call_log", 
+		"files": [ "/etc/config/asterisk" ],
 		"index": 20
 	}, 
 	"phone/call_log": {
 		"title": "Call Log",
-		"acls": [  ],
+		"files": [ "/etc/config/asterisk" ],
 		"index": 10
 	},
 	"phone/number_blocking": {
 		"title": "Number Blocking",
+		"files": [ "/etc/config/asterisk" ],
 		"modes": [ "expert" ], 
 		"acls": [  ],
 		"index": 20
 	},
 	"phone/ringing_schedule": {
 		"title": "Ringing Schedule",
+		"files": [ "/etc/config/asterisk" ],
 		"modes": [ "expert" ], 
 		"acls": [  ],
 		"index": 30
 	},
 	"phone/numbers": {
 		"title": "Phone Numbers",
+		"files": [ "/etc/config/asterisk" ],
 		"modes": [ "expert" ], 
 		"acls": [  ],
 		"index": 40
 	},
 	"phone/lines": {
 		"title": "Phone Lines",
+		"files": [ "/etc/config/asterisk" ],
 		"modes": [ "expert" ], 
 		"acls": [  ],
 		"index": 41
 	},
 	"phone/speed_dialing": {
 		"title": "Speed Dialing", 
+		"files": [ "/etc/config/asterisk" ],
 		"modes": [ "expert" ], 
 		"acls": [ ], 
 		"index": 50

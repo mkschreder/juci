@@ -1,19 +1,17 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Device Name'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.ifname.value"/>
+			<strong>{{conf.ifname.value}}</strong>
 		</juci-config-line>
-		<juci-config-line title="{{'Base Device'|translate}}">
-			<juci-select ng-model="conf.baseifname.value" ng-items="baseDevices"/>
+		<juci-config-line title="{{'DSL Latency Path'|translate}}">
+			<juci-select ng-model="conf.dslat.value" ng-items="latencyPaths"/>
 		</juci-config-line>
-		<juci-config-line title="{{'DSLAT'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.dslat.value"/>
+		<juci-config-line title="{{'PTM Priority'|translate}}">
+			<juci-select ng-model="conf.ptmprio.value" ng-items="ptmPriorities"/>
 		</juci-config-line>
-		<juci-config-line title="{{'PTMPRIO'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.ptmprio.value"/>
-		</juci-config-line>
-		<juci-config-line title="{{'IPQOS'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.ipqos.value"/>
+		<juci-config-line title="{{'IP QoS Scheduler Algorithm
+'|translate}}">
+			<juci-select ng-model="conf.ipqos.value" ng-items="qosAlos"/>
 		</juci-config-line>
 	</juci-config-lines>
 </div>

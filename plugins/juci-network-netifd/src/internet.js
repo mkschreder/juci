@@ -162,6 +162,7 @@
 						$uci.sync("layer2_interface_ethernet").done(function(){
 							var names = boardinfo.ethernet.port_names.split(" "); 
 							var devs = boardinfo.ethernet.port_order.split(" "); 
+							
 							devs.map(function(dev, i){
 								devices.push({
 									get name(){ return names[i]; },
@@ -178,6 +179,29 @@
 									base: { name: i.name.value, id: i.ifname.value }
 								}); 
 							}); 
+							
+							if(boardinfo.adsl){
+								var adsl_ports = boardinfo.adsl.ports.split(" "); 
+								adsl_ports.map(function(port){
+									devices.push({
+										get name(){ return port; },
+										get id(){ return port; },
+										get type(){ return "adsl_baseif"; },
+										base: { name: port, id: port }
+									}); 
+								}); 
+							}
+							if(boardinfo.vdsl){
+								var vdsl_ports = boardinfo.vdsl.ports.split(" "); 
+								vdsl_ports.map(function(port){
+									devices.push({
+										get name(){ return port; },
+										get id(){ return port; },
+										get type(){ return "vdsl_baseif"; },
+										base: { name: port, id: port }
+									}); 
+								}); 
+							}
 							deferred.resolve(devices); 
 						}); 
 					}).fail(function(){

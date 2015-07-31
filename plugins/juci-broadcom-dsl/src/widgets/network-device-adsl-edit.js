@@ -11,23 +11,40 @@ JUCI.app
 		replace: true
 	};  
 })
-.controller("networkDeviceAdslEdit", function($scope, $network){
+.controller("networkDeviceAdslEdit", function($scope, $network, gettext){
 	$network.getDevices().done(function(devices){
-		var baseDevices = []; 
-		devices.map(function(device){
-			if(device.id.match(/.*atm.*/)) {
-				var id = device.id.substr(0, device.id.lastIndexOf(".")); 
-				baseDevices.push({
-					label: id, 
-					value: id
-				});
+		var baseDevices = devices.filter(function(x){ return x.type == "adsl_baseif"; }).map(function(x){
+			return {
+				label: x.name, 
+				value: x.id
 			}
 		}); 
+		
+		$scope.linkTypes = [
+			{ label: "EoA", value: "EoA" }, 
+			{ label: "PPPoA", value: "PPPoA" }, 
+			{ label: "IPoA", value: "IPoA" }
+		]; 
+		
+		$scope.encapModes = [
+			{ label: "LLC/SNAP-Bridging", value: "llcsnap_eth" }, 
+			{ label: "VC/MUX", value: "vcmux_eth" }
+		]; 
+		
+		$scope.serviceTypes = [
+			{ label: gettext("UBR Without PCR"), value: "ubr" }, 
+			{ label: gettext("UBR With PCR"), value: "ubr_pcr" }, 
+			{ label: gettext("CBR"), value: "cbr" }, 
+			{ label: gettext("Non-Realtime VBR"), value: "nrtvbr" }, 
+			{ label: gettext("Realtime VBR"), value: "rtvbr" }, 
+		]; 
+		
 		$scope.baseDevices = baseDevices; 
 		$scope.$apply(); 
-	}); 
-	$scope.$watch("device", function(value){
-		if(!value) return; 
-		$scope.conf = value.base || value; 
+		
+		$scope.$watch("device", function(value){
+			if(!value) return; 
+				$scope.conf = value.base || value;
+		}); 
 	}); 
 }); 
