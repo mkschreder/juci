@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 require("../../../../tests/lib-juci"); 
 require("../dropbear"); 
 

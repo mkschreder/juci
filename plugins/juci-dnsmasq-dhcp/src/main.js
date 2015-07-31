@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 UCI.$registerConfig("dhcp"); 
 UCI.dhcp.$registerSectionType("dnsmasq", {

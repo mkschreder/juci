@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 (function(){
 	var _timeouts = {}; 
 	JUCI.interval = {

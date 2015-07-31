@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 ;(jQuery && jQuery.fn.upload) || (function( $) {
 		// abort if xhr progress is not supported
 	if( !($.support.ajaxProgress = ("onprogress" in $.ajaxSettings.xhr()))) {

@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 module.exports = function(grunt){
 	var glob = require("glob"); 
 	var async = require("async"); 

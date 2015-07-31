@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("overviewSliderWidget10Network", function(){
 	return {
@@ -386,7 +387,7 @@ JUCI.app
 							id: net[".name"],
 							label: net[".name"] + " (" + net.ifname.value.split(" ").join(",") + ")",
 							group: (stats[net[".name"]].up)?'networks':'networks_down', 
-							x: -100, 
+							x: -200, 
 							y: net_y, 
 							physics: false, 
 							fixed: { x: false, y: false }
@@ -445,8 +446,8 @@ JUCI.app
 							id: client.ipaddr,
 							label: client.ipaddr + ((client.hostname != "")?(" ("+client.hostname+")"):""),
 							group: 'users', 
-							x: -200, 
-							fixed: { x: true, y: false }
+							//x: -200, 
+							//fixed: { x: false, y: false }
 						}
 						var netnode = nodes_map[client.network]; 
 						if(netnode){ 

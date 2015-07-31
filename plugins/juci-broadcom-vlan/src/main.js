@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app.run(function($network, $uci){
 	$network.subsystem(function(){
 		return {

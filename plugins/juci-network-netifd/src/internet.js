@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 !function(){
 
 	JUCI.app.factory("$network", function($rpc, $uci){

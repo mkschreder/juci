@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 jQuery(function($, undefined) {
 	$(document).ready(function(){
 		(function($) {

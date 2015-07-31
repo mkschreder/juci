@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("networkConnectionIp4DnsEdit", function($compile, $parse){
 	var plugin_root = $juci.module("internet").plugin_root; 

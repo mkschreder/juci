@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 //var JUCI = {}, $juci = JUCI; 
 
 (function(scope){

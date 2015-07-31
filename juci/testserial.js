@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 var sys = require("sys"); 
 var SerialPort = require("serialport").SerialPort
 var serialPort = new SerialPort("/dev/ttyUSB0", {

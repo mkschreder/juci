@@ -17,6 +17,28 @@ static const struct rpc_daemon_ops *ops;
 static struct blob_buf bb;
 static struct uci_context *cursor;
 
+static void
+runCmd(const char *pFmt, ...)
+{
+        va_list ap;
+        char cmd[256] = {0};
+        int len=0, maxLen;
+
+        maxLen = sizeof(cmd);
+
+        va_start(ap, pFmt);
+
+        if (len < maxLen)
+        {
+                maxLen -= len;
+                vsnprintf(&cmd[len], maxLen, pFmt, ap);
+        }
+
+        system(cmd);
+
+        va_end(ap);
+}
+
 void 
 remove_newline(char *buf)
 {

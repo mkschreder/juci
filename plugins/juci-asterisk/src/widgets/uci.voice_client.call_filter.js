@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app.directive("uciVoiceClientCallFilterEdit", function(){
 	var plugin_root = JUCI.module("phone").plugin_root; 
 	return {

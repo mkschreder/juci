@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("uciFirewallRuleEdit", function($compile, $parse){
 	return {

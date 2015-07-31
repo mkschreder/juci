@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 #!javascript
 var assert = require("assert"); 
 var JSON = require("JSON"); 

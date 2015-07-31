@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .factory("$firewall", function($uci){
 	var firewall = 0; 

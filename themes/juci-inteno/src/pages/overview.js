@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .controller("OverviewPageCtrl", function($scope, $rpc, $uci, $config, gettext, $tr){
 	// get normal widgets

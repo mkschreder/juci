@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .controller("DDNSPage", function ($scope, $uci, $network, $config) {
 	

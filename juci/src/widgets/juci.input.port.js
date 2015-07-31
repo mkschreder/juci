@@ -1,3 +1,4 @@
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("juciInputPort", function () {
 	var plugin_root = $juci.module("core").plugin_root;
