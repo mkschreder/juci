@@ -1,0 +1,15 @@
+{
+	"juci-samba": {
+		"description": "JUCI Samba module",
+		"read": {
+			"uci": [
+				"samba"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"samba"
+			]
+		}
+	}
+}

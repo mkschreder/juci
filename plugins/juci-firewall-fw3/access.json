@@ -1,0 +1,20 @@
+{
+	"juci-firewall-fw3": {
+		"description": "JUCI FW3 Firewall module",
+		"read": {
+			"ubus": {
+				"network.interface": [
+					"status"
+				]
+			}, 
+			"uci": [
+				"firewall"
+			]
+		},
+		"write": {
+			"uci": [
+				"firewall"
+			]
+		}
+	}
+}

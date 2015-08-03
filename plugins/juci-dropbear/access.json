@@ -1,0 +1,15 @@
+{
+	"juci-dropbear": {
+		"description": "JUCI dropbear module",
+		"read": {
+			"uci": [
+				"dropbear"
+			]
+		},
+		"write": {
+			"uci": [
+				"dropbear"
+			]
+		}
+	}
+}

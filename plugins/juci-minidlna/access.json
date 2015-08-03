@@ -1,0 +1,15 @@
+{
+	"juci-minidlna": {
+		"description": "JUCI MiniDLNA module",
+		"read": {
+			"uci": [
+				"minidlna"
+			]
+		},
+		"write": {
+			"uci": [
+				"minidlna"
+			]
+		}
+	}
+}

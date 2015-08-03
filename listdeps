@@ -1,0 +1,5 @@
+for dir in `find plugins/ -mindepth 1 -maxdepth 1 -type d | sort`; do
+	echo "LISTING $dir"
+	grep -Roh "\$rpc\.[^()]*" $dir | sort | uniq 
+	grep -Roh "\$uci\.[^\.\[()]*" $dir | sort | uniq
+done

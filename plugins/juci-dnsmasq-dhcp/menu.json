@@ -3,16 +3,5 @@
 			"title": "DHCP Server",
 			"acls": [ "network" ],
 			"index": 9
-	},
-	"internet/lan/routes": {
-			"title": "Static Routes",
-			"acls": [ "network" ],
-			"index": 9
-	},
-	"internet/dns": {
-			"title": "DNS & DDNS",
-			"modes": [ "expert" ], 
-			"acls": [ "hostnames" ],
-			"index": 50
 	}
 }

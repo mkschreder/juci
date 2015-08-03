@@ -1,7 +1,7 @@
 {
 	"internet/services/minidlna": {
 		"title": "MiniDLNA",
-		"acls": [ "network" ],
+		"acls": [ "juci-minidlna" ],
 		"index": 10
 	}
 }

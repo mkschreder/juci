@@ -10,7 +10,7 @@ JUCI.app
 		controller: "uciFirewallNatRuleEdit", 
 		replace: true
 	 };  
-}).controller("uciFirewallNatRuleEdit", function($scope, $uci, $rpc, $log){
+}).controller("uciFirewallNatRuleEdit", function($scope, $uci, $rpc, $network, $log){
 	$scope.portIsRange = 0;
 	$scope.$watch("ngModel", function(value){
 		if(!value) return; 
@@ -26,16 +26,13 @@ JUCI.app
 		{ label: "TCP + UDP", value: "tcpudp" }
 	]; 
 	$scope.deviceChoices = [];
-	$rpc.router.clients().done(function(clients){
+	$network.getConnectedClients().done(function(clients){
 		var choices = []; 
-		Object.keys(clients).map(function(x) {
-			var c = clients[x]; 
-			if(c.connected){
-				choices.push({
-					label: (c.hostname && c.hostname.length)?c.hostname:c.ipaddr, 
-					value: c.ipaddr
-				}); 
-			} 
+		clients.map(function(c) {
+			choices.push({
+				label: (c.hostname && c.hostname.length)?c.hostname:c.ipaddr, 
+				value: c.ipaddr
+			}); 
 		}); 
 		$scope.deviceChoices = choices; 
 		$scope.$apply(); 

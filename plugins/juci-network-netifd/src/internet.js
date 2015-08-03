@@ -126,6 +126,29 @@
 			return deferred.promise(); 
 		}
 		
+		NetworkBackend.prototype.getConnectionCount = function(){
+			var def = $.Deferred(); 
+			
+			$rpc.juci.network.conntrack_count().done(function(res){
+				def.resolve(res); 
+			});
+			
+			return def.promise(); 
+		}
+		
+		NetworkBackend.prototype.getNatTable = function(){
+			var def = $.Deferred(); 
+			
+			$rpc.juci.network.conntrack_table().done(function(table){
+				if(table && table.entries){
+					def.resolve(table.entries); 
+				} else {
+					def.reject(); 
+				}
+			}); 
+			return def.promise(); 
+		}
+		
 		NetworkBackend.prototype.getLanNetworks = function(){
 			var deferred = $.Deferred(); 
 			this.getNetworks().done(function(nets){

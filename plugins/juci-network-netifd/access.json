@@ -1,0 +1,30 @@
+{
+	"juci-network-netifd": {
+		"description": "JUCI Network Configuration module",
+		"read": {
+			"ubus": {
+				"juci.network": [
+					"conntrack_count", 
+					"conntrack_table"
+				], 
+				"network.interface": [
+					"dump"
+				], 
+				"router": [
+					"boardinfo", 
+					"clients"
+				]
+			}, 
+			"uci": [
+				"layer2_interface_ethernet", 
+				"network"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"layer2_interface_ethernet", 
+				"network"
+			]
+		}
+	}
+}

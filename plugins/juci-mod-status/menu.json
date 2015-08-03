@@ -19,11 +19,6 @@
         "acls": [ "status" ],
         "index": 11
     },
-    "status/diagnostics": {
-        "title": "Diagnostics",
-        "acls": [ "status" ],
-        "index": 40
-    },
     "status/events": {
         "title": "Events",
 				"modes": [ "expert" ], 

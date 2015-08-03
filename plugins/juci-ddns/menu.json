@@ -1,7 +1,13 @@
 {
 	"internet/wan/ddns": {
 			"title": "DDNS",
-			"acls": [ "network" ],
+			"acls": [ "juci-ddns" ],
 			"index": 40
+	},
+	"internet/dns": {
+			"title": "DNS & DDNS",
+			"modes": [ "expert" ], 
+			"acls": [ "juci-ddns" ],
+			"index": 50
 	}
 }

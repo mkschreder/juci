@@ -1,0 +1,7 @@
+{
+	"status/diagnostics": {
+			"title": "Diagnostics",
+			"acls": [ "juci-diagnostics" ],
+			"index": 40
+	}
+}

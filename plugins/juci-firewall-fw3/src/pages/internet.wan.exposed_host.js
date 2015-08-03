@@ -13,11 +13,8 @@ $juci.module("internet")
 			}).always(function(){ next(); }); 
 		}, 
 		function(next){
-			$rpc.router.clients().done(function(clients){
-				$scope.connectedHosts = Object.keys(clients).filter(function(x){
-					// use only connected hosts
-					return clients[x].connected; 
-				}).map(function(k){
+			$network.getConnectedClients().done(function(clients){
+				$scope.connectedHosts = Object.keys(clients).map(function(k){
 					return { label: clients[k].hostname+" ("+clients[k].ipaddr+")", value: clients[k].ipaddr }; 
 				}); 
 				$scope.$apply(); 

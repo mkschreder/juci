@@ -1,0 +1,13 @@
+{
+	"juci-diagnostics": {
+		"description": "JUCI Diagnostics module",
+		"read": {
+			"ubus": {
+				"juci.tools": [
+					"ping", 
+					"traceroute"
+				]
+			}
+		}
+	}
+}
