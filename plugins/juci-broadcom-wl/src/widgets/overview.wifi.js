@@ -31,9 +31,9 @@ JUCI.app
 				next(); 
 			}); 
 		}, function(next){
-			$rpc.router.clients().done(function(clients){
+			$rpc.juci.broadcom.wireless.clients().done(function(clients){
 				$scope.wifiClients = Object.keys(clients).map(function(x) { return clients[x]; }).filter(function(x){
-					return x.connected && x.wireless == true; 
+					return x.connected; 
 				}).length; 
 			}); 
 		}], function(){
@@ -82,10 +82,10 @@ JUCI.app
 				}).always(function(){ next(); }); 
 			}, 
 			function(next){
-				$rpc.router.clients().done(function(clients){
+				$rpc.broadcom.wireless.clients().done(function(clients){
 					var all = Object.keys(clients).map(function(x) { return clients[x]; }); 
 					$scope.wireless.clients = all.filter(function(x){
-						return x.connected && x.wireless == true; 
+						return x.connected; 
 					}); 
 					next(); 
 				}).fail(function(){

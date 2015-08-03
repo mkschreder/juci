@@ -1,0 +1,15 @@
+{
+	"juci-asterisk": {
+		"description": "JUCI asterisk module",
+		"read": {
+			"ubus": {
+				"juci.asterisk": [
+					"status"
+				], 
+				"juci.asterisk.call_log": [
+					"list"
+				]
+			}
+		}
+	}
+}

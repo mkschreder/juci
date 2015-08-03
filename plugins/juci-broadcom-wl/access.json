@@ -1,0 +1,33 @@
+{
+	"juci-broadcom-wl": {
+		"description": "Broadcom wireless plugin",
+		"read": {
+			"ubus": {
+				"juci.broadcom.wps": [
+					"genpin", 
+					"pbc", 
+					"setpin", 
+					"showpin", 
+					"stapin", 
+					"status", 
+					"stop"
+				], 
+				"juci.broadcom.wireless": [
+					"assoclist", 
+					"info", 
+					"clients"
+				]
+			}, 
+			"uci": [
+				"layer2_interface_vlan"
+			]
+		}
+	}, 
+	"juci-broadcom-wl-admin": {
+		"write": {
+			"uci": [
+				"layer2_interface_vlan"
+			]
+		}
+	}
+}

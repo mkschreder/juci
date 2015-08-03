@@ -17,37 +17,6 @@ static const struct rpc_daemon_ops *ops;
 static struct blob_buf bb;
 static struct uci_context *cursor;
 
-static void
-runCmd(const char *pFmt, ...)
-{
-        va_list ap;
-        char cmd[256] = {0};
-        int len=0, maxLen;
-
-        maxLen = sizeof(cmd);
-
-        va_start(ap, pFmt);
-
-        if (len < maxLen)
-        {
-                maxLen -= len;
-                vsnprintf(&cmd[len], maxLen, pFmt, ap);
-        }
-
-        system(cmd);
-
-        va_end(ap);
-}
-
-void 
-remove_newline(char *buf)
-{
-	int len;
-	len = strlen(buf) - 1;
-	if (buf[len] == '\n') 
-		buf[len] = 0;
-}
-
 enum {
 	PIN,
 	__PIN_MAX,
@@ -57,41 +26,6 @@ static const struct blobmsg_policy pin_policy[__PIN_MAX] = {
 	[PIN] = { .name = "pin", .type = BLOBMSG_TYPE_STRING },
 };
 
-
-const char*
-chrCmd(const char *pFmt, ...)
-{
-	va_list ap;
-	char cmd[256] = {0};
-	int len=0, maxLen;
-
-	maxLen = sizeof(cmd);
-
-	va_start(ap, pFmt);
-
-	if (len < maxLen)
-	{
-		maxLen -= len;
-		vsnprintf(&cmd[len], maxLen, pFmt, ap);
-	}
-
-	va_end(ap);
-
-	FILE *pipe = 0;
-	static char buffer[128] = {0};
-	if ((pipe = popen(cmd, "r"))){
-		fgets(buffer, sizeof(buffer), pipe);
-		pclose(pipe);
-
-		remove_newline(buffer);
-		if (strlen(buffer))
-			return (const char*)buffer;
-		else
-			return "";
-	} else {
-		return ""; 
-	}
-}
 
 static int
 wps_status(struct ubus_context *ctx, struct ubus_object *obj,
@@ -269,12 +203,7 @@ wps_stop(struct ubus_context *ctx, struct ubus_object *obj,
 }
 
 
-
-static int
-rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
-{
-	int rv = 0;
-
+struct ubus_object *wps_get_ubus_object(){
 	static struct ubus_method wps_object_methods[] = {
 		UBUS_METHOD_NOARG("status", wps_status),
 		UBUS_METHOD_NOARG("pbc", wps_pbc),
@@ -295,19 +224,8 @@ rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 		.methods = wps_object_methods,
 		.n_methods = ARRAY_SIZE(wps_object_methods),
 	};
-
-	cursor = uci_alloc_context();
-
-	if (!cursor)
-		return UBUS_STATUS_UNKNOWN_ERROR;
-
-	ops = o;
-
-	rv |= ubus_add_object(ctx, &wps_object);
-
-	return rv;
+	
+	return &wps_object; 
 }
 
-struct rpc_plugin rpc_plugin = {
-	.init = rpc_api_init
-};
+

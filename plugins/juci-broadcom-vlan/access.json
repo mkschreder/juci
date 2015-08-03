@@ -1,0 +1,17 @@
+{
+	"juci-broadcom-vlan": {
+		"description": "Broadcom vlan plugin",
+		"read": {
+			"uci": [
+				"layer2_interface_vlan"
+			]
+		}
+	}, 
+	"juci-broadcom-vlan-admin": {
+		"write": {
+			"uci": [
+				"layer2_interface_vlan"
+			]
+		}
+	}
+}

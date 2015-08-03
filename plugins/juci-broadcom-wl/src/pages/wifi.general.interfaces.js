@@ -55,14 +55,4 @@ JUCI.app
 		}
 	}
 	
-	$scope.onEditConnection = function(conn){
-		// set editing widget for the type specific part of the conneciton wizard
-		$rpc.network.interface.dump().done(function(ifaces){
-			var info = ifaces.interface.find(function(x){ return x.interface == conn[".name"]; }); 
-			$scope.current_connection = conn; 
-			conn.$type_editor = "<network-connection-proto-"+conn.type.value+"-edit ng-model='current_connection'/>"; 
-			conn.$info = info; 
-			$scope.$apply(); 
-		}); 
-	}
 }); 

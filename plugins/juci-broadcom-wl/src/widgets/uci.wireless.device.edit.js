@@ -16,7 +16,7 @@ JUCI.app
 	$scope.$watch("device", function(device){
 		if(!device) return; 
 		
-		$rpc.router.radios().done(function(result){
+		$rpc.juci.broadcom.wireless.radios().done(function(result){
 			if(device[".name"] in result){
 				var settings = result[device[".name"]]; 
 				$scope.allChannels = [gettext("auto")].concat(settings.channels).map(function(x){ return { label: $tr(x), value: x }; }); 

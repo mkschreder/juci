@@ -26,41 +26,16 @@
 		}); 
 	}); 
 	JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
-		/*JUCI.interval.repeat("wireless-refresh", 2000, function(done){
-			refresh(done); 
-		}); 
-		function refresh(done) {
-			$scope.wifiSchedStatus = gettext("off"); 
-			$scope.wifiWPSStatus = gettext("off"); 
-			async.series([
-				function(next){
-					$uci.sync(["wireless"]).done(function(){
-						$scope.wifi = $uci.wireless;  
-						if($uci.wireless && $uci.wireless.status) {
-							$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
-							$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
-						}
-					}).always(function(){ next(); }); 
-				}, 
-				function(next){
-					$rpc.router.clients().done(function(clients){
-						var all = Object.keys(clients).map(function(x) { return clients[x]; }); 
-						$scope.wireless.clients = all.filter(function(x){
-							return x.connected && x.wireless == true; 
-						}); 
-						next(); 
-					}).fail(function(){
-						next();
-					});; 
-				},
-			], function(){
-				$scope.$apply(); 
-				if(done) done(); 
-			}); 
-		} refresh(); */
+		
 		function Wireless(){
 			this.scheduleStatusText = gettext("off"); 
 			this.wpsStatusText = gettext("off"); 
+		}
+		
+		Wireless.prototype.getConnectedClients = function(){
+			var def = $.Deferred(); 
+			
+			return def.promise(); 
 		}
 		
 		Wireless.prototype.getDevices = function(){
@@ -68,6 +43,7 @@
 			$uci.sync("wireless").done(function(){
 				$uci.wireless["@wifi-device"].map(function(x){
 					// TODO: this should be a uci "displayname" or something
+					// TODO: actually this should be based on wireless ubus call field
 					if(x.band.value == "a") x[".frequency"] = gettext("5GHz"); 
 					else if(x.band.value == "b") x[".frequency"] = gettext("2.4GHz"); 
 				}); 
@@ -86,9 +62,13 @@
 		
 		Wireless.prototype.getInfo = function(){
 			var deferred = $.Deferred(); 
-			$rpc.router.info().done(function(result){
+			$rpc.juci.broadcom.wireless.info().done(function(result){
+				if(!result || !result.defaults) {
+					deferred.reject(); 
+					return; 
+				}
 				var info = {
-					wpa_key: result.keys.wpa
+					wpa_key: result.defaults.wpa_key
 				}
 				deferred.resolve(info); 
 			}).fail(function(){

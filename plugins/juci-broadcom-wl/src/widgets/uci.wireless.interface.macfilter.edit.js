@@ -14,28 +14,7 @@ JUCI.app
 	 };  
 }).controller("uciWirelessInterfaceMacfilterEditController", function($scope, $rpc, $uci){
 	$scope.maclist = []; 
-	/*
-	// updates scratch model for the view
-	function updateMaclist(i){
-		var maclist = []; 
-		if(i && i.maclist) {
-			async.eachSeries(i.maclist.value, function(mac, next){
-				$hosts.select({ macaddr: mac }).done(function(host){
-					maclist.push(host); 
-					next(); 
-				}).fail(function(){
-					$hosts.insert({ hostname: "no name", macaddr: mac }).done(function(host){
-						maclist.push(host);
-					}).always(function(){ next(); });  
-				}); 
-			}, function(){
-				$scope.maclist = maclist; 
-			}); 
-		} else {
-			$scope.maclist = []; 
-		}
-	}
-	*/
+	
 	// watch for model change
 	$scope.$watch("interface", function(i){
 		$scope.maclist = []; 
@@ -84,7 +63,7 @@ JUCI.app
 		}
 	}; 
 	
-	$rpc.router.clients().done(function(clients){
+	$rpc.juci.broadcom.wireless.clients().done(function(clients){
 		$scope.client_list = Object.keys(clients)
 			.filter(function(k){
 				return clients[k].connected; 
