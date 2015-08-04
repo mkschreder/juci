@@ -40,6 +40,10 @@ ifeq ($(CONFIG_JUCI_BACKEND_OPKG),y)
 	UBUS_MODS += backend/juci-opkg
 endif
 
+ifeq ($(CONFIG_JUCI_BACKEND_IPTV),y)
+	UBUS_MODS += backend/juci-iptv
+endif
+
 ifeq ($(CONFIG_JUCI_BACKEND_SYSUPGRADE),y)
 	UBUS_MODS += backend/juci-sysupgrade
 endif
@@ -66,7 +70,6 @@ all: prepare node_modules $(UBUS_MODS) $(DIRS-y)
 
 prepare: 	
 	@echo "======= JUCI Buliding ========="
-	printenv
 	@echo "MODULES: $(DIRS-y)"
 	@echo "UBUS: $(UBUS_MODS)"
 	mkdir -p $(BIN)/www/
@@ -99,7 +102,6 @@ $(DIRS-y):
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
 	@echo "CFLAGS: $(CFLAGS)"
-	printenv
 	make -i -C $@ clean
 	make -C $@ 
 	cp -Rp $@/build/* $(BIN)/

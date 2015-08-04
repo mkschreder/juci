@@ -1,13 +1,18 @@
 #include <rpcd/plugin.h>
 
+const struct rpc_daemon_ops *ops;
+
+struct blob_buf bb;
+struct uci_context *uci_ctx;
+
 static int
 rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 {
 	int rv = 0;
 
-	cursor = uci_alloc_context();
+	uci_ctx = uci_alloc_context();
 
-	if (!cursor)
+	if (!ctx)
 		return UBUS_STATUS_UNKNOWN_ERROR;
 
 	ops = o;

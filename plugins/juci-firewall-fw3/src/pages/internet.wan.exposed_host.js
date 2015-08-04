@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 $juci.module("internet")
-.controller("InternetExHostPageCtrl", function($scope, $rpc, $config, $uci, $tr){
+.controller("InternetExHostPageCtrl", function($scope, $rpc, $config, $network, $uci, $tr){
 	$scope.config = $config; 
 	$scope.wan = {}; 
 	$scope.connectedHosts = []; 

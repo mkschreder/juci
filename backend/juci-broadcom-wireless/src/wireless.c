@@ -1,10 +1,10 @@
-#include <libubox/blobmsg_json.h>
-#include <libubox/avl-cmp.h>
-#include <libubus.h>
-#include <uci.h>
+
+#include "main.h"
+#include "tools.h"
 
 #define MAX_RADIO	4
 #define MAX_VIF		8
+#define MAX_CLIENT	128
 
 typedef struct {
 	const char *vif;
@@ -25,8 +25,16 @@ typedef struct {
 	bool is_ac;
 } Radio;
 
+typedef struct {
+	bool exists;
+	char macaddr[24];
+	char wdev[8];
+	int snr;
+} Sta;
+
 static Radio radio[MAX_RADIO];
 static Wireless wireless[MAX_VIF];
+static Sta stas[MAX_CLIENT];
 
 enum {
 	RADIO_NAME,
@@ -56,6 +64,8 @@ static void load_wireless() {
 	memset(wireless, '\0', sizeof(wireless));
 	memset(radio, '\0', sizeof(radio));
 
+	struct uci_package *uci_wireless = 0; 
+	
 	if((uci_wireless = init_package("wireless"))) {
 		uci_foreach_element(&uci_wireless->sections, e) {
 			struct uci_section *s = uci_to_section(e);
@@ -177,7 +187,8 @@ static int wireless_radios(struct ubus_context *ctx, struct ubus_object *obj,
 	return 0;
 }
 
-static void wireless_assoclist()
+
+static void update_wireless_clients()
 {
 	FILE *assoclist;
 	char cmnd[64];
@@ -185,7 +196,9 @@ static void wireless_assoclist()
 	int i = 0;
 	int j = 0;
 	int rssi = 0;
-
+	
+	load_wireless(); 
+	
 	for (i = 0; wireless[i].device; i++) {
 		if (wireless[i].noise > -60) {
 			usleep(10000);
@@ -212,6 +225,43 @@ static void wireless_assoclist()
 	}
 }
 
+static int wireless_clients(struct ubus_context *ctx, struct ubus_object *obj,
+		  struct ubus_request_data *req, const char *method,
+		  struct blob_attr *msg)
+{
+	void *t;
+	char clientnum[10];
+	int num = 1;
+	int i;
+
+	blob_buf_init(&bb, 0);
+	
+	update_wireless_clients(); 
+	
+	for (i = 0; i < MAX_CLIENT; i++) {
+		if (!stas[i].exists)
+			break;
+		sprintf(clientnum, "client-%d", num);
+		t = blobmsg_open_table(&bb, clientnum);
+		//blobmsg_add_string(&bb, "hostname", stas[i].hostname);
+		//blobmsg_add_string(&bb, "ipaddr", stas[i].ipaddr);
+		blobmsg_add_string(&bb, "macaddr", stas[i].macaddr);
+		//blobmsg_add_string(&bb, "network", stas[i].network);
+		//blobmsg_add_string(&bb, "device", stas[i].device);
+		//blobmsg_add_u8(&bb, "dhcp", stas[i].dhcp);
+		//blobmsg_add_u8(&bb, "connected", stas[i].connected);
+		//blobmsg_add_u8(&bb, "wireless", stas[i].wireless);
+		blobmsg_add_string(&bb, "wdev", stas[i].wdev);
+		//blobmsg_add_u32(&bb, "snr", stas[i].snr);
+		blobmsg_close_table(&bb, t);
+		num++;
+	}
+	
+	ubus_send_reply(ctx, req, bb.head);
+
+	return 0;
+}
+
 static int 
 wireless_info(struct ubus_context *ctx, struct ubus_object *obj,
 		  struct ubus_request_data *req, const char *method,
@@ -226,11 +276,9 @@ wireless_info(struct ubus_context *ctx, struct ubus_object *obj,
 	//get_db_hw_value("desKey", &keys->des);
 	get_db_hw_value("wpaKey", wpaKey);
 	
-	item = blobmsg_open_table(b, "defaults"); 
-	//blobmsg_add_string(b, "auth", keys.auth);
-	//blobmsg_add_string(b, "des", keys.des);
-	blobmsg_add_string(b, "wpa_key", wpaKey);
-	blobmsg_close_table(b, item);
+	item = blobmsg_open_table(&bb, "defaults"); 
+	blobmsg_add_string(&bb, "wpa_key", wpaKey);
+	blobmsg_close_table(&bb, item);
 
 	ubus_send_reply(ctx, req, bb.head);
 
@@ -241,7 +289,7 @@ struct ubus_object *wl_get_ubus_object(){
 	static struct ubus_method wl_object_methods[] = {
 		UBUS_METHOD_NOARG("info", wireless_info),
 		UBUS_METHOD_NOARG("radios", wireless_radios),
-		UBUS_METHOD_NOARG("assoclist", wireless_assoclist)
+		UBUS_METHOD_NOARG("clients", wireless_clients)
 	};
 
 	static struct ubus_object_type wl_object_type =

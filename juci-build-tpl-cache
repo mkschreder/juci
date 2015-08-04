@@ -8,7 +8,10 @@ var fs = require("fs");
 var output = process.argv[process.argv.length - 1]; 
 var input = process.argv.splice(2, process.argv.length - 3); 
 
-if(input.length == 0) throw new Error("Please specify at least one input file and one output file!"); 
+if(input.length == 0) {
+	consle.log("No input files! Exiting.");
+	return; 
+} 
 
 //console.log(input+" > "+output); 
 
