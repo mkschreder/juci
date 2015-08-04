@@ -1,0 +1,12 @@
+{
+	"juci-inteno-router": {
+		"description": "JUCI Inteno Router Interface",
+		"read": {
+			"ubus": {
+				"juci.iptv": [
+					"igmptable"
+				]
+			}
+		}
+	}
+}

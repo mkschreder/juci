@@ -26,12 +26,12 @@
 				<p translate>wifi.wps.pbc.info</p>
 				<juci-config-lines>
 					<juci-config-line title="{{'Enable WPS button on router'|translate}}">
-						<switch id="enabled" name="enabled" ng-model="boardpanel.settings.wpsbutton.value" class="green" ng-change="save()" ></switch>
+						<switch id="enabled" name="enabled" ng-model="router.wps_button_enabled" class="green" ng-change="save()" ></switch>
 					</juci-config-line>
-					<juci-config-line ng-show="boardpanel.settings.wpsbutton.value" title="{{'Pressing WiFi on/off button on your router for long time activates pairing '|translate}}" >
-						<switch id="enabled" name="enabled" ng-model="boardpanel.settings.wifibutton.value" class="green" ng-change="save()" ></switch>
+					<juci-config-line ng-show="router.wps_button_enabled" title="{{'Pressing WiFi on/off button on your router for long time activates pairing '|translate}}" >
+						<switch id="enabled" name="enabled" ng-model="router.wifi_button_wps_function_enabled" class="green" ng-change="save()" ></switch>
 					</juci-config-line>
-					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}" ng-show="boardpanel.settings.wpsbutton.value">
+					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}" ng-show="router.wps_button_enabled">
 						<button class="btn btn-lg btn-default col-xs-12" ng-click="onPairPBC()" translate>Pair</button>
 					</juci-config-line>
 				</juci-config-lines>
@@ -40,13 +40,13 @@
 				<h2 translate>WPS-REG: Router provides PIN</h2>
 				<p translate>wifi.wps.pin.info</p>
 				<juci-config-lines>
-					<juci-config-line ng-show="boardpanel" title="{{'WPS Using Generated PIN'|translate}}">
-						<switch id="enabled" name="enabled" ng-model="boardpanel.settings.wpsdevicepin.value" ng-change="save()" class="green"></switch>
+					<juci-config-line title="{{'WPS Using Generated PIN'|translate}}">
+						<switch id="enabled" name="enabled" ng-model="router.wps_devicepin" ng-change="save()" class="green"></switch>
 					</juci-config-line>
-					<juci-config-line title="{{'Generated PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
+					<juci-config-line title="{{'Generated PIN'|translate}}" >
 						<input type="text" class="form-control input-lg"  ng-model="generatedPIN" readonly />
 					</juci-config-line>
-					<juci-config-line title="{{'Generate New PIN'|translate}}" ng-show="boardpanel.settings.wpsdevicepin.value">
+					<juci-config-line title="{{'Generate New PIN'|translate}}" >
 						<button class="btn btn-lg btn-default" ng-click="onGeneratePIN()" translate>Generate</button>
 					</juci-config-line>
 				</juci-config-lines>

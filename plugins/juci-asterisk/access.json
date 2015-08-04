@@ -9,7 +9,15 @@
 				"juci.asterisk.call_log": [
 					"list"
 				]
-			}
+			}, 
+			"uci": [
+				"voice_client"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"voice_client"
+			]
 		}
 	}
 }

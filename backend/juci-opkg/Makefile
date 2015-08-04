@@ -10,7 +10,7 @@ $(BUILD_DIR):
 	mkdir -p $@
 	
 $(SHARED_OBJECT): $(OBJECT_FILES)
-	$(CC) $(LDFLAGS) -Wl,-z,defs -shared -o $(SHARED_OBJECT) $(OBJECT_FILES) 
+	$(CC) $(LDFLAGS) -Wl,-z,defs -shared -o $(SHARED_OBJECT) $(OBJECT_FILES) -lubox
 	
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

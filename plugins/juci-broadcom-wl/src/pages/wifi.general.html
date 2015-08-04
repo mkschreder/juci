@@ -19,8 +19,8 @@
 					<juci-config-line title="{{'Wifi Network'|translate}}" ng-hide="status.schedule.value">
 						<switch ng-model="status.wlan.value" class="green" ng-change="onApply"></switch>
 					</juci-config-line>
-					<juci-config-line ng-show="boardpanel" title="{{'Enable WiFi On/Off button on EasyBox'|translate}}">
-						<switch ng-model="boardpanel.settings.wifibutton.value" class="green" ng-change="onApply"></switch>
+					<juci-config-line  title="{{'Enable WiFi On/Off button'|translate}}">
+						<switch ng-model="router.wifi_button_enabled" class="green" ng-change="onApply"></switch>
 					</juci-config-line>
 				</juci-config-lines>
 			</juci-config-section>

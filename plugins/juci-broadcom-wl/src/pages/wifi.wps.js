@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiWPSPageCtrl", function($scope, $uci, $rpc, $interval, gettext, $tr){
+.controller("WifiWPSPageCtrl", function($scope, $uci, $rpc, $interval, $router, gettext, $tr){
 	var wps_status_strings = {
 		0: $tr(gettext("wps.status.init")),
 		1: $tr(gettext("wps.status.processing")),
@@ -11,6 +11,7 @@ JUCI.app
 		7: $tr(gettext("wps.status.msgdone"))
 	}; 
 	
+	$scope.router = $router; 
 	$scope.data = {
 		userPIN: ""
 	}
@@ -20,16 +21,7 @@ JUCI.app
 		return ["wpa", "mixed-wpa"].indexOf(interface.encryption.value) == -1 && interface.closed.value != true; 
 	}
 	
-	$uci.sync(["wireless", "boardpanel"]).done(function(){
-		if($uci.boardpanel == undefined) $scope.$emit("error", "Boardpanel config is not present on this system!"); 
-		else $scope.boardpanel = $uci.boardpanel; 
-		if(!$uci.boardpanel.settings){
-			$uci.boardpanel.create({".type": "settings", ".name": "settings"}).done(function(section){
-				$uci.save(); 
-			}).fail(function(){
-				$scope.$emit("error", "Could not create required section boardpanel.settings in config!"); 
-			}); 
-		} 
+	$uci.sync(["wireless"]).done(function(){
 		$scope.wireless = $uci.wireless; 
 		$scope.$apply(); 
 	}).fail(function(err){

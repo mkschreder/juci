@@ -13,20 +13,21 @@
 					"stop"
 				], 
 				"juci.broadcom.wireless": [
-					"assoclist", 
 					"info", 
-					"clients"
+					"clients", 
+					"radios"
 				]
 			}, 
 			"uci": [
-				"layer2_interface_vlan"
+				"hosts", 
+				"wireless"
 			]
 		}
 	}, 
 	"juci-broadcom-wl-admin": {
 		"write": {
 			"uci": [
-				"layer2_interface_vlan"
+				"wireless"
 			]
 		}
 	}

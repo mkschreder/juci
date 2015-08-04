@@ -3,6 +3,7 @@
 		"description": "JUCI DDNS module",
 		"read": {
 			"uci": [
+				"network", 
 				"ddns"
 			]
 		},

@@ -93,24 +93,6 @@
 				"bool":						{ dvalue: false, type: Boolean }
 			}
 		}, 
-		"boardpanel": {
-			"settings": {
-				"usb_port": 		{ dvalue: true, type: Boolean }, 
-				"status_led": 	{ dvalue: true, type: Boolean }, 
-				"power_led": 		{ dvalue: true, type: Boolean }, 
-				"power_led_br":	{ dvalue: 100, type: Number },
-				"wifibutton": 	{ dvalue: true, type: Boolean },
-				"wpsbutton": 		{ dvalue: true, type: Boolean },
-				"wpsdevicepin": { dvalue: true, type: Boolean }
-			},
-			"services": {
-				"internet":				{ dvalue: "", type: String },
-				"voice":					{ dvalue: "", type: String },
-				"iptv":						{ dvalue: "", type: String },
-				"ipv6":						{ dvalue: "", type: String }
-			}
-		}, 
-		
 		"system": {
 			"system": {
 				"timezone":		{ dvalue: '', type: String },

@@ -28,22 +28,7 @@ describe("Wireless", function(){
 		expect($uci.wireless["@wifi-iface"].length).not.to.be(0); 
 		done(); 
 	}); 
-	it("should have boardpanel config present", function(done){
-		$uci.sync("boardpanel").done(function(){
-			expect($uci.boardpanel).to.be.an(Object); 
-			done(); 
-		}); 
-	}); 
-	it("should have boardpanel.settings section present", function(done){
-		expect($uci.boardpanel["@settings"]).to.be.an(Array);
-		expect($uci.boardpanel.settings).to.be.ok(); 
-		done(); 
-	}); 
-	it("should have boardpanel network section of type services", function(){
-		expect($uci.boardpanel["@services"]).to.be.an(Array); 
-		expect($uci.boardpanel["@services"]).not.to.be.empty(); 
-		expect($uci.boardpanel.network).to.be.ok(); 
-	}); 
+	
 	it("should have hosts config present", function(done){
 		$uci.sync("hosts").done(function(){
 			expect($uci.hosts).to.be.an(Object); 

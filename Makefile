@@ -9,6 +9,7 @@ DIRS-y:=juci \
 	plugins/juci-dnsmasq-dhcp \
 	plugins/juci-minidlna \
 	plugins/juci-ddns \
+	plugins/juci-inteno-router \
 	plugins/juci-upnp \
 	plugins/juci-mod-system \
 	plugins/juci-mod-status \
