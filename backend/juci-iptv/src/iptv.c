@@ -16,10 +16,20 @@
  * 02110-1301 USA
  */
 
-#include "questd.h"
-#include "igmp.h"
+#include <libubox/blobmsg_json.h>
+#include <libubox/avl-cmp.h>
+#include <libubus.h>
+#include <uci.h>
+#include <arpa/inet.h>
+#include <rpcd/plugin.h>
 
 #define MAX_IGMP_ENTRY 128
+
+
+static const struct rpc_daemon_ops *ops;
+
+static struct blob_buf buf;
+static struct uci_context *cursor;
 
 int igmp_rpc(struct ubus_context *ctx, struct ubus_object *obj,
 	struct ubus_request_data *req, const char *method,
@@ -44,14 +54,14 @@ typedef struct igmp_table {
 	int ExcludPt;
 }IGMPtable;
 
-char* convert_to_ipaddr(int ip)
+static char* convert_to_ipaddr(int ip)
 {
 	struct in_addr ip_addr;
 	ip_addr.s_addr = ip;
 	return inet_ntoa(ip_addr);
 }
 
-char* single_space(char* str){
+static char* single_space(char* str){
 	char *from, *to;
 	int space = 0;
 	from = to = str;
@@ -66,6 +76,16 @@ char* single_space(char* str){
 		}
 	}
 	return str;
+}
+
+
+void 
+remove_newline(char *buf)
+{
+	int len;
+	len = strlen(buf) - 1;
+	if (buf[len] == '\n') 
+		buf[len] = 0;
 }
 
 int igmp_rpc(struct ubus_context *ctx, struct ubus_object *obj,
@@ -132,7 +152,7 @@ static int rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx
 	int rv = 0;
 
 	static const struct ubus_method juci_iptv_methods[] = {
-		UBUS_METHOD("igmptable",             	igmp_rpc
+		UBUS_METHOD_NOARG("igmptable",             	igmp_rpc)
 	};
 
 	static struct ubus_object_type juci_iptv_type =
