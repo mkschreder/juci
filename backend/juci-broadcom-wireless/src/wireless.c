@@ -229,7 +229,7 @@ static int wireless_clients(struct ubus_context *ctx, struct ubus_object *obj,
 		  struct ubus_request_data *req, const char *method,
 		  struct blob_attr *msg)
 {
-	void *t;
+	void *t, *a;
 	char clientnum[10];
 	int num = 1;
 	int i;
@@ -238,11 +238,11 @@ static int wireless_clients(struct ubus_context *ctx, struct ubus_object *obj,
 	
 	update_wireless_clients(); 
 	
+	a = blobmsg_open_array(&bb, "clients");
 	for (i = 0; i < MAX_CLIENT; i++) {
 		if (!stas[i].exists)
 			break;
-		sprintf(clientnum, "client-%d", num);
-		t = blobmsg_open_table(&bb, clientnum);
+		t = blobmsg_open_table(&bb, NULL); 
 		//blobmsg_add_string(&bb, "hostname", stas[i].hostname);
 		//blobmsg_add_string(&bb, "ipaddr", stas[i].ipaddr);
 		blobmsg_add_string(&bb, "macaddr", stas[i].macaddr);
@@ -252,10 +252,11 @@ static int wireless_clients(struct ubus_context *ctx, struct ubus_object *obj,
 		//blobmsg_add_u8(&bb, "connected", stas[i].connected);
 		//blobmsg_add_u8(&bb, "wireless", stas[i].wireless);
 		blobmsg_add_string(&bb, "wdev", stas[i].wdev);
+		blobmsg_add_u32(&bb, "snr", stas[i].snr);
 		//blobmsg_add_u32(&bb, "snr", stas[i].snr);
 		blobmsg_close_table(&bb, t);
-		num++;
 	}
+	blobmsg_close_array(&bb, a); 
 	
 	ubus_send_reply(ctx, req, bb.head);
 

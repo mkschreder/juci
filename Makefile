@@ -56,6 +56,10 @@ ifeq ($(CONFIG_JUCI_BACKEND_IPTV),y)
 	UBUS_MODS += backend/juci-iptv
 endif
 
+ifeq ($(CONFIG_JUCI_BACKEND_MACDB),y)
+	UBUS_MODS += backend/juci-macdb
+endif
+
 all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
 	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"
 	./juci-compile 
