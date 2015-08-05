@@ -82,8 +82,7 @@ wireless_clients(){
 		json_add_array "clients"
 		for cl in $CLIENTS; do
 			RSSI=$(wlctl -i $wdev rssi $cl); 
-			ARP=$(arp | grep "$cl" | awk '/[[:digit:]]/ { print "ipad
-dr=" $1; print "network=" $6; }'); 
+			ARP=`cat /proc/net/arp | grep -i "$cl" | awk '/[[:digit:]]/ { print "ipaddr=" $1; print "network=" $6; }'`; 
 			json_add_object 
 			json_add_string "macaddr" $cl
 			json_add_string "device" $wdev
