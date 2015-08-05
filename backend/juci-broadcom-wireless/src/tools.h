@@ -10,6 +10,7 @@ void get_db_hw_value(char *opt, char **val);
 void runCmd(const char *pFmt, ...); 
 void remove_newline(char *buf); 
 const char* chrCmd(const char *pFmt, ...); 
+const char* run_command(const char *pFmt, ...); 
 
 #ifndef PDEBUG
 #define PDEBUG(...) printf(__VA_ARGS__)

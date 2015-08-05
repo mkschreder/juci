@@ -17,8 +17,8 @@ rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 
 	ops = o;
 	
+	rv |= wl_init(ctx); 
 	rv |= ubus_add_object(ctx, wps_get_ubus_object());
-	rv |= ubus_add_object(ctx, wl_get_ubus_object());
 	
 	return rv;
 }

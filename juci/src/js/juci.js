@@ -63,7 +63,7 @@
 			function(next){
 				scope.UBUS.$init().done(function(){
 					if(!scope.UBUS.router || !scope.UBUS.router.info){
-						alert("Questd must have crashed or is not running. Restart it on the router!"); 
+						//alert("Questd must have crashed or is not running. Restart it on the router!"); 
 					}
 				}).fail(function(){
 					console.error("UBUS failed to initialize!"); 

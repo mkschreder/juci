@@ -1,16 +1,16 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Device Name'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.name.value"/>
+			<input type="text" class="form-control" ng-model="conf.name.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Device ID'|translate}}">
 			<strong>{{conf.ifname.value}}</strong>
 		</juci-config-line>
 		<juci-config-line title="{{'VPI'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.vpi.value"/>
+			<input type="text" class="form-control" ng-model="conf.vpi.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'VCI'|translate}}">
-			<input type="text" class="font-control" ng-model="conf.vci.value"/>
+			<input type="text" class="form-control" ng-model="conf.vci.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Service Type'|translate}}">
 			<juci-select ng-model="conf.atmtype.value" ng-items="serviceTypes"/>
