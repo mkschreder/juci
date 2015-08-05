@@ -2,6 +2,10 @@
 
 . /usr/share/libubox/jshn.sh
 
+get_wireless_devices(){
+	echo `ip link | awk 'BEGIN { FS=": "; } /^[[:digit:]]{2}/ { if(match($2, /wl/)) print $2 }'`
+}
+
 # wireless info dump. Expected output of wlctl: 
 # SSID: "MyAP"
 # Mode: Managed	RSSI: 0 dBm	SNR: 0 dB	noise: -80 dBm	Channel: 1
@@ -13,8 +17,8 @@
 # 	HT Capabilities: 
 # 	Supported MCS : [ 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ]
 
-wireless_info(){
-	WLDEVICES=`ip link | awk 'BEGIN { FS=": "; } /^[[:digit:]]{2}/ { if(match($2, /wl/)) print $2 }'`
+wireless_devices(){
+	WLDEVICES=`get_wireless_devices`
 	json_init
 
 	json_add_array "devices"; 
@@ -74,26 +78,26 @@ wireless_info(){
 }
 
 wireless_clients(){
-	WLDEVICES=`ip link | awk 'BEGIN { FS=": "; } /^[[:digit:]]{2}/ { if(match($2, /wl/)) print $2 }'`
+	WLDEVICES=`get_wireless_devices`
 	
 	json_init
+	json_add_array "clients"
 	for wdev in $WLDEVICES; do
 		CLIENTS=$(wlctl -i $wdev assoclist | cut -d' ' -f2); 
-		json_add_array "clients"
 		for cl in $CLIENTS; do
-			RSSI=$(wlctl -i $wdev rssi $cl); 
+			RSSI=$(wlctl -i "$wdev" rssi "$cl"); 
 			ARP=`cat /proc/net/arp | grep -i "$cl" | awk '/[[:digit:]]/ { print "ipaddr=" $1; print "network=" $6; }'`; 
 			json_add_object 
-			json_add_string "macaddr" $cl
-			json_add_string "device" $wdev
-			json_add_int "rssi" $RSSI
+			json_add_string "macaddr" "$cl"
+			json_add_string "device" "$wdev"
+			json_add_int "rssi" "$RSSI"
 			for arp in $ARP; do 
 				json_add_string ${arp%=*} ${arp#*=};
 			done
 			json_close_object
 		done
-		json_close_array
 	done
+	json_close_array
 	json_dump
 }
 
@@ -104,11 +108,11 @@ wireless_radios(){
 
 case $1 in 
 	.methods) 
-		echo "info,clients,radios"; 
+		echo "devices,clients,radios"; 
 		exit 0
 		;;
-	info) 
-		wireless_info
+	devices) 
+		wireless_devices
 		;;
 	clients)
 		wireless_clients
