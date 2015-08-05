@@ -1,0 +1,52 @@
+#!/bin/sh
+
+. /usr/share/libubox/jshn.sh
+
+network_clients(){
+	DHCPCLIENTS=$(cat /var/dhcp.leases | awk '
+	{
+		printf "leasetime=" $1 "\n";
+		printf "macaddr=" $2 "\n";
+		printf "ipaddr=" $3 "\n"; 
+		printf "hostname=" $4 "\n"; 
+		printf "mask=" $5 "\n"; 
+	}'); 
+	ARPCLIENTS=`cat /proc/net/arp | awk '
+	/[[:digit:]]/ { 
+		printf "ipaddr=" $1 "\n"; 
+		printf "macaddr=" $4 "\n"; 
+		printf "mask=" $5 "\n"; 
+		printf "device=" $6 "\n"; 
+	}'`; 
+	
+	json_init
+	json_add_array "clients"
+	in_object="0"
+	for field in $ARPCLIENTS $DHCPCLIENTS; do
+		name=${field%=*}; 
+		value=${field#*=}; 
+		if [ "$name" == "ipaddr" ]; then
+			if [ "$in_object" != "0" ]; then
+				json_close_object
+			fi
+			json_add_object 
+			in_object=1
+		fi
+		json_add_string "$name" "$value";
+	done
+	if [ "$in_object" != "0" ]; then
+		json_close_object
+	fi
+	json_close_array
+	json_dump
+}
+
+case $1 in 
+	.methods) 
+		echo "clients"; 
+		exit 0
+		;;
+	clients) 
+		network_clients
+		;;
+esac
