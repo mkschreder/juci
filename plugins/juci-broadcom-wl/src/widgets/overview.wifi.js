@@ -83,9 +83,10 @@ JUCI.app
 			}, 
 			function(next){
 				$rpc.juci.broadcom.wireless.clients().done(function(clients){
-					var all = Object.keys(clients).map(function(x) { return clients[x]; }); 
-					$scope.wireless.clients = all.filter(function(x){
-						return x.connected; 
+					$scope.wireless.clients = clients.clients; 
+					$scope.wireless.clients.map(function(cl){
+						// calculate signal strength
+						cl.snr = cl.rssi - cl.noise; 
 					}); 
 					next(); 
 				}).fail(function(){

@@ -1,0 +1,12 @@
+{
+	"juci-usb": {
+		"description": "JUCI USB Module",
+		"read": {
+			"ubus": {
+				"juci.usb": [
+					"list"
+				]
+			}
+		}
+	}
+}

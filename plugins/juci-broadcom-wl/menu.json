@@ -20,6 +20,11 @@
 		"files": [ "/etc/config/wireless" ], 
 		"index": 12
 	},
+	"wifi/general/clients": {
+		"title": "Clients",
+		"files": [ "/etc/config/wireless" ], 
+		"index": 13
+	},
 	"wifi/schedule": {
 		"title": "Schedule",
 		"files": [ "/etc/config/wireless" ], 

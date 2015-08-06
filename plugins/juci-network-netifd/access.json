@@ -4,8 +4,10 @@
 		"read": {
 			"ubus": {
 				"juci.network": [
-					"conntrack_count", 
-					"conntrack_table"
+					"clients", 
+					"load", 
+					"netstat", 
+					"adapters"
 				], 
 				"network.interface": [
 					"dump"

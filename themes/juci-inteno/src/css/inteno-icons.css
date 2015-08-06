@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "inteno-gui-icons";
+  src:url("/fonts/inteno-gui-icons.eot");
+  src:url("/fonts/inteno-gui-icons.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/inteno-gui-icons.woff") format("woff"),
+    url("/fonts/inteno-gui-icons.ttf") format("truetype"),
+    url("/fonts/inteno-gui-icons.svg#inteno-gui-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "inteno-gui-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "inteno-gui-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-add:before {
+  content: "a";
+}
+.icon-bluetooth:before {
+  content: "b";
+}
+.icon-box:before {
+  content: "c";
+}
+.icon-computer:before {
+  content: "d";
+}
+.icon-dect:before {
+  content: "e";
+}
+.icon-ethernet:before {
+  content: "f";
+}
+.icon-internet:before {
+  content: "g";
+}
+.icon-game:before {
+  content: "h";
+}
+.icon-laptop:before {
+  content: "i";
+}
+.icon-off:before {
+  content: "j";
+}
+.icon-on:before {
+  content: "k";
+}
+.icon-phone:before {
+  content: "l";
+}
+.icon-printer:before {
+  content: "m";
+}
+.icon-remove:before {
+  content: "n";
+}
+.icon-schedule:before {
+  content: "o";
+}
+.icon-sensor:before {
+  content: "p";
+}
+.icon-sharing:before {
+  content: "q";
+}
+.icon-smartphone:before {
+  content: "r";
+}
+.icon-tablet:before {
+  content: "s";
+}
+.icon-trash:before {
+  content: "t";
+}
+.icon-tv:before {
+  content: "u";
+}
+.icon-usb:before {
+  content: "v";
+}
+.icon-user:before {
+  content: "w";
+}
+.icon-warning:before {
+  content: "x";
+}
+.icon-webcam:before {
+  content: "y";
+}
+.icon-wifi:before {
+  content: "A";
+}
+.icon-wifi-3:before {
+  content: "B";
+}
+.icon-wifi-2:before {
+  content: "C";
+}
+.icon-wifi-1:before {
+  content: "D";
+}
+.icon-wifi-0:before {
+  content: "E";
+}
+.icon-wifiproblem:before {
+  content: "F";
+}

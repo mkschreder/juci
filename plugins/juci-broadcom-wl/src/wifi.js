@@ -34,7 +34,10 @@
 		
 		Wireless.prototype.getConnectedClients = function(){
 			var def = $.Deferred(); 
-			
+			$rpc.juci.broadcom.wireless.clients().done(function(clients){
+				if(clients && clients.clients) def.resolve(clients.clients); 
+				else def.reject(); 
+			}); 
 			return def.promise(); 
 		}
 		

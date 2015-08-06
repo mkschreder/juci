@@ -3,11 +3,18 @@
 		<juci-config-heading>{{ 'Layer-2 Ethernet Devices' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.ethernet.info' | translate }}</juci-config-info>
 		<juci-config-section>
-			<div class="list-group" >
-				<div class="list-group-item" ng-repeat="dev in devices" >
-					{{dev.name}} ({{dev.id}}, {{dev.type | uppercase}})
-				</div>
-			</div>
+			<table class="table">
+				<thead>
+					<th translate>Name</th>
+					<th translate>DeviceID</th>
+					<th translate>Status</th>
+				</thead>
+				<tr ng-repeat="dev in adapters">
+					<td>{{dev.displayname}}</td>
+					<td>{{dev.name}}</td>
+					<td><i class="fa fa-circle" ng-class="{'text-success': dev.state=='UP'}"/> {{dev.state}}</td>
+				</tr>
+			</table>
 		</juci-config-section>
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>

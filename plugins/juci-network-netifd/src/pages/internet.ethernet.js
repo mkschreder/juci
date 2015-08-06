@@ -16,14 +16,29 @@ JUCI.app
 		template: "test"
 	};
 })
-.controller("InternetLayer2", function($scope, $uci, $network, $config){
+.controller("InternetLayer2", function($scope, $uci, $rpc, $network, $config){
 	$network.getDevices().done(function(devices){
-		$scope.devices = devices;//.filter(function(x){ return x.type != "baseif"; }); 
-		
-		$network.getNetworks().done(function(nets){
-			$scope.networks = nets.filter(function(x){ return x.is_lan.value == true }); 
-			$scope.$apply(); 
-			//drawCyGraph(); 
+		$network.getAdapters().done(function(adapters){
+			$network.getNetworks().done(function(nets){
+				$rpc.network.interface.dump().done(function(result){
+					var interfaces = result.interface; 
+					$scope.adapters = adapters.filter(function(a){
+						return a.link_type == "ether" && !a.flags.match("NOARP"); 
+					}).map(function(a){
+						var d = devices.find(function(x){ return x.id == a.name; }); 
+						if(d) a.displayname = d.name; 
+						else {
+							var e = interfaces.find(function(x){ return x.l3_device == a.name; }); 
+							if(e) a.displayname = e.interface; 
+						}
+						return a; 
+					}); 
+				
+					$scope.networks = nets.filter(function(x){ return x.is_lan.value == true }); 
+					$scope.$apply(); 
+					//drawCyGraph(); 
+				}); 
+			}); 
 		}); 
 	}); 
 }); 

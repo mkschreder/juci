@@ -34,11 +34,5 @@
 			"title": "About", 
 			"acls": [ "status" ], 
 			"index": 70
-		},
-    "status/nat": {
-			"title": "NAT", 
-			"modes": [ "expert" ], 	
-			"acls": [ "status" ], 
-			"index": 80
 		}
 }

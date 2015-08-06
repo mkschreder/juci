@@ -86,11 +86,14 @@ wireless_clients(){
 		CLIENTS=$(wlctl -i $wdev assoclist | cut -d' ' -f2); 
 		for cl in $CLIENTS; do
 			RSSI=$(wlctl -i "$wdev" rssi "$cl"); 
+			NOISE=$(wlctl -i "$wdev" noise); 
 			ARP=`cat /proc/net/arp | grep -i "$cl" | awk '/[[:digit:]]/ { print "ipaddr=" $1; print "network=" $6; }'`; 
 			json_add_object 
 			json_add_string "macaddr" "$cl"
 			json_add_string "device" "$wdev"
 			json_add_int "rssi" "$RSSI"
+			json_add_int "noise" "$NOISE"
+			json_add_string "hostname" $(grep -i "$cl" /var/dhcp.leases | awk '{print $4;}'); 
 			for arp in $ARP; do 
 				json_add_string ${arp%=*} ${arp#*=};
 			done
@@ -102,7 +105,43 @@ wireless_clients(){
 }
 
 wireless_radios(){
+	RADIOS=`grep wifi-device /etc/config/wireless | awk -F\' '{print $2}'`
+	
 	json_init
+	for radio in $RADIOS; do
+		json_add_object "$radio"
+		FREQ=$(wlctl -i $radio assoc | awk -F' ' '/Chanspec/ { print $2; }'); 
+		if [ "$FREQ" == "2.4GHz" ]; then
+			json_add_array "hwmodes";
+			json_add_string "" "11b"; 
+			json_add_string "" "11g"; 
+			json_add_string "" "11bg"; 
+			json_add_string "" "11n";
+			json_close_array
+			json_add_array "bwcaps"; 
+			json_add_int "" 20
+			json_add_int "" 40
+			json_close_array
+		fi
+		if [ "$FREQ" == "5.8GHz" ]; then
+			json_add_array "hwmodes";
+			json_add_string "" "11a"; 
+			json_add_string "" "11n";
+			json_close_array
+			json_add_arraw "bwcaps"; 
+			json_add_int "" 20
+			json_add_int "" 40
+			json_add_int "" 80
+			json_close_array
+		fi
+		json_add_array "channels";
+		for chan in $(wlctl -i $radio channels); do
+			json_add_int "" "$chan"
+		done
+		json_close_array
+		json_add_string "frequency" "$FREQ"
+		json_close_object
+	done
 	json_dump
 }
 

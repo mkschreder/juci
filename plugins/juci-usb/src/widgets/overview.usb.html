@@ -1,0 +1,15 @@
+<div class="panel panel-default" ng-show="devices && devices.length > 0">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+			<i class="icon icon-usb" style="margin-right: 10px;"/>{{'USB'|translate}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row" ng-repeat="dev in devices track by $index">
+			<div class="col-xs-2"><strong>{{$index + 1}}</strong></div>
+			<div class="col-xs-10"><strong>{{dev.devicename}}</strong></div>
+			<div class="col-xs-2"></div>
+			<div class="col-xs-10">{{dev.vendorname}}</div>
+		</div>
+	</div>
+</div>

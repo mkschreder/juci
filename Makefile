@@ -11,6 +11,7 @@ DIRS-y:=juci \
 	plugins/juci-ddns \
 	plugins/juci-inteno-router \
 	plugins/juci-upnp \
+	plugins/juci-usb \
 	plugins/juci-mod-system \
 	plugins/juci-mod-status \
 	plugins/juci-jquery-console
@@ -99,6 +100,7 @@ $(DIRS-y):
 	make -i -C $@ clean
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
+	-cp -Rp $@/files/* $(BIN)/
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 

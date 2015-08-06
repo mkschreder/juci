@@ -1,0 +1,33 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetFirewallPageCtrl">
+		<h2 translate>Firewall settings</h2>
+		<p translate>Your EasyBox provides extensive firewall functionality which protects against common attacks. Vodafone recommends not to turn off firewall.</p>
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable firewall'|translate}}">
+					<switch id="enabled" name="enabled" ng-model="firewallSwitchState" ng-change="onFirewallToggle" class="green"></switch>
+				</juci-config-line>
+				<juci-config-line title="{{rule.name.value | translate}}" ng-repeat="rule in firewall['@rule']"  ng-hide="rule.hidden.value">
+					<switch id="enabled" name="enabled" ng-model="rule.enabled.value"  class="green"></switch>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<!--<table class="table">
+			<tr>
+				<td>
+					<div class="col-md-11"><strong style="font-size: 1.5em" translate>Enable firewall</strong></div>
+					<div class="col-md-1"><switch id="enabled" name="enabled" ng-model="firewallSwitchState" ng-change="onFirewallToggle" class="green"></switch></div>
+				</td>
+			</tr>
+		</table>
+		<table class="table" ng-show="firewallSwitchState">
+			<tr ng-repeat="rule in firewall['@rule']"  ng-hide="rule.hidden.value">
+				<td>
+					<div class="col-md-11"><strong style="font-size: 1.5em">{{rule.name.value | translate}}</strong></div>
+					<div class="col-md-1"><switch id="enabled" name="enabled" ng-model="rule.enabled.value"  class="green"></switch></div>
+				</td>
+			</tr>
+		</table>-->
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

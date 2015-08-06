@@ -2931,7 +2931,7 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 		UBUS_OBJECT_TYPE("luci-rpc-juci-network", juci_network_methods);
 
 	static struct ubus_object network_obj = {
-		.name = "juci.network",
+		.name = "juci.network.tools",
 		.type = &juci_network_type,
 		.methods = juci_network_methods,
 		.n_methods = ARRAY_SIZE(juci_network_methods),

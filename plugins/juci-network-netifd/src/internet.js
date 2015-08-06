@@ -73,6 +73,15 @@
 			return deferred.promise(); 
 		}
 		
+		NetworkBackend.prototype.getAdapters = function(){
+			var deferred = $.Deferred();  
+			$rpc.juci.network.adapters().done(function(result){
+				if(result && result.adapters) deferred.resolve(result.adapters); 
+				else deferred.reject(); 
+			}); 
+			return deferred.promise(); 
+		}
+		
 		// getVirtualDevices
 		NetworkBackend.prototype.getNetworks = function(){
 			var deferred = $.Deferred(); 
@@ -126,10 +135,10 @@
 			return deferred.promise(); 
 		}
 		
-		NetworkBackend.prototype.getConnectionCount = function(){
+		NetworkBackend.prototype.getNetworkLoad = function(){
 			var def = $.Deferred(); 
 			
-			$rpc.juci.network.conntrack_count().done(function(res){
+			$rpc.juci.network.load().done(function(res){
 				def.resolve(res); 
 			});
 			

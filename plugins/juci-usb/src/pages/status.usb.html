@@ -1,0 +1,20 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="StatusUsbDevicesPage">
+		<juci-config-heading>{{ 'USB Devices' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'usb.devices.info' | translate }}</juci-config-info>
+		<table class="table table-bordered">
+			<thead>
+				<th translate>Device ID</th>
+				<th translate>Vendor ID</th>
+				<th translate>Vendor Name</th>
+				<th translate>Device Name</th>
+			</thead>
+			<tr ng-repeat="dev in devices">
+				<td>{{dev.deviceid}}</td>
+				<td>{{dev.vendorid}}</td>
+				<td>{{dev.vendorname}}</td>
+				<td>{{dev.devicename}}</td>
+			</tr>
+		</table>
+	</div>
+</juci-layout-with-sidebar>

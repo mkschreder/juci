@@ -1,0 +1,13 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="WifiGeneralClientsPage">
+		<juci-config-heading>{{ 'Connected Wireless Clients' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'wifi.clients.info' | translate }}</juci-config-info>
+		<juci-panel ng-repeat="cl in clients" title="{{cl.ipaddr}}" is-open="true">
+			<juci-config-lines>
+				<juci-config-line ng-repeat="line in lines" title="{{line.title|translate}}">
+					<strong>{{cl[line.field]}}</strong>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-panel>
+	</div>
+</juci-layout-with-sidebar>

@@ -2,11 +2,8 @@
 
 JUCI.app
 .controller("StatusNATPageCtrl", function($scope, $rpc, $tr, $network, gettext){
-	$scope.conntrack = { count: 0, limit: 0 }; 
-	
-	$network.getConnectionCount().done(function(res){
-		$scope.conntrack.limit = res.limit; 
-		$scope.conntrack.count = res.count; 
+	$network.getNetworkLoad().done(function(load){
+		$scope.load = load; 
 		$scope.$apply(); 
 	});
 	

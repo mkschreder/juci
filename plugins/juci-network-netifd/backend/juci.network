@@ -1,0 +1,115 @@
+#!/bin/sh
+
+. /usr/share/libubox/jshn.sh
+
+network_adapters(){
+	ADAPTERS=$(ip link | awk '
+	/^[[:digit:]]/ { # interface line 
+		printf "name=" substr($2, 0, length($2)-1) "\t"; 
+		printf "flags=" substr($3, 2, length($3)-2) "\t"; 
+		for(c = 4; c<=NF; c+=2){
+			printf $c "=" $(c+1) "\t";
+		}
+	}
+	/^[^[:digit:]]/ { # following lines
+		for(c = 1; c <= NF; c+=2){
+			if($c ~ /^link/){
+				printf "link_type=" substr($c, index($c, "\/")+1, length($c)) "\t"; 
+				printf "macaddr=" $(c+1) "\t"; 
+			} else {
+				printf $c "=" $(c+1) "\t";
+			} 
+		}
+		printf "\n"; 
+	}'); 
+	
+	json_init
+	json_add_array "adapters"
+	IFS=$'\n'; 
+	for line in $ADAPTERS; do
+		IFS=$'\t'; 
+		json_add_object
+		for field in $line; do
+			name="${field%=*}"; 
+			value="${field#*=}"; 
+			json_add_string "$name" "$value";
+		done
+		json_close_object
+		IFS=$'\n'; 
+	done
+	json_close_array
+	json_dump
+}
+
+network_clients(){
+	CLIENTS=$(awk '
+	/[[:digit:]]/ { 
+		printf "ipaddr=" $1 "\t"; #ipaddr
+		printf "macaddr=" $4 "\t"; #macaddr
+		printf "mask=" $5 "\t"; #mask
+		printf "leasetime=" "\t"; # leasetime (none)
+		printf "hostname=" "\t"; # hostname (none)
+		printf "device=" $6 "\n"; #device
+	}' /proc/net/arp); 
+	
+	json_init
+	json_add_array "clients"
+	IFS=$'\n'; 
+	for line in $CLIENTS; do
+		IFS=$'\t'; 
+		IPADDR="none"
+		json_add_object
+		for field in $line; do
+			name="${field%=*}"; 
+			value="${field#*=}"; 
+			if [ "$name" == "ipaddr" ]; then IPADDR="$value"; fi
+			json_add_string "$name" "$value";
+		done
+		DHCPINFO=$(awk '$3 == "$IPADDR" { print }' /var/dhcp.leases | head -n1 | awk '
+		{
+			printf "leasetime=" $1 "\t"; # leasetime
+			printf "hostname=" $4 "\n"; #hostname
+		}'); 
+		if [ "$DHCPINFO" != "" ]; then json_add_boolean "dhcp" "true"; fi
+		for field in $DHCPINFO; do
+			name="${field%=*}"; 
+			value="${field#*=}"; 
+			json_add_string "$name" "$value";
+		done
+		json_close_object
+		IFS=$'\n'; 
+	done
+	json_close_array
+	json_dump
+}
+
+network_load(){
+	json_init 
+	json_add_int "active_connections" $(cat /proc/sys/net/netfilter/nf_conntrack_count)
+	json_add_int "max_connections" $(cat /proc/sys/net/netfilter/nf_conntrack_max)
+	json_dump
+}
+
+network_netstat(){
+	json_init
+	json_dump
+}
+
+case $1 in 
+	.methods) 
+		echo "clients,load,netstat,adapters"; 
+		exit 0
+		;;
+	clients) 
+		network_clients
+		;;
+	load)
+		network_load
+		;;
+	netstat)
+		network_netstat
+		;;
+	adapters)
+		network_adapters
+		;;
+esac

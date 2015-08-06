@@ -1,0 +1,41 @@
+#!/bin/sh
+
+. /usr/share/libubox/jshn.sh
+
+usb_list(){
+	json_init 
+	json_add_array "devices"
+	for id in `lsusb | awk '{print $6}'`; do 
+		OLDIFS=$IFS; 
+		IFS=$'\n'; 
+		FIELDS=$(awk -F'\t|[[:space:]]{2}' '
+			/^[0-9a-f]{4}/ { 
+				VENDORID=$1; 
+				VENDORNAME=$2;
+			} 
+			/^\t[0-9a-f]{4}/{ 
+				if(VENDORID == vendorid && $2 == deviceid) { 
+					print "vendorid=" VENDORID "\ndeviceid=" $2 "\nvendorname=" VENDORNAME "\ndevicename=" $3; 
+					exit 1;
+				}
+			}' vendorid=${id%:*} deviceid=${id#*:} /usr/share/usb_device_ids); 
+		json_add_object 
+		for line in $FIELDS; do
+			json_add_string "${line%=*}" "${line#*=}"; 
+		done
+		json_close_object
+		IFS=$OLDIFS; 
+	done
+	json_close_array
+	json_dump
+}
+
+case $1 in 
+	.methods) 
+		echo "list"; 
+		exit 0
+		;;
+	list) 
+		usb_list
+		;;
+esac

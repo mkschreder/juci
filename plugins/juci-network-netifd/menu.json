@@ -1,32 +1,38 @@
 {
-    "internet": {
-        "title": "Internet",
-        "redirect": "internet/ethernet", 
-        "index": 30
-    },
-    "internet/ethernet": {
-        "title": "Devices",
-        "acls": [ "network" ],
-        "index": 5
-    },
-    "internet/network": {
-        "title": "Connections",
-        "acls": [ "network" ],
-        "index": 6
-    },
-    "internet/wan": {
-        "title": "WAN",
-        "acls": [ "network" ],
-        "index": 8
-    },
-    "internet/lan": {
-        "title": "LAN",
-        "acls": [ "network" ],
-        "index": 9
-    },
-    "internet/services": {
-        "title": "Services",
-        "acls": [ "network" ],
-        "index": 100
-    }
+	"internet": {
+			"title": "Internet",
+			"redirect": "internet/ethernet", 
+			"index": 30
+	},
+	"internet/ethernet": {
+			"title": "Devices",
+			"acls": [ "network" ],
+			"index": 5
+	},
+	"internet/network": {
+			"title": "Connections",
+			"acls": [ "network" ],
+			"index": 6
+	},
+	"internet/wan": {
+			"title": "WAN",
+			"acls": [ "network" ],
+			"index": 8
+	},
+	"internet/lan": {
+			"title": "LAN",
+			"acls": [ "network" ],
+			"index": 9
+	},
+	"internet/services": {
+			"title": "Services",
+			"acls": [ "network" ],
+			"index": 100
+	},
+	"status/nat": {
+		"title": "NAT", 
+		"modes": [ "expert" ], 	
+		"acls": [ "juci-network-netifd" ], 
+		"index": 80
+	}
 }
