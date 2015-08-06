@@ -155,7 +155,7 @@ run_command(const char *pFmt, ...)
 	va_end(ap);
 
 	FILE *pipe = 0;
-	static char buffer[4096] = {0};
+	static char buffer[16384] = {0};
 	if ((pipe = popen(cmd, "r"))){
 		char *ptr = buffer; 
 		size_t size = 0; 

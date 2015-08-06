@@ -97,7 +97,7 @@ div.logo {
 .top-navbar {
 	color: #111 !important; 
 	background-color: white;
-	z-index: 10000;
+	z-index: 10;
 	position: fixed;
 	width: 100%;
 	top: 0;
@@ -201,6 +201,7 @@ div.error {
 .modal-backdrop {
 	width: 4000px; 
 	height: 4000px; 
+	z-index: 50; 
 }
 
 .footer-right {

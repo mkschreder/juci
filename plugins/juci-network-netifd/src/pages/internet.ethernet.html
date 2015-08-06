@@ -6,12 +6,14 @@
 			<table class="table">
 				<thead>
 					<th translate>Name</th>
-					<th translate>DeviceID</th>
+					<th translate>Adapter</th>
+					<th translate>MAC</th>
 					<th translate>Status</th>
 				</thead>
 				<tr ng-repeat="dev in adapters">
 					<td>{{dev.displayname}}</td>
 					<td>{{dev.name}}</td>
+					<td>{{dev.macaddr}}</td>
 					<td><i class="fa fa-circle" ng-class="{'text-success': dev.state=='UP'}"/> {{dev.state}}</td>
 				</tr>
 			</table>

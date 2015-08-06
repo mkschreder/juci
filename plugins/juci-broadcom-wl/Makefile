@@ -15,6 +15,8 @@ $(OUTDIR):
 files: 
 	$(INSTALL_DIR) ./$(OUTDIR)/css
 	$(INSTALL_DIR) ./$(OUTDIR)/js
+	$(INSTALL_DIR) ./files/usr/lib/rpcd/cgi/
+	$(CP) backend/juci.broadcom.wireless ./files/usr/lib/rpcd/cgi/
 
 STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
