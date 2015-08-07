@@ -1,10 +1,12 @@
 <div>
 	<table>
 		<tr>
-			<td style="width:1%"><i class="fa fa-globe"/></td>
-			<td style="padding-left: 10px;">{{'Network'|translate}}</td>
-			<td style="width:1%"><span class="badge">{{numClients}}</span></td>
-			<td style="width:1%"><i class="fa fa-circle {{statusClass}}"/></td>
+			<td style="width:1%"><i class="icon icon-ethernet"/></td>
+			<td style="padding-left: 10px;">{{'LAN'|translate}}</td>
+			<td style="width:1%">
+				<span ng-show="done" class="badge">{{numClients}}</span>
+				<i class="fa fa-spinner fa-spin" ng-hide="done"/>
+			</td>
 		</tr>
 	</table>
 </div>

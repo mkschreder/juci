@@ -30,15 +30,17 @@
 						<td><strong translate>WPS pin:</strong></td>
 						<td style="text-align: right;"><span ng-show="wifi.status.wps.value" style="font-size: 0.8pn">{{wps.pin || "-"}}</span></td>
 					</tr>
+					<tr><td></td><td></td></tr><!-- an extra line as quick way to get a border after the last line -->
 				</table>
 			</div>
 		</div>
-		<div class="row" style="margin-bottom: 10px;" ng-repeat="client in wireless.clients">
+		<div class="row" style="margin-bottom: 10px; padding-top: 5px; padding-bottom: 5px; position:relative;" ng-repeat="client in wireless.clients">
 			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-desktop fa-2x"></i></div>
-			<div class="col-xs-7" style="padding-left: 0px">{{client.hostname}}<br ng-show="client.hostname"/>{{client.ipaddr}}</div>
+			<div class="col-xs-7" style="padding-left: 0px">{{client.ipaddr}}<br ng-show="client.hostname"/>{{client.hostname}}</div>
 			<div class="col-xs-2" style="color: #a9b400;">
 				<wifi-signal-indicator ng-model="client.snr"></wifi-signal-indicator>
 			</div>
+			<div style="position: absolute;top: 25px;right: 12px;font-size: 10px;">{{client.band}}</div>
 		</div>
 	</div>
 </div>

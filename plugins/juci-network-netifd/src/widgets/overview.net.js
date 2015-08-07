@@ -23,6 +23,7 @@ JUCI.app
 				$scope.numClients = Object.keys(clients).map(function(x) { return clients[x]; }).filter(function(x){
 					return x.connected && x.wireless == false; 
 				}).length; 
+				$scope.done = 1; 
 			}); 
 		}], function(){
 			done(); 

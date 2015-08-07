@@ -2,24 +2,28 @@
 	<div ng-controller="InternetWANPage">
 		<juci-config-heading>{{ 'WAN Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.wan.info' | translate }}</juci-config-info>
-		<juci-config-heading>{{'Basic Config'|translate}}</juci-config-heading>
-		<juci-config-lines>
-			<juci-config-line title="{{'Enable WAN'|translate}}">
-				<switch ng-model="conn.enabled.value" class="green"/>
-			</juci-config-line>
-			<juci-config-line title="{{'Enable NAT'|translate}}">
-				<switch ng-model="data.nat_enabled" class="green" ng-change="onEnableNAT()"/>
-			</juci-config-line>
-			<juci-config-line title="{{'Enable UPnP'|translate}}" ng-show="upnp">
-				<switch ng-model="upnp.enable_upnp.value" class="green"/>
-			</juci-config-line>
-			<juci-config-line title="{{'WAN Connection Type'|translate}}">
-				<juci-select ng-model="conn.proto.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
-			</juci-config-line>
-		</juci-config-lines>
-		<network-connection-ip4-settings-edit ng-model="conn"  ng-show="conn.proto.value == 'static'"></network-connection-ip4-settings-edit>
-		<juci-config-heading>{{'DNS Settings'|translate}}</juci-config-heading>
-		<network-connection-ip4-dns-edit ng-model="conn"></network-connection-ip4-dns-edit>
+		<juci-config-section>
+			<juci-config-heading>{{'Basic Config'|translate}}</juci-config-heading>
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable WAN'|translate}}">
+					<switch ng-model="conn.enabled.value" class="green"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Enable NAT'|translate}}">
+					<switch ng-model="data.nat_enabled" class="green" ng-change="onEnableNAT()"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Enable UPnP'|translate}}" ng-show="upnp">
+					<switch ng-model="upnp.enable_upnp.value" class="green"/>
+				</juci-config-line>
+				<juci-config-line title="{{'WAN Connection Type'|translate}}">
+					<juci-select ng-model="conn.proto.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
+				</juci-config-line>
+			</juci-config-lines>
+			<network-connection-ip4-settings-edit ng-model="conn"  ng-show="conn.proto.value == 'static'"></network-connection-ip4-settings-edit>
+		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{'DNS Settings'|translate}}</juci-config-heading>
+			<network-connection-ip4-dns-edit ng-model="conn"></network-connection-ip4-dns-edit>
+		</juci-config-section>
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>
 	</div>

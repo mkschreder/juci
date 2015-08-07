@@ -8,13 +8,15 @@
 					<th translate>Name</th>
 					<th translate>Adapter</th>
 					<th translate>MAC</th>
-					<th translate>Status</th>
+					<th translate>MTU</th>
+					<th width="1px" translate>Status</th>
 				</thead>
 				<tr ng-repeat="dev in adapters">
 					<td>{{dev.displayname}}</td>
 					<td>{{dev.name}}</td>
 					<td>{{dev.macaddr}}</td>
-					<td><i class="fa fa-circle" ng-class="{'text-success': dev.state=='UP'}"/> {{dev.state}}</td>
+					<td>{{dev.mtu}}</td>
+					<td style="white-space: nowrap;"><i class="fa fa-circle" ng-class="{'text-success': dev.state=='UP'}"/> {{dev.state}}</td>
 				</tr>
 			</table>
 		</juci-config-section>

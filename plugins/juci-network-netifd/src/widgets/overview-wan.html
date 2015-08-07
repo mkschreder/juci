@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+			<i class="fa fa-globe" style="margin-right: 10px;"/> {{'WAN'|translate}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-condensed">
+			<tr>
+				<td ><strong translate>Internet</strong></td>
+				<td>
+					<strong ng-show="internet_wan.up" class="text-success" translate>ONLINE</strong>
+					<strong ng-show="!internet_wan.up" class="text-danger" translate>OFFLINE</strong>
+				</td>
+			</tr>
+			<tr ng-show="internet_wan.up"><td ><strong translate>WAN IP</strong></td><td>{{internet_wan['ipv4-address'][0].address}}</td></tr>
+			<tr ng-show="internet_wan.up"><td ><strong translate>Gateway</strong></td></td><td><strong>{{internet_wan.route[0].nexthop}}</strong></td></tr>
+			<tr ng-show="internet_wan.up"><td ><strong translate>Type</strong></td></td><td><strong>{{internet_wan.connection_type}}</strong></td></tr>
+		</table>
+	</div>
+</div>

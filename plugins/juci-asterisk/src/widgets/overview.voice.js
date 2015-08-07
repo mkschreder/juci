@@ -7,6 +7,13 @@ JUCI.app
 		replace: true
 	 };  
 })
+.directive("overviewStatusWidget20Voice", function(){
+	return {
+		templateUrl: "widgets/overview.voice.small.html", 
+		controller: "overviewWidgetVoice", 
+		replace: true
+	 };  
+})
 .controller("overviewWidgetVoice", function($scope, $rpc, $uci, $config, $tr, gettext){
 	$scope.sipAccounts = []; 
 	$scope.phoneSchedStatus = gettext("off"); 

@@ -127,9 +127,20 @@
 		NetworkBackend.prototype.getConnectedClients = function(){
 			var deferred = $.Deferred(); 
 			var self = this; 
-			_refreshClients(self).done(function(clients){
-				
-				deferred.resolve(clients.filter(function(x){ return x.connected; })); 
+			$rpc.juci.network.clients().done(function(clients){
+				if(clients && clients.clients) deferred.resolve(clients.clients); 
+				else deferred.reject(); 
+			}); 
+			
+			return deferred.promise(); 
+		}
+		
+		NetworkBackend.prototype.getNameServers = function(){
+			var deferred = $.Deferred(); 
+			var self = this; 
+			$rpc.juci.network.nameservers().done(function(result){
+				if(result && result.nameservers) deferred.resolve(result.nameservers); 
+				else deferred.reject(); 
 			}); 
 			
 			return deferred.promise(); 
@@ -148,7 +159,7 @@
 		NetworkBackend.prototype.getNatTable = function(){
 			var def = $.Deferred(); 
 			
-			$rpc.juci.network.conntrack_table().done(function(table){
+			$rpc.juci.network.netstat().done(function(table){
 				if(table && table.entries){
 					def.resolve(table.entries); 
 				} else {

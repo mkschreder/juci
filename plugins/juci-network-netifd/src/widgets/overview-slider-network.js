@@ -7,7 +7,7 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $config){
+.controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $firewall, $config){
 	function drawCyGraph(){
 		var nodes = []; 
 		var edges = []; 
@@ -347,6 +347,82 @@ JUCI.app
 		}
 	};
 	
+	nodes.push({
+		id: ".root",
+		label: $config.system.hardware,
+		image: "/img/net-router-icon.png", 
+		shape: "circularImage", 
+		x: 0, y: 0, 
+		size: 35, 
+		physics: false, 
+		fixed: { x: true, y: true }
+	}); 
+	
+	$network.getNameServers().done(function(nameservers){
+		$network.getConnectedClients().done(function(clients){
+			$rpc.network.interface.dump().done(function(stats){
+				var interfaces = stats.interface; 
+				var gw_if = interfaces.find(function(x){ return x.route && x.route[0] && x.route[0].target == "0.0.0.0"; }); 
+				$firewall.getZones().done(function(zones){
+					var wan = zones.find(function(x){ return x.name.value == "wan"; }); 
+					var lan = zones.find(function(x){ return x.name.value == "lan"; }); 
+					var guest = zones.find(function(x){ return x.name.value == "guest"; }); 
+					
+					[wan, lan, guest].map(function(zone){
+						if(!zone) return; 
+						var node = {
+							id: "zone."+zone.name.value, 
+							label: zone.name.value, 
+							image: "/img/net-interface-icon.png", 
+							shape: "circularImage",
+							physics: false, 
+							fixed: { x: false, y: false }
+						}
+						if(zone == wan) { node.x = 150; node.y = 0; }
+						else if(zone == lan) { node.x = -150; node.y = -50; }
+						else if(zone == guest) { node.x = -150; node.y = 50; }
+						nodes.push(node);
+						edges.push({ from: ".root", to: node.id, width: 2, smooth: { enabled: false } }); 
+						
+						// add devices from the zone
+						zone.network.value.map(function(iface_name){
+							var iface = interfaces.find(function(x){ return x.interface == iface_name; }); 
+							if(!iface) return; 
+							clients.filter(function(x){ return x.device == iface.l3_device; }).map(function(cl){
+								// add client to the node list
+								var cl_node = {
+									id: cl.ipaddr, 
+									label: cl.ipaddr, 
+									image: "/img/net-laptop-icon.png", 
+									shape: "image",
+									x: node.x * 2, 
+									fixed: { x: true, y: false }
+								}; 
+								var flags = []; 
+								if(gw_if && gw_if.route[0].nexthop == cl.ipaddr) flags.push("Default GW"); 
+								if(nameservers.find(function(x){ return x == cl.ipaddr; })) flags.push("DNS"); 
+								if(flags.length) cl_node.label = "("+flags.join("/")+") "+cl_node.label; 
+								if(cl.hostname) cl_node.label = cl_node.label + " (" + cl.hostname + ")"; 
+								nodes.push(cl_node); 
+								edges.push({ from: node.id, to: cl_node.id, width: 2 });  
+							}); 
+						}); 
+					}); 
+					
+					// create a network
+					var containerFA = document.getElementById('mynetworkFA');
+					var dataFA = {
+						nodes: nodes,
+						edges: edges
+					};
+
+					var network = new vis.Network(containerFA, dataFA, optionsFA);
+					$scope.$apply(); 
+				}); 
+			}); 
+		}); 
+	}); 
+	/*
 	$rpc.network.interface.dump().done(function(results){
 		var stats = {}; 
 		results.interface.map(function(i){ stats[i.interface] = i; }); 
@@ -363,7 +439,8 @@ JUCI.app
 					nodes.push({
 						id: ".root",
 						label: $config.system.hardware,
-						group: 'static', 
+						image: "/img/router.jpg", 
+						shape: "image", 
 						x: 0, y: 50, 
 						physics: false, 
 						fixed: { x: false, y: false }
@@ -372,7 +449,8 @@ JUCI.app
 					nodes.push({
 						id: ".wan", 
 						label: "WAN", 
-						group: "wan", 
+						image: "/img/net-interface-icon.jpg", 
+						shape: "image",
 						x: 100, y: 50, 
 						physics: false, 
 						fixed: { x: false, y: false }
@@ -418,26 +496,7 @@ JUCI.app
 						nodes_map[node.id] = node; 
 						nodes.push(node); 
 					}); 
-					/*[
-						{ name: "Internet", iface: $config.wan_interface}, 
-						{ name: "IPTV", iface: $config.iptv_interface},
-						{ name: "Voice", iface: $config.voice_interface}
-					].map(function(item){
-						var net = nets_map[item.iface]; 
-						var node = {
-							id: item.name,
-							label: item.name + " (" + net.ifname.value.split(" ").join(",") + ")",
-							group: (stats[net[".name"]].up)?'networks':'networks_down', 
-							x: 200, 
-							y: net_y, 
-							physics: false, 
-							fixed: { x: false, y: false }
-						}
-						edges.push({ from: ".wan", to: node.id, smooth: { enabled: false } });
-						net_y += 80; 
-						nodes_map[node.id] = node; 
-						nodes.push(node); 
-					}); */
+					
 					
 					clients.filter(function(client){
 						return client.connected; 
@@ -478,4 +537,5 @@ JUCI.app
 			});  
 		}); 
 	}); 
+	*/
 })

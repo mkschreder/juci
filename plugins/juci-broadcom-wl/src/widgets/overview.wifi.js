@@ -31,10 +31,10 @@ JUCI.app
 				next(); 
 			}); 
 		}, function(next){
-			$rpc.juci.broadcom.wireless.clients().done(function(clients){
-				$scope.wifiClients = Object.keys(clients).map(function(x) { return clients[x]; }).filter(function(x){
-					return x.connected; 
-				}).length; 
+			$rpc.juci.broadcom.wireless.clients().done(function(result){
+				$scope.done = 1; 
+				$scope.wifiClients2 = result.clients.filter(function(x){ return x.band == "2.4GHz"; }).length; 
+				$scope.wifiClients5 = result.clients.filter(function(x){ return x.band == "5.8GHz"; }).length; 
 			}); 
 		}], function(){
 			done(); 
@@ -42,7 +42,7 @@ JUCI.app
 	}); 
 	
 })
-.controller("overviewWidgetWifi", function($scope, $rpc, $uci){
+.controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext){
 	$scope.wireless = {
 		clients: []
 	}; 
@@ -87,11 +87,13 @@ JUCI.app
 					$scope.wireless.clients.map(function(cl){
 						// calculate signal strength
 						cl.snr = cl.rssi - cl.noise; 
+						// check flags 
+						if(cl.flags.match(/NOIP/)) cl.ipaddr = $tr(gettext("No IP address")); 
 					}); 
 					next(); 
 				}).fail(function(){
 					next();
-				});; 
+				});
 			},
 		], function(){
 			$scope.$apply(); 
