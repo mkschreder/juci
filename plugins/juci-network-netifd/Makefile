@@ -17,8 +17,8 @@ files:
 	$(INSTALL_DIR) ./$(OUTDIR)/js
 	$(INSTALL_DIR) ./$(OUTDIR)/img
 	$(INSTALL_DIR) ./files/usr/lib/rpcd/cgi/
-	cp -R src/images/* ./$(OUTDIR)/img/
-	cp -R backend/juci.network ./files/usr/lib/rpcd/cgi/
+	$(CP) src/images/* ./$(OUTDIR)/img/
+	$(CP) backend/juci.network ./files/usr/lib/rpcd/cgi/
 
 STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
