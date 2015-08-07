@@ -290,9 +290,9 @@ UCI.validators.MACListValidator = function(){
 
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {
-	"is_lan":					{ dvalue: false, type: Boolean }, 
+	"is_lan":					{ dvalue: false, type: Boolean }, // please stop relying on this!
 	"ifname":					{ dvalue: '', type: String }, 
-	"device":					{ dvalue: '', type: String }, // WTF? This is set to ifname in ubus but not in uci 
+	"device":					{ dvalue: '', type: String }, 
 	"proto":					{ dvalue: '', type: String }, 
 	"ipaddr":					{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask":				{ dvalue: '', type: String }, 
@@ -301,6 +301,7 @@ UCI.network.$registerSectionType("interface", {
 	"ip6prefix":			{ dvalue: '', type: String }, 
 	"ip6gateway":			{ dvalue: '', type: String }, 
 	"type":						{ dvalue: '', type: String }, 
+	"defaultroute":		{ dvalue: false, type: Boolean }, 
 	"ip6assign":			{ dvalue: 60, type: Number }, 
 	"bridge_instance": { dvalue: false, type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
