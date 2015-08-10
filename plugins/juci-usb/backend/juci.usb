@@ -3,26 +3,46 @@
 . /usr/share/libubox/jshn.sh
 
 usb_list(){
+	CACHEFILE="/var/run/juci.usb.cache"
 	json_init 
 	json_add_array "devices"
 	for id in `lsusb | awk '{print $6}'`; do 
 		OLDIFS=$IFS; 
 		IFS=$'\n'; 
-		FIELDS=$(awk -F'\t|[[:space:]]{2}' '
-			/^[0-9a-f]{4}/ { 
-				VENDORID=$1; 
-				VENDORNAME=$2;
-			} 
-			/^\t[0-9a-f]{4}/{ 
-				if(VENDORID == vendorid && $2 == deviceid) { 
-					print "vendorid=" VENDORID "\ndeviceid=" $2 "\nvendorname=" VENDORNAME "\ndevicename=" $3; 
-					exit 1;
-				}
-			}' vendorid=${id%:*} deviceid=${id#*:} /usr/share/usb_device_ids); 
+		local vendorid=""; 
+		local deviceid=""; 
+		local vendorname=""; 
+		local devicename=""; 
+		if [ -f $CACHEFILE ]; then
+			RESULT=$(awk -F'\t' '$1 == (vendorid ":" deviceid) { 
+				print "vendorid=\"" vendorid "\""; 
+				print "deviceid=\"" deviceid "\""; 
+				print "vendorname=\"" $2 "\""; 
+				print "devicename=\"" $3 "\""; 
+			}' vendorid=${id%:*} deviceid=${id#*:} $CACHEFILE); 
+			eval "$RESULT"; 
+		fi 
+		if [ "$deviceid" == "" ]; then
+			RESULT=$(awk -F'\t|[[:space:]]{2}' '
+				/^[0-9a-f]{4}/ { 
+					VENDORID=$1; 
+					VENDORNAME=$2;
+				} 
+				/^\t[0-9a-f]{4}/{ 
+					if(VENDORID == vendorid && $2 == deviceid) { 
+						print "vendorid=\"" VENDORID "\"\ndeviceid=\"" $2 "\"\nvendorname=\"" VENDORNAME "\"\ndevicename=\"" $3 "\""; 
+						exit 1;
+					}
+				}' vendorid=${id%:*} deviceid=${id#*:} /usr/share/usb_device_ids); 
+			eval "$RESULT"; 
+			# add the records to cache
+			echo -e "$vendorid:$deviceid\t$vendorname\t$devicename" >> $CACHEFILE; 
+		fi
 		json_add_object 
-		for line in $FIELDS; do
-			json_add_string "${line%=*}" "${line#*=}"; 
-		done
+		json_add_string "vendorid" $vendorid; 
+		json_add_string "deviceid" $deviceid; 
+		json_add_string "vendorname" $vendorname; 
+		json_add_string "devicename" $devicename; 
 		json_close_object
 		IFS=$OLDIFS; 
 	done
