@@ -6,7 +6,7 @@ HTML:=$(OUTDIR)/js/90-$(TARGET)-tpl.js
 CP:=cp -Rp
 INSTALL_DIR=mkdir -p
 
-all: files $(OUTDIR) $(JS) $(CSS) $(HTML);
+all: files $(OUTDIR) $(JS) $(HTML);
 	
 $(OUTDIR): 
 	mkdir -p $(OUTDIR)
@@ -15,19 +15,17 @@ $(OUTDIR):
 files: 
 	$(INSTALL_DIR) ./$(OUTDIR)/css
 	$(INSTALL_DIR) ./$(OUTDIR)/js
-	$(INSTALL_DIR) ./files/usr/lib/rpcd/cgi/
-	$(CP) backend/juci.broadcom.wireless ./files/usr/lib/rpcd/cgi/
 
-STYLES:=$(wildcard src/css/*.css) 
+#STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
-$(CSS): $(STYLES)
-	cat $(STYLES) > $@
+#$(CSS): $(STYLES)
+#	cat $(STYLES) > $@
 
 $(JS): $(CODE)
 	cat $(CODE) > $@
-	
+
 $(HTML): $(TEMPLATES)
 	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
 

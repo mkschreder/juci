@@ -288,85 +288,8 @@ wireless_info(struct ubus_context *ctx, struct ubus_object *obj,
 	return 0;
 }
 
-static int rpc_shell_script(struct ubus_context *ctx, struct ubus_object *obj,
-		  struct ubus_request_data *req, const char *method,
-		  struct blob_attr *msg)
-{
-	blob_buf_init(&bb, 0);
-	
-	struct stat st; 
-	char fname[255]; 
-	snprintf(fname, sizeof(fname), "/usr/lib/rpcd/cgi/%s", obj->name); 
-	
-	if(stat(fname, &st) == 0){
-		const char *resp = run_command("%s %s", fname, method); 
-		if(!blobmsg_add_json_from_string(&bb, resp))
-			return UBUS_STATUS_NO_DATA; 
-	}
-	
-	ubus_send_reply(ctx, req, bb.head);
-
-	return 0;
-}
-
 int wl_init(struct ubus_context *ctx){
-	glob_t gl;
-	int rv = 0;  
-	if (glob("/usr/lib/rpcd/cgi/*", 0, NULL, &gl) == 0){
-		for (size_t i = 0; i < gl.gl_pathc; i++){
-			char *obj_name = strdup(basename(gl.gl_pathv[i])); 
-			char obj_type_name[64]; 
-			char mstr[255]; 
-			
-			strncpy(obj_type_name, obj_name, sizeof(obj_type_name)); 
-			for(size_t c = 0; c < strlen(obj_name); c++) if(obj_type_name[c] == '.') obj_type_name[c] = '-'; 
-			
-			printf("Registering CGI %s (%s)\n", gl.gl_pathv[i], obj_type_name); 
-			
-			strncpy(mstr, chrCmd("%s .methods", gl.gl_pathv[i]), sizeof(mstr)); 
-			
-			// extract methods into an array 
-			size_t nmethods = 1; 
-			const char *methods[64] = {0}; 
-			methods[0] = mstr; 
-			int len = strlen(mstr); 
-			for(int c = 0; c < len; c++) { 
-				if(mstr[c] == ',') {
-					mstr[c] = 0; 
-					methods[nmethods] = mstr + c + 1; 
-					nmethods++; 
-				} else if(mstr[c] == '\n'){
-					break; 
-				}
-			}
-			
-			printf(" - %d methods for %s\n", nmethods, obj_name); 
-			
-			struct ubus_method *obj_methods = calloc(nmethods, sizeof(struct ubus_method));
-			struct ubus_object *obj = calloc(1, sizeof(struct ubus_object)); 
-			struct ubus_object_type *obj_type = calloc(1, sizeof(struct ubus_object_type)); 
-			
-			for(size_t c = 0; c < nmethods; c++){
-				printf(" - registering %s\n", methods[c]); 
-				obj_methods[c].name = strdup(methods[c]); 
-				obj_methods[c].handler = rpc_shell_script;  
-			}
-			
-			obj_type->name = strdup(obj_type_name); 
-			obj_type->id = 0; 
-			obj_type->n_methods = nmethods; 
-			obj_type->methods = obj_methods;
-			
-			obj->name = obj_name;
-			obj->type = obj_type;
-			obj->methods = obj_methods;
-			obj->n_methods = nmethods; 
-			
-			rv |= ubus_add_object(ctx, obj); 
-		}
-		globfree(&gl);
-	}
-	return rv; 
+	
 	/*
 	static struct ubus_method wl_object_methods[] = {
 		UBUS_METHOD_NOARG("info", wireless_info),

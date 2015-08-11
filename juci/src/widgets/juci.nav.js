@@ -40,7 +40,7 @@ JUCI.app
 	};
 
 	$scope.itemVisible = function(item){
-		if(!item.modes.length) return true; 
+		if(!item.modes || !item.modes.length) return true; 
 		else if(item.modes && item.modes.indexOf($config.mode) == -1) {
 			return false; 
 		} 

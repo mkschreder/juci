@@ -1,0 +1,7 @@
+{
+	"internet/ethernet/phy": {
+			"title": "Ethernet",
+			"acls": [ "juci-broadcom-ethernet" ],
+			"index": 0
+	}
+}

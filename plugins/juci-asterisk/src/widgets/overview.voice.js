@@ -24,6 +24,7 @@ JUCI.app
 				if($uci.voice_client && $uci.voice_client["@sip_service_provider"]){
 					$scope.sipAccounts = $uci.voice_client["@sip_service_provider"]; 
 				}
+				$scope.showVoiceWidget = true; 
 			}).always(function(){ next(); }); 
 		}], function(){
 		$scope.$apply(); 

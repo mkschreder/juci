@@ -1,0 +1,15 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetEthernetPhysical">
+		<juci-config-heading translate>Ethernet Ports</juci-config-heading>
+		<juci-config-info>{{ 'internet.ethernet.phy.info' | translate }}</juci-config-info>
+		<juci-config-section>
+			<juci-config-heading translate>Pick uplink port</juci-config-heading>
+			<juci-config-info translate>This will be the port that will be used to configure the physical ethernet port as upling port for routing out to the internet.</juci-config-info>
+			<div class="btn-group">
+        <label ng-repeat="port in ports" class="btn btn-success" ng-model="data.wan_port" btn-radio="port" uncheckable>{{port.name}}</label>
+			</div>
+			<p ng-show="data.wan_port" translate><strong>{{data.wan_port.name}}</strong> socket will be used for passing packets to the internet.</p>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

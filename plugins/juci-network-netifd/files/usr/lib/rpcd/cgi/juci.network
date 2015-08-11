@@ -109,6 +109,24 @@ network_netstat(){
 	json_dump
 }
 
+network_bridges() {
+	$(brctl show | awk -F'\t' '{ # broadcom is stupid (why not write cli utitlities so they are cli friendly?)
+		if(FNR==1) continue; 
+		if($1 != "") { 
+			if(BRNAME != "") { 
+				print BRNAME "=" INTERFACES; 
+			} 
+			BRNAME=$1; 
+			INTERFACES=$6; 
+		} else { 
+			INTERFACES=INTERFACES "," $8; 
+		}
+	} 
+	END { 
+		print BRNAME "=" INTERFACES; 
+	}'); 
+}
+
 network_nameservers(){
 	json_init 
 	json_add_array "nameservers"; 

@@ -1,0 +1,15 @@
+{
+	"juci-broadcom-ethernet": {
+		"description": "Broadcom ethernet plugin",
+		"read": {
+			"uci": [
+				"layer2_interface_ethernet"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"layer2_interface_vlan"
+			]
+		}
+	}
+}

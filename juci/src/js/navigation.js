@@ -57,11 +57,9 @@
 				obj.children_list.push(item); 
 			} else {
 				var o = obj.children[parts[0]]; 
-				var children = o.children; 
-				var children_list = o.children_list; 
-				Object.assign(o, item);
-				o.children = children; 
-				o.children_list = children_list; 
+				item.children = o.children; 
+				item.children_list = o.children_list; 
+				obj.children[parts[0]] = item; 
 				item = o; 
 			}
 			obj.children_list = Object.keys(obj.children).map(function (key) {

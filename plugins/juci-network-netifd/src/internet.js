@@ -224,6 +224,7 @@
 								}); 
 							}); 
 							
+							/*
 							if(boardinfo.adsl){
 								var adsl_ports = boardinfo.adsl.ports.split(" "); 
 								adsl_ports.map(function(port){
@@ -245,7 +246,7 @@
 										base: { name: port, id: port }
 									}); 
 								}); 
-							}
+							}*/
 							deferred.resolve(devices); 
 						}); 
 					}).fail(function(){
@@ -294,6 +295,7 @@ UCI.network.$registerSectionType("interface", {
 	"ifname":					{ dvalue: '', type: String }, 
 	"device":					{ dvalue: '', type: String }, 
 	"proto":					{ dvalue: '', type: String }, 
+	"proto6":					{ dvalue: '', type: String }, 
 	"ipaddr":					{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask":				{ dvalue: '', type: String }, 
 	"gateway":				{ dvalue: '', type: String }, 

@@ -14,6 +14,9 @@
 		"description": "Core functions for JUCI",
 		"read": {
 			"ubus": {
+				"juci.system": [
+					"events"
+				], 
 				"juci.ui": [
 					"*"
 				],

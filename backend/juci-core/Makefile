@@ -20,7 +20,7 @@ $(BUILD_DIR):
 	
 $(SHARED_OBJECT): $(SO_OBJECT_FILES)
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/lib/rpcd/
-	$(CC) $(LDFLAGS) -Wl,-z,defs -shared -o $(SHARED_OBJECT) $(SO_OBJECT_FILES) -lubox -lubus -luci -lblobmsg_json -lcrypt
+	$(CC) $(LDFLAGS) -Wl,-z,defs -shared -o $(SHARED_OBJECT) $(SO_OBJECT_FILES) -lubox -lubus -luci -lblobmsg_json -lcrypt -lpthread
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/rpcd/acl.d/
 	$(CP) access.json $(ACL_LIST)
 	$(CP) etc $(BUILD_DIR)/

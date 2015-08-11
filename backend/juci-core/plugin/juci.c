@@ -2841,6 +2841,184 @@ rpc_juci_ui_crypt(struct ubus_context *ctx, struct ubus_object *obj,
 	return 0;
 }
 
+static void receive_event(struct ubus_context *ctx, struct ubus_event_handler *ev,
+			  const char *type, struct blob_attr *msg)
+{
+	char *str;
+
+	str = blobmsg_format_json(msg, true);
+	FILE *logfile = fopen("/var/run/ubus.events", "a"); 
+	if(logfile){
+		fprintf(logfile, "{ \"time\": %d, \"type\": \"%s\", \"data\": %s }\n", time(NULL), type, str);
+		fclose(logfile); 
+	}
+	free(str);
+}
+
+static int rpc_juci_system_events(struct ubus_context *ctx, struct ubus_object *obj,
+		  struct ubus_request_data *req, const char *method,
+		  struct blob_attr *msg)
+{
+	blob_buf_init(&buf, 0);
+	char line[512] = {0}; 
+	
+	void *arr = blobmsg_open_array(&buf, "events"); 
+	FILE *logfile = fopen("/var/run/ubus.events", "r"); 
+	if(logfile){
+		while(fgets(line, sizeof(line), logfile)){
+			void *obj = blobmsg_open_table(&buf, NULL); 
+			blobmsg_add_json_from_string(&buf, line);
+			blobmsg_close_table(&buf, obj);  
+		}
+		// possible race? 
+		system("tail -n20 /var/run/ubus.events > /tmp/ubus.events; mv /tmp/ubus.events /var/run/ubus.events"); 
+	}
+	blobmsg_close_array(&buf, arr); 
+	
+	ubus_send_reply(ctx, req, buf.head);
+
+	return 0;
+}
+
+static void init_ubus_event_listener(struct ubus_context *ctx){
+	static struct ubus_event_handler listener;
+	const char *event;
+	int ret = 0;
+
+	memset(&listener, 0, sizeof(listener));
+	listener.cb = receive_event;
+	
+	ubus_register_event_handler(ctx, &listener, "*"); 
+}
+
+static void 
+remove_newline(char *buf)
+{
+	int len;
+	len = strlen(buf) - 1;
+	if (buf[len] == '\n') 
+		buf[len] = 0;
+}
+
+static const char*
+run_command(const char *pFmt, ...)
+{
+	va_list ap;
+	char cmd[256] = {0};
+	int len=0, maxLen;
+
+	maxLen = sizeof(cmd);
+
+	va_start(ap, pFmt);
+
+	if (len < maxLen)
+	{
+		maxLen -= len;
+		vsnprintf(&cmd[len], maxLen, pFmt, ap);
+	}
+
+	va_end(ap);
+
+	FILE *pipe = 0;
+	static char buffer[16384] = {0};
+	if ((pipe = popen(cmd, "r"))){
+		char *ptr = buffer; 
+		size_t size = 0; 
+		while(size = fgets(ptr, sizeof(buffer) - (ptr - buffer), pipe)){
+			ptr+=size; 
+		}
+		pclose(pipe);
+
+		remove_newline(buffer);
+		if (strlen(buffer))
+			return (const char*)buffer;
+		else
+			return "";
+	} else {
+		return ""; 
+	}
+}
+
+static int rpc_shell_script(struct ubus_context *ctx, struct ubus_object *obj,
+		  struct ubus_request_data *req, const char *method,
+		  struct blob_attr *msg)
+{
+	blob_buf_init(&buf, 0);
+	
+	struct stat st; 
+	char fname[255]; 
+	snprintf(fname, sizeof(fname), "/usr/lib/rpcd/cgi/%s", obj->name); 
+	
+	if(stat(fname, &st) == 0){
+		const char *resp = run_command("%s %s", fname, method); 
+		if(!blobmsg_add_json_from_string(&buf, resp))
+			return UBUS_STATUS_NO_DATA; 
+	}
+	
+	ubus_send_reply(ctx, req, buf.head);
+
+	return 0;
+}
+
+static int load_shell_script_ubus_calls(struct ubus_context *ctx){
+	glob_t gl;
+	int rv = 0;  
+	if (glob("/usr/lib/rpcd/cgi/*", 0, NULL, &gl) == 0){
+		for (size_t i = 0; i < gl.gl_pathc; i++){
+			char *obj_name = strdup(basename(gl.gl_pathv[i])); 
+			char obj_type_name[64]; 
+			char mstr[255]; 
+			
+			strncpy(obj_type_name, obj_name, sizeof(obj_type_name)); 
+			for(size_t c = 0; c < strlen(obj_name); c++) if(obj_type_name[c] == '.') obj_type_name[c] = '-'; 
+			
+			printf("Registering CGI %s (%s)\n", gl.gl_pathv[i], obj_type_name); 
+			
+			strncpy(mstr, run_command("%s .methods", gl.gl_pathv[i]), sizeof(mstr)); 
+			
+			// extract methods into an array 
+			size_t nmethods = 1; 
+			const char *methods[64] = {0}; 
+			methods[0] = mstr; 
+			int len = strlen(mstr); 
+			for(int c = 0; c < len; c++) { 
+				if(mstr[c] == ',') {
+					mstr[c] = 0; 
+					methods[nmethods] = mstr + c + 1; 
+					nmethods++; 
+				} else if(mstr[c] == '\n'){
+					break; 
+				}
+			}
+			
+			printf(" - %d methods for %s\n", nmethods, obj_name); 
+			
+			struct ubus_method *obj_methods = calloc(nmethods, sizeof(struct ubus_method));
+			struct ubus_object *obj = calloc(1, sizeof(struct ubus_object)); 
+			struct ubus_object_type *obj_type = calloc(1, sizeof(struct ubus_object_type)); 
+			
+			for(size_t c = 0; c < nmethods; c++){
+				printf(" - registering %s\n", methods[c]); 
+				obj_methods[c].name = strdup(methods[c]); 
+				obj_methods[c].handler = rpc_shell_script;  
+			}
+			
+			obj_type->name = strdup(obj_type_name); 
+			obj_type->id = 0; 
+			obj_type->n_methods = nmethods; 
+			obj_type->methods = obj_methods;
+			
+			obj->name = obj_name;
+			obj->type = obj_type;
+			obj->methods = obj_methods;
+			obj->n_methods = nmethods; 
+			
+			rv |= ubus_add_object(ctx, obj); 
+		}
+		globfree(&gl);
+	}
+	return rv; 
+}
 
 static int
 rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
@@ -2849,6 +3027,7 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 
 	static const struct ubus_method juci_system_methods[] = {
 		UBUS_METHOD_NOARG("syslog",       rpc_juci_system_log),
+		UBUS_METHOD_NOARG("events",       rpc_juci_system_events),
 		UBUS_METHOD_NOARG("dmesg",        rpc_juci_system_dmesg),
 		UBUS_METHOD_NOARG("diskfree",     rpc_juci_system_diskfree),
 		UBUS_METHOD_NOARG("process_list", rpc_juci_process_list),
@@ -2996,7 +3175,10 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 	rv |= ubus_add_object(ctx, &network_obj);
 	rv |= ubus_add_object(ctx, &opkg_obj);
 	rv |= ubus_add_object(ctx, &ui_obj);
-
+	rv |= load_shell_script_ubus_calls(ctx); 
+	
+	init_ubus_event_listener(ctx); 
+	
 	return rv;
 }
 

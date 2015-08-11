@@ -12,6 +12,7 @@ JUCI.app
 }).controller("wirelessInterfaceEditor", function($scope, $uci, $wireless, gettext, prompt, $modal){
 	$wireless.getInterfaces().done(function(interfaces){
 		$wireless.getDevices().done(function(devices){
+			$scope.devices = devices; 
 			$scope.interfaces = interfaces; 
 			var devcounter = {}; 
 			$scope.interfaces.map(function(x){

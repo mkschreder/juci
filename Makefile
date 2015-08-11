@@ -4,6 +4,7 @@ DIRS-y:=juci \
 	plugins/juci-igmpsnoop \
 	plugins/juci-broadcom-dsl \
 	plugins/juci-broadcom-vlan \
+	plugins/juci-broadcom-ethernet \
 	plugins/juci-network-netifd \
 	plugins/juci-firewall-fw3 \
 	plugins/juci-dnsmasq-dhcp \

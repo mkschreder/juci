@@ -1,0 +1,57 @@
+JUCI.app.factory("$ethernet", function($rpc, $uci){
+	// fire off initial sync
+	var sync = $uci.sync("layer2_interface_ethernet");
+	
+	function Ethernet(){
+		
+	}
+	
+	Ethernet.prototype.configureWANPort = function(devname){
+		var def = $.Deferred(); 
+		// WAN port for broadcom phy must be configured specially so we do it in layer2_interface_ethernet (the name is a little misleading because the config is only used to set wan port on the ethernet connector!)
+		var wans = $uci.layer2_interface_ethernet["@ethernet_interface"]; 
+		function setInterface(devname){
+			var wan = $uci.layer2_interface_ethernet.Wan; 
+			wan.ifname.value = devname + ".1";
+			wan.baseifname.value = devname;  
+		}
+		if($uci.layer2_interface_ethernet.Wan == 0){
+			$uci.layer2_interface_ethernet.create({
+				".type": "ethernet_interface", 
+				".name": "Wan"
+			}).done(function(){
+				setInterface(devname); 
+				def.resolve(); 
+			}); 
+		} else {
+			setInterface(devname);
+			setTimeout(function(){ def.resolve(); }, 0);  
+		}
+		return def.promise(); 
+	}
+	
+	Ethernet.prototype.getPorts = function(){
+		var def = $.Deferred(); 
+		
+		sync.done(function(){
+			$rpc.router.boardinfo().done(function(boardinfo){
+				var names = boardinfo.ethernet.port_names.split(" "); 
+				var devs = boardinfo.ethernet.port_order.split(" "); 
+					
+				var devices = devs.map(function(dev, i){
+					return {
+						get name(){ return names[i]; },
+						get id(){ return dev; },
+						get type(){ return "baseif"; },
+						is_wan_port: ($uci.layer2_interface_ethernet.Wan && ($uci.layer2_interface_ethernet.Wan.baseifname.value == dev)),
+						base: { name: names[i], id: dev }
+					}; 
+				});
+				def.resolve(devices);  
+			}); 
+		}); 
+		return def.promise(); 
+	}
+	
+	return new Ethernet(); 
+});
