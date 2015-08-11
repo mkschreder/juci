@@ -267,13 +267,13 @@ msgid "wifi.enc.wep"
 msgstr "WEP Open System"
 
 msgid "wifi.enc.psk"
-msgstr "WPA Pre-Shared Key"
+msgstr "WPA-PSK"
 
 msgid "wifi.enc.psk2"
-msgstr "WPA2 Pre-Shared Key"
+msgstr "WPA2-PSK"
 
 msgid "wifi.enc.mixed-psk"
-msgstr "WPA/WPA2 PSK Mixed"
+msgstr "WPA/WPA2-PSK Mixed"
 
 msgid "11b"
 msgstr "802.11b"
@@ -3303,10 +3303,10 @@ msgid "wifi.enc.wep-shared"
 msgstr "WEP Shared Key"
 
 msgid "wifi.enc.wpa2"
-msgstr "WPA2 Radius "
+msgstr "WPA2-EAP"
 
 msgid "wifi.enc.mixed-wpa"
-msgstr "WPA2 Mixed"
+msgstr "WPA/WPA2-EAP Mixed"
 
 #~ msgid "none"
 #~ msgstr "None"

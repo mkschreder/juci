@@ -90,19 +90,11 @@ JUCI.app
 				break; 
 			}
 			case "mixed-psk": {
-				$wireless.getInfo().done(function(info){
-					$scope.interface.key.value = info.wpa_key; 
-					$scope.$apply(); 
-				}); 
 				if(!$scope.mixed_psk_ciphers.find(function(i){ return i.value == $scope.interface.cipher.value}))
 					$scope.interface.cipher.value = "ccmp"; 
 				break; 
 			}
 			case "psk2": {
-				$wireless.getInfo().done(function(info){
-					$scope.interface.key.value = info.wpa_key; 
-					$scope.$apply(); 
-				}); 
 				if(!$scope.psk2_ciphers.find(function(i){ return i.value == $scope.interface.cipher.value}))
 					$scope.interface.cipher.value = "ccmp"; 
 				break; 

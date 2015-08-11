@@ -2,11 +2,21 @@
 
 JUCI.app
 .controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $config, gettext, networkConnectionCreate){
+	$scope.data = {}; 
+	
 	$network.getDevices().done(function(devices){
 		$scope.devices = devices; 
 		
 		$network.getNetworks().done(function(nets){
-			$scope.networks = nets.filter(function(x){ return x.ifname.value != "lo" }); 
+			$scope.networks = nets.filter(function(x){ 
+				if(x.defaultroute.value) $scope.data.wan_network = x; 
+				return x.ifname.value != "lo" 
+			}); 
+			$scope.$watch("data.wan_network", function(value){
+				if(!value) return; 
+				$scope.networks.map(function(x){ x.defaultroute.value = false; }); 
+				if(value.defaultroute) value.defaultroute.value = true; 
+			}); 
 			$scope.$apply(); 
 			$network.getDevices().done(function(devs){
 				$scope.networks = $scope.networks.map(function(net){ 
@@ -34,6 +44,8 @@ JUCI.app
 			});
 		}); 
 	}); 
+	
+	
 	
 	$scope.onGetItemTitle = function(i){
 		return i[".name"]; 

@@ -63,17 +63,15 @@
 			return deferred.promise(); 
 		}
 		
-		Wireless.prototype.getInfo = function(){
+		Wireless.prototype.getDefaults = function(){
 			var deferred = $.Deferred(); 
-			$rpc.juci.broadcom.wireless.info().done(function(result){
-				if(!result || !result.defaults) {
+			$rpc.juci.broadcom.wireless.defaults().done(function(result){
+				if(!result) {
 					deferred.reject(); 
 					return; 
 				}
-				var info = {
-					wpa_key: result.defaults.wpa_key
-				}
-				deferred.resolve(info); 
+				
+				deferred.resolve(result); 
 			}).fail(function(){
 				deferred.reject(); 
 			});  

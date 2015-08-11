@@ -220,6 +220,8 @@
 									get name(){ return i.name.value; },
 									get id(){ return i.ifname.value; },
 									get type(){ return "ethernet"; },
+									set bridged(value){ i.bridge.value = true; }, 
+									get is_wan_port() { return true; }, 
 									base: { name: i.name.value, id: i.ifname.value }
 								}); 
 							}); 
@@ -324,9 +326,10 @@ UCI.network.$registerSectionType("route", {
 
 UCI.$registerConfig("layer2_interface_ethernet"); 
 UCI.layer2_interface_ethernet.$registerSectionType("ethernet_interface", {
-	"name":					{ dvalue: '', type: String }, 
+	"name":						{ dvalue: '', type: String }, 
 	"ifname":					{ dvalue: '', type: String }, 
-	"baseifname":					{ dvalue: '', type: String }
+	"baseifname":			{ dvalue: '', type: String },
+	"bridge":					{ dvalue: false, type: Boolean }
 }); 
 
 UCI.$registerConfig("ddns");

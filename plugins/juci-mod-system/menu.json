@@ -17,7 +17,7 @@
 	},
 	"settings/energy": {
 		"title": "Energy Settings",
-		"acls": [ "users" ],
+		"acls": [ "users", "vodafone" ],
 		"index": 30
 	},
 	"settings/configuration": {

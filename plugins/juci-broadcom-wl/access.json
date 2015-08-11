@@ -13,7 +13,7 @@
 					"stop"
 				], 
 				"juci.broadcom.wireless": [
-					"info", 
+					"defaults", 
 					"clients", 
 					"radios"
 				]

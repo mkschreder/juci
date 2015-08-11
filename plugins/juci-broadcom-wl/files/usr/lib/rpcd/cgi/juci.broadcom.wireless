@@ -151,13 +151,24 @@ wireless_radios(){
 	json_dump
 }
 
+wireless_defaults(){
+	json_init
+	json_add_object "keys"; 
+	json_add_string "wpa" $(db get hw.board.wpaKey)
+	json_close_object
+	json_dump
+}
+
 case $1 in 
 	.methods) 
-		echo "devices,clients,radios"; 
+		echo "devices,clients,radios,defaults"; 
 		exit 0
 		;;
 	devices) 
 		wireless_devices
+		;;
+	defaults) 
+		wireless_defaults
 		;;
 	clients)
 		wireless_clients
