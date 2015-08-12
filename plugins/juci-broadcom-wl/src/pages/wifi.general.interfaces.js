@@ -35,10 +35,15 @@ JUCI.app
 			$uci.wireless.create({
 				".type": "wifi-iface",
 				"device": data.radio, 
-				"ssid": data.ssid
+				"ssid": data.ssid, 
+				"mode": data.mode
 			}).done(function(interface){
-				//$scope.interfaces.push(interface); 
-				interface[".frequency"] = ($scope.devices.find(function(x){ return x[".name"] == interface.device.value; })||{})[".frequency"]; 
+				//$scope.interfaces.push(interface);
+				var radio = $scope.devices.find(function(x){ return x[".name"] == interface.device.value; })||{};  
+				interface[".frequency"] = radio[".frequency"]; 
+				if(data.mode == "sta"){
+					radio.apsta.value = true; 
+				}
 				$scope.$apply(); 
 			}); 
 		}, function () {

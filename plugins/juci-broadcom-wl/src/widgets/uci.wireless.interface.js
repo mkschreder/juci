@@ -12,7 +12,7 @@ JUCI.app
 		replace: true, 
 		require: "^ngModel"
 	 };  
-}).controller("WifiInterfaceController", function($scope, $uci, $tr, gettext, $wireless){
+}).controller("WifiInterfaceController", function($scope, $uci, $tr, gettext, $wireless, $network){
 	$scope.errors = []; 
 	$scope.showPassword = true; 
 	$scope.$on("error", function(ev, err){
@@ -34,6 +34,12 @@ JUCI.app
 		{label: gettext("CCMP (AES)"), value: "ccmp"},
 		{label: gettext("TKIP/CCMP (AES)"), value: "ccmp"}
 	];  
+	$network.getNetworks().done(function(nets){
+		$scope.networks = nets.map(function(net){
+			return { label: String(net[".name"]).toUpperCase(), value: net[".name"] }; 
+		}); 
+		$scope.$apply(); 
+	}); 
 	$wireless.getDevices().done(function(devices){
 		$scope.devices = devices.map(function(x){
 			return { label: x[".frequency"], value: x[".name"] }; 

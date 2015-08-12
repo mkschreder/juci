@@ -15,7 +15,9 @@
 				"juci.broadcom.wireless": [
 					"defaults", 
 					"clients", 
-					"radios"
+					"radios",
+					"scan", 
+					"scanresults"
 				]
 			}, 
 			"uci": [

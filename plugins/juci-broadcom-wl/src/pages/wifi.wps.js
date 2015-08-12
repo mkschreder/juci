@@ -3,12 +3,14 @@
 JUCI.app
 .controller("WifiWPSPageCtrl", function($scope, $uci, $rpc, $interval, $router, gettext, $tr){
 	var wps_status_strings = {
+		"-1": $tr(gettext("wps.status.disabled")),
 		0: $tr(gettext("wps.status.init")),
 		1: $tr(gettext("wps.status.processing")),
 		2: $tr(gettext("wps.status.success")),
 		3: $tr(gettext("wps.status.fail")),
 		4: $tr(gettext("wps.status.timeout")),
-		7: $tr(gettext("wps.status.msgdone"))
+		7: $tr(gettext("wps.status.msgdone")),
+		8: $tr(gettext("wps.status.overlap"))
 	}; 
 	
 	$scope.router = $router;

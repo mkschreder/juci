@@ -1,9 +1,14 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiRadioPickerModal", function($scope, $modalInstance, $wireless, interfaces){
+.controller("WifiRadioPickerModal", function($scope, $modalInstance, $wireless, interfaces, $tr, gettext){
 	$scope.data = {}; 
 	$scope.interfaces = interfaces; 
+	
+	$scope.allModes = [
+		{ label: $tr(gettext("Access Point (AP)")), value: "ap" }, 
+		{ label: $tr(gettext("Client (STA)")), value: "sta" }
+	]; 
 	
 	$wireless.getDevices().done(function(devices){
 		$scope.allRadios = devices.map(function(x){

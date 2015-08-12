@@ -78,6 +78,24 @@
 			return deferred.promise(); 
 		}
 		
+		Wireless.prototype.scan = function(){
+			var deferred = $.Deferred(); 
+			$rpc.juci.broadcom.wireless.scan().done(function(result){
+				
+			}).always(function(){
+				deferred.resolve(); 
+			});  
+			return deferred.promise(); 
+		}
+		
+		Wireless.prototype.getScanResults = function(){
+			var deferred = $.Deferred(); 
+			$rpc.juci.broadcom.wireless.scanresults().done(function(result){
+				deferred.resolve(result); 
+			}); 
+			return deferred.promise(); 
+		}
+		
 		return new Wireless(); 
 	}); 
 }(); 

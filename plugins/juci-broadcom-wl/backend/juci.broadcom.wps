@@ -37,10 +37,12 @@ wps_status(){
 
 wps_pbc(){
 	if [ -z $(pidof wps_monitor) ]; then
-		wps_monitor &
+		{ 
+			wps_monitor &
+		}  &> /dev/null
 		sleep 1
 	fi
-	killall -SIGUSR2 wps_monitor
+	killall -SIGUSR2 wps_monitor &> /dev/null
 }
 
 wps_genpin(){
@@ -50,11 +52,11 @@ wps_genpin(){
 }
 
 wps_checkpin(){
-	json_load $1
+	json_load "$1"
 	json_get_var PIN "pin"
 	if [ "$PIN" == "" ]; then exit 5; fi
 	json_init
-	if [ $(wps_cmd checkpin $PIN) != ""  ]; then 
+	if [ $(wps_cmd checkpin "$PIN") != ""  ]; then 
 		json_add_boolean "valid" true
 	else
 		json_add_boolean "valid" false
@@ -63,17 +65,20 @@ wps_checkpin(){
 }
 
 wps_stapin(){
-	json_load $1
+	json_load "$1"
 	json_get_var PIN "pin"
 	if [ "$PIN" == "" ]; then exit 5; fi
-	wps_cmd addenrollee wl0 sta_pin=$PIN
+	wps_cmd addenrollee wl0 sta_pin="$PIN" &> /dev/null
+	json_init 
+	json_add_string "pin" $PIN
+	json_dump
 }
 
 wps_setpin(){
-	json_load $1
+	json_load "$1"
 	json_get_var PIN "pin"
 	if [ "$PIN" == "" ]; then exit 5; fi
-	wps_cmd setpin $PIN
+	wps_cmd setpin "$PIN" &> /dev/null
 	json_init 
 	json_add_string "pin" $PIN
 	json_dump
@@ -86,9 +91,11 @@ wps_showpin(){
 }
 
 wps_stop(){
-	killall -SIGTERM wps_monitor
-	nvram set wps_proc_status=0
-	wps_monitor &
+	{ 
+		killall -SIGTERM wps_monitor;
+		nvram set wps_proc_status=0;
+		wps_monitor &
+	} &> /dev/null
 }
 
 case $1 in 
@@ -103,13 +110,13 @@ case $1 in
 		wps_pbc
 		;;
 	genpin) 
-		wps_genpin
+		wps_genpin 
 		;;
 	checkpin)
-		wps_checkpin
+		wps_checkpin "$2"
 		;;
 	stapin)
-		wps_stapin
+		wps_stapin "$2"
 		;;
 	setpin)
 		wps_setpin "$2"

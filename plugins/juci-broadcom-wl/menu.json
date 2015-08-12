@@ -41,6 +41,11 @@
 		"modes": [ "expert" ], 
 		"index": 40
 	},
+	"wifi/client": {
+		"title": "WiFi Client",
+		"acls": [ "juci-broadcom-wl" ], 
+		"index": 50
+	}, 
 	"wifi/settings": {
 		"title": "Settings",
 		"modes": [ "expert" ], 
