@@ -9,3 +9,4 @@ po/template.pot
 po/*.mo
 *.so
 *.o
+plugins/**/files

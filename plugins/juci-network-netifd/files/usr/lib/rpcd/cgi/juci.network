@@ -88,7 +88,7 @@ network_clients(){
 network_client_alive(){
 	local iface=$(awk '$1 == ipaddr { print $6 }' ipaddr=$1);
 	json_init 
-	arping 192.168.1.202 -q -f -c 1 -I $iface;
+	arping $mac -q -f -c 1 -I $iface;
 	if [ $? -ne 0 ]; then 
 		json_add_boolean "alive" "false";
 	else 

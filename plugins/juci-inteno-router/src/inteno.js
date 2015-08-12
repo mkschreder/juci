@@ -1,48 +1,54 @@
 JUCI.app
-.factory("$router", function(){
+.factory("$router", function($uci){
 	function IntenoRouter () {
 		
 	}
 	
-	IntenoRouter.__defineGetter__("wifi_button_wps_function_enabled", function(){
-		if(!this.boardpanel) return false; 
-		return this.boardpanel.settings.wifibutton.value; 
-	}); 
-	IntenoRouter.__defineSetter__("wifi_button_wps_function_enabled", function(value){
-		if(!this.boardpanel) return; 
-		this.boardpanel.settings.wifibutton.value = value; 
-	}); 
+	IntenoRouter.prototype = {
+		get wifi_button_wps_function_enabled(){
+			if(!this.boardpanel) return false; 
+			return this.boardpanel.settings.wifibutton.value; 
+		}, 
+		set wifi_button_wps_function_enabled(value){
+			if(!this.boardpanel) return; 
+			this.boardpanel.settings.wifibutton.value = value; 
+		},
+		
+		get wifi_button_enabled(){
+			if(!this.boardpanel) return false; 
+			return this.boardpanel.settings.wifibutton.value; 
+		},
+		set wifi_button_enabled(value){
+			if(!this.boardpanel) return; 
+			this.boardpanel.settings.wifibutton.value = value; 
+		},
+		
+		get wps_button_enabled(){
+			if(!this.boardpanel) return false; 
+			return this.boardpanel.settings.wpsbutton.value; 
+		},
+		set wps_button_enabled(value){
+			if(!this.boardpanel) return false; 
+			this.boardpanel.settings.wpsbutton.value = value;  
+		}, 
 	
-	IntenoRouter.__defineGetter__("wifi_button_enabled", function(){
-		if(!this.boardpanel) return false; 
-		return this.boardpanel.settings.wifibutton.value; 
-	}); 
-	IntenoRouter.__defineSetter__("wifi_button_enabled", function(value){
-		if(!this.boardpanel) return; 
-		this.boardpanel.settings.wifibutton.value = value; 
-	}); 
+		get wps_devicepin(){
+			if(!this.boardpanel) return false; 
+			return this.boardpanel.settings.wpsdevicepin.value; 
+		},
+		set wps_devicepin(value){
+			if(!this.boardpanel) return ; 
+			this.boardpanel.settings.wpsdevicepin.value = value; 
+		}
+	}; 
 	
-	IntenoRouter.__defineGetter__("wps_button_enabled", function(){
-		if(!this.boardpanel) return false; 
-		return this.boardpanel.settings.wpsbutton.value; 
-	}); 
-	IntenoRouter.__defineSetter__("wps_button_enabled", function(value){
-		if(!this.boardpanel) return false; 
-		this.boardpanel.settings.wpsbutton.value = value;  
-	}); 
+	var router = new IntenoRouter(); 
 	
-	IntenoRouter.__defineGetter__("wps_devicepin", function(){
-		if(!this.boardpanel) return false; 
-		return this.boardpanel.settings.wpsdevicepin.value; 
-	}); 
-	IntenoRouter.__defineGetter__("wps_devicepin", function(value){
-		if(!this.boardpanel) return ; 
-		this.boardpanel.settings.wpsdevicepin.value = value; 
-	}); 
+	router.sync = $uci.sync("boardpanel"); 
 	
-	return new IntenoRouter(); 
+	return router; 
 }).run(function($router, $uci){
-	$uci.sync("boardpanel").done(function(){
+	$router.sync.done(function(){
 		$router.boardpanel = $uci.boardpanel; 
 		if(!$uci.boardpanel.settings){
 			$uci.boardpanel.create({".type": "settings", ".name": "settings"}).done(function(section){

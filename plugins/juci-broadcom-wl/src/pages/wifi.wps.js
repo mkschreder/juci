@@ -11,7 +11,8 @@ JUCI.app
 		7: $tr(gettext("wps.status.msgdone"))
 	}; 
 	
-	$scope.router = $router; 
+	$scope.router = $router;
+	
 	$scope.data = {
 		userPIN: ""
 	}

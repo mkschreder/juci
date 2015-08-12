@@ -32,8 +32,9 @@ void __attribute__((__constructor__)) init_db_hw_config(void) {
 	db_ctx = uci_alloc_context();
 	uci_set_confdir(db_ctx, "/lib/db/config/");
 	if(uci_load(db_ctx, "hw", NULL) == UCI_OK){
-		PDEBUG("broadcom.wireless: Could not load hardware config!\n"); 
 		dbLoaded = 1;
+	} else {
+		PDEBUG("broadcom.wireless: Could not load hardware config!\n"); 
 	}
 }
 

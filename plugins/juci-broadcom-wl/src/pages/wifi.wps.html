@@ -31,7 +31,7 @@
 					<juci-config-line ng-show="router.wps_button_enabled" title="{{'Pressing WiFi on/off button on your router for long time activates pairing '|translate}}" >
 						<switch id="enabled" name="enabled" ng-model="router.wifi_button_wps_function_enabled" class="green" ng-change="save()" ></switch>
 					</juci-config-line>
-					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}" ng-show="router.wps_button_enabled">
+					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}">
 						<button class="btn btn-lg btn-default col-xs-12" ng-click="onPairPBC()" translate>Pair</button>
 					</juci-config-line>
 				</juci-config-lines>

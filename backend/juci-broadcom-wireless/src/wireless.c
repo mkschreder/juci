@@ -164,6 +164,8 @@ static int wireless_radios(struct ubus_context *ctx, struct ubus_object *obj,
 
 	blob_buf_init(&bb, 0);
 
+	load_wireless(); 
+	
 	for (i = 0; i < MAX_RADIO; i++) {
 		if (!radio[i].name)
 			break;
@@ -290,23 +292,21 @@ wireless_info(struct ubus_context *ctx, struct ubus_object *obj,
 
 int wl_init(struct ubus_context *ctx){
 	
-	/*
 	static struct ubus_method wl_object_methods[] = {
 		UBUS_METHOD_NOARG("info", wireless_info),
 		UBUS_METHOD_NOARG("radios", wireless_radios),
-		UBUS_METHOD_NOARG("clients", wireless_clients),
-		UBUS_METHOD_NOARG("test", wireless_test)
-	};*/
-/*
+		UBUS_METHOD_NOARG("clients", wireless_clients)
+	};
+
 	static struct ubus_object_type wl_object_type =
-		UBUS_OBJECT_TYPE("broadcom-wl-type", wl_object_methods);
+		UBUS_OBJECT_TYPE("old-broadcom-wl-type", wl_object_methods);
 
 	static struct ubus_object wl_object = {
-		.name = "juci.broadcom.wireless",
+		.name = "old.broadcom.wireless",
 		.type = &wl_object_type,
 		.methods = wl_object_methods,
 		.n_methods = ARRAY_SIZE(wl_object_methods),
 	};
 	
-	return &wl_object; */
+	return ubus_add_object(ctx, &wl_object); 
 }

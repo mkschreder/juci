@@ -2901,7 +2901,7 @@ remove_newline(char *buf)
 }
 
 static const char*
-run_command(const char *pFmt, ...)
+run_command(const char *pFmt, int *exit_code, ...)
 {
 	va_list ap;
 	char cmd[256] = {0};
@@ -2921,13 +2921,16 @@ run_command(const char *pFmt, ...)
 
 	FILE *pipe = 0;
 	static char buffer[16384] = {0};
+	memset(buffer, 0, sizeof(buffer)); 
+	
 	if ((pipe = popen(cmd, "r"))){
 		char *ptr = buffer; 
 		size_t size = 0; 
 		while(size = fgets(ptr, sizeof(buffer) - (ptr - buffer), pipe)){
 			ptr+=size; 
 		}
-		pclose(pipe);
+		
+		*exit_code = WEXITSTATUS(pclose(pipe));
 
 		remove_newline(buffer);
 		if (strlen(buffer))
@@ -2946,23 +2949,26 @@ static int rpc_shell_script(struct ubus_context *ctx, struct ubus_object *obj,
 	blob_buf_init(&buf, 0);
 	
 	struct stat st; 
+	int exit_code = UBUS_STATUS_NO_DATA; 
 	char fname[255]; 
 	snprintf(fname, sizeof(fname), "/usr/lib/rpcd/cgi/%s", obj->name); 
 	
 	if(stat(fname, &st) == 0){
-		const char *resp = run_command("%s %s", fname, method); 
-		if(!blobmsg_add_json_from_string(&buf, resp))
+		const char *resp = run_command("sh %s %s '%s'", &exit_code, fname, method, blobmsg_format_json(msg, true)); 
+		if(strlen(resp) && !blobmsg_add_json_from_string(&buf, resp))
 			return UBUS_STATUS_NO_DATA; 
 	}
 	
 	ubus_send_reply(ctx, req, buf.head);
 
-	return 0;
+	return exit_code;
 }
 
 static int load_shell_script_ubus_calls(struct ubus_context *ctx){
 	glob_t gl;
 	int rv = 0;  
+	int exit_code; 
+	
 	if (glob("/usr/lib/rpcd/cgi/*", 0, NULL, &gl) == 0){
 		for (size_t i = 0; i < gl.gl_pathc; i++){
 			char *obj_name = strdup(basename(gl.gl_pathv[i])); 
@@ -2974,7 +2980,7 @@ static int load_shell_script_ubus_calls(struct ubus_context *ctx){
 			
 			printf("Registering CGI %s (%s)\n", gl.gl_pathv[i], obj_type_name); 
 			
-			strncpy(mstr, run_command("%s .methods", gl.gl_pathv[i]), sizeof(mstr)); 
+			strncpy(mstr, run_command("%s .methods", &exit_code, gl.gl_pathv[i]), sizeof(mstr)); 
 			
 			// extract methods into an array 
 			size_t nmethods = 1; 
