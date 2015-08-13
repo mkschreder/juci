@@ -605,7 +605,7 @@
 						next(); 
 						return; 
 					} else if(self[cf].$lastSync){
-						var SYNC_TIMEOUT = 200; // probably make this configurable
+						var SYNC_TIMEOUT = 10000; // probably make this configurable
 						if(((new Date()).getTime() - self[cf].$lastSync.getTime()) > SYNC_TIMEOUT){
 							console.log("Using cached version of "+cf); 
 							next(); 

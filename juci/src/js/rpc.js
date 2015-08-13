@@ -4,6 +4,7 @@
 	var RPC_HOST = ""; //(($config.rpc.host)?$config.rpc.host:"")
 	var RPC_DEFAULT_SESSION_ID = "00000000000000000000000000000000"; 
 	var RPC_SESSION_ID = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
+	var RPC_CACHE = {}; 
 	
 	var gettext = function(text){ return text; }; 
 	
@@ -18,6 +19,19 @@
 	function rpc_request(type, namespace, method, data){
 		var sid = ""; 
 		var deferred = $.Deferred(); 
+		
+		// check if the request has been made only recently with same parameters
+		var key = namespace+method+JSON.stringify(data); 
+		if(!RPC_CACHE[key]){
+			RPC_CACHE[key] = {}; 
+		}
+		//if(RPC_CACHE[key].time && ((new Date()).getTime() - RPC_CACHE[key].time.getTime()) < 3000){
+		// if this request with same parameters is already in progress then just return the existing promise 
+		if(RPC_CACHE[key].deferred && RPC_CACHE[key].deferred.state() == "pending"){
+			return RPC_CACHE[key].deferred.promise(); 
+		} else {
+			RPC_CACHE[key].deferred = $.Deferred(); 
+		} 
 		// setup default rpcs
 		$.jsonRPC.withOptions({
 			namespace: "", 
@@ -49,29 +63,32 @@
 								}
 							}
 							console.log("RPC succeeded ("+namespace+"."+method+"), but returned error: "+JSON.stringify(result)+": "+_errstr(result.result[0]));
-							deferred.reject(_errstr(result.result[0])); 
+							RPC_CACHE[key].deferred.reject(_errstr(result.result[0])); 
 						} else {
-							deferred.resolve(result.result[1]);
+							// put the data into cache
+							RPC_CACHE[key].time = new Date();
+							RPC_CACHE[key].data = result.result[1];
+							RPC_CACHE[key].deferred.resolve(result.result[1]);
 						}
 					} else if(type == "list" && result && result.result){
 						if((typeof result.result) == "object")
-							deferred.resolve(result.result); 
+							RPC_CACHE[key].deferred.resolve(result.result); 
 						else 
-							deferred.reject(result.result[1]); // for etimeout [1, "ETIMEOUT"]
+							RPC_CACHE[key].deferred.reject(result.result[1]); // for etimeout [1, "ETIMEOUT"]
 					} else {
-						deferred.reject(); 
+						RPC_CACHE[key].deferred.reject(); 
 					}
 				}, 
 				error: function(result){
 					console.error("RPC error ("+namespace+"."+method+"): "+JSON.stringify(result));
 					if(result && result.error){
-						deferred.reject(result.error);  
+						RPC_CACHE[key].deferred.reject(result.error);  
 						//$rootScope.$broadcast("error", result.error.message); 
 					}
 				}
 			})
 		});
-		return deferred.promise(); 
+		return RPC_CACHE[key].deferred.promise(); 
 	}
 	
 	/*
