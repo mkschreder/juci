@@ -1,7 +1,6 @@
 DIRS-y:=juci \
 	plugins/juci-asterisk \
 	plugins/juci-broadcom-wl \
-	plugins/juci-igmpsnoop \
 	plugins/juci-broadcom-dsl \
 	plugins/juci-broadcom-vlan \
 	plugins/juci-broadcom-ethernet \
@@ -13,12 +12,14 @@ DIRS-y:=juci \
 	plugins/juci-inteno-router \
 	plugins/juci-upnp \
 	plugins/juci-usb \
+	plugins/juci-igmpinfo \
 	plugins/juci-mod-system \
+	plugins/juci-sysupgrade \
 	plugins/juci-mod-status \
 	plugins/juci-jquery-console
 	
 BIN:=bin
-UBUS_MODS:=
+UBUS_MODS:= backend/igmpinfo
 
 -include Makefile.local
 
@@ -38,31 +39,33 @@ ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
 	UBUS_MODS += backend/juci-core
 endif
 
-ifeq ($(CONFIG_JUCI_BACKEND_OPKG),y)
-	UBUS_MODS += backend/juci-opkg
-endif
+#ifeq ($(CONFIG_JUCI_BACKEND_IPTV),y)
+#	UBUS_MODS += backend/igmpinfo
+#endif
 
-ifeq ($(CONFIG_JUCI_BACKEND_SYSUPGRADE),y)
-	UBUS_MODS += backend/juci-sysupgrade
-endif
+#ifeq ($(CONFIG_JUCI_BACKEND_OPKG),y)
+#	UBUS_MODS += backend/juci-opkg
+#endif
 
-ifeq ($(CONFIG_JUCI_BACKEND_BCM_WIRELESS),y)
-	UBUS_MODS += backend/juci-broadcom-wireless
-endif
+#ifeq ($(CONFIG_JUCI_BACKEND_SYSUPGRADE),y)
+#	UBUS_MODS += backend/juci-sysupgrade
+#endif
 
-ifeq ($(CONFIG_JUCI_BACKEND_BCM_DSL),y)
-	UBUS_MODS += backend/juci-broadcom-dsl
-endif
+#ifeq ($(CONFIG_JUCI_BACKEND_BCM_WIRELESS),y)
+#	UBUS_MODS += backend/juci-broadcom-wireless
+#endif
 
-ifeq ($(CONFIG_JUCI_BACKEND_IPTV),y)
-	UBUS_MODS += backend/juci-iptv
-endif
+#ifeq ($(CONFIG_JUCI_BACKEND_BCM_DSL),y)
+#	UBUS_MODS += backend/juci-broadcom-dsl
+#endif
 
-ifeq ($(CONFIG_JUCI_BACKEND_MACDB),y)
-	UBUS_MODS += backend/juci-macdb
-endif
+
+#ifeq ($(CONFIG_JUCI_BACKEND_MACDB),y)
+#	UBUS_MODS += backend/juci-macdb
+#endif
 
 all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
+	@echo "UBUS IGMP: $(CONFIG_JUCI_BACKEND_IPTV)"; 
 	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"
 	./juci-compile 
 	./juci-update $(BIN)/www RELEASE

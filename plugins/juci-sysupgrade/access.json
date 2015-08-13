@@ -1,0 +1,25 @@
+{
+	"juci-sysupgrade": {
+		"description": "JUCI Sysupgrade Interface module",
+		"read": {
+			"ubus": {
+				"juci.sysupgrade": [
+					"check", 
+					"test", 
+					"start", 
+					"clean"
+				]
+			}
+		}, 
+		"write": {
+			"ubus": {
+				"juci.sysupgrade": [
+					"check", 
+					"test", 
+					"start", 
+					"clean"
+				]
+			}
+		}
+	}
+}

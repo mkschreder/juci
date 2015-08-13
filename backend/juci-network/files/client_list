@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# prints client list as <ip> <mac> <interface> <manufacturer>
-cat /proc/net/arp | awk '/[[:digit:]]/{result=""; cmd = "maclookup "$4; while((cmd | getline result ) > 0) { } close(cmd); print $1 "\t" $4 "\t" $6 "\t" result}'
