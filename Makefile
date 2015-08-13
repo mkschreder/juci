@@ -80,6 +80,7 @@ prepare:
 	mkdir -p $(BIN)/www/
 	mkdir -p $(BIN)/usr/share/rpcd/menu.d/
 	mkdir -p $(BIN)/usr/share/rpcd/acl.d/
+	mkdir -p $(BIN)/usr/lib/rpcd/cgi/
 	
 node_modules: package.json
 	npm install --production
@@ -88,6 +89,7 @@ inteno: all
 
 debug: prepare $(UBUS_MODS) $(DIRS-y) 
 	#npm install 
+	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	grunt
 	./juci-update $(BIN)/www DEBUG
 
@@ -101,7 +103,7 @@ $(DIRS-y):
 	make -i -C $@ clean
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
-	-cp -Rp $@/files/* $(BIN)/
+	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 

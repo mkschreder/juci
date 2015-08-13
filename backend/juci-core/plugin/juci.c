@@ -2954,7 +2954,7 @@ static int rpc_shell_script(struct ubus_context *ctx, struct ubus_object *obj,
 	snprintf(fname, sizeof(fname), "/usr/lib/rpcd/cgi/%s", obj->name); 
 	
 	if(stat(fname, &st) == 0){
-		const char *resp = run_command("sh %s %s '%s'", &exit_code, fname, method, blobmsg_format_json(msg, true)); 
+		const char *resp = run_command("%s %s '%s'", &exit_code, fname, method, blobmsg_format_json(msg, true)); 
 		if(strlen(resp) && !blobmsg_add_json_from_string(&buf, resp))
 			return UBUS_STATUS_NO_DATA; 
 	}

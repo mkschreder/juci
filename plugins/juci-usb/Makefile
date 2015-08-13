@@ -15,10 +15,6 @@ $(OUTDIR):
 files: 
 	$(INSTALL_DIR) ./$(OUTDIR)/css
 	$(INSTALL_DIR) ./$(OUTDIR)/js
-	$(INSTALL_DIR) ./files/usr/lib/rpcd/cgi/
-	$(INSTALL_DIR) ./files/usr/share
-	$(CP) backend/deviceids ./files/usr/share/usb_device_ids
-	$(CP) backend/juci.usb ./files/usr/lib/rpcd/cgi/
 	
 #STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
