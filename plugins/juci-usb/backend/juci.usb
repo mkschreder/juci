@@ -35,6 +35,8 @@ function usb_list_devices()
 		line = f:read("*l"); 
 	end
 	f:close(); 
+	-- add last device
+	if next(obj) ~= nil then table.insert(devices, obj) end
 	local res = {}; 
 	res["devices"] = devices; 
 	print(json.encode(res)); 

@@ -107,6 +107,7 @@ $(DIRS-y):
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
 	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/
+	chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 
