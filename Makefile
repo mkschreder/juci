@@ -9,6 +9,7 @@ DIRS-y:=juci \
 	plugins/juci-dnsmasq-dhcp \
 	plugins/juci-minidlna \
 	plugins/juci-ddns \
+	plugins/juci-diagnostics \
 	plugins/juci-inteno-router \
 	plugins/juci-upnp \
 	plugins/juci-usb \
@@ -94,7 +95,7 @@ inteno: all
 debug: prepare $(UBUS_MODS) $(DIRS-y) 
 	#npm install 
 	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
-	grunt --force
+	grunt 
 	./juci-update $(BIN)/www DEBUG
 
 #node_modules: package.json
