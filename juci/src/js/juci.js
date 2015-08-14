@@ -186,7 +186,7 @@
 					$rpc.juci.ui.menu().done(function(data){
 						//console.log(JSON.stringify(data)); 
 						var keys = Object.keys(data.menu).sort(function (a, b) { 
-							return b < a ; 
+							return a.localeCompare(b) ; 
 						}); 
 						console.log(keys.join("\n")); 
 						
