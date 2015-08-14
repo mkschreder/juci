@@ -1,0 +1,31 @@
+#!/usr/bin/lua
+
+require("JSON"); 
+
+function shell(cmd)
+	local p = assert(io.popen(cmd)); 
+	local s = p:read("*a"); 
+	p:close(); 
+	return s; 
+end
+
+function user_password(opts)
+	local stdout = shell("echo -e \""..opts["password"].."\\n"..opts["password"].."\" | passwd admin"); 
+	print(json.encode({
+		["stdout"] = stdout
+	})); 
+end
+
+local _calls = {
+	["password"] = user_password
+}; 
+
+if arg[1] == ".methods" then 
+	print("password");
+elseif _calls[arg[1]] then 
+	local params = {}; 
+	if arg[2] then params = json.decode(arg[2]); end
+	_calls[arg[1]](params); 
+else 
+	io.write("Unknown method!\n"); 
+end

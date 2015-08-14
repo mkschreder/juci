@@ -1,0 +1,55 @@
+#!/usr/bin/lua
+
+require("JSON"); 
+
+function shell(cmd)
+	local p = assert(io.popen(cmd)); 
+	local s = p:read("*a"); 
+	p:close(); 
+	return s; 
+end
+
+function diag_ping(opts)
+	local res = {}; 
+	if(not opts["host"]) then return; end; 
+	res["stdout"] = shell("ping -c 5 -W 1 "..opts["host"]); 
+	print(json.encode(res)); 
+end
+
+function diag_ping6(opts)
+	local res = {}; 
+	if(not opts["host"]) then return; end; 
+	res["stdout"] = shell("ping6 -c 5 -W 1 "..opts["host"]); 
+	print(json.encode(res)); 
+end
+
+function diag_traceroute(opts)
+	local res = {}; 
+	if(not opts["host"]) then return; end; 
+	res["stdout"] = shell("traceroute -q 1 -w 1 -n "..opts["host"]); 
+	print(json.encode(res)); 
+end
+
+function diag_traceroute6(opts)
+	local res = {}; 
+	if(not opts["host"]) then return; end; 
+	res["stdout"] = shell("traceroute6 -q 1 -w 2 -n "..opts["host"]); 
+	print(json.encode(res)); 
+end
+
+local _calls = {
+	["ping"] = diag_ping, 
+	["ping6"] = diag_ping6, 
+	["traceroute"] = diag_traceroute,
+	["traceroute6"] = diag_traceroute6
+}; 
+
+if arg[1] == ".methods" then 
+	print("ping,ping6,traceroute,traceroute6");
+elseif _calls[arg[1]] then 
+	local params = {}; 
+	if arg[2] then params = json.decode(arg[2]); end
+	_calls[arg[1]](params); 
+else 
+	io.write("Unknown method!\n"); 
+end

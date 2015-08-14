@@ -145,7 +145,7 @@ JUCI.app
 		
 		console.log("Trying to upgrade from "+path); 
 		
-		$rpc.juci.sysupgrade.start({"path": path, "keep": ((keep_configs)?1:0)}).done(function(result){
+		$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep_configs)?1:0)}).done(function(result){
 			// this will actually never succeed because server will be killed
 			console.error("upgrade_start returned success, which means that it actually probably failed but did not return an error"); 
 			$scope.error = (result.stdout||"") + (result.stderr||""); 
@@ -176,7 +176,7 @@ JUCI.app
 	$scope.onCheckOnline = function(){
 		$scope.onlineUpgradeAvailable = false;
 		$scope.onlineCheckInProgress = 1; 
-		$rpc.juci.sysupgrade.check({type: "online"}).done(function(response){
+		$rpc.juci.system.upgrade.check({type: "online"}).done(function(response){
 			if(response.stdout) {
 				$scope.onlineUpgrade = response.stdout.replace("\n", ""); 
 				$scope.onlineUpgradeAvailable = true;
@@ -197,7 +197,7 @@ JUCI.app
 	$scope.onCheckUSB = function(){
 		$scope.usbUpgradeAvailable = false;
 		$scope.usbCheckInProgress = 1; 
-		$rpc.juci.sysupgrade.check({type: "usb"}).done(function(response){
+		$rpc.juci.system.upgrade.check({type: "usb"}).done(function(response){
 			if(response.stdout) {
 				$scope.usbUpgrade = response.stdout.replace("\n", ""); 
 				$scope.usbUpgradeAvailable = true;

@@ -29,11 +29,19 @@
 					"reset_start",
 					"reboot"
 				], 
-				"juci.sysupgrade": [
+				"juci.system.upgrade": [
 					"check", 
 					"test", 
 					"start", 
 					"clean"
+				], 
+				"juci.system.conf": [
+					"restore", 
+					"defaultreset", 
+					"list"
+				], 
+				"juci.system.process": [
+					"list"
 				]
 			}
 		}

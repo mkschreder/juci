@@ -3,7 +3,7 @@
 # ensure that bash exits with non-zero status if any command fails!
 set -e 
 
-grunt --force
+grunt 
 
 for file in `find bin/www/js/ -name "*.js"`; do 
 	echo "Compiling JS ${file}.."

@@ -1,0 +1,76 @@
+#!/usr/bin/lua
+
+require("JSON"); 
+
+function shell(cmd)
+	local p = assert(io.popen(cmd)); 
+	local s = p:read("*a"); 
+	p:close(); 
+	return s; 
+end
+
+function system_filesystems(opts)
+	local res = {}; 
+	local lines = {}; 
+	res["filesystems"] = lines; 
+	local stdout = shell("df | tail -n+2"); 
+	for line in stdout:gmatch("[^\r\n]+") do 
+		local filesystem,total,used,free,percent,path = line:match("([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*"); 
+		local obj = {
+			["filesystem"] = filesystem, 
+			["total"] = total, 
+			["used"] = used, 
+			["free"] = free,
+			["path"] = path
+		}; 
+		table.insert(lines, obj); 
+	end
+	print(json.encode(res)); 
+end
+
+function system_logread(opts)
+	local res = {}; 
+	local lines = {}; 
+	res["lines"] = lines; 
+	local stdout = shell("logread"); 
+	local n = 0; 
+	for line in stdout:gmatch("[^\r\n]+") do 
+		local date,type,source,message = line:match("([^%s]*%s[^%s]*%s[^%s]*%s[^%s]*%s[^%s]*)%s([^%s]*)%s([^%s:]*):%s(.*)"); 
+		string.gsub(message, "\n", ""); 
+		local obj = {
+			["date"] = date, 
+			["type"] = type, 
+			["source"] = source, 
+			["message"] = message
+		}; 
+		n = n+1; 
+		if n == 20 then break; end
+		table.insert(lines, obj); 
+	end
+	print(json.encode(res)); 
+end
+
+function system_reboot()
+	shell("/sbin/reboot"); 
+end
+
+function system_defaultreset()
+	shell("/sbin/reboot"); 
+end
+
+local _calls = {
+	["log"] = system_logread, 
+	["defaultreset"] = system_defaultreset,
+	["filesystems"] = system_filesystems, 
+	["reboot"] = system_reboot
+}; 
+
+if arg[1] == ".methods" then 
+	print("log,defaultreset,filesystems,reboot");
+elseif _calls[arg[1]] then 
+	local params = {}; 
+	if arg[2] then params = json.decode(arg[2]); end
+	_calls[arg[1]](params); 
+else 
+	io.write("Unknown method!\n"); 
+end

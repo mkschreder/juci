@@ -1,0 +1,57 @@
+#!/usr/bin/lua
+
+require("JSON"); 
+
+function shell(cmd)
+	local p = assert(io.popen(cmd)); 
+	local s = p:read("*a"); 
+	p:close(); 
+	return s; 
+end
+
+function fields(inputstr, sep)
+	if sep == nil then
+					sep = "%s"
+	end
+	local t={} ; i=1
+	for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+					t[i] = str
+					i = i + 1
+	end
+	return t
+end
+
+function process_list()
+	local res = {}; 
+	local lines = {}; 
+	res["list"] = lines; 
+	local stdout = shell("top -bn1"); 
+	for line in stdout:gmatch("[^\r\n]+") do 
+		local arr = fields(line, "%s"); 
+		local obj = {
+			["pid"] = arr[0], 
+			["parent"] = arr[1], 
+			["user"] = arr[2], 
+			["status"] = arr[3],
+			["vsz"] = arr[4],
+			["cpu"] = arr[6],
+			["command"] = arr[7]
+		};  
+		table.insert(lines, obj); 
+	end
+	print(json.encode(res)); 
+end
+
+local _calls = {
+	["list"] = process_list
+}; 
+
+if arg[1] == ".methods" then 
+	print("list");
+elseif _calls[arg[1]] then 
+	local params = {}; 
+	if arg[2] then params = json.decode(arg[2]); end
+	_calls[arg[1]](params); 
+else 
+	io.write("Unknown method!\n"); 
+end

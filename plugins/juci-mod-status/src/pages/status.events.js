@@ -12,9 +12,10 @@ JUCI.app
 	}; 
 	
 	JUCI.interval.repeat("syslog", 1000, function(done){
-		$rpc.juci.system.syslog().done(function(result){
-			if(result && result.log){
-				$scope.logs = result.log.split("\n").map(function(line){
+		$rpc.juci.system.log().done(function(result){
+			if(result && result.lines){
+				$scope.logs = result.lines; 
+				/*result.log.split("\n").map(function(line){
 					var fields = line.match(/(\w* \w* \w* \d{2}:\d{2}:\d{2} \d{4}) ([^\s]*) ([^\s:]*): (.*)/); 
 					if(fields){
 						// remove first one because it is the whole line
@@ -48,7 +49,7 @@ JUCI.app
 					x[0] = d.getFullYear()+"-"+("00"+(d.getMonth()+1)).slice(-2)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 					//x[0] = x[0].toLocaleFormat("%d-%b-%Y %H:%M:%S"); 
 					return x; 
-				}); 
+				}); */
 				$scope.$apply(); 
 				done(); 
 			}

@@ -1,0 +1,25 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="StatusTVPageCtrl">
+		<juci-config-section>
+			<juci-config-heading>{{ 'TV Status' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'status.tv.info' | translate }}</juci-config-info>
+			<h3>{{'Connection Status'|translate}}</h3>
+			<table class="table">
+				<tr>
+					<th translate>Group IP</th>
+					<th translate>Client IP</th>
+					<th translate>LAN Port</th>
+					<th translate>WAN Port</th> 
+					<th translate>Timeout</th>
+				</tr>
+				<tr ng-repeat="row in igmptable">
+					<td>{{row.group}}</td>
+					<td>{{row.reporter}}</td>
+					<td>{{row.device}}</td>
+					<td>{{row.srcdevice}}</td>
+					<td>{{row.timeout}}</td>
+				</tr>
+			</table>
+		</juci-config-section>
+	</div>
+</juci-layout-with-sidebar>
