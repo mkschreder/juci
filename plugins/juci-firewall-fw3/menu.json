@@ -34,7 +34,7 @@
 		"files": [ "/foobar/notexist" ], 
 		"index": 15
 	},
-	"internet/wan/port_mapping": {
+	"internet/firewall/port_mapping": {
 		"title": "Port Mapping",
 		"modes": [ "expert" ], 
 		"acls": [ "network" ],
