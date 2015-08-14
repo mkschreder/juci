@@ -15,7 +15,7 @@ gettext("Status");
 gettext("Theme");
 gettext("Network");
 
-# wifi 
+// wifi 
 gettext("Setup");
 gettext("General");
 gettext("Schedule");
@@ -42,13 +42,13 @@ gettext("MAC filter");
 gettext("Apply");
 gettext("Cancel");
 
-# internet
+// internet
 gettext("Firewall");
 gettext("DSN");
 gettext("network.interface.type.bridge.tab.title");
 gettext("network.interface.type.anywan.tab.title");
 
-# status 
+// status 
 gettext("DSL");
 gettext("Voice");
 gettext("Vodafone TV");
@@ -58,14 +58,14 @@ gettext("Restart");
 gettext("About");
 gettext("NAT");
 
-# phone
+// phone
 gettext("Call Log");
 gettext("Number Blocking");
 gettext("Ringing Schedule");
 gettext("Numbers");
 gettext("Speed Dialing");
 
-# settings 
+// settings 
 gettext("EasyBox Password");
 gettext("Firmware Upgrade");
 gettext("Energy Settings");

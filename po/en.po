@@ -72,7 +72,8 @@ msgstr ""
 msgid "ADSL Devices"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.about.html:3 po/titles.js:94
+#: plugins/juci-mod-status/src/pages/status.about.html:3 po/custom.js:58
+#: po/titles.js:94
 msgid "About"
 msgstr ""
 
@@ -81,6 +82,7 @@ msgid "Access Point (AP)"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:12
+#: po/custom.js:35
 msgid "Access for listed devices"
 msgstr ""
 
@@ -115,6 +117,7 @@ msgid "Add clients to MAC filtering list"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:39
+#: po/custom.js:37
 msgid "Add currently connected hosts to the list"
 msgstr ""
 
@@ -140,6 +143,10 @@ msgstr ""
 msgid "Address Pool Start IP"
 msgstr ""
 
+#: po/custom.js:73
+msgid "Advanced"
+msgstr ""
+
 #: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:29
 msgid "Album-Art Names"
 msgstr ""
@@ -150,6 +157,10 @@ msgstr ""
 
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:34
 msgid "Any"
+msgstr ""
+
+#: po/custom.js:42
+msgid "Apply"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.js:20
@@ -208,6 +219,7 @@ msgid "Backup file password"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:6
+#: po/custom.js:39
 msgid "Bandwidth"
 msgstr ""
 
@@ -247,11 +259,12 @@ msgstr ""
 
 # phone
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:4
-#: plugins/juci-asterisk/src/pages/phone.html:4 po/titles.js:4
+#: plugins/juci-asterisk/src/pages/phone.html:4 po/custom.js:62 po/titles.js:4
 msgid "Call Log"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
+#: po/custom.js:43
 msgid "Cancel"
 msgstr ""
 
@@ -269,6 +282,7 @@ msgid "Change Password"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:9
+#: po/custom.js:40
 msgid "Channel"
 msgstr ""
 
@@ -339,7 +353,7 @@ msgid "Comments"
 msgstr ""
 
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:4
-#: po/titles.js:104
+#: po/custom.js:72 po/titles.js:104
 msgid "Configuration"
 msgstr ""
 
@@ -380,6 +394,7 @@ msgid "Current Firmware Version"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:17
+#: po/custom.js:36
 msgid "Currently added devices"
 msgstr ""
 
@@ -440,7 +455,7 @@ msgid "DNS configuration"
 msgstr ""
 
 # status
-#: po/titles.js:20
+#: po/custom.js:52 po/titles.js:20
 msgid "DSL"
 msgstr ""
 
@@ -458,6 +473,10 @@ msgstr "DSL Status"
 
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:69
 msgid "DSL Status Information"
+msgstr ""
+
+#: po/custom.js:47
+msgid "DSN"
 msgstr ""
 
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:36
@@ -538,7 +557,7 @@ msgstr ""
 msgid "Diagnostic Utility"
 msgstr ""
 
-#: po/titles.js:52
+#: po/custom.js:55 po/titles.js:52
 msgid "Diagnostics"
 msgstr ""
 
@@ -579,6 +598,10 @@ msgstr ""
 msgid "Dynamic DNS"
 msgstr ""
 
+#: po/custom.js:69
+msgid "EasyBox Password"
+msgstr ""
+
 #: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:7
 msgid "Enable"
 msgstr ""
@@ -615,6 +638,10 @@ msgstr ""
 msgid "Enable WiFi On/Off button"
 msgstr ""
 
+#: po/custom.js:26
+msgid "Enable WiFi On/Off button on EasyBox"
+msgstr ""
+
 #: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:7
 #: plugins/juci-vodafone/src/pages/internet.firewall.html:7
 msgid "Enable firewall"
@@ -632,7 +659,8 @@ msgstr ""
 msgid "Encapsulation Mode"
 msgstr ""
 
-#: plugins/juci-mod-system/src/pages/settings.energy.html:4 po/titles.js:102
+#: plugins/juci-mod-system/src/pages/settings.energy.html:4 po/custom.js:71
+#: po/titles.js:102
 msgid "Energy Settings"
 msgstr ""
 
@@ -673,7 +701,7 @@ msgstr ""
 msgid "Event Log"
 msgstr ""
 
-#: po/titles.js:90
+#: po/custom.js:56 po/titles.js:90
 msgid "Events"
 msgstr ""
 
@@ -708,7 +736,7 @@ msgid "Family"
 msgstr ""
 
 # internet
-#: po/titles.js:56
+#: po/custom.js:46 po/titles.js:56
 msgid "Firewall"
 msgstr ""
 
@@ -729,7 +757,8 @@ msgstr ""
 msgid "Firewall settings"
 msgstr ""
 
-#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:4 po/titles.js:100
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:4 po/custom.js:70
+#: po/titles.js:100
 msgid "Firmware Upgrade"
 msgstr ""
 
@@ -767,7 +796,7 @@ msgstr ""
 msgid "Gateway Ports"
 msgstr ""
 
-#: po/titles.js:28
+#: po/custom.js:20 po/titles.js:28
 msgid "General"
 msgstr ""
 
@@ -948,7 +977,7 @@ msgid "Interfaces"
 msgstr "Interfaces"
 
 #: plugins/juci-mod-status/src/pages/status.status.js:22
-#: plugins/juci-network-netifd/src/widgets/overview-wan.html:10
+#: plugins/juci-network-netifd/src/widgets/overview-wan.html:10 po/custom.js:7
 #: po/titles.js:108
 msgid "Internet"
 msgstr "Internet"
@@ -1066,11 +1095,12 @@ msgstr ""
 msgid "MAC Addresses"
 msgstr ""
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.html:3
+#: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.html:3 po/custom.js:23
 msgid "MAC Filter"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:3
+#: po/custom.js:34
 msgid "MAC Filtering"
 msgstr ""
 
@@ -1078,7 +1108,7 @@ msgstr ""
 msgid "MAC address"
 msgstr ""
 
-#: po/titles.js:40
+#: po/custom.js:41 po/titles.js:40
 msgid "MAC filter"
 msgstr ""
 
@@ -1149,7 +1179,7 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: po/titles.js:120
+#: po/custom.js:59 po/titles.js:120
 msgid "NAT"
 msgstr ""
 
@@ -1181,7 +1211,8 @@ msgstr ""
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-entry-edit.html:4
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:12
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:47
-#: plugins/juci-network-netifd/src/widgets/overview.net.js:52 po/titles.js:106
+#: plugins/juci-network-netifd/src/widgets/overview.net.js:52 po/custom.js:16
+#: po/titles.js:106
 msgid "Network"
 msgstr "Network"
 
@@ -1235,8 +1266,13 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
-#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:3 po/titles.js:6
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:3
+#: po/custom.js:63 po/titles.js:6
 msgid "Number Blocking"
+msgstr ""
+
+#: po/custom.js:65
+msgid "Numbers"
 msgstr ""
 
 #: plugins/juci-network-netifd/src/widgets/overview-wan-small.html:8
@@ -1265,7 +1301,7 @@ msgstr ""
 msgid "Output"
 msgstr ""
 
-#: po/titles.js:126
+#: po/custom.js:1 po/titles.js:126
 msgid "Overview"
 msgstr "Overview"
 
@@ -1316,7 +1352,7 @@ msgstr ""
 
 #: plugins/juci-asterisk/src/widgets/overview.voice.html:4
 #: plugins/juci-asterisk/src/widgets/overview.voice.small.html:5
-#: po/titles.js:2
+#: po/custom.js:3 po/titles.js:2
 msgid "Phone"
 msgstr "Phone"
 
@@ -1581,7 +1617,8 @@ msgstr ""
 msgid "Reset to default password"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.restart.html:4 po/titles.js:92
+#: plugins/juci-mod-status/src/pages/status.restart.html:4 po/custom.js:57
+#: po/titles.js:92
 msgid "Restart"
 msgstr ""
 
@@ -1597,7 +1634,7 @@ msgstr ""
 
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:4
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:7
-#: po/titles.js:8
+#: po/custom.js:64 po/titles.js:8
 msgid "Ringing Schedule"
 msgstr ""
 
@@ -1662,7 +1699,8 @@ msgstr ""
 
 #: plugins/juci-asterisk/src/widgets/overview.voice.html:11
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:4
-#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:11 po/titles.js:36
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:11 po/custom.js:21
+#: po/titles.js:36
 msgid "Schedule"
 msgstr ""
 
@@ -1732,14 +1770,14 @@ msgstr "Services"
 msgid "Set to Existing Host"
 msgstr ""
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.settings.html:4 po/titles.js:128
-#: po/titles.js:44
+#: plugins/juci-broadcom-wl/src/pages/wifi.settings.html:4 po/custom.js:11
+#: po/titles.js:128 po/titles.js:44
 msgid "Settings"
 msgstr "Settings"
 
 # #-#-#-#-#  custom.pot  #-#-#-#-#
 # wifi
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:28
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:28 po/custom.js:19
 msgid "Setup"
 msgstr ""
 
@@ -1770,7 +1808,8 @@ msgid "Source"
 msgstr ""
 
 #: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:4
-#: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:7 po/titles.js:14
+#: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:7 po/custom.js:66
+#: po/titles.js:14
 msgid "Speed Dialing"
 msgstr ""
 
@@ -1807,7 +1846,7 @@ msgstr "Static Routes"
 #: plugins/juci-mod-status/src/pages/status.status.services.html:9
 #: plugins/juci-network-netifd/src/pages/internet.ethernet.html:12
 #: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:10
-#: po/titles.js:82 po/titles.js:84
+#: po/custom.js:13 po/titles.js:82 po/titles.js:84
 msgid "Status"
 msgstr "Status"
 
@@ -1827,7 +1866,7 @@ msgstr ""
 msgid "Swap"
 msgstr ""
 
-#: po/titles.js:86 po/titles.js:98
+#: po/custom.js:5 po/titles.js:86 po/titles.js:98
 msgid "System"
 msgstr "System"
 
@@ -1855,6 +1894,10 @@ msgstr ""
 #: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:15
 msgid "Target IP Address"
 msgstr ""
+
+#: po/custom.js:15
+msgid "Theme"
+msgstr "Theme"
 
 #: plugins/juci-broadcom-ethernet/src/pages/internet.ethernet.phy.html:7
 msgid ""
@@ -2031,6 +2074,10 @@ msgstr ""
 msgid "Verifying firmware image"
 msgstr ""
 
+#: po/custom.js:54
+msgid "Vodafone TV"
+msgstr ""
+
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:7
 msgid "Vodafone TV Channels"
 msgstr ""
@@ -2039,7 +2086,7 @@ msgstr ""
 msgid "Vodafone TV Status"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.js:24
+#: plugins/juci-mod-status/src/pages/status.status.js:24 po/custom.js:53
 msgid "Voice"
 msgstr ""
 
@@ -2087,11 +2134,12 @@ msgstr ""
 msgid "WPA key must be 8-63 characters long!"
 msgstr ""
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:5 po/titles.js:38
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:5 po/custom.js:22
+#: po/titles.js:38
 msgid "WPS"
 msgstr ""
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:8
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:8 po/custom.js:31
 msgid "WPS Function"
 msgstr ""
 
@@ -2139,8 +2187,8 @@ msgstr ""
 msgid "Weekdays"
 msgstr ""
 
-#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:4 po/titles.js:26
-#: po/titles.js:46
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:4 po/custom.js:9
+#: po/titles.js:26 po/titles.js:46
 msgid "WiFi"
 msgstr "WiFi"
 
@@ -2153,11 +2201,12 @@ msgid "WiFi Client Mode"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:3
+#: po/custom.js:38
 msgid "Wifi Mode"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/pages/wifi.general.html:16
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:19
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:19 po/custom.js:28
 msgid "Wifi Network"
 msgstr ""
 
@@ -2242,6 +2291,10 @@ msgstr "Zone members:"
 msgid "Zones"
 msgstr ""
 
+#: po/custom.js:74
+msgid "application.name"
+msgstr "JUCI"
+
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js:22
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js:23
 msgid "auto"
@@ -2263,6 +2316,10 @@ msgstr ""
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.html:4
 msgid "dsl.status.info"
 msgstr "This status page shows technical parameters of your DSL connection."
+
+#: po/custom.js:75
+msgid "encryption.none"
+msgstr "Off"
 
 #: po/wifi-iface.js:23
 msgid "interface.macmode.allow"
@@ -2487,6 +2544,26 @@ msgstr "WAN"
 msgid "ip.address.label"
 msgstr "IP address"
 
+#: po/custom.js:78
+msgid "language.de"
+msgstr "German"
+
+#: po/custom.js:76
+msgid "language.en"
+msgstr "English"
+
+#: po/custom.js:79
+msgid "language.fi"
+msgstr "Finish"
+
+#: po/custom.js:77
+msgid "language.se"
+msgstr "Svenska"
+
+#: po/custom.js:80
+msgid "login.title"
+msgstr "JUCI Login"
+
 #: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:4
 msgid "minidlna.settings.info"
 msgstr ""
@@ -2497,6 +2574,14 @@ msgstr ""
 #, fuzzy
 msgid "network.interface.type.' + conn.type.value +'.tab.title"
 msgstr "AnyWAN"
+
+#: po/custom.js:49
+msgid "network.interface.type.anywan.tab.title"
+msgstr "AnyWAN"
+
+#: po/custom.js:48
+msgid "network.interface.type.bridge.tab.title"
+msgstr "Bridge"
 
 #: plugins/juci-asterisk/src/widgets/overview.voice.js:19
 #: plugins/juci-asterisk/src/widgets/overview.voice.js:36
@@ -2996,7 +3081,7 @@ msgstr "Wireless Devices"
 msgid "wifi.general.devices.title"
 msgstr "Wireless Devices"
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:5
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:5 po/custom.js:24
 msgid "wifi.general.info"
 msgstr ""
 "Your router supports the industry-wide WiFi standards, enabling easy "
@@ -3006,7 +3091,7 @@ msgstr ""
 msgid "wifi.general.interfaces.title"
 msgstr "Wireless Interfaces"
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:29
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:29 po/custom.js:30
 msgid "wifi.general.setup.info"
 msgstr "Configure your wireless interfaces."
 
@@ -3026,7 +3111,7 @@ msgstr ""
 msgid "wifi.mac.filter.title"
 msgstr "MAC Filter"
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.html:4
+#: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.html:4 po/custom.js:25
 msgid "wifi.macfilter.info"
 msgstr ""
 "To make your wireless network more secure, you can specify which devices are "
@@ -3041,7 +3126,7 @@ msgstr ""
 "Access points are interfaces and each radio can have several interfaces on "
 "it. "
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:5
+#: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:5 po/custom.js:29
 msgid "wifi.schedule.info"
 msgstr ""
 "Schedule the times when your WiFi should be turned on or off automatically. "
@@ -3070,7 +3155,7 @@ msgstr "WiFi"
 msgid "wifi.wps.in.progress"
 msgstr "Your router is now attempting to pair with other devices."
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:6
+#: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:6 po/custom.js:32
 msgid "wifi.wps.info"
 msgstr ""
 "Using WPS it is possible to easily connect wireless devices with your router "
@@ -3099,27 +3184,6 @@ msgstr "WPS"
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:73
 msgid "{{text_status}}"
 msgstr ""
-
-#~ msgid "Theme"
-#~ msgstr "Theme"
-
-#~ msgid "application.name"
-#~ msgstr "JUCI"
-
-#~ msgid "encryption.none"
-#~ msgstr "Off"
-
-#~ msgid "language.en"
-#~ msgstr "English"
-
-#~ msgid "language.se"
-#~ msgstr "Svenska"
-
-#~ msgid "language.de"
-#~ msgstr "German"
-
-#~ msgid "language.fi"
-#~ msgstr "Finish"
 
 #~ msgid "error.port.range.end.invalid"
 #~ msgstr "Port range ending port invalid"
