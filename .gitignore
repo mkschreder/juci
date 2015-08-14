@@ -10,3 +10,4 @@ po/*.mo
 *.so
 *.o
 plugins/**/files
+plugins/**/build
