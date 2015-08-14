@@ -1037,7 +1037,7 @@ msgid "Loading"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:19
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:19
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:19
 msgid "Local IP"
 msgstr ""
 
@@ -1056,7 +1056,7 @@ msgid "Local Time"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:21
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:21
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:21
 msgid "Local port"
 msgstr ""
 
@@ -1417,12 +1417,12 @@ msgid "Port (1-65535)"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:3
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:3
 msgid "Port Mapping"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:4
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:4
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:4
 msgid ""
 "Port mapping allows remote computers to connect to a specific device within "
 "your private network."
@@ -1476,7 +1476,7 @@ msgstr ""
 #: juci-mod-network/src/pages/internet.port_mapping.html:20
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:15
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:15
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:20
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:20
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:85
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:15
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:15
@@ -1495,7 +1495,7 @@ msgid "Public IP Address"
 msgstr ""
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:22
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:22
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:22
 msgid "Public Port"
 msgstr ""
 
@@ -3539,7 +3539,7 @@ msgstr ""
 msgid "Service Filter"
 msgstr ""
 
-msgid "internet.wan.port.mapping.title"
+msgid "internet.firewall.port.mapping.title"
 msgstr ""
 
 msgid "internet.wan.exposed.host.title"

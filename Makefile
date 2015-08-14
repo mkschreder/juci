@@ -67,6 +67,7 @@ endif
 all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
 	@echo "UBUS IGMP: $(CONFIG_JUCI_BACKEND_IPTV)"; 
 	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"
+	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	./juci-compile 
 	./juci-update $(BIN)/www RELEASE
 	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js --js_output_file htdocs/__compiled.js
@@ -107,7 +108,6 @@ $(DIRS-y):
 	make -C $@
 	cp -Rp $@/htdocs/* $(BIN)/www/
 	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/
-	chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 

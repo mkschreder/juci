@@ -1054,7 +1054,7 @@ msgid "Loading"
 msgstr "Ladataan"
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:19
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:19
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:19
 msgid "Local IP"
 msgstr "Paikallinen IP"
 
@@ -1073,7 +1073,7 @@ msgid "Local Time"
 msgstr "Paikallinen aika"
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:21
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:21
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:21
 msgid "Local port"
 msgstr "Paikallinen portti"
 
@@ -1434,12 +1434,12 @@ msgid "Port (1-65535)"
 msgstr "Portti (1-65535)"
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:3
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:3
 msgid "Port Mapping"
 msgstr "Porttiohjaus"
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:4
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:4
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:4
 msgid ""
 "Port mapping allows remote computers to connect to a specific device within "
 "your private network."
@@ -1497,7 +1497,7 @@ msgstr "Yksityinen porttialue"
 #: juci-mod-network/src/pages/internet.port_mapping.html:20
 #: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:15
 #: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:15
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:20
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:20
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:85
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:15
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:15
@@ -1516,7 +1516,7 @@ msgid "Public IP Address"
 msgstr "Julkinen IP-osoite:"
 
 #: juci-mod-network/src/pages/internet.port_mapping.html:22
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:22
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.port_mapping.html:22
 msgid "Public Port"
 msgstr "Julkinen Portti"
 
@@ -3631,8 +3631,8 @@ msgstr "Palveluiden suodatin"
 msgid "Service Filter"
 msgstr ""
 
-msgid "internet.wan.port.mapping.title"
-msgstr "Porttiohjaus"
+msgid "internet.firewall.port.mapping.title"
+msgstr ""
 
 msgid "internet.wan.exposed.host.title"
 msgstr "Avoin isäntäkone"
@@ -3709,6 +3709,9 @@ msgstr "WPA2 Radius"
 
 msgid "wifi.enc.mixed-wpa"
 msgstr "WPA2 Mixed"
+
+#~ msgid "internet.wan.port.mapping.title"
+#~ msgstr "Porttiohjaus"
 
 #~ msgid "-- Select One --"
 #~ msgstr "Valitse yksi"
