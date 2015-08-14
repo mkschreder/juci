@@ -1,16 +1,3 @@
-msgid ""
-msgstr ""
-"Project-Id-Version: JUCI\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Inteno\n"
-"Language: fi\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.3\n"
-
 msgid "Overview"
 msgstr "Yleisnäkymä"
 
@@ -43,6 +30,7 @@ msgstr "Verkko"
 # wifi
 # #-#-#-#-#  custom.pot  #-#-#-#-#
 # wifi
+#: juci-mod-wireless/src/pages/wifi.general.html:21
 #: plugins/juci-broadcom-wl/src/pages/wifi.general.html:28
 msgid "Setup"
 msgstr "Asetukset"
@@ -50,16 +38,21 @@ msgstr "Asetukset"
 msgid "General"
 msgstr "Yleiset"
 
+#: juci-mod-voice/src/widgets/overview.voice.html:11
+#: juci-mod-wireless/src/pages/wifi.schedule.html:4
+#: juci-mod-wireless/src/widgets/overview.wifi.html:11
 #: plugins/juci-asterisk/src/widgets/overview.voice.html:11
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:4
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:11
 msgid "Schedule"
 msgstr "Ajastus"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:5
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:5
 msgid "WPS"
 msgstr "WPS"
 
+#: juci-mod-wireless/src/pages/wifi.mac_filter.html:3
 #: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.html:3
 msgid "MAC Filter"
 msgstr "MAC suodatin"
@@ -75,9 +68,11 @@ msgstr ""
 "saavat yhdistää verkkoon. Laitteet tunnistetaan MAC-osoitteen perusteella. "
 "Voit hallinoida jopa 32:a langatonta laitetta."
 
+#: juci-mod-wireless/src/pages/wifi.general.html:15
 msgid "Enable WiFi On/Off button on EasyBox"
 msgstr "Ota käyttöön WiFi Päälle/Pois painike laitteessasi"
 
+#: juci-mod-wireless/src/pages/wifi.general.html:12
 #: plugins/juci-broadcom-wl/src/pages/wifi.general.html:16
 #: plugins/juci-broadcom-wl/src/pages/wifi.general.html:19
 msgid "Wifi Network"
@@ -92,6 +87,7 @@ msgstr ""
 msgid "wifi.general.setup.info"
 msgstr "Konfiguroi langattomat verkot"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:8
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:8
 msgid "WPS Function"
 msgstr "WPS toiminto"
@@ -102,30 +98,37 @@ msgstr ""
 "an encrypted channel. Below, you can choose and configure different "
 "connection methods."
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:3
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:3
 msgid "MAC Filtering"
 msgstr "MAC suodatin"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:12
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:12
 msgid "Access for listed devices"
 msgstr "Pääsy sallittu listatuille laitteille"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:17
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:17
 msgid "Currently added devices"
 msgstr "Nykyiset lisätyt laitteet"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:39
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:39
 msgid "Add currently connected hosts to the list"
 msgstr "Lisää kytketty laite listaan"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:3
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:3
 msgid "Wifi Mode"
 msgstr "Wifi-tila"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:6
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:6
 msgid "Bandwidth"
 msgstr "Kaistanleveys"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:9
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:9
 msgid "Channel"
 msgstr "Kanava"
@@ -136,6 +139,7 @@ msgstr "MAC suodatin"
 msgid "Apply"
 msgstr "Ota käyttöön"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 msgid "Cancel"
 msgstr "Peruuta"
@@ -147,16 +151,11 @@ msgstr "Palomuuri"
 msgid "DSN"
 msgstr "DSN"
 
-msgid "network.interface.type.bridge.tab.title"
-msgstr "Silta"
-
-msgid "network.interface.type.anywan.tab.title"
-msgstr "AnyWAN"
-
 # status
 msgid "DSL"
 msgstr "DSL"
 
+#: juci-mod-status/src/pages/status.status.js:23
 #: plugins/juci-mod-status/src/pages/status.status.js:24
 msgid "Voice"
 msgstr "Puhe"
@@ -170,10 +169,12 @@ msgstr "Diagnostiikka"
 msgid "Events"
 msgstr "Tapahtumat"
 
+#: juci-mod-status/src/pages/status.restart.html:4
 #: plugins/juci-mod-status/src/pages/status.restart.html:4
 msgid "Restart"
 msgstr "Käynnistä uudelleen"
 
+#: juci-mod-status/src/pages/status.about.html:3
 #: plugins/juci-mod-status/src/pages/status.about.html:3
 msgid "About"
 msgstr "Tietoja"
@@ -186,15 +187,20 @@ msgstr "NAT"
 # phone
 # #-#-#-#-#  custom.pot  #-#-#-#-#
 # phone
+#: juci-mod-voice/src/pages/phone.call_log.html:4
+#: juci-mod-voice/src/pages/phone.html:4
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:4
 #: plugins/juci-asterisk/src/pages/phone.html:4
 msgid "Call Log"
 msgstr "Puheluloki"
 
+#: juci-mod-voice/src/pages/phone.number_blocking.html:3
 #: plugins/juci-asterisk/src/pages/phone.number_blocking.html:3
 msgid "Number Blocking"
 msgstr "Numeron esto"
 
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:4
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:8
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:4
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:7
 msgid "Ringing Schedule"
@@ -203,6 +209,8 @@ msgstr "Aikataulu"
 msgid "Numbers"
 msgstr "Numerot"
 
+#: juci-mod-voice/src/pages/phone.speed_dialing.html:4
+#: juci-mod-voice/src/pages/phone.speed_dialing.html:7
 #: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:4
 #: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:7
 msgid "Speed Dialing"
@@ -212,14 +220,17 @@ msgstr "Pikavalinta"
 msgid "EasyBox Password"
 msgstr "Easyboxin salasana"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:4
+#: juci-mod-system/src/pages/settings.upgrade.html:4
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:4
 msgid "Firmware Upgrade"
 msgstr "Ohjelmistopäivitys"
 
+#: juci-mod-system/src/pages/settings.energy.html:4
 #: plugins/juci-mod-system/src/pages/settings.energy.html:4
 msgid "Energy Settings"
 msgstr "Virranhallinta"
 
+#: juci-mod-system/src/pages/settings.configuration.html:4
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:4
 msgid "Configuration"
 msgstr "Konfiguraatio"
@@ -227,6 +238,7 @@ msgstr "Konfiguraatio"
 msgid "Advanced"
 msgstr "Lisäasetukset"
 
+#: juci/src/js/app.js:174 juci/src/js/juci.js:274
 msgid "application.name"
 msgstr "JUCI"
 
@@ -242,212 +254,229 @@ msgstr "Svenska"
 msgid "language.de"
 msgstr "German"
 
-msgid "login.title"
-msgstr "JUCI Kirjaudu Sisään"
+msgid "wifi.enc.none"
+msgstr "Ei salausta (Ei tietoturvaa!)"
 
+msgid "wifi.enc.wep"
+msgstr "WEP Open System"
+
+msgid "wifi.enc.psk"
+msgstr "WPA Jaettu Avain"
+
+msgid "wifi.enc.psk2"
+msgstr "WPA2 Jaettu Avain"
+
+msgid "wifi.enc.mixed-psk"
+msgstr "WPA/WPA2 PSK Mixed"
+
+msgid "11b"
+msgstr "802.11b"
+
+msgid "11g"
+msgstr "802.11bg"
+
+msgid "11bg"
+msgstr "802.11n"
+
+msgid "11n"
+msgstr "802.11a"
+
+msgid "11a"
+msgstr "802.11c"
+
+msgid "11ac"
+msgstr "802.11ac"
+
+msgid ""
+msgstr ""
+"Project-Id-Version: JUCI\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Inteno\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.3\n"
+
+#: juci-mod-wireless/src/pages/wifi.mac_filter.js:15
+#: juci-mod-wireless/src/pages/wifi.settings.js:11
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:30
 #: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.js:15
 #: plugins/juci-broadcom-wl/src/pages/wifi.settings.js:11
 #: plugins/juci-broadcom-wl/src/wifi.js:51
 msgid "2.4GHz"
 msgstr "2.4GHz"
 
+#: juci-mod-wireless/src/pages/wifi.mac_filter.js:14
+#: juci-mod-wireless/src/pages/wifi.settings.js:10
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.js:29
 #: plugins/juci-broadcom-wl/src/pages/wifi.mac_filter.js:14
 #: plugins/juci-broadcom-wl/src/pages/wifi.settings.js:10
 #: plugins/juci-broadcom-wl/src/wifi.js:50
 msgid "5GHz"
 msgstr "5GHz"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:27
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:14
-msgid "ACCEPT"
-msgstr "HYVÄKSY"
+#: juci-mod-network/src/pages/internet.exposed_host.html:14
+msgid ""
+"<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></"
+"span> Warning: By using the exposed host function you bypass the firewall of "
+"your {{config.friendly_name}}. Please make sure that your computer is "
+"protected against attacks from Internet. The following ports will not be "
+"forwarded: {{ nonforwardedPorts || 'None'}}."
+msgstr ""
+"<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></"
+"span> Varoitus: Avoin-isäntälaitefunktiolla ohitat  {{config.friendly_name}} "
+"palomuurin. Varmista, että koneesi on suojattu Internethyökkäyksiltä. "
+"Seuraavia portteja ei ohjata: {{ nonforwardedPorts || 'None'}}."
 
-#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.adsl.html:3
-msgid "ADSL Devices"
-msgstr "ADSL-laitteet"
+#: juci/src/js/rpc.js:46
+msgid "Access denied"
+msgstr "Pääsy estetty"
 
+#: juci-mod-network/src/pages/status.nat.html:6
+#: juci-mod-status/src/pages/status.status.network.js:29
 #: plugins/juci-mod-status/src/pages/status.status.network.js:29
 #: plugins/juci-network-netifd/src/pages/status.nat.html:6
 msgid "Active Connections"
 msgstr "Aktiivisia yhteyksiä"
 
+#: juci-mod-status/src/pages/status.status.network.html:10
 #: plugins/juci-mod-status/src/pages/status.status.network.html:10
 msgid "Active Stations"
 msgstr "Aktiivisia tukiasemia"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:89
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:89
 msgid "Actual Data Rate"
 msgstr "Todellinen tiedonsiirtonopeus"
 
-#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:9
-msgid "Adapter"
-msgstr "Verkkolaite"
-
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:77
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:36
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:63
 msgid "Add Connected Host"
 msgstr "Lisää isäntäkone"
 
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:6
-msgid "Add URL's to URL blocking list"
-msgstr "Lisää URL estolistalle"
-
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 msgid "Add clients to MAC filtering list"
 msgstr "Lisää isäntäkoneita MAC-suodatinlistaan"
 
+#: juci-mod-network/src/pages/internet.dns.html:44
 #: plugins/juci-ddns/src/pages/internet.dns.html:44
 msgid "Add domain name"
 msgstr "Lisää toimialuenimi"
 
+#: juci-mod-network/src/pages/internet.dns.html:50
 #: plugins/juci-ddns/src/pages/internet.dns.html:50
 msgid "Add password"
 msgstr "Lisää salasana"
 
+#: juci-mod-network/src/pages/internet.dns.html:47
 #: plugins/juci-ddns/src/pages/internet.dns.html:47
 msgid "Add username"
 msgstr "Lisää käyttäjä"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:33
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:5
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:19
 msgid "Address Pool End IP"
 msgstr "Viimeinen osoite"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:29
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:2
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:15
 msgid "Address Pool Start IP"
 msgstr "Ensimmäinen osoite"
 
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:29
-msgid "Album-Art Names"
-msgstr "Albumin Kansikuvanimet"
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:39
+msgid "All Weekend"
+msgstr "Viikonloppu"
 
-#: plugins/juci-samba/src/widgets/samba-share-edit.html:9
-msgid "Allow Guest Access"
-msgstr "Salli vierasverkkopääsy"
-
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:34
-msgid "Any"
-msgstr "Kaikki"
-
-#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.js:15
-msgid ""
-"Are you sure you want to create a new SSID with the same name and on the "
-"same radio? This may result in undefined behaviour!"
-msgstr ""
-"Haluatko varmasti luoda uuden SSID:n, jolla on sama nimi samassa radiossa? "
-"Tämä voi aiheuttaa määrittelemätöntä käyttäytymistä!"
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js:72
-msgid "Are you sure you want to delete this device from bridge?"
-msgstr "Haluatko varmasti poistaa tämän laitteen sillasta?"
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.js:29
-msgid "Are you sure you want to delete this rule?"
-msgstr "Haluatko varmasti poistaa tämän säännön?"
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.js:27
-msgid "Are you sure you want to delete this zone?"
-msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
-
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:49
-msgid "Are you sure you want to remove this network from this zone?"
-msgstr "Haluatko varmasti poistaa tämän verkon tältä vyöhykkeeltä?"
-
+#: juci-mod-wireless/src/pages/wifi.wps.html:66
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:67
 msgid "Attempting to Pair"
 msgstr "Yritetään parittaa laitetta"
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:29
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:33
-msgid "Auto"
-msgstr "Automaattinen"
-
+#: juci-mod-status/src/pages/status.diagnostics.html:7
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:7
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:7
 msgid "Automated Diagnostics"
 msgstr "Automatisoitu vianmääritys"
 
+#: juci-mod-network/src/pages/internet.dns.html:9
 #: plugins/juci-ddns/src/pages/internet.dns.html:9
 msgid "Automatic"
 msgstr "Automaattinen"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:3
-msgid "Automatic DNS Configuration"
-msgstr "Automaattinen DNS kokoonpano"
-
+#: juci-mod-system/src/pages/settings.configuration.html:32
+#: juci-mod-system/src/pages/settings.configuration.html:50
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:32
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:50
 msgid "Backup file password"
 msgstr "Varmuuskopiotiedoston salasana"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:12
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:12
 msgid "Banner File"
 msgstr "Banner tiedosto"
 
-#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:6
-#: plugins/juci-network-netifd/src/widgets/network-device-ethernet-edit.html:6
-msgid "Base Device"
-msgstr "Fyysinen liitäntä"
-
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:6
-msgid "Basic Config"
+#: juci/src/widgets/juci.top_bar.js:15
+msgid "Basic Mode"
 msgstr "Perusasetukset"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:86
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:86
 msgid "Bit Rate"
 msgstr "Bittinopeus"
 
+#: juci-mod-status/src/pages/status.status.system.js:36
 #: plugins/juci-mod-status/src/pages/status.status.system.js:36
 msgid "Buffered"
 msgstr "Puskuroitu"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:37
-msgid "CBR"
-msgstr "CBR"
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:30
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:34
-msgid "CCMP (AES)"
-msgstr "CCMP (AES)"
-
+#: juci-mod-status/src/pages/status.status.dsl.js:105
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:105
 msgid "CRC Errors"
 msgstr "CRC virheitä"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:112
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:112
 msgid "Cell Counter"
 msgstr "Solulaskija"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:109
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:109
 msgid "Cell Statistics"
 msgstr "Solutilastot"
 
+#: juci-mod-system/src/pages/settings.password.html:10
+#: juci-mod-system/src/pages/settings.password.html:14
 #: plugins/juci-mod-system/src/pages/settings.password.html:10
 #: plugins/juci-mod-system/src/pages/settings.password.html:14
 msgid "Change Password"
 msgstr "Vaihda salasana"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:35
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:48
+#: juci-mod-system/src/pages/settings.upgrade.html:35
+#: juci-mod-system/src/pages/settings.upgrade.html:48
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:35
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:48
 msgid "Check for Upgrade"
 msgstr "Tarkista päivitykset"
 
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:18
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:28
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:37
-msgid "Choose Configuration Option"
-msgstr "Valitse Konfiguraatiovaihtoehto"
-
+#: juci-mod-network/src/pages/internet.dns.html:36
 #: plugins/juci-ddns/src/pages/internet.dns.html:36
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:8
 msgid "Choose DNS Provider"
 msgstr "Valitse DNS-palveluntarjoaja"
 
+#: juci-mod-wireless/src/pages/wifi.schedule.html:16
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:16
 msgid "Choose Schedule Mode"
 msgstr "Valitse ajoitustila"
 
+#: juci-mod-network/src/pages/internet.exposed_host.html:16
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:16
 msgid ""
 "Choose the local IP address that should be exposed to Internet. Additionally "
@@ -458,169 +487,162 @@ msgstr ""
 "kannattaa määrittää tälle IP-osoitteelle staattinen IP-osoite DHCP poolista "
 "(katso Asetukset/Verkko)."
 
+#: juci-mod-voice/src/pages/phone.speed_dialing.html:21
 #: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:21
 msgid "Clear"
 msgstr "Tyhjennä"
 
+#: juci-mod-status/src/pages/status.restart.html:8
 #: plugins/juci-mod-status/src/pages/status.restart.html:8
 msgid "Click here to restart your device"
 msgstr "Paina tästä käynnistääksesi laitteesi uudelleen"
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:11
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:11
+#: juci-mod-status/src/pages/status.status.tv.html:11
+#: juci-mod-tv/src/pages/status.status.tv.html:11
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:11
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:10
 msgid "Client IP"
 msgstr "Asiakas IP"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:60
+#: juci-mod-system/src/pages/settings.upgrade.html:60
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:60
 msgid "Close"
 msgstr "Sulje"
 
-#: plugins/juci-mod-status/src/pages/status.status.services.html:8
-msgid "Command"
-msgstr "Komento"
-
+#: juci-mod-system/src/pages/settings.configuration.html:29
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:29
 msgid "Comments"
 msgstr "Kommentit"
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.clients.html:3
-msgid "Connected Wireless Clients"
-msgstr "Yhdistetyt Langattomat Laitteet"
-
-#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-entry-edit.html:3
-msgid "Connection"
-msgstr "Yhteys"
-
+#: juci-mod-dropbear/src/pages/services.dropbear.html:39
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:39
 msgid "Connection Keep Alive"
 msgstr "Yhteyksien elossapito"
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:6
+#: juci-mod-status/src/pages/status.status.tv.html:6
+#: juci-mod-tv/src/pages/status.status.tv.html:6
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:6
 #: plugins/juci-mod-status/src/pages/status.status.tv.html:6
 msgid "Connection Status"
 msgstr "Yhteyden tila"
 
+#: juci-mod-network/src/pages/status.nat.html:4
+#: juci-mod-status/src/pages/status.status.network.html:4
 #: plugins/juci-mod-status/src/pages/status.status.network.html:4
 #: plugins/juci-network-netifd/src/pages/internet.network.html:3
 #: plugins/juci-network-netifd/src/pages/status.nat.html:4
 msgid "Connections"
 msgstr "Yhteydet"
 
+#: juci-mod-network/src/pages/status.nat.html:12
 #: plugins/juci-network-netifd/src/pages/status.nat.html:12
 msgid "Connections for each Device"
 msgstr "Laitteiden yhteydet"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-create.html:3
-msgid "Create New Network Interface"
-msgstr "Luo Uusi Verkkoyhteys"
-
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:7
+#: juci-mod-system/src/pages/settings.upgrade.html:7
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:7
 msgid "Current Firmware Version"
 msgstr "Nykyinen ohjelmistoversio"
 
+#: juci-mod-network/src/pages/internet.dns.html:23
 #: plugins/juci-ddns/src/pages/internet.dns.html:23
 #: plugins/juci-ddns/src/pages/internet.wan.ddns.html:4
 msgid "DDNS (Dynamic DNS)"
 msgstr "DDNS (Dynaaminen DNS)"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:37
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:8
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:23
 msgid "DHCP Lease Time"
 msgstr "DHCP-varauksen aika"
 
+#: juci-mod-status/src/pages/status.status.network.html:7
 #: plugins/juci-mod-status/src/pages/status.status.network.html:7
 msgid "DHCP Leases"
 msgstr "DHCP-varaukset"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:23
 #: plugins/juci-dnsmasq-dhcp/src/widgets/network-connection-dhcp-server-settings.html:3
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:9
 msgid "DHCP Server"
 msgstr "DHCP-palvelin"
 
-#: plugins/juci-dnsmasq-dhcp/src/pages/internet.lan.dhcp.html:3
-msgid "DHCP Server Settings"
-msgstr "DHCP Palvelinasetukset"
-
+#: juci-mod-network/src/pages/internet.dns.html:4
 #: plugins/juci-ddns/src/pages/internet.dns.html:4
 msgid "DNS"
 msgstr "DNS"
 
+#: juci-mod-network/src/pages/internet.dns.html:17
 #: plugins/juci-ddns/src/pages/internet.dns.html:17
 msgid "DNS Server"
 msgstr "DNS-palvelin"
 
+#: juci-mod-network/src/pages/internet.dns.html:15
 #: plugins/juci-ddns/src/pages/internet.dns.html:15
 msgid "DNS Servers"
 msgstr "DNS-palvelimet"
 
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:24
-msgid "DNS Settings"
-msgstr "DNS Asetukset"
-
+#: juci-mod-network/src/pages/internet.dns.html:7
 #: plugins/juci-ddns/src/pages/internet.dns.html:7
 msgid "DNS configuration"
 msgstr "DNS asetukset"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:6
-msgid "DSL Latency Path"
-msgstr "DSL Latency Path"
-
+#: juci-mod-status/src/pages/status.status.dsl.js:79
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:79
 msgid "DSL Mode"
 msgstr "DSL moodi"
 
+#: juci-mod-status/src/pages/status.status.dsl.html:3
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.html:3
 msgid "DSL Status"
 msgstr "DSL-tila"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:69
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:69
 msgid "DSL Status Information"
 msgstr "DSL tilatiedot"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:36
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:36
 msgid "DSS Key File"
 msgstr "DSS avaintiedosto"
 
+#: juci-mod-status/src/pages/status.events.html:26
+#: juci-mod-voice/src/pages/phone.call_log.html:18
+#: juci-mod-voice/src/pages/phone.html:18
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:18
 #: plugins/juci-asterisk/src/pages/phone.html:18
 #: plugins/juci-mod-status/src/pages/status.events.html:26
 msgid "Date"
 msgstr "Päivämäärä"
 
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:17
+#: juci-mod-wireless/src/pages/wifi.schedule.html:21
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:16
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:21
 msgid "Day"
 msgstr "Päivä"
 
-#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:17
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:10
-msgid "Default Gateway"
-msgstr "Oletysyhdyskäytävä"
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:7
+msgid "Days"
+msgstr "Päivät"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:6
-msgid "Default Policy"
-msgstr "Oletussääntö"
-
+#: juci-mod-samba/src/pages/services.samba.html:13
+#: juci-mod-samba/src/pages/services.samba.html:14
 #: plugins/juci-samba/src/pages/internet.services.samba.html:13
 #: plugins/juci-samba/src/pages/internet.services.samba.html:14
 msgid "Description"
 msgstr "Kuvaus"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:45
-msgid "Destination"
-msgstr "Kohde"
-
+#: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:3
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:3
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:3
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:3
 msgid "Device"
 msgstr "Laite"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:6
-#: plugins/juci-network-netifd/src/widgets/network-device-baseif-edit.html:6
-#: plugins/juci-usb/src/pages/status.usb.html:7
-msgid "Device ID"
-msgstr "Laitetunnus"
-
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:45
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:52
 #: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:3
 #: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:3
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:11
@@ -631,98 +653,89 @@ msgstr "Laitetunnus"
 msgid "Device Name"
 msgstr "Laitteen nimi"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:18
-msgid "Device:"
-msgstr "Laite:"
-
+#: juci-mod-status/src/pages/status.diagnostics.html:11
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:11
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:11
 msgid "Diagnose"
 msgstr "Diagnostiikka"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:3
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:3
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:3
 msgid "Diagnostic Utility"
 msgstr "Diagnostiikkatyökalu"
 
+#: juci-mod-voice/src/pages/phone.ringing_schedule.js:28
+#: juci-mod-wireless/src/pages/wifi.schedule.js:7
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.js:29
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.js:7
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:20
 msgid "Disabled"
 msgstr "Pois käytöstä"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:37
+msgid "Display Characters"
+msgstr "Näytä merkit"
+
+#: juci-mod-voice/src/pages/status.status.voice.html:11
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:11
 msgid "Domain"
 msgstr "Toimialue"
 
+#: juci-mod-network/src/pages/internet.dns.html:43
 #: plugins/juci-ddns/src/pages/internet.dns.html:43
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:15
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:16
 msgid "Domain name"
 msgstr "Toimialueen nimi"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:4
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:4
 msgid "Dropbear"
 msgstr "Dropbear"
 
+#: juci-mod-voice/src/pages/phone.call_log.html:22
+#: juci-mod-voice/src/pages/phone.html:22
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:22
 #: plugins/juci-asterisk/src/pages/phone.html:22
 msgid "Duration"
 msgstr "Kesto"
 
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:11
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:10
 msgid "During this time ringing is"
 msgstr "Tänä aika soittaminen on "
 
+#: juci-mod-wireless/src/pages/wifi.schedule.html:15
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:15
 msgid "During this time the WiFi is"
 msgstr "Tänä aikana WiFi on"
 
+#: juci-mod-network/src/pages/internet.dns.html:26
 #: plugins/juci-ddns/src/pages/internet.dns.html:26
 msgid "Dynamic DNS"
 msgstr "Dynaaminen DNS"
 
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:7
-msgid "Enable"
-msgstr "Ota käyttöön"
-
-#: plugins/juci-ddns/src/pages/internet.wan.ddns.html:8
-msgid "Enable DDNS Client"
-msgstr "Aktivoi DDNS Palvelu"
-
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:11
-msgid "Enable NAT"
-msgstr "Aktivoi NAT"
-
-#: plugins/juci-network-netifd/src/pages/internet.lan.html:7
-msgid "Enable This Network"
-msgstr "Aktivoi Tämä Verkko"
-
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:14
-msgid "Enable UPnP"
-msgstr "Aktivoi UPnP"
-
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:8
-msgid "Enable WAN"
-msgstr "Aktivoi WAN"
-
+#: juci-mod-wireless/src/pages/wifi.wps.html:27
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:28
 msgid "Enable WPS button on router"
 msgstr "Ota reitittimen WPS painike käyttöön"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:18
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:18
 msgid "Enable WPS on"
 msgstr "WPS käyttöön"
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:22
-msgid "Enable WiFi On/Off button"
-msgstr "Aktivoi WiFi Päälle/Pois -nappi"
-
+#: juci-mod-network/src/pages/internet.firewall.html:7
 #: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:7
 #: plugins/juci-vodafone/src/pages/internet.firewall.html:7
 msgid "Enable firewall"
 msgstr "Ota palomuuri käyttöön"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:6
+#: juci-mod-voice/src/pages/phone.ringing_schedule.js:27
+#: juci-mod-wireless/src/pages/wifi.schedule.js:6
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:18
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.js:28
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.js:6
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:3
@@ -731,23 +744,28 @@ msgstr "Ota palomuuri käyttöön"
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:30
-msgid "Encapsulation Mode"
-msgstr "Kapselointitila"
+#: juci/src/widgets/juci.input.port.html:11
+msgid "End port"
+msgstr "Viimeinen portti"
 
+#: juci-mod-network/src/pages/internet.dns.html:40
 #: plugins/juci-ddns/src/pages/internet.dns.html:40
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:12
 msgid "Enter DDNS Provider"
 msgstr "Syötä DDNS-palveluntarjoaja"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:58
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:59
 msgid "Enter your PIN here"
 msgstr "Syötä PIN koodi tähän"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:57
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:58
 msgid "Enter your device PIN"
 msgstr "Syötä laitteesi PIN koodi"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:25
+#: juci-mod-status/src/pages/status.diagnostics.html:37
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:25
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:37
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:25
@@ -755,126 +773,144 @@ msgstr "Syötä laitteesi PIN koodi"
 msgid "Error"
 msgstr "Virhe"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:101
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:101
 msgid "Error Counter"
 msgstr "Virhelaskuri"
 
+#: juci-mod-status/src/pages/status.events.html:4
 #: plugins/juci-mod-status/src/pages/status.events.html:4
 msgid "Event Log"
 msgstr "Tapahtumaloki"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:37
+msgid "Every Day"
+msgstr "Joka päivä"
+
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:38
+msgid "Every Workday"
+msgstr "Joka työpäivä"
+
+#: juci/src/widgets/juci.top_bar.js:16
+msgid "Expert Mode"
+msgstr "Edistyneet asetukset"
+
+#: juci-mod-network/src/pages/internet.exposed_host.html:3
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:3
 msgid "Exposed Host"
 msgstr "Avoin isäntäkone"
 
+#: juci-mod-network/src/pages/internet.exposed_host.html:7
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:7
 msgid "Exposed Host Function"
 msgstr "Avoin isäntäkonefunktio"
 
+#: juci-mod-voice/src/pages/phone.call_log.html:20
+#: juci-mod-voice/src/pages/phone.html:20
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:20
 #: plugins/juci-asterisk/src/pages/phone.html:20
 msgid "External Number"
 msgstr "Ulkoinen numero"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:104
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:104
 msgid "FEC Corrections"
 msgstr "FEC korjaukset"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:29
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:16
-msgid "FORWARD"
-msgstr "EDELLEENLÄHETYS"
-
+#: juci-mod-system/src/pages/settings.configuration.html:16
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:16
 msgid "Factory Settings"
 msgstr "Tehdasasetukset"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:82
-msgid "Family"
-msgstr "Perhe"
-
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:88
-msgid "Firewall Action"
-msgstr "Palomuuritoiminto"
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.forwarding.html:3
-msgid "Firewall Forwarding"
-msgstr "Palomuuri Edelleenlähetys"
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.html:3
-msgid "Firewall Zones"
-msgstr "Palomuurivyöhykkeet"
-
+#: juci-mod-network/src/pages/internet.firewall.html:3
 #: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:3
 #: plugins/juci-vodafone/src/pages/internet.firewall.html:3
 msgid "Firewall settings"
 msgstr "Palomuuriasetukset"
 
+#: juci-mod-status/src/pages/status.status.system.js:27
 #: plugins/juci-mod-status/src/pages/status.status.system.js:27
 msgid "Firmware Version"
 msgstr "Ohjelmistoversio"
 
-#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:21
-msgid "Forever"
-msgstr "Aina"
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:46
+msgid "Friday"
+msgstr "Perjantai"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
-msgid "Forward"
-msgstr "Edelleenlähetys"
-
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:20
-msgid "Friendly Name"
-msgstr "Nimi"
-
+#: juci-mod-status/src/pages/status.status.html:12
 #: plugins/juci-mod-status/src/pages/status.status.html:21
 #: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:10
 #: plugins/juci-network-netifd/src/widgets/overview-wan.html:17
 msgid "Gateway"
 msgstr "Yhdyskäytävä"
 
+#: juci-mod-system/src/pages/settings.password.html:4
 #: plugins/juci-mod-system/src/pages/settings.password.html:4
 msgid "Gateway Password"
 msgstr "Yhdyskäytävän salasana"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:27
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:27
 msgid "Gateway Ports"
 msgstr "Yhdyskäytävän portit"
 
+#: juci-mod-samba/src/pages/services.samba.html:4
 #: plugins/juci-samba/src/pages/internet.services.samba.html:4
 msgid "General Settings"
 msgstr "Yleiset asetukset"
 
+#: juci-mod-wireless/src/pages/wifi.general.html:4
 #: plugins/juci-broadcom-wl/src/pages/wifi.general.html:4
 msgid "General WiFi Settings"
 msgstr "Yleiset WiFi-asetukset"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:49
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:50
 msgid "Generate"
 msgstr "Luo"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:48
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:49
 msgid "Generate New PIN"
 msgstr "Luo uusi PIN-koodi"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:45
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:46
 msgid "Generated PIN"
 msgstr "Luotu PIN"
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:10
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:10
+#: juci-mod-status/src/pages/status.status.tv.html:10
+#: juci-mod-tv/src/pages/status.status.tv.html:10
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:10
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:9
 msgid "Group IP"
 msgstr "Ryhmä IP"
 
+#: juci-mod-samba/src/pages/services.samba.html:16
+#: juci-mod-samba/src/pages/services.samba.html:17
+msgid "Homes"
+msgstr "Kodit"
+
+#: juci/src/widgets/juci.login.html:14
+msgid "Host"
+msgstr "Isäntäkone"
+
+#: juci-mod-status/src/pages/status.diagnostics.html:20
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:20
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:20
 msgid "Host to ping"
 msgstr "Isäntäkone, jota pingataan"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:32
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:32
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:32
 msgid "Host to trace"
 msgstr "Jäljitettävä isäntäkone"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:53
+#: juci-mod-status/src/pages/status.status.network.js:9
+#: juci-mod-status/src/pages/status.status.system.js:25
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:20
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:20
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:12
 #: plugins/juci-mod-status/src/pages/status.status.network.js:9
@@ -883,25 +919,11 @@ msgstr "Jäljitettävä isäntäkone"
 msgid "Hostname"
 msgstr "Isäntäkoneen nimi"
 
-#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:17
-msgid "Hour"
-msgstr "Tunti"
-
-#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:18
-#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:19
-#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:20
-msgid "Hours"
-msgstr "Tunnit"
-
-#: plugins/juci-network-netifd/src/widgets/network-device-ethernet-edit.html:9
-msgid "ID"
-msgstr "Tunniste"
-
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:15
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:50
-msgid "IP"
-msgstr "IP"
-
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:17
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:47
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:61
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:62
+#: juci-mod-status/src/pages/status.status.html:9
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:20
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:21
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:6
@@ -915,56 +937,35 @@ msgstr "IP"
 msgid "IP Address"
 msgstr "IP-osoite"
 
-#: plugins/juci-network-netifd/src/internet.js:263
+#: juci-mod-network/src/internet.js:14
+#: plugins/juci-network-netifd/src/internet.js:266
 msgid "IP Address must be a valid ipv4 address!"
 msgstr "IP-osoitteen on oltava kelvollinen IPv4-osoite"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:20
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:6
 msgid "IP Subnet Mask"
 msgstr "Aliverkon peite"
 
+#: juci-mod-status/src/pages/status.status.js:24
 #: plugins/juci-mod-status/src/pages/status.status.js:25
 msgid "IPTV"
 msgstr "IPTV"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:3
-msgid "IPv4 Address"
-msgstr "IPv4-osoite"
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:9
-msgid "IPv4 Default Gateway"
-msgstr "IPv4 Oletusyhdyskäytävä"
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:6
-msgid "IPv4 Subnet Mask"
-msgstr "IPv4 Aliverkon peite"
-
+#: juci-mod-status/src/pages/status.status.network.js:15
+#: juci-mod-status/src/pages/status.status.network.js:9
 #: plugins/juci-mod-status/src/pages/status.status.network.js:15
 #: plugins/juci-mod-status/src/pages/status.status.network.js:9
 msgid "IPv4-Address"
 msgstr "IPv4-osoite"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:20
-msgid "IPv4-Address ({{$index}}):"
-msgstr "IPv4-osoite ({{$ index}}):"
-
-#: plugins/juci-mod-status/src/pages/status.status.html:14
-msgid "IPv6 Address"
-msgstr "IPv6-osoite"
-
-#: plugins/juci-mod-status/src/pages/status.status.html:18
-msgid "IPv6 Prefix"
-msgstr "IPv6 Etuliite"
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:21
-msgid "IPv6-Address ({{$index}}):"
-msgstr "IPv6-osoite ({{$ index}}):"
-
+#: juci-mod-dropbear/src/pages/services.dropbear.html:42
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:42
 msgid "Idle Timeout"
 msgstr "Odotuksen aikakatkaisu"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:53
+#: juci-mod-system/src/pages/settings.upgrade.html:53
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:53
 msgid ""
 "If you answer yes then your confiruation will be saved before the upgrade "
 "and restored after the upgrade has completed. If you choose 'no' then all "
@@ -973,133 +974,125 @@ msgstr ""
 "Jos valitset \"Kyllä\", asetuksesi säilytetään. Jos valitset \"Ei\", "
 "asetukset palautetaan tehdasasetuksille."
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:55
-msgid ""
-"If you disable SSID broadcasting, WPS function will be disabled as well. You "
-"will need to enable it manually later. Are you sure you want to continue?"
-msgstr ""
-"Jos poistat SSID lähetykset, WPS-toiminto poistetaan käytöstä myös. Sinun "
-"tulee aktivoida se myöhemmin manuaalisesti. Oletko varma, että haluat jatkaa?"
-
+#: juci-mod-voice/src/pages/phone.number_blocking.html:41
 #: plugins/juci-asterisk/src/pages/phone.number_blocking.html:41
 msgid "Incoming Calls"
 msgstr "Saapuvat puhelut"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
-msgid "Input"
-msgstr "Syöte"
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:36
+msgid "Individual Days"
+msgstr "Yksittäiset päivät"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:36
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:45
+#: juci-mod-system/src/pages/settings.upgrade.html:36
+#: juci-mod-system/src/pages/settings.upgrade.html:45
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:36
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:45
 msgid "Install Upgrade"
 msgstr "Asenna päivitys"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:30
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:30
 #: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:7
 msgid "Interface"
 msgstr "Käyttöliittymä"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-create.html:7
-msgid "Interface Name"
-msgstr "Liitännän Nimi"
+#: juci/src/js/rpc.js:43
+msgid "Internal error"
+msgstr "Sisäinen virhe"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-create.html:10
-msgid "Interface Type"
-msgstr "Liitännän Tyyppi"
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:17
-msgid "Interface UP:"
-msgstr "Käynnistä Liitäntä"
-
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:17
-msgid "Interfaces"
-msgstr "Liitännät"
-
+#: juci-mod-network/src/pages/internet.parental_control.html:50
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:15
 msgid "Internet Access Scheduling"
 msgstr "Internetyhteyden ajoitus"
 
-#: plugins/juci-mod-status/src/pages/status.status.js:23
-msgid "Internet IPv6"
-msgstr "Internet IPv6"
+#: juci/src/js/rpc.js:42
+msgid "Invalid parameters"
+msgstr "Virheellisiä parametreja"
 
+#: juci/src/js/rpc.js:41
+msgid "Invalid request"
+msgstr "Virheellinen pyyntö"
+
+#: juci-mod-status/src/pages/status.status.system.js:28
 #: plugins/juci-mod-status/src/pages/status.status.system.js:28
 msgid "Kernel Version"
 msgstr "Ytimen versio"
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:23
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:24
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:25
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:26
-msgid "Key"
-msgstr "Avain"
-
-#: plugins/juci-network-netifd/src/widgets/overview.net.html:4
-#: plugins/juci-network-netifd/src/widgets/overview.net.small.html:5
-msgid "LAN"
-msgstr "Lähiverkko"
-
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:12
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:12
+#: juci-mod-status/src/pages/status.status.tv.html:12
+#: juci-mod-tv/src/pages/status.status.tv.html:12
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:12
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:11
 msgid "LAN Port"
 msgstr "Lähiverkon portti"
 
-#: plugins/juci-network-netifd/src/pages/internet.lan.html:3
-msgid "LAN Settings"
-msgstr "Lähiverkon asetukset"
-
-#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:3
-msgid "Layer-2 Ethernet Devices"
-msgstr "Layer-2 Ethernet-laitteet"
-
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:38
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html:9
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:24
 msgid "Lease Time"
 msgstr "Vuokra-aika"
 
+#: juci-mod-status/src/pages/status.status.network.js:9
 #: plugins/juci-mod-status/src/pages/status.status.network.js:9
 msgid "Leasetime remaining"
 msgstr "Vuokra-aikaa jäljellä"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:72
+#: juci-mod-status/src/pages/status.status.html:25
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:72
 #: plugins/juci-mod-status/src/pages/status.status.html:34
 msgid "Line Status"
 msgstr "Linjan tila"
 
+#: juci-mod-system/src/pages/settings.configuration.html:11
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:11
 msgid "Load"
 msgstr "Kuorma"
 
+#: juci-mod-system/src/pages/settings.uci.html:16
 #: plugins/juci-mod-system/src/pages/settings.uci.html:16
 msgid "Loading"
 msgstr "Ladataan"
 
+#: juci-mod-network/src/pages/internet.port_mapping.html:19
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:19
 msgid "Local IP"
 msgstr "Paikallinen IP"
 
+#: juci-mod-network/src/pages/internet.exposed_host.html:21
+#: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:9
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:9
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:21
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:9
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:9
 msgid "Local IP Address"
 msgstr "Paikallinen IP-osoite "
 
+#: juci-mod-status/src/pages/status.status.system.js:29
 #: plugins/juci-mod-status/src/pages/status.status.system.js:29
 msgid "Local Time"
 msgstr "Paikallinen aika"
 
+#: juci-mod-network/src/pages/internet.port_mapping.html:21
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:21
 msgid "Local port"
 msgstr "Paikallinen portti"
 
+#: juci-mod-status/src/pages/status.events.html:23
 #: plugins/juci-mod-status/src/pages/status.events.html:23
 msgid "Log"
 msgstr "Loki"
 
+#: juci/src/widgets/juci.login.html:4 juci/src/widgets/juci.top_bar.js:17
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+#: juci-mod-status/src/pages/status.status.dsl.js:97
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:97
 msgid "Loop Attenuation"
 msgstr "Silmukan vaimennus"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:57
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:24
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:24
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:16
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:26
@@ -1109,6 +1102,8 @@ msgstr "Silmukan vaimennus"
 msgid "MAC"
 msgstr "MAC"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:46
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:56
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:15
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:5
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:31
@@ -1118,76 +1113,75 @@ msgstr "MAC"
 msgid "MAC Address"
 msgstr "MAC-osoite"
 
+#: juci-mod-network/src/pages/internet.parental_control.html:56
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:21
 msgid "MAC Addresses"
 msgstr "MAC-osoitteet"
 
+#: juci-mod-status/src/pages/status.status.network.js:15
 #: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "MAC address"
 msgstr "MAC-osoite"
 
+#: juci-mod-status/src/pages/status.status.network.js:9
 #: plugins/juci-mod-status/src/pages/status.status.network.js:9
 msgid "MAC-Address"
 msgstr "MAC-osoite"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:24
-msgid "MBS"
-msgstr "MBS"
-
-#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:11
-msgid "MTU"
-msgstr "MTU"
-
+#: juci-mod-network/src/pages/internet.dns.html:12
 #: plugins/juci-ddns/src/pages/internet.dns.html:12
 msgid "Manual"
 msgstr "Manuaalinen"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:13
+#: juci-mod-system/src/pages/settings.upgrade.html:13
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:13
 msgid "Manual Firmware Upgrade"
 msgstr "Manuaalinen ohjelmistopäivitys"
 
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:26
-msgid "Media Directories"
-msgstr "Media Hakemistot"
-
+#: juci-mod-status/src/pages/status.status.system.html:7
 #: plugins/juci-mod-status/src/pages/status.status.system.html:7
 msgid "Memory"
 msgstr "Muisti"
 
+#: juci-mod-status/src/pages/status.events.html:29
 #: plugins/juci-mod-status/src/pages/status.events.html:29
 msgid "Message"
 msgstr "Viesti"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:27
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:36
-msgid "Method"
-msgstr "Menetelmä"
-
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:3
-msgid "MiniDLNA Settings"
-msgstr "MiniDLNA Asetukset"
-
+#: juci-mod-system/src/pages/settings.energy.html:7
 #: plugins/juci-mod-system/src/pages/settings.energy.html:7
 msgid "Missing uci config boardpanel."
 msgstr "Paneelin uci konfiguraatio puuttuu"
 
+#: juci-mod-status/src/pages/status.status.system.js:26
 #: plugins/juci-mod-status/src/pages/status.status.system.js:26
 msgid "Model"
 msgstr "Malli"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:68
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:27
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:54
 msgid "Modify"
 msgstr "Muokkaa"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:42
+msgid "Monday"
+msgstr "Maanantai"
+
+#: juci-mod-voice/src/pages/phone.numbers.js:5
 #: plugins/juci-asterisk/src/pages/phone.numbers.js:5
 msgid "N/A"
 msgstr "Ei saatavilla"
 
+#: juci-mod-network/src/pages/status.nat.html:30
 #: plugins/juci-network-netifd/src/pages/status.nat.html:30
 msgid "NAT Connection Table"
 msgstr "NAT yhteys-taulukko"
 
+#: juci-mod-samba/src/pages/services.samba.html:7
+#: juci-mod-samba/src/pages/services.samba.html:8
+#: juci-mod-voice/src/pages/status.status.voice.html:31
+#: juci-mod-voice/src/pages/status.status.voice.html:9
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:31
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:9
 #: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:3
@@ -1202,243 +1196,230 @@ msgstr "NAT yhteys-taulukko"
 msgid "Name"
 msgstr "Nimi"
 
-#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:16
-#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:9
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:7
-msgid "Netmask"
-msgstr "Aliverkko"
-
+#: juci-mod-network/src/pages/settings.network.html:3
 #: plugins/juci-network-netifd/src/pages/settings.network.html:3
 msgid "Network Settings"
 msgstr "Verkkoasetukset"
 
-#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.html:7
-msgid "Network device"
-msgstr "Verkkolaite"
-
+#: juci-mod-system/src/pages/settings.configuration.html:33
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:33
 msgid "New Password"
 msgstr "Uusi salasana"
 
-#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:11
-msgid "New SSID"
-msgstr "Uusi SSID"
-
-#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:3
-msgid "New Wireless Interface"
-msgstr "Uusi Langaton Liitäntä"
-
-#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:91
-msgid "No IP address"
-msgstr "Ei IP-osoitetta"
-
+#: juci-mod-status/src/pages/status.status.network.js:11
+#: juci-mod-status/src/pages/status.status.network.js:43
 #: plugins/juci-mod-status/src/pages/status.status.network.js:11
 #: plugins/juci-mod-status/src/pages/status.status.network.js:43
 msgid "No active leases"
 msgstr "Ei aktiivisia vuokrauksia"
 
+#: juci-mod-status/src/pages/status.status.network.js:56
 #: plugins/juci-mod-status/src/pages/status.status.network.js:56
 msgid "No active stations"
 msgstr "Ei aktiivisia tukiasemia"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.js:184
-#: plugins/juci-mod-system/src/pages/settings.upgrade.js:205
+#: juci-mod-system/src/pages/settings.upgrade.js:185
+#: juci-mod-system/src/pages/settings.upgrade.js:206
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.js:184
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.js:205
 msgid "No upgrade has been found!"
 msgstr "Päivitystä ei saatavilla!"
 
+#: juci-mod-status/src/pages/status.status.network.js:15
 #: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "Noise"
 msgstr "Kohina"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:38
-msgid "Non-Realtime VBR"
-msgstr "Ei-Reaaliaikainen VBR"
+#: juci/src/widgets/juci.footer.js:21
+msgid "Not connected"
+msgstr "Ei yhteyttä"
 
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:19
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:18
 msgid "Number"
 msgstr "Numero"
 
-#: plugins/juci-network-netifd/src/widgets/overview-wan-small.html:8
-#: plugins/juci-network-netifd/src/widgets/overview-wan.html:13
-msgid "OFFLINE"
-msgstr "POIS PÄÄLTÄ"
+#: juci/src/js/uci.js:61
+msgid "Number value is not within valid range"
+msgstr "Numeroarvo ei ole sallittujen rajojen sisällä"
 
-#: plugins/juci-network-netifd/src/widgets/overview-wan-small.html:7
-#: plugins/juci-network-netifd/src/widgets/overview-wan.html:12
-msgid "ONLINE"
-msgstr "PÄÄLLÄ"
+#: juci/src/js/rpc.js:44
+msgid "Object not found"
+msgstr "Kohdetta ei löytynyt"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:30
+#: juci-mod-system/src/pages/settings.upgrade.html:30
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:30
 msgid "Online Update"
 msgstr "Verkkopäivitys"
 
+#: juci-mod-status/src/pages/status.status.dsl.js:93
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:93
 msgid "Operating Data"
 msgstr "Käyttötiedot"
 
+#: juci-mod-voice/src/pages/phone.number_blocking.html:7
 #: plugins/juci-asterisk/src/pages/phone.number_blocking.html:7
 msgid "Outgoing Calls"
 msgstr "Lähtevät puhelut"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
-msgid "Output"
-msgstr "Tuloste"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:18
-msgid "PCR"
-msgstr "PCR"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:9
-msgid "PTM Priority"
-msgstr "PTM Prioriteetti"
-
+#: juci-mod-wireless/src/pages/wifi.wps.html:34
+#: juci-mod-wireless/src/pages/wifi.wps.html:61
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:35
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:62
 msgid "Pair"
 msgstr "Parita"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:33
+#: juci-mod-wireless/src/pages/wifi.wps.html:60
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:34
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:61
 msgid "Pair (within 2 minutes)"
 msgstr "Parita (kahden minuutin sisällä)"
 
+#: juci-mod-network/src/pages/internet.parental_control.html:3
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:3
 msgid "Parental Control"
 msgstr "Lapsilukko"
 
+#: juci/src/js/rpc.js:40
+msgid "Parse error"
+msgstr "Jäsennysvirhe"
+
+#: juci-mod-network/src/pages/internet.dns.html:49
+#: juci/src/widgets/juci.login.html:22 juci/src/widgets/juci.login.html:23
 #: plugins/juci-ddns/src/pages/internet.dns.html:49
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:21
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:22
 msgid "Password"
 msgstr "Salasana"
 
+#: juci-mod-system/src/pages/settings.configuration.html:51
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:51
 msgid "Password (if encrypted)"
 msgstr "Salasana (jos salattu)"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:15
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:15
 msgid "Password Authentication"
 msgstr "Salasanan vahvistus"
 
+#: juci-mod-system/src/pages/settings.password.js:36
 #: plugins/juci-mod-system/src/pages/settings.password.js:36
 msgid "Passwords do not match!"
 msgstr "Salasanat eivät täsmää!"
 
-#: plugins/juci-samba/src/widgets/samba-share-edit.html:6
-msgid "Path"
-msgstr "Polku"
-
+#: juci-mod-voice/src/pages/phone.number_blocking.html:19
+#: juci-mod-voice/src/pages/phone.number_blocking.html:51
 #: plugins/juci-asterisk/src/pages/phone.number_blocking.html:19
 #: plugins/juci-asterisk/src/pages/phone.number_blocking.html:51
 msgid "Phone Extension"
 msgstr "Alanumero"
 
+#: juci-mod-voice/src/pages/phone.lines.html:4
 #: plugins/juci-asterisk/src/pages/phone.lines.html:4
 msgid "Phone Lines"
 msgstr "Puhelinlinjat"
 
+#: juci-mod-voice/src/pages/status.status.voice.html:10
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:10
 msgid "Phone Number"
 msgstr "Puhelinnumero"
 
+#: juci-mod-voice/src/pages/phone.numbers.html:4
 #: plugins/juci-asterisk/src/pages/phone.numbers.html:4
 msgid "Phone Numbers"
 msgstr "Puhelinnumerot"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:7
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:7
 msgid "Pick Bandwidth"
 msgstr "Valitse kaistanleveys"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:10
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:10
 msgid "Pick Channel"
 msgstr "Valitse kanava"
 
-#: plugins/juci-broadcom-dsl/src/widgets/dsl-base-device-picker.html:7
-msgid "Pick Device"
-msgstr "Valitse Laite"
-
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.html:4
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html:4
 msgid "Pick Hardware Mode"
 msgstr "Valitse laitteistotila"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-picker.html:7
-msgid "Pick Network"
-msgstr "Valitse Verkko"
-
+#: juci-mod-voice/src/pages/phone.lines.html:15
 #: plugins/juci-asterisk/src/pages/phone.lines.html:15
 msgid "Pick Outgoing Number"
 msgstr "Valitse lähtevä numero"
 
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:47
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:46
 msgid "Pick Phone Number"
 msgstr "Valitse puhelinnumero"
 
-#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:10
-msgid "Pick SSID"
-msgstr "Valitse SSID"
-
-#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:7
-msgid "Pick Wireless Radio"
-msgstr "Valitse Langaton Radio"
-
-#: plugins/juci-network-netifd/src/widgets/network-host-picker.html:3
-msgid "Pick a host"
-msgstr "Valitse isäntäkone"
-
-#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:7
-msgid "Pick base device"
-msgstr "Valitse fyysinen liitäntä"
-
+#: juci-mod-system/src/pages/settings.configuration.html:47
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:47
 msgid "Pick configuration backup to upload"
 msgstr "Valitse ladattava varmuuskopio"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:20
+#: juci-mod-system/src/pages/settings.upgrade.html:20
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:20
 msgid "Pick firmware file to upload"
 msgstr "Valitse ladattava ohjelmisto"
 
-#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.html:3
-#: plugins/juci-network-netifd/src/widgets/network-connection-picker.html:3
-msgid "Pick network device"
-msgstr "Valitse verkkolaite"
-
+#: juci-mod-voice/src/pages/phone.call_log.html:8
+#: juci-mod-voice/src/pages/phone.html:8
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:8
 #: plugins/juci-asterisk/src/pages/phone.html:8
 msgid "Pick phone"
 msgstr "Valitse puhelin"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:21
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:21
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:21
 msgid "Ping"
 msgstr "Ping"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:16
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:16
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:16
 msgid "Ping Test"
 msgstr "Ping-testi"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:24
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:24
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:24
 msgid "Ping results"
 msgstr "Ping-tulokset"
 
+#: juci-mod-system/src/pages/settings.configuration.html:28
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:28
 msgid "Please add a comment describing this configuration"
 msgstr "Lisää kommentti tästä konfiguraatiosta"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:48
-#: plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js:71
-msgid "Please select a connection in the list!"
-msgstr "Valitse yhteys luettelosta!"
+#: juci/src/widgets/juci.login.js:66
+msgid "Please enter correct username and password!"
+msgstr "Anna oikea käyttäjätunnus ja salasana!"
 
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.js:28
-msgid "Please select a rule to delete!"
-msgstr "Valitse poistettava sääntö!"
+#: juci/src/js/uci.js:28
+msgid "Please enter valid time value for start and end time!"
+msgstr "Määritä kelvollinen alkamisaika ja päättymisaika!"
 
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.js:26
-msgid "Please select a zone to delete!"
-msgstr "Valitse poistettava vyöhyke!"
+#: juci/src/js/uci.js:39
+msgid "Please pick days between mon-sun"
+msgstr "Valitse päivä ma-su väliltä"
 
+#: juci/src/widgets/juci.login.html:7
+msgid "Please sign in"
+msgstr "Kirjaudu sisään"
+
+#: juci/src/js/uci.js:16
+msgid "Please specify both start time and end time for schedule!"
+msgstr "Määritä sekä alkamisaika, että päättymisaika aikatauluun!"
+
+#: juci/src/js/uci.js:20
+msgid "Please use ':' to separate hours and minutes!"
+msgstr "Käytä ':' erottaaksesi tunnit ja minuutit!"
+
+#: juci-mod-dropbear/src/pages/services.dropbear.html:18
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:18
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:34
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:39
@@ -1448,10 +1429,16 @@ msgstr "Valitse poistettava vyöhyke!"
 msgid "Port"
 msgstr "Portti"
 
+#: juci/src/widgets/juci.input.port.html:16
+msgid "Port (1-65535)"
+msgstr "Portti (1-65535)"
+
+#: juci-mod-network/src/pages/internet.port_mapping.html:3
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:3
 msgid "Port Mapping"
 msgstr "Porttiohjaus"
 
+#: juci-mod-network/src/pages/internet.port_mapping.html:4
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:4
 msgid ""
 "Port mapping allows remote computers to connect to a specific device within "
@@ -1460,39 +1447,56 @@ msgstr ""
 "Porttiohjauksella sallitaan yhteys ulkoverkosta sisäverkon laitteen "
 "osoitteeseen."
 
+#: juci/src/js/uci.js:51
+msgid ""
+"Port value must be a valid port number or port range between 1 and 65536"
+msgstr ""
+"Portin arvon on oltava kelvollinen porttinumero tai porttialue 1–65536 "
+"väliltä"
+
+#: juci-mod-system/src/pages/settings.energy.html:16
 #: plugins/juci-mod-system/src/pages/settings.energy.html:16
 msgid "Power-LED"
 msgstr "Virta-LED"
 
+#: juci-mod-system/src/pages/settings.energy.html:19
 #: plugins/juci-mod-system/src/pages/settings.energy.html:19
 msgid "Power-LED Brightness"
 msgstr "Virta-LED:n kirkkaus"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:5
+msgid "Preselected Days"
+msgstr "Ennalta valitut päivät"
+
+#: juci-mod-wireless/src/pages/wifi.wps.html:30
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:31
 msgid ""
 "Pressing WiFi on/off button on your router for long time activates pairing"
 msgstr "WiFi Päälle/Pois painikkeen painaminen pitkään aktivoi parituksen"
 
+#: juci-mod-status/src/pages/status.status.html:15
 #: plugins/juci-mod-status/src/pages/status.status.html:24
 #: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:6
 msgid "Primary DNS"
 msgstr "Ensisijainen DNS"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:10
-#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:7
-msgid "Primary DNS IP"
-msgstr "Ensisijaisen DNS-palvelimen IP-osoite"
-
+#: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:36
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:36
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:36
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:36
 msgid "Private port"
 msgstr "Yksityinen portti"
 
+#: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:37
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:37
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:37
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:37
 msgid "Private port range"
 msgstr "Yksityinen porttialue"
 
+#: juci-mod-network/src/pages/internet.port_mapping.html:20
+#: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:15
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:15
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:20
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:85
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:15
@@ -1500,83 +1504,73 @@ msgstr "Yksityinen porttialue"
 msgid "Protocol"
 msgstr "Protokolla"
 
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:19
-msgid "Protocol:"
-msgstr "Protokolla:"
-
+#: juci-mod-network/src/pages/internet.dns.html:31
 #: plugins/juci-ddns/src/pages/internet.dns.html:31
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:3
 msgid "Provider"
 msgstr "Palveluntarjoaja"
 
+#: juci-mod-network/src/pages/internet.exposed_host.html:18
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:18
 msgid "Public IP Address"
 msgstr "Julkinen IP-osoite:"
 
+#: juci-mod-network/src/pages/internet.port_mapping.html:22
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.port_mapping.html:22
 msgid "Public Port"
 msgstr "Julkinen Portti"
 
+#: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:29
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:29
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:29
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:29
 msgid "Public port"
 msgstr "Julkinen portti"
 
+#: juci-mod-network/src/widgets/uci.firewall.nat.rule.edit.html:30
+#: juci-mod-network/src/widgets/uci.firewall.rule.edit.html:30
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html:30
 #: plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html:30
 msgid "Public port range"
 msgstr "Julkinen porttialue"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:28
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:15
-msgid "REJECT"
-msgstr "HYLKÄÄ"
+#: juci/src/js/rpc.js:48
+msgid "RPC error #"
+msgstr "RPC virhe #"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:33
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:33
 msgid "RSA Key File"
 msgstr "RSA avaintiedosto"
 
+#: juci-mod-status/src/pages/status.status.network.js:15
 #: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "RX Rate"
 msgstr "RX Nopeus"
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:44
-msgid "Radius Port"
-msgstr "Radius Portti"
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:47
-msgid "Radius Secret"
-msgstr "Radius Salasana"
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:41
-msgid "Radius Server"
-msgstr "Radius Palvelin"
-
+#: juci-mod-system/src/pages/settings.configuration.html:36
+#: juci-mod-system/src/pages/settings.configuration.html:37
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:36
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:37
 msgid "Re-type password"
 msgstr "Anna salasana uudelleen"
 
-#: plugins/juci-samba/src/widgets/samba-share-edit.html:12
-msgid "Read only?"
-msgstr "Vain luku?"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:39
-msgid "Realtime VBR"
-msgstr "Reaaliaikainen VBR"
-
+#: juci-mod-voice/src/pages/phone.speed_dialing.html:20
 #: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:20
 msgid "Remove all entries from speed dial list"
 msgstr "Poista kaikki merkinnät pikavalintaluettelosta"
 
+#: juci-mod-system/src/pages/settings.configuration.html:19
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:19
 msgid "Reset"
 msgstr "Tyhjennä"
 
+#: juci-mod-system/src/pages/settings.configuration.html:18
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:18
 msgid "Reset restores the factory default settings of your gateway"
 msgstr "Tyhjennä palauttaa modeemin tehdasasetuksille"
 
+#: juci-mod-status/src/pages/status.restart.html:14
 #: plugins/juci-mod-status/src/pages/status.restart.html:14
 msgid ""
 "Restart takes about 3 minutes. When restart is completed the page will "
@@ -1585,221 +1579,238 @@ msgstr ""
 "Uudelleenkäynnistys kestää noin 3 minuuttia. Kun uudelleenkäynnistys on "
 "valmis, sivu latautuu automaattisesti uudelleen."
 
+#: juci-mod-system/src/pages/settings.configuration.html:10
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:10
 msgid "Restore settings from a configuration saved on a computer"
 msgstr "Palauta asetukset tietokoneelle tallennetusta varmuuskopiosta"
 
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:23
-msgid "Root Container"
-msgstr "Juurikansio"
-
+#: juci-mod-dropbear/src/pages/services.dropbear.html:24
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:24
 msgid "Root Login"
 msgstr "Root-käyttäjän kirjautuminen"
 
+#: juci-mod-dropbear/src/pages/services.dropbear.html:21
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:21
 msgid "Root Password Auth"
 msgstr "Root-käyttäjän salasana"
 
+#: juci-mod-status/src/pages/status.status.system.js:40
 #: plugins/juci-mod-status/src/pages/status.status.system.js:40
 msgid "Root Usage (/)"
 msgstr "Root Käyttö (/)"
 
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.html:3
-msgid "Rules"
-msgstr "Säännöt"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:21
-msgid "SCR"
-msgstr "SCR"
-
+#: juci-mod-status/src/pages/status.status.dsl.js:96
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.js:96
 msgid "SNR Margin"
 msgstr "SNR marginaali"
 
-#: plugins/juci-broadcom-wl/src/wifi.js:180
-msgid "SSID string can be at most 32 characters long!"
-msgstr "SSID merkkijono voi olla korkeintaan 32 merkkiä pitkä!"
-
+#: juci-mod-samba/src/pages/services.samba.html:22
 #: plugins/juci-samba/src/pages/internet.services.samba.html:22
 msgid "Samba Shares"
 msgstr "Samba verkkojaot"
 
+#: juci-mod-samba/src/pages/services.samba.html:25
 #: plugins/juci-samba/src/pages/internet.services.samba.html:26
 msgid "Samba Users"
 msgstr "Samba Käyttäjät"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:47
+msgid "Saturday"
+msgstr "Lauantai"
+
+#: juci-mod-system/src/pages/settings.configuration.html:8
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:8
 msgid "Save"
 msgstr "Tallenna"
 
+#: juci-mod-system/src/pages/settings.configuration.html:23
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:23
 msgid "Save Configuration to Computer"
 msgstr "Tallenna konfiguraatio tietokoneelle"
 
+#: juci-mod-system/src/pages/settings.configuration.html:7
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:7
 msgid "Save settings to computer with password protection"
 msgstr "Tallenna salasanalla suojattu asetusten varmuuskopio tietokoneelle"
 
+#: juci-mod-wireless/src/pages/wifi.schedule.html:7
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:7
 msgid "Schedule Function"
 msgstr "Aikataulutoiminto"
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:17
-msgid "Scheduled"
-msgstr "Ajastettu"
+#: juci/src/js/uci.js:25
+msgid "Schedule start time must be lower than schedule end time!"
+msgstr "Aloitusaika täytyy olla pienempi kuin päättymisaika!"
 
+#: juci-mod-status/src/pages/status.status.html:18
 #: plugins/juci-mod-status/src/pages/status.status.html:27
 #: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:9
 msgid "Secondary DNS"
 msgstr "Toissijainen DNS"
 
-#: plugins/juci-network-netifd/src/widgets/network-host-picker.html:7
-msgid "Select Connected Host"
-msgstr "Valitse Yhdistetty Isäntäkone"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:27
-msgid "Select DSL Link Type"
-msgstr "Valitse DSL-linkkityyppi"
-
+#: juci-mod-network/src/pages/internet.exposed_host.html:25
+#: juci-mod-network/src/pages/internet.parental_control.html:40
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:25
 msgid "Select Existing Host"
 msgstr "Valitse olemassa oleva isäntäkone"
 
+#: juci/src/widgets/juci.top_bar.html:6
+msgid "Select Mode"
+msgstr "Valitse tila"
+
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:12
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:11
 msgid "Select Schedule Mode"
 msgstr "Valitse Aikataulutila"
 
-#: plugins/juci-broadcom-dsl/src/widgets/dsl-base-device-picker.html:3
-msgid "Select base DSL device"
-msgstr "Valitse fyysinen DLS-liitäntä"
+#: juci/src/widgets/theme_picker.html:3
+msgid "Select Theme"
+msgstr "Valitse teema"
 
+#: juci-theme-inteno/src/widgets/juci.top_bar.html:6
+msgid "Select User Mode"
+msgstr "Valitse käyttäjätila"
+
+#: juci-mod-status/src/pages/status.events.html:18
 #: plugins/juci-mod-status/src/pages/status.events.html:18
 msgid "Select events to show"
 msgstr "Valitse näytettävät tapahtumat"
 
-#: plugins/juci-mod-status/src/pages/status.status.services.html:7
-msgid "Service"
-msgstr "Palvelu"
+#: juci/src/js/rpc.js:45
+msgid "Session not found"
+msgstr "Istuntoa ei löydy"
 
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.svcfilter.html:3
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.wordfilter.html:3
-msgid "Service Filtering"
-msgstr "Palvelun Suodatus"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:15
-msgid "Service Type"
-msgstr "Palvelun Tyyppi"
-
-#: plugins/juci-mod-status/src/pages/status.status.services.html:3
-#: plugins/juci-network-netifd/src/pages/internet.services.html:3
-msgid "Services"
-msgstr "Palvelut"
-
+#: juci-mod-network/src/pages/internet.exposed_host.html:24
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:24
 msgid "Set to Existing Host"
 msgstr "Aseta olemassa olevaan isäntäkoneeseen"
 
+#: juci-mod-wireless/src/pages/wifi.schedule.html:13
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.html:13
 msgid "Setup Scheduling"
 msgstr "Aseta aikataulu"
 
-#: plugins/juci-samba/src/pages/internet.services.samba.html:16
-msgid "Share User Home Directory"
-msgstr "Jaa Käyttäjän Kotihakemisto"
-
+#: juci-mod-status/src/pages/status.status.system.js:35
 #: plugins/juci-mod-status/src/pages/status.status.system.js:35
 msgid "Shared"
 msgstr "Jaettu"
 
+#: juci-mod-voice/src/pages/phone.call_log.html:7
+#: juci-mod-voice/src/pages/phone.html:7
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:7
 #: plugins/juci-asterisk/src/pages/phone.html:7
 msgid "Show calls for"
 msgstr "Näytä puhelut"
 
+#: juci/src/widgets/juci.login.html:30
+msgid "Sign in"
+msgstr "Kirjaudu sisään"
+
+#: juci-mod-status/src/pages/status.status.network.js:15
 #: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "Signal"
 msgstr "Signaali"
 
+#: juci-mod-status/src/pages/status.events.html:28
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:10
 #: plugins/juci-mod-status/src/pages/status.events.html:28
 msgid "Source"
 msgstr "Lähde"
 
+#: juci-mod-network/src/pages/internet.parental_control.html:54
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:19
 msgid "Start Time"
 msgstr "Aloitusaika"
 
+#: juci/src/widgets/juci.input.port.html:5
+msgid "Start port"
+msgstr "Aloitusportti"
+
+#: juci-mod-system/src/pages/settings.configuration.html:53
+#: juci-mod-system/src/pages/settings.upgrade.html:23
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:53
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:23
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:23
 msgid "Start upgrade"
 msgstr "Aloita päivitys"
 
+#: juci-mod-voice/src/pages/status.status.voice.html:32
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:32
 msgid "State"
 msgstr "Kunto"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:43
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:2
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:29
 msgid "Static DHCP"
 msgstr "Kiinteä DHCP"
 
+#: juci-mod-network/src/widgets/uci.network.interface.edit.html:18
 #: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:4
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:4
 msgid "Static IP Address"
 msgstr "Kiinteä IP-osoite"
 
-#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:3
-msgid "Static Routes"
-msgstr "Staattiset Reitit"
-
+#: juci-mod-system/src/pages/settings.energy.html:13
 #: plugins/juci-mod-system/src/pages/settings.energy.html:13
 msgid "Status-LED"
 msgstr "Tila-LED"
 
+#: juci-mod-network/src/pages/internet.parental_control.html:55
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:20
 msgid "Stop Time"
 msgstr "Lopetusaika"
 
+#: juci-mod-status/src/pages/status.status.system.html:10
 #: plugins/juci-mod-status/src/pages/status.status.system.html:10
 msgid "Storage"
 msgstr "Tallennustila"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:48
+msgid "Sunday"
+msgstr "Sunnuntai"
+
+#: juci-mod-status/src/pages/status.status.system.js:37
 #: plugins/juci-mod-status/src/pages/status.status.system.js:37
 msgid "Swap"
 msgstr "Swap"
 
+#: juci-mod-status/src/pages/status.status.system.html:4
 #: plugins/juci-mod-status/src/pages/status.status.system.html:4
 msgid "System Status"
 msgstr "Järjestelmän tila"
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:35
-msgid "TKIP/CCMP (AES)"
-msgstr "TKIP/CCMP (AES)"
-
+#: juci-mod-status/src/pages/status.status.network.js:15
 #: plugins/juci-mod-status/src/pages/status.status.network.js:15
 msgid "TX Rate"
 msgstr "TX Nopeus"
 
-#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:8
-msgid "Target"
-msgstr "Kohde"
-
-#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:15
-msgid "Target IP Address"
-msgstr "Kohteen IP-osoite"
-
+#: juci-mod-status/src/pages/status.status.system.js:41
 #: plugins/juci-mod-status/src/pages/status.status.system.js:41
 msgid "Temporary Usage (/tmp)"
 msgstr "Tilapäinen Käyttö (/ tmp)"
 
+#: juci/src/pages/404.html:2
+msgid "The page you were trying to access was not found!"
+msgstr "Sivua, jota yrität katsoa, ei löytynyt."
+
+#: juci-mod-system/src/pages/settings.configuration.js:14
 #: plugins/juci-mod-system/src/pages/settings.configuration.js:14
 msgid ""
 "This will reset your configuration to factory defaults. Do you want to "
 "continue?"
 msgstr "Tämä palauttaa tehdasasetukset. Haluatko jatkaa?"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:45
+msgid "Thursday"
+msgstr "Thursday"
+
+#: juci-mod-voice/src/pages/phone.call_log.html:19
+#: juci-mod-voice/src/pages/phone.html:19
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:18
+#: juci-mod-wireless/src/pages/wifi.schedule.html:22
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:17
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:19
 #: plugins/juci-asterisk/src/pages/phone.html:19
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:17
@@ -1807,92 +1818,109 @@ msgstr "Tämä palauttaa tehdasasetukset. Haluatko jatkaa?"
 msgid "Time"
 msgstr "Aika"
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:14
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:14
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.html:4
+msgid "Time Frame"
+msgstr "Aikakehys"
+
+#: juci/src/js/rpc.js:47
+msgid "Timed out"
+msgstr "Aikakatkaistu"
+
+#: juci-mod-status/src/pages/status.status.tv.html:14
+#: juci-mod-tv/src/pages/status.status.tv.html:14
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:14
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:13
 msgid "Timeout"
 msgstr "Aikakatkaisu"
 
+#: juci-mod-voice/src/pages/phone.call_log.js:18
 #: plugins/juci-asterisk/src/pages/phone.call_log.js:19
 msgid "Today"
 msgstr "Tänään"
 
+#: juci-theme-inteno/src/widgets/juci.navbar.html:5
+#: juci/src/widgets/juci.navbar.html:4
+msgid "Toggle navigation"
+msgstr "Vaihda navigointitilaa"
+
+#: juci-mod-status/src/pages/status.diagnostics.html:33
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:33
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:33
 msgid "Trace"
 msgstr "Jäljitä"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:36
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:36
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:36
 msgid "Trace results"
 msgstr "Jäljityksen tulokset"
 
+#: juci-mod-status/src/pages/status.diagnostics.html:28
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:28
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:28
 msgid "Tracing Tool"
 msgstr "Jäljitystyökalu"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:43
+msgid "Tuesday"
+msgstr "Tuesday"
+
+#: juci-mod-status/src/pages/status.events.html:27
 #: plugins/juci-mod-status/src/pages/status.events.html:27
 #: plugins/juci-network-netifd/src/widgets/overview-wan.html:18
 msgid "Type"
 msgstr "Tyyppi"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:36
-msgid "UBR With PCR"
-msgstr "UBR Ja PCR"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:35
-msgid "UBR Without PCR"
-msgstr "UBR Ilman PCR"
-
+#: juci-mod-network/src/pages/internet.parental_control.html:16
+#: juci-mod-network/src/pages/internet.parental_control.html:32
 #: plugins/juci-firewall-fw3/src/widgets/firewall-urlfilter-editor.html:5
 msgid "URL"
 msgstr "URL"
 
+#: juci-mod-network/src/pages/internet.parental_control.html:8
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:8
 msgid "URL Blocking"
 msgstr "URL Estäminen"
 
+#: juci-mod-network/src/pages/internet.parental_control.html:6
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:6
 msgid "URL Blocking Function"
 msgstr "URL Estotoiminto"
 
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:3
-msgid "URL Filtering"
-msgstr "URL-suodatus"
-
-#: plugins/juci-usb/src/widgets/overview.usb.html:4
-#: plugins/juci-usb/src/widgets/overview.usb.small.html:5
-msgid "USB"
-msgstr "USB"
-
-#: plugins/juci-usb/src/pages/status.usb.html:3
-msgid "USB Devices"
-msgstr "USB-laitteet"
-
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:41
+#: juci-mod-system/src/pages/settings.upgrade.html:41
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:41
 msgid "USB Firmware Upgrade"
 msgstr "USB ohjelmistopäivitys"
 
+#: juci-mod-system/src/pages/settings.energy.html:10
 #: plugins/juci-mod-system/src/pages/settings.energy.html:10
 msgid "USB Port"
 msgstr "USB-portti"
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.js:7
+#: juci-mod-samba/src/pages/services.samba.js:7
+#: juci-mod-status/src/pages/status.status.tv.js:7
+#: juci-mod-tv/src/pages/status.status.tv.js:7
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.js:7
 #: plugins/juci-mod-status/src/pages/status.status.tv.js:7
 msgid "Unable to retreive igmptable from device!"
 msgstr "Ei voitu hakea igmptaulua laitteesta!"
 
+#: juci-mod-network/src/widgets/overview.net.js:33
+#: juci-mod-wireless/src/pages/wifi.settings.js:12
 #: plugins/juci-broadcom-wl/src/pages/wifi.settings.js:12
 #: plugins/juci-network-netifd/src/widgets/overview.net.js:35
 msgid "Unknown"
 msgstr "Tuntematon"
 
+#: juci-mod-system/src/pages/settings.configuration.html:54
+#: juci-mod-system/src/pages/settings.upgrade.html:24
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:54
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:24
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:24
 msgid "Upgrade"
 msgstr "﻿Päivitä"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.js:157
+#: juci-mod-system/src/pages/settings.upgrade.js:153
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.js:157
 msgid ""
 "Upgrade process has started. The web gui will not be available until the "
 "upgrade process has completed!"
@@ -1900,147 +1928,93 @@ msgstr ""
 "Päivitys on alkanut. Web-hallinta ei ole käytettävissä ennen kuin päivitys "
 "on valmis!"
 
+#: juci-mod-status/src/pages/status.status.system.js:30
 #: plugins/juci-mod-status/src/pages/status.status.system.js:30
 msgid "Uptime"
 msgstr "Päälläoloaika"
 
+#: juci-mod-status/src/pages/status.status.system.js:34
 #: plugins/juci-mod-status/src/pages/status.status.system.js:34
 msgid "Usage"
 msgstr "Käyttö"
 
+#: juci-mod-network/src/pages/internet.dns.html:46
+#: juci/src/widgets/juci.login.html:18 juci/src/widgets/juci.login.html:19
 #: plugins/juci-ddns/src/pages/internet.dns.html:46
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:18
 #: plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html:19
 msgid "Username"
 msgstr "Käyttäjätunnus"
 
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:12
-msgid "VCI"
-msgstr "VCI"
-
-#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.vdsl.html:3
-msgid "VDSL Devices"
-msgstr "VDSL-laitteet"
-
-#: plugins/juci-broadcom-vlan/src/pages/internet.ethernet.vlan.html:3
-msgid "VLAN Devices"
-msgstr "VLAN-laitteet"
-
-#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:9
-msgid "VPI"
-msgstr "VPI"
-
-#: plugins/juci-network-netifd/src/internet.js:272
+#: juci-mod-network/src/internet.js:23
+#: plugins/juci-network-netifd/src/internet.js:275
 msgid "Value must be a valid MAC-48 address"
 msgstr "Arvon on oltava oikea MAC-48 osoite"
 
-#: plugins/juci-usb/src/pages/status.usb.html:8
-msgid "Vendor ID"
-msgstr "Toimittajatunnus"
-
-#: plugins/juci-usb/src/pages/status.usb.html:9
-msgid "Vendor Name"
-msgstr "Toimittajan Nimi"
-
+#: juci-mod-dropbear/src/pages/services.dropbear.html:9
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:9
 msgid "Verbose logging"
 msgstr "Runsas lokitus"
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.js:142
+#: juci-mod-system/src/pages/settings.upgrade.js:141
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.js:142
 msgid "Verifying firmware image"
 msgstr "Tarkistetaan ohjelmistoa"
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:7
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:7
+#: juci-mod-status/src/pages/status.status.tv.html:7
+#: juci-mod-tv/src/pages/status.status.tv.html:7
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:7
 msgid "Vodafone TV Channels"
 msgstr "Vodafone TV-kanavat"
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:4
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:4
+#: juci-mod-status/src/pages/status.status.tv.html:4
+#: juci-mod-tv/src/pages/status.status.tv.html:4
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:4
 msgid "Vodafone TV Status"
 msgstr "Vodafone TV tila"
 
+#: juci-mod-voice/src/pages/status.status.voice.html:26
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:26
 msgid "Voice Lines"
 msgstr "Puhelinlinjat"
 
+#: juci-mod-voice/src/pages/status.status.voice.html:4
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:4
 msgid "Voice Status"
 msgstr "Puheen tila"
 
-#: plugins/juci-asterisk/src/pages/status.status.voice.html:41
-msgid "Voice service is not available!"
-msgstr "Puhepalvelu ei ole saatavilla!"
+#: juci-theme-inteno/src/widgets/juci.footer.html:10
+msgid "WAN IP Address"
+msgstr "Ulkoinen IP-osoite"
 
-#: plugins/juci-network-netifd/src/widgets/overview-wan-small.html:5
-#: plugins/juci-network-netifd/src/widgets/overview-wan.html:4
-msgid "WAN"
-msgstr "WAN"
-
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:17
-msgid "WAN Connection Type"
-msgstr "WAN Yhteystyyppi"
-
-#: plugins/juci-network-netifd/src/widgets/overview-wan.html:16
-msgid "WAN IP"
-msgstr "WAN IP"
-
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:13
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:13
+#: juci-mod-status/src/pages/status.status.tv.html:13
+#: juci-mod-tv/src/pages/status.status.tv.html:13
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:13
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:12
 msgid "WAN Port"
 msgstr "Ulkoinen portti"
 
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:3
-msgid "WAN Settings"
-msgstr "WAN-asetukset"
-
-#: plugins/juci-broadcom-wl/src/wifi.js:187
-msgid "WEP encryption key # must be 10-26 hexadecimal characters!"
-msgstr "WEP-salaus avain # täytyy olla 10-26 heksadesimaalimerkkiä!"
-
-#: plugins/juci-broadcom-wl/src/wifi.js:194
-msgid "WPA key must be 8-63 characters long!"
-msgstr "WPA-avain täytyy olla 8-63 merkkiä!"
-
+#: juci-mod-wireless/src/pages/wifi.wps.html:42
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:43
 msgid "WPS Using Generated PIN"
 msgstr "WPS luotua PIN-koodia käyttäen"
 
-#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:30
-msgid "WPS pin:"
-msgstr "WPS PIN:"
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:82
-msgid ""
-"WPS will be disabled when using WEP encryption. Are you sure you want to "
-"continue?"
-msgstr ""
-"WPS poistetaan käytöstä, kun käytetään WEP-salausta. Haluatko varmasti "
-"jatkaa?"
-
+#: juci-mod-wireless/src/pages/wifi.wps.html:24
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:25
 msgid "WPS-PBC: Push Button on Device"
 msgstr "WPS-PBC: Paina laitteessa olevaa WPS-painiketta"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:54
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:55
 msgid "WPS-PIN: Another Device provides PIN"
 msgstr "WPS-PIN: Toinen laite tarjoaa PIN-koodin"
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:39
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:40
 msgid "WPS-REG: Router provides PIN"
 msgstr "WPS-REG: reititin tarjoaa PIN-koodin"
 
-#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:14
-msgid ""
-"Warning: By using the exposed host function you bypass the firewall of your "
-"{{config.friendly_name}}. Please make sure that your computer is protected "
-"against attacks from Internet. The following ports will not be forwarded: "
-"{{ nonforwardedPorts || 'None'}}."
-msgstr ""
-"Varoitus: Avoin-isäntälaitefunktiolla ohitat  {{config.friendly_name}} "
-"palomuurin. Varmista, että koneesi on suojattu Internethyökkäyksiltä. "
-"Seuraavia portteja ei ohjata: {{ nonforwardedPorts || 'None'}}."
-
+#: juci-mod-system/src/pages/settings.password.js:46
 #: plugins/juci-mod-system/src/pages/settings.password.js:46
 msgid ""
 "Was unable to set password. Please make sure you have entered correct "
@@ -2049,28 +2023,32 @@ msgstr ""
 "Salasanan asettaminen epäonnistui. Tarkista, että nykyinen salasana on "
 "oikein!"
 
+#: juci-mod-wireless/src/widgets/uci.wireless.schedule.edit.js:44
+msgid "Wednesday"
+msgstr "Keskiviikko"
+
+#: juci-mod-network/src/pages/internet.parental_control.html:53
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:18
 msgid "Weekdays"
 msgstr "Arkisin"
 
+#: juci-mod-wireless/src/widgets/overview.wifi.small.html:5
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.small.html:5
 msgid "Wireless"
 msgstr "Langaton"
 
-#: plugins/juci-broadcom-wl/src/pages/internet.ethernet.wifi.html:3
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.interfaces.html:3
-msgid "Wireless Interfaces"
-msgstr "Langaton Liitäntä"
-
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.devices.html:3
-msgid "Wireless Radios"
-msgstr "Langattomat Radiot"
-
+#: juci-mod-samba/src/pages/services.samba.html:10
+#: juci-mod-samba/src/pages/services.samba.html:11
 #: plugins/juci-samba/src/pages/internet.services.samba.html:10
 #: plugins/juci-samba/src/pages/internet.services.samba.html:11
 msgid "Workgroup"
 msgstr "Työryhmäverkko"
 
+#: juci/src/widgets/juci.login.html:3
+msgid "You are logged in!"
+msgstr "Olet kirjautunut sisään!"
+
+#: juci-mod-voice/src/pages/phone.number_blocking.html:31
 #: plugins/juci-asterisk/src/pages/phone.number_blocking.html:31
 msgid ""
 "You can also block ranges of numbers.For example: \"0160#\" blocks all "
@@ -2079,6 +2057,7 @@ msgstr ""
 "Voit myös estää numeroalueen. Esimerkiksi \"0160#\" estää kaikki numerot "
 "jotka ovat \"0160\"-alkuisia"
 
+#: juci-mod-wireless/src/pages/wifi.general.html:9
 #: plugins/juci-broadcom-wl/src/pages/wifi.general.html:13
 msgid ""
 "You have wifi-scheduling enabled. This means that your wifi will be "
@@ -2087,26 +2066,7 @@ msgstr ""
 "WiFi aikataulu on käytössä. Tämä tarkoittaa, että langaton verkko poistetaan "
 "käytöstä ja otetaan käyttöön automaattisesti asetetun aikataulun mukaan"
 
-#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.js:9
-msgid "You need to select a device to add!"
-msgstr "Valitse lisättävä laite!"
-
-#: plugins/juci-broadcom-dsl/src/widgets/dsl-base-device-picker.js:41
-msgid "You need to select a device!"
-msgstr "Valitse laite!"
-
-#: plugins/juci-network-netifd/src/widgets/network-host-picker.js:44
-msgid "You need to select a host!"
-msgstr "Valitse isäntäkone!"
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-picker.js:42
-msgid "You need to select a network!"
-msgstr "Valitse verkko!"
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-create.js:37
-msgid "You need to specify both name and type!"
-msgstr "Määritä nimi ja tyyppi!"
-
+#: juci-mod-network/src/pages/internet.firewall.html:4
 #: plugins/juci-vodafone/src/pages/internet.firewall.html:4
 msgid ""
 "Your EasyBox provides extensive firewall functionality which protects "
@@ -2115,32 +2075,36 @@ msgstr ""
 "Päätelaitteesi tarjoaa laajan palomuuritoiminnallisuuden yleisiä hyökkäyksiä "
 "vastaan. On suositeltavaa, ettei palomuuria kytketä pois päältä."
 
+#: juci-mod-voice/src/pages/status.status.voice.html:28
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:28
 msgid "Your Phone Lines"
 msgstr "Puhelinlinjasi"
 
+#: juci-mod-voice/src/pages/status.status.voice.html:6
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:6
 msgid "Your Phone Numbers"
 msgstr "Puhelinnumerosi"
 
+#: juci-mod-system/src/pages/settings.password.html:9
 #: plugins/juci-mod-system/src/pages/settings.password.html:9
 msgid "Your account"
 msgstr "Tilisi"
 
+#: juci-mod-voice/src/pages/phone.call_log.html:21
+#: juci-mod-voice/src/pages/phone.html:21
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:21
 #: plugins/juci-asterisk/src/pages/phone.html:21
 msgid "Your number"
 msgstr "Puhelinnumerosi"
 
-#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:18
-msgid "Zone members:"
-msgstr "Vyöhykkeen jäsenet:"
-
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:22
+#: juci-mod-wireless/src/widgets/uci.wireless.device.edit.js:23
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js:22
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js:23
 msgid "auto"
 msgstr "Automaattinen"
 
+#: juci-mod-network/src/pages/internet.dns.html:24
 #: plugins/juci-ddns/src/pages/internet.dns.html:24
 #: plugins/juci-ddns/src/pages/internet.wan.ddns.html:5
 msgid "ddns.config.info"
@@ -2149,32 +2113,43 @@ msgstr ""
 "käyttämällä IP-osoitteen sijaan. Tarvitset tätä varten tilin DDNS "
 "palveluntarjoajaltasi."
 
+#: juci-mod-network/src/pages/internet.dns.html:5
 #: plugins/juci-ddns/src/pages/internet.dns.html:5
 msgid "dns.config.info"
 msgstr ""
 "DNS-konfiguraatio on automaattinen, kun olet yhdistettynä verkkoon. "
 "Vaihtoehtoisesti voit manuaalisesti konfiguroida omat DNS asetukset."
 
+#: juci-mod-status/src/pages/status.status.dsl.html:4
 #: plugins/juci-broadcom-dsl/src/pages/status.status.dsl.html:4
 msgid "dsl.status.info"
 msgstr "Tällä sivulla näytetään DSL-yhteyden tekniset parametrit."
 
-#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.adsl.html:4
-msgid "internet.ethernet.adsl.info"
-msgstr ""
+#: juci/src/widgets/juci.input.port.range.html:15
+msgid "error.port.range.end.invalid"
+msgstr "Porttialueen loppuportti virheellinen."
 
-#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:4
-msgid "internet.ethernet.info"
-msgstr ""
+#: juci/src/widgets/juci.input.port.range.html:14
+msgid "error.port.range.end.required"
+msgstr "Porttialueen loppuportti tarvitaan"
 
-#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.vdsl.html:4
-msgid "internet.ethernet.vdsl.info"
-msgstr ""
+#: juci/src/widgets/juci.input.port.range.html:13
+msgid "error.port.range.start.invalid"
+msgstr "Porttialueen alkuportti virheellinen"
 
-#: plugins/juci-broadcom-vlan/src/pages/internet.ethernet.vlan.html:4
-msgid "internet.ethernet.vlan.info"
-msgstr ""
+#: juci/src/widgets/juci.input.port.range.html:12
+msgid "error.port.range.start.required"
+msgstr "Porttialueen alkuportti tarvitaan"
 
+#: juci/src/widgets/juci.input.port.range.html:16
+msgid "error.port.range.startgreaterthanend"
+msgstr "Virhe, alkuportti suurempi kuin loppuportti"
+
+#: juci/src/widgets/juci.input.timespan.html:2
+msgid "from"
+msgstr "Alkaen"
+
+#: juci-mod-network/src/pages/internet.exposed_host.html:5
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:5
 msgid "internet.exposed_host.info"
 msgstr ""
@@ -2182,65 +2157,29 @@ msgstr ""
 "takana, voidaan tähän laitteeseen sallia rajoittamaton pääsy Internetistä  "
 "(Avoin isäntälaite)."
 
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.forwarding.html:4
-msgid "internet.firewall.forwarding.info"
-msgstr ""
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:4
-msgid "internet.firewall.info"
-msgstr ""
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.html:4
-msgid "internet.firewall.rules.info"
-msgstr ""
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.svcfilter.html:4
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.wordfilter.html:4
-msgid "internet.firewall.svcfilter.info"
-msgstr ""
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:4
-msgid "internet.firewall.urlfilter.info"
-msgstr ""
-
-#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.html:4
-msgid "internet.firewall.zones.info"
-msgstr ""
-
-#: plugins/juci-network-netifd/src/pages/internet.lan.html:4
-msgid "internet.lan.info"
-msgstr ""
-
-#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:4
-msgid "internet.lan.routes.info"
-msgstr ""
-
+#: juci-mod-network/src/pages/internet.parental_control.html:4
 #: plugins/juci-firewall-fw3/src/pages/internet.parental_control.html:4
 msgid "internet.parental.control.info"
 msgstr "Tässä voidaan asettaa lapsilukon asetukset."
 
-#: plugins/juci-network-netifd/src/pages/internet.services.html:4
-msgid "internet.services.info"
-msgstr ""
-
-#: plugins/juci-network-netifd/src/pages/internet.wan.html:4
-msgid "internet.wan.info"
-msgstr ""
-
+#: juci-mod-network/src/pages/internet.exposed_host.html:22
 #: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:22
 msgid "ip.address.label"
 msgstr "IP-osoite"
 
-#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:4
-msgid "minidlna.settings.info"
-msgstr ""
-
-#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:24
-msgid "network.interface.type.' + conn.type.value +'.tab.title"
-msgstr ""
-
+#: juci-mod-voice/src/widgets/overview.voice.js:11
+#: juci-mod-voice/src/widgets/overview.voice.js:27
+#: juci-mod-wireless/src/widgets/overview.wifi.js:52
+#: juci-mod-wireless/src/widgets/overview.wifi.js:59
+#: juci-mod-wireless/src/widgets/overview.wifi.js:66
+#: juci-mod-wireless/src/widgets/overview.wifi.js:67
+#: juci-mod-wireless/src/widgets/overview.wifi.js:73
+#: juci-mod-wireless/src/widgets/overview.wifi.js:74
+#: juci-mod-wireless/src/wifi.js:13 juci-mod-wireless/src/wifi.js:14
+#: juci-mod-wireless/src/wifi.js:22 juci-mod-wireless/src/wifi.js:23
+#: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
 #: plugins/juci-asterisk/src/widgets/overview.voice.js:19
-#: plugins/juci-asterisk/src/widgets/overview.voice.js:35
+#: plugins/juci-asterisk/src/widgets/overview.voice.js:36
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:53
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:60
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:67
@@ -2252,7 +2191,13 @@ msgstr ""
 msgid "off"
 msgstr "Pois päältä"
 
-#: plugins/juci-asterisk/src/widgets/overview.voice.js:35
+#: juci-mod-voice/src/widgets/overview.voice.js:27
+#: juci-mod-wireless/src/widgets/overview.wifi.js:52
+#: juci-mod-wireless/src/widgets/overview.wifi.js:59
+#: juci-mod-wireless/src/widgets/overview.wifi.js:73
+#: juci-mod-wireless/src/widgets/overview.wifi.js:74
+#: juci-mod-wireless/src/wifi.js:29 juci-mod-wireless/src/wifi.js:30
+#: plugins/juci-asterisk/src/widgets/overview.voice.js:36
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:53
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:60
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:74
@@ -2260,41 +2205,46 @@ msgstr "Pois päältä"
 msgid "on"
 msgstr "Päällä"
 
+#: juci-mod-voice/src/pages/phone.call_log.html:5
+#: juci-mod-voice/src/pages/phone.html:5
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:5
 #: plugins/juci-asterisk/src/pages/phone.html:5
 msgid "phone.call_log.info"
 msgstr "Puheluloki"
 
+#: juci-mod-voice/src/pages/phone.lines.html:5
 #: plugins/juci-asterisk/src/pages/phone.lines.html:5
 msgid "phone.lines.info"
 msgstr "Puhelinlinjojen konfigurointi"
 
+#: juci-mod-voice/src/pages/phone.number_blocking.html:4
 #: plugins/juci-asterisk/src/pages/phone.number_blocking.html:4
 msgid "phone.number_blocking.info"
 msgstr "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
 
+#: juci-mod-voice/src/pages/phone.numbers.html:5
 #: plugins/juci-asterisk/src/pages/phone.numbers.html:5
 msgid "phone.numbers.info"
 msgstr "Hallinnoi puhelinliittymiä"
 
+#: juci-mod-voice/src/pages/phone.ringing_schedule.html:5
 #: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:5
 msgid "phone.schedule.info"
 msgstr ""
 "Aseta puhelinaikataulut milloin puhelimen tulisi hälyttää tai ei tulisi "
 "hälyttää."
 
+#: juci-mod-voice/src/pages/phone.speed_dialing.html:5
 #: plugins/juci-asterisk/src/pages/phone.speed_dialing.html:5
 msgid "phone.speed_dialing.info"
 msgstr "Tämä toiminto aktivoi pikavalinnat"
 
-#: plugins/juci-broadcom-wl/src/wifi.js:116
-msgid "please pick at least one day to schedule on"
-msgstr "valitse vähintään yksi päivä ajastettavaksi"
-
+#: juci-mod-samba/src/pages/services.samba.html:5
 #: plugins/juci-samba/src/pages/internet.services.samba.html:5
 msgid "services.samba.info"
 msgstr "Samba palvelut"
 
+#: juci-mod-system/src/pages/settings.configuration.html:5
 #: plugins/juci-mod-system/src/pages/settings.configuration.html:5
 msgid "settings.config.info"
 msgstr ""
@@ -2303,18 +2253,17 @@ msgstr ""
 "Voit tallentaa varmuuskopion tietokoneellesi. Suosittelemme pitämään aina "
 "varmuuskopion tietokoneella viimeisimmästä konfiguraatiosta."
 
-#: plugins/juci-dnsmasq-dhcp/src/pages/internet.lan.dhcp.html:4
-msgid "settings.dhcp.info"
-msgstr ""
-
+#: juci-mod-dropbear/src/pages/services.dropbear.html:5
 #: plugins/juci-dropbear/src/pages/services.dropbear.html:5
 msgid "settings.dropbear.info"
 msgstr "Konfiguroi SSH-pääsy modeemiin."
 
+#: juci-mod-system/src/pages/settings.energy.html:5
 #: plugins/juci-mod-system/src/pages/settings.energy.html:5
 msgid "settings.energy.info"
 msgstr "Vähennä virrankulusta poistamalla käyttämättömiä toimintoja käytöstä."
 
+#: juci-mod-network/src/pages/settings.network.html:4
 #: plugins/juci-network-netifd/src/pages/internet.network.html:4
 #: plugins/juci-network-netifd/src/pages/settings.network.html:4
 msgid "settings.network.info"
@@ -2324,32 +2273,37 @@ msgstr ""
 "verkkoon yhdistetyille laitteille. Staattista DHCP:tä käyttämällä on "
 "mahdollista jakaa aina sama IP-osoite halutulle laitteelle."
 
+#: juci-mod-system/src/pages/settings.password.html:5
 #: plugins/juci-mod-system/src/pages/settings.password.html:5
 msgid "settings.password.info"
 msgstr ""
 "Aseta modeemin uusi salasana rajoittaaksesi modeemin hallintaan pääsyä."
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:5
+#: juci-mod-system/src/pages/settings.upgrade.html:5
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:5
 msgid "settings.upgrade.info"
 msgstr ""
 "Modeemi päivittää automaattisesti viimeisimmän saatavilla olevan "
 "ohjelmiston. On myös mahdollista päivittää modeemin ohjelmisto manuaalisesti "
 "mikäli se on välttämätöntä. Päivittäminen ei vaikuta nykyisiin asetuksiin."
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:14
+#: juci-mod-system/src/pages/settings.upgrade.html:14
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:14
 msgid "settings.upgrade.manual.info"
 msgstr ""
 "Laitteen ohjelmisto on mahdollista päivittää ladatusta tiedostosta. "
 "Viimeisimmän ohjelmiston saat palveluntarjoajaltasi."
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:31
+#: juci-mod-system/src/pages/settings.upgrade.html:31
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:31
 msgid "settings.upgrade.online.info"
 msgstr ""
 "Paina \"Tarkista päivitykset\" aloittaaksesi onlinepäivityksen. Mikäli uusi "
 "ohjelmisto on saatavilla se asennetaan automaattisesti (Vaatii "
 "Internetyhteyden)."
 
-#: plugins/juci-mod-system/src/pages/settings.upgrade.html:42
+#: juci-mod-system/src/pages/settings.upgrade.html:42
+#: plugins/juci-sysupgrade/src/pages/settings.upgrade.html:42
 msgid "settings.upgrade.usb.info"
 msgstr ""
 "Laitteen ohjelmisto on mahdollista päivittää laitteeseen yhdistetyltä USB:"
@@ -2357,6 +2311,7 @@ msgstr ""
 "llä saa olla vain yksi päivitysohjelmisto ja sen tulee sijaita USB-levyn "
 "juuressa."
 
+#: juci-mod-status/src/pages/status.diagnostics.html:8
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:8
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:8
 msgid "status.diagnostics.auto.info"
@@ -2364,6 +2319,7 @@ msgstr ""
 "Diagnosointi kestää noin 2 minuuttia eikä sitä voi pysäyttää, kun se on "
 "aloitettu."
 
+#: juci-mod-status/src/pages/status.diagnostics.html:4
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:4
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:4
 msgid "status.diagnostics.info"
@@ -2371,12 +2327,14 @@ msgstr ""
 "Tässä kohdassa on lista työkaluista, joilla voidaan tarkistaa laitteen "
 "Internet-yhteys."
 
+#: juci-mod-status/src/pages/status.diagnostics.html:17
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:17
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:17
 msgid "status.diagnostics.ping.info"
 msgstr ""
 "Syötä oikea kohteen verkkonimi tai IP-osoite suorittaaksesi Ping testi."
 
+#: juci-mod-status/src/pages/status.diagnostics.html:29
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:29
 #: plugins/juci-mod-status/src/pages/status.diagnostics.html:29
 msgid "status.diagnostics.trace.info"
@@ -2384,18 +2342,22 @@ msgstr ""
 "Valitse yhteystyyppi ja sijainti mihin haluat tallentaa jäljityksen. "
 "Jäljitys alkaa automaattisesti erillisessä selainikkunassa."
 
+#: juci-mod-status/src/pages/status.events.html:5
 #: plugins/juci-mod-status/src/pages/status.events.html:5
 msgid "status.eventlog.info"
 msgstr "Valitse kategoriat, jotka haluat nähdä tapahtumalokissa."
 
+#: juci-mod-network/src/pages/status.nat.html:13
 #: plugins/juci-network-netifd/src/pages/status.nat.html:13
 msgid "status.nat.connections.info"
 msgstr "Tämä sivu näyttää kaikkien yhdistettyjen laitteiden yhteydet."
 
+#: juci-mod-network/src/pages/status.nat.html:31
 #: plugins/juci-network-netifd/src/pages/status.nat.html:31
 msgid "status.nat.info"
 msgstr "Tämä sivu näyttää kaikkien yhdistettyjen laitteiden yhteydet."
 
+#: juci-mod-status/src/pages/status.restart.html:5
 #: plugins/juci-mod-status/src/pages/status.restart.html:5
 msgid "status.restart.info"
 msgstr ""
@@ -2403,102 +2365,80 @@ msgstr ""
 "uudelleen. Huomioi, että puhelin, Internet ja TV palvelut ovat poissa "
 "käytöstä prosessin aikana."
 
+#: juci-mod-status/src/pages/status.status.html:5
 #: plugins/juci-mod-status/src/pages/status.status.html:5
 msgid "status.status.info"
 msgstr ""
 "Tällä sivulla on yleisnäkymä laitteen pääparameterista. Tämä voi auttaa "
 "sinua optimoimaan modeemisi tai tunnistamaan ongelmia."
 
-#: plugins/juci-igmpsnoop/src/pages/status.status.tv.html:5
+#: juci-mod-status/src/pages/status.status.tv.html:5
+#: juci-mod-tv/src/pages/status.status.tv.html:5
+#: plugins/juci-igmpinfo/src/pages/status.status.tv.html:5
 #: plugins/juci-mod-status/src/pages/status.status.tv.html:5
 msgid "status.tv.info"
 msgstr "Tällä sivulla voit tarkistaa TV-palvelun tilan."
 
+#: juci-mod-voice/src/pages/status.status.voice.html:5
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:5
 msgid "status.voice.info"
 msgstr ""
 "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
 "muutoksia varten navigoi kohtaan \"Puhelin\"."
 
+#: juci-mod-voice/src/pages/status.status.voice.html:27
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:27
 msgid "status.voice_lines.info"
 msgstr "Puhelinlinjojen tila."
 
-#: plugins/juci-usb/src/pages/status.usb.html:4
-msgid "usb.devices.info"
-msgstr ""
+#: juci/src/widgets/juci.input.timespan.html:4
+msgid "to"
+msgstr "To"
 
-#: plugins/juci-network-netifd/src/internet.js:283
-msgid "value must be a valid MAC-48 address"
-msgstr "arvon on oltava kelvollinen MAC-48-osoite"
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:19
-msgid "wifi-iface.cipher"
-msgstr "Salaus"
-
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:24
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:9
 msgid "wifi-iface.closed"
 msgstr "Lähetä SSID."
 
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:27
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:12
 msgid "wifi-iface.device"
 msgstr "Taajuus"
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:15
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:30
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:18
 msgid "wifi-iface.encryption"
 msgstr "Suojaustila"
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:27
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:28
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:33
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:34
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:30
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:32
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:38
 msgid "wifi-iface.key"
 msgstr "WiFi salasana"
 
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:45
-msgid "wifi-iface.radius_port"
-msgstr ""
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:48
-msgid "wifi-iface.radius_secret"
-msgstr ""
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:42
-msgid "wifi-iface.radius_server"
-msgstr ""
-
-#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:54
-msgid "wifi-iface.show_password"
-msgstr ""
-
+#: juci-mod-wireless/src/widgets/uci.wireless.interface.html:21
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:6
 msgid "wifi-iface.ssid"
 msgstr "Langattoman verkon nimi (SSID)"
 
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.clients.html:4
-msgid "wifi.clients.info"
-msgstr ""
-
-#: plugins/juci-broadcom-wl/src/pages/internet.ethernet.wifi.html:4
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.interfaces.html:4
-msgid "wifi.interfaces.info"
-msgstr ""
-
-#: plugins/juci-broadcom-wl/src/pages/wifi.general.devices.html:4
-msgid "wifi.radios.info"
-msgstr ""
-
+#: juci-mod-wireless/src/pages/wifi.settings.html:5
 #: plugins/juci-broadcom-wl/src/pages/wifi.settings.html:5
 msgid "wifi.settings.info"
 msgstr "Alla voit muuttaa 2,4 GHz ja 5 GHz taajuuksien asetuksia."
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:14
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:14
 msgid "wifi.wps.in.progress"
 msgstr "Modeemisi yrittää nyt parittaa toisten laitteiden kanssa."
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:55
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:56
 msgid "wifi.wps.otherpin.info"
 msgstr "Syötä paritettavan laitteen PIN-koodi tähän kohtaan."
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:25
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:26
 msgid "wifi.wps.pbc.info"
 msgstr ""
@@ -2506,13 +2446,134 @@ msgstr ""
 "painiketta yhdistettävässä laitteessa. WPS paritus on aktiivinen kahden "
 "minuutin ajan parituspainikkeen painamisen jälkeen."
 
+#: juci-mod-wireless/src/pages/wifi.wps.html:40
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:41
 msgid "wifi.wps.pin.info"
 msgstr "Syötä alle paritettavan laitteen WPS-PIN-koodi"
 
+#: juci-mod-wireless/src/pages/wifi.wps.js:9
+msgid "wps.status.fail"
+msgstr ""
+"Yhtään laitetta ei ole yhdistetty. Mikäli haluat jatkaa laitteiden "
+"parittamista paina \"Parita\"-painiketta uudelleen."
+
+#: juci-mod-wireless/src/pages/wifi.wps.js:6
+msgid "wps.status.init"
+msgstr "Alustetaan WPS"
+
+#: juci-mod-wireless/src/pages/wifi.wps.js:11
+msgid "wps.status.msgdone"
+msgstr "Paritus valmis"
+
+#: juci-mod-wireless/src/pages/wifi.wps.js:7
+msgid "wps.status.processing"
+msgstr "Modeemisi yrittää nyt parittaa toista laitetta."
+
+#: juci-mod-wireless/src/pages/wifi.wps.js:8
+msgid "wps.status.success"
+msgstr "Paritus OK."
+
+#: juci-mod-wireless/src/pages/wifi.wps.js:10
+msgid "wps.status.timeout"
+msgstr "WPS paritus aikakatkaistu"
+
+#: juci-mod-wireless/src/pages/wifi.wps.js:38
+msgid "wps.status.unknown"
+msgstr "WPS tuntematon"
+
+#: juci-mod-wireless/src/pages/wifi.wps.html:72
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:73
 msgid "{{text_status}}"
 msgstr ""
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-network.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-network-netifd.json
+msgid "internet.title"
+msgstr "Internet"
+
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-firewall-fw3.json
+msgid "internet.firewall.title"
+msgstr "Palomuuri"
+
+msgid "internet.port.mapping.title"
+msgstr "Porttiohjaus"
+
+msgid "internet.exposed.host.title"
+msgstr "Avoin isäntäkone"
+
+msgid "internet.dns.title"
+msgstr "DNS & DDNS"
+
+msgid "internet.parental.control.title"
+msgstr "Lapsilukko"
+
+# menu.d/juci-mod-samba.json
+msgid "services.samba.title"
+msgstr "Samba"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-status.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-mod-status.json
+msgid "status.title"
+msgstr "Tila"
+
+msgid "status.status.title"
+msgstr "Tila"
+
+msgid "status.status.system.title"
+msgstr "Järjestelmä"
+
+msgid "status.status.dsl.title"
+msgstr "DSL tila"
+
+msgid "status.diagnostics.title"
+msgstr "Diagnostiikkatyökalu"
+
+msgid "status.events.title"
+msgstr "Tapahtumaloki"
+
+msgid "status.restart.title"
+msgstr "Uudelleenkäynnistys"
+
+msgid "status.about.title"
+msgstr "Tietoja"
+
+msgid "status.nat.title"
+msgstr "NAT-ohjaustaulu"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-system.json
+msgid "settings.title"
+msgstr "Asetukset"
+
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-mod-system.json
+msgid "settings.password.title"
+msgstr "Modeemin salasana"
+
+msgid "settings.upgrade.title"
+msgstr "Ohjelmiston päivitys"
+
+msgid "settings.energy.title"
+msgstr "Virranhallinta"
+
+msgid "settings.configuration.title"
+msgstr "Asetukset"
+
+msgid "settings.network.title"
+msgstr "Verkko"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-tv.json
+msgid "status.status.tv.title"
+msgstr "TV"
+
+msgid "status.status.voice.title"
+msgstr "Puhelin tila"
 
 # #-#-#-#-#  all.pot  #-#-#-#-#
 # menu.d/juci-mod-voice.json
@@ -2539,20 +2600,6 @@ msgstr "Linjat"
 msgid "phone.speed.dialing.title"
 msgstr "Pikavalinta"
 
-# bin/usr/share/rpcd/menu.d/juci-broadcom-dsl.json
-msgid "internet.ethernet.adsl.title"
-msgstr "ADSL Laitteet"
-
-msgid "internet.ethernet.vdsl.title"
-msgstr "VDSL Laitteet"
-
-msgid "status.status.dsl.title"
-msgstr "DSL tila"
-
-# bin/usr/share/rpcd/menu.d/juci-broadcom-vlan.json
-msgid "internet.ethernet.vlan.title"
-msgstr "VLAN Laitteet"
-
 # #-#-#-#-#  all.pot  #-#-#-#-#
 # menu.d/juci-mod-wireless.json
 # #-#-#-#-#  titles.pot  #-#-#-#-#
@@ -2562,15 +2609,6 @@ msgstr "WiFi"
 
 msgid "wifi.general.title"
 msgstr "Yleiset"
-
-msgid "wifi.general.devices.title"
-msgstr "Langattomat Laitteet"
-
-msgid "wifi.general.interfaces.title"
-msgstr "Langaton liittymä"
-
-msgid "wifi.general.clients.title"
-msgstr ""
 
 msgid "wifi.schedule.title"
 msgstr "Ajastus"
@@ -2584,139 +2622,6 @@ msgstr "MAC suodatus"
 msgid "wifi.settings.title"
 msgstr "Asetukset"
 
-msgid "internet.ethernet.wifi.title"
-msgstr "Langattomat Laitteet"
-
-# bin/usr/share/rpcd/menu.d/juci-ddns.json
-msgid "internet.wan.ddns.title"
-msgstr "Dynaaminen DNS"
-
-msgid "internet.dns.title"
-msgstr "DNS & DDNS"
-
-# bin/usr/share/rpcd/menu.d/juci-dnsmasq-dhcp.json
-msgid "internet.lan.dhcp.title"
-msgstr "DHCP"
-
-# #-#-#-#-#  titles.pot  #-#-#-#-#
-# bin/usr/share/rpcd/menu.d/juci-firewall-fw3.json
-msgid "internet.firewall.title"
-msgstr "Palomuuri"
-
-msgid "internet.firewall.zones.title"
-msgstr "Palomuurivyöhykkeet"
-
-msgid "internet.firewall.rules.title"
-msgstr "Palomuurisäännöt"
-
-msgid "internet.firewall.forwarding.title"
-msgstr ""
-
-msgid "internet.firewall.urlblock.title"
-msgstr "URL estosuodatin"
-
-msgid "internet.firewall.wordfilter.title"
-msgstr "Edelleenlähetyksen suodatin"
-
-msgid "internet.firewall.svcfilter.title"
-msgstr "Palveluiden suodatin"
-
-msgid "internet.wan.port.mapping.title"
-msgstr "Porttiohjaus"
-
-msgid "internet.wan.exposed.host.title"
-msgstr "Avoin isäntäkone"
-
-msgid "internet.parental.control.title"
-msgstr "Lapsilukko"
-
-# bin/usr/share/rpcd/menu.d/juci-igmpsnoop.json
-msgid "internet.lan.iptv.title"
-msgstr "IPTV"
-
-# #-#-#-#-#  all.pot  #-#-#-#-#
-# menu.d/juci-mod-tv.json
-msgid "status.status.tv.title"
-msgstr "TV"
-
-# bin/usr/share/rpcd/menu.d/juci-minidlna.json
-msgid "internet.services.minidlna.title"
-msgstr "MiniDLNA"
-
-# #-#-#-#-#  all.pot  #-#-#-#-#
-# menu.d/juci-mod-status.json
-# #-#-#-#-#  titles.pot  #-#-#-#-#
-# bin/usr/share/rpcd/menu.d/juci-mod-status.json
-msgid "status.title"
-msgstr "Tila"
-
-msgid "status.status.title"
-msgstr "Tila"
-
-msgid "status.status.system.title"
-msgstr "Järjestelmä"
-
-msgid "status.status.services.title"
-msgstr "Palvelut"
-
-msgid "status.events.title"
-msgstr "Tapahtumaloki"
-
-msgid "status.restart.title"
-msgstr "Uudelleenkäynnistys"
-
-msgid "status.about.title"
-msgstr "Tietoja"
-
-# #-#-#-#-#  titles.pot  #-#-#-#-#
-# bin/usr/share/rpcd/menu.d/juci-mod-system.json
-msgid "settings.password.title"
-msgstr "Modeemin salasana"
-
-msgid "settings.system.title"
-msgstr "Järjestelmä"
-
-msgid "settings.upgrade.title"
-msgstr "Ohjelmiston päivitys"
-
-msgid "settings.energy.title"
-msgstr "Virranhallinta"
-
-msgid "settings.configuration.title"
-msgstr "Asetukset"
-
-msgid "settings.network.title"
-msgstr "Verkko"
-
-# #-#-#-#-#  all.pot  #-#-#-#-#
-# menu.d/juci-mod-network.json
-# #-#-#-#-#  titles.pot  #-#-#-#-#
-# bin/usr/share/rpcd/menu.d/juci-network-netifd.json
-msgid "internet.title"
-msgstr "Internet"
-
-msgid "internet.ethernet.title"
-msgstr "Lähiverkon Laitteet"
-
-msgid "internet.network.title"
-msgstr "Verkko"
-
-msgid "internet.wan.title"
-msgstr "WAN"
-
-msgid "internet.lan.title"
-msgstr "LAN"
-
-msgid "internet.services.title"
-msgstr "Palvelut"
-
-msgid "status.nat.title"
-msgstr "NAT-ohjaustaulu"
-
-# bin/usr/share/rpcd/menu.d/juci-usb.json
-msgid "status.usb.title"
-msgstr ""
-
 # #-#-#-#-#  all.pot  #-#-#-#-#
 # menu.d/juci.json
 # #-#-#-#-#  titles.pot  #-#-#-#-#
@@ -2724,28 +2629,25 @@ msgstr ""
 msgid "overview.title"
 msgstr "Yleisnäkymä"
 
-# #-#-#-#-#  all.pot  #-#-#-#-#
-# menu.d/juci-mod-system.json
-msgid "settings.title"
-msgstr "Asetukset"
+msgid "services.title"
+msgstr "Palvelut"
 
+msgid "services.status.title"
+msgstr "Tila"
+
+msgid "wifi-iface.wifi-iface.ssid"
+msgstr "Langattoman verkon nimi (SSID)"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:15
 msgid "wifi-iface.network"
 msgstr "Langaton verkko"
 
 msgid "wifi-iface.mode"
 msgstr "Tila"
 
-msgid "wifi-iface.key1"
-msgstr "WiFi Avain #1"
-
-msgid "wifi-iface.key2"
-msgstr "WiFi Avain #2"
-
-msgid "wifi-iface.key3"
-msgstr "WiFi Avain #3"
-
-msgid "wifi-iface.key4"
-msgstr "WiFi Avain #4"
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:22
+msgid "wifi-iface.cipher"
+msgstr "Salaus"
 
 msgid "wifi-iface.gtk_rekey"
 msgstr "Avainparien uusimisen aikaväli"
@@ -2783,11 +2685,1021 @@ msgstr "Salli"
 msgid "interface.macmode.deny"
 msgstr "Evää"
 
-msgid "wifi.enc.none"
-msgstr "Ei salausta (Ei tietoturvaa!)"
+msgid "network.interface.type.bridge.tab.title"
+msgstr "Silta"
 
-msgid "wifi.enc.wep"
-msgstr "WEP Open System"
+msgid "network.interface.type.anywan.tab.title"
+msgstr "AnyWAN"
+
+msgid "language.fi"
+msgstr "Suomi"
+
+msgid "login.title"
+msgstr "JUCI Kirjaudu Sisään"
+
+#: plugins/juci-network-netifd/src/pages/internet.network.html:14
+msgid ""
+"<strong>{{data.wan_network['.name'] | uppercase}}</strong> connection will "
+"be used as default outgoing route for packets."
+msgstr ""
+
+#: plugins/juci-broadcom-ethernet/src/pages/internet.ethernet.phy.html:11
+msgid ""
+"<strong>{{data.wan_port.name}}</strong> socket will be used for passing "
+"packets to the internet."
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:27
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:14
+msgid "ACCEPT"
+msgstr "HYVÄKSY"
+
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.adsl.html:3
+msgid "ADSL Devices"
+msgstr "ADSL-laitteet"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.js:9
+msgid "Access Point (AP)"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:9
+msgid "Adapter"
+msgstr "Verkkolaite"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:6
+msgid "Add URL's to URL blocking list"
+msgstr "Lisää URL estolistalle"
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:29
+msgid "Album-Art Names"
+msgstr "Albumin Kansikuvanimet"
+
+#: plugins/juci-samba/src/widgets/samba-share-edit.html:9
+msgid "Allow Guest Access"
+msgstr "Salli vierasverkkopääsy"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:34
+msgid "Any"
+msgstr "Kaikki"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.js:20
+msgid ""
+"Are you sure you want to create a new SSID with the same name and on the "
+"same radio? This may result in undefined behaviour!"
+msgstr ""
+"Haluatko varmasti luoda uuden SSID:n, jolla on sama nimi samassa radiossa? "
+"Tämä voi aiheuttaa määrittelemätöntä käyttäytymistä!"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js:99
+msgid "Are you sure you want to delete this device from bridge?"
+msgstr "Haluatko varmasti poistaa tämän laitteen sillasta?"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.js:29
+msgid "Are you sure you want to delete this rule?"
+msgstr "Haluatko varmasti poistaa tämän säännön?"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.js:27
+msgid "Are you sure you want to delete this zone?"
+msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js:72
+msgid ""
+"Are you sure you want to remove device  from network  and use it in this "
+"bridge?"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:49
+msgid "Are you sure you want to remove this network from this zone?"
+msgstr "Haluatko varmasti poistaa tämän verkon tältä vyöhykkeeltä?"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:29
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:33
+msgid "Auto"
+msgstr "Automaattinen"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:3
+msgid "Automatic DNS Configuration"
+msgstr "Automaattinen DNS kokoonpano"
+
+#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:6
+#: plugins/juci-network-netifd/src/widgets/network-device-ethernet-edit.html:6
+msgid "Base Device"
+msgstr "Fyysinen liitäntä"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:6
+msgid "Basic Config"
+msgstr "Perusasetukset"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:37
+msgid "CBR"
+msgstr "CBR"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:30
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:34
+msgid "CCMP (AES)"
+msgstr "CCMP (AES)"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:18
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:28
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:37
+msgid "Choose Configuration Option"
+msgstr "Valitse Konfiguraatiovaihtoehto"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:16
+msgid "Choose Network"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.js:10
+msgid "Client (STA)"
+msgstr ""
+
+#: plugins/juci-mod-status/src/pages/status.status.services.html:8
+msgid "Command"
+msgstr "Komento"
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.clients.html:3
+msgid "Connected Wireless Clients"
+msgstr "Yhdistetyt Langattomat Laitteet"
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-entry-edit.html:3
+msgid "Connection"
+msgstr "Yhteys"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-create.html:3
+msgid "Create New Network Interface"
+msgstr "Luo Uusi Verkkoyhteys"
+
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.lan.dhcp.html:3
+msgid "DHCP Server Settings"
+msgstr "DHCP Palvelinasetukset"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:24
+msgid "DNS Settings"
+msgstr "DNS Asetukset"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:6
+msgid "DSL Latency Path"
+msgstr "DSL Latency Path"
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:17
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:10
+msgid "Default Gateway"
+msgstr "Oletysyhdyskäytävä"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:6
+msgid "Default Policy"
+msgstr "Oletussääntö"
+
+#: plugins/juci-network-netifd/src/pages/internet.network.html:9
+msgid "Default Route"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:45
+msgid "Destination"
+msgstr "Kohde"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:6
+#: plugins/juci-network-netifd/src/widgets/network-device-baseif-edit.html:6
+#: plugins/juci-usb/src/pages/status.usb.html:7
+msgid "Device ID"
+msgstr "Laitetunnus"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:18
+msgid "Device:"
+msgstr "Laite:"
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:7
+msgid "Enable"
+msgstr "Ota käyttöön"
+
+#: plugins/juci-ddns/src/pages/internet.wan.ddns.html:8
+msgid "Enable DDNS Client"
+msgstr "Aktivoi DDNS Palvelu"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:11
+msgid "Enable NAT"
+msgstr "Aktivoi NAT"
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.html:7
+msgid "Enable This Network"
+msgstr "Aktivoi Tämä Verkko"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:14
+msgid "Enable UPnP"
+msgstr "Aktivoi UPnP"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:8
+msgid "Enable WAN"
+msgstr "Aktivoi WAN"
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:22
+msgid "Enable WiFi On/Off button"
+msgstr "Aktivoi WiFi Päälle/Pois -nappi"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:30
+msgid "Encapsulation Mode"
+msgstr "Kapselointitila"
+
+#: plugins/juci-broadcom-ethernet/src/pages/internet.ethernet.phy.html:3
+msgid "Ethernet Ports"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:29
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:16
+msgid "FORWARD"
+msgstr "EDELLEENLÄHETYS"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:82
+msgid "Family"
+msgstr "Perhe"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:88
+msgid "Firewall Action"
+msgstr "Palomuuritoiminto"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.forwarding.html:3
+msgid "Firewall Forwarding"
+msgstr "Palomuuri Edelleenlähetys"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.html:3
+msgid "Firewall Zones"
+msgstr "Palomuurivyöhykkeet"
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:21
+msgid "Forever"
+msgstr "Aina"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
+msgid "Forward"
+msgstr "Edelleenlähetys"
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:20
+msgid "Friendly Name"
+msgstr "Nimi"
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:17
+msgid "Hour"
+msgstr "Tunti"
+
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:18
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:19
+#: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js:20
+msgid "Hours"
+msgstr "Tunnit"
+
+#: plugins/juci-network-netifd/src/widgets/network-device-ethernet-edit.html:9
+msgid "ID"
+msgstr "Tunniste"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:15
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:50
+msgid "IP"
+msgstr "IP"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:3
+msgid "IPv4 Address"
+msgstr "IPv4-osoite"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:9
+msgid "IPv4 Default Gateway"
+msgstr "IPv4 Oletusyhdyskäytävä"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:6
+msgid "IPv4 Subnet Mask"
+msgstr "IPv4 Aliverkon peite"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:20
+msgid "IPv4-Address ({{$index}}):"
+msgstr "IPv4-osoite ({{$ index}}):"
+
+#: plugins/juci-mod-status/src/pages/status.status.html:14
+msgid "IPv6 Address"
+msgstr "IPv6-osoite"
+
+#: plugins/juci-mod-status/src/pages/status.status.html:18
+msgid "IPv6 Prefix"
+msgstr "IPv6 Etuliite"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:21
+msgid "IPv6-Address ({{$index}}):"
+msgstr "IPv6-osoite ({{$ index}}):"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:61
+msgid ""
+"If you disable SSID broadcasting, WPS function will be disabled as well. You "
+"will need to enable it manually later. Are you sure you want to continue?"
+msgstr ""
+"Jos poistat SSID lähetykset, WPS-toiminto poistetaan käytöstä myös. Sinun "
+"tulee aktivoida se myöhemmin manuaalisesti. Oletko varma, että haluat jatkaa?"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
+msgid "Input"
+msgstr "Syöte"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-create.html:7
+msgid "Interface Name"
+msgstr "Liitännän Nimi"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-create.html:10
+msgid "Interface Type"
+msgstr "Liitännän Tyyppi"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:17
+msgid "Interface UP:"
+msgstr "Käynnistä Liitäntä"
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:17
+msgid "Interfaces"
+msgstr "Liitännät"
+
+#: plugins/juci-mod-status/src/pages/status.status.js:23
+msgid "Internet IPv6"
+msgstr "Internet IPv6"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:23
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:24
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:25
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:26
+msgid "Key"
+msgstr "Avain"
+
+#: plugins/juci-network-netifd/src/widgets/overview.net.html:4
+#: plugins/juci-network-netifd/src/widgets/overview.net.small.html:5
+msgid "LAN"
+msgstr "Lähiverkko"
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.html:3
+msgid "LAN Settings"
+msgstr "Lähiverkon asetukset"
+
+#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:3
+msgid "Layer-2 Ethernet Devices"
+msgstr "Layer-2 Ethernet-laitteet"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:24
+msgid "MBS"
+msgstr "MBS"
+
+#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:11
+msgid "MTU"
+msgstr "MTU"
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:26
+msgid "Media Directories"
+msgstr "Media Hakemistot"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:27
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:36
+msgid "Method"
+msgstr "Menetelmä"
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:3
+msgid "MiniDLNA Settings"
+msgstr "MiniDLNA Asetukset"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:13
+msgid "Mode"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:16
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:9
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-settings-edit.html:7
+msgid "Netmask"
+msgstr "Aliverkko"
+
+#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.html:7
+msgid "Network device"
+msgstr "Verkkolaite"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:11
+msgid "New SSID"
+msgstr "Uusi SSID"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:3
+msgid "New Wireless Interface"
+msgstr "Uusi Langaton Liitäntä"
+
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:91
+msgid "No IP address"
+msgstr "Ei IP-osoitetta"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:38
+msgid "Non-Realtime VBR"
+msgstr "Ei-Reaaliaikainen VBR"
+
+#: plugins/juci-network-netifd/src/widgets/overview-wan-small.html:8
+#: plugins/juci-network-netifd/src/widgets/overview-wan.html:13
+msgid "OFFLINE"
+msgstr "POIS PÄÄLTÄ"
+
+#: plugins/juci-network-netifd/src/widgets/overview-wan-small.html:7
+#: plugins/juci-network-netifd/src/widgets/overview-wan.html:12
+msgid "ONLINE"
+msgstr "PÄÄLLÄ"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
+msgid "Output"
+msgstr "Tuloste"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:18
+msgid "PCR"
+msgstr "PCR"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html:9
+msgid "PTM Priority"
+msgstr "PTM Prioriteetti"
+
+#: plugins/juci-samba/src/widgets/samba-share-edit.html:6
+msgid "Path"
+msgstr "Polku"
+
+#: plugins/juci-broadcom-dsl/src/widgets/dsl-base-device-picker.html:7
+msgid "Pick Device"
+msgstr "Valitse Laite"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-picker.html:7
+msgid "Pick Network"
+msgstr "Valitse Verkko"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:10
+msgid "Pick SSID"
+msgstr "Valitse SSID"
+
+#: plugins/juci-broadcom-wl/src/widgets/wifi-radio-picker-modal.html:7
+msgid "Pick Wireless Radio"
+msgstr "Valitse Langaton Radio"
+
+#: plugins/juci-network-netifd/src/widgets/network-host-picker.html:3
+msgid "Pick a host"
+msgstr "Valitse isäntäkone"
+
+#: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:7
+msgid "Pick base device"
+msgstr "Valitse fyysinen liitäntä"
+
+#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.html:3
+#: plugins/juci-network-netifd/src/widgets/network-connection-picker.html:3
+msgid "Pick network device"
+msgstr "Valitse verkkolaite"
+
+#: plugins/juci-broadcom-ethernet/src/pages/internet.ethernet.phy.html:6
+msgid "Pick uplink port"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:48
+#: plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js:98
+msgid "Please select a connection in the list!"
+msgstr "Valitse yhteys luettelosta!"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.js:28
+msgid "Please select a rule to delete!"
+msgstr "Valitse poistettava sääntö!"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.js:26
+msgid "Please select a zone to delete!"
+msgstr "Valitse poistettava vyöhyke!"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:10
+#: plugins/juci-network-netifd/src/widgets/network-connection-ip4-dns-edit.html:7
+msgid "Primary DNS IP"
+msgstr "Ensisijaisen DNS-palvelimen IP-osoite"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:19
+msgid "Protocol:"
+msgstr "Protokolla:"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js:28
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js:15
+msgid "REJECT"
+msgstr "HYLKÄÄ"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:50
+msgid "Radius Port"
+msgstr "Radius Portti"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:53
+msgid "Radius Secret"
+msgstr "Radius Salasana"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:47
+msgid "Radius Server"
+msgstr "Radius Palvelin"
+
+#: plugins/juci-samba/src/widgets/samba-share-edit.html:12
+msgid "Read only?"
+msgstr "Vain luku?"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:39
+msgid "Realtime VBR"
+msgstr "Reaaliaikainen VBR"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:33
+msgid "Reset to default password"
+msgstr ""
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:23
+msgid "Root Container"
+msgstr "Juurikansio"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.html:3
+msgid "Rules"
+msgstr "Säännöt"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:21
+msgid "SCR"
+msgstr "SCR"
+
+#: plugins/juci-broadcom-wl/src/wifi.js:196
+msgid "SSID string can be at most 32 characters long!"
+msgstr "SSID merkkijono voi olla korkeintaan 32 merkkiä pitkä!"
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.html:17
+msgid "Scheduled"
+msgstr "Ajastettu"
+
+#: plugins/juci-network-netifd/src/widgets/network-host-picker.html:7
+msgid "Select Connected Host"
+msgstr "Valitse Yhdistetty Isäntäkone"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:27
+msgid "Select DSL Link Type"
+msgstr "Valitse DSL-linkkityyppi"
+
+#: plugins/juci-broadcom-dsl/src/widgets/dsl-base-device-picker.html:3
+msgid "Select base DSL device"
+msgstr "Valitse fyysinen DLS-liitäntä"
+
+#: plugins/juci-mod-status/src/pages/status.status.services.html:7
+msgid "Service"
+msgstr "Palvelu"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.svcfilter.html:3
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.wordfilter.html:3
+msgid "Service Filtering"
+msgstr "Palvelun Suodatus"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:15
+msgid "Service Type"
+msgstr "Palvelun Tyyppi"
+
+#: plugins/juci-mod-status/src/pages/status.status.services.html:3
+#: plugins/juci-network-netifd/src/pages/internet.services.html:3
+msgid "Services"
+msgstr "Palvelut"
+
+#: plugins/juci-samba/src/pages/internet.services.samba.html:16
+msgid "Share User Home Directory"
+msgstr "Jaa Käyttäjän Kotihakemisto"
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:3
+msgid "Static Routes"
+msgstr "Staattiset Reitit"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:35
+msgid "TKIP/CCMP (AES)"
+msgstr "TKIP/CCMP (AES)"
+
+#: plugins/juci-mod-status/src/pages/status.status.tv.html:4
+msgid "TV Status"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:8
+msgid "Target"
+msgstr "Kohde"
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:15
+msgid "Target IP Address"
+msgstr "Kohteen IP-osoite"
+
+#: plugins/juci-broadcom-ethernet/src/pages/internet.ethernet.phy.html:7
+msgid ""
+"This will be the port that will be used to configure the physical ethernet "
+"port as upling port for routing out to the internet."
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:36
+msgid "UBR With PCR"
+msgstr "UBR Ja PCR"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js:35
+msgid "UBR Without PCR"
+msgstr "UBR Ilman PCR"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:3
+msgid "URL Filtering"
+msgstr "URL-suodatus"
+
+#: plugins/juci-usb/src/widgets/overview.usb.html:4
+#: plugins/juci-usb/src/widgets/overview.usb.small.html:5
+msgid "USB"
+msgstr "USB"
+
+#: plugins/juci-usb/src/pages/status.usb.html:3
+msgid "USB Devices"
+msgstr "USB-laitteet"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:12
+msgid "VCI"
+msgstr "VCI"
+
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.vdsl.html:3
+msgid "VDSL Devices"
+msgstr "VDSL-laitteet"
+
+#: plugins/juci-broadcom-vlan/src/pages/internet.ethernet.vlan.html:3
+msgid "VLAN Devices"
+msgstr "VLAN-laitteet"
+
+#: plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html:9
+msgid "VPI"
+msgstr "VPI"
+
+#: plugins/juci-usb/src/pages/status.usb.html:8
+msgid "Vendor ID"
+msgstr "Toimittajatunnus"
+
+#: plugins/juci-usb/src/pages/status.usb.html:9
+msgid "Vendor Name"
+msgstr "Toimittajan Nimi"
+
+#: plugins/juci-asterisk/src/pages/status.status.voice.html:41
+msgid "Voice service is not available!"
+msgstr "Puhepalvelu ei ole saatavilla!"
+
+#: plugins/juci-network-netifd/src/widgets/overview-wan-small.html:5
+#: plugins/juci-network-netifd/src/widgets/overview-wan.html:4
+msgid "WAN"
+msgstr "WAN"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:17
+msgid "WAN Connection Type"
+msgstr "WAN Yhteystyyppi"
+
+#: plugins/juci-network-netifd/src/widgets/overview-wan.html:16
+msgid "WAN IP"
+msgstr "WAN IP"
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:3
+msgid "WAN Settings"
+msgstr "WAN-asetukset"
+
+#: plugins/juci-broadcom-wl/src/wifi.js:203
+msgid "WEP encryption key # must be 10-26 hexadecimal characters!"
+msgstr "WEP-salaus avain # täytyy olla 10-26 heksadesimaalimerkkiä!"
+
+#: plugins/juci-broadcom-wl/src/wifi.js:210
+msgid "WPA key must be 8-63 characters long!"
+msgstr "WPA-avain täytyy olla 8-63 merkkiä!"
+
+#: plugins/juci-broadcom-wl/src/widgets/overview.wifi.html:30
+msgid "WPS pin:"
+msgstr "WPS PIN:"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js:88
+msgid ""
+"WPS will be disabled when using WEP encryption. Are you sure you want to "
+"continue?"
+msgstr ""
+"WPS poistetaan käytöstä, kun käytetään WEP-salausta. Haluatko varmasti "
+"jatkaa?"
+
+#: plugins/juci-firewall-fw3/src/pages/internet.wan.exposed_host.html:14
+msgid ""
+"Warning: By using the exposed host function you bypass the firewall of your "
+"{{config.friendly_name}}. Please make sure that your computer is protected "
+"against attacks from Internet. The following ports will not be forwarded: "
+"{{ nonforwardedPorts || 'None'}}."
+msgstr ""
+"Varoitus: Avoin-isäntälaitefunktiolla ohitat  {{config.friendly_name}} "
+"palomuurin. Varmista, että koneesi on suojattu Internethyökkäyksiltä. "
+"Seuraavia portteja ei ohjata: {{ nonforwardedPorts || 'None'}}."
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.client.html:3
+msgid "WiFi Client Mode"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/internet.ethernet.wifi.html:3
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.interfaces.html:3
+msgid "Wireless Interfaces"
+msgstr "Langaton Liitäntä"
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.devices.html:3
+msgid "Wireless Radios"
+msgstr "Langattomat Radiot"
+
+#: plugins/juci-network-netifd/src/widgets/bridge-device-picker.js:9
+msgid "You need to select a device to add!"
+msgstr "Valitse lisättävä laite!"
+
+#: plugins/juci-broadcom-dsl/src/widgets/dsl-base-device-picker.js:41
+msgid "You need to select a device!"
+msgstr "Valitse laite!"
+
+#: plugins/juci-network-netifd/src/widgets/network-host-picker.js:44
+msgid "You need to select a host!"
+msgstr "Valitse isäntäkone!"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-picker.js:42
+msgid "You need to select a network!"
+msgstr "Valitse verkko!"
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-create.js:37
+msgid "You need to specify both name and type!"
+msgstr "Määritä nimi ja tyyppi!"
+
+#: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:18
+msgid "Zone members:"
+msgstr "Vyöhykkeen jäsenet:"
+
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.adsl.html:4
+msgid "internet.ethernet.adsl.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.ethernet.html:4
+msgid "internet.ethernet.info"
+msgstr ""
+
+#: plugins/juci-broadcom-ethernet/src/pages/internet.ethernet.phy.html:4
+msgid "internet.ethernet.phy.info"
+msgstr ""
+
+#: plugins/juci-broadcom-dsl/src/pages/internet.ethernet.vdsl.html:4
+msgid "internet.ethernet.vdsl.info"
+msgstr ""
+
+#: plugins/juci-broadcom-vlan/src/pages/internet.ethernet.vlan.html:4
+msgid "internet.ethernet.vlan.info"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.forwarding.html:4
+msgid "internet.firewall.forwarding.info"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.html:4
+msgid "internet.firewall.info"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.rules.html:4
+msgid "internet.firewall.rules.info"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.svcfilter.html:4
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.wordfilter.html:4
+msgid "internet.firewall.svcfilter.info"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.urlblock.html:4
+msgid "internet.firewall.urlfilter.info"
+msgstr ""
+
+#: plugins/juci-firewall-fw3/src/pages/internet.firewall.zones.html:4
+msgid "internet.firewall.zones.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.html:4
+msgid "internet.lan.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.lan.routes.html:4
+msgid "internet.lan.routes.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.services.html:4
+msgid "internet.services.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.wan.html:4
+msgid "internet.wan.info"
+msgstr ""
+
+#: plugins/juci-minidlna/src/pages/internet.services.minidlna.html:4
+msgid "minidlna.settings.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:24
+msgid "network.interface.type.' + conn.type.value +'.tab.title"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/wifi.js:132
+msgid "please pick at least one day to schedule on"
+msgstr "valitse vähintään yksi päivä ajastettavaksi"
+
+#: plugins/juci-dnsmasq-dhcp/src/pages/internet.lan.dhcp.html:4
+msgid "settings.dhcp.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/pages/internet.network.html:10
+msgid "settings.network.default.route.info"
+msgstr ""
+
+#: plugins/juci-usb/src/pages/status.usb.html:4
+msgid "usb.devices.info"
+msgstr ""
+
+#: plugins/juci-network-netifd/src/internet.js:286
+msgid "value must be a valid MAC-48 address"
+msgstr "arvon on oltava kelvollinen MAC-48-osoite"
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:51
+msgid "wifi-iface.radius_port"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:54
+msgid "wifi-iface.radius_secret"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:48
+msgid "wifi-iface.radius_server"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:60
+msgid "wifi-iface.show_password"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.client.html:4
+msgid "wifi.client.info"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.clients.html:4
+msgid "wifi.clients.info"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/internet.ethernet.wifi.html:4
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.interfaces.html:4
+msgid "wifi.interfaces.info"
+msgstr ""
+
+#: plugins/juci-broadcom-wl/src/pages/wifi.general.devices.html:4
+msgid "wifi.radios.info"
+msgstr ""
+
+# bin/usr/share/rpcd/menu.d/juci-broadcom-dsl.json
+msgid "internet.ethernet.adsl.title"
+msgstr "ADSL Laitteet"
+
+msgid "ADSL"
+msgstr ""
+
+msgid "internet.ethernet.vdsl.title"
+msgstr "VDSL Laitteet"
+
+msgid "VDSL"
+msgstr ""
+
+# bin/usr/share/rpcd/menu.d/juci-broadcom-ethernet.json
+msgid "internet.ethernet.phy.title"
+msgstr ""
+
+msgid "Ethernet"
+msgstr ""
+
+# bin/usr/share/rpcd/menu.d/juci-broadcom-vlan.json
+msgid "internet.ethernet.vlan.title"
+msgstr "VLAN Laitteet"
+
+msgid "VLAN"
+msgstr ""
+
+msgid "wifi.general.devices.title"
+msgstr "Langattomat Laitteet"
+
+msgid "Radios"
+msgstr ""
+
+msgid "wifi.general.interfaces.title"
+msgstr "Langaton liittymä"
+
+msgid "wifi.general.clients.title"
+msgstr ""
+
+msgid "Clients"
+msgstr ""
+
+msgid "wifi.client.title"
+msgstr ""
+
+msgid "WiFi Client"
+msgstr ""
+
+msgid "internet.ethernet.wifi.title"
+msgstr "Langattomat Laitteet"
+
+# bin/usr/share/rpcd/menu.d/juci-ddns.json
+msgid "internet.wan.ddns.title"
+msgstr "Dynaaminen DNS"
+
+msgid "DDNS"
+msgstr ""
+
+msgid "DNS & DDNS"
+msgstr ""
+
+# bin/usr/share/rpcd/menu.d/juci-dnsmasq-dhcp.json
+msgid "internet.lan.dhcp.title"
+msgstr "DHCP"
+
+msgid "internet.firewall.zones.title"
+msgstr "Palomuurivyöhykkeet"
+
+msgid "Zones"
+msgstr ""
+
+msgid "internet.firewall.rules.title"
+msgstr "Palomuurisäännöt"
+
+msgid "internet.firewall.forwarding.title"
+msgstr ""
+
+msgid "Forwarding"
+msgstr ""
+
+msgid "internet.firewall.urlblock.title"
+msgstr "URL estosuodatin"
+
+msgid "URL Filter"
+msgstr ""
+
+msgid "internet.firewall.wordfilter.title"
+msgstr "Edelleenlähetyksen suodatin"
+
+msgid "Keyword Filter"
+msgstr ""
+
+msgid "internet.firewall.svcfilter.title"
+msgstr "Palveluiden suodatin"
+
+msgid "Service Filter"
+msgstr ""
+
+msgid "internet.wan.port.mapping.title"
+msgstr "Porttiohjaus"
+
+msgid "internet.wan.exposed.host.title"
+msgstr "Avoin isäntäkone"
+
+msgid "DMZ"
+msgstr ""
+
+# bin/usr/share/rpcd/menu.d/juci-igmpsnoop.json
+msgid "internet.lan.iptv.title"
+msgstr "IPTV"
+
+# bin/usr/share/rpcd/menu.d/juci-minidlna.json
+msgid "internet.services.minidlna.title"
+msgstr "MiniDLNA"
+
+msgid "MiniDLNA"
+msgstr ""
+
+msgid "status.status.services.title"
+msgstr "Palvelut"
+
+msgid "Router Password"
+msgstr ""
+
+msgid "settings.system.title"
+msgstr "Järjestelmä"
+
+msgid "internet.ethernet.title"
+msgstr "Lähiverkon Laitteet"
+
+msgid "Devices"
+msgstr ""
+
+msgid "internet.network.title"
+msgstr "Verkko"
+
+msgid "internet.wan.title"
+msgstr "WAN"
+
+msgid "internet.lan.title"
+msgstr "LAN"
+
+msgid "internet.services.title"
+msgstr "Palvelut"
+
+# bin/usr/share/rpcd/menu.d/juci-samba.json
+msgid "internet.services.samba.title"
+msgstr ""
+
+msgid "Samba"
+msgstr ""
+
+# bin/usr/share/rpcd/menu.d/juci-usb.json
+msgid "status.usb.title"
+msgstr ""
+
+msgid "wifi-iface.key1"
+msgstr "WiFi Avain #1"
+
+msgid "wifi-iface.key2"
+msgstr "WiFi Avain #2"
+
+msgid "wifi-iface.key3"
+msgstr "WiFi Avain #3"
+
+msgid "wifi-iface.key4"
+msgstr "WiFi Avain #4"
 
 msgid "wifi.enc.wep-shared"
 msgstr "WEP jaettu avain"
@@ -2797,271 +3709,6 @@ msgstr "WPA2 Radius"
 
 msgid "wifi.enc.mixed-wpa"
 msgstr "WPA2 Mixed"
-
-msgid "wifi.enc.psk"
-msgstr "WPA Jaettu Avain"
-
-msgid "wifi.enc.psk2"
-msgstr "WPA2 Jaettu Avain"
-
-msgid "wifi.enc.mixed-psk"
-msgstr "WPA/WPA2 PSK Mixed"
-
-msgid "11b"
-msgstr "802.11b"
-
-msgid "11g"
-msgstr "802.11bg"
-
-msgid "11bg"
-msgstr "802.11n"
-
-msgid "11n"
-msgstr "802.11a"
-
-msgid "11a"
-msgstr "802.11c"
-
-msgid "11ac"
-msgstr "802.11ac"
-
-#~ msgid "language.fi"
-#~ msgstr "Suomi"
-
-#~ msgid ""
-#~ "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true"
-#~ "\"></span> Warning: By using the exposed host function you bypass the "
-#~ "firewall of your {{config.friendly_name}}. Please make sure that your "
-#~ "computer is protected against attacks from Internet. The following ports "
-#~ "will not be forwarded: {{ nonforwardedPorts || 'None'}}."
-#~ msgstr ""
-#~ "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true"
-#~ "\"></span> Varoitus: Avoin-isäntälaitefunktiolla ohitat  {{config."
-#~ "friendly_name}} palomuurin. Varmista, että koneesi on suojattu "
-#~ "Internethyökkäyksiltä. Seuraavia portteja ei ohjata: {{ nonforwardedPorts "
-#~ "|| 'None'}}."
-
-#~ msgid "Access denied"
-#~ msgstr "Pääsy estetty"
-
-#~ msgid "All Weekend"
-#~ msgstr "Viikonloppu"
-
-#~ msgid "Basic Mode"
-#~ msgstr "Perusasetukset"
-
-#~ msgid "Days"
-#~ msgstr "Päivät"
-
-#~ msgid "Display Characters"
-#~ msgstr "Näytä merkit"
-
-#~ msgid "End port"
-#~ msgstr "Viimeinen portti"
-
-#~ msgid "Every Day"
-#~ msgstr "Joka päivä"
-
-#~ msgid "Every Workday"
-#~ msgstr "Joka työpäivä"
-
-#~ msgid "Expert Mode"
-#~ msgstr "Edistyneet asetukset"
-
-#~ msgid "Friday"
-#~ msgstr "Perjantai"
-
-#~ msgid "Homes"
-#~ msgstr "Kodit"
-
-#~ msgid "Host"
-#~ msgstr "Isäntäkone"
-
-#~ msgid "Individual Days"
-#~ msgstr "Yksittäiset päivät"
-
-#~ msgid "Internal error"
-#~ msgstr "Sisäinen virhe"
-
-#~ msgid "Invalid parameters"
-#~ msgstr "Virheellisiä parametreja"
-
-#~ msgid "Invalid request"
-#~ msgstr "Virheellinen pyyntö"
-
-#~ msgid "Log out"
-#~ msgstr "Kirjaudu ulos"
-
-#~ msgid "Monday"
-#~ msgstr "Maanantai"
-
-#~ msgid "Not connected"
-#~ msgstr "Ei yhteyttä"
-
-#~ msgid "Number value is not within valid range"
-#~ msgstr "Numeroarvo ei ole sallittujen rajojen sisällä"
-
-#~ msgid "Object not found"
-#~ msgstr "Kohdetta ei löytynyt"
-
-#~ msgid "Parse error"
-#~ msgstr "Jäsennysvirhe"
-
-#~ msgid "Please enter correct username and password!"
-#~ msgstr "Anna oikea käyttäjätunnus ja salasana!"
-
-#~ msgid "Please enter valid time value for start and end time!"
-#~ msgstr "Määritä kelvollinen alkamisaika ja päättymisaika!"
-
-#~ msgid "Please pick days between mon-sun"
-#~ msgstr "Valitse päivä ma-su väliltä"
-
-#~ msgid "Please sign in"
-#~ msgstr "Kirjaudu sisään"
-
-#~ msgid "Please specify both start time and end time for schedule!"
-#~ msgstr "Määritä sekä alkamisaika, että päättymisaika aikatauluun!"
-
-#~ msgid "Please use ':' to separate hours and minutes!"
-#~ msgstr "Käytä ':' erottaaksesi tunnit ja minuutit!"
-
-#~ msgid "Port (1-65535)"
-#~ msgstr "Portti (1-65535)"
-
-#~ msgid ""
-#~ "Port value must be a valid port number or port range between 1 and 65536"
-#~ msgstr ""
-#~ "Portin arvon on oltava kelvollinen porttinumero tai porttialue 1–65536 "
-#~ "väliltä"
-
-#~ msgid "Preselected Days"
-#~ msgstr "Ennalta valitut päivät"
-
-#~ msgid "RPC error #"
-#~ msgstr "RPC virhe #"
-
-#~ msgid "Saturday"
-#~ msgstr "Lauantai"
-
-#~ msgid "Schedule start time must be lower than schedule end time!"
-#~ msgstr "Aloitusaika täytyy olla pienempi kuin päättymisaika!"
-
-#~ msgid "Select Mode"
-#~ msgstr "Valitse tila"
-
-#~ msgid "Select Theme"
-#~ msgstr "Valitse teema"
-
-#~ msgid "Select User Mode"
-#~ msgstr "Valitse käyttäjätila"
-
-#~ msgid "Session not found"
-#~ msgstr "Istuntoa ei löydy"
-
-#~ msgid "Sign in"
-#~ msgstr "Kirjaudu sisään"
-
-#~ msgid "Start port"
-#~ msgstr "Aloitusportti"
-
-#~ msgid "Sunday"
-#~ msgstr "Sunnuntai"
-
-#~ msgid "The page you were trying to access was not found!"
-#~ msgstr "Sivua, jota yrität katsoa, ei löytynyt."
-
-#~ msgid "Thursday"
-#~ msgstr "Thursday"
-
-#~ msgid "Time Frame"
-#~ msgstr "Aikakehys"
-
-#~ msgid "Timed out"
-#~ msgstr "Aikakatkaistu"
-
-#~ msgid "Toggle navigation"
-#~ msgstr "Vaihda navigointitilaa"
-
-#~ msgid "Tuesday"
-#~ msgstr "Tuesday"
-
-#~ msgid "WAN IP Address"
-#~ msgstr "Ulkoinen IP-osoite"
-
-#~ msgid "Wednesday"
-#~ msgstr "Keskiviikko"
-
-#~ msgid "You are logged in!"
-#~ msgstr "Olet kirjautunut sisään!"
-
-#~ msgid "error.port.range.end.invalid"
-#~ msgstr "Porttialueen loppuportti virheellinen."
-
-#~ msgid "error.port.range.end.required"
-#~ msgstr "Porttialueen loppuportti tarvitaan"
-
-#~ msgid "error.port.range.start.invalid"
-#~ msgstr "Porttialueen alkuportti virheellinen"
-
-#~ msgid "error.port.range.start.required"
-#~ msgstr "Porttialueen alkuportti tarvitaan"
-
-#~ msgid "error.port.range.startgreaterthanend"
-#~ msgstr "Virhe, alkuportti suurempi kuin loppuportti"
-
-#~ msgid "from"
-#~ msgstr "Alkaen"
-
-#~ msgid "to"
-#~ msgstr "To"
-
-#~ msgid "wps.status.fail"
-#~ msgstr ""
-#~ "Yhtään laitetta ei ole yhdistetty. Mikäli haluat jatkaa laitteiden "
-#~ "parittamista paina \"Parita\"-painiketta uudelleen."
-
-#~ msgid "wps.status.init"
-#~ msgstr "Alustetaan WPS"
-
-#~ msgid "wps.status.msgdone"
-#~ msgstr "Paritus valmis"
-
-#~ msgid "wps.status.processing"
-#~ msgstr "Modeemisi yrittää nyt parittaa toista laitetta."
-
-#~ msgid "wps.status.success"
-#~ msgstr "Paritus OK."
-
-#~ msgid "wps.status.timeout"
-#~ msgstr "WPS paritus aikakatkaistu"
-
-#~ msgid "wps.status.unknown"
-#~ msgstr "WPS tuntematon"
-
-#~ msgid "internet.port.mapping.title"
-#~ msgstr "Porttiohjaus"
-
-#~ msgid "internet.exposed.host.title"
-#~ msgstr "Avoin isäntäkone"
-
-# menu.d/juci-mod-samba.json
-#~ msgid "services.samba.title"
-#~ msgstr "Samba"
-
-#~ msgid "status.diagnostics.title"
-#~ msgstr "Diagnostiikkatyökalu"
-
-#~ msgid "status.status.voice.title"
-#~ msgstr "Puhelin tila"
-
-#~ msgid "services.title"
-#~ msgstr "Palvelut"
-
-#~ msgid "services.status.title"
-#~ msgstr "Tila"
-
-#~ msgid "wifi-iface.wifi-iface.ssid"
-#~ msgstr "Langattoman verkon nimi (SSID)"
 
 #~ msgid "-- Select One --"
 #~ msgstr "Valitse yksi"

@@ -51,6 +51,8 @@ module.exports = function(grunt){
 								Object.keys(obj).map(function(k){
 									output.push("msgid \""+k.replace(/\//g, ".").replace(/_/g, ".")+".title\""); 
 									output.push("msgstr \"\""); 
+									output.push("msgid \""+obj[k].title+"\""); 
+									output.push("msgstr \"\""); 
 								});  
 							} catch(e){
 								console.log("WARNING: failed to process "+file+": "+e); 
@@ -83,7 +85,7 @@ module.exports = function(grunt){
 	grunt.registerTask("compile_pot", "Compiles all pot files into one template pot", function(){
 		var exec = require('child_process').exec;
 		var done = this.async(); 
-		exec("rm po/juci_all_strings.pot ; msgcat po/*.pot > po/juci_all_strings.pot", function(){
+		exec("rm po/juci_all_strings.pot ; for file in po/*pot; do msguniq \"$file\" > po/unique.tmp; mv po/unique.tmp \"$file\"; done ; msgcat po/*.pot | msguniq > po/juci_all_strings.pot; for file in po/*po; do msguniq \"$file\" > po/unique.tmp; msgmerge -U -N po/unique.tmp po/juci_all_strings.pot; mv po/unique.tmp \"$file\"; done", function(){
 			done(); 
 		}); 
 	}); 

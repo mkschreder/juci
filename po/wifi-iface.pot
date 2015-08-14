@@ -1,76 +1,113 @@
 msgid "wifi-iface.device"
 msgstr ""
+
 msgid "wifi-iface.network"
 msgstr ""
+
 msgid "wifi-iface.mode"
 msgstr ""
+
 msgid "wifi-iface.ssid"
 msgstr ""
+
 msgid "wifi-iface.encryption"
 msgstr ""
+
 msgid "wifi-iface.cipher"
 msgstr ""
+
 msgid "wifi-iface.key"
 msgstr ""
+
 msgid "wifi-iface.key1"
 msgstr ""
+
 msgid "wifi-iface.key2"
 msgstr ""
+
 msgid "wifi-iface.key3"
 msgstr ""
+
 msgid "wifi-iface.key4"
 msgstr ""
+
 msgid "wifi-iface.gtk_rekey"
 msgstr ""
+
 msgid "wifi-iface.wps_pbc"
 msgstr ""
+
 msgid "wifi-iface.wmf_bss_enable"
 msgstr ""
+
 msgid "wifi-iface.bss_max"
 msgstr ""
+
 msgid "wifi-iface.instance"
 msgstr ""
+
 msgid "wifi-iface.up"
 msgstr ""
+
 msgid "wifi-iface.closed"
 msgstr ""
+
 msgid "wifi-iface.disabled"
 msgstr ""
+
 msgid "wifi-iface.macmode"
 msgstr ""
+
 msgid "wifi-iface.macfilter"
 msgstr ""
+
 msgid "wifi-iface.maclist"
 msgstr ""
+
 msgid "interface.macmode.allow"
 msgstr ""
+
 msgid "interface.macmode.deny"
 msgstr ""
+
 msgid "wifi.enc.none"
 msgstr ""
+
 msgid "wifi.enc.wep"
 msgstr ""
+
 msgid "wifi.enc.wep-shared"
 msgstr ""
+
 msgid "wifi.enc.wpa2"
 msgstr ""
+
 msgid "wifi.enc.mixed-wpa"
 msgstr ""
+
 msgid "wifi.enc.psk"
 msgstr ""
+
 msgid "wifi.enc.psk2"
 msgstr ""
+
 msgid "wifi.enc.mixed-psk"
 msgstr ""
+
 msgid "11b"
 msgstr "802.11b"
+
 msgid "11g"
 msgstr "802.11bg"
+
 msgid "11bg"
 msgstr "802.11n"
+
 msgid "11n"
 msgstr "802.11a"
+
 msgid "11a"
 msgstr "802.11c"
+
 msgid "11ac"
 msgstr "802.11ac"
