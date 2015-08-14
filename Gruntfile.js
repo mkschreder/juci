@@ -10,9 +10,10 @@ module.exports = function(grunt){
 		nggettext_extract: {
 			pot: {
 				files: {
-					'po/template.pot': [
+					'po/juci_all_strings.pot': [
 						'plugins/juci*/src/**/*.js',
-						'plugins/juci*/src/**/*.html'
+						'plugins/juci*/src/**/*.html',
+						'po/*js'
 					]
 				}
 			}
@@ -27,7 +28,7 @@ module.exports = function(grunt){
 		extract_titles: {
 			options: {
 				files: {
-					'po/titles.pot': [
+					'po/titles.js': [
 						"bin/usr/share/rpcd/menu.d/*.json"
 					]
 				}
@@ -47,12 +48,10 @@ module.exports = function(grunt){
 						files.map(function(file){
 							try {
 								var obj = JSON.parse(fs.readFileSync(file)); 
-								output.push("# "+file); 
+								//output.push("# "+file); 
 								Object.keys(obj).map(function(k){
-									output.push("msgid \""+k.replace(/\//g, ".").replace(/_/g, ".")+".title\""); 
-									output.push("msgstr \"\""); 
-									output.push("msgid \""+obj[k].title+"\""); 
-									output.push("msgstr \"\""); 
+									output.push("gettext(\""+k.replace(/\//g, ".").replace(/_/g, ".")+".title\");"); 
+									output.push("gettext(\""+obj[k].title+"\");"); 
 								});  
 							} catch(e){
 								console.log("WARNING: failed to process "+file+": "+e); 
@@ -85,9 +84,11 @@ module.exports = function(grunt){
 	grunt.registerTask("compile_pot", "Compiles all pot files into one template pot", function(){
 		var exec = require('child_process').exec;
 		var done = this.async(); 
-		exec("rm po/juci_all_strings.pot ; for file in po/*pot; do msguniq \"$file\" > po/unique.tmp; mv po/unique.tmp \"$file\"; done ; msgcat po/*.pot | msguniq > po/juci_all_strings.pot; for file in po/*po; do msguniq \"$file\" > po/unique.tmp; msgmerge -U -N po/unique.tmp po/juci_all_strings.pot; filename=$(basename $file); filename=${filename%.*}; sed -i \"s/^\\\"Language:.*/\\\"Language: $filename\\\\\\n\\\"/g\" po/header.template; cat po/header.template po/unique.tmp > \"$file\"; rm po/unique.tmp; done", function(){
-			done(); 
-		}); 
+		//exec("./juci-compile-strings", function(){
+			setTimeout(function(){
+				done();
+			}, 0);  
+		//}); 
 	}); 
 	grunt.registerTask("test", "Run all tests using mocha", function(){
 		var files = grunt.file.expand(["./tests/test-*.js", "./src/**/test-*.js", "./src/**/*.test.js"]); 

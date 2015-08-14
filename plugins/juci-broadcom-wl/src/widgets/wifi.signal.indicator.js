@@ -29,7 +29,7 @@ JUCI.app
 			"position": "absolute", 
 			"width": "6px", 
 			"height": ""+height+"px", 
-			"background-color": (active)?"#aab400":"#d5d5d5",
+			"background-color": (active)?"#5CB85C":"#d5d5d5",
 			"top": ""+top+"px", 
 			"left": ""+(idx * 8)+"px"
 		}; 

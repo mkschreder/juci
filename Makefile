@@ -13,6 +13,7 @@ DIRS-y:=juci \
 	plugins/juci-inteno-router \
 	plugins/juci-upnp \
 	plugins/juci-usb \
+	plugins/juci-macdb \
 	plugins/juci-igmpinfo \
 	plugins/juci-mod-system \
 	plugins/juci-sysupgrade \
@@ -107,9 +108,10 @@ $(DIRS-y):
 	@echo "CFLAGS: $(CFLAGS)"
 	make -i -C $@ clean
 	make -C $@
-	cp -Rp $@/htdocs/* $(BIN)/www/
+	-cp -Rp $@/htdocs/* $(BIN)/www/
+	-cp -Rp $@/build/* $(BIN)/
 	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/
-	cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
+	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 
 $(UBUS_MODS): 

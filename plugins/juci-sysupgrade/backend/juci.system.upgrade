@@ -13,7 +13,7 @@ function sysupgrade_check(params)
 	local type = "usb"; 
 	if params["type"] == "online" then type = "online"; end;
 	local res = {}; 
-	res["stdout"] = shell("sysupgrade --"..type);  
+	res["stdout"] = shell("sysupgrade --"..type:gsub("\";", ""));  
 	print(json.encode(res)); 
 end
 
@@ -21,7 +21,7 @@ function sysupgrade_test(params)
 	local res = {}; 
 	local path = "/tmp/firmware.bin"; 
 	if params["path"] then path = params["path"] end
-	res["stdout"] = shell("sysupgrade --test "..path); 
+	res["stdout"] = shell("sysupgrade --test "..path:gsub("\"", "")); 
 	print(json.encode(res)); 
 end
 
@@ -31,7 +31,7 @@ function sysupgrade_start(params)
 	local keep = ""; 
 	if params["keep"] ~= 1 then keep = "-n" end
 	if params["path"] then path = params["path"] end
-	res["stdout"] = shell("sysupgrade "..keep.." "..path); 
+	res["stdout"] = shell("sysupgrade "..keep.." \""..path:gsub("\"", "").."\""); 
 	print(json.encode(res)); 
 end
 

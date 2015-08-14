@@ -115,6 +115,7 @@ wireless_radios(){
 	
 	json_init
 	for radio in $RADIOS; do
+		if [ "$(wlctl -i $radio apsta)" == "1" ]; then continue; fi
 		json_add_object "$radio"
 		FREQ=$(wlctl -i $radio assoc | awk -F' ' '/Chanspec/ { print $2; }'); 
 		if [ "$FREQ" == "2.4GHz" ]; then
@@ -128,8 +129,7 @@ wireless_radios(){
 			json_add_int "" 20
 			json_add_int "" 40
 			json_close_array
-		fi
-		if [ "$FREQ" == "5GHz" ]; then
+		elif [ "$FREQ" == "5GHz" ]; then
 			json_add_array "hwmodes";
 			# get deviceid of the device and then lookup if the device ac mode is supported (manually set in db) 
 			devid=$(wlctl -i $radio revinfo | awk '/deviceid/{print substr($2,3);}'); 

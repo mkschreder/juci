@@ -1,0 +1,40 @@
+#!/usr/bin/lua
+
+require("JSON"); 
+
+function shell(cmd)
+	local p = assert(io.popen(cmd)); 
+	local s = p:read("*a"); 
+	p:close(); 
+	return s; 
+end
+
+function macdb_lookup(opts)
+	local res = {}; 
+	local mac = ""; 
+	if(opts["mac"]) then mac = opts["mac"]; end
+	local f = assert(io.open("/usr/share/macdb/db.txt", "r")); 
+	mac = string.gsub(mac, ":", ""); 
+	mac = mac:sub(0, 6);
+	local line = f:read("*l");  
+	while line do
+		if(line:sub(0, 6) == mac) then res["manufacturer"] = line:sub(8); break; end
+		line = f:read("*l"); 
+	end
+	f:close(); 
+	print(json.encode(res)); 
+end
+
+local _calls = {
+	["lookup"] = macdb_lookup
+}; 
+
+if arg[1] == ".methods" then 
+	print("lookup");
+elseif _calls[arg[1]] then 
+	local params = {}; 
+	if arg[2] then params = json.decode(arg[2]); end
+	_calls[arg[1]](params); 
+else 
+	io.write("Unknown method!\n"); 
+end

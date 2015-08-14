@@ -298,6 +298,11 @@ JUCI.app
 	}
 	
 	var optionsFA = {
+		nodes: {
+			color: "#999999", 
+			font: {size:15, color:'white' }, 
+			borderWidth: 3
+		},
 		groups: {
 			users: {
 				shape: 'icon',
@@ -351,12 +356,20 @@ JUCI.app
 		id: ".root",
 		label: $config.system.hardware,
 		image: "/img/net-router-icon.png", 
-		shape: "circularImage", 
+		shape: "image", 
 		x: 0, y: 0, 
-		size: 35, 
+		size: 60, 
 		physics: false, 
 		fixed: { x: true, y: true }
 	}); 
+	
+	nodes.push({
+		id: ".lan_hub",
+		x: -90, y: 0, 
+		physics: false, 
+		fixed: { x: true, y: true }
+	});
+	edges.push({ from: ".root", to: ".lan_hub", width: 8, smooth: { enabled: false } }); 
 	
 	$network.getNameServers().done(function(nameservers){
 		$network.getConnectedClients().done(function(clients){
@@ -372,18 +385,22 @@ JUCI.app
 						if(!zone) return; 
 						var node = {
 							id: "zone."+zone.name.value, 
-							label: zone.name.value, 
+							label: String(zone.name.value).toUpperCase(), 
 							image: "/img/net-interface-icon.png", 
-							shape: "circularImage",
+							shape: "image",
 							physics: false, 
 							fixed: { x: false, y: false }
 						}
-						if(zone == wan) { node.x = 150; node.y = 0; }
-						else if(zone == lan) { node.x = -150; node.y = -50; }
-						else if(zone == guest) { node.x = -150; node.y = 50; }
+						if(zone == wan) { node.x = 150; node.y = 0; node.image = "/img/net-interface-wan-icon.png"}
+						else if(zone == lan) { node.x = -180; node.y = -50; }
+						else if(zone == guest) { node.x = -180; node.y = 50; }
 						nodes.push(node);
-						edges.push({ from: ".root", to: node.id, width: 2, smooth: { enabled: false } }); 
 						
+						if(zone != wan)
+							edges.push({ from: ".lan_hub", to: node.id, width: 6, smooth: { enabled: false } }); 
+						else 
+							edges.push({ from: ".root", to: node.id, width: 6, smooth: { enabled: false } }); 
+							
 						// add devices from the zone
 						zone.network.value.map(function(iface_name){
 							var iface = interfaces.find(function(x){ return x.interface == iface_name; }); 
