@@ -93,7 +93,7 @@ inteno: all
 debug: prepare $(UBUS_MODS) $(DIRS-y) 
 	#npm install 
 	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
-	grunt
+	grunt --force
 	./juci-update $(BIN)/www DEBUG
 
 #node_modules: package.json
