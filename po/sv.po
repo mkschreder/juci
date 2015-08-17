@@ -247,6 +247,14 @@ msgstr "Grundinställningar"
 msgid "Bit Rate"
 msgstr "Bithastighet"
 
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:32
+msgid "Block connections to all foreign numbers"
+msgstr "Blockera samtal till alla nummer i utlandet"
+
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:35
+msgid "Block connections to all special rate numbers"
+msgstr "Blockera samtal till specialnummer"
+
 #: plugins/juci-mod-status/src/pages/status.status.system.js:39
 msgid "Buffered"
 msgstr "Buffrad"
@@ -264,11 +272,20 @@ msgstr "CCMP (AES)"
 msgid "CRC Errors"
 msgstr "CRC fel"
 
+#: plugins/juci-asterisk/src/pages/phone.lines.html:20
+msgid "Call ID Restriction"
+msgstr "Call-id restriktion"
+
 # phone
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:4
 #: plugins/juci-asterisk/src/pages/phone.html:4 po/custom.js:62 po/titles.js:4
 msgid "Call Log"
 msgstr "Samtalslogg"
+
+# phone
+#: plugins/juci-asterisk/src/pages/phone.lines.html:17
+msgid "Call Waiting"
+msgstr "Samtal väntar"
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 #: po/custom.js:43
@@ -571,6 +588,10 @@ msgstr "Diagnostik"
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:20
 msgid "Disabled"
 msgstr "Inaktiverad"
+
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:48
+msgid "Do not allow connections from these numbers"
+msgstr "Tillåt inte samtal från dessa nummer"
 
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:11
 msgid "Domain"
@@ -953,6 +974,14 @@ msgstr ""
 msgid "Incoming Calls"
 msgstr "Inkommande samtal"
 
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:43
+msgid "Incoming Number Blocking"
+msgstr "Inkommande nummberblockering"
+
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:14
+msgid "Incoming Phone Lines"
+msgstr "Inkommande telefonlinor"
+
 #: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
 msgid "Input"
 msgstr "In"
@@ -983,6 +1012,10 @@ msgstr "Aktiverad"
 #: po/titles.js:32
 msgid "Interfaces"
 msgstr "Uppkopplingar"
+
+#: plugins/juci-asterisk/src/pages/phone.lines.html:11
+msgid "Internal Number"
+msgstr "Intern nummer"
 
 #: plugins/juci-mod-status/src/pages/status.status.js:22
 #: plugins/juci-network-netifd/src/widgets/overview-wan.html:10 po/custom.js:7
@@ -1194,6 +1227,8 @@ msgstr "NAT"
 msgid "NAT Connection Table"
 msgstr "Uppkopplingstabell för NAT"
 
+#: plugins/juci-asterisk/src/pages/phone.lines.html:8
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:8
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:31
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:9
 #: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:3
@@ -1304,6 +1339,14 @@ msgstr "Operationsdata"
 msgid "Outgoing Calls"
 msgstr "Utgående Samtal"
 
+#: plugins/juci-asterisk/src/pages/phone.lines.html:14
+msgid "Outgoing Calls Number"
+msgstr "Utgående nummer"
+
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:9
+msgid "Outgoing Number Blocking"
+msgstr "Utgående samtalsblockering"
+
 #: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
 msgid "Output"
 msgstr "Ut"
@@ -1372,6 +1415,7 @@ msgstr "Telefontillägg"
 msgid "Phone Lines"
 msgstr "Telefonlinjer"
 
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:11
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:10
 msgid "Phone Number"
 msgstr "Telefonnummer"
@@ -2968,7 +3012,7 @@ msgstr ""
 
 #: po/wifi-iface.js:13
 msgid "wifi-iface.wps_pbc"
-msgstr ""
+msgstr "WPS-push button"
 
 #: plugins/juci-broadcom-wl/src/pages/wifi.client.html:4
 msgid "wifi.client.info"

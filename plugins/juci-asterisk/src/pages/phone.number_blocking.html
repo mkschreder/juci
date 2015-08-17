@@ -6,7 +6,7 @@
 		<juci-config-section>
 			<h2 translate>Outgoing Calls</h2>
 			<juci-config-lines>
-				<juci-config-line title="Outgoing Number Blocking">
+				<juci-config-line title="{{'Outgoing Number Blocking'|translate}}">
 					<switch ng-model="filter.block_outgoing.value"></switch>
 				</juci-config-line>
 			</juci-config-lines>
@@ -29,10 +29,10 @@
 				</juci-config-line>
 				<hr/>
 				<i translate>You can also block ranges of numbers.For example: "0160#" blocks all numbers starting with "0160".</i>
-				<juci-config-line title="Block connections to all foreign numbers">
+				<juci-config-line title="{{'Block connections to all foreign numbers'|translate}}">
 					<switch ng-model="filter.block_foreign.value"></switch>
 				</juci-config-line>
-				<juci-config-line title="Block connections to all special rate numbers">
+				<juci-config-line title="{{'Block connections to all special rate numbers'|translate}}">
 					<switch ng-model="filter.block_special_rate.value"></switch>
 				</juci-config-line>
 			</juci-config-lines>
@@ -40,12 +40,12 @@
 		<juci-config-section>
 			<h2 translate>Incoming Calls</h2>
 			<juci-config-lines>
-				<juci-config-line title="Incoming Number Blocking">
+				<juci-config-line title="{{'Incoming Number Blocking'|translate}}">
 					<switch ng-model="filter.block_incoming.value"></switch>
 				</juci-config-line>
 			</juci-config-lines>
 			<juci-config-lines ng-show="filter.block_incoming.value">
-				<juci-config-line title="Do not allow connections from these numbers">
+				<juci-config-line title="{{'Do not allow connections from these numbers'|translate}}">
 					<div class="row" ng-repeat="rule in incomingRules">
 						<div class="form-group form-inline">
 							<input type="text" class="form-control" ng-model="rule.extension.value"  ng-blur="onSave()" placeholder="{{'Phone Extension'|translate}}"/>

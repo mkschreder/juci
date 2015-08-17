@@ -7,7 +7,7 @@
 				<juci-config-line title="{{'Ringing Schedule'|translate}}">
 					<switch name="enabled" ng-model="settings.enabled.value" class="green"></switch>
 				</juci-config-line>
-				<juci-config-line title="{{'During this time ringing is '|translate}}"  ng-show="settings.enabled.value">
+				<juci-config-line title="{{'During this time ringing is'|translate}} "  ng-show="settings.enabled.value">
 					<juci-select ng-model="settings.status.value" ng-items="enabledDisabledItems" placeholder="{{'Select Schedule Mode'|translate}}"></juci-select>
 				</juci-config-line>
 			</juci-config-lines>
@@ -39,10 +39,10 @@
 			</table>
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
-		<modal title="Add a new Ringing Schedule" ng-show="schedule" on-accept="onAcceptSchedule()" 
+		<modal title="{{'Add a new Ringing Schedule'|translate}}" ng-show="schedule" on-accept="onAcceptSchedule()" 
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
 			<juci-config-lines>
-				<juci-config-line title="Phone Number">
+				<juci-config-line title="{{'Phone Number'|translate}}">
 					<juci-select ng-model="schedule.sip_service_provider" ng-items="allSipAccounts" placeholder="{{'Pick Phone Number'|translate}}"/>
 				</juci-config-line>
 			</juci-config-line>
