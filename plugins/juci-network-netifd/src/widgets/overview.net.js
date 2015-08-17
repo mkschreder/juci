@@ -56,12 +56,8 @@ JUCI.app
 		}).always(function(){ next(); }); 
 	}, 
 	function(next){
-		$rpc.router.clients().done(function(clients){
-			//alert(JSON.stringify(Object.keys(clients).map(function(x) { return clients[x]; }))); 
-			var all = Object.keys(clients).map(function(x) { return clients[x]; }); 
-			$scope.clients = all.filter(function(x){
-				return x.connected && x.wireless == false; 
-			}); 
+		$rpc.juci.network.clients().done(function(result){
+			$scope.clients = result.clients; 
 			next(); 
 		}).fail(function(){
 			next();

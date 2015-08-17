@@ -1,19 +1,12 @@
 #!/usr/bin/lua
 
-require("JSON"); 
-
-function shell(cmd)
-	local p = assert(io.popen(cmd)); 
-	local s = p:read("*a"); 
-	p:close(); 
-	return s; 
-end
+require("JUCI"); 
 
 function sysupgrade_check(params)
 	local type = "usb"; 
 	if params["type"] == "online" then type = "online"; end;
 	local res = {}; 
-	res["stdout"] = shell("sysupgrade --"..type:gsub("\";", ""));  
+	res["stdout"] = juci.shell("sysupgrade %s".."--"..type);  
 	print(json.encode(res)); 
 end
 
@@ -21,7 +14,7 @@ function sysupgrade_test(params)
 	local res = {}; 
 	local path = "/tmp/firmware.bin"; 
 	if params["path"] then path = params["path"] end
-	res["stdout"] = shell("sysupgrade --test "..path:gsub("\"", "")); 
+	res["stdout"] = juci.shell("sysupgrade --test %s", path); 
 	print(json.encode(res)); 
 end
 
@@ -31,29 +24,20 @@ function sysupgrade_start(params)
 	local keep = ""; 
 	if params["keep"] ~= 1 then keep = "-n" end
 	if params["path"] then path = params["path"] end
-	res["stdout"] = shell("sysupgrade "..keep.." \""..path:gsub("\"", "").."\""); 
+	res["stdout"] = juci.shell("sysupgrade "..keep.." %s", path); 
 	print(json.encode(res)); 
 end
 
 function sysupgrade_clean()
 	local res = {}; 
-	res["stdout"] = shell("sysupgrade --clean"); 
+	res["stdout"] = juci.shell("sysupgrade --clean"); 
 	print(json.encode(res)); 
 end
 
-local _calls = {
+juci.ubus({
 	["check"] = sysupgrade_check, 
 	["test"] = sysupgrade_test, 
 	["start"] = sysupgrade_start,
 	["clean"] = sysupgrade_clean
-}; 
+}, arg); 
 
-if arg[1] == ".methods" then 
-	print("check,test,start,clean");
-elseif _calls[arg[1]] then 
-	local params = {}; 
-	if arg[2] then params = json.decode(arg[2]); end
-	_calls[arg[1]](params); 
-else 
-	io.write("Unknown method!\n"); 
-end

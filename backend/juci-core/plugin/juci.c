@@ -582,29 +582,6 @@ rpc_juci_ui_acls(struct ubus_context *ctx, struct ubus_object *obj,
 	ubus_send_reply(ctx, req, buf.head);
 	return 0;
 }
-/*
-static int
-rpc_juci_ui_crypt(struct ubus_context *ctx, struct ubus_object *obj,
-                   struct ubus_request_data *req, const char *method,
-                   struct blob_attr *msg)
-{
-	char *hash;
-	struct blob_attr *tb[__RPC_D_MAX];
-
-	blobmsg_parse(rpc_data_policy, __RPC_D_MAX, tb,
-	              blob_data(msg), blob_len(msg));
-
-	if (!tb[RPC_D_DATA] || blobmsg_data_len(tb[RPC_D_DATA]) >= 128)
-		return UBUS_STATUS_INVALID_ARGUMENT;
-
-	hash = crypt(blobmsg_get_string(tb[RPC_D_DATA]), "$1$");
-
-	blob_buf_init(&buf, 0);
-	blobmsg_add_string(&buf, "crypt", hash);
-
-	ubus_send_reply(ctx, req, buf.head);
-	return 0;
-}*/
 
 static void receive_event(struct ubus_context *ctx, struct ubus_event_handler *ev,
 			  const char *type, struct blob_attr *msg)
@@ -670,18 +647,10 @@ run_command(const char *pFmt, int *exit_code, ...)
 {
 	va_list ap;
 	char cmd[256] = {0};
-	int len=0, maxLen;
-
-	maxLen = sizeof(cmd);
-
+	
+	
 	va_start(ap, pFmt);
-
-	if (len < maxLen)
-	{
-		maxLen -= len;
-		vsnprintf(&cmd[len], maxLen, pFmt, ap);
-	}
-
+	vsnprintf(cmd, sizeof(cmd), pFmt, ap);
 	va_end(ap);
 
 	FILE *pipe = 0;
@@ -693,17 +662,18 @@ run_command(const char *pFmt, int *exit_code, ...)
 		size_t size = 0; 
 		while(size = fgets(ptr, sizeof(buffer) - (ptr - buffer), pipe)){
 			ptr+=size; 
+			//*ptr = '\0'; 
 		}
 		
 		*exit_code = WEXITSTATUS(pclose(pipe));
 
 		remove_newline(buffer);
-		if (strlen(buffer))
+		if (ptr != buffer)
 			return (const char*)buffer;
 		else
-			return "";
+			return "{}";
 	} else {
-		return ""; 
+		return "{}"; 
 	}
 }
 
@@ -720,7 +690,7 @@ static int rpc_shell_script(struct ubus_context *ctx, struct ubus_object *obj,
 	
 	if(stat(fname, &st) == 0){
 		const char *resp = run_command("%s %s '%s'", &exit_code, fname, method, blobmsg_format_json(msg, true)); 
-		if(strlen(resp) && !blobmsg_add_json_from_string(&buf, resp))
+		if(!blobmsg_add_json_from_string(&buf, resp))
 			return UBUS_STATUS_NO_DATA; 
 	}
 	

@@ -15,41 +15,6 @@ JUCI.app
 		$rpc.juci.system.log().done(function(result){
 			if(result && result.lines){
 				$scope.logs = result.lines; 
-				/*result.log.split("\n").map(function(line){
-					var fields = line.match(/(\w* \w* \w* \d{2}:\d{2}:\d{2} \d{4}) ([^\s]*) ([^\s:]*): (.*)/); 
-					if(fields){
-						// remove first one because it is the whole line
-						fields.shift(); 
-						fields[0] = new Date(fields[0]); 
-					}
-					return fields; 
-				})
-				.filter(function(x){ 
-					// Epic ugliness
-					// TODO: fix up the log parsing code
-					if(x == null || x[2] == "kernel" || x[2] == "syslog") return false; 
-					x[2] = x[2].replace(/\[.*\]/gi, ""); 
-					var visible = false; 
-					var error = false, warning = false, info = false; 
-					if(x[1].indexOf("error") >= 0) error = true; 
-					if(x[1].indexOf("warn") >= 0) warning = true; 
-					if(x[1].indexOf("notice") >= 0) info = true; 
-					if(error && $scope.selectedShowType.indexOf("error") == -1) return false; 
-					if(warning && $scope.selectedShowType.indexOf("warning") == -1) return false; 
-					if(info && $scope.selectedShowType.indexOf("info") == -1) return false; 
-					if(!error && !warning && !info && $scope.selectedLogTypes.indexOf("other") >= 0) visible = true; 
-					$scope.selectedLogTypes.map(function(t){
-						if(groups[t] && groups[t].indexOf(x[2]) >= 0) visible = true; 
-					}); 
-					return visible; 
-				}) // filter out all invalid matches 
-				.reverse() // sort by date in descending order
-				.map(function(x){ // convert date back to string and shorten it's format
-					var d = x[0]; 
-					x[0] = d.getFullYear()+"-"+("00"+(d.getMonth()+1)).slice(-2)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-					//x[0] = x[0].toLocaleFormat("%d-%b-%Y %H:%M:%S"); 
-					return x; 
-				}); */
 				$scope.$apply(); 
 				done(); 
 			}
@@ -72,9 +37,9 @@ JUCI.app
 		{ label: "All Events", value: ["error", "warning", "info"] }
 	];
 	$scope.lineClass = function(line){
-		if(line[1].indexOf("error") >= 0) return "label-danger"; 
-		if(line[1].indexOf("warn") >= 0) return "label-warning";  
-		if(line[1].indexOf("notice") >= 0) return "label-info"; 
+		if(line.type.indexOf("error") >= 0) return "label-danger"; 
+		if(line.type.indexOf("warn") >= 0) return "label-warning";  
+		if(line.type.indexOf("notice") >= 0) return "label-info"; 
 		return ""; 
 	}
 	

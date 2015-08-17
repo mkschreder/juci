@@ -29,10 +29,10 @@
 					<th translate>Message</th>
 				</thead>
 				<tr ng-repeat="line in logs track by $index" class="{{lineClass(line)}}">
-					<td nowrap>{{line[0]}}</td>
-					<td>{{line[1]}}</td>
-					<td>{{line[2]}}</td>
-					<td>{{line[3]}}</td>
+					<td nowrap>{{line.date}}</td>
+					<td>{{line.type}}</td>
+					<td>{{line.source}}</td>
+					<td>{{line.message}}</td>
 				</tr>
 			</table>
 		</juci-config-section>

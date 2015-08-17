@@ -72,12 +72,6 @@ all: prepare node_modules $(UBUS_MODS) $(DIRS-y)
 	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	./juci-compile 
 	./juci-update $(BIN)/www RELEASE
-	#closure-compiler --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level ADVANCED_OPTIMIZATIONS --js htdocs/__all.js --js_output_file htdocs/__compiled.js
-	#yui-compressor htdocs/__all.css > htdocs/__compiled.css
-	#mv htdocs/__compiled.css htdocs/__all.css
-	#mv htdocs/__compiled.js htdocs/__all.js
-	#rm -rf htdocs/js
-	#rm -rf htdocs/css
 
 prepare: 	
 	@echo "======= JUCI Buliding ========="

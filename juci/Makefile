@@ -1,4 +1,5 @@
-OUTDIR:=htdocs
+BUILD_DIR:=build
+OUTDIR:=$(BUILD_DIR)/www/
 CSS:=$(OUTDIR)/css/01-juci.css
 JS:=$(OUTDIR)/js/01-juci.js
 JSLIB:=$(OUTDIR)/js/00-juci-libs.js
@@ -69,7 +70,7 @@ all: $(OUTDIR) files $(CSS) $(JSLIB) $(JS) $(HTML)
 	rm -f $(HTML)
 
 $(OUTDIR): 
-	mkdir $(OUTDIR)
+	mkdir -p $(OUTDIR)
 
 .PHONY: files
 
@@ -81,6 +82,8 @@ files:
 	#$(CP) ./src/index.html $(OUTDIR)/
 	# TODO: this needs to be replaced later with /etc/config/juci with proper acl permissions
 	$(CP) ./juci.config.json $(OUTDIR)/config.json
+	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/lua/
+	$(CP) lualibs/* $(BUILD_DIR)/usr/share/lua/
 	
 	
 $(CSS): $(STYLES)

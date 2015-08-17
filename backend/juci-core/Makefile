@@ -24,8 +24,6 @@ $(SHARED_OBJECT): $(SO_OBJECT_FILES)
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/rpcd/acl.d/
 	$(CP) access.json $(ACL_LIST)
 	$(CP) etc $(BUILD_DIR)/
-	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/lua/
-	$(CP) lua/* $(BUILD_DIR)/usr/share/lua/
 	
 $(CGI_SCRIPT): $(IO_OBJECT_FILES)
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/libexec/rpcd/

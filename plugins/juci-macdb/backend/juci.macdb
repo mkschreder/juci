@@ -1,13 +1,6 @@
 #!/usr/bin/lua
 
-require("JSON"); 
-
-function shell(cmd)
-	local p = assert(io.popen(cmd)); 
-	local s = p:read("*a"); 
-	p:close(); 
-	return s; 
-end
+require("JUCI"); 
 
 function macdb_lookup(opts)
 	local res = {}; 
@@ -25,16 +18,6 @@ function macdb_lookup(opts)
 	print(json.encode(res)); 
 end
 
-local _calls = {
+juci.ubus({
 	["lookup"] = macdb_lookup
-}; 
-
-if arg[1] == ".methods" then 
-	print("lookup");
-elseif _calls[arg[1]] then 
-	local params = {}; 
-	if arg[2] then params = json.decode(arg[2]); end
-	_calls[arg[1]](params); 
-else 
-	io.write("Unknown method!\n"); 
-end
+}, arg); 

@@ -51,14 +51,17 @@
 						if(result.result[0] != 0){ // || result.result[1] == undefined) {
 							function _errstr(error){
 								switch(error){
-									case 0: return gettext("Parse error"); 
-									case 1: return gettext("Invalid request"); 
+									case 0: return gettext("OK"); 
+									case 1: return gettext("Invalid command"); 
 									case 2: return gettext("Invalid parameters"); 
-									case 3: return gettext("Internal error"); 
+									case 3: return gettext("Method not found"); 
 									case 4: return gettext("Object not found"); 
-									case 5: return gettext("No changes to commit"); // or session not found? 
+									case 5: return gettext("No data"); 
 									case 6: return gettext("Access denied"); 
 									case 7: return gettext("Timed out"); 
+									case 8: return gettext("Not supported"); 
+									case 9: return gettext("Unknown error"); 
+									case 10: return gettext("Connection failed"); 
 									default: return gettext("RPC error #")+result.result[0]+": "+result.result[1]; 
 								}
 							}

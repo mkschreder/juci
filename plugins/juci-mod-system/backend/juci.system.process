@@ -1,13 +1,6 @@
 #!/usr/bin/lua
 
-require("JSON"); 
-
-function shell(cmd)
-	local p = assert(io.popen(cmd)); 
-	local s = p:read("*a"); 
-	p:close(); 
-	return s; 
-end
+require("JUCI"); 
 
 function fields(inputstr, sep)
 	if sep == nil then
@@ -25,7 +18,7 @@ function process_list()
 	local res = {}; 
 	local lines = {}; 
 	res["list"] = lines; 
-	local stdout = shell("top -bn1"); 
+	local stdout = juci.shell("top -bn1"); 
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local arr = fields(line, "%s"); 
 		local obj = {
@@ -42,16 +35,6 @@ function process_list()
 	print(json.encode(res)); 
 end
 
-local _calls = {
+juci.ubus({
 	["list"] = process_list
-}; 
-
-if arg[1] == ".methods" then 
-	print("list");
-elseif _calls[arg[1]] then 
-	local params = {}; 
-	if arg[2] then params = json.decode(arg[2]); end
-	_calls[arg[1]](params); 
-else 
-	io.write("Unknown method!\n"); 
-end
+}, arg); 

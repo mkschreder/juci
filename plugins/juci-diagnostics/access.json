@@ -3,7 +3,7 @@
 		"description": "JUCI Diagnostics module",
 		"read": {
 			"ubus": {
-				"juci.tools": [
+				"juci.diagnostics": [
 					"ping", 
 					"traceroute"
 				]
