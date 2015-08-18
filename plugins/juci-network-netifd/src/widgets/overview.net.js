@@ -19,10 +19,8 @@ JUCI.app
 	JUCI.interval.repeat("overview-network", 1000, function(done){
 		async.series([function(next){
 			// TODO: move this to factory
-			$rpc.router.clients().done(function(clients){
-				$scope.numClients = Object.keys(clients).map(function(x) { return clients[x]; }).filter(function(x){
-					return x.connected && x.wireless == false; 
-				}).length; 
+			$rpc.juci.network.clients().done(function(res){
+				$scope.numClients = res.clients.length; 
 				$scope.done = 1; 
 			}); 
 		}], function(){

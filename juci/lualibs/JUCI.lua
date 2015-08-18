@@ -7,6 +7,14 @@ local base = _G
 
 module("juci"); 
 
+function readfile(name)
+	local f = base.assert(io.open(name, "r")); 
+	local s = f:read("*a"); 
+	s = s:gsub("\n+$", "");  -- remove trailing new line
+	f:close(); 
+	return s; 
+end
+
 function shell(fmt, ...)
 	for k,v in base.pairs(arg) do
 		-- escape all arguments to prevent code injection!

@@ -4,10 +4,8 @@
 	JUCI.app.factory("$network", function($rpc, $uci){
 		function _refreshClients(self){
 			var deferred = $.Deferred(); 
-			$rpc.router.clients().done(function(clients){
-				self.clients = Object.keys(clients).map(function(x){
-					return clients[x]; 
-				}); 
+			$rpc.juci.network.clients().done(function(res){
+				self.clients = res.clients; 
 				deferred.resolve(self.clients);  
 			}).fail(function(){ deferred.reject(); });
 			return deferred.promise(); 
@@ -202,19 +200,18 @@
 						get type(){ return "baseif"; }, 
 						base: { name: "loopback", id: "lo" }
 					}]; */
-					$rpc.router.boardinfo().done(function(boardinfo){
+					$rpc.juci.system.info().done(function(sysinfo){
 						$uci.sync("layer2_interface_ethernet").done(function(){
-							var names = boardinfo.ethernet.port_names.split(" "); 
-							var devs = boardinfo.ethernet.port_order.split(" "); 
-							
-							devs.map(function(dev, i){
-								devices.push({
-									get name(){ return names[i]; },
-									get id(){ return dev; },
-									get type(){ return "baseif"; },
-									base: { name: names[i], id: dev }
+							if(sysinfo.eth_ports){
+								sysinfo.eth_ports.map(function(dev){
+									devices.push({
+										get name(){ return dev.name; },
+										get id(){ return dev.device; },
+										get type(){ return "baseif"; },
+										base: { name: names[i], id: dev }
+									}); 
 								}); 
-							}); 
+							}
 							$uci.layer2_interface_ethernet["@ethernet_interface"].map(function(i){
 								devices.push({
 									get name(){ return i.name.value; },
