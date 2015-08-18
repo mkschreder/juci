@@ -6,7 +6,7 @@
 				"juci.network": [
 					"clients", 
 					"load", 
-					"netstat", 
+					"nat_table", 
 					"adapters", 
 					"nameservers"
 				], 

@@ -109,10 +109,10 @@ network_nat_table(){
 		/ESTABLISHED/ { 
 			printf "proto=\"" $1 "\";"; 
 			printf "state=\"" $4 "\";";
-			printf "local_ip=\"" substr($5, index($5, "=")+1) "\";";
-			printf "remote_ip=\"" substr($6, index($6, "=")+1) "\";";
-			printf "local_port=\"" substr($7, index($7, "=")+1) "\";";
-			printf "remote_port=\"" substr($8, index($8, "=")+1) "\";\n";
+			printf "remote_ip=\"" substr($5, index($5, "=")+1) "\";";
+			printf "local_ip=\"" substr($6, index($6, "=")+1) "\";";
+			printf "remote_port=\"" substr($7, index($7, "=")+1) "\";";
+			printf "local_port=\"" substr($8, index($8, "=")+1) "\";\n";
 		}' /proc/net/ip_conntrack); 
 		
 	IFS=$'\n'; 

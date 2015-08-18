@@ -157,9 +157,9 @@
 		NetworkBackend.prototype.getNatTable = function(){
 			var def = $.Deferred(); 
 			
-			$rpc.juci.network.netstat().done(function(table){
-				if(table && table.entries){
-					def.resolve(table.entries); 
+			$rpc.juci.network.nat_table().done(function(result){
+				if(result && result.table){
+					def.resolve(result.table); 
 				} else {
 					def.reject(); 
 				}
@@ -208,7 +208,7 @@
 										get name(){ return dev.name; },
 										get id(){ return dev.device; },
 										get type(){ return "baseif"; },
-										base: { name: names[i], id: dev }
+										base: { name: dev.name, id: dev.device }
 									}); 
 								}); 
 							}

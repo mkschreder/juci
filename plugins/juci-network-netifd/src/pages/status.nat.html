@@ -8,7 +8,7 @@
 				</juci-config-line>
 			</juci-config-line>
 		</juci-config-section>
-		<juci-config-section>
+		<juci-config-section style="display: none;">
 			<juci-config-heading>{{ 'Connections for each Device' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'status.nat.connections.info' | translate }}</juci-config-info>
 			<table class="table" style="font-size: 12px;">
@@ -26,7 +26,7 @@
 				</tr>
 			</table>
 		</juci-config-section>
-		<juci-config-section style="display: none;">
+		<juci-config-section>
 			<juci-config-heading>{{ 'NAT Connection Table' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'status.nat.info' | translate }}</juci-config-info>
 			<table class="table" style="font-size: 12px">
@@ -38,23 +38,23 @@
 					<th>Dest.</th>
 					<th>Source Port</th>
 					<th>Dest. Port</th>
-					<th>RX Packets</th>
+					<!--<th>RX Packets</th>
 					<th>TX Packets</th>
 					<th>RX Bytes</th>
-					<th>TX Bytes</th>
+					<th>TX Bytes</th>-->
 				</thead>
 				<tr ng-repeat="con in connections">
 					<!--<td>{{con.ipv6}}</td>-->
-					<td>{{con.protocol}}</td>
+					<td>{{con.proto|uppercase}}</td>
 					<!--<td>{{con.expires}}</td>-->
-					<td>{{con.src}}</td>
-					<td>{{con.dest}}</td>
-					<td>{{con.sport}}</td>
-					<td>{{con.dport}}</td>
-					<td>{{con.rx_packets}}</td>
+					<td>{{con.local_ip}}</td>
+					<td>{{con.remote_ip}}</td>
+					<td>{{con.local_port}}</td>
+					<td>{{con.remote_port}}</td>
+					<!--<td>{{con.rx_packets}}</td>
 					<td>{{con.rx_bytes}}</td>
 					<td>{{con.tx_packets}}</td>
-					<td>{{con.tx_bytes}}</td>
+					<td>{{con.tx_bytes}}</td>-->
 				</tr>
 			</table>
 		</juci-config-section>
