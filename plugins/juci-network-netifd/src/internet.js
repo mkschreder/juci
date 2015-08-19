@@ -200,57 +200,42 @@
 						get type(){ return "baseif"; }, 
 						base: { name: "loopback", id: "lo" }
 					}]; */
-					$rpc.juci.system.info().done(function(sysinfo){
-						$uci.sync("layer2_interface_ethernet").done(function(){
-							if(sysinfo.eth_ports){
-								sysinfo.eth_ports.map(function(dev){
-									devices.push({
-										get name(){ return dev.name; },
-										get id(){ return dev.device; },
-										get type(){ return "baseif"; },
-										base: { name: dev.name, id: dev.device }
+					$rpc.network.interface.dump().done(function(res){
+						var infos = res.interface; 
+						$rpc.juci.system.info().done(function(sysinfo){
+							$uci.sync("layer2_interface_ethernet").done(function(){
+								// match adapters with device names in configuration (quite ugly right now!)
+								// TODO: unuglify
+								$network.getAdapters().done(function(devs){
+									devs.map(function(dev){
+										if(devices.find(function(d){ return d.id == dev.name; })) return ; 
+										var info = infos.find(function(i){ return i.device == dev.name }); 
+										var wanport = $uci.layer2_interface_ethernet["@ethernet_interface"].find(function(i){ return i.ifname.value == dev.name; }); 
+										var ethport = sysinfo.eth_ports.find(function(i){ return i.device == dev.name; }); 
+										var name = dev.name; 
+										if(wanport) name = "VLAN-"+wanport.name.value; 
+										else if(ethport) name = "PORT-"+ethport.name;
+										else if(info) name = "VIF-"+info.interface.toUpperCase();  
+										devices.push({
+											get name(){ return name; },
+											get id(){ return dev.name; },
+											get type(){ return "baseif"; },
+											get up() { return dev.state == "UP" }, 
+											set bridged(value){ if(wanport) wanport.bridge.value = true }, 
+											get is_wan_port() { return (wanport)?true:false; }, 
+											get loopback() { return dev.flags.match(/LOOPBACK/); },
+											base: dev
+										}); 
 									}); 
-								}); 
-							}
-							$uci.layer2_interface_ethernet["@ethernet_interface"].map(function(i){
-								devices.push({
-									get name(){ return i.name.value; },
-									get id(){ return i.ifname.value; },
-									get type(){ return "ethernet"; },
-									set bridged(value){ i.bridge.value = true; }, 
-									get is_wan_port() { return true; }, 
-									base: { name: i.name.value, id: i.ifname.value }
+									deferred.resolve(devices); 
 								}); 
 							}); 
-							
-							/*
-							if(boardinfo.adsl){
-								var adsl_ports = boardinfo.adsl.ports.split(" "); 
-								adsl_ports.map(function(port){
-									devices.push({
-										get name(){ return port; },
-										get id(){ return port; },
-										get type(){ return "adsl_baseif"; },
-										base: { name: port, id: port }
-									}); 
-								}); 
-							}
-							if(boardinfo.vdsl){
-								var vdsl_ports = boardinfo.vdsl.ports.split(" "); 
-								vdsl_ports.map(function(port){
-									devices.push({
-										get name(){ return port; },
-										get id(){ return port; },
-										get type(){ return "vdsl_baseif"; },
-										base: { name: port, id: port }
-									}); 
-								}); 
-							}*/
-							deferred.resolve(devices); 
-						}); 
+						}).fail(function(){
+							deferred.reject(); 
+						});
 					}).fail(function(){
 						deferred.reject(); 
-					}); ; 
+					});
 					return deferred.promise(); 
 				}
 			}
@@ -301,16 +286,25 @@ UCI.network.$registerSectionType("interface", {
 	"ip6addr":				{ dvalue: '', type: String }, 
 	"ip6prefix":			{ dvalue: '', type: String }, 
 	"ip6gateway":			{ dvalue: '', type: String }, 
-	"type":						{ dvalue: '', type: String }, 
+	"type":						{ dvalue: 'none', type: String }, 
 	"defaultroute":		{ dvalue: false, type: Boolean }, 
 	"ip6assign":			{ dvalue: 60, type: Number }, 
 	"bridge_instance": { dvalue: false, type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
-	"hostname":				{ dvalue: '', type: String }, 
 	"ipv6":						{ dvalue: false, type: Boolean },
-	"peerdns": 				{ dvalue: true, type: Boolean }, 
 	"dns": 						{ dvalue: [], type: Array }, 
-	"enabled": 				{ dvalue: true, type: Boolean }
+	"enabled": 				{ dvalue: true, type: Boolean }, 
+	// dhcp settings
+	"broadcast": 			{ dvalue: false, type: Boolean }, 
+	"hostname": 			{ dvalue: "", type: String }, 
+	"peerdns": 				{ dvalue: true, type: Boolean }, 
+	// authentication 
+	"auth": 					{ dvalue: "", type: String }, 
+	"username": 			{ dvalue: "", type: String }, 
+	"password": 			{ dvalue: "", type: String }, 
+	// 3g and dongles
+	"apn": 						{ dvalue: "", type: String }, 
+	"pincode": 				{ dvalue: "", type: String }
 }); 
 
 UCI.network.$registerSectionType("route", {

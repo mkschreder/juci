@@ -1,18 +1,18 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
-.directive("networkConnectionIp4SettingsEdit", function($compile, $parse){
+.directive("networkConnectionProtoStaticEdit", function($compile, $parse){
 	var plugin_root = $juci.module("internet").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/network-connection-ip4-settings-edit.html", 
+		templateUrl: plugin_root+"/widgets/network-connection-proto-static-edit.html", 
 		scope: {
 			interface: "=ngModel"
 		}, 
-		controller: "networkConnectionIp4SettingsEdit", 
+		controller: "networkConnectionProtoStaticEdit", 
 		replace: true, 
 		require: "^ngModel"
 	 };  
 })
-.controller("networkConnectionIp4SettingsEdit", function($scope, $uci, $network, $rpc, $log, gettext){
+.controller("networkConnectionProtoStaticEdit", function($scope, $uci, $network, $rpc, $log, gettext){
 	$scope.expanded = true; 
 	$scope.existingHost = { }; 
 	

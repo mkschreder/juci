@@ -1,0 +1,19 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Enable DHCP Broadcast Flag (required for some ISPs)'|translate}}">
+			<switch ng-model="interface.broadcast.value" class="green"/>
+		</juci-config-line>
+		<juci-config-line title="{{'DHCP Default Route'|translate}}">
+			<switch ng-model="interface.defaultroute.value" class="green"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Automatic DNS Configuration'|translate}}">
+			<switch ng-model="interface.peerdns.value" class="green"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Primary DNS'|translate}}" ng-hide="interface.peerdns.value">
+			<input type="text" class="form-control" ng-model="data.primaryDNS" placeholder="{{'Primary DNS IP'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Secondary DNS'|translate}}" ng-hide="interface.peerdns.value">
+			<input type="text" class="form-control" ng-model="data.secondaryDNS" placeholder="{{'Primary DNS IP'|translate}}"/>
+		</juci-config-line>
+	</juci-config-lines>
+</div>

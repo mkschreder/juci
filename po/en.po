@@ -112,6 +112,10 @@ msgstr ""
 msgid "Add URL's to URL blocking list"
 msgstr ""
 
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:42
+msgid "Add a new Ringing Schedule"
+msgstr ""
+
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
 msgid "Add clients to MAC filtering list"
 msgstr ""
@@ -201,7 +205,6 @@ msgid "Auto"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:7
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:7
 msgid "Automated Diagnostics"
 msgstr ""
 
@@ -240,7 +243,15 @@ msgstr ""
 msgid "Bit Rate"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:39
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:32
+msgid "Block connections to all foreign numbers"
+msgstr ""
+
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:35
+msgid "Block connections to all special rate numbers"
+msgstr ""
+
+#: plugins/juci-mod-status/src/pages/status.status.system.js:53
 msgid "Buffered"
 msgstr ""
 
@@ -257,10 +268,18 @@ msgstr ""
 msgid "CRC Errors"
 msgstr ""
 
+#: plugins/juci-asterisk/src/pages/phone.lines.html:20
+msgid "Call ID Restriction"
+msgstr ""
+
 # phone
 #: plugins/juci-asterisk/src/pages/phone.call_log.html:4
 #: plugins/juci-asterisk/src/pages/phone.html:4 po/custom.js:62 po/titles.js:4
 msgid "Call Log"
+msgstr ""
+
+#: plugins/juci-asterisk/src/pages/phone.lines.html:17
+msgid "Call Waiting"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:44
@@ -332,7 +351,6 @@ msgstr ""
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:11
 #: plugins/juci-mod-status/src/pages/status.processes.html:10
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:10
 msgid "Client IP"
 msgstr ""
 
@@ -371,7 +389,6 @@ msgstr ""
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:6
 #: plugins/juci-mod-status/src/pages/status.processes.html:6
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:6
 msgid "Connection Status"
 msgstr ""
 
@@ -548,12 +565,10 @@ msgid "Devices"
 msgstr "Services"
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:11
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:11
 msgid "Diagnose"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:3
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:3
 msgid "Diagnostic Utility"
 msgstr ""
 
@@ -565,6 +580,10 @@ msgstr ""
 #: plugins/juci-broadcom-wl/src/pages/wifi.schedule.js:7
 #: plugins/juci-broadcom-wl/src/pages/wifi.wps.html:20
 msgid "Disabled"
+msgstr ""
+
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:48
+msgid "Do not allow connections from these numbers"
 msgstr ""
 
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:11
@@ -679,8 +698,6 @@ msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:25
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:37
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:25
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:37
 msgid "Error"
 msgstr ""
 
@@ -762,7 +779,7 @@ msgstr ""
 msgid "Firmware Upgrade"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:30
+#: plugins/juci-mod-status/src/pages/status.status.system.js:44
 msgid "Firmware Version"
 msgstr ""
 
@@ -822,24 +839,21 @@ msgstr ""
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:10
 #: plugins/juci-mod-status/src/pages/status.processes.html:9
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:9
 msgid "Group IP"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:20
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:20
 msgid "Host to ping"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:32
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:32
 msgid "Host to trace"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html:20
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html:12
 #: plugins/juci-mod-status/src/pages/status.status.network.js:9
-#: plugins/juci-mod-status/src/pages/status.status.system.js:28
+#: plugins/juci-mod-status/src/pages/status.status.system.js:42
 #: plugins/juci-network-netifd/src/widgets/uci.network.interface.edit-old.html:39
 msgid "Hostname"
 msgstr ""
@@ -876,7 +890,7 @@ msgstr ""
 msgid "IP Address"
 msgstr ""
 
-#: plugins/juci-network-netifd/src/internet.js:266
+#: plugins/juci-network-netifd/src/internet.js:263
 msgid "IP Address must be a valid ipv4 address!"
 msgstr ""
 
@@ -943,6 +957,14 @@ msgstr ""
 msgid "Incoming Calls"
 msgstr ""
 
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:43
+msgid "Incoming Number Blocking"
+msgstr ""
+
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:14
+msgid "Incoming Phone Lines"
+msgstr ""
+
 #: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
 msgid "Input"
 msgstr ""
@@ -976,6 +998,11 @@ msgstr "Interface UP:"
 msgid "Interfaces"
 msgstr "Interfaces"
 
+#: plugins/juci-asterisk/src/pages/phone.lines.html:11
+#, fuzzy
+msgid "Internal Number"
+msgstr "Interfaces"
+
 #: plugins/juci-mod-status/src/pages/status.status.js:22
 #: plugins/juci-network-netifd/src/widgets/overview-wan.html:10 po/custom.js:7
 #: po/titles.js:108
@@ -990,7 +1017,7 @@ msgstr ""
 msgid "Internet IPv6"
 msgstr "Internet IPv6"
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:31
+#: plugins/juci-mod-status/src/pages/status.status.system.js:45
 msgid "Kernel Version"
 msgstr ""
 
@@ -1013,7 +1040,6 @@ msgstr ""
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:12
 #: plugins/juci-mod-status/src/pages/status.processes.html:11
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:11
 msgid "LAN Port"
 msgstr ""
 
@@ -1057,7 +1083,7 @@ msgstr ""
 msgid "Local IP Address"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:32
+#: plugins/juci-mod-status/src/pages/status.status.system.js:46
 msgid "Local Time"
 msgstr ""
 
@@ -1166,7 +1192,7 @@ msgstr ""
 msgid "Mode"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:29
+#: plugins/juci-mod-status/src/pages/status.status.system.js:43
 msgid "Model"
 msgstr ""
 
@@ -1187,6 +1213,8 @@ msgstr ""
 msgid "NAT Connection Table"
 msgstr ""
 
+#: plugins/juci-asterisk/src/pages/phone.lines.html:8
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:8
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:31
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:9
 #: plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html:3
@@ -1211,7 +1239,7 @@ msgstr ""
 #: plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-entry-edit.html:4
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:12
 #: plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html:47
-#: plugins/juci-network-netifd/src/widgets/overview.net.js:52 po/custom.js:16
+#: plugins/juci-network-netifd/src/widgets/overview.net.js:50 po/custom.js:16
 #: po/titles.js:106
 msgid "Network"
 msgstr "Network"
@@ -1297,6 +1325,14 @@ msgstr ""
 msgid "Outgoing Calls"
 msgstr ""
 
+#: plugins/juci-asterisk/src/pages/phone.lines.html:14
+msgid "Outgoing Calls Number"
+msgstr ""
+
+#: plugins/juci-asterisk/src/pages/phone.number_blocking.html:9
+msgid "Outgoing Number Blocking"
+msgstr ""
+
 #: plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html:8
 msgid "Output"
 msgstr ""
@@ -1365,6 +1401,8 @@ msgstr ""
 msgid "Phone Lines"
 msgstr ""
 
+#: plugins/juci-asterisk/src/pages/phone.numbers.html:11
+#: plugins/juci-asterisk/src/pages/phone.ringing_schedule.html:45
 #: plugins/juci-asterisk/src/pages/status.status.voice.html:10
 msgid "Phone Number"
 msgstr ""
@@ -1441,17 +1479,14 @@ msgid "Pick uplink port"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:21
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:21
 msgid "Ping"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:16
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:16
 msgid "Ping Test"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:24
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:24
 msgid "Ping results"
 msgstr ""
 
@@ -1717,6 +1752,11 @@ msgstr ""
 msgid "Secondary DNS"
 msgstr ""
 
+#: plugins/juci-network-netifd/src/widgets/network-connection-type-none-edit.html:4
+#, fuzzy
+msgid "Select Base Device"
+msgstr "Services"
+
 #: plugins/juci-network-netifd/src/widgets/network-host-picker.html:7
 msgid "Select Connected Host"
 msgstr ""
@@ -1789,7 +1829,7 @@ msgstr ""
 msgid "Share User Home Directory"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:38
+#: plugins/juci-mod-status/src/pages/status.status.system.js:52
 msgid "Shared"
 msgstr ""
 
@@ -1862,7 +1902,7 @@ msgstr ""
 msgid "Storage"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:40
+#: plugins/juci-mod-status/src/pages/status.status.system.js:54
 msgid "Swap"
 msgstr ""
 
@@ -1879,7 +1919,6 @@ msgid "TKIP/CCMP (AES)"
 msgstr ""
 
 #: plugins/juci-mod-status/src/pages/status.processes.html:4
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:4
 msgid "TV Status"
 msgstr ""
 
@@ -1920,7 +1959,6 @@ msgstr ""
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:14
 #: plugins/juci-mod-status/src/pages/status.processes.html:13
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:13
 msgid "Timeout"
 msgstr ""
 
@@ -1929,17 +1967,14 @@ msgid "Today"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:33
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:33
 msgid "Trace"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:36
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:36
 msgid "Trace results"
 msgstr ""
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:28
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:28
 msgid "Tracing Tool"
 msgstr ""
 
@@ -1996,12 +2031,11 @@ msgstr ""
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.js:7
 #: plugins/juci-mod-status/src/pages/status.processes.js:7
-#: plugins/juci-mod-status/src/pages/status.status.tv.js:7
 msgid "Unable to retreive igmptable from device!"
 msgstr ""
 
 #: plugins/juci-broadcom-wl/src/pages/wifi.settings.js:12
-#: plugins/juci-network-netifd/src/widgets/overview.net.js:35
+#: plugins/juci-network-netifd/src/widgets/overview.net.js:33
 msgid "Unknown"
 msgstr ""
 
@@ -2016,11 +2050,11 @@ msgid ""
 "upgrade process has completed!"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:33
+#: plugins/juci-mod-status/src/pages/status.status.system.js:47
 msgid "Uptime"
 msgstr ""
 
-#: plugins/juci-mod-status/src/pages/status.status.system.js:37
+#: plugins/juci-mod-status/src/pages/status.status.system.js:51
 msgid "Usage"
 msgstr ""
 
@@ -2054,7 +2088,7 @@ msgstr ""
 msgid "VPI"
 msgstr ""
 
-#: plugins/juci-network-netifd/src/internet.js:275
+#: plugins/juci-network-netifd/src/internet.js:272
 msgid "Value must be a valid MAC-48 address"
 msgstr ""
 
@@ -2118,7 +2152,6 @@ msgstr ""
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:13
 #: plugins/juci-mod-status/src/pages/status.processes.html:12
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:12
 msgid "WAN Port"
 msgstr ""
 
@@ -2583,6 +2616,10 @@ msgstr "AnyWAN"
 msgid "network.interface.type.bridge.tab.title"
 msgstr "Bridge"
 
+#: plugins/juci-network-netifd/src/widgets/network-connection-type-none-edit.js:3
+msgid "network.interface.type.none.tab.title"
+msgstr "Standard"
+
 #: plugins/juci-asterisk/src/widgets/overview.voice.js:19
 #: plugins/juci-asterisk/src/widgets/overview.voice.js:36
 #: plugins/juci-broadcom-wl/src/widgets/overview.wifi.js:53
@@ -2780,21 +2817,18 @@ msgid "status.about.title"
 msgstr "About"
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:8
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:8
 msgid "status.diagnostics.auto.info"
 msgstr ""
 "This diagnosis should take up to 2 minutes and cannot be cancelled once it "
 "has been started."
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:4
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:4
 msgid "status.diagnostics.info"
 msgstr ""
 "This section shows a list of tools which can be used to check the status of "
 "your network connection."
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:17
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:17
 msgid "status.diagnostics.ping.info"
 msgstr "Please enter a valid hostname or IP address to execute the Ping test."
 
@@ -2803,7 +2837,6 @@ msgid "status.diagnostics.title"
 msgstr "Diagnostic Utility"
 
 #: plugins/juci-diagnostics/src/pages/status.diagnostics.html:29
-#: plugins/juci-mod-status/src/pages/status.diagnostics.html:29
 msgid "status.diagnostics.trace.info"
 msgstr ""
 "Please choose the connection type and location where you would like to save "
@@ -2875,7 +2908,6 @@ msgstr "Status"
 
 #: plugins/juci-igmpinfo/src/pages/status.status.tv.html:5
 #: plugins/juci-mod-status/src/pages/status.processes.html:5
-#: plugins/juci-mod-status/src/pages/status.status.tv.html:5
 msgid "status.tv.info"
 msgstr ""
 "This page allows to verify the connection status of your IPTV Services."
@@ -2903,7 +2935,7 @@ msgstr ""
 "Here you find an overview of your active phone numbers. For any change you "
 "would like to make to the current section, please visit Phone menu."
 
-#: plugins/juci-network-netifd/src/internet.js:286
+#: plugins/juci-network-netifd/src/internet.js:283
 msgid "value must be a valid MAC-48 address"
 msgstr ""
 
