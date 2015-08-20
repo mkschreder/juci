@@ -11,14 +11,14 @@ JUCI.app
 		controller: "dhcpBasicSettingsEdit"
 	};  
 })
-.controller("dhcpBasicSettingsEdit", function($scope, $network){
+.controller("dhcpBasicSettingsEdit", function($scope, $network, $tr, gettext){
 	
 	$scope.dhcpLeaseTimes = [
-		{ label: "1 "+gettext("Hour"), value: "1h" }, 
-		{ label: "6 "+gettext("Hours"), value: "6h" }, 
-		{ label: "12 "+gettext("Hours"), value: "12h" }, 
-		{ label: "24 "+gettext("Hours"), value: "24h" }, 
-		{ label: gettext("Forever"), value: "24h" } // TODO: implement this on server side
+		{ label: "1 "+$tr(gettext("Hour")), value: "1h" }, 
+		{ label: "6 "+$tr(gettext("Hours")), value: "6h" }, 
+		{ label: "12 "+$tr(gettext("Hours")), value: "12h" }, 
+		{ label: "24 "+$tr(gettext("Hours")), value: "24h" }, 
+		{ label: $tr(gettext("Forever")), value: "24h" } // TODO: implement this on server side
 	];  
 	
 }); 

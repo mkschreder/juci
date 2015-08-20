@@ -11,6 +11,10 @@ module.exports = function(grunt){
 			pot: {
 				files: {
 					'po/juci_all_strings.pot': [
+						'juci/src/widgets/*js',
+						'juci/src/pages/*js', 
+						'juci/src/widgets/*html',
+						'juci/src/pages/*html',
 						'plugins/juci*/src/**/*.js',
 						'plugins/juci*/src/**/*.html',
 						'po/*js'

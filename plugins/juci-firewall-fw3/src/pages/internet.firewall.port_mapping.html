@@ -40,7 +40,7 @@
 			</table>
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
-		<modal title="Add / Edit Port Mapping" ng-show="rule" on-accept="onAcceptEdit()" on-dismiss="onCancelEdit()" dismiss-label="Cancel" accept-label="Save">
+		<modal title="{{'Add / Edit Port Mapping'|translate}}" ng-show="rule" on-accept="onAcceptEdit()" on-dismiss="onCancelEdit()" dismiss-label="{{'Cancel'|translate}}" accept-label="{{'Save'|translate}}">
 			<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
 			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>
 		</modal>

@@ -11,7 +11,7 @@ JUCI.app
 		replace: true
 	};  
 })
-.controller("networkDeviceAdslEdit", function($scope, $network, gettext){
+.controller("networkDeviceAdslEdit", function($scope, $network, gettext, $tr){
 	$network.getDevices().done(function(devices){
 		var baseDevices = devices.filter(function(x){ return x.type == "adsl_baseif"; }).map(function(x){
 			return {
@@ -21,22 +21,22 @@ JUCI.app
 		}); 
 		
 		$scope.linkTypes = [
-			{ label: "EoA", value: "EoA" }, 
-			{ label: "PPPoA", value: "PPPoA" }, 
-			{ label: "IPoA", value: "IPoA" }
+			{ label: $tr(gettext("EoA")), value: "EoA" }, 
+			{ label: $tr(gettext("PPPoA")), value: "PPPoA" }, 
+			{ label: $tr(gettext("IPoA")), value: "IPoA" }
 		]; 
 		
 		$scope.encapModes = [
-			{ label: "LLC/SNAP-Bridging", value: "llcsnap_eth" }, 
-			{ label: "VC/MUX", value: "vcmux_eth" }
+			{ label: $tr(gettext("LLC/SNAP-Bridging")), value: "llcsnap_eth" }, 
+			{ label: $tr(gettext("VC/MUX")), value: "vcmux_eth" }
 		]; 
 		
 		$scope.serviceTypes = [
-			{ label: gettext("UBR Without PCR"), value: "ubr" }, 
-			{ label: gettext("UBR With PCR"), value: "ubr_pcr" }, 
-			{ label: gettext("CBR"), value: "cbr" }, 
-			{ label: gettext("Non-Realtime VBR"), value: "nrtvbr" }, 
-			{ label: gettext("Realtime VBR"), value: "rtvbr" }, 
+			{ label: $tr(gettext("UBR Without PCR")), value: "ubr" }, 
+			{ label: $tr(gettext("UBR With PCR")), value: "ubr_pcr" }, 
+			{ label: $tr(gettext("CBR")), value: "cbr" }, 
+			{ label: $tr(gettext("Non-Realtime VBR")), value: "nrtvbr" }, 
+			{ label: $tr(gettext("Realtime VBR")), value: "rtvbr" }, 
 		]; 
 		
 		$scope.baseDevices = baseDevices; 

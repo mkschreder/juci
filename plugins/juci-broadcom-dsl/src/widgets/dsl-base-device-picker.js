@@ -38,7 +38,7 @@ JUCI.app
 	$scope.data = {}; 
   $scope.ok = function () {
 		if(!$scope.data.selected) {
-			alert(gettext("You need to select a device!")); 
+			alert($tr(gettext("You need to select a device!"))); 
 			return; 
 		}
 		$modalInstance.close($scope.data.selected);

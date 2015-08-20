@@ -14,14 +14,14 @@
 	<div class="form-group">
 		<label for="protocol" class="control-label col-xs-4" translate>Protocol</label>
 		<div class="col-xs-8" id="protocol">
-			<juci-select ng-model="ngModel.proto.value" ng-items="protocolChoices" placeholder="Select protocol"></juci-select>
+			<juci-select ng-model="ngModel.proto.value" ng-items="protocolChoices" placeholder="{{'Select protocol'|translate}}"></juci-select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="range" class="control-label col-xs-4">Type</label>
+		<label for="range" class="control-label col-xs-4" translate>Type</label>
 		<div class="col-xs-8" id="range">
 			<div class="btn-group">
-				<button ng-repeat="item in [[false,'Port'], [true, 'Port range']]" class="btn btn-default" ng-model="portIsRange" btn-radio="item[0]" ng-click="onPortRangeClick(item[0])">{{item[1]}}</button>
+				<button ng-repeat="item in rangeTypes" class="btn btn-default" ng-model="portIsRange" btn-radio="item[0]" ng-click="onPortRangeClick(item[0])">{{item[1]}}</button>
 			</div>
 		</div>
 	</div>

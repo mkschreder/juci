@@ -1,10 +1,10 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetWANPage", function($scope, $uci, $network, $config, $firewall, $upnp){
+.controller("InternetWANPage", function($scope, $uci, $network, $config, $firewall, $upnp, $tr, gettext){
 	$scope.protocolTypes = [
-		{ label: "Manual", value: "static" }, 
-		{ label: "Automatic (DHCP)", value: "dhcp" }
+		{ label: $tr(gettext("Manual")), value: "static" }, 
+		{ label: $tr(gettext("Automatic (DHCP)")), value: "dhcp" }
 	]; 
 	$scope.data = {}; 
 	

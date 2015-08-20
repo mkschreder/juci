@@ -9,19 +9,22 @@ JUCI.app
 		controller: "uciFirewallRuleEdit", 
 		replace: true
 	 };  
-}).controller("uciFirewallRuleEdit", function($scope, $uci, $rpc, $network, $log){
+}).controller("uciFirewallRuleEdit", function($scope, $uci, $rpc, $network, $log, $tr, gettext){
 	$scope.$watch("ngModel", function(value){
 		if(!value) return; 
 		var ngModel = value; 
 		if(ngModel && ngModel.src_dport && ngModel.dest_port && ngModel.src_dport.value && ngModel.dest_port.value){
-			
 			$scope.portIsRange = (ngModel.src_dport.value.indexOf("-") != -1) || (ngModel.dest_port.value.indexOf("-") != -1); 
 		}
 	}); 
 	$scope.protocolChoices = [
-		{ label: "UDP", value: "udp"}, 
-		{ label: "TCP", value: "tcp"}, 
-		{ label: "TCP + UDP", value: "tcpudp" }
+		{ label: $tr(gettext("UDP")), value: "udp" }, 
+		{ label: $tr(gettext("TCP")), value: "tcp" }, 
+		{ label: $tr(gettext("TCP + UDP")), value: "tcpudp" }
+	]; 
+	$scope.rangeTypes = [
+		[false, $tr(gettext('Port'))], 
+		[true, $tr(gettext('Port range'))]
 	]; 
 	
 	$scope.deviceChoices = [];

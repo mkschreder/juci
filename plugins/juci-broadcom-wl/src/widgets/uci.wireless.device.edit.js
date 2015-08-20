@@ -19,9 +19,9 @@ JUCI.app
 		$rpc.juci.broadcom.wireless.radios().done(function(result){
 			if(device[".name"] in result){
 				var settings = result[device[".name"]]; 
-				$scope.allChannels = [gettext("auto")].concat(settings.channels).map(function(x){ return { label: $tr(x), value: x }; }); 
-				$scope.allModes = [gettext("auto")].concat(settings.hwmodes).map(function(x){ return { label: $tr(x), value: x }; }); ; 
-				$scope.allBandwidths = settings.bwcaps.map(function(x){ return { label: $tr(x), value: x }; }); ; 
+				$scope.allChannels = [$tr(gettext("auto"))].concat(settings.channels).map(function(x){ return { label: x, value: x }; }); 
+				$scope.allModes = [$tr(gettext("auto"))].concat(settings.hwmodes).map(function(x){ return { label: $tr(x), value: x }; }); ; 
+				$scope.allBandwidths = settings.bwcaps.map(function(x){ return { label: x, value: x }; }); ; 
 			} 
 			$scope.$apply(); 
 		}); 
