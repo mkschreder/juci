@@ -12,7 +12,7 @@
 		<juci-config-line title="{{'IPv6 Prefix'|translate}}">
 			<input class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 Address Mask'|translate}}"></input>
 		</juci-config-line>
-		<juci-config-line title="{{'DHCP Default Route'|translate}}">
+		<juci-config-line title="{{'Configure As Default Route'|translate}}">
 			<switch ng-model="interface.defaultroute.value" class="green"/>
 		</juci-config-line>
 		<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value">

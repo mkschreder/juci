@@ -1,7 +1,8 @@
 <div>
 	<div class="row" >
 		<div class="col-xs-9">
-			<div class="list-group" >
+			<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"/>
+			<div class="list-group" ng-show="items" >
 				<a href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}</a>
 			</div>
 		</div>

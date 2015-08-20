@@ -27,7 +27,7 @@
 	"internet/services": {
 			"title": "Services",
 			"acls": [ "network" ],
-			"index": 100
+			"index": 90
 	},
 	"status/nat": {
 		"title": "NAT", 

@@ -1,0 +1,14 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetWanServices">
+		<juci-config-heading>{{'Allow WAN Access To Running Services'|translate}}</juci-config-heading>
+		<juci-config-section >
+			<juci-config-info>{{'internet.wan.services.info'|translate}}</juci-config-info>
+			<juci-config-lines>
+				<juci-config-line ng-repeat="svc in services" title="{{svc.name}} ({{'port'|translate}} {{svc.listen_port}})">
+					<switch ng-model="svc.$allow" class="green" ng-change="onChangeState(svc)"></switch>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>
