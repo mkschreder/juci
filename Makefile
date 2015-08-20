@@ -8,6 +8,8 @@ DIRS-y:=juci \
 	plugins/juci-firewall-fw3 \
 	plugins/juci-dnsmasq-dhcp \
 	plugins/juci-minidlna \
+	plugins/juci-samba \
+	plugins/juci-event \
 	plugins/juci-ddns \
 	plugins/juci-diagnostics \
 	plugins/juci-inteno-router \
@@ -81,6 +83,7 @@ prepare:
 	mkdir -p $(BIN)/usr/share/rpcd/menu.d/
 	mkdir -p $(BIN)/usr/share/rpcd/acl.d/
 	mkdir -p $(BIN)/usr/lib/rpcd/cgi/
+	mkdir -p $(BIN)/etc/hotplug.d/
 	
 node_modules: package.json
 	npm install --production
@@ -105,6 +108,7 @@ $(DIRS-y):
 	-cp -Rp $@/htdocs/* $(BIN)/www/
 	-cp -Rp $@/build/* $(BIN)/
 	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/
+	-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/
 	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 

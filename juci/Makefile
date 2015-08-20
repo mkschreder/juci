@@ -58,7 +58,6 @@ JAVASCRIPT+=src/js/status.js
 JAVASCRIPT+=src/js/tr.js
 JAVASCRIPT+=src/js/theme.js
 JAVASCRIPT+=src/js/timeout.js
-JAVASCRIPT+=src/js/events.js
 JAVASCRIPT+=$(wildcard src/widgets/*.js) $(wildcard src/pages/*.js)
 
 INDEX:=$(OUTDIR)/index.html

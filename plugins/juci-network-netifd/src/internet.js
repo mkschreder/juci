@@ -187,7 +187,13 @@
 	}); 
 	
 	// register basic vlan support 
-	JUCI.app.run(function($network, $uci, $rpc){
+	JUCI.app.run(function($network, $uci, $rpc, $events, gettext, $tr){
+		$events.subscribe("dongle-up", function(ev){
+			alert($tr(gettext("Your dongle ({0}) has been configured as wan port internet device.".format(ev.data.device)))); 
+		}); 
+		$events.subscribe("dongle-down", function(ev){
+			alert($tr(gettext("Dongle has been disconnected!"))); 
+		}); 
 		$network.subsystem(function(){
 			return {
 				getDevices: function(){
@@ -208,7 +214,6 @@
 								// TODO: unuglify
 								$network.getAdapters().done(function(devs){
 									devs.map(function(dev){
-										if(devices.find(function(d){ return d.id == dev.name; })) return ; 
 										var info = infos.find(function(i){ return i.device == dev.name }); 
 										var wanport = $uci.layer2_interface_ethernet["@ethernet_interface"].find(function(i){ return i.ifname.value == dev.name; }); 
 										var ethport = sysinfo.eth_ports.find(function(i){ return i.device == dev.name; }); 

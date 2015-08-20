@@ -10,15 +10,17 @@
 	JUCI.events = new EventManager();
 	
 	JUCI.app.run(function($rpc){
-		var last_handled_time = new Date().getTime() / 1000; 
+		var last_handled_time = 0;  
 		var self = JUCI.events;
-		if(!$rpc.juci.system || !$rpc.juci.system.events) return;  
+		if(!$rpc.juci.event || !$rpc.juci.event.poll) return;  
 		setInterval(function(){
-			$rpc.juci.system.events().done(function(result){
-				if(!result || !result.events) return; 
-				result.events.map(function(event){
+			$rpc.juci.event.poll({clear: 1}).done(function(result){
+				var new_time = 0; 
+				if(!result || !result.list) return; 
+				result.list.map(function(event){
 					if(event.time > last_handled_time){
-						var cb = self.callbacks[event.type]; 
+						if(new_time < event.time) new_time = event.time; 
+						var cb = self.callbacks[event.data.event]; 
 						if(cb){
 							cb.map(function(c){
 								c.apply(event, [event]); 
@@ -27,6 +29,7 @@
 						}
 					}
 				}); 
+				last_handled_time = new_time; 
 			}); 
 		}, 2000);  
 	}); 

@@ -1,0 +1,12 @@
+{
+	"juci-event": {
+		"description": "JUCI event module",
+		"read": {
+			"ubus": {
+				"juci.event": [
+					"poll"
+				]
+			}
+		}
+	}
+}

@@ -835,7 +835,7 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 	};
 
 	static struct ubus_object_type juci_events_type =
-		UBUS_OBJECT_TYPE("luci-rpc-juci-events", juci_ui_methods);
+		UBUS_OBJECT_TYPE("luci-rpc-juci-events", juci_events_methods);
 
 	static struct ubus_object events_obj = {
 		.name = "juci.events",
