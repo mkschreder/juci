@@ -13,7 +13,7 @@ if(INTERFACE and (INTERFACE:find("usb") or INTERFACE:find("wwan"))) then
 		local interface = config[config["defaults"]["internet_interface"]]; 
 		if(ACTION == "add" or ACTION == "register") then 
 			if (interface and not string.find(interface["ifname"], INTERFACE)) then 
-				conn:call("uci", "set", { config = "network", section = interface[".name"], values = { ifname = interface["ifname"].." "..INTERFACE }}); 
+				conn:call("uci", "set", { config = "network", section = interface[".name"], values = { ifname = string.gsub(interface["ifname"].." "..INTERFACE, "  ", " ") }}); 
 				conn:call("uci", "commit", { config = "network" }); 
 				conn:call("network", "reload", {}); 
 				conn:send("juci", { event = "dongle-up", device = INTERFACE }); 
@@ -23,7 +23,7 @@ if(INTERFACE and (INTERFACE:find("usb") or INTERFACE:find("wwan"))) then
 			end 
 		elseif(ACTION == "remove" or ACTION == "unregister") then 
 			if (interface and string.find(interface["ifname"], INTERFACE)) then 
-				conn:call("uci", "set", { config = "network", section = interface[".name"], values = { ifname = string.gsub(interface["ifname"], INTERFACE, "")}}); 
+				conn:call("uci", "set", { config = "network", section = interface[".name"], values = { ifname = string.gsub(string.gsub(interface["ifname"], INTERFACE, ""), "%s+$", "")}}); 
 				conn:call("uci", "commit", { config = "network" });
 				conn:call("network", "reload", {}); 
 				conn:send("juci", { event = "dongle-down", device = INTERFACE }); 
