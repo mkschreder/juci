@@ -17,9 +17,9 @@ if(INTERFACE and (INTERFACE:find("usb") or INTERFACE:find("wwan"))) then
 				conn:call("uci", "commit", { config = "network" }); 
 				conn:call("network", "reload", {}); 
 				conn:send("juci", { event = "dongle-up", device = INTERFACE }); 
-				os.execute("echo 'Added "..INTERFACE.." to network "..interface[".name"].."' > /dev/console"); 
+				os.execute("echo 'JUCI: Added "..INTERFACE.." to network "..interface[".name"].."' > /dev/console"); 
 			else 
-				os.execute("echo 'Interface "..INTERFACE.." already added to network "..interface[".name"].."' > /dev/console"); 
+				os.execute("echo 'JUCI: Interface "..INTERFACE.." already added to network "..interface[".name"].."' > /dev/console"); 
 			end 
 		elseif(ACTION == "remove" or ACTION == "unregister") then 
 			if (interface and string.find(interface["ifname"], INTERFACE)) then 
@@ -27,9 +27,9 @@ if(INTERFACE and (INTERFACE:find("usb") or INTERFACE:find("wwan"))) then
 				conn:call("uci", "commit", { config = "network" });
 				conn:call("network", "reload", {}); 
 				conn:send("juci", { event = "dongle-down", device = INTERFACE }); 
-				os.execute("echo 'Removed "..INTERFACE.." from network "..interface[".name"].."' > /dev/console"); 
+				os.execute("echo 'JUCI: Removed "..INTERFACE.." from network "..interface[".name"].."' > /dev/console"); 
 			else 
-				os.execute("echo 'Interface "..INTERFACE.." was not removed from network "..interface[".name"].."' > /dev/console"); 
+				os.execute("echo 'JUCI: Interface "..INTERFACE.." was not removed from network "..interface[".name"].."' > /dev/console"); 
 			end 
 		end
 	end

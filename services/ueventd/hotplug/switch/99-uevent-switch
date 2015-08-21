@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send uevent "{'type': 'switch', 'interface': '$INTERFACE', 'action': '$ACTION'}"
