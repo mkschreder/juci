@@ -14,7 +14,7 @@ local console = {
 }; 
 
 function find(tbl, cb) 
-	for i,v in ipairs(tbl) do 
+	for _,v in pairs(tbl) do 
 		if cb(v) then return v; end
 	end
 	return nil; 
@@ -27,7 +27,9 @@ if not conn then
 	error("Failed to connect to ubus")
 end
 
-function ev_network_interface_add(opts)
+function ev_network_device_add(opts)
+	if(not string.match(opts.device, "usb.*")) then return; end
+	
 	local network = conn:call("uci", "get", { config = "network" }).values; 
 	local multiwan = conn:call("uci", "get", { config = "multiwan" }).values; 
 	local device_mw_config = nil; 
@@ -39,6 +41,10 @@ function ev_network_interface_add(opts)
 	if(not device_net_config) then
 		device_net_config = conn:call("uci", "add", { config = "network", type = "interface", name = opts.device, values = { ifname = opts.device, proto = "dhcp" } }); 
 		console.log("Created new network interface for "..opts.device); 
+	else 
+		device_net_config.disabled = false; 
+		conn:call("uci", "set", { config = "network", section = device_net_config[".name"], values = device_net_config }); 
+		console.log("Enabled existing configuration for "..opts.device); 
 	end
 	
 	if(not device_mw_config) then 
@@ -54,6 +60,7 @@ function ev_network_interface_add(opts)
 				dns = "auto"
 			} 
 		}); 
+		console.log("Created new multiwan config for "..opts.device);
 	end 
 	
 	conn:call("uci", "commit", { config = "multiwan" }); 
@@ -62,16 +69,25 @@ function ev_network_interface_add(opts)
 	console.log("Multiwan setup completed: "..opts.device); 
 end
 
-function ev_network_interface_remove(opts)
+function ev_network_device_remove(opts)
 	console.log("Removing device "..opts.device); 
+	local network = conn:call("uci", "get", { config = "network" }).values; 
+	local device_net_config = network[opts.device]; 
+	
+	if(device_net_config) then
+		device_net_config.disabled = true; 
+		conn:call("uci", "set", { config = "network", section = opts.device, values = device_net_config }); 
+		conn:call("uci", "commit", { config = "network" }); 
+		console.log("Disabled interface "..device_net_config[".name"]); 
+	end
 end
 
 local event_handlers = {
 	uevent = function(msg)
 		if msg.type == "net" and msg.action == "add" then 
-			ev_network_interface_add({ device = msg.interface }); 
+			ev_network_device_add({ device = msg.interface }); 
 		elseif msg.type == "net" and msg.action == "remove" then 
-			ev_network_interface_remove({ device = msg.interface }); 
+			ev_network_device_remove({ device = msg.interface }); 
 		end
 	end,
 }
