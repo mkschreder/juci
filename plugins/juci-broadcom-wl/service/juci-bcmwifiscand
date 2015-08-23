@@ -1,0 +1,98 @@
+#!/usr/bin/lua 
+
+-- Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+require "ubus"
+require "uloop"
+require("JUCI"); 
+
+function find(tbl, cb) 
+	for _,v in pairs(tbl) do 
+		if cb(v) then return v; end
+	end
+	return nil; 
+end
+
+local conn = ubus.connect()
+if not conn then
+	error("Failed to connect to ubus")
+end
+
+local WifiMonitor = {
+	scanresults = {}
+}; 
+
+function WifiMonitor:new(o)
+	o = o or {}; 
+	setmetatable(o, self); 
+	self.__index = self; 
+	return o; 
+end 
+
+function WifiMonitor:scan()
+	juci.shell("wlctl -i wl1 scan"); 
+end
+
+function WifiMonitor:poll_scan_results()
+	local f = assert(io.popen("wlctl -i wl1 scanresults")); 
+	local aps = {}; 
+	local obj = {}; 
+	local s = f:read("*l"); 
+	while s do
+		local fields = {}
+		for w in s:gmatch("%S+") do table.insert(fields, w) end
+		for i,v in ipairs(fields) do
+			if v == "SSID:" then 
+				x = {}; 
+				for w in s:gmatch("[^\"]+") do table.insert(x, w) end
+				if next(obj) ~= nil then table.insert(aps, obj) end
+				obj = {}; 
+				obj["ssid"] = x[2]; 
+			end
+			if v == "Mode:" then obj["mode"] = fields[i+1] end
+			if v == "RSSI:" then obj["rssi"] = fields[i+1] end
+			if v == "Channel:" then obj["channel"] = fields[i+1] end
+			if v == "BSSID:" then obj["bssid"] = fields[i+1] end
+			if v == "multicast" and fields[i+1] == "cipher:" then obj["multicast_cipher"] = fields[i+2] end
+			if v == "AKM" then obj["cipher"] = fields[i+2] end
+			if v == "Chanspec:" then obj["frequency"] = fields[i+1] end
+			if v == "Primary" and fields[i+1] == "channel:" then obj["primary_channel"] = fields[i+2] end
+			if v == "WPS:" then obj["wps_version"] = fields[i+1] end
+		end
+		s = f:read("*l"); 
+	end
+	if next(obj) ~= nil then table.insert(aps, obj) end
+	f:close(); 
+	return aps; 
+end
+
+function WifiMonitor:update_ap_list()
+	local aps = self.poll_scan_results(); 
+	local online_aps = {}; 
+	for i,ap in ipairs(aps) do 
+		online_aps[ap.ssid] = ap; 
+		if self.scanresults[ap.ssid] then 
+			-- the ap is already in the list
+			-- we remove it from our list of previous scan results and will replace the list later
+			self.scanresults[ap.ssid] = nil; 
+		else 
+			-- the ap is a new access point
+			conn:send("juci.bcmwifiscand.ap.up", ap); 
+		end
+	end
+	-- go through remaining aps in the previous list and report them as disconnected
+	for ssid,ap in pairs(self.scanresults) do
+		conn:send("juci.bcmwifiscand.ap.down", ap); 
+	end
+	self.scanresults = online_aps; 
+end
+
+local wifimon = WifiMonitor:new(); 
+
+while true do 
+	wifimon:scan(); 
+	juci.shell("sleep 2"); 
+	wifimon:update_ap_list(); 
+	juci.shell("sleep 5"); 
+end 
+

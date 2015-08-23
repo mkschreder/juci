@@ -15,6 +15,12 @@ function readfile(name)
 	return s; 
 end
 
+function log(source, msg)
+	local fd = io.open("/dev/console", "w"); 
+	fd:write((source or "juci")..": "..(msg or "").."\n"); 
+	fd:close();
+end
+
 function shell(fmt, ...)
 	for k,v in base.pairs(arg) do
 		-- escape all arguments to prevent code injection!
