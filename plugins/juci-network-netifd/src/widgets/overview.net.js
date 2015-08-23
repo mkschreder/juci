@@ -29,7 +29,7 @@ JUCI.app
 	}); 
 	
 })
-.controller("overviewWidgetNetwork", function($scope, $rpc, $uci, $config, $tr, gettext){
+.controller("overviewWidgetNetwork", function($scope, $rpc, $uci, $config, $network, $tr, gettext){
 	$scope.defaultHostName = $tr(gettext("Unknown")); 
 	async.series([
 	function(next){
@@ -54,8 +54,9 @@ JUCI.app
 		}).always(function(){ next(); }); 
 	}, 
 	function(next){
-		$rpc.juci.network.clients().done(function(result){
-			$scope.clients = result.clients; 
+		$network.getConnectedClients().done(function(clients){
+			// TODO: this is not static. Need to find a way to more reliably separate lan and wan so we can list lan clients from all lans without including wans. 
+			$scope.clients = clients.filter(function(cl) { return cl.device == "br-lan"; }); 
 			next(); 
 		}).fail(function(){
 			next();

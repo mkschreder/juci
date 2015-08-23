@@ -3,99 +3,15 @@
 . /usr/share/libubox/jshn.sh
 
 network_adapters(){
-	ADAPTERS=$(ip link | awk '
-	/^[[:digit:]]/ { # interface line 
-		name=substr($2, 0, length($2)-1); 
-		if(name ~ /@/) name=substr(name, 0, index(name, "@") - 1); # remove the @ symbol that is sometimes added to device name
-		printf "name=" name "\t"; 
-		printf "flags=" substr($3, 2, length($3)-2) "\t"; 
-		for(c = 4; c<=NF; c+=2){
-			printf $c "=" $(c+1) "\t";
-		}
-	}
-	/^[^[:digit:]]/ { # following lines
-		for(c = 1; c <= NF; c+=2){
-			if($c ~ /^link/){
-				printf "link_type=" substr($c, index($c, "\/")+1, length($c)) "\t"; 
-				printf "macaddr=" $(c+1) "\t"; 
-			} else {
-				printf $c "=" $(c+1) "\t";
-			} 
-		}
-		printf "\n"; 
-	}'); 
-	
-	json_init
-	json_add_array "adapters"
-	IFS=$'\n'; 
-	for line in $ADAPTERS; do
-		IFS=$'\t'; 
-		json_add_object
-		for field in $line; do
-			name="${field%=*}"; 
-			value="${field#*=}"; 
-			json_add_string "$name" "$value";
-		done
-		json_close_object
-		IFS=$'\n'; 
-	done
-	json_close_array
-	json_dump
+	# moved to lua. result: went from taking 0.71 sec to 0.49 sec with more details
+	/usr/lib/rpcd/cgi/juci.network.lua adapters
 }
 
 network_clients(){
-	CLIENTS=$(awk '
-	/[[:digit:]]/ { 
-		printf "ipaddr=" $1 "\t"; #ipaddr
-		printf "macaddr=" $4 "\t"; #macaddr
-		printf "mask=" $5 "\t"; #mask
-		printf "leasetime=" "\t"; # leasetime (none)
-		printf "hostname=" "\t"; # hostname (none)
-		printf "device=" $6 "\n"; #device
-	}' /proc/net/arp); 
-	
-	json_init
-	json_add_array "clients"
-	IFS=$'\n'; 
-	for line in $CLIENTS; do
-		IFS=$'\t'; 
-		IPADDR="none"
-		json_add_object
-		for field in $line; do
-			name="${field%=*}"; 
-			value="${field#*=}"; 
-			if [ "$name" == "ipaddr" ]; then IPADDR="$value"; fi
-			json_add_string "$name" "$value";
-		done
-		DHCPINFO=$(awk '$3 == "$IPADDR" { print }' /var/dhcp.leases | head -n1 | awk '
-		{
-			printf "leasetime=" $1 "\t"; # leasetime
-			printf "hostname=" $4 "\n"; #hostname
-		}'); 
-		if [ "$DHCPINFO" != "" ]; then json_add_boolean "dhcp" "true"; fi
-		for field in $DHCPINFO; do
-			name="${field%=*}"; 
-			value="${field#*=}"; 
-			json_add_string "$name" "$value";
-		done
-		json_close_object
-		IFS=$'\n'; 
-	done
-	json_close_array
-	json_dump
+	# we have moved this one to lua implementation
+	/usr/lib/rpcd/cgi/juci.network.lua clients
 }
 
-network_client_alive(){
-	local iface=$(awk '$1 == ipaddr { print $6 }' ipaddr=$1);
-	json_init 
-	arping $mac -q -f -c 1 -I $iface;
-	if [ $? -ne 0 ]; then 
-		json_add_boolean "alive" "false";
-	else 
-		json_add_string "alive" "true"; 
-	fi
-	json_dump
-}
 
 network_load(){
 	json_init 

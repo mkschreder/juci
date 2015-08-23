@@ -5,8 +5,12 @@
 		function _refreshClients(self){
 			var deferred = $.Deferred(); 
 			$rpc.juci.network.clients().done(function(res){
-				self.clients = res.clients; 
-				deferred.resolve(self.clients);  
+				if(res && res.clients){
+					self.clients = res.clients; 
+					deferred.resolve(self.clients);  
+				} else {
+					deferred.reject(); 
+				}
 			}).fail(function(){ deferred.reject(); });
 			return deferred.promise(); 
 		}
@@ -112,23 +116,15 @@
 			return deferred.promise(); 
 		}
 		
-		
-		NetworkBackend.prototype.getClients = function(){
-			var deferred = $.Deferred(); 
-			var self = this; 
-			_refreshClients(self).done(function(clients){
-				deferred.resolve(clients); 
-			}); 
-			return deferred.promise(); 
-		}
-		
 		NetworkBackend.prototype.getConnectedClients = function(){
 			var deferred = $.Deferred(); 
 			var self = this; 
-			$rpc.juci.network.clients().done(function(clients){
-				if(clients && clients.clients) deferred.resolve(clients.clients); 
-				else deferred.reject(); 
-			}); 
+			
+			_refreshClients(self).done(function(clients){
+				deferred.resolve(clients); 
+			}).fail(function(){
+				deferred.reject(); 
+			});  
 			
 			return deferred.promise(); 
 		}
