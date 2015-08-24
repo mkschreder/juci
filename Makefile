@@ -111,7 +111,7 @@ $(DIRS-y):
 	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
 	# fix permissions on binaries if any
-	-chmox +x $(BIN)/usr/bin/*
+	-chmod +x $(BIN)/usr/bin/*
 	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 
 $(UBUS_MODS): 

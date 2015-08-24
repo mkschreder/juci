@@ -233,7 +233,7 @@
 											get up() { return dev.state == "UP" }, 
 											set bridged(value){ if(wanport) wanport.bridge.value = true }, 
 											get is_wan_port() { return (wanport)?true:false; }, 
-											get loopback() { return dev.flags.match(/LOOPBACK/); },
+											get loopback() { return (dev.flags && dev.flags.match(/LOOPBACK/)); },
 											base: dev
 										}); 
 									}); 

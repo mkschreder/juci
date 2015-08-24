@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ubus send uevent "{'type': 'dect', 'interface': '$INTERFACE', 'action': '$ACTION'}"
+ubus send hotplug.dect "{'interface': '$INTERFACE', 'action': '$ACTION'}"

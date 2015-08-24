@@ -24,5 +24,5 @@ interface=$(cat $usb_dir/interface);
 eval $(cat $usb_dir/uevent); 
 
 case "$devno" in                                                                                 
-	*:*) ubus send uevent "{'type': 'usb', 'action': '$ACTION', 'devpath': '$DEVPATH', 'manufacturer': '$uMa', 'product': '$uPr', 'serial': '$uSe', 'vendor_id': '$uVid', 'product_id': '$uPid', 'driver_interface': '$interface', 'driver': '$DRIVER', 'devtype': '$DEVTYPE'}" ;;
+	*:*) ubus send hotplug.usb "{'action': '$ACTION', 'devpath': '$DEVPATH', 'manufacturer': '$uMa', 'product': '$uPr', 'serial': '$uSe', 'vendor_id': '$uVid', 'product_id': '$uPid', 'driver_interface': '$interface', 'driver': '$DRIVER', 'devtype': '$DEVTYPE'}" ;;
 esac
