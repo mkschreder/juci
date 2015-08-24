@@ -15,7 +15,9 @@ $(OUTDIR):
 files: 
 	$(INSTALL_DIR) ./$(OUTDIR)/css
 	$(INSTALL_DIR) ./$(OUTDIR)/js
-
+	$(INSTALL_DIR) ./build/usr/bin/
+	$(CP) ./service/* ./build/usr/bin/
+	
 STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)

@@ -3,44 +3,8 @@
 . /usr/share/libubox/jshn.sh
 
 network_adapters(){
-	ADAPTERS=$(ip link | awk '
-	/^[[:digit:]]/ { # interface line 
-		name=substr($2, 0, length($2)-1); 
-		if(name ~ /@/) name=substr(name, 0, index(name, "@") - 1); # remove the @ symbol that is sometimes added to device name
-		printf "name=" name "\t"; 
-		printf "flags=" substr($3, 2, length($3)-2) "\t"; 
-		for(c = 4; c<=NF; c+=2){
-			printf $c "=" $(c+1) "\t";
-		}
-	}
-	/^[^[:digit:]]/ { # following lines
-		for(c = 1; c <= NF; c+=2){
-			if($c ~ /^link/){
-				printf "link_type=" substr($c, index($c, "\/")+1, length($c)) "\t"; 
-				printf "macaddr=" $(c+1) "\t"; 
-			} else {
-				printf $c "=" $(c+1) "\t";
-			} 
-		}
-		printf "\n"; 
-	}'); 
-	
-	json_init
-	json_add_array "adapters"
-	IFS=$'\n'; 
-	for line in $ADAPTERS; do
-		IFS=$'\t'; 
-		json_add_object
-		for field in $line; do
-			name="${field%=*}"; 
-			value="${field#*=}"; 
-			json_add_string "$name" "$value";
-		done
-		json_close_object
-		IFS=$'\n'; 
-	done
-	json_close_array
-	json_dump
+	# moved to lua. result: went from taking 0.71 sec to 0.49 sec with more details
+	/usr/lib/rpcd/cgi/juci.network.lua adapters
 }
 
 network_clients(){

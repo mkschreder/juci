@@ -20,7 +20,8 @@ DIRS-y:=juci \
 	plugins/juci-mod-system \
 	plugins/juci-sysupgrade \
 	plugins/juci-mod-status \
-	plugins/juci-jquery-console
+	plugins/juci-jquery-console \
+	services/ueventd 
 	
 BIN:=bin
 UBUS_MODS:= backend/igmpinfo
@@ -71,7 +72,6 @@ endif
 all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
 	@echo "UBUS IGMP: $(CONFIG_JUCI_BACKEND_IPTV)"; 
 	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"
-	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	./juci-compile 
 	./juci-update $(BIN)/www RELEASE
 
@@ -92,7 +92,6 @@ inteno: all
 
 debug: prepare $(UBUS_MODS) $(DIRS-y) 
 	#npm install 
-	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	grunt 
 	./juci-update $(BIN)/www DEBUG
 
@@ -111,6 +110,9 @@ $(DIRS-y):
 	-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/
 	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
 	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
+	# fix permissions on binaries if any
+	-chmox +x $(BIN)/usr/bin/*
+	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"

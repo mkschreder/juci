@@ -28,6 +28,7 @@ function network_list_connected_clients(opts)
 	function read_dhcp_info()
 		local dhcp = {}; 
 		local dhcp_leases = io.open("/var/dhcp.leases", "r"); 
+		if not dhcp_leases then return {}; end
 		local line = dhcp_leases:read("*l"); 
 		while line do
 			local leasetime, macaddr, ipaddr, hostname = line:match("([^%s]+)%s+([^%s]+)%s+([^%s]+)%s+([^%s]+)"); 
@@ -49,6 +50,8 @@ function network_list_connected_clients(opts)
 	function read_arp_info()
 		local arp = {}; 
 		local proc_arp = io.open("/proc/net/arp", "r"); 
+		
+		if(not proc_arp) then return {}; end
 		-- skip first line with headers
 		proc_arp:read("*l"); 
 		

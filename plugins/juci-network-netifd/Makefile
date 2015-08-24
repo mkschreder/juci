@@ -16,7 +16,9 @@ files:
 	$(INSTALL_DIR) ./$(OUTDIR)/css
 	$(INSTALL_DIR) ./$(OUTDIR)/js
 	$(INSTALL_DIR) ./$(OUTDIR)/img
-	$(INSTALL_DIR) ./files/usr/lib/rpcd/cgi/
+	$(INSTALL_DIR) ./build/usr/lib/rpcd/cgi/
+	$(INSTALL_DIR) ./build/usr/bin/
+	$(CP) ./service/* ./build/usr/bin/
 	$(CP) src/images/* ./$(OUTDIR)/img/
 	$(CP) backend/juci.network ./files/usr/lib/rpcd/cgi/
 

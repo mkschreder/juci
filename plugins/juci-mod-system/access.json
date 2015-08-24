@@ -15,6 +15,9 @@
 					"start", 
 					"clean"
 				], 
+				"juci.system.user": [
+					"password"
+				], 
 				"juci.system.conf": [
 					"restore", 
 					"defaultreset", 

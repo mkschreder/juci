@@ -87,26 +87,18 @@ function Netmon:update_clients()
 	self.clients = online_clients; 
 end
 
+function Netmon:monitor()
+	while true do 
+		-- currently we don't parse monitor output but we maybe should in the future.  
+		local fd = assert(io.popen("ip monitor neigh")); -- we monitor events on neighbor object only 
+		for line in fd:lines() do 
+			print("Netlink: "..line); 
+			self:update_clients();
+		end
+		fd:close(); 
+	end
+end
+
 local netmon = Netmon:new(); 
 
-while true do 
-	netmon:update_clients();
-	juci.shell("sleep 5"); 
-end 
-
-uloop.init()
-
-local objects = {
-	["juci.netmond"] = {
-		clients = {
-			function(req)
-				netmon:get_clients(); 
-				conn:reply(req, { clients = netmon:get_connected_clients() }); 
-			end, {}
-		},
-	}
-}
-
-conn:add(objects); 
-
-uloop.run()
+netmon:monitor(); 
