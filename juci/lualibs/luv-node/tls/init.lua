@@ -16,6 +16,8 @@ limitations under the License.
 
 --]]
 
+local exports = {}; 
+
 exports.name = "luvit/tls"
 exports.version = "1.3.1"
 exports.dependencies = {
@@ -106,3 +108,5 @@ end
 
 exports.TLSSocket = _common_tls.TLSSocket
 exports.createCredentials = _common_tls.createCredentials
+
+return exports; 

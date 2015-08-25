@@ -16,6 +16,8 @@ limitations under the License.
 
 --]]
 
+local exports = {}; 
+
 local Object = require('core').Object
 local Error = require('core').Error
 local net = require('net')
@@ -438,3 +440,5 @@ exports.createCredentials = function(options, context)
 
   return ctx
 end
+
+return exports; 

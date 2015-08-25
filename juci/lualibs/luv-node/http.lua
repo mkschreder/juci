@@ -37,7 +37,7 @@ local url = require('url')
 local codec = require('http-codec')
 local Writable = require('stream').Writable
 local date = require('os').date
-local luvi = require('luvi')
+--local luvi = require('luvi')
 local utils = require('utils')
 
 
@@ -89,8 +89,8 @@ function IncomingMessage:initialize(head, socket)
   net.Socket.initialize(self)
   self.httpVersion = tostring(head.version)
   local headers = setmetatable({}, headerMeta)
-  for i = 1, #head do
-    headers[i] = head[i]
+  for k,v in pairs(head) do
+    headers[k] = v
   end
   self.headers = headers
   if head.method then
@@ -152,9 +152,8 @@ function ServerResponse:flushHeaders()
 
   local head = {}
   local sent_date, sent_connection, sent_transfer_encoding, sent_content_length
-  for i = 1, #headers do
-    local key, value = table.unpack(headers[i])
-    local klower = key:lower()
+  for key,value in pairs(headers) do
+    local klower = tostring(key):lower()
     head[#head + 1] = {tostring(key), tostring(value)}
     if klower == "connection" then
       self.keepAlive = value:lower() ~= "close"
@@ -166,7 +165,7 @@ function ServerResponse:flushHeaders()
     elseif klower == "date" then
       sent_date = true
     end
-    head[i] = headers[i]
+    --head[i] = headers[i]
   end
 
   if not sent_date and self.sendDate then
@@ -339,8 +338,8 @@ function exports.handleConnection(socket, onRequest)
   process:once('exit', onTimeout)
 end
 
-function exports.createServer(onRequest)
-  return net.createServer(function (socket)
+function exports.createServer(options, onRequest)
+  return net.createServer(options, function (socket)
     return exports.handleConnection(socket, onRequest)
   end)
 end

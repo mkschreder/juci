@@ -39,8 +39,8 @@ local timer = require('timer')
 local utils = require('utils')
 local uv = require('uv')
 local Emitter = require('core').Emitter
-local Readable = require('stream').Readable
-local Writable = require('stream').Writable
+local Readable = require('stream/stream_readable').Readable
+local Writable = require('stream/stream_writable').Writable
 local pp = require('pretty-print')
 
 local function nextTick(...)
@@ -179,4 +179,6 @@ local function globalProcess()
   hooks:on('process.exit', utils.bind(process.emit, process, 'exit'))
   return process
 end
-exports.globalProcess = globalProcess
+_G.process = globalProcess(); 
+
+return exports; 

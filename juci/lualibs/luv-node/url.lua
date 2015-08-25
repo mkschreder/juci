@@ -15,6 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 --]]
+
+local exports = {}; 
+
 exports.name = "luvit/url"
 exports.version = "1.0.4-2"
 exports.dependencies = {
@@ -27,7 +30,8 @@ exports.tags = {"luvit", "url", "codec"}
 
 local querystring = require('querystring')
 
-function exports.parse(url, parseQueryString)
+function parse(url, parseQueryString)
+	if not url then return {}; end
   local href = url
   local chunk, protocol = url:match("^(([a-z0-9+]+)://)")
   url = url:sub((chunk and #chunk or 0) + 1)
@@ -96,3 +100,6 @@ function exports.parse(url, parseQueryString)
   }
 
 end
+exports.parse = parse; 
+
+return exports; 

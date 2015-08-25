@@ -16,6 +16,8 @@ limitations under the License.
 
 --]]
 
+local exports = {}; 
+
 exports.name = "luvit/net"
 exports.version = "1.2.1"
 exports.dependencies = {
@@ -29,11 +31,12 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/net.lua"
 exports.description = "Node-style net client and server module for luvit"
 exports.tags = {"luvit", "tcp", "pipe", "stream"}
 
+local process = require("process"); 
 local uv = require('uv')
 local timer = require('timer')
 local utils = require('utils')
 local Emitter = require('core').Emitter
-local Duplex = require('stream').Duplex
+local Duplex = require('stream/stream_duplex').Duplex
 
 --[[ Socket ]]--
 
@@ -358,3 +361,5 @@ exports.createServer = function(options, connectionListener)
   server:init(options, connectionListener)
   return server
 end
+
+return exports; 

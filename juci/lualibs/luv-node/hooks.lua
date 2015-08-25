@@ -20,6 +20,8 @@ limitations under the License.
 -- Luvit events. For example, process.exit and signals can feed
 -- through this emitter.
 
+local exports = {}; 
+
 exports.name = "luvit/hooks"
 exports.version = "1.0.0-3"
 exports.dependencies = {
@@ -33,3 +35,5 @@ exports.tags = {"luvit", "events", "hooks"}
 local Emitter = require('core').Emitter
 setmetatable(exports, Emitter.meta)
 if exports.init then exports:init() end
+
+return exports; 

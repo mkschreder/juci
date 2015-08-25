@@ -16,6 +16,9 @@ limitations under the License.
 
 --]]
 --
+
+local exports = {}; 
+
 local _, openssl = pcall(require, 'openssl')
 
 local function randomBytesOpenSSL(size, callback)
@@ -44,3 +47,5 @@ if type(openssl) == 'table' then
 else
   exports.randomBytes = randomBytesInsecure
 end
+
+return exports; 

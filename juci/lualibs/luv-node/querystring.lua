@@ -16,6 +16,8 @@ limitations under the License.
 
 --]]
 
+local exports = {}; 
+
 exports.name = "luvit/querystring"
 exports.version = "1.0.2"
 exports.license = "Apache 2"
@@ -100,3 +102,5 @@ function exports.parse(str, sep, eq)
   end
   return vars
 end
+
+return exports; 

@@ -1,3 +1,5 @@
+local exports = {}; 
+
 exports.name = "luvit/json"
 exports.version = "2.5.0"
 exports.homepage = "http://dkolf.de/src/dkjson-lua.fsl"
@@ -55,7 +57,6 @@ SOFTWARE.
 
 --]==]
 
-local exports = {}; 
 -- global dependencies:
 local pairs, type, tostring, tonumber, getmetatable, setmetatable =
       pairs, type, tostring, tonumber, getmetatable, setmetatable
@@ -729,4 +730,4 @@ end
 json.parse = json.decode
 json.stringify = json.encode
 
-return exports; 
+return json; 

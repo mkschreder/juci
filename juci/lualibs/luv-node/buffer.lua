@@ -16,6 +16,8 @@ limitations under the License.
 
 --]]
 
+local exports = {}; 
+
 exports.name = "luvit/buffer"
 exports.version = "1.0.1-3"
 exports.dependencies = {

@@ -16,6 +16,8 @@ limitations under the License.
 
 --]]
 
+local exports = {}; 
+
 exports.name = "luvit/http-codec"
 exports.version = "1.0.0-1"
 exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/http-codec.lua"
@@ -285,3 +287,5 @@ exports.decoder = function ()
   end
 
 end
+
+return exports; 
