@@ -1,6 +1,6 @@
 {
 	"internet/services/samba": {
-			"title": "Samba", 
-			"index": 100
+		"title": "Samba", 
+		"index": 100
 	}
 }

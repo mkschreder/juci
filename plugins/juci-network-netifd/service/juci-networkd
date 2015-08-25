@@ -1,0 +1,81 @@
+#!/usr/bin/env lua 
+
+-- Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+require "ubus"
+require "uloop"
+
+local console = {
+	log = function(msg)
+		local fd = io.open("/dev/console", "w"); 
+		fd:write("juci-networkd: "..(msg or "").."\n"); 
+		fd:close();
+	end
+}; 
+
+function find(tbl, cb) 
+	for i,v in ipairs(tbl) do 
+		if cb(v) then return v; end
+	end
+	return nil; 
+end
+
+uloop.init()
+
+local conn = ubus.connect()
+if not conn then
+	error("Failed to connect to ubus")
+end
+
+function ev_network_interface_add(opts)
+	local network = conn:call("uci", "get", { config = "network" }).values; 
+	local multiwan = conn:call("uci", "get", { config = "multiwan" }).values; 
+	local device_mw_config = nil; 
+	local device_net_config = nil; 
+	
+	device_mw_config = find(multiwan, function(v) if v[".type"] == "interface" and v[".name"] == opts.device then return true; end return false; end); 
+	device_net_config = find(network, function(v) if v[".type"] == "interface" and v[".name"] == opts.device then return true; end return false; end); 
+	
+	if(not device_net_config) then
+		device_net_config = conn:call("uci", "add", { config = "network", type = "interface", name = opts.device, values = { ifname = opts.device, proto = "dhcp" } }); 
+		console.log("Created new network interface for "..opts.device); 
+	end
+	
+	if(not device_mw_config) then 
+		device_mw_config = conn:call("uci", "add", { config = "multiwan", type = "interface", name = opts.device, 
+			values = {
+				weight = 10, 
+				health_interval = 10, 
+				icmp_hosts = "dns", 
+				timeout = 3, 
+				health_fail_retries = 3, 
+				health_recovery_retries = 5, 
+				failover_to = "balance", 
+				dns = "auto"
+			} 
+		}); 
+	end 
+	
+	conn:call("uci", "commit", { config = "multiwan" }); 
+	conn:call("uci", "commit", { config = "network" }); 
+	
+	console.log("Multiwan setup completed: "..opts.device); 
+end
+
+function ev_network_interface_remove(opts)
+	console.log("Removing device "..opts.device); 
+end
+
+local event_handlers = {
+	uevent = function(msg)
+		if msg.type == "net" and msg.action == "add" then 
+			ev_network_interface_add({ device = msg.interface }); 
+		elseif msg.type == "net" and msg.action == "remove" then 
+			ev_network_interface_remove({ device = msg.interface }); 
+		end
+	end,
+}
+
+conn:listen(event_handlers)
+
+uloop.run()

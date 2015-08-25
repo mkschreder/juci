@@ -1,0 +1,49 @@
+#!/usr/bin/env lua
+
+#!/usr/bin/env lua
+
+-- Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+require "ubus"
+require "uloop"
+
+uloop.init()
+
+local conn = ubus.connect()
+if not conn then
+	error("Failed to connect to ubus")
+end
+
+local events = {}; 
+
+local objects = {
+	["juci.event"] = {
+		poll = {
+			function(req, params)
+				-- first remove all elements that are older than 10 seconds (old news are useless)
+				local t = os.time(os.date("*t")); 
+				for i,v in pairs(events) do
+					if(v["time"] < (t - 10)) then events[i] = nil end
+				end
+				conn:reply(req, { list = events }); 
+				if(params and params["clear"]) then events = {} end
+			end, { clear = ubus.INT32 }
+		}
+	}
+}; 
+
+conn:add(objects)
+
+local event_handlers = {
+	juci = function(msg)
+		local ev = {
+			time = os.time(os.date("*t")), -- add a timestamp
+			data = msg
+		}; 
+		table.insert(events, ev); 
+	end,
+}
+
+conn:listen(event_handlers)
+
+uloop.run()

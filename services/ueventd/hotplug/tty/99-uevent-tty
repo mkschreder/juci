@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send uevent "{'type': 'tty', 'devicename': '$DEVICENAME', 'action': '$ACTION'}"

@@ -10,6 +10,7 @@
 					"adapters", 
 					"nameservers"
 				], 
+				"juci.network.lua": [ "services" ], 
 				"network.interface": [
 					"dump"
 				], 

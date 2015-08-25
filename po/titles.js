@@ -70,6 +70,8 @@ gettext("internet.firewall.port.mapping.title");
 gettext("Port Mapping");
 gettext("internet.wan.exposed.host.title");
 gettext("DMZ");
+gettext("internet.wan.services.title");
+gettext("Services");
 gettext("internet.parental.control.title");
 gettext("Parental Control");
 gettext("internet.lan.iptv.title");

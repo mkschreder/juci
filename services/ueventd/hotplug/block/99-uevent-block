@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send uevent "{'type': 'block', 'interface': '$INTERFACE', 'action': '$ACTION'}"

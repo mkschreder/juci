@@ -183,6 +183,15 @@
 			return deferred.promise(); 
 		}
 		
+		NetworkBackend.prototype.getServices = function(){
+			var def = $.Deferred(); 
+			$rpc.juci.network.lua.services().done(function(result){
+				if(result && result.list) def.resolve(result.list); 
+				else def.reject(); 
+			}); 
+			return def.promise(); 
+		}
+		
 		return new NetworkBackend(); 
 	}); 
 	
