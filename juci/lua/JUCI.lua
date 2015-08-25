@@ -2,9 +2,6 @@ local table = require("table");
 local string = require("string"); 
 local io = require("io"); 
 require("JSON"); 
-local uv = require("uv"); 
-
-local fs = require("juci/fs"); 
 
 local base = _G
 

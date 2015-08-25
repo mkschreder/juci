@@ -1,7 +1,5 @@
 #!/usr/bin/env lua
 
-#!/usr/bin/env lua
-
 -- Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 require "ubus"

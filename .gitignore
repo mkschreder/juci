@@ -9,5 +9,8 @@ po/template.pot
 po/*.mo
 *.so
 *.o
+juci/build 
+backend/**/build
 plugins/**/files
 plugins/**/build
+services/**/build
