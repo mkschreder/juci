@@ -149,12 +149,14 @@ function ServerResponse:flushHeaders()
   self.headersSent = true
   local headers = self.headers
   local statusCode = self.statusCode
-
+	
   local head = {}
   local sent_date, sent_connection, sent_transfer_encoding, sent_content_length
-  for key,value in pairs(headers) do
+  for i,v in ipairs(headers) do
+		local key, value = unpack(v); 
     local klower = tostring(key):lower()
-    head[#head + 1] = {tostring(key), tostring(value)}
+    
+    table.insert(head, {tostring(key), tostring(value)}); 
     if klower == "connection" then
       self.keepAlive = value:lower() ~= "close"
       sent_connection = true
@@ -243,7 +245,7 @@ function ServerResponse:writeHead(newStatusCode, newHeaders)
   assert(not self.headersSent, "headers already sent")
   self.statusCode = newStatusCode
   local headers = setmetatable({}, headerMeta)
-  self.headers = headers
+  --self.headers = headers
   for k, v in pairs(newHeaders) do
     headers[k] = v
   end

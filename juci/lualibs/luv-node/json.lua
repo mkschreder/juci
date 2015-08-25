@@ -274,7 +274,10 @@ encode2 = function (value, indent, level, buffer, buflen, tables, globalorder, s
   local valtojson = valmeta and valmeta.__tojson
   if valtojson then
     if tables[value] then
-      return exception('reference cycle', value, state, buffer, buflen)
+			buflen = buflen + 1
+			buffer[buflen] = quotestring ("[[cyclic value]]"); 
+			return buflen; 
+      --return exception('reference cycle', value, state, buffer, buflen)
     end
     tables[value] = true
     state.bufferlen = buflen
@@ -365,8 +368,10 @@ encode2 = function (value, indent, level, buffer, buflen, tables, globalorder, s
     end
     tables[value] = nil
   else
-    return exception ('unsupported type', value, state, buffer, buflen,
-      "type '" .. valtype .. "' is not supported by JSON.")
+    buflen = buflen + 1
+    buffer[buflen] = quotestring ("["..valtype.."]"); 
+    --return exception ('unsupported type', value, state, buffer, buflen,
+     -- "type '" .. valtype .. "' is not supported by JSON.")
   end
   return buflen
 end
@@ -380,7 +385,10 @@ function json.encode (value, state)
   local ret, msg = encode2 (value, state.indent, state.level or 0,
                    buffer, state.bufferlen or 0, state.tables or {}, state.keyorder, state)
   if not ret then
-    error (msg, 2)
+    state.bufferlen = nil
+    state.buffer = nil
+    return concat (buffer)
+    --error (msg, 2)
   elseif oldbuffer == buffer then
     state.bufferlen = ret
     return true
