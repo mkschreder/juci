@@ -82,7 +82,8 @@ files:
 	# TODO: this needs to be replaced later with /etc/config/juci with proper acl permissions
 	$(CP) ./juci.config.json $(OUTDIR)/config.json
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/lua/
-	$(CP) lualibs/* $(BUILD_DIR)/usr/share/lua/
+	$(CP) lualibs/luv-node/* $(BUILD_DIR)/usr/share/lua/
+	$(CP) lua/* $(BUILD_DIR)/usr/share/lua/
 	
 	
 $(CSS): $(STYLES)
