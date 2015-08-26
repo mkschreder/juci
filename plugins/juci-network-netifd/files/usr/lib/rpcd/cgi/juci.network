@@ -12,7 +12,6 @@ network_clients(){
 	/usr/lib/rpcd/cgi/juci.network.lua clients
 }
 
-
 network_load(){
 	json_init 
 	json_add_int "active_connections" $(cat /proc/sys/net/netfilter/nf_conntrack_count)

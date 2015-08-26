@@ -119,6 +119,13 @@ function network_list_network_adapters(opts)
 		return ip,mask; 
 	end
 	
+	function ipv6parse(ip)
+		if not ip then return "",""; end
+		local ip,num = ip:match("([%w:]+)/(%d+)"); 
+		-- TODO: return also mask/prefix? whatever..
+		return ip; 
+	end
+	
 	local adapters = {}; 
 	local obj = {}; 
 	local ip_output = juci.shell("ip addr"); 
@@ -153,7 +160,7 @@ function network_list_network_adapters(opts)
 			elseif fields[1] == "inet6" then
 				if not obj.ipv6 then obj.ipv6 = {} end
 				local ipobj = {}; 
-				ipobj.addr = fields[2]; 
+				ipobj.addr = ipv6parse(fields[2]); 
 				-- parse remaining pairs for ipaddr options
 				for id = 3,count,2 do
 					ipobj[fields[id]] = fields[id+1]; 

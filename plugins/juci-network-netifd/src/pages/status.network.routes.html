@@ -1,0 +1,39 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="StatusNetworkRoutes">
+		<h2 translate>Routing Status</h2>
+		<juci-config-info translate>status.network.routes.info</juci-config-info>
+		<juci-config-section>
+			<h3 translate>ARP Table</h3>
+			<table class="table">
+				<thead><th translate>IP address</th><th translate>MAC address</th><th translate>Device</th></thead>
+				<tr ng-repeat="arp in arp_table">
+					<td>{{arp.ipaddr}}</td>
+					<td>{{arp.macaddr}}</td>
+					<td>{{arp.device}}</td>
+				</tr>
+			</table>
+		</juci-config-section>
+		<juci-config-section>
+			<h3 translate>IPv4 Routing Table</h3>
+			<table class="table">
+				<thead><th translate>IPv4 address</th><th translate>Gateway</th><th translate>Device</th></thead>
+				<tr ng-repeat="route in ipv4_routes">
+					<td>{{route.destination}}</td>
+					<td>{{route.gateway}}</td>
+					<td>{{route.iface}}</td>
+				</tr>
+			</table>
+		</juci-config-section>
+		<juci-config-section>
+			<h3 translate>IPv6 Routing Table</h3>
+			<table class="table">
+				<thead><th translate>IPv6 address</th><th translate>Next Hop</th><th translate>Device</th></thead>
+				<tr ng-repeat="route in ipv6_routes">
+					<td>{{route.destination}}</td>
+					<td>{{route.next_hop}}</td>
+					<td>{{route.iface}}</td>
+				</tr>
+			</table>
+		</juci-config-section>
+	</div>
+</juci-layout-with-sidebar>

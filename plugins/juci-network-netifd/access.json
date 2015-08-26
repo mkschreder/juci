@@ -11,6 +11,11 @@
 					"nameservers"
 				], 
 				"juci.network.lua": [ "services" ], 
+				"juci.network.status": [ 
+					"arp", 
+					"ipv4routes", 
+					"ipv6routes" 
+				], 
 				"network.interface": [
 					"dump"
 				], 

@@ -30,5 +30,15 @@
 		"modes": [ "expert" ], 
 		"acls": [  ],
 		"index": 50
+	},
+	"status/system": {
+		"title": "System",  
+		"acls": [ "juci-mod-system" ], 
+		"index": 0
+	},
+	"status/system/processes": {
+		"title": "Processes",  
+		"acls": [ "juci-mod-system" ], 
+		"index": 35
 	}
 }

@@ -29,10 +29,20 @@
 			"acls": [ "network" ],
 			"index": 90
 	},
-	"status/nat": {
-		"title": "NAT", 
-		"modes": [ "expert" ], 	
+	"status/network": {
+		"title": "Network", 
+		"redirect": "status/network/routes", 
+		"acls": [ "juci-network-netifd" ], 
+		"index": 20
+	},
+	"status/network/routes": {
+		"title": "Routes", 
 		"acls": [ "juci-network-netifd" ], 
 		"index": 80
+	},
+	"status/network/nat": {
+		"title": "NAT", 
+		"acls": [ "juci-network-netifd" ], 
+		"index": 85
 	}
 }

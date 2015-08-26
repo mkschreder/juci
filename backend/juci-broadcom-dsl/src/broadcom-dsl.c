@@ -461,7 +461,7 @@ rpc_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 		UBUS_OBJECT_TYPE("broadcom-dsl-type", dsl_object_methods);
 
 	static struct ubus_object dsl_object = {
-		.name = "juci.broadcom.dsl",
+		.name = "juci.broadcom.dsl.bin",
 		.type = &dsl_object_type,
 		.methods = dsl_object_methods,
 		.n_methods = ARRAY_SIZE(dsl_object_methods),

@@ -3,8 +3,9 @@
 require("JUCI"); 
 
 function dsl_stats()
-	local res = {}; 
-	print(json.encode(res)); 
+	-- until we make it a lua script
+	local res = juci.shell("ubus call juci.broadcom.dsl.bin status"); 
+	print(res); 
 end
 
 juci.ubus({

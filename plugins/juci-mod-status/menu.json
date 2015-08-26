@@ -1,18 +1,13 @@
 {
     "status": {
         "title": "Status",
-        "redirect": "status/status", 
+        "redirect": "status/system", 
         "index": 60
     },
     "status/status": {
 				"title": "Status", 
 				"acls": [ "status" ], 
 				"index": 8
-		}, 
-    "status/status/system": {
-				"title": "System", 
-				"acls": [ "status" ], 
-				"index": 9
 		}, 
     "status/status/services": {
         "title": "Services",

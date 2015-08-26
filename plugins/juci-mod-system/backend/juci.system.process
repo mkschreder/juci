@@ -15,22 +15,23 @@ function fields(inputstr, sep)
 end
 
 function process_list()
-	local res = {}; 
-	local lines = {}; 
-	res["list"] = lines; 
-	local stdout = juci.shell("top -bn1"); 
+	local res = {};  
+	res["list"] = {}; 
+	local stdout = juci.shell("ps -w"); 
+	local lc = 0; 
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local arr = fields(line, "%s"); 
-		local obj = {
-			["pid"] = arr[0], 
-			["parent"] = arr[1], 
-			["user"] = arr[2], 
-			["status"] = arr[3],
-			["vsz"] = arr[4],
-			["cpu"] = arr[6],
-			["command"] = arr[7]
-		};  
-		table.insert(lines, obj); 
+		if(lc == 0) then 
+			res["fields"] = arr; 
+		elseif(line:match("%d+.*")) then
+			local obj = {}; 
+			for i,col in ipairs(res.fields) do 
+				obj[col] = arr[i]; 
+			end 
+			table.insert(res.list, obj); 
+		end
+		lc = lc + 1; 
+		
 	end
 	print(json.encode(res)); 
 end
