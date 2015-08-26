@@ -22,7 +22,7 @@ function log(source, msg)
 end
 
 function shell(fmt, ...)
-	for k,v in base.pairs(arg) do
+	for k,v in base.ipairs(arg) do
 		-- escape all arguments to prevent code injection!
 		if base.type(v) == "string" then 
 			arg[k] = "\""..v:gsub("\"", "\\\"").."\""; 

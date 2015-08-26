@@ -14,7 +14,7 @@ JUCI.app
 		template: '<div class="btn-group" style="white-space: nowrap;">'+
 			'<button class="btn btn-default dropdown-toggle button-label {{size_class}}" style="background-color: #fff !important; border-bottom-right-radius: 0px; border-top-right-radius: 0px; display: inline-block; float:none; " data-toggle="dropdown">{{(selectedText || placeholder )}}</button>'+
 			'<button class="btn btn-default dropdown-toggle" style="background-color: #fff !important; display: inline-block; float:none;" data-toggle="dropdown"><span class="caret"></span></button>'+
-			'<ul class="dropdown-menu"><li ng-repeat="item in ngItems"><a tabindex="-1" ng-click="select(item)" href="">{{item.label}}</a></li></ul>'+
+			'<ul class="dropdown-menu" style="max-height: 300px; overflow: auto"><li ng-repeat="item in ngItems"><a tabindex="-1" ng-click="select(item)" href="">{{item.label}}</a></li></ul>'+
 			'</div>', 
 		link: function($scope, elem, attrs) {
 			if(!attrs.placeholder) attrs.placeholder = gettext("-- Select One --");

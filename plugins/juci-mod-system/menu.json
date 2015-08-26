@@ -1,14 +1,19 @@
 {
+	"settings/system": {
+		"title": "System", 
+		"acls": [ "system" ],
+		"redirect": "settings/system/general", 
+		"index": 0
+	}, 
+	"settings/system/general": {
+		"title": "General", 
+		"acls": [ "system" ],
+		"index": 10
+	}, 
 	"settings/password": {
 		"title": "Router Password",
 		"acls": [ "system" ],
 		"index": 10
-	},
-	"settings/system": {
-		"title": "System",
-		"acls": [ "system" ],
-		"files": [ "/foobar/notexist" ], 
-		"index": 15
 	},
 	"settings/upgrade": {
 		"title": "Firmware Upgrade",

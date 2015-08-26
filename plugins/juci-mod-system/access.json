@@ -18,6 +18,11 @@
 				"juci.system.user": [
 					"password"
 				], 
+				"juci.system.time": [
+					"zonelist", 
+					"get", 
+					"set"
+				], 
 				"juci.system.conf": [
 					"restore", 
 					"defaultreset", 
