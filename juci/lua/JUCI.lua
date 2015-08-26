@@ -50,3 +50,11 @@ function ubus(_calls, arg)
 		io.write("Unknown method!\n"); 
 	end
 end
+
+return {
+	readfile = readfile, 
+	log = log, 
+	shell = shell, 
+	ubus = ubus
+}; 
+

@@ -53,7 +53,7 @@ exports.start = function(thread_func, ...)
     -- Start new event loop for thread.
     require('uv').run()
   end
-  return uv.new_thread(thread_entry, dumped, table.concat(bundlePaths, ";"), ...)
+  return uv.new_thread(thread_entry, dumped, ...)
 end
 
 exports.join = function(thread)
