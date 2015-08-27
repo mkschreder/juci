@@ -33,8 +33,13 @@ JUCI.app
 		}, function(next){
 			$rpc.juci.broadcom.wireless.clients().done(function(result){
 				$scope.done = 1; 
-				$scope.wifiClients2 = result.clients.filter(function(x){ return x.band == "2.4GHz"; }).length; 
-				$scope.wifiClients5 = result.clients.filter(function(x){ return x.band == "5.8GHz"; }).length; 
+				var clients = {}; 
+				result.clients.map(function(x){ 
+					if(!clients[x.band]) clients[x.band] = []; 
+					clients[x.band].push(x); 
+				}); 
+				$scope.wifiClients = clients; 
+				$scope.wifiBands = Object.keys(clients); 
 			}); 
 		}], function(){
 			done(); 

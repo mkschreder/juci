@@ -40,12 +40,6 @@
 		"acls": [ "system" ],
 		"index": 40
 	},
-	"settings/network": {
-		"title": "Network",
-		"modes": [ "expert" ], 
-		"acls": [  ],
-		"index": 50
-	},
 	"status/system": {
 		"title": "System",  
 		"acls": [ "juci-mod-system" ], 

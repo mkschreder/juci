@@ -5,6 +5,7 @@ JUCI.app
 	$scope.lines = [
 		{ title: "Hostname", field: "hostname" }, 
 		{ title: "IPv4 Address", field: "ipaddr" }, 
+		{ title: "Frequency", field: "band" },
 		{ title: "MAC-Address", field: "macaddr" }, 
 		{ title: "RSSI", field: "rssi" }, 
 		{ title: "Noise", field: "noise" }

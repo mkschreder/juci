@@ -1,6 +1,6 @@
 {
 	"internet": {
-			"title": "Internet",
+			"title": "Network",
 			"redirect": "internet/ethernet", 
 			"index": 30
 	},

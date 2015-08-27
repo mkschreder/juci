@@ -385,7 +385,7 @@ JUCI.app
 						if(!zone) return; 
 						var node = {
 							id: "zone."+zone.name.value, 
-							label: String(zone.name.value).toUpperCase(), 
+							label: String(zone.displayname.value || zone.name.value).toUpperCase(), 
 							image: "/img/net-interface-icon.png", 
 							shape: "image",
 							physics: false, 

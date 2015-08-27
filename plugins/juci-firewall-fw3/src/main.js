@@ -116,6 +116,7 @@ UCI.firewall.$registerSectionType("defaults", {
 }); 
 UCI.firewall.$registerSectionType("zone", {
 	"name":					{ dvalue: "", type: String }, 
+	"displayname":	{ dvalue: "", type: String }, // added for displaying zones in different languages
 	"input":				{ dvalue: "ACCEPT", type: String }, 
 	"output":				{ dvalue: "ACCEPT", type: String }, 
 	"forward":			{ dvalue: "REJECT", type: String }, 

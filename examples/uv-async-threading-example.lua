@@ -61,8 +61,6 @@ produce_data(1000):done(function(total)
 end); 
 print("Starting ticker task.."); 
 
-local clear_interval = clear_timeout
-
 local i = set_interval(300, function()
   print("tick")
 end)

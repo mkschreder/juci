@@ -30,6 +30,14 @@
 						<td><strong translate>WPS pin:</strong></td>
 						<td style="text-align: right;"><span ng-show="wifi.status.wps.value" style="font-size: 0.8pn">{{wps.pin || "-"}}</span></td>
 					</tr>
+					<tr>
+						<td><strong translate>Primary SSID</strong></td>
+						<td style="text-align: right;"><span ng-show="wifi['@wifi-iface'].length" style="font-size: 0.8pn">{{wifi['@wifi-iface'][0].ssid.value || "-"}}</span></td>
+					</tr>
+					<tr>
+						<td><strong translate>Primary SSID Key</strong></td>
+						<td style="text-align: right;"><span ng-show="wifi['@wifi-iface'].length" style="font-size: 0.8pn">{{wifi['@wifi-iface'][0].key.value || "-"}}</span></td>
+					</tr>
 					<tr><td></td><td></td></tr><!-- an extra line as quick way to get a border after the last line -->
 				</table>
 			</div>

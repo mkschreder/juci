@@ -89,7 +89,11 @@ function network_list_connected_clients(opts)
 	
 	local clients_map = read_clients(); 
 	local clients_list = {}; 
-	for mac,cl in pairs(clients_map) do table.insert(clients_list, cl); end
+	for mac,cl in pairs(clients_map) do 
+		--local js = juci.shell("/usr/lib/rpcd/cgi/juci.macdb lookup '{\"mac\": \""..mac.."\"}'"); 
+		--cl.manufacturer = json.decode(js)["manufacturer"]; 
+		table.insert(clients_list, cl); 
+	end
 	print(json.encode({ clients = clients_list })); 
 end
 

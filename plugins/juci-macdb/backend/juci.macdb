@@ -5,7 +5,7 @@ require("JUCI");
 function macdb_lookup(opts)
 	local res = {}; 
 	local mac = ""; 
-	if(opts["mac"]) then mac = opts["mac"]; end
+	if(opts["mac"]) then mac = string.upper(opts["mac"]); end
 	local f = assert(io.open("/usr/share/macdb/db.txt", "r")); 
 	mac = string.gsub(mac, ":", ""); 
 	mac = mac:sub(0, 6);

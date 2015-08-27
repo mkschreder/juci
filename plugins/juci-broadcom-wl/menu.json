@@ -53,7 +53,7 @@
 		"index": 50
 	}, 
 	"internet/ethernet/wifi": {
-		"title": "WiFi", 
+		"title": "Wireless", 
 		"index": 10
 	}
 }
