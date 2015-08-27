@@ -4,16 +4,6 @@
         "redirect": "status/system", 
         "index": 60
     },
-    "status/status": {
-				"title": "Status", 
-				"acls": [ "status" ], 
-				"index": 8
-		}, 
-    "status/status/services": {
-        "title": "Services",
-        "acls": [ "status" ],
-        "index": 11
-    },
     "status/events": {
         "title": "Events",
 				"modes": [ "expert" ], 

@@ -2,10 +2,5 @@
 	"overview": {
 		"title": "Overview",
 		"index": 10
-	},
-	"settings": {
-			"title": "Settings",
-			"redirect": "settings/password", 
-			"index": 50
 	}
 }

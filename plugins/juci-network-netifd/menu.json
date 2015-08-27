@@ -31,7 +31,6 @@
 	},
 	"status/network": {
 		"title": "Network", 
-		"redirect": "status/network/routes", 
 		"acls": [ "juci-network-netifd" ], 
 		"index": 20
 	},

@@ -64,7 +64,6 @@ endif
 #	UBUS_MODS += backend/juci-broadcom-dsl
 #endif
 
-
 #ifeq ($(CONFIG_JUCI_BACKEND_MACDB),y)
 #	UBUS_MODS += backend/juci-macdb
 #endif

@@ -9,7 +9,7 @@
 		"acls": [ "network" ], 
 		"index": 6
 	}, 
-	"status/status/dsl": {
+	"status/dsl": {
 			"title": "DSL",
 			"acls": [ "status" ],
 			"index": 10

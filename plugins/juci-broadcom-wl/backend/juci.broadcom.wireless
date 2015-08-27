@@ -120,6 +120,7 @@ wireless_radios(){
 		FREQ=$(wlctl -i $radio assoc | awk -F' ' '/Chanspec/ { print $2; }'); 
 		if [ "$FREQ" == "2.4GHz" ]; then
 			json_add_array "hwmodes";
+			json_add_string "" "auto"; 
 			json_add_string "" "11b"; 
 			json_add_string "" "11g"; 
 			json_add_string "" "11bg"; 
@@ -136,6 +137,7 @@ wireless_radios(){
 			if [ $(db -q get hw.$devid.is_ac) == "1" ]; then
 				json_add_string "" "11ac"; 
 			fi
+			json_add_string "" "auto"; 
 			json_add_string "" "11a"; 
 			json_add_string "" "11n";
 			json_close_array
@@ -146,6 +148,7 @@ wireless_radios(){
 			json_close_array
 		fi
 		json_add_array "channels";
+		json_add_string "" "auto"
 		for chan in $(wlctl -i $radio channels); do
 			json_add_int "" "$chan"
 		done

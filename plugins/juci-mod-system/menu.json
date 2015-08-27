@@ -1,4 +1,9 @@
 {
+	"settings": {
+			"title": "Settings",
+			"redirect": "settings/system/general", 
+			"index": 50
+	},
 	"settings/system": {
 		"title": "System", 
 		"acls": [ "system" ],
@@ -10,6 +15,11 @@
 		"acls": [ "system" ],
 		"index": 10
 	}, 
+	"status/system/services": {
+			"title": "Services",
+			"acls": [ "status" ],
+			"index": 11
+	},
 	"settings/password": {
 		"title": "Router Password",
 		"acls": [ "system" ],

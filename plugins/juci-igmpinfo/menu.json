@@ -4,7 +4,7 @@
 		"acls": [ "juci-igmpsnoop" ], 
 		"index": 8
 	},
-	"status/status/tv": {
+	"status/tv": {
 		"title": "IPTV", 
 		"acls": [ "juci-igmpsnoop" ], 
 		"index": 8
