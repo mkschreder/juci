@@ -216,9 +216,4 @@ JUCI.app.run(function($uci){
 	}); 
 	
 	
-	UCI.$registerConfig("hosts"); 
-	UCI.hosts.$registerSectionType("host", {
-		"hostname":		{ dvalue: "", type: String, required: true}, 
-		"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, required: true}
-	}); 
 })(); 

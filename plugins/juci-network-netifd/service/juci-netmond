@@ -83,6 +83,31 @@ function Netmon:update_clients()
 		conn:send("juci.netmond.client.down", cl); 
 	end
 	
+	-- resolve the manufacturers and update known hosts database
+	print("Updating hosts database..."); 
+	local hosts = conn:call("uci", "get", { config = "hosts" }).values; 
+	for mac,cl in pairs(online_clients) do 
+		if hosts[mac] then 
+			local host = hosts[mac]; 
+			for k,v in pairs(cl) do 
+				host[k] = v; 
+			end
+			print("Updating host database entry for "..mac); 
+			conn:call("uci", "set", { config = "hosts", section = mac, values = host }); 
+		else 
+			local mfinfo = conn:call("juci.macdb", "lookup", { mac = mac }); 
+			if mfinfo and mfinfo.manufacturer then 
+				cl.manufacturer = mfinfo.manufacturer; 
+			end 
+			-- create a new entry in the database 
+			print("Creating host database entry for "..mac); 
+			local name = mac:gsub(":", "_"); -- unfortunately uci does not seem to support : in names
+			conn:call("uci", "add", { config = "hosts", type = "host", name = name, values = cl }); 
+		end
+	end
+	-- commit all changes
+	conn:call("uci", "commit", { config = "hosts" }); 
+	
 	-- now we can replace our list of clients with the new list of online clients that we have generated
 	self.clients = online_clients; 
 end

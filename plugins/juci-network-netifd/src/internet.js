@@ -2,15 +2,28 @@
 !function(){
 
 	JUCI.app.factory("$network", function($rpc, $uci){
+		var sync_hosts = $uci.sync("hosts"); 
 		function _refreshClients(self){
 			var deferred = $.Deferred(); 
 			$rpc.juci.network.clients().done(function(res){
-				if(res && res.clients){
-					self.clients = res.clients; 
-					deferred.resolve(self.clients);  
-				} else {
-					deferred.reject(); 
-				}
+				sync_hosts.done(function(){
+					if(res && res.clients){
+						self.clients = res.clients.map(function(cl){
+							// update clients with some extra information from hosts database
+							var key = cl.macaddr.replace(/:/g, "_"); 
+							if($uci.hosts[key]) {
+								var host = $uci.hosts[key]; 
+								console.log("Found host for "+key); 
+								cl.manufacturer = host.manufacturer.value; 
+								if(host.name) cl.name = host.name.value; 
+							}
+							return cl; 
+						}); 
+						deferred.resolve(self.clients);  
+					} else {
+						deferred.reject(); 
+					}
+				}); 
 			}).fail(function(){ deferred.reject(); });
 			return deferred.promise(); 
 		}
@@ -342,5 +355,17 @@ UCI.ddns.$registerSectionType("service", {
 	"domain":               { dvalue: "", type: String },
 	"username":             { dvalue: "", type: String },
 	"password":             { dvalue: "", type: String }
+});
+			
+
+UCI.$registerConfig("hosts");
+UCI.hosts.$registerSectionType("host", {
+	"device":            { dvalue: "", type: String },
+	"macaddr":         { dvalue: "", type: String },
+	"ipaddr":               { dvalue: "", type: String },
+	"name":             { dvalue: "", type: String },
+	"manufacturer":             { dvalue: "", type: String },
+	"hostname":		{ dvalue: "", type: String, required: true}, 
+	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, required: true}
 });
 			
