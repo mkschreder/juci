@@ -63,11 +63,15 @@
 			function(next){
 				scope.UBUS.$init().done(function(){
 					if(!scope.UBUS.router || !scope.UBUS.router.info){
-						//alert("Questd must have crashed or is not running. Restart it on the router!"); 
+						// TODO: make this prettier. 
+						alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
+						return; 
+					} else {
+						next();
 					}
 				}).fail(function(){
 					console.error("UBUS failed to initialize!"); 
-				}).always(function(){ next(); }); 
+				}); 
 			},  
 			function(next){
 				$uci.$init().fail(function(){

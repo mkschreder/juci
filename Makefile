@@ -21,6 +21,7 @@ DIRS-y:=juci \
 	plugins/juci-sysupgrade \
 	plugins/juci-mod-status \
 	plugins/juci-jquery-console \
+	plugins/juci-netmode \
 	services/ueventd 
 	
 BIN:=bin

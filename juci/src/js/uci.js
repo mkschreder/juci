@@ -213,6 +213,11 @@
 			var deferred = $.Deferred(); 
 			var self = this; 
 
+			if(!$rpc.uci) {
+				setTimeout(function(){ deferred.reject(); }, 0); 
+				return deferred.promise(); 
+			}
+			
 			$rpc.uci.get({
 				config: self[".config"][".name"], 
 				section: self[".name"]
