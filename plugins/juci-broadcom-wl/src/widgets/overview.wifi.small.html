@@ -5,7 +5,7 @@
 			<td style="padding-left: 10px;">{{'Wireless'|translate}}</td>
 			<td style="width:1%; white-space: nowrap; ">
 				<span ng-show="wifiBands.length" ng-repeat="band in wifiBands" class="badge">{{band}}: {{wifiClients[band].length}}</span>
-				<span ng-show="wifiBands.length == 0">0</span>
+				<span ng-show="wifiBands.length == 0" class="badge">0</span>
 				<i class="fa fa-spinner fa-spin" ng-show="!done"/>
 			</td>
 		</tr>
