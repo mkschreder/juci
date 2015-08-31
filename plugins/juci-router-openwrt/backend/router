@@ -1,0 +1,115 @@
+#!/usr/bin/lua
+
+require("JUCI"); 
+
+function system_filesystems(opts)
+	local res = {}; 
+	local lines = {}; 
+	res["filesystems"] = lines; 
+	local stdout = juci.shell("df | tail -n+2"); 
+	for line in stdout:gmatch("[^\r\n]+") do 
+		local filesystem,total,used,free,percent,path = line:match("([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*([^%s]*)%s*"); 
+		local obj = {
+			["filesystem"] = filesystem, 
+			["total"] = total, 
+			["used"] = used, 
+			["free"] = free,
+			["path"] = path
+		}; 
+		table.insert(lines, obj); 
+	end
+	print(json.encode(res)); 
+end
+
+function system_logread(opts)
+	local res = {}; 
+	local lines = {}; 
+	res["lines"] = lines; 
+	local stdout = juci.shell("logread -l 20"); 
+	for line in stdout:gmatch("[^\r\n]+") do 
+		local date,type,source,message = line:match("([^%s]*%s[^%s]*%s[^%s]*%s[^%s]*%s[^%s]*)%s([^%s]*)%s([^%s:]*):%s(.*)"); 
+		string.gsub(message, "\n", ""); 
+		local obj = {
+			["date"] = date, 
+			["type"] = type, 
+			["source"] = source, 
+			["message"] = message
+		}; 
+		table.insert(lines, obj); 
+	end
+	print(json.encode(res)); 
+end
+
+function system_reboot()
+	juci.shell("/sbin/reboot"); 
+end
+
+function system_defaultreset()
+	juci.shell("/sbin/reboot"); 
+end
+
+function system_info()
+	local system = {}; 
+	local db_str = juci.shell("db show hw.board"); 
+	local db = {}; 
+	for line in db_str:gmatch("[^\r\n]+") do 
+		local name, value = line:match("([^=]+)=(.*)"); 
+		db[name] = value; 
+	end
+	
+	system["name"] = juci.readfile("/proc/sys/kernel/hostname"); 
+	system["hardware"] = db["hw.board.hardwareVersion"]; 
+	system["model"] = db["hw.board.routerModel"]; 
+	system["boardid"] = db["hw.board.boardId"]; 
+	system["firmware"] = db["hw.board.iopVersion"]; 
+	system["brcmver"] = db["hw.board.brcmVersion"]; 
+	system["socmod"] = db["hw.board.socModel"]; 
+	system["socver"] = db["hw.board.socRevision"]; 
+	system["cfever"] = db["hw.board.cfeVersion"]; 
+	system["kernel"] = db["hw.board.kernelVersion"]; 
+	system["basemac"] = db["hw.board.BaseMacAddr"]; 
+	system["serialno"] = db["hw.board.serialNumber"]; 
+	
+	local keys = {
+		auth = db["hw.board.authKey"], 
+		des = db["hw.board.desKey"], 
+		wpa = db["hw.board.wpaKey"]
+	}; 
+	
+	local mem_str = juci.readfile("/proc/meminfo"); 
+	local meminfo = {}; 
+	for line in mem_str:gmatch("[^\r\n]+") do
+		local name, value = line:match("([^:]+):%s+([^%s])");
+		meminfo[name] = value; 
+	end 
+	
+	local memory = {
+		total = meminfo["MemTotal"],
+		used = meminfo["MemTotal"] - meminfo["MemFree"], 
+		free = meminfo["MemFree"]
+	}; 
+	
+	local ethernet = {}; 
+	local port_names = {}; 
+	local port_order = {}; 
+	local ports = {}; 
+	if db["hw.board.ethernetPortNames"] then 
+		for v in string.gmatch(db["hw.board.ethernetPortNames"], "[^%s]+") do table.insert(port_names, v); end
+	end
+	if db["hw.board.ethernetPortOrder"] then 
+		for v in string.gmatch(db["hw.board.ethernetPortOrder"], "[^%s]+") do table.insert(port_order, v); end
+	end
+	for i,v in ipairs(port_names) do table.insert(ports, {name=v, device = port_order[i]}); end
+	
+	print(json.encode({
+		system = system, 
+		keys = keys, 
+		memoryKB = memory, 
+		eth_ports = ports
+	})); 
+end
+
+juci.ubus({
+	["info"] = system_info
+}, arg); 
+
