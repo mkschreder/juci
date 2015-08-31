@@ -9,6 +9,11 @@ JUCI.app
 	
 	$scope.config = $config; 
 	
+	$uci.sync("system").done(function(){
+		$scope.system = $uci.system; 
+		$scope.$apply(); 
+	}); 
+	
 	function confirmKeep(){
 		var deferred = $.Deferred(); 
 		
@@ -68,8 +73,8 @@ JUCI.app
 		$scope.onlineUpgradeAvailable = false;
 		$scope.onlineCheckInProgress = 1; 
 		$rpc.juci.system.upgrade.check({type: "online"}).done(function(response){
-			if(response.stdout) {
-				$scope.onlineUpgrade = response.stdout.replace("\n", ""); 
+			if(response.online) {
+				$scope.onlineUpgrade = response.online; 
 				$scope.onlineUpgradeAvailable = true;
 			} else {
 				$scope.onlineUpgrade = gettext("No upgrade has been found!"); 
@@ -89,8 +94,8 @@ JUCI.app
 		$scope.usbUpgradeAvailable = false;
 		$scope.usbCheckInProgress = 1; 
 		$rpc.juci.system.upgrade.check({type: "usb"}).done(function(response){
-			if(response.stdout) {
-				$scope.usbUpgrade = response.stdout.replace("\n", ""); 
+			if(response.usb) {
+				$scope.usbUpgrade = response.usb; 
 				$scope.usbUpgradeAvailable = true;
 			} else {
 				$scope.usbUpgrade = gettext("No upgrade has been found!"); 

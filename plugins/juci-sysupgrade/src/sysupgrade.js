@@ -1,8 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
-JUCI.app.run(function($uci){
+JUCI.app.run(function($uci, $rpc, $tr, gettext, upgradePopup){
 	var upgrades = []; 
-	/*
+	
 	async.series([
 		function(next){
 			$uci.sync("system").done(function(){
@@ -21,12 +21,17 @@ JUCI.app.run(function($uci){
 		function(next){
 			$rpc.juci.system.upgrade.check().done(function(response){
 				if(response.all.length) {
-					upgrades = response.all; 
+					/*upgradePopup.show({ images: response.all.map(function(x){ return { label: x, value: x }; }) }).done(function(selected){
+						$rpc
+					}); */
+					if(confirm($tr(gettext("A new system software upgrade is available. Do you want to visit upgrade page and upgrade now?")))) {
+						window.location = "/#!/settings-upgrade"; 
+					}
 				} 
 				next(); 
 			}); 
 		}
 	], function(){
 		
-	}); */
+	}); 
 }); 
