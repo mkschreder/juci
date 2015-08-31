@@ -1,0 +1,12 @@
+{
+	"settings/upgrade": {
+		"title": "Firmware Upgrade",
+		"acls": [ "admin" ],
+		"index": 20
+	},
+	"settings/upgrade/options": {
+		"title": "Options",
+		"acls": [ "admin" ],
+		"index": 30
+	}
+}

@@ -9,9 +9,11 @@
 					"start", 
 					"clean"
 				]
-			}
+			}, 
+			"uci": [ "system" ]
 		}, 
 		"write": {
+			"uci": [ "system" ],
 			"ubus": {
 				"juci.system.upgrade": [
 					"check", 

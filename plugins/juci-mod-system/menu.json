@@ -25,11 +25,6 @@
 		"acls": [ "system" ],
 		"index": 10
 	},
-	"settings/upgrade": {
-		"title": "Firmware Upgrade",
-		"acls": [ "admin" ],
-		"index": 20
-	},
 	"settings/energy": {
 		"title": "Energy Settings",
 		"acls": [ "users", "vodafone" ],

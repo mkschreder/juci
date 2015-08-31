@@ -3,10 +3,16 @@
 require("JUCI"); 
 
 function sysupgrade_check(params)
-	local type = "usb"; 
-	if params["type"] == "online" then type = "online"; end;
-	local res = {}; 
-	res["stdout"] = juci.shell("sysupgrade %s".."--"..type);  
+	local type = {"usb", "online"}; 
+	if params["type"] == "online" then type = {"online"}; 
+	elseif params["type"] == "usb" then type = {"usb"} end;
+	local res = { all = {} }; 
+	for k,v in ipairs(type) do
+		local path = juci.shell("sysupgrade --"..v);  
+		path = path:gsub("\n", ""); 
+		res[v] = path;
+		table.insert(res.all, path); 
+	end
 	print(json.encode(res)); 
 end
 

@@ -35,7 +35,7 @@ JUCI.app
 				}).always(function(){ next(); }); 
 			},
 			function(next){
-				$rpc.router.info().done(function(result){
+				$rpc.juci.system.info().done(function(result){
 					if(result.system) $scope.firmware = result.system.firmware; 
 				}).always(function(){ next(); }); 
 			}

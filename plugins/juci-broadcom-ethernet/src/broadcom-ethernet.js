@@ -34,21 +34,25 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 		var def = $.Deferred(); 
 		
 		sync.done(function(){
-			$rpc.router.boardinfo().done(function(boardinfo){
-				var names = boardinfo.ethernet.port_names.split(" "); 
-				var devs = boardinfo.ethernet.port_order.split(" "); 
-					
-				var devices = devs.map(function(dev, i){
-					return {
-						get name(){ return names[i]; },
-						get id(){ return dev; },
-						get type(){ return "baseif"; },
-						is_wan_port: ($uci.layer2_interface_ethernet.Wan && ($uci.layer2_interface_ethernet.Wan.baseifname.value == dev)),
-						base: { name: names[i], id: dev }
-					}; 
-				});
-				def.resolve(devices);  
-			}); 
+			if($rpc.router && $rpc.router.boardinfo){
+				$rpc.router.boardinfo().done(function(boardinfo){
+					var names = boardinfo.ethernet.port_names.split(" "); 
+					var devs = boardinfo.ethernet.port_order.split(" "); 
+						
+					var devices = devs.map(function(dev, i){
+						return {
+							get name(){ return names[i]; },
+							get id(){ return dev; },
+							get type(){ return "baseif"; },
+							is_wan_port: ($uci.layer2_interface_ethernet.Wan && ($uci.layer2_interface_ethernet.Wan.baseifname.value == dev)),
+							base: { name: names[i], id: dev }
+						}; 
+					});
+					def.resolve(devices);  
+				}); 
+			} else {
+				def.resolve([]); 
+			}
 		}); 
 		return def.promise(); 
 	}

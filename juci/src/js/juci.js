@@ -62,7 +62,7 @@
 		async.series([
 			function(next){
 				scope.UBUS.$init().done(function(){
-					if(!scope.UBUS.router || !scope.UBUS.router.info){
+					if(!scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
 						// TODO: make this prettier. 
 						alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
 						return; 
@@ -135,7 +135,7 @@
 				$rpc.$authenticate().done(function(){
 					// here we get router info part of the config. It will allow us to 
 					// pick the correct theme in the init script. TODO: perhaps do this somewhere else? 
-					$rpc.router.info().done(function(info){
+					$rpc.juci.system.info().done(function(info){
 						//console.log("Router info: "+JSON.stringify(info.system)); 
 						if(info && info.system) JUCI.config.system = info.system; 
 						next(); 
