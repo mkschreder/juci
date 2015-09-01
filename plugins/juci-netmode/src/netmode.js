@@ -40,11 +40,13 @@ JUCI.app
 		var def = $.Deferred(); 
 		// currently use the setting from uci. But we want to actually compare the files eventually. 
 		sync_netmode.done(function(){
-			if($uci.netmode && $uci.netmode["@netmode"]){
-				def.resolve($uci.netmode.setup.curmode.value); 
-			} else {
-				def.reject(); 
-			}
+			setTimeout(function(){
+				if($uci.netmode && $uci.netmode["@netmode"]){
+					def.resolve($uci.netmode.setup.curmode.value); 
+				} else {
+					def.reject(); 
+				}
+			},0); 
 		}); 
 		/*if(!$rpc.juci.netmode) {
 			def.reject(); 
