@@ -1,37 +1,46 @@
 DIRS-y:=juci 
 
 define plugin 
-ifeq($(CONFIG_PACKAGE_$(1)),y) DIRS-y += plugins/$(1); endif
+ifeq ($(CONFIG_PACKAGE_$(1)),y) 
+	DIRS-y+=plugins/$(1)
+endif
 endef
 
 define service 
-ifeq($(CONFIG_PACKAGE_$(1)),y) DIRS-y += services/$(1); endif
+ifeq ($(CONFIG_PACKAGE_$1),y) 
+	DIRS-y+=services/$(1)
+endif
 endef
 
-$(eval $(call plugin, juci-asterisk ));
-$(eval $(call plugin, juci-broadcom-wl));
-$(eval $(call plugin, juci-broadcom-dsl));
-$(eval $(call plugin, juci-broadcom-vlan));
-$(eval $(call plugin, juci-broadcom-ethernet));
-$(eval $(call plugin, juci-network-netifd));
-$(eval $(call plugin, juci-firewall-fw3));
-$(eval $(call plugin, juci-dnsmasq-dhcp));
-$(eval $(call plugin, juci-minidlna));
-$(eval $(call plugin, juci-samba ));
-$(eval $(call plugin, juci-event));
-$(eval $(call plugin, juci-ddns));
-$(eval $(call plugin, juci-diagnostics));
-$(eval $(call plugin, juci-inteno-router));
-$(eval $(call plugin, juci-upnp));
-$(eval $(call plugin, juci-usb));
-$(eval $(call plugin, juci-macdb));
-$(eval $(call plugin, juci-igmpinfo ));
-$(eval $(call plugin, juci-mod-system ));
-$(eval $(call plugin, juci-sysupgrade ));
-$(eval $(call plugin, juci-mod-status ));
-$(eval $(call plugin, juci-jquery-console ));
-$(eval $(call plugin, juci-netmode ));
-$(eval $(call service, ueventd ));
+define prval
+name:=CONFIG_PACKAGE_$(1); 
+@echo "VALUE: $(1): $(CONFIG_PACKAGE_$(1))"; 
+endef
+
+$(eval $(call plugin,juci-asterisk));
+$(eval $(call plugin,juci-broadcom-wl));
+$(eval $(call plugin,juci-broadcom-dsl));
+$(eval $(call plugin,juci-broadcom-vlan));
+$(eval $(call plugin,juci-broadcom-ethernet));
+$(eval $(call plugin,juci-network-netifd));
+$(eval $(call plugin,juci-firewall-fw3));
+$(eval $(call plugin,juci-dnsmasq-dhcp));
+$(eval $(call plugin,juci-minidlna));
+$(eval $(call plugin,juci-samba ));
+$(eval $(call plugin,juci-event));
+$(eval $(call plugin,juci-ddns));
+$(eval $(call plugin,juci-diagnostics));
+$(eval $(call plugin,juci-inteno-router));
+$(eval $(call plugin,juci-upnp));
+$(eval $(call plugin,juci-usb));
+$(eval $(call plugin,juci-macdb));
+$(eval $(call plugin,juci-igmpinfo));
+$(eval $(call plugin,juci-mod-system));
+$(eval $(call plugin,juci-sysupgrade));
+$(eval $(call plugin,juci-mod-status));
+$(eval $(call plugin,juci-jquery-console));
+$(eval $(call plugin,juci-netmode));
+$(eval $(call service,ueventd));
 	
 BIN:=bin
 UBUS_MODS:= backend/igmpinfo
@@ -41,6 +50,10 @@ UBUS_MODS:= backend/igmpinfo
 export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 export CC:=$(CC)
 export CFLAGS:=$(CFLAGS)
+
+ifneq ($(SELECT_BASIC),)
+	include Makefile.basic
+endif
 
 ifneq  ($(CONFIG_JUCI_THEME_SELECTED),y)
 	DIRS-y += themes/juci-inteno
@@ -57,8 +70,12 @@ all: prepare node_modules $(UBUS_MODS) $(DIRS-y)
 	./juci-update $(BIN)/www RELEASE
 
 prepare: 	
+	
 	@echo "======= JUCI Buliding ========="
-	@echo "CONFIG: $(CONFIG_PACKAGE_juci-ddns)"
+	@echo "DIRS: $(DIRS)"
+	#$(call prval,juci-ddns) 
+	#$(call prval,juci-network-netifd)
+	@echo "CONFIG: "
 	@echo "MODULES: $(DIRS-y)"
 	@echo "UBUS: $(UBUS_MODS)"
 	-rm -rf $(BIN)
