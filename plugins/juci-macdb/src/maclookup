@@ -2,7 +2,7 @@
 
 local mac = arg[1]; 
 local f = assert(io.open("/usr/share/macdb/db.txt", "r")); 
-string.gsub(mac, ":", ""); 
+mac = string.gsub(mac, ":", ""); 
 mac = mac:sub(0, 6);
 local line = f:read("*l");  
 while line do
