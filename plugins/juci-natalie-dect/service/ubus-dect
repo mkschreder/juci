@@ -18,37 +18,81 @@ function string.ends(String,End)
 end
 
 function dect_status()
-        local stdout = juci.shell("dect -s");
-        local res = { handsets = {}, radio = {} };
-        for line in stdout:gmatch("[^\r\n]+") do
-                if line:starts("hset") then
-                        local id, status, addr, present, ping = line:match("hset:%s+(%S+)%s+([^\t]+)%s+([^\t]+)%s+([^\t]+)%s+([^\t]+)");
-                        if id then 
-													table.insert(res.handsets, { id = tonumber(id), status = status, address = addr:gsub(" ",""), online = present, ping = ping });
-												end
-                elseif line:starts("radio:") then
-                        local state = line:match("radio:%s+(%S+)");
-                        res.radio.state = state;
-                elseif line:starts("reg_state") then
-                        local state = line:match("reg_state:%s+(%S+)");
-                        res.radio.registration = state;
-                end
-        end
-        return res;
+	local stdout = juci.shell("dect -s");
+	local res = { handsets = {}, radio = {} };
+	for line in stdout:gmatch("[^\r\n]+") do
+		if line:starts("hset") then
+			local id, status, addr, present, ping = line:match("hset:%s+(%S+)%s+([^\t]+)%s+([^\t]+)%s+([^\t]+)%s+([^\t]+)");
+			if id then 
+				table.insert(res.handsets, { id = tonumber(id), status = status, address = addr:gsub(" ",""), online = present, ping = ping });
+			end
+		elseif line:starts("radio:") then
+			local state = line:match("radio:%s+(%S+)");
+			res.radio.state = state;
+		elseif line:starts("reg_state") then
+			local state = line:match("reg_state:%s+(%S+)");
+			res.radio.registration = state;
+		end
+	end
+	return res;
 end
 
-print(json.encode(dect_status()));
+function start_update_service()
+	local active_handsets = {}; 
 
-local objects = {
-        ["sys.dect"] = {
-                status = {
-                        function(req, msg)
-                                conn:reply(req, dect_status());
-                        end, {}
-                }
-        }
-};
+	function export_handset(hset)
+		return conn:add({
+			["sys.dect.handset."..hset.address] = {
+				ping = {
+					function(req)
+						local sout = juci.shell("dect -p "..hset.id); 
+						conn:reply(req, {}); 
+					end, {}
+				},
+				status = {
+					function(req)
+						conn:reply(req, hset); 
+					end, {}
+				}
+			}
+		}); 
+	end
+	
+	function update_handsets()
+		-- add handset objects
+		local status = dect_status(); 
+		local new_list = {}; 
+		for _,hset in ipairs(status.handsets) do
+			if not active_handsets[hset.address] then
+				hset.obj = export_handset(hset); 
+				new_list[hset.address] = hset; 
+			else
+				new_list[hset.address] = active_handsets[hset.address]; 
+				active_handsets[hset.address] = nil; 
+			end
+		end
+		for addr,hset in pairs(active_handsets) do
+			conn:remove(hset.obj); 
+		end
+		active_handsets = new_list; 
+		collectgarbage(); 
+		uloop.timer(update_handsets):set(5000); 
+	end
+	
+	local timer = uloop.timer(update_handsets); 
+	timer:set(0);
+end
 
-conn:add(objects);
+conn:add({
+	["sys.dect"] = {
+		status = {
+			function(req, msg)
+				conn:reply(req, dect_status());
+			end, {}
+		}
+	}
+}); 
+
+start_update_service(); 
 
 uloop.run();
