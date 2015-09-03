@@ -1,0 +1,12 @@
+{
+	"juci-natalie-dect": {
+		"description": "JUCI natalie-dect module",
+		"read": {
+			"ubus": {
+				"sys.dect.handset.*": [
+					"ping"
+				]
+			}
+		}
+	}
+}

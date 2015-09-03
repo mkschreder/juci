@@ -108,6 +108,8 @@ gettext("status.system.title");
 gettext("System");
 gettext("status.system.processes.title");
 gettext("Processes");
+gettext("phone.dect.title");
+gettext("DECT");
 gettext("internet.title");
 gettext("Network");
 gettext("internet.ethernet.title");

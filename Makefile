@@ -40,6 +40,7 @@ $(eval $(call plugin,juci-sysupgrade));
 $(eval $(call plugin,juci-mod-status));
 $(eval $(call plugin,juci-jquery-console));
 $(eval $(call plugin,juci-netmode));
+$(eval $(call plugin,juci-natalie-dect));
 $(eval $(call service,ueventd));
 	
 BIN:=bin
@@ -74,7 +75,6 @@ all: prepare node_modules $(UBUS_MODS) $(DIRS-y)
 	./juci-update $(BIN)/www RELEASE
 
 prepare: 	
-	
 	@echo "======= JUCI Buliding ========="
 	@echo "DIRS: $(DIRS)"
 	#$(call prval,juci-ddns) 
@@ -95,7 +95,6 @@ node_modules: package.json
 inteno: all
 
 debug: prepare $(UBUS_MODS) $(DIRS-y) 
-	#npm install 
 	grunt 
 	./juci-update $(BIN)/www DEBUG
 

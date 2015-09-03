@@ -1,0 +1,54 @@
+#!/usr/bin/lua
+
+require("ubus");
+require("uloop");
+require("JUCI");
+require("JSON");
+
+uloop.init();
+
+local conn = ubus.connect();
+
+function string.starts(String,Start)
+   return string.sub(String,1,string.len(Start))==Start
+end
+
+function string.ends(String,End)
+   return End=='' or string.sub(String,-string.len(End))==End
+end
+
+function dect_status()
+        local stdout = juci.shell("dect -s");
+        local res = { handsets = {}, radio = {} };
+        for line in stdout:gmatch("[^\r\n]+") do
+                if line:starts("hset") then
+                        local id, status, addr, present, ping = line:match("hset:%s+(%S+)%s+([^\t]+)%s+([^\t]+)%s+([^\t]+)%s+([^\t]+)");
+                        if id then 
+													table.insert(res.handsets, { id = tonumber(id), status = status, address = addr:gsub(" ",""), online = present, ping = ping });
+												end
+                elseif line:starts("radio:") then
+                        local state = line:match("radio:%s+(%S+)");
+                        res.radio.state = state;
+                elseif line:starts("reg_state") then
+                        local state = line:match("reg_state:%s+(%S+)");
+                        res.radio.registration = state;
+                end
+        end
+        return res;
+end
+
+print(json.encode(dect_status()));
+
+local objects = {
+        ["sys.dect"] = {
+                status = {
+                        function(req, msg)
+                                conn:reply(req, dect_status());
+                        end, {}
+                }
+        }
+};
+
+conn:add(objects);
+
+uloop.run();

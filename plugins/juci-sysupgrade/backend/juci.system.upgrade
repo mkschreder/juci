@@ -10,7 +10,7 @@ function sysupgrade_check(params)
 	for k,v in ipairs(type) do
 		local path = juci.shell("sysupgrade --"..v);  
 		path = path:gsub("\n", ""); 
-		if path and path:len() then 
+		if path and path:len() > 0 then 
 			res[v] = path;
 			table.insert(res.all, path); 
 		end

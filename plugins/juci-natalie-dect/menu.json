@@ -1,0 +1,7 @@
+{
+	"phone/dect": {
+		"title": "DECT", 
+		"acls": [ "juci-natalie-dect" ],
+		"index": 100
+	}
+}
