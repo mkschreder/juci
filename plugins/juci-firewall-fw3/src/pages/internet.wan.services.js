@@ -24,7 +24,7 @@ JUCI.app
 			} else {
 				$uci.firewall.create({
 					".type": "rule", 
-					"name": "Allow connection to "+service.name+" port "+service.port+" from wan port", 
+					"name": "Allow connection to "+service.name+" port "+service.listen_port+" from wan interface", 
 					"src": "wan", 
 					"proto": service.proto, 
 					"dest_port": service.listen_port, 
