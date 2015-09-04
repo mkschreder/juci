@@ -103,7 +103,7 @@ debug: prepare $(UBUS_MODS) $(DIRS-y)
 	./juci-update $(BIN)/www DEBUG
 
 install: 
-	$(CP) $(BIN)/* $(DESTDIR)
+	cp -Rp $(BIN)/* $(DESTDIR)
 
 #node_modules: package.json
 #	npm install
