@@ -13,6 +13,11 @@
 						<li ng-repeat="err in conn.$info.errors">Error ({{err.subsystem}}): {{err.code}}</li>
 					</ul>
 				</div>
+				<juci-config-lines>
+					<juci-config-line title="{{'Interface Type'|translate}}">
+						<juci-select ng-model="conn.type.value" ng-items="allInterfaceTypes"/>
+					</juci-config-line>
+				</juci-config-lines>
 				<table class="table table-condensed">
 					<tr><td translate>Interface UP:</td><td>{{(conn.$info.up)?"YES":"NO"}}</td></tr>
 					<tr><td translate>Device:</td><td>{{conn.$info.l3_device}}</td></tr>

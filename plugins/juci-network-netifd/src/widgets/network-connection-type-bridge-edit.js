@@ -19,7 +19,7 @@ JUCI.app
 	function updateDevices(net){
 		if(!net) return;
 		$network.getAdapters().done(function(devs){
-			var devlist = net.ifname.value.split(" "); 
+			var devlist = (net.ifname.value != "")?net.ifname.value.split(" "):[]; 
 			var addable = []; 
 			net.$addedDevices = devlist.map(function(dev){
 				return { name: dev }; 
@@ -69,20 +69,20 @@ JUCI.app
 							else if(dev == data) return false; 
 							return true; 
 						}).join(" ");
-						
-						if(keep_device) return; 
-						
-						$scope.connection.ifname.value += " " + data; 
-						$scope.connection.ifname.value.split(" ").map(function(dev_name){
-							var dev = devs.find(function(d){ return d.id == dev_name; }); 
-							
-							if(!$scope.doNotMarkBridgedDevices){
-								// mark devies that are part of the bridge as bridged
-								if(dev) dev.bridged = true; 
-							}
-						}); 
-						updateDevices($scope.connection);
 					}); 
+					
+					if(keep_device) return; 
+					
+					$scope.connection.ifname.value += " " + data; 
+					$scope.connection.ifname.value.split(" ").map(function(dev_name){
+						var dev = devs.find(function(d){ return d.id == dev_name; }); 
+						
+						if(!$scope.doNotMarkBridgedDevices){
+							// mark devies that are part of the bridge as bridged
+							if(dev) dev.bridged = true; 
+						}
+					}); 
+					updateDevices($scope.connection);
 				}); 
 			}); 
 		}, function () {

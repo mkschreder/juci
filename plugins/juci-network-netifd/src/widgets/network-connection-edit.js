@@ -16,6 +16,12 @@ JUCI.app
 	$scope.expanded = true; 
 	$scope.existingHost = { }; 
 	
+	$scope.allInterfaceTypes = [
+		{ label: "Standard", value: "" }, 
+		{ label: "AnyWAN", value: "anywan" }, 
+		{ label: "Bridge", value: "bridge" }
+	]; 
+	
 	$scope.protocolTypes = [
 		{ label: "Static Address", value: "static" }, 
 		{ label: "DHCP v4", value: "dhcp" }, 

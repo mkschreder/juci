@@ -98,6 +98,9 @@ debug: prepare $(UBUS_MODS) $(DIRS-y)
 	grunt 
 	./juci-update $(BIN)/www DEBUG
 
+install: 
+	$(CP) $(BIN)/* /
+
 #node_modules: package.json
 #	npm install
 	
