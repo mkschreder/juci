@@ -16,6 +16,11 @@ $(WWW):
 files: 
 	$(INSTALL_DIR) ./$(WWW)/css
 	$(INSTALL_DIR) ./$(WWW)/js
+	$(INSTALL_DIR) ./$(OUTDIR)/sbin/
+	$(INSTALL_DIR) ./$(OUTDIR)/etc/init.d/
+	chmod +x ./service/*
+	$(CP) ./service/ubus-dect ./$(OUTDIR)/sbin/
+	$(CP) ./service/ubus-dect.init ./$(OUTDIR)/etc/init.d/ubus-dect
 	
 STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)

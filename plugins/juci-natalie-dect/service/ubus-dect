@@ -89,6 +89,16 @@ conn:add({
 			function(req, msg)
 				conn:reply(req, dect_status());
 			end, {}
+		}, 
+		pair = {
+			function(req, msg)
+				juci.shell("dect -r"); 
+			end, {}
+		}, 
+		ping = {
+			function(req, msg)
+				juci.shell("dect -p %s", msg["id"]); 
+			end, {}
 		}
 	}
 }); 
