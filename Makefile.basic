@@ -1,0 +1,10 @@
+DIRS-y += \
+	plugins/juci-ddns \
+	plugins/juci-diagnostics \
+	plugins/juci-event \
+	plugins/juci-jquery-console \
+	plugins/juci-mod-status \
+	plugins/juci-mod-system \
+	plugins/juci-netmode \
+	plugins/juci-network-netifd \
+	plugins/juci-usb 
