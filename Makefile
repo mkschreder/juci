@@ -7,13 +7,13 @@ endif
 endef
 
 define service 
-ifeq ($(CONFIG_PACKAGE_$1),y) 
+ifeq ($(CONFIG_PACKAGE_$(1)),y) 
 	DIRS-y+=services/$(1)
 endif
 endef
 
 define theme 
-ifeq ($(CONFIG_PACKAGE_$1),y) 
+ifeq ($(CONFIG_PACKAGE_$(1)),y) 
 	DIRS-y+=themes/$(1)
 endif
 endef
