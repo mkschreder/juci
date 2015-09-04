@@ -25,10 +25,9 @@
 		"index": 30
 	},
 	"phone/numbers": {
-		"title": "Phone Numbers",
+		"title": "SIP Accounts",
 		"files": [ "/etc/config/voice_client" ],
 		"modes": [ "expert" ], 
-		"acls": [  ],
 		"index": 40
 	},
 	"phone/lines": {
@@ -44,5 +43,10 @@
 		"modes": [ "expert" ], 
 		"acls": [ ], 
 		"index": 50
+	},
+	"status/phone": {
+		"title": "Phone",
+		"acls": [ "network" ],
+		"index": 41
 	}
 }

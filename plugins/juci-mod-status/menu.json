@@ -1,23 +1,23 @@
 {
-    "status": {
-        "title": "Status",
-        "redirect": "status/system", 
-        "index": 60
-    },
-    "status/events": {
-        "title": "Events",
-				"modes": [ "expert" ], 
-        "acls": [ "status" ],
-        "index": 50
-    }, 
-    "status/restart": {
-			"title": "Restart", 
-			"acls": [ "status" ], 
-			"index": 60
-		},
-    "status/about": {
-			"title": "About", 
-			"acls": [ "status" ], 
-			"index": 70
-		}
+	"status": {
+		"title": "Status",
+		"redirect": "status/system", 
+		"index": 60
+	},
+	"status/events": {
+		"title": "Events",
+		"modes": [ "expert" ], 
+		"acls": [ "status" ],
+		"index": 50
+	}, 
+	"status/restart": {
+		"title": "Restart", 
+		"acls": [ "status" ], 
+		"index": 60
+	},
+	"status/about": {
+		"title": "About", 
+		"acls": [ "status" ], 
+		"index": 70
+	}
 }
