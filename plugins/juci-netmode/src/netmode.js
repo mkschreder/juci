@@ -22,7 +22,7 @@ JUCI.app
 	
 	Netmode.prototype.select = function(mode){
 		var def = $.Deferred(); 
-		if(!$rpc.juci.netmode) {
+		if(!$rpc.juci.netmode || !$rpc.juci.netmode.select) {
 			def.reject(); 
 			return def.promise(); 
 		}
