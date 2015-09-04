@@ -52,6 +52,10 @@ export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache
 export CC:=$(CC)
 export CFLAGS:=$(CFLAGS)
 
+ifeq ($(DESTDIR),)
+	DESTDIR:=/
+endif
+
 ifneq ($(SELECT_BASIC),)
 	include Makefile.basic
 endif
@@ -99,7 +103,7 @@ debug: prepare $(UBUS_MODS) $(DIRS-y)
 	./juci-update $(BIN)/www DEBUG
 
 install: 
-	$(CP) $(BIN)/* /
+	$(CP) $(BIN)/* $(DESTDIR)
 
 #node_modules: package.json
 #	npm install
