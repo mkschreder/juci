@@ -56,9 +56,9 @@ ifeq ($(DESTDIR),)
 	DESTDIR:=/
 endif
 
-ifneq ($(SELECT_BASIC),)
-	include Makefile.basic
-endif
+#ifneq ($(SELECT_BASIC),)
+include Makefile.basic
+#endif
 ifneq ($(SELECT_ALL),)
 	DIRS-y += $(wildcard plugins/*)
 	DIRS-y += themes/juci-inteno
