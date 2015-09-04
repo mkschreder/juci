@@ -64,10 +64,6 @@ ifneq ($(SELECT_ALL),)
 	DIRS-y += themes/juci-inteno
 endif
 
-ifneq  ($(CONFIG_JUCI_THEME_SELECTED),y)
-	DIRS-y += themes/juci-inteno
-endif
-
 ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
 	UBUS_MODS += backend/juci-core
 endif
