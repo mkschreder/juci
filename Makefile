@@ -12,6 +12,12 @@ ifeq ($(CONFIG_PACKAGE_$1),y)
 endif
 endef
 
+define theme 
+ifeq ($(CONFIG_PACKAGE_$1),y) 
+	DIRS-y+=themes/$(1)
+endif
+endef
+
 define prval
 name:=CONFIG_PACKAGE_$(1); 
 @echo "VALUE: $(1): $(CONFIG_PACKAGE_$(1))"; 
@@ -42,6 +48,7 @@ $(eval $(call plugin,juci-jquery-console));
 $(eval $(call plugin,juci-netmode));
 $(eval $(call plugin,juci-natalie-dect));
 $(eval $(call service,ueventd));
+$(eval $(call theme,juci-theme-inteno));
 	
 BIN:=bin
 UBUS_MODS:= backend/igmpinfo
