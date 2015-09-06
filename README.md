@@ -1,7 +1,7 @@
-LUCI-Express (or just JuCi)
-------------
+JUCI Webgui for Embedded Routers
+--------------------------------
 
-JUCI is a JavaScript-based web interface for broadband routers running Iopsys OpenWRT.
+JUCI is a JavaScript-based web interface for broadband routers running Iopsys / OpenWRT.
 
 JUCI is built with html5, angularjs and bootstrap: 
 
