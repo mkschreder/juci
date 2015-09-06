@@ -55,13 +55,34 @@ local function set_interval(interval, callback)
   return timer
 end
 
+local async = uv.new_async(function()
+	print("Async callback invoked!"); 
+end); 
+
 print("Starting long running task.."); 
-produce_data(1000):done(function(total)
+produce_data(100):done(function(total)
+	print("Long runing task done. Result: "..(total or "")); 
+	uv.async_send(async); 
+end); 
+produce_data(2000):done(function(total)
 	print("Long runing task done. Result: "..(total or "")); 
 end); 
 print("Starting ticker task.."); 
 
 local i = set_interval(300, function()
+	local threads = {}; 
+	for i = 1,10 do
+		local thread = uv.new_thread(function(arg, i)
+			local uv = require("uv"); 
+			print("Hello from new thread "..i..": "..(arg or "")); 
+			uv.sleep(1000); 
+			print("Thread done "..i..": "..(arg or "")); 
+		end, "arg", i); 
+		table.insert(threads, thread); 
+	end
+	for i,v in ipairs(threads) do 
+		uv.thread_join(v); 
+	end
   print("tick")
 end)
 

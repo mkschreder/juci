@@ -5,13 +5,36 @@ JUCI is a JavaScript-based web interface for broadband routers running Iopsys Op
 
 JUCI is built with html5, angularjs and bootstrap: 
 
-![Mobile](/media/screenshot.jpg?raw=true "Mobile Login Page")
+![Desktop](/media/screenshot.jpg?raw=true "JUCI Screenshot")
 
 JUCI is theme-able and fully mobile-ready (responsive): 
 
 ![Mobile](/media/mobile.jpg)
 
-JUCI includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
+Usage on OpenWRT
+----------------
+
+You can now try JUCI on openwrt. 
+
+Here is how to install it:
+
+- Add juci feed to your feeds.conf.default
+src-git juci https://github.com/mkschreder/juci-openwrt-feed.git
+
+- Update and install the feed
+./scripts/feeds update juci
+./scripts/feeds install -p juci -a
+
+- select juci core, inteno theme and plugins under JUCI menu in menuconfig
+
+- BUILD! 
+
+And it should work. If you then go to your router ip you should see the login screen. By default admin user is used to login but if you don't have password set for admin user you will not be able to login. So then go to the console and set password for admin user or change the user used for logging in by editing /etc/config/rpcd and then do /etc/init.d/rpcd restart. 
+
+JUCI also includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
+
+What is JUCI? 
+-------------
 
 If offers you the following: 
 
