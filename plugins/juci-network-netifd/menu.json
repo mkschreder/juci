@@ -6,27 +6,27 @@
 	},
 	"internet/ethernet": {
 			"title": "Devices",
-			"acls": [ "network" ],
+			"acls": [ "juci-network-netifd" ],
 			"index": 5
 	},
 	"internet/network": {
 			"title": "Connections",
-			"acls": [ "network" ],
+			"acls": [ "juci-network-netifd" ],
 			"index": 6
 	},
 	"internet/wan": {
 			"title": "WAN",
-			"acls": [ "network" ],
+			"acls": [ "juci-network-netifd" ],
 			"index": 8
 	},
 	"internet/lan": {
 			"title": "LAN",
-			"acls": [ "network" ],
+			"acls": [ "juci-network-netifd" ],
 			"index": 9
 	},
 	"internet/services": {
 			"title": "Services",
-			"acls": [ "network" ],
+			"acls": [ "juci-network-netifd" ],
 			"index": 90
 	},
 	"status/network": {

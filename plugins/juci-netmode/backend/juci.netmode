@@ -21,7 +21,7 @@ function netmode_select(params)
 		print(json.encode({ error = "Please supply netmode argument!"})); 
 		return; 
 	end
-	local src = "/etc/netmodes/config_"..params.netmode; 
+	local src = "/etc/netmodes/config_"..string.gsub(params.netmode, "..", "."); 
 	if fs.existsSync(src) then 
 		local stdout = juci.shell("cp -r %s/* /etc/config/", src); 
 		juci.shell("uci set netmode.setup.curmode=%s; uci commit netmode", params.netmode); 

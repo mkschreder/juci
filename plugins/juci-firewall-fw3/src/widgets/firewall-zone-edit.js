@@ -13,6 +13,7 @@ JUCI.app
 	$scope.policys = [
 		{ label: gettext("ACCEPT"), value: "ACCEPT" }, 
 		{ label: gettext("REJECT"), value: "REJECT" }, 
+		{ label: gettext("DROP"), value: "DROP" },
 		{ label: gettext("FORWARD"), value: "FORWARD" }
 	]; 
 	

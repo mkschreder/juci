@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send hotplug.switch "{'interface': '$INTERFACE', 'action': '$ACTION'}"

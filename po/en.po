@@ -2587,7 +2587,7 @@ msgstr "English"
 
 #: po/custom.js:79
 msgid "language.fi"
-msgstr "Finish"
+msgstr "Finnish"
 
 #: po/custom.js:77
 msgid "language.se"

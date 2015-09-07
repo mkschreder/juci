@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send hotplug.net "{'interface': '$INTERFACE', 'action': '$ACTION'}"

@@ -41,8 +41,8 @@ JUCI.app
 		// currently use the setting from uci. But we want to actually compare the files eventually. 
 		sync_netmode.done(function(){
 			setTimeout(function(){
-				if($uci.netmode && $uci.netmode["@netmode"]){
-					def.resolve($uci.netmode.setup.curmode.value); 
+				if($uci.netmode && $uci.netmode["@netmode"] && $uci.netmode.setup){
+					def.resolve($uci.netmode[$uci.netmode.setup.curmode.value]); 
 				} else {
 					def.reject(); 
 				}
@@ -64,6 +64,14 @@ JUCI.app
 	return new Netmode(); 
 }); 
 
+JUCI.app.run(function($uci){
+	// automatically create the setup section because without it we can not get current netmode (it should actually be there by default, but just in case);
+	$uci.sync("netmode").done(function(){
+		$uci.netmode.create({".type": "mode", ".name": "setup" }).done(function(){
+			$uci.$save(); 
+		}); 
+	}); 
+}); 
 
 UCI.$registerConfig("netmode"); 
 UCI.netmode.$registerSectionType("mode", {
@@ -72,6 +80,7 @@ UCI.netmode.$registerSectionType("mode", {
 	"curmode":				{ dvalue: '', type: String }
 }); 
 UCI.netmode.$registerSectionType("netmode", {
+	"name":						{ dvalue: '', type: String }, 
 	"desc":						{ dvalue: '', type: String }, 
 	"conf":					{ dvalue: '', type: String }, 
 	"exp":				{ dvalue: '', type: String }

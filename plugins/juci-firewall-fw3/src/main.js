@@ -166,7 +166,7 @@ UCI.firewall.$registerSectionType("rule", {
 	"family": 			{ dvalue: "ipv4", type: String }, 
 	"icmp_type": 		{ dvalue: [], type: Array },
 	"enabled": 			{ dvalue: true, type: Boolean },
-	"hidden": 			{ dvalue: true, type: Boolean }, 
+	"hidden": 			{ dvalue: false, type: Boolean }, 
 	"limit":				{ dvalue: "", type: String }, 
 	// scheduling
 	"parental": 			{ dvalue: false, type: String }, 

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send hotplug.button "{'interface': '$INTERFACE', 'action': '$ACTION'}"

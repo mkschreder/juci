@@ -75,6 +75,8 @@ function ev_network_device_add(opts)
 	conn:call("uci", "commit", { config = "multiwan" }); 
 	conn:call("uci", "commit", { config = "network" }); 
 	
+	conn:send("dongle-up", opts); 
+	
 	console.log("Multiwan setup completed: "..opts.device); 
 end
 
@@ -88,11 +90,13 @@ function ev_network_device_remove(opts)
 		conn:call("uci", "set", { config = "network", section = opts.device, values = device_net_config }); 
 		conn:call("uci", "commit", { config = "network" }); 
 		console.log("Disabled interface "..device_net_config[".name"]); 
+		
+		conn:send("dongle-down", opts); 
 	end
 end
 
 local event_handlers = {
-	["hotplug.net"] = function(msg)
+	["hotplug.net"] = function(msg, type)
 		if msg.action == "add" then 
 			ev_network_device_add({ device = msg.interface }); 
 		elseif msg.action == "remove" then 

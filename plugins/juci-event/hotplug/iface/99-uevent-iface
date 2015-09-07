@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send hotplug.iface "{'interface': '$INTERFACE', 'action': '$ACTION'}"

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+usbno=$(echo $DEVPATH | cut -d'/' -f5)                                                           
+devno=$(basename $DEVPATH)                                                            
+
+sanitize() {                                                 
+	sed -e 's/[[:space:]]\+$//; s/[[:space:]]\+/_/g' "$@"
+}  
+
+usb_dir="/sys/$DEVPATH"                              
+[ -f "$usb_dir/idVendor" ] || usb_dir="${usb_dir%/*}"
+																							
+uVid=$(cat "$usb_dir/idVendor")               
+uPid=$(cat "$usb_dir/idProduct")                                                
+uMa=$(sanitize "$usb_dir/manufacturer")                                            
+uPr=$(sanitize "$usb_dir/product")                                                 
+uSe=$(sanitize "$usb_dir/serial")                                                  
+bNumConfs=$(cat "$usb_dir/bNumConfigurations")                                     
+bConf=$(cat "$usb_dir/bConfigurationValue")                                                   
+wwandev=$(find $usb_dir -name wwan* | awk -F'/' '{print$NF}' | head -2 | tail -1)
+cdcdev=$(find $usb_dir -name cdc-wdm* | awk -F'/' '{print$NF}' | head -2 | tail -1)            
+ttydev=$(ls $(find $usb_dir -name tty | head -2 | tail -1) | tail -1)        
+interface=$(cat $usb_dir/interface); 
+eval $(cat $usb_dir/uevent); 
+
+case "$devno" in                                                                                 
+	*:*) ubus send hotplug.usb "{'action': '$ACTION', 'devpath': '$DEVPATH', 'manufacturer': '$uMa', 'product': '$uPr', 'serial': '$uSe', 'vendor_id': '$uVid', 'product_id': '$uPid', 'driver_interface': '$interface', 'driver': '$DRIVER', 'devtype': '$DEVTYPE'}" ;;
+esac

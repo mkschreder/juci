@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send hotplug.dsl "{'interface': '$INTERFACE', 'action': '$ACTION'}"

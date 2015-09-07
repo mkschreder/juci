@@ -1,4 +1,4 @@
-#!/usr/bin/env lua
+#!/usr/bin/lua
 
 -- Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
@@ -20,11 +20,13 @@ local objects = {
 			function(req, params)
 				-- first remove all elements that are older than 10 seconds (old news are useless)
 				local t = os.time(os.date("*t")); 
+				local goodevents = {}; -- do not modify the list while iterating through it!
 				for i,v in pairs(events) do
-					if(v["time"] < (t - 10)) then events[i] = nil end
+					if(v["time"] >= (t - 10)) then table.insert(goodevents, v); end
 				end
+				events = goodevents; 
 				conn:reply(req, { list = events }); 
-				if(params and params["clear"]) then events = {} end
+				if(params and params["clear"]) then events = {}; collectgarbage(); end
 			end, { clear = ubus.INT32 }
 		}
 	}
@@ -33,9 +35,10 @@ local objects = {
 conn:add(objects)
 
 local event_handlers = {
-	juci = function(msg)
+	["*"] = function(msg, type)
 		local ev = {
 			time = os.time(os.date("*t")), -- add a timestamp
+			type = type, 
 			data = msg
 		}; 
 		table.insert(events, ev); 

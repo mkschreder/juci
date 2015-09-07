@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ubus send hotplug.tty "{'devicename': '$DEVICENAME', 'action': '$ACTION'}"

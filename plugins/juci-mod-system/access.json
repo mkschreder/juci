@@ -4,6 +4,7 @@
 		"read": {
 			"ubus": {
 				"juci.system": [
+					"defaultreset", 
 					"filesystems", 
 					"log", 
 					"reboot", 
