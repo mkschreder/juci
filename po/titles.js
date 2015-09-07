@@ -1,3 +1,5 @@
+gettext("internet.alljoyndemo.title");
+gettext("Aljoyn");
 gettext("phone.title");
 gettext("Phone");
 gettext("phone.call.log.title");
