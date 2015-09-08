@@ -732,7 +732,10 @@
 						},0); 
 					}); 
 				}).fail(function(error){
-					deferred.reject([error]); 
+					// Apply may fail for a number of reasons (for example if there is nothing to apply) 
+					// but it does not matter so we should not fail when it does not succeed. 
+					deferred.resolve(); 
+					//deferred.reject([error]); 
 				}); 
 			}
 		]); 
