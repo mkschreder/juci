@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-require("JSON"); 
+require("JUCI"); 
 
 function iptv_igmptable()
 	local res = {}; 
@@ -25,16 +25,6 @@ function iptv_igmptable()
 	print(json.encode(res)); 
 end
 
-local _calls = {
+juci.ubus({
 	["igmptable"] = iptv_igmptable
-}; 
-
-if arg[1] == ".methods" then 
-	print("igmptable");
-elseif _calls[arg[1]] then 
-	local params = {}; 
-	if arg[2] then params = json.decode(arg[2]); end
-	_calls[arg[1]](params); 
-else 
-	io.write("Unknown method!\n"); 
-end
+}, arg);
