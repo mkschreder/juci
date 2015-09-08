@@ -28,7 +28,7 @@ if not conn then
 end
 
 function ev_network_device_add(opts)
-	if(not string.match(opts.device, "usb.*")) then return; end
+	if(not string.match(opts.device, "usb.*") and not string.match(opts.device, "wwan.*")) then return; end
 	
 	local network = conn:call("uci", "get", { config = "network" }).values; 
 	local multiwan = conn:call("uci", "get", { config = "multiwan" }).values; 
@@ -111,7 +111,7 @@ conn:add({
 	["juci.network.netdevd"] = {
 		autoconf = {
 			function(req, msg)
-			
+				
 			end, { device = ubus.STRING, network = ubus.STRING }
 		}
 	}

@@ -82,6 +82,8 @@ gettext("internet.lan.iptv.title");
 gettext("IPTV");
 gettext("status.tv.title");
 gettext("IPTV");
+gettext("internet.multiwan.title");
+gettext("MultiWAN");
 gettext("internet.services.minidlna.title");
 gettext("MiniDLNA");
 gettext("status.title");

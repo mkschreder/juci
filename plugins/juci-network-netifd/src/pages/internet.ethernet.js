@@ -18,6 +18,7 @@ JUCI.app
 })
 .controller("InternetLayer2", function($scope, $uci, $rpc, $network, $config){
 	$scope.config = $config; 
+	
 	$network.getDevices().done(function(devices){
 		$network.getAdapters().done(function(adapters){
 			$network.getNetworks().done(function(nets){

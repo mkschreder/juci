@@ -2,7 +2,7 @@
 	<div ng-controller="InternetLayer2">
 		<juci-config-heading>{{ 'Layer-2 Ethernet Devices' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.ethernet.info' | translate }}</juci-config-info>
-		<juci-config-section>
+		<juci-config-section ng-show="networks">
 			<table class="table">
 				<thead>
 					<th translate>Name</th>
@@ -20,7 +20,8 @@
 				</tr>
 			</table>
 		</juci-config-section>
-		<juci-errors></juci-errors>
-		<juci-config-apply></juci-config-apply>
+		<i class="fa fa-spinner fa-spin fa-2x" ng-hide="networks"/>
+		<!--<juci-errors></juci-errors>
+		<juci-config-apply></juci-config-apply>-->
 	</div>
 </juci-layout-with-sidebar>
