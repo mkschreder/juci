@@ -107,4 +107,14 @@ local event_handlers = {
 
 conn:listen(event_handlers)
 
+conn:add({
+	["juci.network.netdevd"] = {
+		autoconf = {
+			function(req, msg)
+			
+			end, { device = ubus.STRING, network = ubus.STRING }
+		}
+	}
+}); 
+
 uloop.run()

@@ -205,12 +205,30 @@
 	}); 
 	
 	// register basic vlan support 
-	JUCI.app.run(function($network, $uci, $rpc, $events, gettext, $tr){
-		$events.subscribe("dongle-up", function(ev){
+	JUCI.app.run(function($network, $uci, $rpc, $events, gettext, $tr, networkConnectionPicker){
+		/*$events.subscribe("dongle-up", function(ev){
 			alert($tr(gettext("Your dongle ({0}) has been configured as wan port internet device.".format(ev.data.device)))); 
 		}); 
 		$events.subscribe("dongle-down", function(ev){
 			alert($tr(gettext("Dongle has been disconnected!"))); 
+		}); */
+		$events.subscribe("hotplug.net", function(ev){
+			if(ev.data.action == "add"){
+				// we need to make sure that the new device is not already added to a network. 
+				$uci.sync("network").done(function(){
+					var found = $uci.network["@interface"].find(function(net){
+						return net.ifname.value.split(" ").find(function(x){ return x == ev.data.interface; }); 
+					}); 
+					if(!found){
+						if(confirm($tr(gettext("A new ethernet device has been connected to your router. Do you want to add it to a network?")))){
+							networkConnectionPicker.show().done(function(picked){
+								picked.ifname.value = picked.ifname.value.split(" ").concat([ev.data.interface]).join(" "); 
+								$uci.save(); 
+							});
+						}
+					} 
+				}); 
+			}
 		}); 
 		$network.subsystem(function(){
 			return {

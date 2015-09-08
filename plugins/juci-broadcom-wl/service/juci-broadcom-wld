@@ -5,6 +5,7 @@
 require "ubus"
 require "uloop"
 require("JUCI"); 
+local uv = require("uv"); 
 
 function find(tbl, cb) 
 	for _,v in pairs(tbl) do 
@@ -12,6 +13,8 @@ function find(tbl, cb)
 	end
 	return nil; 
 end
+
+uloop.init(); 
 
 local conn = ubus.connect()
 if not conn then
@@ -87,12 +90,53 @@ function WifiMonitor:update_ap_list()
 	self.scanresults = online_aps; 
 end
 
-local wifimon = WifiMonitor:new(); 
+function start_service()
+	local wifimon = WifiMonitor:new(); 
+	local tscanresults; 
+	local tscanstart; 
+	
+	function parse_results()
+		wifimon:update_ap_list(); 
+	end
 
-while true do 
-	wifimon:scan(); 
-	juci.shell("sleep 2"); 
-	wifimon:update_ap_list(); 
-	juci.shell("sleep 5"); 
-end 
+	function do_scan()
+		wifimon:scan(); 
+		tscanresults:set(1000); 
+		tscanstart:set(20000); 
+	end
+	
+	tscanresults = uloop.timer(parse_results); 
+	tscanstart = uloop.timer(do_scan); 
+end
+
+local status = { 
+	locked = false
+}; 
+
+conn:add({
+	["juci.broadcom.wld"] = {
+		lock = {
+			function(req, msg)
+				status.locked = true; 
+			end, {}
+		}, 
+		unlock = {
+			function(req, msg)
+				status.locked = false; 
+			end, {}
+		}, 
+		status = {
+			function(req, msg)
+				conn:reply(req, { locked = status.locked }); 
+			end, {}
+		}, 
+		scan = {
+			function(req, msg)
+			
+			end, {}
+		}
+	}; 
+}); 
+
+uloop.run(); 
 

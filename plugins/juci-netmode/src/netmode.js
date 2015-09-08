@@ -41,23 +41,13 @@ JUCI.app
 		// currently use the setting from uci. But we want to actually compare the files eventually. 
 		sync_netmode.done(function(){
 			setTimeout(function(){
-				if($uci.netmode && $uci.netmode["@netmode"] && $uci.netmode.setup){
+				if($uci.netmode && $uci.netmode.setup){
 					def.resolve($uci.netmode[$uci.netmode.setup.curmode.value]); 
 				} else {
 					def.reject(); 
 				}
 			},0); 
-		}); 
-		/*if(!$rpc.juci.netmode) {
-			def.reject(); 
-			return def.promise(); 
-		}
-		$rpc.juci.netmode.current().done(function(result){
-			def.resolve(result.netmode); 
-		}).fail(function(){
-			def.reject(); 
-		}); */
-		
+		});
 		return def.promise(); 
 	}
 	
