@@ -21,13 +21,13 @@ CODE:=$(wildcard src/*.js) $(wildcard src/widgets/*.js) $(wildcard src/pages/*.j
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html) 
 
 $(CSS): $(STYLES)
-	cat $(STYLES) > $@
+	@cat $(STYLES) > $@
 
 $(JS): $(CODE)
-	cat $(CODE) > $@
+	@cat $(CODE) > $@
 
 $(HTML): $(TEMPLATES)
-	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
+	@$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
 
 clean: 
-	rm -rf $(OUTDIR)
+	@rm -rf $(OUTDIR)

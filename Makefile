@@ -113,19 +113,17 @@ install:
 	
 .PHONY: $(DIRS-y) $(UBUS_MODS) prepare
 $(DIRS-y): 
-	@echo "Building SUBMODULE $@"
-	@echo "CFLAGS: $(CFLAGS)"
-	make -i -C $@ clean
-	make -C $@
-	-cp -Rp $@/htdocs/* $(BIN)/www/
-	-cp -Rp $@/build/* $(BIN)/
-	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/
-	-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/
-	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json
-	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json
-	# fix permissions on binaries if any
-	-chmod +x $(BIN)/usr/bin/*
-	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*
+	@echo -e "\e[0;33m BUILD MODULE $@ \e[m"
+	@make -i -C $@ clean
+	@make -C $@
+	@if [ -e $@/htdocs ] && [ "$(shell ls $@/htdocs/ 2>/dev/null)" ]; then cp -Rp $@/htdocs/* $(BIN)/www/; fi
+	@if [ -e $@/build ] && [ "$(shell ls $@/build/ 2>/dev/null)" ]; then cp -Rp $@/build/* $(BIN)/; fi
+	@if [ -e $@/backend ] && [ "$(shell ls $@/backend/ 2>/dev/null)" ]; then cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/; fi
+	@if [ -e $@/hotplug.d ] && [ "$(shell ls $@/hotplug.d/ 2>/dev/null)" ]; then cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/; fi
+	@if [ -e $@/menu.json ]; then cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json; fi
+	@if [ -e $@/access.json ]; then cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json; fi
+	@if [ -e $(BIN)/usr/bin ] && [ "$(shell ls $(BIN)/usr/bin/ 2>/dev/null)" ]; then chmod +x $(BIN)/usr/bin/*; fi
+	@if [ -e $(BIN)/usr/lib/rpcd/cgi ] && [ "$(shell ls $(BIN)/usr/lib/rpcd/cgi/ 2>/dev/null)" ]; then chmod +x $(BIN)/usr/lib/rpcd/cgi/*; fi
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"

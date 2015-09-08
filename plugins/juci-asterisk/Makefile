@@ -3,8 +3,8 @@ OUTDIR:=htdocs
 CSS:=$(OUTDIR)/css/50-$(TARGET).css
 JS:=$(OUTDIR)/js/50-$(TARGET).js
 HTML:=$(OUTDIR)/js/90-$(TARGET)-tpl.js
-CP:=cp -Rp
-INSTALL_DIR=mkdir -p
+CP:=@cp -Rp
+INSTALL_DIR=@mkdir -p
 
 all: files $(OUTDIR) $(JS) $(HTML);
 	
@@ -24,10 +24,10 @@ TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 #	cat $(STYLES) > $@
 
 $(JS): $(CODE)
-	cat $(CODE) > $@
+	@cat $(CODE) > $@
 	
 $(HTML): $(TEMPLATES)
 	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
 
 clean: 
-	rm -rf $(OUTDIR)
+	@rm -rf $(OUTDIR)

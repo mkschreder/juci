@@ -2,8 +2,8 @@ TARGET:=juci-theme-inteno
 CSS:=htdocs/css/80-$(TARGET).css
 JS:=htdocs/js/80-$(TARGET).js
 HTML:=htdocs/js/90-$(TARGET)-tpl.js
-CP:=cp -Rp
-INSTALL_DIR=mkdir -p
+CP:=@cp -Rp
+INSTALL_DIR=@mkdir -p
 
 all: files $(CSS) $(JS) $(HTML);
 	
@@ -19,13 +19,13 @@ CODE:=$(wildcard src/*.js src/pages/*.js src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
 $(CSS): $(STYLES)
-	cat $(STYLES) > $@
+	@cat $(STYLES) > $@
 
 $(JS): $(CODE)
-	cat $(CODE) > $@
+	@cat $(CODE) > $@
 	
 $(HTML): $(TEMPLATES)
-	./juci-theme-build-templates $(TEMPLATES) $(HTML) 
+	@./juci-theme-build-templates $(TEMPLATES) $(HTML) 
 
 clean: 
-	rm -rf htdocs
+	@rm -rf htdocs

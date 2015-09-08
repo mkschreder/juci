@@ -9,7 +9,7 @@ INSTALL_DIR=mkdir -p
 all: files $(OUTDIR) $(JS) $(CSS) $(HTML);
 	
 $(OUTDIR): 
-	mkdir -p $(OUTDIR)
+	@mkdir -p $(OUTDIR)
 	
 .PHONY: files
 files: 
@@ -27,13 +27,13 @@ CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
 TEMPLATES:=$(wildcard src/widgets/*.html) $(wildcard src/pages/*.html)
 
 $(CSS): $(STYLES)
-	cat $(STYLES) > $@
+	@cat $(STYLES) > $@
 
 $(JS): $(CODE)
-	cat $(CODE) > $@
+	@cat $(CODE) > $@
 	
 $(HTML): $(TEMPLATES)
-	$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
+	@$(JUCI_TEMPLATE_CC) $(TEMPLATES) $(HTML) 
 
 clean: 
-	rm -rf $(OUTDIR)
+	@rm -rf $(OUTDIR)
