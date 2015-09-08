@@ -1,0 +1,26 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="InternetMultiWANPage">
+		<juci-config-heading>{{ 'Layer-2 Ethernet Devices' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'internet.ethernet.info' | translate }}</juci-config-info>
+		<juci-config-section>
+			<table class="table">
+				<thead>
+					<th translate>Name</th>
+					<th ng-show="config.mode == 'expert'" translate>Adapter</th>
+					<th translate>MAC</th>
+					<th translate>MTU</th>
+					<th width="1px" translate>Status</th>
+				</thead>
+				<tr ng-repeat="dev in adapters">
+					<td>{{dev.displayname}}</td>
+					<td>{{dev.name}}</td>
+					<td>{{dev.macaddr}}</td>
+					<td>{{dev.mtu}}</td>
+					<td style="white-space: nowrap;"><i class="fa fa-circle" ng-class="{'text-success': dev.state=='UP'}"/> {{dev.state}}</td>
+				</tr>
+			</table>
+		</juci-config-section>
+		<juci-errors></juci-errors>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>
