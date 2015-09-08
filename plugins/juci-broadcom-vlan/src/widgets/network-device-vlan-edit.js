@@ -35,10 +35,10 @@ JUCI.app
 	}); 
 	$network.getDevices().done(function(devs){
 		$scope.baseDevices = devs
-			.filter(function(x){ return (x.type == "ethernet" || x.type == "adsl" || x.type == "vdsl") && x.name != "loopback"; })
+			//.filter(function(x){ return (x.type == "ethernet" || x.type == "adsl" || x.type == "vdsl") && x.name != "loopback"; })
 			.map(function(x){
-				var devid = x.id.substr(0, x.id.lastIndexOf(".")); 
-				return { label: x.name, value: devid }
+				var devid = x.id.substr(0, x.id.lastIndexOf(".")) || x.id; 
+				return { label: x.name + " ("+devid+")", value: devid }
 			});
 		$scope.$apply();  
 	}); 
