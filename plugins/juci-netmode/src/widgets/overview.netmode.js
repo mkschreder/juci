@@ -18,7 +18,7 @@ JUCI.app
 				if(!selected) return; 
 				$netmode.select(selected[".name"]).done(function(){
 					console.log("Netmode set to "+selected['.name']); 
-					window.location.reload(); 
+					window.location = "/reboot.html"; 
 				}); 
 			}); 
 		}

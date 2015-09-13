@@ -84,7 +84,7 @@ files:
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/lua/
 	$(CP) lualibs/luv-node/* $(BUILD_DIR)/usr/share/lua/
 	$(CP) lua/* $(BUILD_DIR)/usr/share/lua/
-	
+	$(CP) reboot.html $(BUILD_DIR)/www/	
 	
 $(CSS): $(STYLES)
 	cat $(STYLES) > $(CSS)

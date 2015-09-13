@@ -11,7 +11,7 @@ JUCI.app
 		$network.getServices().done(function(services){
 			$scope.services = services.filter(function(x){ return x.listen_ip == "0.0.0.0" }).map(function(svc){
 				var rule = findRule(svc); 
-				svc.$allow = (rule)?true:false; 
+				svc.$allow = (rule && rule.enabled.value)?true:false; 
 				return svc; 
 			}); 
 			$scope.$apply(); 
@@ -30,7 +30,8 @@ JUCI.app
 					"dest_port": service.listen_port, 
 					"target": "ACCEPT"
 				}).done(function(){
-					
+					// do autosave here
+					$uci.firewall.$save(); 
 				}); 
 			}
 		}

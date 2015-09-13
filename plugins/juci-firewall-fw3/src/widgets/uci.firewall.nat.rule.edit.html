@@ -1,12 +1,41 @@
 <div class="form-horizontal" >
 	<div class="form-group">
-		<label for="device" class="control-label col-xs-4" translate>Device</label>
-		<div class="col-xs-8" id="device">
-			<juci-select ng-model="ngModel.dest_ip.value" ng-items="deviceChoices" placeholder="Select connected device"></juci-select>
+		<label class="control-label col-xs-4" translate>Rule Name</label>
+		<div class="col-xs-8">
+			<input type="text" class="form-control" ng-model="ngModel.name.value" placeholder="{{'Rule Name'|translate}}"/>
 		</div>
 	</div>
 	<div class="form-group">
-			<label for="ipAddress" class="control-label col-xs-4" translate>Local IP Address</label>
+		<label class="control-label col-xs-4" translate>Source Zone</label>
+		<div class="col-xs-8">
+			<juci-select ng-model="ngModel.src.value" ng-items="allZones" placeholder="{{'Select Zone'|translate}}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-4" translate>Destination Zone</label>
+		<div class="col-xs-8">
+			<juci-select ng-model="ngModel.dest.value" ng-items="allZones" placeholder="{{'Destination Zone'|translate}}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-4" translate>Source IP Address</label>
+		<div class="col-xs-8">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<input type="checkbox" ng-model="data.src_ip_enabled"/>
+				</span>
+				<input type="text" class="form-control" ng-model="ngModel.src_ip.value" placeholder="{{'Source IP Address'|translate}}" ng-disabled="!data.src_ip_enabled"/>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="device" class="control-label col-xs-4" translate>Dst. Device</label>
+		<div class="col-xs-8" id="device">
+			<juci-select ng-model="ngModel.dest_ip.value" ng-items="deviceChoices" placeholder="{{'Select connected device'|translate}}"></juci-select>
+		</div>
+	</div>
+	<div class="form-group">
+			<label for="ipAddress" class="control-label col-xs-4" translate>Dst. IP Address</label>
 			<div class="col-xs-8">
 				<input id="ipAddress" type="text" class="form-control" ng-model="ngModel.dest_ip.value" />
 			</div>

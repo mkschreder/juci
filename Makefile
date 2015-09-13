@@ -116,14 +116,14 @@ $(DIRS-y):
 	@echo -e "\e[0;33m BUILD MODULE $@ \e[m"
 	@make -i -C $@ clean
 	@make -C $@
-	-cp -Rp $@/htdocs/* $(BIN)/www/; 
-	-cp -Rp $@/build/* $(BIN)/; 
-	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/; 
-	-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/; 
-	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json; 
-	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json; 
-	-chmod +x $(BIN)/usr/bin/*; 
-	-chmod +x $(BIN)/usr/lib/rpcd/cgi/*; 
+	-cp -Rp $@/htdocs/* $(BIN)/www/ 
+	-cp -Rp $@/build/* $(BIN)/ 
+	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/ 
+	-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/ 
+	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json 
+	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json 
+	-chmod +x $(BIN)/usr/bin/* 
+	-chmod +x $(BIN)/usr/lib/rpcd/cgi/* 
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"

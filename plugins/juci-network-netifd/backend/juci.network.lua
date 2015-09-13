@@ -139,7 +139,7 @@ function network_list_network_adapters(opts)
 			if fields[1]:match("%d+:") then
 				if(next(obj) ~= nil) then table.insert(adapters, obj); end
 				obj = {}; 
-				obj.name = fields[2]:match("([^:]+)"); 
+				obj.name = fields[2]:match("([^:@]+)"); -- match until @ in vlan adapters 
 				obj.flags = fields[3]:match("<([^>]+)>"); 
 				-- parse remaining pairs after flags
 				for id = 4,count,2 do

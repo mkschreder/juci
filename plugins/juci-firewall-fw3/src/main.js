@@ -110,19 +110,19 @@ JUCI.app.run(function($uci){
 UCI.$registerConfig("firewall"); 
 UCI.firewall.$registerSectionType("defaults", {
 	"syn_flood":		{ dvalue: true, type: Boolean }, 
-	"input":				{ dvalue: "ACCEPT", type: String }, 
-	"output":				{ dvalue: "ACCEPT", type: String }, 
+	"input":			{ dvalue: "ACCEPT", type: String }, 
+	"output":			{ dvalue: "ACCEPT", type: String }, 
 	"forward":			{ dvalue: "REJECT", type: String }
 }); 
 UCI.firewall.$registerSectionType("zone", {
 	"name":					{ dvalue: "", type: String }, 
-	"displayname":	{ dvalue: "", type: String }, // added for displaying zones in different languages
+	"displayname":			{ dvalue: "", type: String }, // added for displaying zones in different languages
 	"input":				{ dvalue: "ACCEPT", type: String }, 
 	"output":				{ dvalue: "ACCEPT", type: String }, 
-	"forward":			{ dvalue: "REJECT", type: String }, 
-	"network": 			{ dvalue: [], type: Array }, 
+	"forward":				{ dvalue: "REJECT", type: String }, 
+	"network": 				{ dvalue: [], type: Array }, 
 	"masq":					{ dvalue: true, type: Boolean }, 
-	"mtu_fix": 			{ dvalue: true, type: Boolean }
+	"mtu_fix": 				{ dvalue: true, type: Boolean }
 }); 
 UCI.firewall.$registerSectionType("forwarding", {
 	"src":					{ dvalue: "", type: String }, 
@@ -130,14 +130,15 @@ UCI.firewall.$registerSectionType("forwarding", {
 }); 
 UCI.firewall.$registerSectionType("redirect", {
 	"name":					{ dvalue: "", type: String }, 
-	"enabled":			{ dvalue: true, type: Boolean }, 
+	"enabled":				{ dvalue: true, type: Boolean }, 
 	"src":					{ dvalue: "", type: String }, 
 	"dest":					{ dvalue: "", type: String }, 
 	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  },
-	"src_dport":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
+	"src_dport":			{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
 	"proto":				{ dvalue: "", type: String }, 
-	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
-	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }
+	"dest_ip":				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
+	"dest_port":			{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
+	"target": 				{ dvalue: "DNAT", type: String }
 }); 
 UCI.firewall.$registerSectionType("include", {
 	"path": 				{ dvalue: "", type: String }, 
@@ -157,27 +158,27 @@ UCI.firewall.$registerSectionType("rule", {
 	"src_ip":				{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
 	"src_mac": 			{ dvalue: [], type: Array, validator: UCI.validators.MACListValidator }, 
 	"src_port":			{ dvalue: "", type: String }, // can be a range
-	"dest":					{ dvalue: "", type: String }, 
+	"dest":				{ dvalue: "", type: String }, 
 	"dest_ip":			{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
 	"dest_mac":			{ dvalue: "", type: String },
 	"dest_port":		{ dvalue: "", type: String }, // can be a range
-	"proto":				{ dvalue: "any", type: String }, 
-	"target":				{ dvalue: "REJECT", type: String }, 
+	"proto":			{ dvalue: "any", type: String }, 
+	"target":			{ dvalue: "REJECT", type: String }, 
 	"family": 			{ dvalue: "ipv4", type: String }, 
 	"icmp_type": 		{ dvalue: [], type: Array },
 	"enabled": 			{ dvalue: true, type: Boolean },
 	"hidden": 			{ dvalue: false, type: Boolean }, 
-	"limit":				{ dvalue: "", type: String }, 
+	"limit":			{ dvalue: "", type: String }, 
 	// scheduling
-	"parental": 			{ dvalue: false, type: String }, 
+	"parental": 		{ dvalue: false, type: String }, 
 	"start_date":		{ dvalue: "", type: String }, 
 	"stop_date":		{ dvalue: "", type: String }, 
-	"start_time":			{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
-	"stop_time":			{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
-	"weekdays":				{ dvalue: "", type: String }, 
+	"start_time":		{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
+	"stop_time":		{ dvalue: "", type: String, validator:  UCI.validators.TimeValidator }, 
+	"weekdays":			{ dvalue: "", type: String }, 
 	"monthdays":		{ dvalue: "", type: String }, 
 	"utc_time":			{ dvalue: "", type: Boolean }, 
-	"enabled":				{ dvalue: true, type: Boolean }, 
+	"enabled":			{ dvalue: true, type: Boolean }, 
 }); 
 UCI.firewall.$registerSectionType("settings", {
 	"disabled":			{ dvalue: false, type: Boolean },

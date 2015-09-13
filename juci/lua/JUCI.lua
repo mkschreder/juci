@@ -23,9 +23,11 @@ end
 
 function shell(fmt, ...)
 	for k,v in base.ipairs(arg) do
-		-- escape all arguments to prevent code injection!
+		-- TODO: this is inherently dangerous way to do shell commands. 
+		-- This way gets rid of basic forms of injection attacks, but
+		-- it still may miss some others that I did not think about. 
 		if base.type(v) == "string" then 
-			arg[k] = "\""..v:gsub("\"", "\\\"").."\""; 
+			arg[k] = v:gsub("[;*|]", "\\%1");
 		end
 	end
 	local p = base.assert(io.popen(string.format(fmt, base.unpack(arg)))); 

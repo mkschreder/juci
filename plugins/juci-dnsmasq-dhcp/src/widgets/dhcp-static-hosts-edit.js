@@ -22,7 +22,8 @@ JUCI.app
 			}); 
 			dhcp.connectedHosts = clients.filter(function(cl){
 				// filter out only clients that are connected to network that this dhcp entry is servicing
-				return cl.network == dhcp.interface.value; 
+				//return cl.network == dhcp.interface.value; 
+				return true; // for now let's include all of them since the new lua based clients listing does not supply us with "network" field. 
 			}).map(function(cl){
 				return {
 					label: cl.hostname || cl.ipaddr, 
@@ -34,12 +35,13 @@ JUCI.app
 	}); 
 	
 	$scope.onAddStaticDHCP = function(){
-		if(!$scope.dhcp || !$scope.existingHost) return; 
-		var host = $scope.existingHost;
+		if(!$scope.dhcp) return; 
+		var host = $scope.existingHost || { };
 		$uci.dhcp.create({
 			".type": "host", 
 			dhcp: $scope.dhcp[".name"], 
 			network: $scope.dhcp.interface.value, 
+			name: host.hostname ,
 			mac: host.macaddr, 
 			ip: host.ipaddr
 		}).done(function(section){

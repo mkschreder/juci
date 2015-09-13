@@ -16,7 +16,9 @@
 		<juci-config-section ng-show="redirects">
 			<table class="table">
 				<thead>
-					<th translate>Local IP</th>
+					<th translate>Name</th>
+					<th translate>Direction</th>
+					<th translate>Dst. IP</th>
 					<th translate>Protocol</th>
 					<th translate>Local port</th>
 					<th translate>Public Port</th>
@@ -25,6 +27,8 @@
 				</thead>
 				<tbody >
 					<tr ng-repeat="r in redirects">
+						<td>{{ r.name.value }}</td>
+						<td>{{ r.src.value }} {{'to'|translate}} {{ r.dest.value }}</td>
 						<td>{{ r.dest_ip.value }}</td>
 						<td>{{ r.proto.value }}</td>
 						<td>{{ r.dest_port.value }}</td>
@@ -33,7 +37,7 @@
 						<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteRule(r)"><i class="fa fa-trash-o"></i></button></td>
 					</tr>
 					<tr>
-						<td colspan="5"></td>
+						<td colspan="7"></td>
 						<td style="width: 1%"><button class="btn btn-default" ng-click="onAddRule()"><i class="fa fa-plus"></i></button></td>
 					</tr>
 				</tbody>
