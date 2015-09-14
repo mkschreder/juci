@@ -1,12 +1,12 @@
 <div>
-	<div class="row" >
-		<div class="col-xs-9">
+	<div class="row" 
+		<div ng-class="{ 'col-xs-9': !hideButtons, 'col-xs-12': hideButtons }">
 			<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"/>
 			<div class="list-group" ng-show="items" >
 				<a href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}</a>
 			</div>
 		</div>
-		<div class="col-xs-3">
+		<div ng-class="{ 'col-xs-3': !hideButtons }" ng-hide="hideButtons" >
 			<div class="btn-group-vertical" style="width: 100%;" >
 				<button class="btn btn-lg btn-default" ng-click="onListAddItem()" ng-class="{disabled: !editable || !items}" translate>Add</button>
 				<button class="btn btn-lg btn-default" ng-click="onListRemoveItem(item)" ng-class="{disabled: item == null || !editable || !items}" translate>Delete</button>

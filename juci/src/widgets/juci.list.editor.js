@@ -11,6 +11,7 @@ JUCI.app
 			onDelete: "&onDelete", 
 			onUpdate: "&onUpdate", 
 			onEditStart: "&onEditStart",
+			hideButtons: "@hideButtons"
 		}, 
 		controller: "juciListEditor", 
 		templateUrl: "/widgets/juci.list.editor.html", 

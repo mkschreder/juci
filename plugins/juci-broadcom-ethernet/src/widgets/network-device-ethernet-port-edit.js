@@ -4,7 +4,7 @@ JUCI.app
 .directive("networkDeviceEthernetPortEdit", function($compile){
 	return {
 		scope: {
-			device: "=ngModel"
+			port: "=ngModel"
 		}, 
 		templateUrl: "/widgets/network-device-ethernet-port-edit.html", 
 		controller: "networkDeviceEthernetPortEdit", 
@@ -27,14 +27,9 @@ JUCI.app
 			{ label: $tr(gettext("Disabled")), 									value: "disabled" }
 		]; 
 		
-		$scope.pause = "false";
 
 		$scope.$apply(); 
 		
-		$scope.$watch("device", function(value){
-			if(!value) return; 
-			$scope.conf = value.base || value; 
-		}); 
 	}); 
 	
 }); 

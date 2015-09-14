@@ -5,15 +5,15 @@ JUCI.app
 	$scope.data = {}; 
 	$scope.getItemTitle = function(item) {
 		if(!item) return "error";
-		return item.name;
+		return item[".name"];
 	}
-	$ethernet.getPorts().done(function(ports){
-		$scope.ports = ports;
-		$scope.data.wan_port = ports.find(function(x){ return x.is_wan_port; }); 
+	$uci.sync(["ports", "layer2_interface_ethernet"]).done(function(){
+		$scope.ports = $uci.ports["@ethport"];
+		$scope.data.wan_port = $scope.ports.find(function(x){ return x.ifname.value == $uci.layer2_interface_ethernet.Wan.baseifname.value; }); 
 		
 		$scope.$watch("data.wan_port", function(value){
 			if(!value) return; 
-			$ethernet.configureWANPort(value.id); 
+			$ethernet.configureWANPort(value.ifname.value); 
 		}); 
 		
 		$scope.$apply(); 
