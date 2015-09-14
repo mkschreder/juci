@@ -17,22 +17,6 @@ JUCI.app
 			return zone.name.value == "wan" && zone.input.value == "REJECT" && zone.forward.value == "REJECT"; 
 		}).length > 0; 
 		$scope.$apply(); 
-		
-		
-		$scope.$watch("data.enabled", function(value){
-			$uci.firewall["@zone"].map(function(zone){
-				if(zone.name.value == "wan"){
-					if(value){
-						zone.input.value = "REJECT"; 
-						zone.forward.value = "REJECT"; 
-					} else {
-						zone.input.value = "ACCEPT"; 
-						zone.forward.value = "ACCEPT"; 
-					}
-				}
-			}); 
-			$uci.save(); 
-		}); 
 	}); 
 	
 }); 

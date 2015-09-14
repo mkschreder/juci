@@ -124,10 +124,12 @@ UCI.firewall.$registerSectionType("zone", {
 	"masq":				{ dvalue: true, type: Boolean }, 
 	"mtu_fix": 			{ dvalue: true, type: Boolean }
 }); 
+
 UCI.firewall.$registerSectionType("forwarding", {
 	"src":				{ dvalue: "", type: String }, 
 	"dest":				{ dvalue: "", type: String }
 }); 
+
 UCI.firewall.$registerSectionType("redirect", {
 	"name":				{ dvalue: "", type: String }, 
 	"enabled":			{ dvalue: true, type: Boolean }, 
@@ -139,12 +141,14 @@ UCI.firewall.$registerSectionType("redirect", {
 	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
 	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }
 }); 
+
 UCI.firewall.$registerSectionType("include", {
 	"path": 			{ dvalue: "", type: String }, 
 	"type": 			{ dvalue: "", type: String }, 
 	"family": 			{ dvalue: "", type: String }, 
 	"reload": 			{ dvalue: true, type: Boolean }
 }); 
+
 UCI.firewall.$registerSectionType("dmz", {
 	"enabled": 			{ dvalue: false, type: Boolean }, 
 	"host": 			{ dvalue: "", type: String } // TODO: change to ip address
@@ -178,12 +182,14 @@ UCI.firewall.$registerSectionType("rule", {
 	"monthdays":		{ dvalue: "", type: String }, 
 	"utc_time":			{ dvalue: "", type: Boolean }, 
 	"enabled":			{ dvalue: true, type: Boolean }, 
-}); 
+});
+
 UCI.firewall.$registerSectionType("settings", {
 	"disabled":		{ dvalue: false, type: Boolean },
 	"ping_wan":		{ dvalue: false, type: Boolean }, 
 	"nat_enabled": 	{ dvalue: true, type: Boolean }
 }); 
+
 UCI.firewall.$registerSectionType("urlblock", {
 	"enabled": { dvalue: false, type: Boolean }, 
 	"url": 					{ dvalue: [], type: Array }, 

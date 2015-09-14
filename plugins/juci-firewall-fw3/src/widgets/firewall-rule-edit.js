@@ -40,7 +40,7 @@ JUCI.app
 	
 	function update(){
 		var rule = $scope.rule; 
-		if(!rule) return; 
+		if(!rule || !rule.src_ip) return; 
 		$scope.data = {
 			src_ip_enabled: rule.src_ip.value != "", 
 			src_mac_enabled: rule.src_mac.value != "", 
@@ -55,6 +55,7 @@ JUCI.app
 	}
 	
 	$scope.onSelectSrcHost = function(){
+		if(!$scope.rule) return; 
 		networkHostPicker.show({ net: $scope.rule.src.value }).done(function(client){
 			$scope.rule.src_ip.value = client.ipaddr; 
 			$scope.rule.src_mac.value = client.macaddr; 
@@ -63,6 +64,7 @@ JUCI.app
 	}
 	
 	$scope.onSelectDestHost = function(){
+		if(!$scope.rule) return; 
 		networkHostPicker.show({ net: $scope.rule.dest.value }).done(function(client){
 			$scope.rule.dest_ip.value = client.ipaddr; 
 			$scope.rule.dest_mac.value = client.macaddr; 

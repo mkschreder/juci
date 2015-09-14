@@ -40,17 +40,17 @@
 		"acls": [ "network" ],
 		"index": 20
 	},
+	"internet/firewall/services": {
+		"title": "Services", 
+		"acls": [ "network" ], 
+		"index": "99"
+	}, 
 	"internet/wan/exposed_host": {
 		"title": "DMZ",
 		"modes": [ "expert" ], 
 		"acls": [ "network" ],
 		"index": 30
 	},
-	"internet/wan/services": {
-		"title": "Services", 
-		"acls": [ "network" ], 
-		"index": "99"
-	}, 
 	"internet/parental_control": {
 		"title": "Parental Control",
 		"acls": [ "firewall" ],

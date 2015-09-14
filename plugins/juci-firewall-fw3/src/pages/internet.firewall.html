@@ -5,9 +5,10 @@
 		<juci-config-section>
 			<juci-config-lines>
 				<juci-config-line title="{{'Enable firewall'|translate}}">
-					<switch ng-model="data.enabled" class="green"></switch>
+					<switch ng-model="firewall.settings.disabled.value" class="green" inverted></switch>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
+		<juci-config-apply/>
 	</div>
 </juci-layout-with-sidebar>

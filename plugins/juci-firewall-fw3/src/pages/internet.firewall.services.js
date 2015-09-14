@@ -9,14 +9,18 @@ JUCI.app
 			});
 		}
 		$network.getServices().done(function(services){
-			$scope.services = services.filter(function(x){ return x.listen_ip == "0.0.0.0" }).map(function(svc){
+			$scope.services = services.filter(function(x){ return x.listen_ip == "0.0.0.0" })
+			.map(function(svc){
 				var rule = findRule(svc); 
+				svc.$rule = rule; 
 				svc.$allow = (rule && rule.enabled.value)?true:false; 
 				return svc; 
 			}); 
 			$scope.$apply(); 
 		}); 
-		
+		$scope.getServiceTitle = function(svc){
+			return svc.name + " (" + svc.listen_port + ")"; 	
+		}
 		$scope.onChangeState = function(service){
 			var rule = findRule(service); 
 			if(rule){
@@ -29,9 +33,9 @@ JUCI.app
 					"proto": service.proto, 
 					"dest_port": service.listen_port, 
 					"target": "ACCEPT"
-				}).done(function(){
-					// do autosave here
-					$uci.firewall.$save(); 
+				}).done(function(rule){
+					service.$rule = rule; 
+					$scope.$apply(); 
 				}); 
 			}
 		}
