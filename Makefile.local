@@ -1,2 +1,0 @@
-DIRS-y += $(wildcard plugins/*)
-DIRS-y += themes/juci-theme-inteno

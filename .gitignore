@@ -16,3 +16,4 @@ plugins/**/files
 plugins/**/build
 services/**/build
 *~
+Makefile.local
