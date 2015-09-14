@@ -3,12 +3,14 @@
 		"description": "Broadcom ethernet plugin",
 		"read": {
 			"uci": [
-				"layer2_interface_ethernet"
+				"layer2_interface_ethernet",
+				"ports"
 			]
 		}, 
 		"write": {
 			"uci": [
-				"layer2_interface_vlan"
+				"layer2_interface_vlan",
+				"ports"
 			]
 		}
 	}

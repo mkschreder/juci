@@ -115,40 +115,39 @@ UCI.firewall.$registerSectionType("defaults", {
 	"forward":			{ dvalue: "REJECT", type: String }
 }); 
 UCI.firewall.$registerSectionType("zone", {
-	"name":					{ dvalue: "", type: String }, 
-	"displayname":			{ dvalue: "", type: String }, // added for displaying zones in different languages
-	"input":				{ dvalue: "ACCEPT", type: String }, 
-	"output":				{ dvalue: "ACCEPT", type: String }, 
-	"forward":				{ dvalue: "REJECT", type: String }, 
-	"network": 				{ dvalue: [], type: Array }, 
-	"masq":					{ dvalue: true, type: Boolean }, 
-	"mtu_fix": 				{ dvalue: true, type: Boolean }
+	"name":				{ dvalue: "", type: String }, 
+	"displayname":		{ dvalue: "", type: String }, // added for displaying zones in different languages
+	"input":			{ dvalue: "ACCEPT", type: String }, 
+	"output":			{ dvalue: "ACCEPT", type: String }, 
+	"forward":			{ dvalue: "REJECT", type: String }, 
+	"network": 			{ dvalue: [], type: Array }, 
+	"masq":				{ dvalue: true, type: Boolean }, 
+	"mtu_fix": 			{ dvalue: true, type: Boolean }
 }); 
 UCI.firewall.$registerSectionType("forwarding", {
-	"src":					{ dvalue: "", type: String }, 
-	"dest":					{ dvalue: "", type: String }
+	"src":				{ dvalue: "", type: String }, 
+	"dest":				{ dvalue: "", type: String }
 }); 
 UCI.firewall.$registerSectionType("redirect", {
-	"name":					{ dvalue: "", type: String }, 
-	"enabled":				{ dvalue: true, type: Boolean }, 
-	"src":					{ dvalue: "", type: String }, 
-	"dest":					{ dvalue: "", type: String }, 
-	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  },
-	"src_dport":			{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
-	"proto":				{ dvalue: "", type: String }, 
-	"dest_ip":				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
-	"dest_port":			{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
-	"target": 				{ dvalue: "DNAT", type: String }
+	"name":				{ dvalue: "", type: String }, 
+	"enabled":			{ dvalue: true, type: Boolean }, 
+	"src":				{ dvalue: "", type: String }, 
+	"dest":				{ dvalue: "", type: String }, 
+	"src_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  },
+	"src_dport":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
+	"proto":			{ dvalue: "", type: String }, 
+	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
+	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }
 }); 
 UCI.firewall.$registerSectionType("include", {
-	"path": 				{ dvalue: "", type: String }, 
-	"type": 				{ dvalue: "", type: String }, 
+	"path": 			{ dvalue: "", type: String }, 
+	"type": 			{ dvalue: "", type: String }, 
 	"family": 			{ dvalue: "", type: String }, 
 	"reload": 			{ dvalue: true, type: Boolean }
 }); 
 UCI.firewall.$registerSectionType("dmz", {
 	"enabled": 			{ dvalue: false, type: Boolean }, 
-	"host": 				{ dvalue: "", type: String } // TODO: change to ip address
+	"host": 			{ dvalue: "", type: String } // TODO: change to ip address
 }); 
 
 UCI.firewall.$registerSectionType("rule", {
@@ -181,8 +180,8 @@ UCI.firewall.$registerSectionType("rule", {
 	"enabled":			{ dvalue: true, type: Boolean }, 
 }); 
 UCI.firewall.$registerSectionType("settings", {
-	"disabled":			{ dvalue: false, type: Boolean },
-	"ping_wan":			{ dvalue: false, type: Boolean }, 
+	"disabled":		{ dvalue: false, type: Boolean },
+	"ping_wan":		{ dvalue: false, type: Boolean }, 
 	"nat_enabled": 	{ dvalue: true, type: Boolean }
 }); 
 UCI.firewall.$registerSectionType("urlblock", {

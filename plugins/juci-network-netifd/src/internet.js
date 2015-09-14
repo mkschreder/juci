@@ -355,15 +355,6 @@ UCI.network.$registerSectionType("route", {
 	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }
 }); 
 
-
-UCI.$registerConfig("layer2_interface_ethernet"); 
-UCI.layer2_interface_ethernet.$registerSectionType("ethernet_interface", {
-	"name":						{ dvalue: '', type: String }, 
-	"ifname":					{ dvalue: '', type: String }, 
-	"baseifname":			{ dvalue: '', type: String },
-	"bridge":					{ dvalue: false, type: Boolean }
-}); 
-
 UCI.$registerConfig("ddns");
 UCI.ddns.$registerSectionType("service", {
 	"enabled":              { dvalue: 0, type: Number },

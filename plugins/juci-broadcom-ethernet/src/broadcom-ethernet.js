@@ -59,3 +59,19 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 	
 	return new Ethernet(); 
 });
+
+UCI.$registerConfig("layer2_interface_ethernet"); 
+UCI.layer2_interface_ethernet.$registerSectionType("ethernet_interface", {
+	"name":					{ dvalue: '', type: String }, 
+	"ifname":				{ dvalue: '', type: String }, 
+	"baseifname":			{ dvalue: '', type: String },
+	"bridge":				{ dvalue: false, type: Boolean }
+}); 
+
+UCI.$registerConfig("ports"); 
+UCI.ports.$registerSectionType("ethport", {
+	"ifname": 	{ dvalue: "", type: String }, 
+	"speed": 	{ dvalue: "auto", type: String }, 
+	"pause": 	{ dvalue: false, type: Boolean }
+}); 
+

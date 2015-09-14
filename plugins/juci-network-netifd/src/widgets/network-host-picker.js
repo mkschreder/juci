@@ -15,7 +15,8 @@ JUCI.app
 					resolve: {
 						hosts: function () {
 							return clients.filter(function(cl){
-								if(opts.net && opts.net != "" && opts.net != "*" && opts.net != cl.network) return false; 
+								// network option is no longer present so we can no longer do this
+								// if(opts.net && opts.net != "" && opts.net != "*" && opts.net != cl.network) return false; 
 								return true; 
 							}).map(function(cl){
 								return { label: cl.ipaddr, value: cl }; 
