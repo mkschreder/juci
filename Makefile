@@ -64,7 +64,8 @@ ifeq ($(DESTDIR),)
 endif
 
 #ifneq ($(SELECT_BASIC),)
-include Makefile.basic
+# use Makefile.local instead
+#include Makefile.basic
 #endif
 ifneq ($(SELECT_ALL),)
 	DIRS-y += $(wildcard plugins/*)
@@ -115,14 +116,16 @@ $(DIRS-y):
 	@echo -e "\e[0;33m BUILD MODULE $@ \e[m"
 	@make -i -C $@ clean
 	@make -C $@
-	-cp -Rp $@/htdocs/* $(BIN)/www/ 
-	-cp -Rp $@/build/* $(BIN)/ 
-	-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/ 
-	-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/ 
-	-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json 
-	-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json 
-	-chmod +x $(BIN)/usr/bin/* 
-	-chmod +x $(BIN)/usr/lib/rpcd/cgi/* 
+	@scripts/install-plugin "$@" "$(BIN)"
+
+#-cp -Rp $@/htdocs/* $(BIN)/www/ 
+#-cp -Rp $@/build/* $(BIN)/ 
+#-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/ 
+#-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/ 
+#-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json 
+#-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json 
+#-chmod +x $(BIN)/usr/bin/* 
+#-chmod +x $(BIN)/usr/lib/rpcd/cgi/* 
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
