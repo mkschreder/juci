@@ -3,6 +3,10 @@
 JUCI.app
 .controller("InternetEthernetPhysical", function($scope, $uci, $ethernet, gettext){
 	$scope.data = {}; 
+	$scope.getItemTitle = function(item) {
+		if(!item) return "error";
+		return item.name;
+	}
 	$ethernet.getPorts().done(function(ports){
 		$scope.ports = ports;
 		$scope.data.wan_port = ports.find(function(x){ return x.is_wan_port; }); 

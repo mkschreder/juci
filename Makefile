@@ -68,7 +68,6 @@ include Makefile.basic
 #endif
 ifneq ($(SELECT_ALL),)
 	DIRS-y += $(wildcard plugins/*)
-	DIRS-y += themes/juci-inteno
 endif
 
 ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
