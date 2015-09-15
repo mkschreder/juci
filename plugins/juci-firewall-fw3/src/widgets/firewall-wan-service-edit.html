@@ -1,7 +1,7 @@
 <div>
 	<h2 translate>Configure firewall rule for this service</h2>
 	<juci-config-line title="{{'Enable WAN forwarding for this service'|translate}}">
-		<switch ng-model="service.$rule.enabled.value" class="green"></switch>
+		<switch ng-model="service.$rule.enabled.value" class="green" ng-change="onChangeState()"></switch>
 	</juci-config-line>
 
 	<firewall-rule-edit ng-model="service.$rule" ng-show="service.$rule"></firewall-rule-edit>

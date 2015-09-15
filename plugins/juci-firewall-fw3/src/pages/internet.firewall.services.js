@@ -21,23 +21,5 @@ JUCI.app
 		$scope.getServiceTitle = function(svc){
 			return svc.name + " (" + svc.listen_port + ")"; 	
 		}
-		$scope.onChangeState = function(service){
-			var rule = findRule(service); 
-			if(rule){
-				rule.enabled.value = service.$allow; 
-			} else {
-				$uci.firewall.create({
-					".type": "rule", 
-					"name": "Allow connection to "+service.name+" port "+service.listen_port+" from wan interface", 
-					"src": "wan", 
-					"proto": service.proto, 
-					"dest_port": service.listen_port, 
-					"target": "ACCEPT"
-				}).done(function(rule){
-					service.$rule = rule; 
-					$scope.$apply(); 
-				}); 
-			}
-		}
 	}); 
 }); 
