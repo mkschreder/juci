@@ -568,7 +568,7 @@
 		});
 	}
 	 
-	UCI.prototype.sync = function(configs){
+	UCI.prototype.$sync = function(configs){
 		var deferred = $.Deferred(); 
 		var self = this; 
 		
@@ -622,6 +622,11 @@
 		return deferred.promise(); 
 	}
 	
+	UCI.prototype.sync = function(opts){
+		console.error("$uci.sync() is deprecated and will be replaced with $uci.$sync() in future version to avoid config collisions. Please do not use it!"); 
+		return this.$sync(opts); 
+	}
+
 	UCI.prototype.$revert = function(){
 		var revert_list = []; 
 		var deferred = $.Deferred(); 
@@ -630,7 +635,8 @@
 		
 		Object.keys(self).map(function(k){
 			if(self[k].constructor == UCI.Config){
-				if(self[k][".need_commit"]) revert_list.push(self[k][".name"]); 
+				//if(self[k][".need_commit"]) revert_list.push(self[k][".name"]); 
+				revert_list.push(self[k][".name"]); 
 			}
 		}); 
 		async.eachSeries(revert_list, function(item, next){
@@ -648,15 +654,16 @@
 		return deferred.promise(); 
 	}
 	
-	UCI.prototype.$revert = function(){
+	UCI.prototype.$rollback = function(){
 		return $rpc.uci.rollback(); 
 	}
 	
 	UCI.prototype.$apply = function(){
+		console.error("Apply method is deprecated and will be removed. Use $save() instead."); 
 		return $rpc.uci.apply({rollback: 0, timeout: 5000}); 
 	}
 	
-	UCI.prototype.save = function(){
+	UCI.prototype.$save = function(){
 		var deferred = $.Deferred(); 
 		var self = this; 
 		var writes = []; 
@@ -742,6 +749,11 @@
 		return deferred.promise(); 
 	}
 	
+	UCI.prototype.save = function(){
+		console.error("$uci.save() is deprecated. This method will be replaced with $uci.$save() in future versions to avoid config collisions. Please update your code."); 
+		return this.$save(); 
+	}
+
 	scope.UCI = new UCI(); 
 	scope.UCI.validators = {
 		WeekDayListValidator: WeekDayListValidator, 

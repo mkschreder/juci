@@ -84,54 +84,6 @@
 				}).always(function(){ next(); }); 
 			}, 
 			function(next){
-				var count = 0; 
-				next(); 
-				/*if(JUCI_COMPILED && JUCI_PLUGINS) {
-					function dirname(path) { var dir = path.split("/"); dir.pop(); return dir.join("/");}
-					Object.keys(JUCI_PLUGINS).map(function(plugin){
-						var dir = dirname(plugin);
-						var name = dir.split("/").pop(); 
-						console.log("Registering builtin plugin: "+name+": "+dir+" "+JUCI_PLUGINS[plugin]); 
-						JUCI.module(name, dir, JUCI_PLUGINS[plugin]); 
-						JUCI.plugins[name] = JUCI_PLUGINS[plugin]; 
-					});
-					next(); 
-					return; 
-				}
-				async.each($juci.config.plugins, function(id, next){
-					count++; 
-					console.log(".."+id, 10+((80/$juci.config.plugins.length) * count)); 
-					var plugin_root = "plugins/"+id; 
-					$.getJSON(plugin_root + "/plugin.json")
-					.done(function(data){
-						console.log("found plugin "+id); 
-						$juci.module(id, plugin_root, data); 
-						//$juci.plugins[id] = data; 
-						if(data && data.scripts){
-							data.scripts.map(function(x){scripts.push(plugin_root + "/" + x); });
-						} 
-						// load page controllers
-						if(data.pages) {
-							Object.keys(data.pages).map(function(k){
-								var page = data.pages[k]; 
-								if(page.view){
-									//scripts.push(plugin_root + "/" + page.view); 
-									var url = k.replace(/\./g, "-").replace(/_/g, "-").replace(/\//g, "-"); 
-									var name = url.replace(/\//g, "_").replace(/-/g, "_"); 
-									//console.log("Registering state "+name+" at "+url); 
-									scripts.push(plugin_root + "/" + page.view); 
-								}
-							}); 
-						} 
-						next(); 
-					}).error(function(data){
-						next(); 
-					}); 
-				}, function(){
-					next(); 
-				}); */
-			}, 
-			function(next){
 				$rpc.$authenticate().done(function(){
 					// here we get router info part of the config. It will allow us to 
 					// pick the correct theme in the init script. TODO: perhaps do this somewhere else? 
@@ -148,40 +100,29 @@
 					next(); 
 				}); 
 			},
-			function(next){
-				
-				
+			// Themes are no longer loaded like this - instead they are compiled in right now and only one can be used at a time. 
+			// TODO: make theme changing work again just like before. 
+			/*function(next){	
 				// TODO: this will be moved somewhere else. What we want to do is 
 				// pick both a theme and plugins based on the router model. 
 				//console.log("Detected hardware model: "+$juci.config.system.hardware); 
-				var themes = {
-					"CG300A": "inteno-red"
-				}; 
 				var $config = $juci.config; 
 				
 				$config.mode = localStorage.getItem("mode") || "basic"; 
-				$config.theme = localStorage.getItem("theme") || themes[$config.system.hardware] || "inteno-red"; 
+				$config.theme = localStorage.getItem("theme") || "inteno"; 
 				
-				$config.theme = "vodafone";
+				if($config.theme == "default") $config.theme = "inteno"; 
+
+				$juci.theme.changeTheme($config.theme).done(function(){
 				
-				if(!JUCI_COMPILED){
-					$juci.theme.changeTheme($config.theme).done(function(){
-						next(); 
-					}).fail(function(){
-						next(); 
-					}); 
-				} else {
+				}).always(function(){
 					next(); 
-				}
-			}, 
+				}); 
+			}, */
 			function(next){
-				if(!JUCI_COMPILED){
-					require(scripts, function(module){
-						next(); 
-					}); 
-				} else {
+				require(scripts, function(module){
 					next(); 
-				}
+				}); 
 			}, 
 			function(next){
 				// get the menu navigation

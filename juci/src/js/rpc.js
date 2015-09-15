@@ -290,20 +290,7 @@
 		}
 	}; 
 	
-	scope.UBUS = rpc; 
-	/*if(exports.JUCI){
-		var JUCI = exports.JUCI; 
-		JUCI.ubus = rpc; 
-		console.log(JSON.stringify(JUCI.app)); 
-		// juci rpc module for communicating with the server
-		if(JUCI.app) {
-			JUCI.app.factory('$rpc', function($rootScope, $config, gettext){
-				return window.rpc; 
-			}); 
-		}
-	} else {
-		console.log("RPC: Not registering as JUCI plugin!"); 
-	}*/
+	scope.UBUS = scope.$rpc = rpc; 
 	
 })(typeof exports === 'undefined'? this : global); 
 

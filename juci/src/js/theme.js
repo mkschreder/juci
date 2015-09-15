@@ -5,6 +5,7 @@
 		this.currentTheme = null; 
 		this.themes = {}; 
 		this.loadTheme = function(theme_id){
+			if(theme_id == "default") theme_id = "inteno"; 
 			console.log("Loading theme "+theme_id); 
 			var deferred = $.Deferred(); 
 			var self = this; 
