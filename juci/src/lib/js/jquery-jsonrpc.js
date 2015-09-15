@@ -181,7 +181,8 @@
 		var url = (options.endPoint || options.url || _that.endPoint); 
        	console.log("json-call: "+url+ " " + data);  
         $.ajax({
-          type: 'POST',
+          //type: 'POST',
+		  method: 'POST', 
           async: false !== options.async,
           crossDomain: true,
           dataType: 'json',
@@ -191,9 +192,11 @@
           cache: options.cache,
           processData: false,
           error: function(json) {
+		  	//console.log(JSON.stringify(json)); 
             _that._requestError.call(_that, json, options.error);
           },
           success: function(json) {
+		  	//console.log(JSON.stringify(json)); 
             _that._requestSuccess.call(_that, json, options.success, options.error);
           }
         }); 
