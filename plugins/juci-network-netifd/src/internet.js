@@ -112,9 +112,13 @@
 					$uci.sync("network").done(function(){
 						$uci.network["@interface"].map(function(i){
 							i.devices = []; 
-							i.ifname.value.split(" ").map(function(name){
+							var fixed = i.ifname.value.split(" ").filter(function(name){
+								return name && name != ""; 
+							}).map(function(name){
 								if(name in devmap) i.devices.push(devmap[name]); 
-							}); 
+								return name; 
+							}).join(" "); 
+							i.ifname.value = fixed;
 							if(i[".name"] == "loopback") return; 
 							networks.push(i); 
 						}); 
