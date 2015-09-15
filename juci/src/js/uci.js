@@ -636,7 +636,7 @@
 		Object.keys(self).map(function(k){
 			if(self[k].constructor == UCI.Config){
 				//if(self[k][".need_commit"]) revert_list.push(self[k][".name"]); 
-				revert_list.push(self[k][".name"]); 
+				revert_list.push(self[k]); 
 			}
 		}); 
 		async.eachSeries(revert_list, function(item, next){

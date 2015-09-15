@@ -220,7 +220,7 @@
 						
 						// this will touch the session so that it does not expire
 						$rpc.$authenticate().done(function(){
-							$uci.$revert(); 
+							$uci.$rollback(); 
 						}).fail(function(){
 							$juci.redirect("login");
 						});
