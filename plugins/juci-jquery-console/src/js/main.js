@@ -37,12 +37,15 @@ jQuery(function($, undefined) {
 						self.terminal.focus(focus = !focus);
 					}
 				});
-				var oldprint = console.print; 
+				var _log = console.log;
+				var _error = console.error; 
 				console.log = function(str){
 					self.terminal.echo("\x1b[32m"+str+"\x1b[m"); 
+					_log.call(console, str); 
 				}
 				console.error = function(str){
 					self.terminal.echo("\x1b[31m"+str+"\x1b[m"); 
+					_error.call(console, str); 
 				}
 				console.warning = function(str){
 					self.terminal.echo("\x1b[33m"+str+"\x1b[m"); 
