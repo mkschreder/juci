@@ -2,7 +2,7 @@
 
 cp -Rp $1/htdocs/* $2/www/ 2>/dev/null 
 cp -Rp $1/build/* $2/ 2>/dev/null 
-p -Rp $1/backend/* $2/usr/lib/rpcd/cgi/ 2>/dev/null 
+cp -Rp $1/backend/* $2/usr/lib/rpcd/cgi/ 2>/dev/null 
 cp -Rp $1/hotplug.d/* $2/etc/hotplug.d/ 2>/dev/null 
 cp -Rp $1/menu.json $2/usr/share/rpcd/menu.d/$(basename $1).json 2>/dev/null 
 cp -Rp $1/access.json $2/usr/share/rpcd/acl.d/$(basename $1).json 2>/dev/null
