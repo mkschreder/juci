@@ -11,17 +11,20 @@ JUCI.app
 .controller("overviewStatusWidgetNetmode", function($scope, $uci, $rpc, $netmode, $netmodePicker){
 	$scope.done = 1;  
 	
+	$scope.onChangeMode = function(){
+		var current_mode = $scope.currentNetmode; 
+		if(!current_mode) return; 
+		$netmodePicker.show({ selected: current_mode[".name"] }).done(function(selected){
+			if(!selected) return; 
+			$netmode.select(selected[".name"]).done(function(){
+				console.log("Netmode set to "+selected['.name']); 
+				window.location = "/reboot.html"; 
+			}); 
+		}); 
+	}
+
 	$netmode.getCurrentMode().done(function(current_mode){
 		$scope.currentNetmode = current_mode; 
-		$scope.onChangeMode = function(){
-			$netmodePicker.show({ selected: current_mode[".name"] }).done(function(selected){
-				if(!selected) return; 
-				$netmode.select(selected[".name"]).done(function(){
-					console.log("Netmode set to "+selected['.name']); 
-					window.location = "/reboot.html"; 
-				}); 
-			}); 
-		}
-		$scope.$apply(); 
+		
 	}); 
 }); 
