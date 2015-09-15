@@ -11,8 +11,23 @@ var http = require("http");
 var bodyParser = require('body-parser')
 
 var config = {
-	ubus_uri: "http://192.168.1.1/ubus" // <-- your router uri
 }; 
+
+for(var i = 0; i < process.argv.length; i++){
+	switch(process.argv[i]){
+		case "--host": config.ubus_uri = "http://"+process.argv[++i]+"/ubus"; break; 
+		case "--ubus": config.ubus_uri = process.argv[++i]; break; 
+	}; 
+} 
+
+if(!config.ubus_uri){
+	console.log("juci-local-server: ");
+	console.log("	--host <host>"); 
+	console.log("		specify host to connect to"); 
+	console.log("	--ubus <ubus url>"); 
+	console.log("		specify ubus url directly (https://192.168.1.1/ubus)"); 
+	process.exit(); 
+}
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
