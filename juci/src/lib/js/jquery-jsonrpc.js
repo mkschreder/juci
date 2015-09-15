@@ -178,14 +178,15 @@
       // Internal method used for generic ajax requests
       _doRequest: function(data, options) {
         var _that = this;
-        
+		var url = (options.endPoint || options.url || _that.endPoint); 
+       	console.log("json-call: "+url+ " " + data);  
         $.ajax({
           type: 'POST',
           async: false !== options.async,
           crossDomain: true,
           dataType: 'json',
           contentType: 'application/json',
-          url: this._requestUrl((options.endPoint || options.url), options.cache),
+          url: this._requestUrl(url, options.cache),
           data: data + "\r\n",
           cache: options.cache,
           processData: false,

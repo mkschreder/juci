@@ -251,7 +251,7 @@
 			if(host) {
 				if(host.host) RPC_HOST = host.host;
 			} 
-			console.log("Init UBUS"); 
+			console.log("Init UBUS -> "+RPC_HOST); 
 			var deferred = $.Deferred(); 
 			default_calls.map(function(x){ self.$register(x); }); 
 			// request list of all methods and construct rpc object containing all of the methods in javascript. 
