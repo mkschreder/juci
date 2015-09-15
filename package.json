@@ -13,10 +13,10 @@
     "expect.js": "*",
     "object-assign": "*",
     "jquery-deferred": "*",
-    "najax": "*",
     "watchjs": "*",
     "uglify-js": "*", 
-    "array.prototype.find": "*"
+    "array.prototype.find": "*",
+	"underscore": "*"
   },
   "engines": {
     "node": "0.10.x",
