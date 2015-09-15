@@ -129,6 +129,8 @@
 				else return this.uvalue; 
 			},
 			set value(val){
+				// do not update if value has not changed
+				if(val == this.uvalue) return; 
 				// always set dirty when changed 
 				this.is_dirty = true; 
 				if(val instanceof Array) {
