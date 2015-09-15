@@ -2,13 +2,17 @@
 	<head>
 		<title>Rebooting..</title>
 		<script type="text/javascript">
-			setTimeout(function(){
-				window.location = "/"; 
-			}, 300000); 
+			var timer = 300; 
+			setInterval(function(){
+				document.getElementById("counter").innerHTML = timer; 
+				if(timer == 0) window.location = "/"; 
+				timer--; 
+			}, 1000); 
 		</script>
 	</head>
 	<body>
 		<h2>Your router is rebooting</h2>
-		<p>Please wait until your router has rebooted.</p>
+		<p>Please wait <span id="counter">300</span> seconds until your router has rebooted.</p>
+		<p><a href="/">Or click here</a></p>
 	</body>
 </html>
