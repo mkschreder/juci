@@ -32,7 +32,7 @@
 				}); 
 				last_handled_time = new_time; 
 			}); 
-		}, 2000);  
+		}, 5000);  
 	}); 
 	
 	JUCI.app.factory("$events", function(){
