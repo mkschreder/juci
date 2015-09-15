@@ -2,7 +2,7 @@ global.assert = require("assert");
 global.JSON = require("JSON"); 
 global.async = require("async"); 
 global.$ = global.jQuery = require("jquery-deferred"); 
-global.$.ajax = require("najax"); 
+global.$.ajax = require("./najax"); 
 global.async = require("async"); 
 global.watch = require("watchjs").watch; 
 global.expect = require("expect.js"); 
