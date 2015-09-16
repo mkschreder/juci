@@ -26,7 +26,7 @@
 					<tr ng-repeat="addr in conn.$info['ipv6-address']"><td translate>IPv6-Address ({{$index+1}}):</td><td>{{addr.address}}</td></tr>
 				</table>
 			</tab>
-			<tab heading="{{'network.interface.type.' + conn.type.value +'.tab.title'|translate}}"><div dynamic="conn.$type_editor"/></tab>
+			<tab heading="{{'network.interface.type.' + (conn.type.value || 'none') +'.tab.title'|translate}}"><div dynamic="conn.$type_editor"/></tab>
 			<tab heading="Address">
 				<juci-config-lines>
 					<juci-config-line title="{{'Configuration Method'|translate}}">
