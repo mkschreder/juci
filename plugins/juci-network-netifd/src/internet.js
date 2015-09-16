@@ -320,35 +320,35 @@ UCI.validators.MACListValidator = function(){
 
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {
-	"is_lan":					{ dvalue: false, type: Boolean }, // please stop relying on this!
-	"ifname":					{ dvalue: '', type: String }, 
-	"device":					{ dvalue: '', type: String }, 
-	"proto":					{ dvalue: '', type: String }, 
-	"proto6":					{ dvalue: '', type: String }, 
-	"ipaddr":					{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
+	"is_lan":				{ dvalue: false, type: Boolean }, // please stop relying on this!
+	"ifname":				{ dvalue: '', type: String }, 
+	"device":				{ dvalue: '', type: String }, 
+	"proto":				{ dvalue: '', type: String }, 
+	"proto6":				{ dvalue: '', type: String }, 
+	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask":				{ dvalue: '', type: String }, 
 	"gateway":				{ dvalue: '', type: String }, 
 	"ip6addr":				{ dvalue: '', type: String }, 
 	"ip6prefix":			{ dvalue: '', type: String }, 
 	"ip6gateway":			{ dvalue: '', type: String }, 
-	"type":						{ dvalue: 'none', type: String }, 
-	"defaultroute":		{ dvalue: false, type: Boolean }, 
+	"type":					{ dvalue: '', type: String }, 
+	"defaultroute":			{ dvalue: false, type: Boolean }, 
 	"ip6assign":			{ dvalue: 60, type: Number }, 
-	"bridge_instance": { dvalue: false, type: Boolean }, 
+	"bridge_instance": 		{ dvalue: false, type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
-	"ipv6":						{ dvalue: false, type: Boolean },
-	"dns": 						{ dvalue: [], type: Array }, 
+	"ipv6":					{ dvalue: false, type: Boolean },
+	"dns": 					{ dvalue: [], type: Array }, 
 	"enabled": 				{ dvalue: true, type: Boolean }, 
 	// dhcp settings
 	"broadcast": 			{ dvalue: false, type: Boolean }, 
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: true, type: Boolean }, 
 	// authentication 
-	"auth": 					{ dvalue: "", type: String }, 
+	"auth": 				{ dvalue: "", type: String }, 
 	"username": 			{ dvalue: "", type: String }, 
 	"password": 			{ dvalue: "", type: String }, 
 	// 3g and dongles
-	"apn": 						{ dvalue: "", type: String }, 
+	"apn": 					{ dvalue: "", type: String }, 
 	"pincode": 				{ dvalue: "", type: String }
 }); 
 
