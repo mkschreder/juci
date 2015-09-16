@@ -119,21 +119,23 @@
 					next(); 
 				}); 
 			}, */
-			function(next){
+			// no longer used! 
+			/*function(next){
 				require(scripts, function(module){
 					next(); 
 				}); 
-			}, 
+			},*/ 
 			function(next){
 				// get the menu navigation
 				if($rpc.juci){
-					console.log("Getting menu.."); 
+					console.log("juci: loading menu from server.."); 
 					$rpc.juci.ui.menu().done(function(data){
 						//console.log(JSON.stringify(data)); 
+						// get menu keys and sort them so that parent elements will come before their children
+						// this will automatically happen using normal sort because parent element paths are always shorter than their childrens. 
 						var keys = Object.keys(data.menu).sort(function (a, b) { 
 							return a.localeCompare(b) ; 
 						}); 
-						console.log(keys.join("\n")); 
 						
 						keys.map(function(key){
 							var menu = data.menu[key]; 
@@ -150,6 +152,12 @@
 							}; 
 							$juci.navigation.register(obj); 
 							if(redirect) redirect = redirect.replace(/\//g, "-").replace(/_/g, "-"); 
+							// NOTE: all juci page templates currently have form word<dot>word<dot>..html
+							// And their names correspond to the structure of the menu we get from the box.
+							// - This makes it easy to find the right page file and simplifies managing a lot of pages.
+							// - This also allows plugins to override existing pages simply by supplying their own versions of the page templates
+							// - Conclusion: this is one of the things that should almost never be rewritten without providing 
+							//   a fallback mechanism for supporting the old (this) way because all plugins depend on this.  
 							JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
 						}); 
 						//console.log("NAV: "+JSON.stringify($navigation.tree())); 
@@ -162,6 +170,11 @@
 					console.error("Menu call is not present!"); 
 					next(); 
 				}
+			}, 
+			function(next){
+				// set various gui settings such as mode (and maybe theme) here
+				$juci.config.mode = localStorage.getItem("mode") || "basic"; 
+				next(); 
 			}
 		], function(){
 			deferred.resolve(); 
@@ -209,6 +222,7 @@
 							return deferred.promise;
 						}
 					},*/
+					// this function will run upon load of every page in the gui
 					onEnter: function($uci, $rootScope, $tr, gettext){
 						if(page.redirect) {
 							//alert("page redirect to "+page.redirect); 
@@ -236,6 +250,7 @@
 				$stateProvider.state(name, state);
 			}); 
 		}); 
+		
 		// override default handler and throw the error out of angular to 
 		// the global error handler
 		app.factory('$exceptionHandler', function() {
@@ -243,6 +258,7 @@
 				throw exception+": \n\n"+exception.stack;
 			};
 		});
+
 		app.run(function($templateCache, $rootScope){
 			var self = scope.JUCI; 
 			Object.keys(self.templates).map(function(k){
@@ -251,15 +267,15 @@
 			}); 
 			
 		}); 
+
 		app.factory('$rpc', function(){
 			return scope.UBUS; 
 		});
+
 		app.factory('$uci', function(){
 			return scope.UCI; 
-		}); 		
-		/*app.factory('$session', function() {
-			return scope.UBUS.$session; 
-		});*/
+		});
+
 		app.factory('$localStorage', function() {
 			return scope.localStorage; 
 		});
