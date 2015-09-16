@@ -179,7 +179,7 @@
       _doRequest: function(data, options) {
         var _that = this;
 		var url = (options.endPoint || options.url || _that.endPoint); 
-       	console.log("json-call: "+url+ " " + data);  
+       	//console.log("json-call: "+url+ " " + data);  
         $.ajax({
           //type: 'POST',
 		  method: 'POST', 
