@@ -35,7 +35,6 @@ JUCI.app
 	function upgradeStart(path){
 		$scope.showUpgradeStatus = 1; 
 		$scope.error = null; 
-		$scope.showUpgradeStatus = 1; 
 		$scope.message = gettext("Verifying firmware image")+"...";					
 		$scope.progress = 'progress'; 
 		setTimeout(function(){ $scope.$apply(); }, 0); 
@@ -148,9 +147,6 @@ JUCI.app
 				$scope.$apply();
 				//return;   
 			}
-			
-			$scope.showUpgradeStatus = 0; 
-			$scope.$apply(); 
 			
 			upgradeStart($scope.uploadFilename); 
 			
