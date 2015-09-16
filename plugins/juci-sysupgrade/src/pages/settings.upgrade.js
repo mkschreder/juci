@@ -32,21 +32,36 @@ JUCI.app
 		return deferred.promise(); 
 	}
 	
-	function upgradeStart(path, keep_configs){
+	function upgradeStart(path){
 		$scope.showUpgradeStatus = 1; 
 		$scope.error = null; 
+		$scope.showUpgradeStatus = 1; 
 		$scope.message = gettext("Verifying firmware image")+"...";					
 		$scope.progress = 'progress'; 
 		setTimeout(function(){ $scope.$apply(); }, 0); 
 		
 		console.log("Trying to upgrade from "+path); 
-		
+	
+		$rpc.juci.system.upgrade.test({"path": path}).done(function(result){
+			$scope.showUpgradeStatus = 0; 
+			$scope.$apply(); 
+			confirmKeep().done(function(keep){
+				$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep)?1:0)}); // this never completes
+				window.location = "/reboot.html";  
+			}); 
+		}).fail(function(){
+			alert("Image check failed!"); 
+		});
+
+		// no need for such fancy way of checking whether we are rebooting
+		/*
 		$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep_configs)?1:0)}).done(function(result){
 			// this will actually never succeed because server will be killed
 			console.error("upgrade_start returned success, which means that it actually probably failed but did not return an error"); 
 			$scope.error = (result.stdout||"") + (result.stderr||""); 
 			$scope.$apply(); 
 		}).fail(function(response){
+			window.location.
 			// clear all juci intervals 
 			JUCI.interval.$clearAll(); 
 						
@@ -67,6 +82,7 @@ JUCI.app
 				}); 
 			}, 20000); // give it some 20 seconds to actually shut down
 		});
+		*/
 	}
 	
 	$scope.onCheckOnline = function(){
@@ -136,11 +152,8 @@ JUCI.app
 			$scope.showUpgradeStatus = 0; 
 			$scope.$apply(); 
 			
-			confirmKeep().done(function(keep){
-				$scope.showUpgradeStatus = 1; 
-				//$scope.$apply(); 
-				upgradeStart($scope.uploadFilename, keep); 
-			}); 
+			upgradeStart($scope.uploadFilename); 
+			
 			$(this).unbind("load"); 
 		}); 
 		$("form[name='uploadForm']").submit();
