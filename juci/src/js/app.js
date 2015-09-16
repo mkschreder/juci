@@ -94,13 +94,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	}
 })
 .run(function($rootScope, $state, gettextCatalog, $tr, gettext, $rpc, $config, $location, $navigation, $templateCache, $languages){
-	console.log("RUN"); 
-	
-	/*if(JUCI_COMPILED && JUCI_TEMPLATES !== undefined){
-		Object.keys(JUCI_TEMPLATES).map(function(x){
-			$templateCache.put(x, JUCI_TEMPLATES[x]); 
-		}); 
-	}*/
+	console.log("juci: angular init"); 
 	
 	// TODO: maybe use some other way to gather errors than root scope? 
 	$rootScope.errors = []; 
@@ -131,7 +125,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	var path = $location.path().replace(/\//g, "").replace(/\./g, "_");  
 	
 	// Generate states for all loaded pages
-	Object.keys($juci.plugins).map(function(pname){
+	/*Object.keys($juci.plugins).map(function(pname){
 		var plugin = $juci.plugins[pname]; 
 		Object.keys(plugin.pages||{}).map(function(k){
 			var page = plugin.pages[k]; 
@@ -148,21 +142,6 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 							templateUrl: plugin_root + "/" + page.view + ".html"
 						}
 					},
-					// Perfect! This loads our controllers on demand! :) 
-					// Leave this code here because it serves as a valuable example
-					// of how this can be done. 
-					/*resolve: {
-						deps : function ($q, $rootScope) {
-							var deferred = $q.defer();
-							require([plugin_root + "/" + page.view + ".js"], function (tt) {
-								$rootScope.$apply(function () {
-										deferred.resolve();
-								});
-								deferred.resolve()
-							});
-							return deferred.promise;
-						}
-					},*/
 					onEnter: function($uci, $rootScope){
 						$rootScope.errors.splice(0, $rootScope.errors.length); 
 						
@@ -177,7 +156,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 				}); 
 			}
 		}); 
-	}); 
+	}); */
 	
 	// load the right page from the start
 	if($rpc.$isLoggedIn()){
@@ -189,10 +168,12 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){
 		$rpc.$authenticate().fail(function(){
+			// TODO: this also redirects to login without notice if box reboots, or rpcd crashes. 
+			// Determine whether this behavior can be improved because it can be annoying (of course the most annoying part is that rpcd crashes in the first place..) 
 			$juci.redirect("login");
 		});
-	}, 5000); 
-})
+	}, 10000); 
+}) 
 // TODO: figure out how to avoid forward declarations of things we intend to override. 
 .directive("juciFooter", function(){ return {} })
 .directive("juciLayoutNaked", function(){ return {} })
@@ -225,6 +206,7 @@ JUCI.app.directive('autofocus', ['$timeout', function($timeout) {
   }
 }]);
 
+// This ensures that we have control over the initialization order (base system first, then angular). 
 angular.element(document).ready(function() {
 	JUCI.$init().done(function(){
 		angular.bootstrap(document, ["juci"]);
