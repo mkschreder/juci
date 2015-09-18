@@ -2965,7 +2965,7 @@ msgstr "Disabled"
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:18
 #: po/wifi-iface.js:5
 msgid "wifi-iface.encryption"
-msgstr "Protection Mode"
+msgstr "Encryption"
 
 #: po/wifi-iface.js:12
 msgid "wifi-iface.gtk_rekey"
@@ -2980,7 +2980,7 @@ msgstr "Device"
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:38
 #: po/wifi-iface.js:7
 msgid "wifi-iface.key"
-msgstr "WiFi Password"
+msgstr "WiFi Key (Password)"
 
 #: po/wifi-iface.js:8
 msgid "wifi-iface.key1"
@@ -3038,7 +3038,7 @@ msgstr "Show Key Text"
 #: plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html:6
 #: po/wifi-iface.js:4
 msgid "wifi-iface.ssid"
-msgstr "WiFi Name (SSID)"
+msgstr "WiFi Network Name (SSID)"
 
 #: po/wifi-iface.js:17
 msgid "wifi-iface.up"
