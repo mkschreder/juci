@@ -143,13 +143,13 @@ prepare:
 node_modules: package.json
 	npm install --production
 
-release: prepare $(TARGETS) node_modules $(UBUS_MODS)  
+release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 	@echo "======= JUCI BUILD =========="
 	@./juci-compile 
 	@./juci-update $(BIN)/www RELEASE
 
 
-debug: prepare $(TARGETS) $(UBUS_MODS) $(DIRS-y) 
+debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\e[0;33m [GRUNT] $@ \e[m"
 	@grunt 
 	@echo -e "\e[0;33m [UPDATE] $@ \e[m"
