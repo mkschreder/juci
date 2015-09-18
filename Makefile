@@ -27,7 +27,7 @@ define BuildDir
 	$(eval JAVASCRIPT-y:=src/*.js src/pages/*.js src/widgets/*.js)
 	$(eval TEMPLATES-y:=src/widgets/*.html src/pages/*.html)
 	$(eval STYLES-y:=src/css/*.css)
-	$(eval PLUGIN_DIR:=$(PWD)/$(2)/$(1))
+	$(eval PLUGIN_DIR:=$(CURDIR)/$(2)/$(1))
 	$(eval -include $(2)/$(1)/Makefile)
 	$(eval $(Plugin/$(1)))
 	$(eval TARGETS+=$(1)-install $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
