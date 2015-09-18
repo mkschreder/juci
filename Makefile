@@ -1,20 +1,70 @@
 DIRS-y:=juci 
+PLUGINS-y:=
+BIN:=bin
+CODE_DIR:=$(BIN)/www/js
+CSS_DIR:=$(BIN)/www/css
+TARGETS:=
+PHONY:=debug release clean prepare node_modules 
+
+all: release
+
+-include Makefile.local
+
+define Plugin/Default
+	LOAD:=10
+	JAVASCRIPT-y:=
+	TEMPLATES-y:=
+	STYLES-y:=
+endef 
+
+define BuildDir 
+	$(eval $(call Plugin/Default))
+	$(eval LOAD:=50)
+	$(eval TPL_LOAD:=90)
+	$(eval JAVASCRIPT-y:=src/*.js src/pages/*.js src/widgets/*.js)
+	$(eval TEMPLATES-y:=src/widgets/*.html src/pages/*.html)
+	$(eval STYLES-y:=src/css/*.css)
+	$(eval -include $(2)/$(1)/Makefile)
+	$(eval $(Plugin/$(1)))
+	$(eval TARGETS+=$(1)-install $(CODE_DIR)/$(LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(LOAD)-$(1).css)
+	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/$(1)/,$(JAVASCRIPT-y))))
+	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/$(1)/,$(TEMPLATES-y))))
+	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/$(1)/,$(STYLES-y))))
+	PHONY += $(1)-install
+$(CODE_DIR)/$(LOAD)-$(1).js: $(JAVASCRIPT_$(1)) 
+	@echo -e "\e[0;33m[JS]\t$(1) -> $$@\e[m"
+	@#echo "   * $$(JAVASCRIPT_$(1))"
+	@echo "" > $$@
+	@if [ "" != "$$<" ]; then for file in $$<; do cat $$$$file >> $$@; done; fi
+$(CSS_DIR)/$(LOAD)-$(1).css: $(STYLES_$(1))
+	@echo -e "\e[0;33m[CSS]\t$(1) -> $$@\e[m"
+	@#echo "   * $$(STYLES_$(1))"
+	@echo "" > $$@
+	@if [ "" != "$$<" ]; then for file in $$<; do cat $$$$file >> $$@; done; fi
+$(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
+	@echo -e "\e[0;33m[HTML]\t$(1) -> $$@\e[m"
+	@#echo "   * $$(TEMPLATES_$(1))"
+	@echo "" > $$@
+	@if [ "" != "$$<" ]; then ./juci-build-tpl-cache $(TEMPLATES_$(1)) $$@; fi
+$(1)-install: 
+	$(call $(Plugin/$(1)/install))
+endef
 
 define plugin 
 ifeq ($(CONFIG_PACKAGE_$(1)),y) 
-	DIRS-y+=plugins/$(1)
+	$(eval $(call BuildDir,$(1),plugins))
 endif
 endef
 
 define service 
 ifeq ($(CONFIG_PACKAGE_$(1)),y) 
-	DIRS-y+=services/$(1)
+	$(eval $(call BuildDir,$(1),services))
 endif
 endef
 
 define theme 
 ifeq ($(CONFIG_PACKAGE_$(1)),y) 
-	DIRS-y+=themes/$(1)
+	$(eval $(call BuildDir,$(1),themes))
 endif
 endef
 
@@ -23,7 +73,7 @@ name:=CONFIG_PACKAGE_$(1);
 @echo "VALUE: $(1): $(CONFIG_PACKAGE_$(1))"; 
 endef
 
-$(eval $(call plugin,juci-asterisk));
+$(eval $(call plugin,juci-asterisk)); 
 $(eval $(call plugin,juci-broadcom-wl));
 $(eval $(call plugin,juci-broadcom-dsl));
 $(eval $(call plugin,juci-broadcom-vlan));
@@ -32,7 +82,7 @@ $(eval $(call plugin,juci-network-netifd));
 $(eval $(call plugin,juci-firewall-fw3));
 $(eval $(call plugin,juci-dnsmasq-dhcp));
 $(eval $(call plugin,juci-minidlna));
-$(eval $(call plugin,juci-samba ));
+$(eval $(call plugin,juci-samba));
 $(eval $(call plugin,juci-event));
 $(eval $(call plugin,juci-ddns));
 $(eval $(call plugin,juci-diagnostics));
@@ -47,15 +97,11 @@ $(eval $(call plugin,juci-mod-status));
 $(eval $(call plugin,juci-jquery-console));
 $(eval $(call plugin,juci-netmode));
 $(eval $(call plugin,juci-natalie-dect));
-$(eval $(call service,ueventd));
 $(eval $(call theme,juci-theme-inteno));
-	
-BIN:=bin
+
+
 UBUS_MODS:= backend/igmpinfo
 
--include Makefile.local
-
-export JUCI_TEMPLATE_CC=$(shell pwd)/juci-build-tpl-cache 
 export CC:=$(CC)
 export CFLAGS:=$(CFLAGS)
 
@@ -63,10 +109,6 @@ ifeq ($(DESTDIR),)
 	DESTDIR:=/
 endif
 
-#ifneq ($(SELECT_BASIC),)
-# use Makefile.local instead
-#include Makefile.basic
-#endif
 ifneq ($(SELECT_ALL),)
 	DIRS-y += $(wildcard plugins/*)
 endif
@@ -75,57 +117,36 @@ ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
 	UBUS_MODS += backend/juci-core
 endif
 
-all: prepare node_modules $(UBUS_MODS) $(DIRS-y) 
-	@echo "UBUS IGMP: $(CONFIG_JUCI_BACKEND_IPTV)"; 
-	@echo "JUCI ubus enabled: $(CONFIG_JUCI_UBUS_CORE)"
-	./juci-compile 
-	./juci-update $(BIN)/www RELEASE
-
 prepare: 	
-	@echo "======= JUCI Buliding ========="
-	@echo "DIRS: $(DIRS)"
-	#$(call prval,juci-ddns) 
-	#$(call prval,juci-network-netifd)
-	@echo "CONFIG: "
-	@echo "MODULES: $(DIRS-y)"
-	@echo "UBUS: $(UBUS_MODS)"
-	-rm -rf $(BIN)
-	mkdir -p $(BIN)/www/
-	mkdir -p $(BIN)/usr/share/rpcd/menu.d/
-	mkdir -p $(BIN)/usr/share/rpcd/acl.d/
-	mkdir -p $(BIN)/usr/lib/rpcd/cgi/
-	mkdir -p $(BIN)/etc/hotplug.d/
+	@echo "======= JUCI CONFIG ========="
+	@echo "TARGETS: $(TARGETS)"
+	@echo "BACKEND: $(UBUS_MODS)"
+	@mkdir -p $(BIN)/www/js/
+	@mkdir -p $(BIN)/www/css/
+	@mkdir -p $(BIN)/usr/share/rpcd/menu.d/
+	@mkdir -p $(BIN)/usr/share/rpcd/acl.d/
+	@mkdir -p $(BIN)/usr/lib/rpcd/cgi/
+	@mkdir -p $(BIN)/etc/hotplug.d/
 	
 node_modules: package.json
 	npm install --production
-	
-inteno: all
+
+release: prepare $(TARGETS) node_modules $(UBUS_MODS)  
+	@echo "======= JUCI BUILD =========="
+	@./juci-compile 
+	@./juci-update $(BIN)/www RELEASE
+
 
 debug: prepare $(UBUS_MODS) $(DIRS-y) 
-	grunt 
-	./juci-update $(BIN)/www DEBUG
+	@echo -e "\e[0;33m [GRUNT] $@ \e[m"
+	@grunt 
+	@echo -e "\e[0;33m [UPDATE] $@ \e[m"
+	@./juci-update $(BIN)/www DEBUG
 
 install: 
 	cp -Rp $(BIN)/* $(DESTDIR)
 
-#node_modules: package.json
-#	npm install
-	
-.PHONY: $(DIRS-y) $(UBUS_MODS) prepare
-$(DIRS-y): 
-	@echo -e "\e[0;33m BUILD MODULE $@ \e[m"
-	@make -i -C $@ clean
-	@make -C $@
-	@scripts/install-plugin "$@" "$(BIN)"
-
-#-cp -Rp $@/htdocs/* $(BIN)/www/ 
-#-cp -Rp $@/build/* $(BIN)/ 
-#-cp -Rp $@/backend/* $(BIN)/usr/lib/rpcd/cgi/ 
-#-cp -Rp $@/hotplug.d/* $(BIN)/etc/hotplug.d/ 
-#-cp -Rp $@/menu.json $(BIN)/usr/share/rpcd/menu.d/$(notdir $@).json 
-#-cp -Rp $@/access.json $(BIN)/usr/share/rpcd/acl.d/$(notdir $@).json 
-#-chmod +x $(BIN)/usr/bin/* 
-#-chmod +x $(BIN)/usr/lib/rpcd/cgi/* 
+.PHONY: $(PHONY) $(UBUS_MODS) 
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
@@ -136,5 +157,4 @@ $(UBUS_MODS):
 	
 clean: 
 	rm -rf ./bin
-	for dir in $(DIRS-y); do make -C $$dir clean; rm -rf bin; done
 
