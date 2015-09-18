@@ -12,9 +12,6 @@
 		<!--<juci-config-line title="{{'wifi-iface.device'|translate}}">
 			<juci-select ng-model="interface.device.value" ng-items="devices" placeholder="Choose Radio"></juci-select>
 		</juci-config-line>-->
-		<juci-config-line title="{{'wifi-iface.network'|translate}}">
-			<juci-select ng-model="interface.network.value" ng-items="networks" placeholder="{{'Choose Network'|translate}}"></juci-select>
-		</juci-config-line>
 		<juci-config-line title="{{'wifi-iface.encryption'|translate}}">
 			<juci-select ng-model="interface.encryption.value" ng-items="cryptoChoices" placeholder="Choose Protection" on-change="onEncryptionChanged($value, $oldvalue)"/>
 		</juci-config-line>
