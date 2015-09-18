@@ -1,0 +1,31 @@
+CONFIG_PACKAGE_juci=y
+CONFIG_PACKAGE_juci-asterisk=y
+CONFIG_PACKAGE_juci-broadcom-wl=y
+CONFIG_PACKAGE_juci-broadcom-dsl=y
+CONFIG_PACKAGE_juci-broadcom-vlan=y
+CONFIG_PACKAGE_juci-broadcom-ethernet=y
+CONFIG_PACKAGE_juci-network-netifd=y
+CONFIG_PACKAGE_juci-firewall-fw3=y
+CONFIG_PACKAGE_juci-dnsmasq-dhcp=y
+CONFIG_PACKAGE_juci-minidlna=y
+CONFIG_PACKAGE_juci-samba=y
+CONFIG_PACKAGE_juci-event=y
+CONFIG_PACKAGE_juci-ddns=y
+CONFIG_PACKAGE_juci-diagnostics=y
+CONFIG_PACKAGE_juci-inteno-router=y
+CONFIG_PACKAGE_juci-upnp=y
+CONFIG_PACKAGE_juci-usb=y
+CONFIG_PACKAGE_juci-macdb=y
+CONFIG_PACKAGE_juci-igmpinfo=y
+CONFIG_PACKAGE_juci-mod-system=y
+CONFIG_PACKAGE_juci-sysupgrade=y
+CONFIG_PACKAGE_juci-mod-status=y
+CONFIG_PACKAGE_juci-jquery-console=y
+CONFIG_PACKAGE_juci-netmode=y
+CONFIG_PACKAGE_juci-natalie-dect=y
+CONFIG_PACKAGE_juci-theme-inteno=y
+
+
+#DIRS-y += $(wildcard plugins/*)
+#DIRS-y += themes/juci-theme-inteno
+
