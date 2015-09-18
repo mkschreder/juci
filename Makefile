@@ -6,6 +6,7 @@ CSS_DIR:=$(BIN)/www/css
 TARGETS:=
 PHONY:=debug release clean prepare node_modules 
 CP:=cp -Rp 
+Q:=@
 INSTALL_DIR:=mkdir -p
 
 all: release
@@ -52,6 +53,8 @@ $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	$(Q)if [ "" != "$$^" ]; then ./juci-build-tpl-cache $$^ $$@; fi
 $(1)-install: 
 	$(call Plugin/$(1)/install,$(BIN))
+	$(Q)if [ -d $(CURDIR)/$(2)/$(1)/backend ]; then $(CP) $(CURDIR)/$(2)/$(1)/backend/* $(BIN)/usr/lib/rpcd/cgi/; fi
+	@chmod +x $(BIN)/usr/lib/rpcd/cgi/*
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/menu.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/menu.json $(BIN)/usr/share/rpcd/menu.d/$(1).json; fi
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/access.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/access.json $(BIN)/usr/share/rpcd/acl.d/$(1).json; fi
 endef
