@@ -1,4 +1,4 @@
-define Package/juci-natalie-dect/install 
+define Plugin/juci-natalie-dect/install 
 	$(INSTALL_DIR) $(1)/sbin/
 	$(INSTALL_DIR) $(1)/etc/init.d/
 	chmod +x $(PLUGIN_DIR)/service/*
