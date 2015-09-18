@@ -17,7 +17,7 @@ if(input.length == 0) {
 
 var templates = {}; 
 input.map(function(x){
-	var name = x.replace(/^src\//, ""); 
+	var name = x.replace(/^.*src\//, ""); 
 	templates[name] = String(fs.readFileSync(x)); 
 }); 
 

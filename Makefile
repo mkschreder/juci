@@ -5,13 +5,15 @@ CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
 TARGETS:=
 PHONY:=debug release clean prepare node_modules 
+CP:=cp -Rp 
+INSTALL_DIR:=mkdir -p
 
 all: release
 
 -include Makefile.local
 
 define Plugin/Default
-	LOAD:=10
+	CODE_LOAD:=10
 	JAVASCRIPT-y:=
 	TEMPLATES-y:=
 	STYLES-y:=
@@ -19,35 +21,37 @@ endef
 
 define BuildDir 
 	$(eval $(call Plugin/Default))
-	$(eval LOAD:=50)
+	$(eval CODE_LOAD:=50) # same as LOAD, LOAD is deprecated
 	$(eval TPL_LOAD:=90)
+	$(eval STYLE_LOAD:=50)
 	$(eval JAVASCRIPT-y:=src/*.js src/pages/*.js src/widgets/*.js)
 	$(eval TEMPLATES-y:=src/widgets/*.html src/pages/*.html)
 	$(eval STYLES-y:=src/css/*.css)
+	$(eval PLUGIN_DIR:=$(PWD)/$(2)/$(1))
 	$(eval -include $(2)/$(1)/Makefile)
 	$(eval $(Plugin/$(1)))
-	$(eval TARGETS+=$(1)-install $(CODE_DIR)/$(LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(LOAD)-$(1).css)
+	$(eval TARGETS+=$(1)-install $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
 	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/$(1)/,$(JAVASCRIPT-y))))
 	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/$(1)/,$(TEMPLATES-y))))
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/$(1)/,$(STYLES-y))))
 	PHONY += $(1)-install
-$(CODE_DIR)/$(LOAD)-$(1).js: $(JAVASCRIPT_$(1)) 
+$(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) 
 	@echo -e "\e[0;33m[JS]\t$(1) -> $$@\e[m"
-	@#echo "   * $$(JAVASCRIPT_$(1))"
+	@#echo "   * $$^"
 	@echo "" > $$@
-	@if [ "" != "$$<" ]; then for file in $$<; do cat $$$$file >> $$@; done; fi
-$(CSS_DIR)/$(LOAD)-$(1).css: $(STYLES_$(1))
+	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
+$(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1))
 	@echo -e "\e[0;33m[CSS]\t$(1) -> $$@\e[m"
 	@#echo "   * $$(STYLES_$(1))"
 	@echo "" > $$@
-	@if [ "" != "$$<" ]; then for file in $$<; do cat $$$$file >> $$@; done; fi
+	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
 $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@echo -e "\e[0;33m[HTML]\t$(1) -> $$@\e[m"
-	@#echo "   * $$(TEMPLATES_$(1))"
+	@#echo "   * $$^"
 	@echo "" > $$@
-	@if [ "" != "$$<" ]; then ./juci-build-tpl-cache $(TEMPLATES_$(1)) $$@; fi
+	$(Q)if [ "" != "$$^" ]; then ./juci-build-tpl-cache $$^ $$@; fi
 $(1)-install: 
-	$(call $(Plugin/$(1)/install))
+	$(call Plugin/$(1)/install,$(BIN))
 endef
 
 define plugin 
@@ -73,6 +77,7 @@ name:=CONFIG_PACKAGE_$(1);
 @echo "VALUE: $(1): $(CONFIG_PACKAGE_$(1))"; 
 endef
 
+$(eval $(call BuildDir,juci,./))
 $(eval $(call plugin,juci-asterisk)); 
 $(eval $(call plugin,juci-broadcom-wl));
 $(eval $(call plugin,juci-broadcom-dsl));
@@ -123,6 +128,7 @@ prepare:
 	@echo "BACKEND: $(UBUS_MODS)"
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
+	@mkdir -p $(BIN)/usr/share/lua/
 	@mkdir -p $(BIN)/usr/share/rpcd/menu.d/
 	@mkdir -p $(BIN)/usr/share/rpcd/acl.d/
 	@mkdir -p $(BIN)/usr/lib/rpcd/cgi/
@@ -137,7 +143,7 @@ release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 	@./juci-update $(BIN)/www RELEASE
 
 
-debug: prepare $(UBUS_MODS) $(DIRS-y) 
+debug: prepare $(TARGETS) $(UBUS_MODS) $(DIRS-y) 
 	@echo -e "\e[0;33m [GRUNT] $@ \e[m"
 	@grunt 
 	@echo -e "\e[0;33m [UPDATE] $@ \e[m"

@@ -4,8 +4,8 @@ define Plugin/juci-network-netifd/install
 	@$(INSTALL_DIR) $(1)/usr/bin/
 	@$(INSTALL_DIR) $(1)/sbin/
 	@$(INSTALL_DIR) $(1)/etc/init.d/
-	@$(CP) src/images/* ./$(1)/www/img/
-	@chmod +x ./service/*
-	@$(CP) ./service/juci-netdevd ./$(1)/sbin/
-	@$(CP) ./service/juci-netdevd.init ./$(1)/etc/init.d/juci-netdevd
+	@$(CP) $(PLUGIN_DIR)/src/images/* ./$(1)/www/img/
+	@chmod +x $(PLUGIN_DIR)/service/*
+	@$(CP) $(PLUGIN_DIR)/service/juci-netdevd ./$(1)/sbin/
+	@$(CP) $(PLUGIN_DIR)/service/juci-netdevd.init ./$(1)/etc/init.d/juci-netdevd
 endef

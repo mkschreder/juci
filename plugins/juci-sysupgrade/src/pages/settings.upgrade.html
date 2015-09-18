@@ -41,10 +41,10 @@
 				<input type="hidden" name="filename" value="{{uploadFilename}}" />
 				<juci-config-lines>
 					<juci-config-line title="{{'Pick firmware file to upload'|translate}}">
-						<input type="file" class="btn btn-default btn-file"  name="filedata" />
+						<input type="file" class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile"/>
 					</juci-config-line>
 					<juci-config-line title="{{'Start upgrade'|translate}}">
-						<button ng-click="onUploadUpgrade()" class="btn btn-lg btn-default">{{'Upgrade'|translate}}</button>
+						<button ng-click="onUploadUpgrade()" class="btn btn-lg btn-default" ng-class="{ 'disabled': uploadFile }">{{'Upgrade'|translate}}</button>
 					</juci-config-line>
 				</juci-config-lines>
 			</form>
