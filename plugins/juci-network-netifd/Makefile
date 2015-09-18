@@ -21,7 +21,6 @@ files:
 	@$(INSTALL_DIR) ./$(OUTDIR)/sbin/
 	@$(INSTALL_DIR) ./$(OUTDIR)/etc/init.d/
 	@$(CP) src/images/* ./$(OUTDIR)/www/img/
-	@$(CP) backend/juci.network ./files/usr/lib/rpcd/cgi/
 	@chmod +x ./service/*
 	@$(CP) ./service/juci-netdevd ./$(OUTDIR)/sbin/
 	@$(CP) ./service/juci-netdevd.init ./$(OUTDIR)/etc/init.d/juci-netdevd

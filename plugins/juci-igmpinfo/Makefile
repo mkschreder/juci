@@ -16,7 +16,6 @@ files:
 	$(INSTALL_DIR) ./$(OUTDIR)/www/css
 	$(INSTALL_DIR) ./$(OUTDIR)/www/js
 	$(INSTALL_DIR) ./$(OUTDIR)/usr/lib/rpcd/cgi/
-	$(CP) backend/juci.iptv ./$(OUTDIR)/usr/lib/rpcd/cgi/
 
 #STYLES:=$(wildcard src/css/*.css) 
 CODE:=$(wildcard src/*.js) $(wildcard src/pages/*.js src/widgets/*.js)
