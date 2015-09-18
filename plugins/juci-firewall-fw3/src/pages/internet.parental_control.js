@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetParentalControlPage", function($scope, $uci, $rpc, $network){
+.controller("InternetParentalControlPage", function($scope, $uci, $rpc, $network, $tr, gettext){
 	$scope.urlList = [];
 	$scope.macList = []; 
 	$scope.errors = []; 
@@ -67,8 +67,12 @@ JUCI.app
 			} updateRules(); 
 			
 			$scope.onAddAccessRule = function(){
-				$uci.firewall.create({".type": "rule", "parental": true}).done(function(rule){
+				$uci.firewall.create({
+					".type": "rule", 
+					"parental": true
+				}).done(function(rule){
 					rule[".new"] = true; 
+					rule.name.value = $tr(gettext("Parental Rule")); 
 					$scope.rule = {
 						time_start: rule.start_time.value, 
 						time_end: rule.stop_time.value, 
