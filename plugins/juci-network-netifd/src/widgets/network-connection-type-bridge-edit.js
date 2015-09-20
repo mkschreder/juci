@@ -74,7 +74,9 @@ JUCI.app
 					if(keep_device) return; 
 					
 					$scope.connection.ifname.value += " " + data; 
-					$scope.connection.ifname.value.split(" ").map(function(dev_name){
+					$scope.connection.ifname.value.split(" ")
+					.filter(function(x){ return x != ""; })
+					.map(function(dev_name){
 						var dev = devs.find(function(d){ return d.id == dev_name; }); 
 						
 						if(!$scope.doNotMarkBridgedDevices){
