@@ -108,6 +108,7 @@ $(eval $(call plugin,juci-mod-status));
 $(eval $(call plugin,juci-jquery-console));
 $(eval $(call plugin,juci-netmode));
 $(eval $(call plugin,juci-natalie-dect));
+$(eval $(call plugin,juci-ethernet)); 
 $(eval $(call theme,juci-theme-inteno));
 
 
