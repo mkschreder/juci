@@ -6,12 +6,10 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 		this._subsystems = []; 
 	}
 
-	Ethernet.prototype.addSubsystem(function(proc){
-		if(!proc || !(proc instanceof Function)) throw new Error("Subsystem argument must be a function returning a subsystem object!"); 
-
-		var subsys = proc(); 
-		this._subsystems.push(subsys); 
-	}); 
+	Ethernet.prototype.addSubsystem = function(subsys){
+		if(subsys) 
+			this._subsystems.push(subsys); 
+	} 
 	
 	Ethernet.prototype.getAdapters = function(){
 		var def = $.Deferred(); 
@@ -19,8 +17,8 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 		$rpc.juci.ethernet.adapters().done(function(result){
 			if(result && result.adapters) {
 				// pipe all adapters though all subsystems and annotate them
-				async.each(self._subsystems, function(sys){
-					if(sys.annotateAdapters && typeof sys.annotateAdapters == Function){
+				async.each(self._subsystems, function(sys, next){
+					if(sys.annotateAdapters && sys.annotateAdapters instanceof Function){
 						sys.annotateAdapters(result.adapters).done(function(){
 							next(); 
 						});
@@ -34,4 +32,6 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 		}); 	
 		return def.promise(); 
 	}
+
+	return new Ethernet(); 
 }); 
