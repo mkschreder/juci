@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetEthernetPhysical", function($scope, $uci, $ethernet, gettext){
+.controller("InternetEthernetPhysical", function($scope, $uci, $broadcomEthernet, gettext){
 	$scope.data = {}; 
 	$scope.getItemTitle = function(item) {
 		if(!item) return "error";
@@ -13,7 +13,7 @@ JUCI.app
 		
 		$scope.$watch("data.wan_port", function(value){
 			if(!value) return; 
-			$ethernet.configureWANPort(value.ifname.value); 
+			$broadcomEthernet.configureWANPort(value.ifname.value); 
 		}); 
 		
 		$scope.$apply(); 

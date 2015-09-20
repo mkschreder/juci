@@ -1,4 +1,4 @@
-JUCI.app.factory("$ethernet", function($rpc, $uci){
+JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 	// fire off initial sync
 	var sync = $uci.sync("layer2_interface_ethernet");
 	
@@ -30,6 +30,23 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 		return def.promise(); 
 	}
 	
+	Ethernet.prototype.annotateAdapters = function(devs){
+		var def = $.Deferred(); 
+		var self = this; 
+		self.getPorts().done(function(list){
+			var ports = {};
+			list.map(function(x){ ports[x.id] = x; }); 
+			alert(Object.keys(ports)); 
+			devs.map(function(dev){
+				if(dev.device in ports) dev.name = ports[dev.device].name; 
+			}); 
+			def.resolve(devs); 
+		}).fail(function(){
+			def.reject(); 
+		}); 
+		return def.promise(); 
+	}
+
 	Ethernet.prototype.getPorts = function(){
 		var def = $.Deferred(); 
 		
@@ -59,6 +76,10 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 	
 	return new Ethernet(); 
 });
+
+JUCI.app.run(function($ethernet, $broadcomEthernet){
+	$ethernet.addSubsystem($broadcomEthernet); 
+}); 
 
 UCI.$registerConfig("layer2_interface_ethernet"); 
 UCI.layer2_interface_ethernet.$registerSectionType("ethernet_interface", {
