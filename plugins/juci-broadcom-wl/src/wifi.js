@@ -146,7 +146,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 JUCI.app.run(function($ethernet, $wireless, $uci){
 	$ethernet.addSubsystem($wireless); 
 	// make sure we create status section if it does not exist. 
-	$uci.sync("wireless").done(function(){
+	$uci.$sync("wireless").done(function(){
 		if(!$uci.wireless.status) {
 			$uci.wireless.create({
 				".type": "wifi-status", 
@@ -155,6 +155,11 @@ JUCI.app.run(function($ethernet, $wireless, $uci){
 				$uci.save();
 			});  
 		} 
+		// remove the deprecated network field from all wireless configs
+		$uci.wireless["@wifi-iface"].map(function(x){
+			x.network.value = ""; 
+		}); 
+		$uci.$save(); 
 	}); 
 }); 
 
