@@ -1,106 +1,150 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
-!function(){
 	
-	JUCI.app.run(function($network, $uci){
-		$network.subsystem(function(){
-			return {
-				getDevices: function() {
-					var deferred = $.Deferred(); 
-					var devices = []; 
-					$uci.sync("wireless").done(function(result){
-						// in wireless, wifi-iface is actually the layer2 device. Pretty huh? :-) 
-						// oh, and network is what network the device belongs to. Even prettier. 
-						$uci.wireless["@wifi-iface"].map(function(device){
-							devices.push({
-								get name() { return device.ssid.value; },
-								get id() { return device.ifname.value; },
-								get type() { return "wireless"; }, 
-								base: device
-							}); 
+JUCI.app.run(function($network, $uci){
+	$network.subsystem(function(){
+		return {
+			getDevices: function() {
+				var deferred = $.Deferred(); 
+				var devices = []; 
+				$uci.sync("wireless").done(function(result){
+					// in wireless, wifi-iface is actually the layer2 device. Pretty huh? :-) 
+					// oh, and network is what network the device belongs to. Even prettier. 
+					$uci.wireless["@wifi-iface"].map(function(device){
+						devices.push({
+							get name() { return device.ssid.value; },
+							get id() { return device.ifname.value; },
+							get type() { return "wireless"; }, 
+							base: device
 						}); 
-						deferred.resolve(devices); 
 					}); 
-					return deferred.promise(); 
-				}
-			}
-		}); 
-	}); 
-	JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
-		
-		function Wireless(){
-			this.scheduleStatusText = gettext("off"); 
-			this.wpsStatusText = gettext("off"); 
-		}
-		
-		Wireless.prototype.getConnectedClients = function(){
-			var def = $.Deferred(); 
-			$rpc.juci.broadcom.wireless.clients().done(function(clients){
-				if(clients && clients.clients) def.resolve(clients.clients); 
-				else def.reject(); 
-			}); 
-			return def.promise(); 
-		}
-		
-		Wireless.prototype.getDevices = function(){
-			var deferred = $.Deferred(); 
-			$uci.sync("wireless").done(function(){
-				$uci.wireless["@wifi-device"].map(function(x){
-					// TODO: this should be a uci "displayname" or something
-					// TODO: actually this should be based on wireless ubus call field
-					if(x.band.value == "a") x[".frequency"] = gettext("5GHz"); 
-					else if(x.band.value == "b") x[".frequency"] = gettext("2.4GHz"); 
+					deferred.resolve(devices); 
 				}); 
-				deferred.resolve($uci.wireless["@wifi-device"]); 
-			}); 
-			return deferred.promise(); 
+				return deferred.promise(); 
+			}
 		}
-		
-		Wireless.prototype.getInterfaces = function(){
-			var deferred = $.Deferred(); 
-			$uci.sync("wireless").done(function(){
-				deferred.resolve($uci.wireless["@wifi-iface"]); 
-			}); 
-			return deferred.promise(); 
-		}
-		
-		Wireless.prototype.getDefaults = function(){
-			var deferred = $.Deferred(); 
-			$rpc.juci.broadcom.wireless.defaults().done(function(result){
-				if(!result) {
-					deferred.reject(); 
-					return; 
-				}
-				
-				deferred.resolve(result); 
-			}).fail(function(){
-				deferred.reject(); 
-			});  
-			return deferred.promise(); 
-		}
-		
-		Wireless.prototype.scan = function(){
-			var deferred = $.Deferred(); 
-			$rpc.juci.broadcom.wireless.scan().done(function(result){
-				
-			}).always(function(){
-				deferred.resolve(); 
-			});  
-			return deferred.promise(); 
-		}
-		
-		Wireless.prototype.getScanResults = function(){
-			var deferred = $.Deferred(); 
-			$rpc.juci.broadcom.wireless.scanresults().done(function(result){
-				deferred.resolve(result); 
-			}); 
-			return deferred.promise(); 
-		}
-		
-		return new Wireless(); 
 	}); 
-}(); 
+}); 
 
-JUCI.app.run(function($uci){
+JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
+	
+	function Wireless(){
+		this.scheduleStatusText = gettext("off"); 
+		this.wpsStatusText = gettext("off"); 
+	}
+	
+	Wireless.prototype.annotateAdapters = function(adapters){
+		var def = $.Deferred(); 
+		var self = this; 
+		self.getInterfaces().done(function(list){
+			var devices = {}; 
+			list.map(function(x){ devices[x.ifname.value] = x; }); 
+			adapters.map(function(dev){
+				if(dev.device in devices){
+					dev.name = devices[dev.device].ssid.value + "@" + dev.device; 
+					delete devices[dev.device]; 
+				}
+			});
+			Object.keys(devices).map(function(k){
+				var device = devices[k]; 
+				adapters.push({
+					name: device.ssid.value, 
+					device: device.ifname.value, 
+					type: "wireless", 
+					state: "DOWN"
+				}); 
+			}); 
+			def.resolve(); 
+		}).fail(function(){
+			def.reject(); 
+		}); 
+		return def.promise(); 
+	}
+
+	Wireless.prototype.getConnectedClients = function(){
+		var def = $.Deferred(); 
+		$rpc.juci.broadcom.wireless.clients().done(function(clients){
+			if(clients && clients.clients) def.resolve(clients.clients); 
+			else def.reject(); 
+		}); 
+		return def.promise(); 
+	}
+	
+	Wireless.prototype.getDevices = function(){
+		var deferred = $.Deferred(); 
+		$uci.sync("wireless").done(function(){
+			$uci.wireless["@wifi-device"].map(function(x){
+				// TODO: this should be a uci "displayname" or something
+				// TODO: actually this should be based on wireless ubus call field
+				if(x.band.value == "a") x[".frequency"] = gettext("5GHz"); 
+				else if(x.band.value == "b") x[".frequency"] = gettext("2.4GHz"); 
+			}); 
+			deferred.resolve($uci.wireless["@wifi-device"]); 
+		}); 
+		return deferred.promise(); 
+	}
+	
+	Wireless.prototype.getInterfaces = function(){
+		var deferred = $.Deferred(); 
+		$uci.sync("wireless").done(function(){
+			var ifs = $uci.wireless["@wifi-iface"]; 
+			var counters = {}; 
+			// TODO: this is an ugly hack to automatically calculate wifi device name
+			// it is not guaranteed to be exact and should be replaced by a change to 
+			// how openwrt handles wireless device by adding an ifname field to wireless 
+			// interface configuration which will be used to create the ethernet device.  
+			ifs.map(function(i){
+				if(i.ifname.value == ""){
+					if(!counters[i.device.value]) counters[i.device.value] = 0; 
+					if(counters[i.device.value] == 0)
+						i.ifname.value = i.device.value; 
+					else
+						i.ifname.value = i.device.value + "." + counters[i.device.value]; 
+					counters[i.device.value]++; 
+				}
+			}); 
+			deferred.resolve(ifs); 
+		}); 
+		return deferred.promise(); 
+	}
+	
+	Wireless.prototype.getDefaults = function(){
+		var deferred = $.Deferred(); 
+		$rpc.juci.broadcom.wireless.defaults().done(function(result){
+			if(!result) {
+				deferred.reject(); 
+				return; 
+			}
+			
+			deferred.resolve(result); 
+		}).fail(function(){
+			deferred.reject(); 
+		});  
+		return deferred.promise(); 
+	}
+	
+	Wireless.prototype.scan = function(){
+		var deferred = $.Deferred(); 
+		$rpc.juci.broadcom.wireless.scan().done(function(result){
+			
+		}).always(function(){
+			deferred.resolve(); 
+		});  
+		return deferred.promise(); 
+	}
+	
+	Wireless.prototype.getScanResults = function(){
+		var deferred = $.Deferred(); 
+		$rpc.juci.broadcom.wireless.scanresults().done(function(result){
+			deferred.resolve(result); 
+		}); 
+		return deferred.promise(); 
+	}
+	
+	return new Wireless(); 
+}); 
+
+JUCI.app.run(function($ethernet, $wireless, $uci){
+	$ethernet.addSubsystem($wireless); 
 	// make sure we create status section if it does not exist. 
 	$uci.sync("wireless").done(function(){
 		if(!$uci.wireless.status) {

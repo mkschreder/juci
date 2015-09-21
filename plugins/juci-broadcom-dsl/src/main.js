@@ -1,7 +1,31 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
-.factory("$dsl", function($uci, $rpc){
+.factory("$broadcomDsl", function($ethernet, $uci, $rpc){
 	return {
+		annotateAdapters: function(adapters){
+			var def = $.Deferred(); 
+			var self = this; 
+			self.getDevices().done(function(list, devices){
+				adapters.map(function(adapter){
+					if(adapter.device in devices){
+						var dev = devices[adapter.device]; 
+						adapter.name = dev.type; 
+						delete devices[adapter.device]; 
+					}
+				}); 
+				Object.keys(devices).map(function(devid){
+					var dev = devices[devid]; 
+					adapters.push({
+						device: dev.id, 
+						name: dev.name,
+						link_type: dev.type, 
+						state: "DOWN"
+					}); 
+				}); 
+				def.resolve(adapters);  
+			}); 
+			return def.promise(); 
+		},
 		getDevices: function() {
 			var deferred = $.Deferred(); 
 			var devices = {}; 
@@ -22,7 +46,7 @@ JUCI.app
 						base: device
 					}; 
 				}); 
-				deferred.resolve(Object.keys(devices).map(function(k){ return devices[k]; })); 
+				deferred.resolve(Object.keys(devices).map(function(k){ return devices[k]; }), devices); 
 			}); 
 			return deferred.promise(); 
 		}, 
@@ -30,11 +54,12 @@ JUCI.app
 			return $rpc.juci.broadcom.dsl.status(); 
 		}
 	}; 
-}).run(function($network, $uci, $dsl){
+}).run(function($ethernet, $network, $uci, $broadcomDsl){
+	$ethernet.addSubsystem($broadcomDsl); 
 	$network.subsystem(function(){
 		return {
 			getDevices: function(){
-				return $dsl.getDevices(); 
+				return $broadcomDsl.getDevices(); 
 			}
 		}
 	}); 

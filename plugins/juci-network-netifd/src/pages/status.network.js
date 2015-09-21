@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("StatsOverviewCtrl", function ($scope, $uci, $rpc, gettext, $config, $dsl) {
+.controller("StatsOverviewCtrl", function ($scope, $uci, $rpc, gettext, $config, $broadcomDsl) {
 	//$scope.expanded = false; 
 	$scope.sections = [{}, {}, {}, {}]; 
 	
@@ -44,7 +44,7 @@ JUCI.app
 				next(); 
 			}, 
 			function(next){
-				$dsl.status().done(function(result){
+				$broadcomDsl.status().done(function(result){
 					switch(result.dslstats.status){
 						case 'Idle': $scope.dsl_status = 'disabled'; break; 
 						case 'Showtime': $scope.dsl_status = 'ok'; break; 

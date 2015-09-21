@@ -1,12 +1,12 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("BCMADSLPage", function($scope, $uci, $dsl, dslBaseDevicePicker){
+.controller("BCMADSLPage", function($scope, $uci, $broadcomDsl, dslBaseDevicePicker){
 	$scope.getItemTitle = function(dev){
 		if(!dev) return "Unknown"; 
 		return dev.name.value + " (" +dev.ifname.value + ")"; 
 	}
-	$dsl.getDevices().done(function(devices){
+	$broadcomDsl.getDevices().done(function(devices){
 		$scope.adsl_devices = devices.filter(function(dev){
 			return dev.type == "adsl"; 
 		}).map(function(dev){

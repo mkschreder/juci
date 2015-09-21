@@ -15,7 +15,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 			wan.ifname.value = devname + ".1";
 			wan.baseifname.value = devname;  
 		}
-		if($uci.layer2_interface_ethernet.Wan == 0){
+		if(!$uci.layer2_interface_ethernet.Wan){
 			$uci.layer2_interface_ethernet.create({
 				".type": "ethernet_interface", 
 				".name": "Wan"
@@ -30,17 +30,28 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 		return def.promise(); 
 	}
 	
-	Ethernet.prototype.annotateAdapters = function(devs){
+	Ethernet.prototype.annotateAdapters = function(adapters){
 		var def = $.Deferred(); 
 		var self = this; 
 		self.getPorts().done(function(list){
 			var ports = {};
 			list.map(function(x){ ports[x.id] = x; }); 
-			alert(Object.keys(ports)); 
-			devs.map(function(dev){
-				if(dev.device in ports) dev.name = ports[dev.device].name; 
+			adapters.map(function(dev){
+				if(dev.device in ports){
+					dev.name = ports[dev.device].name; 
+					delete ports[dev.device]; 
+				}
+			});
+			Object.keys(ports).map(function(k){
+				var port = ports[k]; 
+				adapters.push({
+					name: port.name, 
+					device: port.id, 
+					type: port.type, 
+					state: "DOWN"
+				}); 
 			}); 
-			def.resolve(devs); 
+			def.resolve(); 
 		}).fail(function(){
 			def.reject(); 
 		}); 
@@ -64,7 +75,16 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 							is_wan_port: ($uci.layer2_interface_ethernet.Wan && ($uci.layer2_interface_ethernet.Wan.baseifname.value == dev)),
 							base: { name: names[i], id: dev }
 						}; 
-					});
+					}); 
+					// Add the broadcom wan port vlan as well
+					if($uci.layer2_interface_ethernet.Wan){
+						var port = $uci.layer2_interface_ethernet.Wan; 
+						devices.push({
+							name: "VLAN-WAN", 
+							id: port.ifname.value, 
+							type: "vlan"
+						}); 
+					}
 					def.resolve(devices);  
 				}); 
 			} else {

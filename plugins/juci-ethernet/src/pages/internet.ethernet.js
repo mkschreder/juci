@@ -21,7 +21,7 @@ JUCI.app
 	
 	$ethernet.getAdapters().done(function(adapters){
 		$scope.adapters = adapters.filter(function(a){
-			return a.link_type == "ether" && !a.flags.match("NOARP"); 
+			return (!a.flags || !a.flags.match("NOARP")); 
 		});  
 	
 		$scope.$apply(); 
