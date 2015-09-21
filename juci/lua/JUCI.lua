@@ -32,8 +32,8 @@ function shell(fmt, ...)
 	end
 	local p = base.assert(io.popen(string.format(fmt, base.unpack(arg)))); 
 	local s = p:read("*a"); 
-	p:close(); 
-	return s; 
+	local r = p:close(); 
+	return s,r; 
 end
 
 function ubus(_calls, arg) 
