@@ -1,0 +1,71 @@
+#!/usr/bin/lua 
+
+local juci = require("JUCI"); 
+local fs = require("fs"); 
+require("ubus"); 
+require("JSON"); 
+
+local conn = ubus.connect(); 
+
+function service_list()
+	local files = fs.readdirSync("/etc/init.d/"); 
+	local rcdfiles = fs.readdirSync("/etc/rc.d/"); 
+	local svcs = conn:call("service", "list", {});
+	local services = {}; 
+	local enabled = {}; 
+
+	for _,file in ipairs(rcdfiles) do 
+		if(file:sub(1,1) == "S") then 
+			enabled[string.sub(file, 4, file:len())] = tonumber(file:sub(2,3)); 
+		end
+	end
+	for _,file in ipairs(files) do
+		local svc = {
+			running = false, 
+			enabled = false
+		}; 
+		local s = svcs[file]; 
+		
+		svc.start_priority = enabled[file]; 
+		svc.enabled = enabled[file] ~= nil; 
+		svc.running = s ~= nil; 		
+		svc.name = file; 
+		
+		table.insert(services, svc); 
+	end
+	print(json.encode({services = services})); 
+end
+
+function service_start(opts) 
+	
+end 
+
+function service_stop(opts)
+
+end 
+
+function service_enable(opts)
+
+end
+
+function service_disable(opts)
+
+end
+
+function service_reload(opts)
+
+end
+
+function service_status(opts)
+
+end
+
+juci.ubus({
+	["list"] = service_list,
+	["start"] = service_start,
+	["stop"] = service_stop, 
+	["enable"] = service_enable, 
+	["disable"] = service_disable, 
+	["reload"] = service_reload, 
+	["status"] = service_status
+}, arg); 
