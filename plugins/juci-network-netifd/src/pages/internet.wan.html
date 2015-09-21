@@ -20,10 +20,6 @@
 			</juci-config-lines>
 			<network-connection-ip4-settings-edit ng-model="conn"  ng-show="conn.proto.value == 'static'"></network-connection-ip4-settings-edit>
 		</juci-config-section>
-		<juci-config-section>
-			<juci-config-heading>{{'DNS Settings'|translate}}</juci-config-heading>
-			<network-connection-ip4-dns-edit ng-model="conn"></network-connection-ip4-dns-edit>
-		</juci-config-section>
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>
 	</div>
