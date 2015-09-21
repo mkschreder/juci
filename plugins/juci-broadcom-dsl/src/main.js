@@ -9,15 +9,15 @@ JUCI.app
 				adapters.map(function(adapter){
 					if(adapter.device in devices){
 						var dev = devices[adapter.device]; 
-						adapter.name = dev.type; 
+						adapter.name = dev.name; 
 						delete devices[adapter.device]; 
 					}
 				}); 
 				Object.keys(devices).map(function(devid){
 					var dev = devices[devid]; 
 					adapters.push({
-						device: dev.id, 
 						name: dev.name,
+						device: dev.id, 
 						link_type: dev.type, 
 						state: "DOWN"
 					}); 
