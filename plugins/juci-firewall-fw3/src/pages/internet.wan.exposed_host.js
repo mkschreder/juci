@@ -15,7 +15,7 @@ $juci.module("internet")
 		function(next){
 			$network.getConnectedClients().done(function(clients){
 				$scope.connectedHosts = Object.keys(clients).map(function(k){
-					return { label: clients[k].hostname+" ("+clients[k].ipaddr+")", value: clients[k].ipaddr }; 
+					return { label: (clients[k].hostname)?(clients[k].hostname+" ("+clients[k].ipaddr+")"):clients[k].ipaddr, value: clients[k].ipaddr }; 
 				}); 
 				$scope.$apply(); 
 			}).always(function(){ next(); }); 
