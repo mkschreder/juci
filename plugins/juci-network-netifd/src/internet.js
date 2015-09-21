@@ -340,7 +340,7 @@ UCI.network.$registerSectionType("interface", {
 	"dns": 					{ dvalue: [], type: Array }, 
 	"enabled": 				{ dvalue: true, type: Boolean }, 
 	// dhcp settings
-	"broadcast": 			{ dvalue: false, type: Boolean }, 
+	// "broadcast": 			{ dvalue: false, type: Boolean }, 
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: true, type: Boolean }, 
 	// authentication 
