@@ -36,28 +36,35 @@ function service_list()
 	print(json.encode({services = services})); 
 end
 
-function service_start(opts) 
-	
+function service_start(service) 
+	juci.shell("/etc/init.d/"..service.name.." start");
+	print('{}');
 end 
 
-function service_stop(opts)
-
+function service_stop(service)
+	juci.shell("/etc/init.d/"..service.name.." stop");
+	print('{}');
 end 
 
-function service_enable(opts)
+function service_enable(service)
+	juci.shell("/etc/init.d/"..service.name.." enable");
+	print('{}');
+end
+
+function service_disable(service)
+	juci.shell("/etc/init.d/"..service.name.." disable");
+	print('{}');
 
 end
 
-function service_disable(opts)
-
+function service_reload(service)
+	juci.shell("/etc/init.d/"..service.name.." reload");
+	print('{}');
 end
 
-function service_reload(opts)
-
-end
-
-function service_status(opts)
-
+function service_status(service)
+	--TODO fix this
+	print({});
 end
 
 juci.ubus({
