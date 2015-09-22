@@ -44,13 +44,12 @@
 		},
 		"write": {
 			"ubus": {
-				"juci.system.service": [
+				"/juci/system.service": [
 					"start",
 					"stop",
 					"enable",
 					"disable",
 					"reload"
->>>>>>> reidar/reidar
 				]
 			}
 		}
