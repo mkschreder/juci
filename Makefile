@@ -1,7 +1,7 @@
 DIRS-y:=juci 
 PLUGINS-y:=
 BIN:=bin
-BACKEND_BIN_DIR:=$(BIN)/usr/lib/rpcd/cgi
+BACKEND_BIN_DIR:=$(BIN)/etc/ubus/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
 TARGETS:=
@@ -54,7 +54,7 @@ $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	$(Q)if [ "" != "$$^" ]; then ./juci-build-tpl-cache $$^ $$@; fi
 $(1)-install: 
 	$(call Plugin/$(1)/install,$(BIN))
-	$(Q)if [ -d $(CURDIR)/$(2)/$(1)/backend ]; then $(CP) $(CURDIR)/$(2)/$(1)/backend/* $(BACKEND_BIN_DIR); fi
+	$(Q)if [ -d $(CURDIR)/$(2)/$(1)/ubus ]; then $(CP) $(CURDIR)/$(2)/$(1)/ubus/* $(BACKEND_BIN_DIR); fi
 	@-chmod +x $(BACKEND_BIN_DIR)/* 
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/menu.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/menu.json $(BIN)/usr/share/rpcd/menu.d/$(1).json; fi
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/access.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/access.json $(BIN)/usr/share/rpcd/acl.d/$(1).json; fi

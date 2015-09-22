@@ -244,7 +244,9 @@
 					_find(path, obj[child]); 
 				}
 			}
-			_find(call.split("."), self); 
+			// support new slash paths /foo/bar..
+			if(call.startsWith("/")) call = call.substring(1); 
+			_find(call.split(/[\.\/]/), self); 
 		}, 
 		$init: function(host){
 			var self = this; 
