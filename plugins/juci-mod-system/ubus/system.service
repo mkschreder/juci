@@ -7,8 +7,19 @@ require("JSON");
 
 local conn = ubus.connect(); 
 
+function is_service(service)
+	local files = fs.readdirSync("/etc/init.d/");
+	for _,file in ipairs(files) do
+		if(file == service)
+		then
+			return true
+		end	
+	end		
+	return false
+end
+
 function service_list()
-	local files = fs.readdirSync("/etc/init.d/"); 
+	local files = fs.readdirSync("/etc/init.d/");
 	local rcdfiles = fs.readdirSync("/etc/rc.d/"); 
 	local svcs = conn:call("service", "list", {});
 	local services = {}; 
@@ -36,28 +47,50 @@ function service_list()
 	print(json.encode({services = services})); 
 end
 
-function service_start(opts) 
-	
+function service_start(service)
+	if(is_service(service.name))
+	then
+		juci.shell("/etc/init.d/%s start", service.name);
+	end
+	print('{}');
 end 
 
-function service_stop(opts)
-
+function service_stop(service)
+	if(is_service(service.name))
+	then
+		juci.shell("/etc/init.d/%s stop", service.name);
+	end
+	print('{}');
 end 
 
-function service_enable(opts)
+function service_enable(service)
+	if(is_service(service.name))
+	then
+		juci.shell("/etc/init.d/%s enable", service.name);
+	end
+	print('{}');
+end
+
+function service_disable(service)
+	if(is_service(service.name))
+	then
+		juci.shell("/etc/init.d/%s disable", service.name);
+	end
+	print('{}');
 
 end
 
-function service_disable(opts)
-
+function service_reload(service)
+	if(is_service(service.name))
+	then
+		juci.shell("/etc/init.d/%s reload", service.name);
+	end
+	print('{}');
 end
 
-function service_reload(opts)
-
-end
-
-function service_status(opts)
-
+function service_status(service)
+	--TODO fix this
+	print({});
 end
 
 juci.ubus({

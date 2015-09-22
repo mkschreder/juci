@@ -33,7 +33,24 @@
 					"list"
 				],
 				"/juci/system.service": [
-					"list"
+					"list",
+					"start",
+					"stop",
+					"enable",
+					"disable",
+					"reload"
+				]
+			}
+		},
+		"write": {
+			"ubus": {
+				"juci.system.service": [
+					"start",
+					"stop",
+					"enable",
+					"disable",
+					"reload"
+>>>>>>> reidar/reidar
 				]
 			}
 		}

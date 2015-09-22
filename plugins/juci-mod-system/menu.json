@@ -17,6 +17,7 @@
 	}, 
 	"status/system/services": {
 			"title": "Services",
+			"modes": [ "expert" ],
 			"acls": [ "status" ],
 			"index": 11
 	},
