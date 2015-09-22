@@ -1,7 +1,7 @@
 DIRS-y:=juci 
 PLUGINS-y:=
 BIN:=bin
-BACKEND_BIN_DIR:=$(BIN)/etc/ubus/
+BACKEND_BIN_DIR:=$(BIN)/etc/ubus/juci/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
 TARGETS:=

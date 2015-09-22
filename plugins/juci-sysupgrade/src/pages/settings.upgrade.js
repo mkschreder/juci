@@ -49,6 +49,8 @@ JUCI.app
 				window.location = "/reboot.html";  
 			}); 
 		}).fail(function(){
+			$scope.showUpgradeStatus = 0; 
+			$scope.$apply(); 
 			alert("Image check failed!"); 
 		});
 
