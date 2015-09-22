@@ -3,36 +3,36 @@
 		"description": "JUCI system module",
 		"read": {
 			"ubus": {
-				"juci.system": [
+				"/juci/system": [
 					"defaultreset", 
 					"filesystems", 
 					"log", 
 					"reboot", 
 					"info"
 				], 
-				"juci.system.upgrade": [
+				"/juci/system.upgrade": [
 					"check", 
 					"test", 
 					"start", 
 					"clean"
 				], 
-				"juci.system.user": [
+				"/juci/system.user": [
 					"password"
 				], 
-				"juci.system.time": [
+				"/juci/system.time": [
 					"zonelist", 
 					"get", 
 					"set"
 				], 
-				"juci.system.conf": [
+				"/juci/system.conf": [
 					"restore", 
 					"defaultreset", 
 					"list"
 				], 
-				"juci.system.process": [
+				"/juci/system.process": [
 					"list"
 				],
-				"juci.system.service": [
+				"/juci/system.service": [
 					"list"
 				]
 			}

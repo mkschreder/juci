@@ -220,33 +220,32 @@
 			}); 
 			return deferred.promise(); 
 		},
-		$register: function(call){
-			//console.log("registering: "+call); 
-			if(!call) return; 
+		$register: function(object, method){
+			console.log("registering: "+object+", method: "+method); 
+			if(!object || !method) return; 
 			var self = this; 
-			function _find(path, obj){
+			function _find(path, method, obj){
 				if(!obj.hasOwnProperty(path[0])){
 					obj[path[0]] = {}; 
 				}
-				if(path.length == 1) {
-					var namespace = call.split("."); 
-					namespace.pop(); namespace = namespace.join("."); 
-					(function(namespace, method){
+				if(!path.length) {
+					(function(object, method){
 						// create the rpc method
-						obj[path[0]] = function(data){
+						obj[method] = function(data){
 							if(!data) data = { }; 
-							return rpc_request("call", namespace, method, data); 
+							return rpc_request("call", object, method, data); 
 						}
-					})(namespace, path[0]); 
+					})(object, method); 
 				} else {
 					var child = path[0]; 
 					path.shift(); 
-					_find(path, obj[child]); 
+					_find(path, method, obj[child]); 
 				}
 			}
 			// support new slash paths /foo/bar..
-			if(call.startsWith("/")) call = call.substring(1); 
-			_find(call.split(/[\.\/]/), self); 
+			var npath = object; 
+			if(object.startsWith("/")) npath = object.substring(1); 
+			_find(npath.split(/[\.\/]/), method, self); 
 		}, 
 		$init: function(host){
 			var self = this; 
@@ -258,32 +257,12 @@
 			default_calls.map(function(x){ self.$register(x); }); 
 			// request list of all methods and construct rpc object containing all of the methods in javascript. 
 			rpc_request("list", "*", "", {}).done(function(result){
-				//console.log("RESULT: "+JSON.stringify(result)); 
-				// TODO: make this less obscure of a method :)
-				function _processNode(obj, cur_path){
-					var is_leaf = true; 
-					var leafs = {}; 
-					Object.keys(obj).map(function(x){
-						if((typeof obj[x]) == "object") {
-							leafs[x] = obj[x]; 
-							is_leaf = false; 
-						} else {
-							
-						}
+				//alert(JSON.stringify(result)); 
+				Object.keys(result).map(function(obj){
+					Object.keys(result[obj]).map(function(method){
+						self.$register(obj, method); 
 					}); 
-					if(is_leaf && cur_path){
-						// add a new rpc call 
-						//console.log("Leaf: "+namespace+", "+method); 
-						self.$register(cur_path); 
-					} else { 
-						//console.log("Processing node: "+cur_path); 
-						Object.keys(leafs).map(function(x){
-							var path = ((cur_path)?(cur_path+"."):"")+x; 
-							_processNode(leafs[x], path); 
-						}); 
-					}
-				}
-				_processNode(result, null); 
+				}); 
 				deferred.resolve(); 
 			}).fail(function(){
 				deferred.reject(); 

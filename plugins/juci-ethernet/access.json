@@ -3,7 +3,7 @@
 		"description": "JUCI ethernet module",
 		"read": {
 			"ubus": {
-				"juci.ethernet": [
+				"/juci/ethernet": [
 					"adapters"
 				]
 			}

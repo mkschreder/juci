@@ -3,7 +3,7 @@
 		"description": "JUCI USB Module",
 		"read": {
 			"ubus": {
-				"juci.usb": [
+				"/juci/usb": [
 					"list"
 				]
 			}

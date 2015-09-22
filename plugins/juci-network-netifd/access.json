@@ -3,15 +3,15 @@
 		"description": "JUCI Network Configuration module",
 		"read": {
 			"ubus": {
-				"juci.network": [
+				"/juci/network": [
 					"clients", 
 					"load", 
 					"nat_table", 
 					"adapters", 
 					"nameservers"
 				], 
-				"juci.network.lua": [ "services" ], 
-				"juci.network.status": [ 
+				"/juci/network.lua": [ "services" ], 
+				"/juci/network.status": [ 
 					"arp", 
 					"ipv4routes", 
 					"ipv6routes" 

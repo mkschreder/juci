@@ -3,10 +3,10 @@
 		"description": "JUCI asterisk module",
 		"read": {
 			"ubus": {
-				"juci.asterisk": [
+				"/juci/asterisk": [
 					"status"
 				], 
-				"juci.asterisk.call_log": [
+				"/juci/asterisk.call_log": [
 					"list"
 				]
 			}, 

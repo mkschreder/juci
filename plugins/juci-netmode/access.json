@@ -3,7 +3,7 @@
 		"description": "JUCI Netmode support module for iopsys",
 		"read": {
 			"ubus": {
-				"juci.netmode": [
+				"/juci/netmode": [
 					"select"
 				]
 			}, 

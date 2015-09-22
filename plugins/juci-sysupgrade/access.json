@@ -3,7 +3,7 @@
 		"description": "JUCI Sysupgrade Interface module",
 		"read": {
 			"ubus": {
-				"juci.system.upgrade": [
+				"/juci/system.upgrade": [
 					"check", 
 					"test", 
 					"start", 
@@ -15,7 +15,7 @@
 		"write": {
 			"uci": [ "system" ],
 			"ubus": {
-				"juci.system.upgrade": [
+				"/juci/system.upgrade": [
 					"check", 
 					"test", 
 					"start", 

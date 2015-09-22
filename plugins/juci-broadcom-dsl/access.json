@@ -3,7 +3,7 @@
 		"description": "Broadcom dsl plugin",
 		"read": {
 			"ubus": {
-				"juci.broadcom.dsl": [
+				"/juci/broadcom.dsl": [
 					"status"
 				]
 			}, 

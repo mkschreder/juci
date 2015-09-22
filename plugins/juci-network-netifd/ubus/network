@@ -4,12 +4,12 @@
 
 network_adapters(){
 	# moved to lua. result: went from taking 0.71 sec to 0.49 sec with more details
-	/usr/lib/rpcd/cgi/juci.network.lua adapters
+	/etc/ubus/juci/network.lua adapters
 }
 
 network_clients(){
 	# we have moved this one to lua implementation
-	/usr/lib/rpcd/cgi/juci.network.lua clients
+	/etc/ubus/juci/network.lua clients
 }
 
 network_load(){
