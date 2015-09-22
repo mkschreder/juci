@@ -27,7 +27,7 @@ function shell(fmt, ...)
 		-- This way gets rid of basic forms of injection attacks, but
 		-- it still may miss some others that I did not think about. 
 		if base.type(v) == "string" then 
-			arg[k] = v:gsub("[;*|]", "\\%1");
+			arg[k] = v:gsub("[;*|><\]", "\\%1");
 		end
 	end
 	local p = base.assert(io.popen(string.format(fmt, base.unpack(arg)))); 
