@@ -154,17 +154,17 @@ The menu system in the gui is actually created on the router side and retreived 
 License Notice
 --------------
 
+Copyright (C) 2015 JUCI Project. All rights reserved.
+
 Contributors: 
+	- Martin K. Schröder <mkschreder.uk@gmail.com>
+	- Reidar Cederqvist <reidar.cederqvist@gmail.com>
 	- Noel Wuyts <skype: noel.wuyts>: angular, widgets, development
 	- Feten Besbes <skype: feten_besbes>: css
 
-Project lead: Martin K. Schröder <mkschreder.uk@gmail.com>
-
-Copyright (C) 2012-2013 Inteno Broadband Technology AB. All rights reserved.
-
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
-version 2 as published by the Free Software Foundation.
+version 3 as published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful, but
 WITHOUT ANY WARRANTY; without even the implied warranty of
