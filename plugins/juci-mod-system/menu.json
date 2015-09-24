@@ -6,18 +6,18 @@
 	},
 	"settings/system": {
 		"title": "System", 
-		"acls": [ "system" ],
+		"acls": [ "juci-mod-system" ],
 		"redirect": "settings/system/general", 
 		"index": 0
 	}, 
 	"settings/system/general": {
 		"title": "General", 
-		"acls": [ "system" ],
+		"acls": [ "juci-mod-system" ],
 		"index": 10
 	}, 
 	"settings/password": {
 		"title": "Router Password",
-		"acls": [ "system" ],
+		"acls": [ "juci-mod-system" ],
 		"index": 10
 	},
 	"settings/energy": {
@@ -27,13 +27,13 @@
 	},
 	"settings/configuration": {
 		"title": "Configuration",
-		"acls": [ "system" ],
+		"acls": [ "juci-mod-system" ],
 		"index": 40
 	},
 	"status/system/services": {
 		"title": "Services",
 		"modes": [ "expert" ],
-		"acls": [ "status" ],
+		"acls": [ "juci-mod-status" ],
 		"index": 11
 	},
 	"status/system": {
