@@ -1,0 +1,56 @@
+#!/usr/bin/lua 
+
+-- Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
+
+require "ubus"
+require "uloop"
+
+local json = require("JSON");
+local juci = require("JUCI");
+
+uloop.init(); 
+
+local conn = ubus.connect()
+if not conn then
+	error("Failed to connect to ubus")
+end
+
+
+function test_speed(req, msg)
+	local testmode, bitrate, address, port = msg.testmode, msg.bitrate, msg.address, msg.port;
+	if(not bitrate or not address or not port)then
+		conn:reply(req, {message = "no empty values pleace"});
+		return nil; 
+	end;
+	if(type(bitrate) ~= "number")then 
+		conn:reply(req, {message = "bitrate must be a number"});
+		return nil; 
+	end;
+	if testmode == "up" then 
+		local string = "-n 1 -m tcp-send 60 "..bitrate.." -v 2 "..address.." "..port.."";
+		juci.shell("/sbin/tptest-run '%s' 'done' &", string);
+	elseif testmode == "down" then 
+		local string = "-n 1 -m tcp-receive 60 "..bitrate.." -v 2 "..address.." "..port.."";
+		juci.shell("/sbin/tptest-run 'done' '%s' &", string);
+	elseif testmode == "up_down" then 
+		local string1 = "-n 1 -m tcp-send 60 "..bitrate.." -v 2 "..address.." "..port.."";
+		local string2 = "-n 1 -m tcp-receive 60 "..bitrate.." -v 2 "..address.." "..port.."";
+		juci.shell("/sbin/tptest-run '%s' '%s' &", string1, string2);
+	else 
+		conn:reply(req, {message = "allowed testmodes are (up, down and up_down)"});
+		return nil;
+	end;
+	conn:reply(req, {message = "success"});
+end
+
+
+conn:add({
+	["juci.utils.speedtest"] = {run = 
+		{test_speed, 
+			{testmode = ubus.STRING, bitrate = ubus.INT32, address = ubus.STRING, port = ubus.STRING}
+		}
+	}; 
+}); 
+
+uloop.run();
+
