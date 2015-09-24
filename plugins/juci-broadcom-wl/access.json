@@ -22,14 +22,17 @@
 			}, 
 			"uci": [
 				"hosts", 
-				"wireless"
+				"wireless",
+				"boardpanel"
 			]
 		}
 	}, 
 	"juci-broadcom-wl-admin": {
 		"write": {
 			"uci": [
-				"wireless"
+				"wireless",
+				"hosts",
+				"boardpanel"
 			]
 		}
 	}
