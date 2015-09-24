@@ -39,7 +39,11 @@
 					"enable",
 					"disable",
 					"reload"
+				],
+				"system": [
+					"info"
 				]
+
 			}
 		},
 		"write": {

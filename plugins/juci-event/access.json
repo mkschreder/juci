@@ -3,7 +3,7 @@
 		"description": "JUCI event module",
 		"read": {
 			"ubus": {
-				"/juci/event": [
+				"juci.event": [
 					"poll"
 				]
 			}

@@ -3,7 +3,9 @@
 		"description": "JUCI status module",
 		"read": {
 			"ubus": {
-				
+				"system": [
+					"info"
+				}
 			}
 		}
 	}

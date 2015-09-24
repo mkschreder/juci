@@ -1,8 +1,8 @@
 {
 	"settings": {
-			"title": "Settings",
-			"redirect": "settings/system/general", 
-			"index": 50
+		"title": "Settings",
+		"redirect": "settings/system/general", 
+		"index": 50
 	},
 	"settings/system": {
 		"title": "System", 
@@ -15,12 +15,6 @@
 		"acls": [ "system" ],
 		"index": 10
 	}, 
-	"status/system/services": {
-			"title": "Services",
-			"modes": [ "expert" ],
-			"acls": [ "status" ],
-			"index": 11
-	},
 	"settings/password": {
 		"title": "Router Password",
 		"acls": [ "system" ],
@@ -35,6 +29,12 @@
 		"title": "Configuration",
 		"acls": [ "system" ],
 		"index": 40
+	},
+	"status/system/services": {
+		"title": "Services",
+		"modes": [ "expert" ],
+		"acls": [ "status" ],
+		"index": 11
 	},
 	"status/system": {
 		"title": "System",  
