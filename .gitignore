@@ -3,6 +3,8 @@ htdocs
 node_modules
 acl.d
 menu.d
+po/titles.js
+po/juci_all_strings.pot
 po/all.pot
 po/titles.pot
 po/template.pot
