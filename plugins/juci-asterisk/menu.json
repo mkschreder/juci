@@ -2,51 +2,48 @@
 	"phone": {
 		"title": "Phone", 
 		"redirect": "phone/call_log", 
-		"files": [ "/etc/config/voice_client" ],
+		"acls": [ "juci-asterisk"  ],
 		"index": 20
 	}, 
 	"phone/call_log": {
 		"title": "Call Log",
-		"files": [ "/etc/config/voice_client" ],
+		"acls": [ "juci-asterisk"  ],
 		"index": 10
 	},
 	"phone/number_blocking": {
 		"title": "Number Blocking",
-		"files": [ "/etc/config/voice_client" ],
 		"modes": [ "expert" ], 
-		"acls": [  ],
+		"acls": [ "juci-asterisk"  ],
 		"index": 20
 	},
 	"phone/ringing_schedule": {
 		"title": "Ringing Schedule",
-		"files": [ "/etc/config/voice_client" ],
+		"acls": [ "juci-asterisk"  ],
 		"modes": [ "expert" ], 
-		"acls": [  ],
 		"index": 30
 	},
 	"phone/numbers": {
 		"title": "SIP Accounts",
-		"files": [ "/etc/config/voice_client" ],
+		"acls": [ "juci-asterisk"  ],
 		"modes": [ "expert" ], 
 		"index": 40
 	},
 	"phone/lines": {
 		"title": "Phone Lines",
-		"files": [ "/etc/config/voice_client" ],
+		"acls": [ "juci-asterisk"  ],
 		"modes": [ "expert" ], 
 		"acls": [  ],
 		"index": 41
 	},
 	"phone/speed_dialing": {
 		"title": "Speed Dialing", 
-		"files": [ "/etc/config/voice_client" ],
+		"acls": [ "juci-asterisk"  ],
 		"modes": [ "expert" ], 
-		"acls": [ ], 
 		"index": 50
 	},
 	"status/phone": {
 		"title": "Phone",
-		"acls": [ "network" ],
+		"acls": [ "juci-asterisk" ],
 		"index": 41
 	}
 }

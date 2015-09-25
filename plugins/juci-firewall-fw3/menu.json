@@ -1,59 +1,61 @@
 {
 	"internet/firewall": {
 		"title": "Firewall",
-		"acls": [ "network" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 10
 	},
 	"internet/firewall/zones": {
 		"title": "Zones",
-		"acls": [ "network" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 11
 	},
 	"internet/firewall/rules": {
 		"title": "Rules",
-		"acls": [ "network" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 12
 	},
 	"internet/firewall/forwarding": {
 		"title": "Forwarding",
-		"acls": [ "network" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 13
 	},
 	"internet/firewall/urlblock": {
 		"title": "URL Filter",
-		"acls": [ "network" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 13
 	},
 	"internet/firewall/wordfilter": {
 		"title": "Keyword Filter",
 		"files": [ "/foobar/notexist" ], 
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 14
 	},
 	"internet/firewall/svcfilter": {
 		"title": "Service Filter",
 		"files": [ "/foobar/notexist" ], 
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 15
 	},
 	"internet/firewall/port_mapping": {
 		"title": "Port Mapping",
 		"modes": [ "expert" ], 
-		"acls": [ "network" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 20
 	},
 	"internet/firewall/services": {
 		"title": "Services", 
-		"acls": [ "network" ], 
+		"acls": [ "juci-firewall-fw3" ], 
 		"index": "99"
 	}, 
 	"internet/wan/exposed_host": {
 		"title": "DMZ",
 		"modes": [ "expert" ], 
-		"acls": [ "network" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 30
 	},
 	"internet/parental_control": {
 		"title": "Parental Control",
-		"acls": [ "firewall" ],
+		"acls": [ "juci-firewall-fw3" ],
 		"index": 60
 	}
 }

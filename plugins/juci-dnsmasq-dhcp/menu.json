@@ -1,7 +1,7 @@
 {
 	"internet/lan/dhcp": {
 			"title": "DHCP Server",
-			"acls": [ "network" ],
+			"acls": [ "juci-dnsmasq-dhcp" ],
 			"index": 9
 	}
 }

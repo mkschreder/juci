@@ -1,12 +1,12 @@
 {
 	"settings/upgrade": {
 		"title": "Firmware Upgrade",
-		"acls": [ "admin" ],
+		"acls": [ "juci-sysupgrade" ],
 		"index": 20
 	},
 	"settings/upgrade/options": {
 		"title": "Options",
-		"acls": [ "admin" ],
+		"acls": [ "juci-sysupgrade" ],
 		"index": 30
 	}
 }

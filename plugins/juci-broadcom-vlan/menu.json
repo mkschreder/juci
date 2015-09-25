@@ -1,7 +1,7 @@
 {
 	"internet/ethernet/vlan": {
 			"title": "VLAN",
-			"acls": [ "status" ],
+			"acls": [ "juci-broadcom-vlan" ],
 			"index": 10
 	}
 }

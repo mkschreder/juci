@@ -1,17 +1,17 @@
 {
 	"internet/ethernet/adsl": {
 		"title": "ADSL", 
-		"acls": [ "network" ], 
+		"acls": [ "juci-broadcom-dsl" ], 
 		"index": 5
 	}, 
 	"internet/ethernet/vdsl": {
 		"title": "VDSL", 
-		"acls": [ "network" ], 
+		"acls": [ "juci-broadcom-dsl" ], 
 		"index": 6
 	}, 
 	"status/dsl": {
-			"title": "DSL",
-			"acls": [ "status" ],
-			"index": 10
+		"title": "DSL",
+		"acls": [ "juci-broadcom-dsl" ],
+		"index": 10
 	}
 }
