@@ -47,6 +47,7 @@
 			}
 		},
 		"write": {
+			"juci-io": [ "upload" ], 
 			"ubus": {
 				"/juci/system.service": [
 					"start",

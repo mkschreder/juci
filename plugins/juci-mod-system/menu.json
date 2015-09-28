@@ -1,19 +1,13 @@
 {
 	"settings": {
 		"title": "Settings",
-		"redirect": "settings/system/general", 
+		"redirect": "settings/system", 
 		"index": 50
 	},
 	"settings/system": {
-		"title": "System", 
-		"acls": [ "juci-mod-system" ],
-		"redirect": "settings/system/general", 
-		"index": 0
-	}, 
-	"settings/system/general": {
 		"title": "General", 
 		"acls": [ "juci-mod-system" ],
-		"index": 10
+		"index": 0
 	}, 
 	"settings/password": {
 		"title": "Router Password",
@@ -45,5 +39,11 @@
 		"title": "Processes",  
 		"acls": [ "juci-mod-system" ], 
 		"index": 35
+	},
+	"internet/services/ntp": {
+		"title": "NTP",  
+		"acls": [ "juci-mod-system" ], 
+		"index": 10
 	}
+
 }

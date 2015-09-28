@@ -7,17 +7,14 @@
 	"status/events": {
 		"title": "Events",
 		"modes": [ "expert" ], 
-		"acls": [ "juci-mod-status" ],
 		"index": 50
 	}, 
 	"status/restart": {
 		"title": "Restart", 
-		"acls": [ "juci-mod-status" ], 
 		"index": 60
 	},
 	"status/about": {
 		"title": "About", 
-		"acls": [ "juci-mod-status" ], 
 		"index": 70
 	}
 }

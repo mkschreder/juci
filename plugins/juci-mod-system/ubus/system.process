@@ -20,10 +20,10 @@ function process_list()
 	local stdout = juci.shell("top -b -n1"); 
 	local lc = 0; 
 	for line in stdout:gmatch("[^\r\n]+") do 
+		local arr = fields(line, "%s"); 
 		if(line:match("%s+PID.*")) then 
-			local arr = fields(line, "%s"); 
 			res["fields"] = arr; 
-		elseif(line:match("%d+.*")) then
+		elseif(line:match("%d+.*") and res.fields) then
 			local obj = {}; 
 			for i,col in ipairs(res.fields) do 
 				obj[col] = arr[i]; 

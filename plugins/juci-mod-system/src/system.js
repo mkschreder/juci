@@ -12,6 +12,11 @@ UCI.system.$registerSectionType("system", {
 	"log_size":		{ dvalue: 200, type: Number }
 }); 
 
+UCI.system.$registerSectionType("timeserver", {
+	"enable_server": { dvalue: false, type: Boolean }, 
+	"server": { dvalue: [], type: Array }
+}); 
+
 UCI.system.$registerSectionType("upgrade", {
 	"fw_check_url":		{ dvalue: "", type: String, required: false},
 	"fw_path_url":		{ dvalue: "", type: String },
