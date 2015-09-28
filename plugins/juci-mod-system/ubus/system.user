@@ -4,7 +4,7 @@ require("JUCI");
 
 function user_password(opts)
 	if not opts["password"] then return 5; end
-	local stdout = juci.shell("echo -e %s | passwd admin", opts["password"].."\\n"..opts["password"]); 
+	local stdout = juci.shell("echo -e \"%s\" | passwd admin", opts["password"].."\\n"..opts["password"]); 
 	print(json.encode({
 		["stdout"] = stdout
 	})); 
