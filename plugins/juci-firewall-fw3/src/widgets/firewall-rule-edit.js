@@ -29,13 +29,13 @@ JUCI.app
 		{ label: gettext("FORWARD"), value: "FORWARD" }
 	]; 
 	
-	$network.getNetworks().done(function(nets){
-		$scope.sourceNetworks = []; 
-		$scope.sourceNetworks.push({ label: gettext("Any"), value: "*" }); 
-		nets.map(function(x){
-			$scope.sourceNetworks.push({ label: x[".name"], value: x[".name"] }); 
+	$firewall.getZones().done(function(zones){
+		$scope.allZones = []; 
+		$scope.allZones.push({ label: $tr(gettext("Unspecified")), value: "" }); 
+		$scope.allZones.push({ label: $tr(gettext("Any")), value: "*" }); 
+		zones.map(function(x){
+			$scope.allZones.push({ label: String(x.name.value).toUpperCase(), value: x.name.value }); 
 		}); 
-		$scope.destNetworks = $scope.sourceNetworks; 
 	}); 
 	
 	function update(){
@@ -48,7 +48,14 @@ JUCI.app
 			dest_ip_enabled: rule.dest_ip.value != "", 
 			dest_mac_enabled: rule.dest_mac.value != "", 
 			dest_port_enabled: rule.dest_port.value != ""
-		}; 
+		};
+		// clear a field if user unclicks the checkbox
+		Object.keys($scope.data).map(function(k){
+			$scope.$watch("data."+k, function(value){
+				var field = k.replace("_enabled", ""); 
+				if(!value && $scope.rule) $scope.rule[field].value = ""; 
+			}); 
+		}); 
 		setTimeout(function(){
 			$scope.$apply(); 
 		}); 
