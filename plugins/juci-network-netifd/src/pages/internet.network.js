@@ -12,11 +12,11 @@ JUCI.app
 				if(x.defaultroute.value) $scope.data.wan_network = x; 
 				return x.ifname.value != "lo" 
 			}); 
-			$scope.$watch("data.wan_network", function(value){
+			/*$scope.$watch("data.wan_network", function(value){
 				if(!value) return; 
 				$scope.networks.map(function(x){ x.defaultroute.value = false; }); 
 				if(value.defaultroute) value.defaultroute.value = true; 
-			}); 
+			}); */
 			$scope.$apply(); 
 			$network.getDevices().done(function(devs){
 				$scope.networks = $scope.networks.map(function(net){ 
