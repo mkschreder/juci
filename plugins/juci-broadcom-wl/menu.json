@@ -46,12 +46,6 @@
 		"acls": [ "juci-broadcom-wl" ], 
 		"index": 50
 	}, 
-	"wifi/settings": {
-		"title": "Settings",
-		"modes": [ "expert" ], 
-		"files": [ "/etc/config/wireless" ], 
-		"index": 50
-	}, 
 	"internet/ethernet/wifi": {
 		"title": "Wireless", 
 		"index": 10
