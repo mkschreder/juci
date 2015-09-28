@@ -157,16 +157,16 @@ debug: prepare $(TARGETS) $(UBUS_MODS)
 	@./juci-update $(BIN)/www DEBUG
 
 install: 
-	cp -Rp $(BIN)/* $(DESTDIR)
+	@cp -Rp $(BIN)/* $(DESTDIR)
 
 .PHONY: $(PHONY) $(UBUS_MODS) 
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
 	@echo "CFLAGS: $(CFLAGS)"
-	make -i -C $@ clean
-	make -C $@ 
-	cp -Rp $@/build/* $(BIN)/
+	@make -i -C $@ clean
+	@make -C $@ 
+	@cp -Rp $@/build/* $(BIN)/
 	
 clean: 
 	rm -rf ./bin
