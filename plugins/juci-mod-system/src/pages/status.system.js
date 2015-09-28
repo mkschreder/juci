@@ -26,6 +26,7 @@ JUCI.app
 		], function(err){
 			function timeFormat(secs){
 				secs = Math.round(secs);
+				var days = Math.floor(secs / (60 * 60 * 24)); 
 				var hours = Math.floor(secs / (60 * 60));
 
 				var divisor_for_minutes = secs % (60 * 60);
@@ -36,7 +37,7 @@ JUCI.app
 				
 				function pad(a,b){return(1e15+a+"").slice(-b)}; 
 				
-				return pad(hours,2)+":"+pad(minutes,2)+":"+pad(seconds,2);
+				return ((days > 0)?""+days+"d ":"")+pad(hours,2)+":"+pad(minutes,2)+":"+pad(seconds,2);
 			}
 			$scope.systemStatusTbl.rows = [
 				[$tr(gettext("Hostname")), info.system.name],
@@ -44,8 +45,8 @@ JUCI.app
 				[$tr(gettext("Firmware Version")), info.system.firmware],
 				[$tr(gettext("Kernel Version")), info.system.kernel],
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
-				[$tr(gettext("Uptime")), timeFormat(sys.uptime)]
-				//[$tr(gettext("Load Average")), sys.load[0] + " " + sys.load[1] + " " + sys.load[2]]
+				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
+				[$tr(gettext("Load Average")), sys.load[0] + " " + sys.load[1] + " " + sys.load[2]]
 			]; 
 			$scope.systemMemoryTbl.rows = [
 				[$tr(gettext("Usage")), '<juci-progress value="'+Math.round((sys.memory.total - sys.memory.free) / 1000)+'" total="'+ Math.round(sys.memory.total / 1000) +'" units="kB"></juci-progress>'],

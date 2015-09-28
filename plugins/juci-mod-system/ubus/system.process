@@ -17,11 +17,11 @@ end
 function process_list()
 	local res = {};  
 	res["list"] = {}; 
-	local stdout = juci.shell("ps -w"); 
+	local stdout = juci.shell("top -b -n1"); 
 	local lc = 0; 
 	for line in stdout:gmatch("[^\r\n]+") do 
-		local arr = fields(line, "%s"); 
-		if(lc == 0) then 
+		if(line:match("%s+PID.*")) then 
+			local arr = fields(line, "%s"); 
 			res["fields"] = arr; 
 		elseif(line:match("%d+.*")) then
 			local obj = {}; 
