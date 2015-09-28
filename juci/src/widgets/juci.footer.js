@@ -19,7 +19,14 @@ JUCI.app
 		$languages.setLanguage(lang.short_code); 
 	}; 
 	$scope.wanip = $tr(gettext("Not connected")); 
-	
+
+	$scope.onLogout = function(){
+		console.log("logging out");
+		$rpc.$logout().always(function(){
+			window.location.href="/";
+		});
+	}
+
 	$scope.$init = function(){
 		var deferred = $.Deferred(); 
 		async.series([

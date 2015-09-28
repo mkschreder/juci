@@ -8,25 +8,17 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("juciModePicker", function($scope, $config, $uci, $rpc, $window, $localStorage, $state, gettext){
+.controller("juciModePicker", function($scope, $config, $uci, $rpc, $window, $localStorage, $state, $tr, gettext){
 	$scope.selectedModeValue = $localStorage.getItem("mode") || "basic";
 	$scope.guiModes = [
-		{label: gettext("Basic Mode"), value: "basic"},
-		{label: gettext("Expert Mode"), value: "expert"},
-		{label: gettext("Log out"), value: "logout"}
+		{label: $tr(gettext("Basic Mode")), value: "basic"},
+		{label: $tr(gettext("Expert Mode")), value: "expert"},
 	];   
 	$scope.onChangeMode = function(selected){
 		$scope.selectedModeValue = selected; 
 		console.log("selected value", selected);
-		if(selected == "logout") {
-			console.log("logging out");
-			$rpc.$logout().always(function(){
-				$window.location.href="/";
-			});
-		} else {
-			$localStorage.setItem("mode", selected);
-			$config.mode = selected;
-			$state.reload();
-		}
+		$localStorage.setItem("mode", selected);
+		$config.mode = selected;
+		$state.reload();
 	};
 }); 
