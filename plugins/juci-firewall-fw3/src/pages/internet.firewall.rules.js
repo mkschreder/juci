@@ -6,7 +6,7 @@ JUCI.app
 		$scope.rules = rules; 
 		$scope.$apply(); 
 	}); 
-	$uci.sync("firewall").done(function(){
+	$uci.$sync("firewall").done(function(){
 		$scope.firewall = $uci.firewall; 
 		$scope.$apply(); 
 	});  

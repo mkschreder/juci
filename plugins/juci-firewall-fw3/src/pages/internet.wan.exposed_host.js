@@ -8,7 +8,7 @@ $juci.module("internet")
 	
 	async.series([
 		function(next){
-			$uci.sync("firewall").done(function(){
+			$uci.$sync("firewall").done(function(){
 				
 			}).always(function(){ next(); }); 
 		}, 

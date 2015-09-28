@@ -2,7 +2,7 @@
 !function(){
 
 	JUCI.app.factory("$network", function($rpc, $uci){
-		var sync_hosts = $uci.sync("hosts"); 
+		var sync_hosts = $uci.$sync("hosts"); 
 		function _refreshClients(self){
 			var deferred = $.Deferred(); 
 			$rpc.juci.network.clients().done(function(res){
@@ -109,7 +109,7 @@
 						devs.map(function(x){ devmap[x.name] = x; }); 
 					}).always(function(){ next(); }); 
 				}, function(next){
-					$uci.sync("network").done(function(){
+					$uci.$sync("network").done(function(){
 						$uci.network["@interface"].map(function(i){
 							i.devices = []; 
 							var fixed = i.ifname.value.split(" ").filter(function(name){
@@ -219,7 +219,7 @@
 		$events.subscribe("hotplug.net", function(ev){
 			if(ev.data.action == "add"){
 				// we need to make sure that the new device is not already added to a network. 
-				$uci.sync("network").done(function(){
+				$uci.$sync("network").done(function(){
 					var found = $uci.network["@interface"].find(function(net){
 						return net.ifname.value.split(" ").find(function(x){ return x == ev.data.interface; }); 
 					}); 
@@ -249,7 +249,7 @@
 					$rpc.network.interface.dump().done(function(res){
 						var infos = res.interface; 
 						$rpc.juci.system.info().done(function(sysinfo){
-							$uci.sync("layer2_interface_ethernet").done(function(){
+							$uci.$sync("layer2_interface_ethernet").done(function(){
 								// match adapters with device names in configuration (quite ugly right now!)
 								// TODO: unuglify
 								$network.getAdapters().done(function(devs){

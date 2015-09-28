@@ -29,7 +29,7 @@ JUCI.app
 		getDevices: function() {
 			var deferred = $.Deferred(); 
 			var devices = {}; 
-			$uci.sync(["layer2_interface_vdsl", "layer2_interface_adsl"]).done(function(result){
+			$uci.$sync(["layer2_interface_vdsl", "layer2_interface_adsl"]).done(function(result){
 				$uci.layer2_interface_vdsl["@vdsl_interface"].map(function(device){
 					devices[device.ifname.value] = {
 						get name() { return device.name.value; }, 

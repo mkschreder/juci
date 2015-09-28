@@ -24,7 +24,7 @@ JUCI.app
 		return ["wpa", "mixed-wpa"].indexOf(interface.encryption.value) == -1 && interface.closed.value != true; 
 	}
 	
-	$uci.sync(["wireless"]).done(function(){
+	$uci.$sync(["wireless"]).done(function(){
 		$scope.wireless = $uci.wireless; 
 		$scope.$apply(); 
 	}).fail(function(err){

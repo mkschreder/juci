@@ -11,7 +11,7 @@ JUCI.app
 		$scope.rules = rules; 
 		$scope.$apply(); 
 	}); 
-	$uci.sync("firewall").done(function(){
+	$uci.$sync("firewall").done(function(){
 		$scope.firewall = $uci.firewall; 
 		$scope.data.enabled = $uci.firewall["@zone"].filter(function(zone){ 
 			return zone.name.value == "wan" && zone.input.value == "REJECT" && zone.forward.value == "REJECT"; 

@@ -2,7 +2,7 @@
 
 JUCI.app
 .controller("InternetWanServices", function($scope, $rpc, $config, $network, $uci, $tr){
-	$uci.sync("firewall").done(function(){
+	$uci.$sync("firewall").done(function(){
 		function findRule(service){
 			return $uci.firewall["@rule"].find(function(r){
 				return r.src.value == "wan" && r.proto.value == service.proto && r.dest_port.value == parseInt(service.listen_port); 

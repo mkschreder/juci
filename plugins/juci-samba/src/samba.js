@@ -4,7 +4,7 @@ JUCI.app
 	function Samba () {}
 	Samba.prototype.getConfig = function(){
 		var def = $.Deferred(); 
-		$uci.sync("samba").done(function(){
+		$uci.$sync("samba").done(function(){
 			if(!$uci.samba["@samba"].length) def.reject(); 
 			else def.resolve($uci.samba["@samba"][0]); 
 		}).fail(function(){
@@ -14,7 +14,7 @@ JUCI.app
 	}
 	Samba.prototype.getShares = function(){
 		var def = $.Deferred(); 
-		$uci.sync("samba").done(function(){
+		$uci.$sync("samba").done(function(){
 			def.resolve($uci.samba["@sambashare"]); 
 		}).fail(function(){
 			def.reject();

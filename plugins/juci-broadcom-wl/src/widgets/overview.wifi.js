@@ -18,7 +18,7 @@ JUCI.app
 .controller("overviewStatusWidgetWifi", function($scope, $uci, $rpc){
 	JUCI.interval.repeat("overview-wireless", 1000, function(done){
 		async.series([function(next){
-			$uci.sync(["wireless"]).done(function(){
+			$uci.$sync(["wireless"]).done(function(){
 				$scope.wireless = $uci.wireless;  
 				if($uci.wireless && $uci.wireless.status) {
 					if($uci.wireless.status.wlan.value){
@@ -73,7 +73,7 @@ JUCI.app
 		$scope.wifiWPSStatus = gettext("off"); 
 		async.series([
 			function(next){
-				$uci.sync(["wireless"]).done(function(){
+				$uci.$sync(["wireless"]).done(function(){
 					$scope.wifi = $uci.wireless;  
 					if($uci.wireless && $uci.wireless.status) {
 						$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 

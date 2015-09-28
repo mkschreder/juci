@@ -7,7 +7,7 @@ JUCI.app
 	
 	MiniDLNA.prototype.getConfig = function(){
 		var deferred = $.Deferred(); 
-		$uci.sync("minidlna").done(function(){
+		$uci.$sync("minidlna").done(function(){
 			deferred.resolve($uci.minidlna.config); 
 		}); 
 		return deferred.promise(); 

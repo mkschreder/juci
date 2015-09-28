@@ -13,7 +13,7 @@ JUCI.app
 		}, 
 		getConfig: function(){
 			var deferred = $.Deferred(); 
-			$uci.sync("upnpd").done(function(){
+			$uci.$sync("upnpd").done(function(){
 				deferred.resolve($uci.upnpd.config); 
 			}); 
 			return deferred.promise(); 
@@ -23,7 +23,7 @@ JUCI.app
 
 JUCI.app
 .run(function($uci){
-	$uci.sync("upnpd"); 
+	$uci.$sync("upnpd"); 
 }); 
 
 UCI.$registerConfig("upnpd"); 

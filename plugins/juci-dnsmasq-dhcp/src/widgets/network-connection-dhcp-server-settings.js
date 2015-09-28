@@ -17,7 +17,7 @@ JUCI.app
 	$scope.data.dhcpEnabled = false; 
 	$scope.$watch("connection", function(value){
 		if(!value) return; 
-		$uci.sync("dhcp").done(function(){
+		$uci.$sync("dhcp").done(function(){
 			$scope.dhcp = $uci.dhcp["@dhcp"].find(function(x){
 				return x.interface.value == value[".name"] || x[".name"] == value[".name"]; 
 			}); 

@@ -8,7 +8,7 @@ JUCI.app
 	JUCI.interval.repeat("status.refresh", 2000, function(resume){
 		async.series([
 			function(next){
-				$uci.sync("boardpanel").done(function(){ next(); }); 
+				$uci.$sync("boardpanel").done(function(){ next(); }); 
 			}, 
 			function(next){
 				$rpc.network.interface.dump().done(function(result){

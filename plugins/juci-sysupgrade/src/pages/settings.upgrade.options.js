@@ -8,7 +8,7 @@ JUCI.app
 		{ label: $tr(gettext("fs_image (RAW Rootfs Image)")), value: "fs_image" }
 	]; 
 	
-	$uci.sync("system").done(function(){
+	$uci.$sync("system").done(function(){
 		$scope.system = $uci.system; 
 		$scope.$apply(); 
 	}); 

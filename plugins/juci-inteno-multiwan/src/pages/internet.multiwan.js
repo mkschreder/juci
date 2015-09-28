@@ -3,7 +3,7 @@
 JUCI.app
 .controller("InternetMultiWANPage", function($scope, $uci, $rpc, $network, $config){
 	function refresh(){
-		$uci.sync("multiwan").done(function(){
+		$uci.$sync("multiwan").done(function(){
 			$scope.multiwan = $uci.multiwan; 
 			$scope.allInterfaces = $uci.multiwan["@interface"].map(function(x){
 				return { label: x[".name"], value: x[".name"] }; 

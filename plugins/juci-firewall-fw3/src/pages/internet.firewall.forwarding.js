@@ -4,7 +4,7 @@ JUCI.app
 .controller("InternetFirewallForwardingPage", function($scope, $uci, $firewall, $config){
 	$scope.data = {}; 
 	$firewall.getZones().done(function(zones){
-		$uci.sync("firewall").done(function(){
+		$uci.$sync("firewall").done(function(){
 			var forwards = []; 
 			zones.map(function(src){
 				zones.map(function(dst){

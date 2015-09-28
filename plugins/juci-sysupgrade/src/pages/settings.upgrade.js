@@ -9,7 +9,7 @@ JUCI.app
 	
 	$scope.config = $config; 
 	
-	$uci.sync("system").done(function(){
+	$uci.$sync("system").done(function(){
 		$scope.system = $uci.system; 
 		$scope.$apply(); 
 	}); 

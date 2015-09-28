@@ -8,7 +8,7 @@ JUCI.app
 	]; 
 	$scope.timeSpan = { }; 
 	
-	$uci.sync(["wireless"]).done(function(){
+	$uci.$sync(["wireless"]).done(function(){
 		console.log("Got status"); 
 		$scope.status = $uci.wireless.status; 
 		$scope.schedules = $uci.wireless["@wifi-schedule"]; 

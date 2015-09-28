@@ -5,7 +5,7 @@ JUCI.app
 	window.uci = $uci; 
 	$scope.uci = $uci; 
 	
-	$uci.sync(["wireless", "hosts"]).done(function(){
+	$uci.$sync(["wireless", "hosts"]).done(function(){
 		$scope.interfaces = $uci.wireless['@wifi-iface'];
 		
 		// TODO: ================ this is a duplicate. It should be put elsewhere!

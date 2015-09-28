@@ -6,7 +6,7 @@ JUCI.app.run(function($network, $uci){
 			getDevices: function() {
 				var deferred = $.Deferred(); 
 				var devices = []; 
-				$uci.sync("wireless").done(function(result){
+				$uci.$sync("wireless").done(function(result){
 					// in wireless, wifi-iface is actually the layer2 device. Pretty huh? :-) 
 					// oh, and network is what network the device belongs to. Even prettier. 
 					$uci.wireless["@wifi-iface"].map(function(device){
@@ -71,7 +71,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	
 	Wireless.prototype.getDevices = function(){
 		var deferred = $.Deferred(); 
-		$uci.sync("wireless").done(function(){
+		$uci.$sync("wireless").done(function(){
 			$uci.wireless["@wifi-device"].map(function(x){
 				// TODO: this should be a uci "displayname" or something
 				// TODO: actually this should be based on wireless ubus call field
@@ -85,7 +85,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	
 	Wireless.prototype.getInterfaces = function(){
 		var deferred = $.Deferred(); 
-		$uci.sync("wireless").done(function(){
+		$uci.$sync("wireless").done(function(){
 			var ifs = $uci.wireless["@wifi-iface"]; 
 			var counters = {}; 
 			// TODO: this is an ugly hack to automatically calculate wifi device name

@@ -33,7 +33,7 @@ $juci.module("phone")
 		setTimeout(function(){ $scope.$apply(); }, 0); 
 	}
 	
-	$uci.sync("voice_client").done(function(){
+	$uci.$sync("voice_client").done(function(){
 		if(!$uci.voice_client.call_filter0){
 			async.series([
 				function(next){

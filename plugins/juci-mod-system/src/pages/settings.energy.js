@@ -2,7 +2,7 @@
 
 JUCI.app
 .controller("SettingsEnergyCtrl", function($scope, $uci){
-	$uci.sync(["boardpanel"]).done(function(){
+	$uci.$sync(["boardpanel"]).done(function(){
 		if($uci.boardpanel)
 			$scope.boardpanel = $uci.boardpanel; 
 		$scope.$apply();

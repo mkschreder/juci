@@ -16,7 +16,7 @@ describe("Internet", function(){
 
 describe("UCI.firewall", function(){
 	before(function(done){
-		$uci.sync("network").done(function(){
+		$uci.$sync("network").done(function(){
 			done(); 
 		}); 
 	}); 

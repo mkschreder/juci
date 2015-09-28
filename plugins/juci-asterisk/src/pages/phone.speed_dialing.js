@@ -54,7 +54,7 @@ JUCI.app
 	}, true); 
 	
 	function resync(){
-		$uci.sync("voice_client").done(function(){
+		$uci.$sync("voice_client").done(function(){
 			var dials = {}; 
 			$uci.voice_client["@speed_dial"].map(function(x){
 				dials[x.tone.value] = {

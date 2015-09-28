@@ -3,7 +3,7 @@
 JUCI.app
 .controller("PhoneNumbersPageCtrl", function($scope, $uci){
 	$scope.defaultNumber = gettext("N/A"); 
-	$uci.sync("voice_client").done(function(){
+	$uci.$sync("voice_client").done(function(){
 		$scope.phone_numbers = $uci.voice_client["@sip_service_provider"]; 
 		$scope.phone_lines = $uci.voice_client["@brcm_line"]; 
 		$scope.allSipAccounts = $scope.phone_numbers.map(function(x){

@@ -4,7 +4,7 @@ JUCI.app
 .controller("InternetDHCPPage", function($scope, $uci, $rpc, $network, $config){
 	$scope.data = {}; 
 	
-	$uci.sync("dhcp").done(function(){
+	$uci.$sync("dhcp").done(function(){
 		$network.getNetworks().done(function(nets){
 			$scope.networks = nets.filter(function(net){ return net.is_lan.value && net[".name"] != "loopback"; }); 
 			$scope.networks = $scope.networks.map(function(net){

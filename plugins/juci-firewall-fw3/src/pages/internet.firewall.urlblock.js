@@ -19,7 +19,7 @@ JUCI.app
 	
 	async.series([
 		function(next){
-			$uci.sync("firewall").done(function(){
+			$uci.$sync("firewall").done(function(){
 				$scope.firewall = $uci.firewall; 
 				if(!$uci.firewall.urlblock){
 					$uci.firewall.create({".type": "urlblock", ".name": "urlblock"}).done(function(){

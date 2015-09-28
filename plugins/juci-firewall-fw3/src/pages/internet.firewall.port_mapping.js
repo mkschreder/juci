@@ -3,7 +3,7 @@
 JUCI.app
 .controller("InternetPortMappingPageCtrl", function($scope, $uci, $rpc){
 	function reload(){
-		$uci.sync("firewall").done(function(){
+		$uci.$sync("firewall").done(function(){
 			$scope.redirects = $uci.firewall["@redirect"];
 			$scope.$apply(); 
 		}); 

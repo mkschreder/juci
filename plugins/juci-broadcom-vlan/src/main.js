@@ -31,7 +31,7 @@ JUCI.app.factory("$broadcomVLAN", function($uci, $rpc){
 		getDevices: function() {
 			var deferred = $.Deferred(); 
 			var devices = []; 
-			$uci.sync("layer2_interface_vlan").done(function(){
+			$uci.$sync("layer2_interface_vlan").done(function(){
 				$uci.layer2_interface_vlan["@vlan_interface"].map(function(i){
 					devices.push({
 						get name(){ return i.name.value; }, 

@@ -30,7 +30,7 @@ describe("Wireless", function(){
 	}); 
 	
 	it("should have hosts config present", function(done){
-		$uci.sync("hosts").done(function(){
+		$uci.$sync("hosts").done(function(){
 			expect($uci.hosts).to.be.an(Object); 
 			done(); 
 		}); 

@@ -29,7 +29,7 @@ JUCI.app
 		{ label: gettext("Disabled"), value: false }
 	]; 
 	
-	$uci.sync(["voice_client"]).done(function(){
+	$uci.$sync(["voice_client"]).done(function(){
 		if(!$uci.voice_client.RINGING_STATUS){
 			$uci.voice_client.create({".type": "ringing_status", ".name": "RINGING_STATUS"}).done(function(section){
 				$scope.settings = $uci.voice_client.RINGING_STATUS; 

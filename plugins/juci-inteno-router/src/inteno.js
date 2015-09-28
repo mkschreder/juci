@@ -44,7 +44,7 @@ JUCI.app
 	
 	var router = new IntenoRouter(); 
 	
-	router.sync = $uci.sync("boardpanel"); 
+	router.sync = $uci.$sync("boardpanel"); 
 	
 	return router; 
 }).run(function($router, $uci){

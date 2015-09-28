@@ -2,7 +2,7 @@
  
 JUCI.app
 .controller("DropbearSettings", function($scope, $uci){ 
-	$uci.sync("dropbear").done(function(){
+	$uci.$sync("dropbear").done(function(){
 		if($uci.dropbear && $uci.dropbear.settings){
 			$scope.dropbear = $uci.dropbear.settings; 
 			$scope.$apply(); 

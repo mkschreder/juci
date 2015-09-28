@@ -4,7 +4,7 @@ JUCI.app
 .controller("SettingsSystemGeneral", function($scope, $rpc, $uci, $tr, gettext){
 	async.series([
 		function(next){
-			$uci.sync("system").done(function(){
+			$uci.$sync("system").done(function(){
 				if($uci.system["@system"] && $uci.system["@system"].length)
 					$scope.system = $uci.system["@system"][0]; 
 				next(); 

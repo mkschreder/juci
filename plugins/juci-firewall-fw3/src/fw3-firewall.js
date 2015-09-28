@@ -6,7 +6,7 @@ JUCI.app
 		var deferred = $.Deferred(); 
 		if(firewall) setTimeout(function(){ deferred.resolve(); }, 0); 
 		else {
-			$uci.sync("firewall").done(function(){
+			$uci.$sync("firewall").done(function(){
 				firewall = $uci.firewall; 
 				deferred.resolve(); 
 			}); 
@@ -70,7 +70,7 @@ JUCI.app
 		
 		nat: {
 			enable: function(value){
-				$uci.sync("firewall").done(function(){
+				$uci.$sync("firewall").done(function(){
 					$uci.firewall.settings.nat_enabled.value = value; 
 					$uci.firewall["@redirect"].map(function(rule){
 						rule.enabled.value = value; 
@@ -79,7 +79,7 @@ JUCI.app
 			}, 
 			isEnabled: function(){
 				var def = $.Deferred(); 
-				$uci.sync("firewall").done(function(){
+				$uci.$sync("firewall").done(function(){
 					var enabled = $uci.firewall["@redirect"].find(function(rule){
 						return rule.enabled.value; 
 					}); 
@@ -95,7 +95,7 @@ JUCI.app
 }); 
 
 JUCI.app.run(function($uci){
-	$uci.sync("firewall").done(function(){
+	$uci.$sync("firewall").done(function(){
 		if(!$uci.firewall.settings) {
 			$uci.firewall.create({
 				".type": "settings", 

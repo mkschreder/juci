@@ -3,7 +3,7 @@ JUCI.app
 .controller("DDNSPage", function ($scope, $uci, $network, $config) {
 	
 	$scope.data = {}; 
-	$uci.sync(["ddns"]).done(function () {
+	$uci.$sync(["ddns"]).done(function () {
 		$network.getWanNetworks().done(function(nets){
 			// get the wan interface and fetch the ddns config for it. Currently we manually specify a single "internet" interface. 
 			$scope.wan_network = nets.find(function(x){ return x[".name"] == $config.wan_interface; }); 
