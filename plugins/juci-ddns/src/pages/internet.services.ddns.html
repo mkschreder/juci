@@ -1,0 +1,16 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="DDNSPage">
+		<juci-config-section>
+			<juci-config-heading>{{ 'DDNS (Dynamic DNS)' | translate }}</juci-config-heading>
+			<juci-config-info>{{ 'ddns.config.info' | translate }}</juci-config-info>
+			
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable DDNS Client'|translate}}">
+					<switch ng-model="data.ddnsEnabled" class="green" ng-change="onToggleDDNS()"></switch>
+				</juci-config-line>
+			</juci-config-lines>
+			<ddns-network-settings-edit ng-model="wan_network.$ddns"/>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>
