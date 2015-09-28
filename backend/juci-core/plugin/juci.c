@@ -677,144 +677,10 @@ run_command(const char *pFmt, int *exit_code, ...)
 	}
 }
 
-static int rpc_shell_script(struct ubus_context *ctx, struct ubus_object *obj,
-		  struct ubus_request_data *req, const char *method,
-		  struct blob_attr *msg)
-{
-	blob_buf_init(&buf, 0);
-	
-	struct stat st; 
-	int exit_code = UBUS_STATUS_NO_DATA; 
-	char fname[255]; 
-	snprintf(fname, sizeof(fname), "/usr/lib/rpcd/cgi/%s", obj->name); 
-	
-	if(stat(fname, &st) == 0){
-		const char *resp = run_command("%s %s '%s'", &exit_code, fname, method, blobmsg_format_json(msg, true)); 
-		if(!blobmsg_add_json_from_string(&buf, resp))
-			return UBUS_STATUS_NO_DATA; 
-	}
-	
-	ubus_send_reply(ctx, req, buf.head);
-
-	return exit_code;
-}
-
-static int load_shell_script_ubus_calls(struct ubus_context *ctx){
-	glob_t gl;
-	int rv = 0;  
-	int exit_code; 
-	
-	if (glob("/usr/lib/rpcd/cgi/*", 0, NULL, &gl) == 0){
-		for (size_t i = 0; i < gl.gl_pathc; i++){
-			char *obj_name = strdup(basename(gl.gl_pathv[i])); 
-			char obj_type_name[64]; 
-			char mstr[255]; 
-			
-			strncpy(obj_type_name, obj_name, sizeof(obj_type_name)); 
-			for(size_t c = 0; c < strlen(obj_name); c++) if(obj_type_name[c] == '.') obj_type_name[c] = '-'; 
-			
-			printf("Registering CGI %s (%s)\n", gl.gl_pathv[i], obj_type_name); 
-			
-			strncpy(mstr, run_command("%s .methods", &exit_code, gl.gl_pathv[i]), sizeof(mstr)); 
-			
-			// extract methods into an array 
-			size_t nmethods = 1; 
-			const char *methods[64] = {0}; 
-			methods[0] = mstr; 
-			int len = strlen(mstr); 
-			for(int c = 0; c < len; c++) { 
-				if(mstr[c] == ',') {
-					mstr[c] = 0; 
-					methods[nmethods] = mstr + c + 1; 
-					nmethods++; 
-				} else if(mstr[c] == '\n'){
-					break; 
-				}
-			}
-			
-			printf(" - %d methods for %s\n", nmethods, obj_name); 
-			
-			struct ubus_method *obj_methods = calloc(nmethods, sizeof(struct ubus_method));
-			struct ubus_object *obj = calloc(1, sizeof(struct ubus_object)); 
-			struct ubus_object_type *obj_type = calloc(1, sizeof(struct ubus_object_type)); 
-			
-			for(size_t c = 0; c < nmethods; c++){
-				printf(" - registering %s\n", methods[c]); 
-				obj_methods[c].name = strdup(methods[c]); 
-				obj_methods[c].handler = rpc_shell_script;  
-			}
-			
-			obj_type->name = strdup(obj_type_name); 
-			obj_type->id = 0; 
-			obj_type->n_methods = nmethods; 
-			obj_type->methods = obj_methods;
-			
-			obj->name = obj_name;
-			obj->type = obj_type;
-			obj->methods = obj_methods;
-			obj->n_methods = nmethods; 
-			
-			rv |= ubus_add_object(ctx, obj); 
-		}
-		globfree(&gl);
-	}
-	return rv; 
-}
-
 static int
 rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 {
 	int rv = 0;
-/*
-	static const struct ubus_method juci_system_methods[] = {
-		UBUS_METHOD_NOARG("syslog",       rpc_juci_system_log),
-		UBUS_METHOD_NOARG("events",       rpc_juci_system_events),
-		UBUS_METHOD_NOARG("dmesg",        rpc_juci_system_dmesg),
-		UBUS_METHOD_NOARG("diskfree",     rpc_juci_system_diskfree),
-		UBUS_METHOD_NOARG("process_list", rpc_juci_process_list),
-		UBUS_METHOD("process_signal",     rpc_juci_process_signal,
-		                                  rpc_signal_policy),
-		UBUS_METHOD_NOARG("init_list",    rpc_juci_init_list),
-		UBUS_METHOD("init_action",        rpc_juci_init_action,
-		                                  rpc_init_policy),
-		UBUS_METHOD_NOARG("rclocal_get",  rpc_juci_rclocal_get),
-		UBUS_METHOD("rclocal_set",        rpc_juci_rclocal_set,
-		                                  rpc_data_policy),
-		UBUS_METHOD_NOARG("crontab_get",  rpc_juci_crontab_get),
-		UBUS_METHOD("crontab_set",        rpc_juci_crontab_set,
-		                                  rpc_data_policy),
-		UBUS_METHOD_NOARG("sshkeys_get",  rpc_juci_sshkeys_get),
-		UBUS_METHOD("sshkeys_set",        rpc_juci_sshkeys_set,
-		                                  rpc_sshkey_policy),
-		UBUS_METHOD("password_set",       rpc_juci_password_set,
-		                                  rpc_password_policy),
-		UBUS_METHOD_NOARG("led_list",     rpc_juci_led_list),
-		UBUS_METHOD_NOARG("usb_list",     rpc_juci_usb_list),
-		UBUS_METHOD("upgrade_check",	  rpc_juci_upgrade_check, rpc_upgrade_check_policy),
-		UBUS_METHOD_NOARG("upgrade_test", rpc_juci_upgrade_test),
-		UBUS_METHOD("upgrade_start",      rpc_juci_upgrade_start, rpc_upgrade_policy),
-		UBUS_METHOD_NOARG("upgrade_clean",rpc_juci_upgrade_clean),
-		UBUS_METHOD("backup_restore",	  rpc_juci_backup_restore, rpc_backup_policy),
-		UBUS_METHOD_NOARG("backup_clean", rpc_juci_backup_clean),
-		UBUS_METHOD_NOARG("backup_config_get", rpc_juci_backup_config_get),
-		UBUS_METHOD("backup_config_set",  rpc_juci_backup_config_set,
-		                                  rpc_data_policy),
-		UBUS_METHOD_NOARG("backup_list",  rpc_juci_backup_list),
-		UBUS_METHOD_NOARG("reset_test",   rpc_juci_reset_test),
-		UBUS_METHOD_NOARG("reset_start",  rpc_juci_reset_start),
-		UBUS_METHOD_NOARG("reboot",       rpc_juci_reboot)
-	};
-
-	static struct ubus_object_type juci_system_type =
-		UBUS_OBJECT_TYPE("luci-rpc-juci-system", juci_system_methods);
-
-	static struct ubus_object system_obj = {
-		.name = "juci.system.old",
-		.type = &juci_system_type,
-		.methods = juci_system_methods,
-		.n_methods = ARRAY_SIZE(juci_system_methods),
-	};
-*/
 	static const struct ubus_method juci_ui_methods[] = {
 		UBUS_METHOD("menu",            rpc_juci_ui_menu, rpc_menu_policy),
 		UBUS_METHOD_NOARG("acls",            rpc_juci_ui_acls)
@@ -854,7 +720,6 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 	//rv |= ubus_add_object(ctx, &system_obj);
 	rv |= ubus_add_object(ctx, &ui_obj);
 	rv |= ubus_add_object(ctx, &events_obj);
-	rv |= load_shell_script_ubus_calls(ctx); 
 	
 	init_ubus_event_listener(ctx); 
 	
