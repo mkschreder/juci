@@ -100,6 +100,7 @@ $(eval $(call plugin,juci-diagnostics));
 $(eval $(call plugin,juci-inteno-router));
 $(eval $(call plugin,juci-upnp));
 $(eval $(call plugin,juci-usb));
+$(eval $(call plugin,juci-utils));
 $(eval $(call plugin,juci-macdb));
 $(eval $(call plugin,juci-igmpinfo));
 $(eval $(call plugin,juci-mod-system));
