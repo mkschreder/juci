@@ -28,14 +28,14 @@ function test_speed(req, msg)
 	end;
 	if testmode == "up" then 
 		local string = "-n 1 -m tcp-send 60 "..bitrate.." -v 2 "..address.." "..port.."";
-		juci.shell("/sbin/tptest-run '%s' 'done' &", string);
+		juci.shell("/usr/bin/tptest-run '%s' 'done' &", string);
 	elseif testmode == "down" then 
 		local string = "-n 1 -m tcp-receive 60 "..bitrate.." -v 2 "..address.." "..port.."";
-		juci.shell("/sbin/tptest-run 'done' '%s' &", string);
+		juci.shell("/usr/bin/tptest-run 'done' '%s' &", string);
 	elseif testmode == "up_down" then 
 		local string1 = "-n 1 -m tcp-send 60 "..bitrate.." -v 2 "..address.." "..port.."";
 		local string2 = "-n 1 -m tcp-receive 60 "..bitrate.." -v 2 "..address.." "..port.."";
-		juci.shell("/sbin/tptest-run '%s' '%s' &", string1, string2);
+		juci.shell("/usr/bin/tptest-run '%s' '%s' &", string1, string2);
 	else 
 		conn:reply(req, {message = "allowed testmodes are (up, down and up_down)"});
 		return nil;

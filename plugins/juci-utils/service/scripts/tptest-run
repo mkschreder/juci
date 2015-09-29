@@ -1,16 +1,16 @@
-#!/bin/sh 
+#!/bin/sh
 local SUCCESS=0
 
 local send=$1
 local receive=$2
-local sent="-"
-local received="-"
-
+local sent="none"
+local received="none"
 if [ "$send" != "done" ]; then
 	sent=$(tptest $send | awk '/Throughput/{print($2)}')
 fi
 if [ "$receive" != "done" ]; then
 	received=$(tptest $receive | awk '/Throughput/{print($2)}')
 fi
-ubus send juci.utils.speedtest '{"status":'$SUCCESS', "upstream":'$sent',"downstream":'$received'}'
+ubus send juci.utils.speedtest '{"status":'$SUCCESS', "upstream":"'$sent'","downstream":"'$received'"}'
+
 
