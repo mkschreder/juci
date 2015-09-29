@@ -2,18 +2,21 @@
 
 JUCI.app
 .controller("ServicesStatusPage", function($scope, $rpc, gettext){
-	$rpc.juci.system.service.list().done(function(result){
-		$scope.services = result.services; 
-		for (i=0; i < $scope.services.length;i++){
-			$scope.services[i].reload = false;
-			if(!$scope.services[i].start_priority){
-				$scope.services[i].start_priority = 9999;
+	JUCI.interval.repeat("juci-services-page", 5000, function(done){
+		$rpc.juci.system.service.list().done(function(result){
+			$scope.services = result.services; 
+			for (i=0; i < $scope.services.length;i++){
+				$scope.services[i].reload = false;
+				if(!$scope.services[i].start_priority){
+					$scope.services[i].start_priority = 9999;
+				}
 			}
-		}
-		$scope.services.sort(function(a,b){
-			return a.start_priority - b.start_priority;
+			$scope.services.sort(function(a,b){
+				return a.start_priority - b.start_priority;
+			});
+			$scope.$apply();
+			done(); 
 		});
-		$scope.$apply();
 	}); 
 
 	$scope.onServiceEnable = function(service){

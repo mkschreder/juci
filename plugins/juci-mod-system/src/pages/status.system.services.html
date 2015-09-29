@@ -17,8 +17,8 @@
 				</td>
 				<td>
 					<div class="button-group">
-						<button tooltip="{{(service.running)?'Stop service':'Start service'}}" class="btn btn-default" ng-click="onServiceToggle(service)"><i ng-class="{'fa fa-stop': service.running, 'fa fa-play': !service.running}"/></button>
-						<button ng-class="{'btn btn-default' : !service.reload, 'btn btn-info': service.reload}" ng-click="onServiceReload(service)"><i class="fa fa-refresh"/></button>
+						<button tooltip="{{(service.running)?'Stop service':'Start service'}}" class="btn btn-default" ng-click="onServiceToggle(service)"><i ng-class="{'fa fa-stop': service.running, 'fa fa-play': !service.running}"></i></button>
+						<button ng-class="{'btn btn-default' : !service.reload, 'btn btn-info': service.reload}" ng-click="onServiceReload(service)"><i class="fa fa-refresh"></i></button>
 					</div>
 				</td>
 			</tr>

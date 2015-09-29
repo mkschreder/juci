@@ -26,8 +26,7 @@
 	},
 	"status/system/services": {
 		"title": "Services",
-		"modes": [ "expert" ],
-		"acls": [ "juci-mod-status" ],
+		"acls": [ "juci-mod-system" ],
 		"index": 11
 	},
 	"status/system": {
