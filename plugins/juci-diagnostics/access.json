@@ -7,7 +7,15 @@
 					"ping", 
 					"traceroute"
 				]
-			}
+			},
+			"uci": [
+				"speedtest"	
+			]
+		},
+		"write": {
+			"uci": [
+				"speedtest"
+			]
 		}
 	}
 }

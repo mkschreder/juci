@@ -1,4 +1,31 @@
 <div>
-	<juci-contentbox show=true title="TPtest" icon="fa fa-fighter-jet">diagnostics-widget-speedtest content goes here</juci-contentbox>
+	<juci-expandable title="TP test">
+		<juci-config-lines>
+			<juci-config-line title="{{'Test direction'|translate}}">
+				<juci-select ng-model="testType[0].value" ng-items="testType"/>
+			</juci-config-line>
+			<juci-config-line title="{{'Package size'|translate}}">
+				<input type="number" min="10000" max="100000" step="1000" class="form-control" ng-model="packagesize"/>
+			</juci-config-line>
+			<juci-config-line title="{{'address and prot' | translate}}">
+				<juci-select ng-model="addresses[0].value" ng-items="addresses"/>
+			</juci-config-line>
+			<juci-config-line>
+				<button class="btn btn-default" ng-click="onRemoveAddress()">
+					<i class="fa fa-minus"></i>
+				</button>
+				<button class="btn btn-default" ng-click="onAddAddress()">
+					<i class="fa fa-plus"></i>
+				</button>
+			</juci-config-line>
+			<juci-config-line>
+				<button class="btn btn-default" ng-click="runTest()">
+				{{'Run test' | translate}}</button>
+			</juci-config-line>
+		</juci-config-lines>
+	</juci-expandable>
 </div>
+
+
+			
 
