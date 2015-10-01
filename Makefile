@@ -126,7 +126,7 @@ ifneq ($(SELECT_ALL),)
 	DIRS-y += $(wildcard plugins/*)
 endif
 
-ifeq ($(CONFIG_JUCI_UBUS_CORE),y)
+ifeq ($(CONFIG_PACKAGE_juci-ubus-core),y)
 	UBUS_MODS += backend/juci-core
 endif
 
