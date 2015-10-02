@@ -1,9 +1,4 @@
 {
-	"internet/lan/iptv": {
-		"title": "IPTV", 
-		"acls": [ "juci-igmpsnoop" ], 
-		"index": 8
-	},
 	"status/tv": {
 		"title": "IPTV", 
 		"acls": [ "juci-igmpsnoop" ], 
