@@ -14,8 +14,13 @@
 				], 
 				"/juci/broadcom.wireless": [
 					"defaults", 
+					"radios", 
+					"devices", 
 					"clients", 
-					"radios",
+					"scan", 
+					"scanresults"
+				],
+				"juci.broadcom.wld": [
 					"scan", 
 					"scanresults"
 				]

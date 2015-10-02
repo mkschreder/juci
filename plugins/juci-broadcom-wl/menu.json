@@ -49,5 +49,9 @@
 	"internet/ethernet/wifi": {
 		"title": "Wireless", 
 		"index": 10
+	},
+	"status/wifi": {
+		"title": "Wireless", 
+		"index": 10
 	}
 }
