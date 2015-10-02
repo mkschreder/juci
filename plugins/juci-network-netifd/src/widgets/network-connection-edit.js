@@ -12,38 +12,38 @@ JUCI.app
 		require: "^ngModel"
 	 };  
 })
-.controller("networkConnectionEdit", function($scope, $uci, $network, $rpc, $log, gettext){
+.controller("networkConnectionEdit", function($scope, $uci, $network, $rpc, $log, $tr, gettext){
 	$scope.expanded = true; 
 	$scope.existingHost = { }; 
 	
 	$scope.allInterfaceTypes = [
-		{ label: "Standard", value: "" }, 
-		{ label: "AnyWAN", value: "anywan" }, 
-		{ label: "Bridge", value: "bridge" }
+		{ label: $tr(gettext("Standard")), value: "" }, 
+		{ label: $tr(gettext("AnyWAN")), value: "anywan" }, 
+		{ label: $tr(gettext("Bridge")), value: "bridge" }
 	]; 
 	
 	$scope.protocolTypes = [
-		{ label: "Static Address", value: "static" }, 
-		{ label: "DHCP v4", value: "dhcp" }, 
-		{ label: "DHCP v6", value: "dhcpv6" }, 
-		{ label: "PPP", value: "ppp" }, 
-		{ label: "PPP over Ethernet", value: "pppoe" }, 
-		{ label: "PPP over ATM", value: "pppoa" }, 
-		{ label: "3G (ppp over GPRS/EvDO/CDMA or UTMS)", value: "3g" }, 
-		{ label: "QMI (USB modem)", value: "qmi" }, 
-		{ label: "NCM (USB modem)", value: "ncm" }, 
-		{ label: "HNET (self-managing home network)", value: "hnet" }, 
-		{ label: "Point-to-Point Tunnel", value: "pptp" }, 
-		{ label: "IPv6 tunnel in IPv4", value: "6in4" }, 
-		{ label: "Automatic IPv6 Connectivity Client", value: "aiccu" }, 
-		{ label: "IPv6 rapid deployment", value: "6rd" }, 
-		{ label: "Dual-Stack Lite", value: "dslite" }, 
-		{ label: "PPP over L2TP", value: "l2tp" }, 
-		{ label: "Relayd Pseudo Bridge", value: "relay" }, 
-		{ label: "GRE Tunnel over IPv4", value: "gre" }, 
-		{ label: "Ethernet GRE over IPv4", value: "gretap" }, 
-		{ label: "GRE Tunnel over IPv6", value: "grev6" }, 
-		{ label: "Ethernet GRE over IPv6", value: "grev6tap" },
+		{ label: $tr(gettext("Static Address")), value: "static" }, 
+		{ label: $tr(gettext("DHCP v4")), value: "dhcp" }, 
+		{ label: $tr(gettext("DHCP v6")), value: "dhcpv6" }, 
+		{ label: $tr(gettext("PPP")), value: "ppp" }, 
+		{ label: $tr(gettext("PPP over Ethernet")), value: "pppoe" }, 
+		{ label: $tr(gettext("PPP over ATM")), value: "pppoa" }, 
+		{ label: $tr(gettext("3G (ppp over GPRS/EvDO/CDMA or UTMS)")), value: "3g" }, 
+		{ label: $tr(gettext("QMI (USB modem)")), value: "qmi" }, 
+		{ label: $tr(gettext("NCM (USB modem)")), value: "ncm" }, 
+		{ label: $tr(gettext("HNET (self-managing home network)")), value: "hnet" }, 
+		{ label: $tr(gettext("Point-to-Point Tunnel")), value: "pptp" }, 
+		{ label: $tr(gettext("IPv6 tunnel in IPv4")), value: "6in4" }, 
+		{ label: $tr(gettext("Automatic IPv6 Connectivity Client")), value: "aiccu" }, 
+		{ label: $tr(gettext("IPv6 rapid deployment")), value: "6rd" }, 
+		{ label: $tr(gettext("Dual-Stack Lite")), value: "dslite" }, 
+		{ label: $tr(gettext("PPP over L2TP")), value: "l2tp" }, 
+		{ label: $tr(gettext("Relayd Pseudo Bridge")), value: "relay" }, 
+		{ label: $tr(gettext("GRE Tunnel over IPv4")), value: "gre" }, 
+		{ label: $tr(gettext("Ethernet GRE over IPv4")), value: "gretap" }, 
+		{ label: $tr(gettext("GRE Tunnel over IPv6")), value: "grev6" }, 
+		{ label: $tr(gettext("Ethernet GRE over IPv6")), value: "grev6tap" },
 	]; 
 	
 	$scope.$watch("conn.proto.value", function(value){
