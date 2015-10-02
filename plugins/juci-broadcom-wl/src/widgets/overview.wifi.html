@@ -32,26 +32,14 @@
 					</tr>
 				</table>
 				<table class="table table-condensed" ng-repeat="iface in vifs">
-					<tr>
-						<td><strong translate>SSID</strong></td>
-						<td style="font-size: 0.8pn; text-align: right;">{{iface.ssid.value || "-"}}</td>
-					</tr>
-					<tr>
-						<td><strong translate>SSID Key</strong></td>
-						<td style="font-size: 0.8pn; text-align: right;">{{iface.key.value || "-"}}</td>
+					<thead><th colspan="2">{{iface.ssid + ' (' + iface.mode + ')'}}</th></thead>
+					<tr ng-repeat="i in [['Frequency', 'frequency'], ['Channel', 'channel'], ['Noise', 'noise']]">
+						<td><strong translate>{{i[0] | translate}}</strong></td>
+						<td style="font-size: 0.8pn; text-align: right;">{{iface[i[1]] || "-"}}</td>
 					</tr>
 					<tr><td></td><td></td></tr><!-- an extra line as quick way to get a border after the last line -->
 				</table>
 			</div>
 		</div>
-		<!--
-		<div class="row" style="margin-bottom: 10px; padding-top: 5px; padding-bottom: 5px; position:relative;" ng-repeat="client in wireless.clients">
-			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-desktop fa-2x"></i></div>
-			<div class="col-xs-7" style="padding-left: 0px">{{client.ipaddr}}<br ng-show="client.hostname"/>{{client.hostname}}</div>
-			<div class="col-xs-2" style="color: #a9b400;">
-				<wifi-signal-indicator ng-model="client.snr"></wifi-signal-indicator>
-			</div>
-			<div style="position: absolute;top: 25px;right: 12px;font-size: 10px;">{{client.band}}</div>
-		</div>-->
 	</div>
 </div>

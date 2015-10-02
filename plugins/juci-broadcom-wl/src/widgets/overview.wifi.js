@@ -73,14 +73,16 @@ JUCI.app
 		$scope.wifiWPSStatus = gettext("off"); 
 		async.series([
 			function(next){
-				$uci.$sync(["wireless"]).done(function(){
-					$scope.wifi = $uci.wireless;  
-					$scope.vifs = $uci.wireless["@wifi-iface"]; 
-					if($uci.wireless && $uci.wireless.status) {
-						$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
-						$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
-					}
-				}).always(function(){ next(); }); 
+				$uci.$sync("wireless").done(function(){
+					$rpc.juci.broadcom.wireless.devices().done(function(result){
+						$scope.wifi = $uci.wireless;  
+						$scope.vifs = result.devices; //$uci.wireless["@wifi-iface"]; 
+						if($uci.wireless && $uci.wireless.status) {
+							$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
+							$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
+						}
+					}).always(function(){ next(); }); 
+				}); 
 			}, 
 			function(next){
 				$rpc.juci.broadcom.wps.showpin().done(function(result){
@@ -91,8 +93,6 @@ JUCI.app
 				$rpc.juci.broadcom.wireless.clients().done(function(clients){
 					$scope.wireless.clients = clients.clients; 
 					$scope.wireless.clients.map(function(cl){
-						// calculate signal strength
-						cl.snr = cl.rssi - cl.noise; 
 						// check flags 
 						if(cl.flags.match(/NOIP/)) cl.ipaddr = $tr(gettext("No IP address")); 
 					}); 
