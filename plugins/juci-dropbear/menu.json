@@ -1,6 +1,6 @@
 {
-	"settings/dropbear": {
-		"title": "Dropbear",
-		"index": 20, 
+	"settings/management/dropbear": {
+		"title": "SSH",
+		"index": 20 
 	}
 }
