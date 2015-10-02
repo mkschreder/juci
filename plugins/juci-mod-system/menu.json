@@ -24,10 +24,15 @@
 		"acls": [ "juci-mod-system" ],
 		"index": 40
 	},
-	"status/system/services": {
+	"settings/management": {
+		"title": "Management", 
+		"acls": [ "juci-mod-system" ], 
+		"index": 50
+	},
+	"settings/services": {
 		"title": "Services",
 		"acls": [ "juci-mod-system" ],
-		"index": 11
+		"index": 80
 	},
 	"status/system": {
 		"title": "System",  
