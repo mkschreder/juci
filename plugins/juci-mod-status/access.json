@@ -5,7 +5,7 @@
 			"ubus": {
 				"system": [
 					"info"
-				}
+				]
 			}
 		}
 	}
