@@ -1,6 +1,6 @@
 {
 	"settings": {
-		"title": "Settings",
+		"title": "System",
 		"redirect": "settings/system", 
 		"index": 50
 	},
