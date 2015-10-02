@@ -14,16 +14,11 @@
 			"acls": [ "juci-network-netifd" ],
 			"index": 6
 	},
-	"internet/wan": {
-			"title": "WAN",
-			"acls": [ "juci-network-netifd" ],
-			"index": 8
-	},
-	"internet/lan": {
-			"title": "LAN",
-			"acls": [ "juci-network-netifd" ],
-			"index": 9
-	},
+	"internet/routes": {
+		"title": "Routes", 
+		"acls": [ "juci-network-netifd" ], 
+		"index": 8
+	}, 
 	"internet/services": {
 			"title": "Services",
 			"acls": [ "juci-network-netifd" ],
