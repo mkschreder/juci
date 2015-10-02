@@ -96,6 +96,7 @@ $(eval $(call plugin,juci-minidlna));
 $(eval $(call plugin,juci-samba));
 $(eval $(call plugin,juci-event));
 $(eval $(call plugin,juci-ddns));
+$(eval $(call plugin,juci-dropbear));
 $(eval $(call plugin,juci-diagnostics));
 $(eval $(call plugin,juci-inteno-router));
 $(eval $(call plugin,juci-upnp));
