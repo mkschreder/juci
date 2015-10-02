@@ -16,45 +16,14 @@
 					<juci-config-line title="{{'Wifi Network'|translate}}" ng-show="status.schedule.value">
 						<a href="#!wifi-schedule"><strong>{{'Scheduled'|translate}}</strong></a>
 					</juci-config-line>
-					<juci-config-line title="{{'Wifi Network'|translate}}" ng-hide="status.schedule.value">
-						<switch ng-model="status.wlan.value" class="green" ng-change="onApply"></switch>
+					<juci-config-line title="{{'Enable WiFi'|translate}}" ng-hide="status.schedule.value">
+						<switch ng-model="status.wlan.value" class="green"></switch>
 					</juci-config-line>
 					<juci-config-line  title="{{'Enable WiFi On/Off button'|translate}}">
-						<switch ng-model="router.wifi_button_enabled" class="green" ng-change="onApply"></switch>
+						<switch ng-model="router.wifi_button_enabled" class="green"></switch>
 					</juci-config-line>
 				</juci-config-lines>
 			</juci-config-section>
-			<juci-config-section ng-show="status.wlan.value">
-				<juci-config-heading>{{ 'Setup' | translate }}</juci-config-heading>
-				<p translate>wifi.general.setup.info</p>
-				<br/>
-				<div class="alert alert-info" ng-show="info">
-					<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{info}}</p>
-				</div>
-				<div class="row" ng-repeat="iface in interfaces">
-					<div class="col-md-12" >
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="btn-group pull-right">
-									<span class="btn" disabled>
-										<i ng-class="iface.disabled.value?'text-default':'text-success'" class="fa fa-wifi fa-2x"/>
-									</span>
-									<span class="btn " ng-click="iface._expanded = !iface._expanded">
-										<i class="fa fa-caret-down fa-2x" ng-show="expanded"></i>
-										<i class="fa fa-caret-left fa-2x" ng-hide="expanded"></i>
-									</span>
-								</div>
-								<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">{{iface.ssid.value}} ({{iface.$device[".frequency"]}})</h3>
-								<div style="clear: both;"></div>
-							</div>
-							<div class="panel-body " ng-show="iface._expanded" >
-								<uci-wireless-interface ng-model="iface"></uci-wireless-interface>
-							</div>
-						</div>
-					</div>
-				</div>
-			</juci-config-section>
-			<juci-errors></juci-errors>
 			<juci-config-apply></juci-config-apply>
 		</div>
 	</div>
