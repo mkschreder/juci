@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ubus send hotplug.dect "{'interface': '$INTERFACE', 'action': '$ACTION'}"
