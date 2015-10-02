@@ -1,0 +1,40 @@
+#!/usr/bin/nodejs
+
+var fs = require("fs"); 
+
+var opts = require('node-getopt').create([
+  ['i' , 'input=ARG'           , 'input file name (in.json - ex. { "de": { "english string": "german string", "another string": ".." }})'],
+  ['o' , 'output=ARG'          , 'output file name (99-out.js - the output file that this utility will create which can be loaded into juci)'],
+  ['h' , 'help'                , 'display this help'],
+  ['v' , 'version'             , 'show version']
+])              // create Getopt instance
+.parseSystem() // parse command line
+.options; 
+
+if(!opts.input || opts.help){
+	console.log("usage: json-to-lang-js -i <input> -o <output>"); 
+	console.log('	-i input file name (in.json - ex. { "de": { "english string": "german string", "another string": ".." }})'); 
+	console.log('	-o output file name (99-out.js - the output file that this utility will create which can be loaded into juci)'); 
+	console.log(''); 
+	console.log("note: make sure output file starts with number 99 so it is loaded last in juci"); 
+	console.log("after running this utility also run juci-update <www-folder> <RELEASE|DEBUG> command to include the new file in juci index"); 
+	return 1; 
+}
+
+if(opts.version){
+	console.log("json to language js v0.0.1. (c) 2015 Martin K. Schröder"); 
+	return; 
+}
+
+if(!opts.input) {
+	console.error("no input files"); 
+	return; 
+}
+var langs = JSON.parse(fs.readFileSync(opts.input));
+var output = "angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) { "; 
+Object.keys(langs).map(function(lang){
+	output += "gettextCatalog.setStrings('"+lang+"',"+JSON.stringify(langs[lang])+");"; 
+}); 
+output += "}]);"; 
+if(opts.output) fs.writeFileSync(opts.output, output); 
+else console.log(output); 
