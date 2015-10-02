@@ -5,10 +5,9 @@
 		</h3>
 	</div>
 	<div class="panel-body">
-		<i ng-show="!clients" class="fa fa-spinner fa-spin"/>
+		<i ng-show="!clients" class="fa fa-spinner fa-spin"></i>
 		<div class="row" ng-repeat="client in clients" style="margin-bottom: 10px;">
-			<div class="col-xs-2"><i class="fa fa-laptop fa-2x"></i></div>
-			<div class="col-xs-8">{{client.hostname || client.manufacturer || defaultHostName}}<br/>{{client.ipaddr}}</div>
+			<div dynamic="client._display_html"/>
 		</div>
 	</div>
 </div>

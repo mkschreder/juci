@@ -68,13 +68,14 @@ JUCI.app
 		}); 
 	}
 	
-	!function refresh() {
+	function refresh() {
 		$scope.wifiSchedStatus = gettext("off"); 
 		$scope.wifiWPSStatus = gettext("off"); 
 		async.series([
 			function(next){
 				$uci.$sync(["wireless"]).done(function(){
 					$scope.wifi = $uci.wireless;  
+					$scope.vifs = $uci.wireless["@wifi-iface"]; 
 					if($uci.wireless && $uci.wireless.status) {
 						$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
 						$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
@@ -103,5 +104,5 @@ JUCI.app
 		], function(){
 			$scope.$apply(); 
 		}); 
-	}(); 
+	}; refresh(); 
 }); 

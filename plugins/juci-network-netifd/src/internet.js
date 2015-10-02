@@ -138,7 +138,18 @@
 			var self = this; 
 			
 			_refreshClients(self).done(function(clients){
-				deferred.resolve(clients); 
+				async.each(self._subsystems, function(sys, next){
+					if(sys.annotateClients) {
+						sys.annotateClients(clients).always(function(){ next(); }); 
+					} else {
+						next(); 
+					}
+				}, function(){
+					clients.map(function(cl){
+						if(!cl._display_widget) cl._display_widget = "network-client-lan-display-widget"; 
+					}); 
+					deferred.resolve(clients); 
+				});
 			}).fail(function(){
 				deferred.reject(); 
 			});  

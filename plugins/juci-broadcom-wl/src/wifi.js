@@ -1,8 +1,24 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 	
-JUCI.app.run(function($network, $uci){
+JUCI.app.run(function($network, $uci, $wireless){
 	$network.subsystem(function(){
 		return {
+			annotateClients: function(clients){
+				var def = $.Deferred(); 
+				$wireless.getConnectedClients().done(function(wclients){
+					clients.map(function(cl){
+						var wcl = wclients.find(function(wc){ return String(wc.macaddr).toLowerCase() == String(cl.macaddr).toLowerCase(); }); 
+						if(wcl) { 
+							cl._display_widget = "wireless-client-lan-display-widget"; 
+							cl._wireless = wcl; 
+						}; 
+					}); 
+					def.resolve(); 
+				}).fail(function(){
+					def.reject(); 
+				}); 
+				return def.promise(); 
+			}, 
 			getDevices: function() {
 				var deferred = $.Deferred(); 
 				var devices = []; 
@@ -63,7 +79,13 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	Wireless.prototype.getConnectedClients = function(){
 		var def = $.Deferred(); 
 		$rpc.juci.broadcom.wireless.clients().done(function(clients){
-			if(clients && clients.clients) def.resolve(clients.clients); 
+			if(clients && clients.clients) {
+				clients.clients.map(function(cl){
+					// calculate signal strength
+					cl.snr = cl.rssi - cl.noise; 
+				}); 
+				def.resolve(clients.clients); 
+			}
 			else def.reject(); 
 		}); 
 		return def.promise(); 

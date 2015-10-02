@@ -56,11 +56,15 @@ JUCI.app
 	function(next){
 		$network.getConnectedClients().done(function(clients){
 			// TODO: this is not static. Need to find a way to more reliably separate lan and wan so we can list lan clients from all lans without including wans. 
-			$scope.clients = clients.filter(function(cl) { return cl.device == "br-lan"; }); 
+			$scope.clients = clients.filter(function(cl) { return cl.device == "br-lan"; })
+			.map(function(cl){
+				cl._display_html = "<"+cl._display_widget + " ng-model='client'/>"; 
+				return cl; 
+			}); 
 			next(); 
 		}).fail(function(){
 			next();
-		});; 
+		}); 
 	}], function(){
 		$scope.$apply(); 
 	}); 
