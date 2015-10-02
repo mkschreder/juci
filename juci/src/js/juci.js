@@ -41,7 +41,7 @@
 	}; 
 	
 	JUCIMain.prototype.page = function(name, template, redirect){
-		console.log("Registering page "+name+": "+template); 
+		//console.log("Registering page "+name+": "+template); 
 		var page = {
 			template: template, 
 			url: name
@@ -262,7 +262,7 @@
 		app.run(function($templateCache, $rootScope){
 			var self = scope.JUCI; 
 			Object.keys(self.templates).map(function(k){
-				console.log("Registering template "+k); 
+				//console.log("Registering template "+k); 
 				$templateCache.put(k, self.templates[k]); 
 			}); 
 			
