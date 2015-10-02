@@ -7,6 +7,9 @@
 				<juci-config-line title="{{'Enable firewall'|translate}}">
 					<switch ng-model="firewall.settings.disabled.value" class="green" inverted></switch>
 				</juci-config-line>
+				<juci-config-line title="{{'Enable NAT'|translate}}">
+					<switch ng-model="data.nat_enabled" class="green" ng-change="onEnableNAT()"/>
+				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
 		<juci-config-apply/>
