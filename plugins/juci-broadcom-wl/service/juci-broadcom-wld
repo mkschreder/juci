@@ -90,8 +90,8 @@ function WifiMonitor:update_ap_list()
 	self.scanresults = online_aps; 
 end
 
+local wifimon = WifiMonitor:new(); 
 function start_service()
-	local wifimon = WifiMonitor:new(); 
 	local tscanresults; 
 	local tscanstart; 
 	
@@ -132,7 +132,12 @@ conn:add({
 		}, 
 		scan = {
 			function(req, msg)
-			
+				wifimon:scan(); 			
+			end, {}
+		}, 
+		scanresults = {
+			function(req, msg)
+				conn:reply(req, { list = wifimon:poll_scan_results() }); 
 			end, {}
 		}
 	}; 
