@@ -7,5 +7,4 @@ define Plugin/juci-network-netifd/install
 	@$(CP) $(PLUGIN_DIR)/src/images/* ./$(1)/www/img/
 	@chmod +x $(PLUGIN_DIR)/service/*
 	@$(CP) $(PLUGIN_DIR)/service/juci-netdevd ./$(1)/sbin/
-	@$(CP) $(PLUGIN_DIR)/service/juci-netdevd.init ./$(1)/etc/init.d/juci-netdevd
 endef

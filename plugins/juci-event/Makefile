@@ -5,5 +5,4 @@ define Plugin/juci-event/install
 	$(CP) $(PLUGIN_DIR)/hotplug/* $(1)/etc/hotplug.d/
 	chmod +x $(PLUGIN_DIR)/service/*
 	$(CP) $(PLUGIN_DIR)/service/juci-eventd $(1)/sbin/
-	$(CP) $(PLUGIN_DIR)/service/juci-eventd.init $(1)/etc/init.d/juci-eventd
 endef
