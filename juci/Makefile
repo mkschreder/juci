@@ -61,8 +61,8 @@ define Plugin/juci/install
 	$(CP) $(PLUGIN_DIR)/src/img/ $(1)/www/
 	$(CP) $(PLUGIN_DIR)/src/fonts/ $(1)/www/
 	$(CP) $(PLUGIN_DIR)/juci.config.json $(1)/www/config.json
-	$(INSTALL_DIR) $(1)/usr/share/lua/
-	$(CP) $(PLUGIN_DIR)/lualibs/luv-node/* $(1)/usr/share/lua/
-	$(CP) $(PLUGIN_DIR)/lua/* $(1)/usr/share/lua/
+	$(INSTALL_DIR) $(1)/usr/share/lua/juci/
+	$(CP) $(PLUGIN_DIR)/lualibs/* $(1)/usr/share/lua/
+	$(CP) $(PLUGIN_DIR)/lua/* $(1)/usr/share/lua/juci/
 	$(CP) $(PLUGIN_DIR)/reboot.html $(1)/www/	
 endef
