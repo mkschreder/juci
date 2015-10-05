@@ -2,13 +2,13 @@
 	<juci-expandable title="TP test">
 		<juci-config-lines>
 			<juci-config-line title="{{'Test direction'|translate}}">
-				<juci-select ng-model="testType[0].value" ng-items="testType"/>
+				<juci-select ng-model="server" ng-items="testType"/>
 			</juci-config-line>
 			<juci-config-line title="{{'Package size'|translate}}">
-				<input type="number" min="10000" max="100000" step="1000" class="form-control" ng-model="packagesize"/>
+				<input type="number" min="10000" max="100000" step="1000" class="form-control" ng-model="packagesize" />
 			</juci-config-line>
 			<juci-config-line title="{{'address and prot' | translate}}">
-				<juci-select ng-model="addresses[0].value" ng-items="addresses"/>
+				<juci-select ng-model="server.value" ng-items="allTestServers"/>
 			</juci-config-line>
 			<juci-config-line>
 				<button class="btn btn-default" ng-click="onRemoveAddress()">
@@ -27,5 +27,4 @@
 </div>
 
 
-			
 
