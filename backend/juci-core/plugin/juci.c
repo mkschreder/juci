@@ -655,8 +655,6 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 
 	rv |= ubus_add_object(ctx, &ui_obj);
 	
-	init_ubus_event_listener(ctx); 
-	
 	return rv;
 }
 
