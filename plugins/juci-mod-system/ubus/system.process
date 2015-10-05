@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-require("JUCI"); 
+local juci = require("juci/core"); 
 
 function fields(inputstr, sep)
 	if sep == nil then

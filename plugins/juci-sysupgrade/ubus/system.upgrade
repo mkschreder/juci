@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-require("JUCI"); 
+local juci = require("juci/core"); 
 
 function sysupgrade_check(params)
 	local type = {"usb", "online"}; 

@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 #!javascript
 var assert = require("assert"); 
-var JSON = require("JSON"); 
+var JSON = require("juci/json"); 
 //global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest; 
 global.$ = global.jQuery = require("jquery-deferred"); 
 global.$.ajax = require("najax"); 

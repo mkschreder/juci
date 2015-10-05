@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-require("JUCI"); 
+local juci = require("juci/core"); 
 
 function user_password(opts)
 	if not opts["password"] then return 5; end

@@ -1,8 +1,6 @@
-#!/usr/bin/lua 
-
 local juci = require("juci/core"); 
 
-function ethernet_list_network_adapters(opts)
+function network_list_adapters(opts)
 	function words(str) 
 		local f = {}; 
 		local count = 0; 
@@ -44,8 +42,7 @@ function ethernet_list_network_adapters(opts)
 			if fields[1]:match("%d+:") then
 				if(next(obj) ~= nil) then table.insert(adapters, obj); end
 				obj = {}; 
-				obj.device = fields[2]:match("([^:@]+)"); -- match until @ in vlan adapters 
-				obj.name = obj.device; 
+				obj.name = fields[2]:match("([^:@]+)"); -- match until @ in vlan adapters 
 				obj.flags = fields[3]:match("<([^>]+)>"); 
 				-- parse remaining pairs after flags
 				for id = 4,count,2 do
@@ -86,10 +83,9 @@ function ethernet_list_network_adapters(opts)
 	end
 	-- add last parsed adapter to the list as well
 	if(next(obj) ~= nil) then table.insert(adapters, obj); end
-	
-	print(json.encode({ adapters = adapters })); 
+	return adapters; 	
 end
 
-juci.ubus({
-	["adapters"] = ethernet_list_network_adapters
-}, arg); 
+return {
+	adapters = network_list_adapters
+}; 

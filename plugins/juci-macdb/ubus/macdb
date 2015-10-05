@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-require("JUCI"); 
+require("juci/core"); 
 
 function macdb_lookup(opts)
 	local res = {}; 

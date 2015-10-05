@@ -1,9 +1,9 @@
 #!/usr/bin/lua 
 
-local juci = require("JUCI"); 
+local juci = require("juci/core"); 
 local fs = require("fs"); 
 require("ubus"); 
-require("JSON"); 
+require("juci/json"); 
 
 local conn = ubus.connect(); 
 

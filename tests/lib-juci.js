@@ -1,5 +1,5 @@
 global.assert = require("assert"); 
-global.JSON = require("JSON"); 
+global.JSON = require("juci/json"); 
 global.async = require("async"); 
 global.$ = global.jQuery = require("jquery-deferred"); 
 global.$.ajax = require("./najax"); 

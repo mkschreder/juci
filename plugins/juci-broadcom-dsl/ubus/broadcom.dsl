@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-require("JUCI"); 
+require("juci/core"); 
 
 -- Status: Showtime
 -- Last Retrain Reason:    1

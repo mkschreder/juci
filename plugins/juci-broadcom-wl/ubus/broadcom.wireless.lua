@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-require("JSON"); 
+local json = require("juci/json"); 
 
 function wireless_scanresults()
 	local f = assert(io.popen("wlctl -i wl1 scanresults")); 

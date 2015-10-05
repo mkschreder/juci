@@ -2,8 +2,8 @@
 
 require("ubus");
 require("uloop");
-require("JUCI");
-require("JSON");
+local juci = require("juci/core");
+local json = require("juci/json");
 
 uloop.init();
 

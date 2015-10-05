@@ -4,7 +4,7 @@
 
 require "ubus"
 require "uloop"
-require("JUCI"); 
+local juci = require("juci/core"); 
 
 local console = {
 	log = function(msg)
