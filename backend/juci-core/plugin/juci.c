@@ -583,56 +583,6 @@ rpc_juci_ui_acls(struct ubus_context *ctx, struct ubus_object *obj,
 	return 0;
 }
 
-static void receive_event(struct ubus_context *ctx, struct ubus_event_handler *ev,
-			  const char *type, struct blob_attr *msg)
-{
-	char *str;
-
-	str = blobmsg_format_json(msg, true);
-	FILE *logfile = fopen("/var/run/ubus.events", "a"); 
-	if(logfile){
-		fprintf(logfile, "{ \"time\": %d, \"type\": \"%s\", \"data\": %s }\n", time(NULL), type, str);
-		fclose(logfile); 
-	}
-	free(str);
-}
-
-static int rpc_juci_system_events(struct ubus_context *ctx, struct ubus_object *obj,
-		  struct ubus_request_data *req, const char *method,
-		  struct blob_attr *msg)
-{
-	blob_buf_init(&buf, 0);
-	char line[512] = {0}; 
-	
-	void *arr = blobmsg_open_array(&buf, "events"); 
-	FILE *logfile = fopen("/var/run/ubus.events", "r"); 
-	if(logfile){
-		while(fgets(line, sizeof(line), logfile)){
-			void *obj = blobmsg_open_table(&buf, NULL); 
-			blobmsg_add_json_from_string(&buf, line);
-			blobmsg_close_table(&buf, obj);  
-		}
-		// possible race? 
-		system("tail -n20 /var/run/ubus.events > /tmp/ubus.events; mv /tmp/ubus.events /var/run/ubus.events"); 
-	}
-	blobmsg_close_array(&buf, arr); 
-	
-	ubus_send_reply(ctx, req, buf.head);
-
-	return 0;
-}
-
-static void init_ubus_event_listener(struct ubus_context *ctx){
-	static struct ubus_event_handler listener;
-	const char *event;
-	int ret = 0;
-
-	memset(&listener, 0, sizeof(listener));
-	listener.cb = receive_event;
-	
-	ubus_register_event_handler(ctx, &listener, "*"); 
-}
-
 static void 
 remove_newline(char *buf)
 {
@@ -696,20 +646,6 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 		.n_methods = ARRAY_SIZE(juci_ui_methods),
 	};
 
-	static const struct ubus_method juci_events_methods[] = {
-		UBUS_METHOD_NOARG("list",            rpc_juci_system_events)
-	};
-
-	static struct ubus_object_type juci_events_type =
-		UBUS_OBJECT_TYPE("luci-rpc-juci-events", juci_events_methods);
-
-	static struct ubus_object events_obj = {
-		.name = "juci.events",
-		.type = &juci_events_type,
-		.methods = juci_events_methods,
-		.n_methods = ARRAY_SIZE(juci_events_methods),
-	};
-	
 	cursor = uci_alloc_context();
 
 	if (!cursor)
@@ -717,9 +653,7 @@ rpc_juci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 
 	ops = o;
 
-	//rv |= ubus_add_object(ctx, &system_obj);
 	rv |= ubus_add_object(ctx, &ui_obj);
-	rv |= ubus_add_object(ctx, &events_obj);
 	
 	init_ubus_event_listener(ctx); 
 	
