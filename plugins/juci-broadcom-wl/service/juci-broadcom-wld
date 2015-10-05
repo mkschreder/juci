@@ -5,7 +5,6 @@
 require "ubus"
 require "uloop"
 require("JUCI"); 
-local uv = require("uv"); 
 
 function find(tbl, cb) 
 	for _,v in pairs(tbl) do 
