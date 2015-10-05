@@ -25,7 +25,7 @@ function system_logread(opts)
 	local res = {}; 
 	local lines = {}; 
 	res["lines"] = lines; 
-	local stdout = juci.shell("logread -l 20"); 
+	local stdout = juci.shell("logread -l 20 2>/dev/null"); 
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local date,type,source,message = line:match("([^%s]*%s[^%s]*%s[^%s]*%s[^%s]*%s[^%s]*)%s([^%s]*)%s([^%s:]*):%s(.*)"); 
 		string.gsub(message, "\n", ""); 
