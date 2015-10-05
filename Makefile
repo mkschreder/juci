@@ -55,6 +55,7 @@ $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 $(1)-install: 
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(CURDIR)/$(2)/$(1)/ubus ]; then $(CP) $(CURDIR)/$(2)/$(1)/ubus/* $(BACKEND_BIN_DIR); fi
+	$(Q)if [ -d $(CURDIR)/$(2)/$(1)/service ]; then $(CP) $(CURDIR)/$(2)/$(1)/service/* $(BIN)/usr/lib/ubus-service/; fi
 	@-chmod +x $(BACKEND_BIN_DIR)/* 
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/menu.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/menu.json $(BIN)/usr/share/rpcd/menu.d/$(1).json; fi
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/access.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/access.json $(BIN)/usr/share/rpcd/acl.d/$(1).json; fi
@@ -141,6 +142,7 @@ prepare:
 	@mkdir -p $(BIN)/usr/share/rpcd/menu.d/
 	@mkdir -p $(BIN)/usr/share/rpcd/acl.d/
 	@mkdir -p $(BACKEND_BIN_DIR)
+	@mkdir -p $(BIN)/usr/lib/ubus-service/
 	@mkdir -p $(BIN)/etc/hotplug.d/
 	
 node_modules: package.json
