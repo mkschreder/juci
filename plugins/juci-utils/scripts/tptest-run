@@ -5,12 +5,21 @@ local send=$1
 local receive=$2
 local sent="none"
 local received="none"
+local lable="success"
+
 if [ "$send" != "done" ]; then
 	sent=$(tptest $send | awk '/Throughput/{print($2)}')
 fi
 if [ "$receive" != "done" ]; then
 	received=$(tptest $receive | awk '/Throughput/{print($2)}')
 fi
-ubus send juci.utils.speedtest '{"status":'$SUCCESS', "upstream":"'$sent'","downstream":"'$received'"}'
+if [ "$receive" == "" || "$sent" == "" ]; then
+	SUCCESS=-1;
+	lable="wrong address";
+elif [ "$receive" == "0" || "$sent" == "0" ]; then
+	SUCCESS=-2;
+	lable="wrong port";
+fi
+ubus send juci.utils.speedtest '{"status":'$SUCCESS', "upstream":"'$sent'","downstream":"'$received'","lable":"'$lable'"}'
 
 
