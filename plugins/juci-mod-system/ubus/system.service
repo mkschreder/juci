@@ -3,7 +3,7 @@
 local juci = require("juci/core"); 
 local fs = require("fs"); 
 require("ubus"); 
-require("juci/json"); 
+local json = require("juci/json"); 
 
 local conn = ubus.connect(); 
 
