@@ -36,15 +36,15 @@ JUCI.app
 .controller("dslBaseDevicePicker", function($scope, $modalInstance, $wireless, items, gettext){
 	$scope.items = items; 
 	$scope.data = {}; 
-  $scope.ok = function () {
+	$scope.ok = function () {
 		if(!$scope.data.selected) {
 			alert($tr(gettext("You need to select a device!"))); 
 			return; 
 		}
 		$modalInstance.close($scope.data.selected);
-  };
+	};
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
 })

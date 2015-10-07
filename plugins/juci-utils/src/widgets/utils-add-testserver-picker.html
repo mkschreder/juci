@@ -1,0 +1,19 @@
+<div>
+	<div class="modal-header">
+		<h3 class="modal-title" translate>Add test server</h3>
+	</div>
+	<div class="modal-body">
+		<juci-config-lines>
+			<juci-config-line title="{{'Server'|translate}}">
+				<input type="text" ng-model="data.address"/>
+			</juci-config-line>
+			<juci-config-line title="{{'Port'|translate}}">
+				<input type="number" min="0" max="65535" ng-model="data.port"/>
+			</juci-config-line>
+		</juci-config-lines>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">OK</button>
+		<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

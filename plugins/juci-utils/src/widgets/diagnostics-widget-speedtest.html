@@ -2,13 +2,14 @@
 	<juci-expandable title="TP test">
 		<juci-config-lines>
 			<juci-config-line title="{{'Test direction'|translate}}">
-				<juci-select ng-model="server" ng-items="testType"/>
+				<juci-select ng-model="data.test_type" ng-items="testType"/>
 			</juci-config-line>
 			<juci-config-line title="{{'Package size'|translate}}">
-				<input type="number" min="10000" max="100000" step="1000" class="form-control" ng-model="packagesize" />
+				<input type="number" step="1000" class="form-control" ng-model="data.packagesize" />
+				<span class="label label-info">{{min + "-" + max}}</span>
 			</juci-config-line>
 			<juci-config-line title="{{'address and prot' | translate}}">
-				<juci-select ng-model="server.value" ng-items="allTestServers"/>
+				<juci-select ng-model="data.server" ng-items="allTestServers"/>
 			</juci-config-line>
 			<juci-config-line>
 				<button class="btn btn-default" ng-click="onRemoveAddress()">
@@ -23,8 +24,20 @@
 				{{'Run test' | translate}}</button>
 			</juci-config-line>
 		</juci-config-lines>
+		<div class="alert alert-success" ng-show="data.state == 'result'">
+			{{'Trace results'|translate}}: <br/>
+			<pre>{{data.result}}</pre>
+		</div>
+		<div class="alert alert-success" ng-show="data.state == 'running'">
+			<h4>
+				{{" Running test"|translate}}
+				<i class="fa fa-spinner fa-pulse fa-2x"></i>
+			</h4>
+		</div>
+	    <div class="alert alert-danger" ng-show="data.state == 'error'">
+			{{'Error'|translate}}: <br/>
+			<pre>{{data.result|translate}}</pre>
+		</div>
 	</juci-expandable>
 </div>
-
-
 

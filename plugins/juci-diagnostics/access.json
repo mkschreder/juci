@@ -3,6 +3,9 @@
 		"description": "JUCI Diagnostics module",
 		"read": {
 			"ubus": {
+				"juci.utils.speedtest": [
+					"run"
+				],
 				"/juci/diagnostics": [
 					"ping", 
 					"traceroute"
