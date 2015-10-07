@@ -29,12 +29,12 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/stream"
 exports.description = "A port of node.js's stream module for luvit."
 exports.tags = {"luvit", "stream"}
 
-exports.Stream = require('stream/stream_core').Stream
-exports.Writable = require('stream/stream_writable').Writable
-exports.Transform = require('stream/stream_transform').Transform
-exports.Readable = require('stream/stream_readable').Readable
-exports.PassThrough = require('stream/stream_passthrough').PassThrough
-exports.Observable = require('stream/stream_observable').Observable
-exports.Duplex = require('stream/stream_duplex').Duplex
+exports.Stream = require('luv.stream.stream_core').Stream
+exports.Writable = require('luv.stream.stream_writable').Writable
+exports.Transform = require('luv.stream.stream_transform').Transform
+exports.Readable = require('luv.stream.stream_readable').Readable
+exports.PassThrough = require('luv.stream.stream_passthrough').PassThrough
+exports.Observable = require('luv.stream.stream_observable').Observable
+exports.Duplex = require('luv.stream.stream_duplex').Duplex
 
 return exports; 

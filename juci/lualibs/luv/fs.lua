@@ -31,12 +31,12 @@ exports.description = "Node-style filesystem module for luvit"
 exports.tags = {"luvit", "fs", "stream"}
 
 local uv = require('uv')
-local adapt = require('utils').adapt
-local bind = require('utils').bind
-local join = require('path').join
-local Error = require('core').Error
-local Writable = require('stream').Writable
-local Readable = require('stream').Readable
+local adapt = require('luv.utils').adapt
+local bind = require('luv.utils').bind
+local join = require('luv.path').join
+local Error = require('luv.core').Error
+local Writable = require('luv.stream').Writable
+local Readable = require('luv.stream').Readable
 local fs = exports
 
 function fs.close(fd, callback)

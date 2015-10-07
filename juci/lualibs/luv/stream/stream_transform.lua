@@ -62,8 +62,8 @@ limitations under the License.
 
 
 local exports = {}; 
-local Duplex = require('stream/stream_duplex').Duplex
-local core = require('core')
+local Duplex = require('luv.stream.stream_duplex').Duplex
+local core = require('luv.core')
 local Error = core.Error
 
 local Transform = Duplex:extend()

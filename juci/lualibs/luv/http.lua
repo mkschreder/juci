@@ -32,13 +32,13 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/http.lua"
 exports.description = "Node-style http client and server module for luvit"
 exports.tags = {"luvit", "http", "stream"}
 
-local net = require('net')
-local url = require('url')
-local codec = require('http-codec')
-local Writable = require('stream').Writable
+local net = require('luv.net')
+local url = require('luv.url')
+local codec = require('luv.http-codec')
+local Writable = require('luv.stream').Writable
 local date = require('os').date
 --local luvi = require('luvi')
-local utils = require('utils')
+local utils = require('luv.utils')
 
 
 -- Provide a nice case insensitive interface to headers.

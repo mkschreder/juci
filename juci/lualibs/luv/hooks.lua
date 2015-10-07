@@ -32,7 +32,7 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/hooks.lua"
 exports.description = "Core global event hooks for luvit."
 exports.tags = {"luvit", "events", "hooks"}
 
-local Emitter = require('core').Emitter
+local Emitter = require('luv.core').Emitter
 setmetatable(exports, Emitter.meta)
 if exports.init then exports:init() end
 

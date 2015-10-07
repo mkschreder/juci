@@ -23,8 +23,8 @@ limitations under the License.
 --]]
 
 local exports = {}; 
-local Transform = require('stream/stream_transform').Transform
-local Readable = require('stream/stream_readable').Readable
+local Transform = require('luv.stream.stream_transform').Transform
+local Readable = require('luv.stream.stream_readable').Readable
 
 local Observable = Transform:extend()
 

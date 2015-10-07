@@ -34,8 +34,8 @@ exports.tags = {"luvit", "tls"}
 local loaded = pcall(require, 'openssl')
 if not loaded then return end
 
-local _common_tls = require('./common')
-local net = require('net')
+local _common_tls = require('luv.common')
+local net = require('luv.net')
 
 local DEFAULT_CIPHERS = _common_tls.DEFAULT_CIPHERS
 

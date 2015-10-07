@@ -29,8 +29,8 @@ exports.description = "Javascript style setTimeout and setInterval for luvit"
 exports.tags = {"luvit", "timer"}
 
 local uv = require('uv')
-local Object = require('core').Object
-local bind = require('utils').bind
+local Object = require('luv.core').Object
+local bind = require('luv.utils').bind
 
 -------------------------------------------------------------------------------
 

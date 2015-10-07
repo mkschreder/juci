@@ -35,15 +35,15 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/dns.lua"
 exports.description = "Node-style dns module for luvit"
 exports.tags = {"luvit", "dns"}
 
-local dgram = require('dgram')
-local fs = require('fs')
-local net = require('net')
-local timer = require('timer')
-local Error = require('core').Error
-local adapt = require('utils').adapt
+local dgram = require('luv.dgram')
+local fs = require('luv.fs')
+local net = require('luv.net')
+local timer = require('luv.timer')
+local Error = require('luv.core').Error
+local adapt = require('luv.utils').adapt
 
-local bit = require('bit')
-local crypto = require('tls/lcrypto')
+local bit = require('luv.bit')
+local crypto = require('luv.tls.lcrypto')
 local char = string.char
 local byte = string.byte
 local gsub = string.gsub

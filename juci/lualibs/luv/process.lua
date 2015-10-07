@@ -33,15 +33,15 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/process.lua"
 exports.description = "Node-style global process table for luvit"
 exports.tags = {"luvit", "process"}
 
-local hooks = require('hooks')
+local hooks = require('luv.hooks')
 local os = require('os')
-local timer = require('timer')
-local utils = require('utils')
+local timer = require('luv.timer')
+local utils = require('luv.utils')
 local uv = require('uv')
-local Emitter = require('core').Emitter
-local Readable = require('stream/stream_readable').Readable
-local Writable = require('stream/stream_writable').Writable
-local pp = require('pretty-print')
+local Emitter = require('luv.core').Emitter
+local Readable = require('luv.stream.stream_readable').Readable
+local Writable = require('luv.stream.stream_writable').Writable
+local pp = require('luv.pretty-print')
 
 local function nextTick(...)
   timer.setImmediate(...)

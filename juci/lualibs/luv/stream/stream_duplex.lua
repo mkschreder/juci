@@ -18,9 +18,9 @@ limitations under the License.
 
 local exports = {}; 
 
-local utils = require('utils')
-local Readable = require('stream/stream_readable').Readable
-local Writable = require('stream/stream_writable').Writable
+local utils = require('luv.utils')
+local Readable = require('luv.stream.stream_readable').Readable
+local Writable = require('luv.stream.stream_writable').Writable
 
 local Duplex = Readable:extend()
 

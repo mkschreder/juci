@@ -28,10 +28,10 @@ exports.description = "Advanced auto-completing repl for luvit lua."
 exports.tags = {"luvit", "tty", "repl"}
 
 local uv = require('uv')
-local utils = require('utils')
-local pathJoin = require('luvi').path.join
-local Editor = require('readline').Editor
-local History = require('readline').History
+local utils = require('luv.utils')
+local pathJoin = require('luv.luvi').path.join
+local Editor = require('luv.readline').Editor
+local History = require('luv.readline').History
 
 local _builtinLibs = { 'buffer', 'childprocess', 'codec', 'core',
   'dgram', 'dns', 'fs', 'helpful', 'hooks', 'http-codec', 'http',

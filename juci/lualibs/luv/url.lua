@@ -28,7 +28,7 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/url.lua"
 exports.description = "Node-style url codec for luvit"
 exports.tags = {"luvit", "url", "codec"}
 
-local querystring = require('querystring')
+local querystring = require('luv.querystring')
 
 function parse(url, parseQueryString)
 	if not url then return {}; end

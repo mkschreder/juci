@@ -31,12 +31,12 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/net.lua"
 exports.description = "Node-style net client and server module for luvit"
 exports.tags = {"luvit", "tcp", "pipe", "stream"}
 
-local process = require("process"); 
+local process = require("luv.process"); 
 local uv = require('uv')
-local timer = require('timer')
-local utils = require('utils')
-local Emitter = require('core').Emitter
-local Duplex = require('stream/stream_duplex').Duplex
+local timer = require('luv.timer')
+local utils = require('luv.utils')
+local Emitter = require('luv.core').Emitter
+local Duplex = require('luv.stream.stream_duplex').Duplex
 
 --[[ Socket ]]--
 

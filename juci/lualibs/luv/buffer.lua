@@ -28,8 +28,10 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/buffer.lua"
 exports.description = "A mutable buffer using ffi for luvit."
 exports.tags = {"luvit", "buffer"}
 
-local Object = require('core').Object
-local ffi = require('ffi')
+package.path = './luv/?.lua;' .. package.path
+
+local Object = require('luv.core').Object
+local ffi = require('luv.ffi')
 
 
 ffi.cdef([[

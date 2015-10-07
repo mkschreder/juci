@@ -29,8 +29,8 @@ end
 local luvi = require('luvi')
 local bundle = luvi.bundle
 local pathJoin = luvi.path.join
-local env = require('env')
-local os = require('ffi').os
+local env = require('luv.env')
+local os = require('luv.ffi').os
 local uv = require('uv')
 
 local realRequire = _G.require

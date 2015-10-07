@@ -28,9 +28,9 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/utils.lua"
 exports.description = "Wrapper around pretty-print with extra tools for luvit"
 exports.tags = {"luvit", "bind", "adapter"}
 
-local Error = require('core').Error
+local Error = require('luv.core').Error
 
-local pp = require('pretty-print')
+local pp = require('luv.pretty-print')
 for name, value in pairs(pp) do
   exports[name] = value
 end

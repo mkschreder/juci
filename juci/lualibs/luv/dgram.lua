@@ -28,8 +28,8 @@ exports.description = "Node-style udp module for luvit"
 exports.tags = {"luvit", "dgram", "udp"}
 
 local uv = require('uv')
-local Emitter = require('core').Emitter
-local timer = require('timer')
+local Emitter = require('luv.core').Emitter
+local timer = require('luv.timer')
 
 local function start_listening(self)
   uv.udp_recv_start(self._handle, function(err, msg, rinfo, flags)

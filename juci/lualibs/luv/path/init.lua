@@ -29,8 +29,8 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/path"
 exports.description = "A port of node.js's path module for luvit."
 exports.tags = {"luvit", "path"}
 
-local los = require('los')
-local path_base = require('path/base')
+local los = require('luv.los')
+local path_base = require('luv.path.base')
 
 local function setup_meta(ospath)
   local path = exports

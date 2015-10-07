@@ -18,12 +18,12 @@ limitations under the License.
 
 local exports = {}; 
 
-local Object = require('core').Object
-local Error = require('core').Error
-local net = require('net')
+local Object = require('luv.core').Object
+local Error = require('luv.core').Error
+local net = require('luv.net')
 local openssl = require('openssl')
-local timer = require('timer')
-local utils = require('utils')
+local timer = require('luv.timer')
+local utils = require('luv.utils')
 local uv = require('uv')
 
 

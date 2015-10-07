@@ -18,7 +18,7 @@ limitations under the License.
 
 local exports = {}; 
 
-local Object = require('core').Object
+local Object = require('luv.core').Object
 
 local Path = Object:extend()
 

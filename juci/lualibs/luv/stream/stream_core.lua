@@ -17,7 +17,7 @@ limitations under the License.
 --]]
 
 local exports = {}; 
-local core = require('core')
+local core = require('luv.core')
 
 
 local Stream = core.Emitter:extend()

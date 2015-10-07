@@ -28,9 +28,9 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/childprocess
 exports.description = "A port of node.js's childprocess module for luvit."
 exports.tags = {"luvit", "spawn", "process"}
 
-local core = require('core')
-local net = require('net')
-local timer = require('timer')
+local core = require('luv.core')
+local net = require('luv.net')
+local timer = require('luv.timer')
 local uv = require('uv')
 
 local Error = core.Error

@@ -17,8 +17,8 @@ limitations under the License.
 --]]
 
 local exports = {}; 
-local core = require('core')
-local Stream = require('stream/stream_core').Stream
+local core = require('luv.core')
+local Stream = require('luv.stream.stream_core').Stream
 local Error = core.Error
 
 local onwrite, writeAfterEnd, validChunk, writeOrBuffer, clearBuffer,

@@ -29,8 +29,8 @@ exports.homepage = "https://github.com/luvit/luvit/blob/master/deps/https.lua"
 exports.description = "Node-style https client and server module for luvit"
 exports.tags = {"luvit", "https", "stream"}
 
-local tls = require('tls')
-local http = require('http')
+local tls = require('luv.tls')
+local http = require('luv.http')
 
 function exports.createServer(options, onRequest)
   return tls.createServer(options, function (socket)
