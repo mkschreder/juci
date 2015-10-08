@@ -21,7 +21,7 @@ define Plugin/Default
 	STYLES-y:=
 endef 
 
-define BuildDir 
+define BuildDir-y 
 	$(eval $(call Plugin/Default))
 	$(eval CODE_LOAD:=50) # same as LOAD, LOAD is deprecated
 	$(eval TPL_LOAD:=90)
@@ -61,59 +61,9 @@ $(1)-install:
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/access.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/access.json $(BIN)/usr/share/rpcd/acl.d/$(1).json; fi
 endef
 
-define plugin 
-ifeq ($(CONFIG_PACKAGE_$(1)),y) 
-	$(eval $(call BuildDir,$(1),plugins))
-endif
-endef
-
-define service 
-ifeq ($(CONFIG_PACKAGE_$(1)),y) 
-	$(eval $(call BuildDir,$(1),services))
-endif
-endef
-
-define theme 
-ifeq ($(CONFIG_PACKAGE_$(1)),y) 
-	$(eval $(call BuildDir,$(1),themes))
-endif
-endef
-
-define prval
-name:=CONFIG_PACKAGE_$(1); 
-@echo "VALUE: $(1): $(CONFIG_PACKAGE_$(1))"; 
-endef
-
-$(eval $(call BuildDir,juci,./))
-$(eval $(call plugin,juci-asterisk)); 
-$(eval $(call plugin,juci-broadcom-wl));
-$(eval $(call plugin,juci-broadcom-dsl));
-$(eval $(call plugin,juci-broadcom-vlan));
-$(eval $(call plugin,juci-broadcom-ethernet));
-$(eval $(call plugin,juci-network-netifd));
-$(eval $(call plugin,juci-firewall-fw3));
-$(eval $(call plugin,juci-dnsmasq-dhcp));
-$(eval $(call plugin,juci-minidlna));
-$(eval $(call plugin,juci-samba));
-$(eval $(call plugin,juci-event));
-$(eval $(call plugin,juci-ddns));
-$(eval $(call plugin,juci-dropbear));
-$(eval $(call plugin,juci-diagnostics));
-$(eval $(call plugin,juci-inteno-router));
-$(eval $(call plugin,juci-upnp));
-$(eval $(call plugin,juci-usb));
-$(eval $(call plugin,juci-utils));
-$(eval $(call plugin,juci-macdb));
-$(eval $(call plugin,juci-igmpinfo));
-$(eval $(call plugin,juci-mod-system));
-$(eval $(call plugin,juci-sysupgrade));
-$(eval $(call plugin,juci-mod-status));
-$(eval $(call plugin,juci-jquery-console));
-$(eval $(call plugin,juci-netmode));
-$(eval $(call plugin,juci-natalie-dect));
-$(eval $(call plugin,juci-ethernet)); 
-$(eval $(call theme,juci-theme-inteno));
-
+$(eval $(call BuildDir-y,juci,./))
+$(foreach th,$(wildcard plugins/*),$(eval $(call BuildDir-$(CONFIG_PACKAGE_$(notdir $(th))),$(notdir $(th)),./plugins)))
+$(foreach th,$(wildcard themes/*),$(eval $(call BuildDir-$(CONFIG_PACKAGE_$(notdir $(th))),$(notdir $(th)),./themes)))
 
 UBUS_MODS:= backend/igmpinfo
 
