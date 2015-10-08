@@ -47,7 +47,7 @@ JUCI.app
 	}); 
 	
 })
-.controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext){
+.controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext, $juciDialog){
 	$scope.wireless = {
 		clients: []
 	}; 
@@ -67,7 +67,20 @@ JUCI.app
 			refresh(); 
 		}); 
 	}
-	
+
+	$scope.onEditSSID = function(iface){
+		$juciDialog.show("uci-wireless-interface", {
+			title: $tr(gettext("Edit wireless interface")),  
+			on_apply: function(btn, dlg){
+				$uci.$save();
+				return true; 
+			}, 
+			model: iface.uci_dev
+		}).done(function(){
+		
+		}); 
+	}
+
 	function refresh() {
 		$scope.wifiSchedStatus = gettext("off"); 
 		$scope.wifiWPSStatus = gettext("off"); 
@@ -76,7 +89,13 @@ JUCI.app
 				$uci.$sync("wireless").done(function(){
 					$rpc.juci.broadcom.wireless.devices().done(function(result){
 						$scope.wifi = $uci.wireless;  
-						$scope.vifs = result.devices; //$uci.wireless["@wifi-iface"]; 
+						$scope.vifs = result.devices.map(function(dev){
+							var uci_dev = $uci.wireless["@wifi-iface"].find(function(w){
+								return w.device.value == dev.device; 
+							}); 
+							dev.uci_dev = uci_dev; 
+							return dev; 
+						}); //$uci.wireless["@wifi-iface"]; 
 						if($uci.wireless && $uci.wireless.status) {
 							$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
 							$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 

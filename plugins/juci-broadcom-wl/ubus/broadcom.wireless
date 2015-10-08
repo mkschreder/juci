@@ -65,6 +65,7 @@ wireless_devices(){
 		}');
 		
 		json_add_object
+		json_add_string "device" "$wdev"; 
 		for field in $DATA; do 
 			type=${field%%|*}
 			nv=${field##*|}
