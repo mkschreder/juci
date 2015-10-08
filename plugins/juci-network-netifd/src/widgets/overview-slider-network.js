@@ -417,8 +417,8 @@ JUCI.app
 							clients.filter(function(x){ return x.device == iface.l3_device; }).map(function(cl){
 								// add client to the node list
 								var cl_node = {
-									id: iface_name+"."+cl.ipaddr, 
-									label: cl.ipaddr, 
+									id: iface_name+"."+(cl.ipaddr || cl.ip6addr), 
+									label: (cl.ipaddr || cl.ip6addr) || cl.hostname, 
 									image: "/img/net-laptop-icon.png", 
 									shape: "image",
 									x: node.x * (2 + Math.floor(count / 10)), 

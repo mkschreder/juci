@@ -1,6 +1,6 @@
 <div style="position:relative;">
 	<div class="col-xs-2"><i class="fa fa-laptop fa-2x"></i></div>
-	<div class="col-xs-8">{{client.hostname}}<br ng-show="client.hostname"/>{{client.ipaddr}}</div>
+	<div class="col-xs-8">{{client.hostname}}<br ng-show="client.hostname"/>{{client.ipaddr}}<br ng-show="client.ip6addr"/>{{client.ip6addr}}</div>
 	<div class="col-xs-2" style="color: #a9b400;">
 		<wifi-signal-indicator ng-model="client._wireless.snr"></wifi-signal-indicator>
 	</div>
