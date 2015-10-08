@@ -20,6 +20,6 @@ elif [ "$receive" == "0" || "$sent" == "0" ]; then
 	SUCCESS=-2;
 	lable="wrong port";
 fi
-ubus send juci.utils.speedtest '{"status":'$SUCCESS', "upstream":"'$sent'","downstream":"'$received'","lable":"'$lable'"}'
+ubus send juci.utils.speedtest "{\"status\":$SUCCESS, \"upstream\":\"$sent\",\"downstream\":\"$received\",\"lable\":\"$lable\"}"
 
 
