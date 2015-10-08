@@ -86,6 +86,7 @@ prepare:
 	@echo "======= JUCI CONFIG ========="
 	@echo "TARGETS: $(TARGETS)"
 	@echo "BACKEND: $(UBUS_MODS)"
+	@./bootstrap.sh
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
 	@mkdir -p $(BIN)/usr/share/lua/
