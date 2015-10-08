@@ -15,7 +15,7 @@ JUCI.app
 }).controller("wifiSignalIndicator", function($scope, $uci, $rpc){
 	$scope.bars = [false, false, false, false]; 
 	$scope.$watch("value", function(value){
-		var q = value / 5; 
+		var q = value / 20; 
 		$scope.bars[0] = $scope.bars[1] = $scope.bars[2] = $scope.bars[3] = false; 
 		if(q > 1) $scope.bars[0] = true; 
 		if(q > 2) $scope.bars[1] = true; 

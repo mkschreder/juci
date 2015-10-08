@@ -81,8 +81,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		$rpc.juci.broadcom.wireless.clients().done(function(clients){
 			if(clients && clients.clients) {
 				clients.clients.map(function(cl){
-					// calculate signal strength
-					cl.snr = cl.rssi - cl.noise; 
+					cl.snr = Math.floor(1 - (cl.rssi / cl.noise)); 
 				}); 
 				def.resolve(clients.clients); 
 			}
