@@ -65,32 +65,55 @@ Building compiled and gzipped htdocs:
 	
 	make 
 
+Note: the make process will try to install missing dependencies and automatically link /usr/bin/node to /usr/bin/nodejs for compatibility. For this, you may be prompted for your sudo password. This will only be done once. 
+
 Building uncompressed htdocs (for use with local server - the local server script runs this automatically at intervals): 
 	
 	make debug
 
-To run local server for testing the gui: 
+To run local server for testing new gui elements during development: 
 
-	sudo apt-get install nodejs npm uglifyjs yui-compressor 
-
-In the main folder run: 
-
-	npm install
+	./juci-local-server --host <your router ip with juci installed>
 	
-This will install all nodejs dependencies. 
+	now go to http://localhost:3000/ to see the local gui. 
 
-If you want to auto generate language "po" files, install grunt command line tool: 
+	when you make changes in code, run make debug again and reload the local page. 
 
-	sudo npm install -g grunt-cli
-	
-No you can run the server using: 
-	
-	./juci-local-server
-	
-You may need to use 'nodejs' command instead of 'node' depending on your distro. 
+Common Issues
+------------
+
+* I visit the home page and can not see anything. The homepage is blank. 
+
+	Solution: open up your browser console and see if you have some error printed there.
+
+* Juci fails to start. Says juci.ui.menu ubus call is missing. 
+
+	Solution: make sure ubus-scriptd is running on the router. And make sure it loads all scripts without errors. To check, do /etc/init.d/ubus-scriptd stop and then just run ubus-scriptd. It will print a trace. Now cancel it with ctrl+c and once you fix the errors restart it using /etc/init.d/ubus-scriptd start. Then make sure the necessary call is present in output of "ubus list"
+
+* I get to login page but can not login. What is the password? 
+
+	Solution: the login user is set in /etc/config/rpcd. Password is the unix password for that user - which you can change using passwd <username>. 
+
+* I can login but get a big fat error box with a lot of text mentioning angular. 
+
+	Solution: this means that some module completely failed to initialize or that you have syntax error somewhere or that you have duplicate controller names or anything else that will cause an exception in angular. Usually the first thing to do is check browser console for any messages before the error. Then check the cryptic anuglar message mentioned in the error to get a clue on what to do next.
+
+* My page xyz can not access ubus. I get "Access Denied" in browser console. 
+
+	Solution: check that you have proper acl permissions configured in your access.json file in your plugin (if it is not there then create it - use existing plugins to see how). Then copy this file to your router and restart rpcd (/etc/init.d/rpcd restart). Then it should work. 
+
+* My build process just hangs at line that contains "npm"
+
+	Solution: build process needs connection to the internet to download necessary dependencies for some build scripts. If it is not possible then programs like "npm" may block indefinetely. 
+
+* Compilation fails at "Compiling css/..juci.css.."
+
+	Solution: this happens when yui-compressor (css minifier (which is written in java)) runs out of memory. This file tends to get large, and minifier needs more memory. Make sure your java VM is configured to use larger stack size. 
 
 Unit testing
 ------------
+
+NOTE: unit testing is no longer supported for now since sep 2015! But old files are still there. 
 
 Unit testing is done using grunt task "test". You can invoke this task using command: 
 
