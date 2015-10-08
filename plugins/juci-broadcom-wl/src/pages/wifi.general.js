@@ -5,5 +5,6 @@ JUCI.app
 	$uci.$sync("wireless").done(function(){
 		$scope.status = $uci.wireless.status; 
 		$scope.router = $router; 
+		$scope.$apply(); 
 	}); 
 }); 
