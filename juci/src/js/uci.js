@@ -439,7 +439,7 @@
 			conf_type[name] = descriptor; 
 			this["@"+name] = []; 
 			if(validator !== undefined && validator instanceof Function) conf_type[name][".validator"] = validator; 
-			console.log("Registered new section type "+config+"."+name); 
+			//console.log("Registered new section type "+config+"."+name); 
 		}
 		
 		UCIConfig.prototype.$deleteSection = function(section){

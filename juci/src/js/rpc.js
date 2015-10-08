@@ -221,7 +221,7 @@
 			return deferred.promise(); 
 		},
 		$register: function(object, method){
-			console.log("registering: "+object+", method: "+method); 
+			// console.log("registering: "+object+", method: "+method); 
 			if(!object || !method) return; 
 			var self = this; 
 			function _find(path, method, obj){
