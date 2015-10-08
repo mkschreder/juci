@@ -1,8 +1,7 @@
 #!/usr/bin/lua
 
 local juci = require("juci/core"); 
-local uv = require("uv"); 
-local fs = require("fs"); 
+local fs = require("luv.fs"); 
 require("ubus")
 
 function netmode_current(params)

@@ -1,7 +1,7 @@
 #!/usr/bin/lua 
 
 local juci = require("juci/core"); 
-local fs = require("fs"); 
+local fs = require("luv.fs"); 
 require("ubus"); 
 local json = require("juci/json"); 
 
