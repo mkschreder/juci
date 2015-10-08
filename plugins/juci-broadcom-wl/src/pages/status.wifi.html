@@ -3,20 +3,23 @@
 		<juci-config-heading>{{ 'WiFi Status' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'status.wifi.info' | translate }}</juci-config-info>
 		<i class="fa fa-spinner fa-spin" ng-hide="access_points"></i>
+		<wireless-aps-graph ng-model="access_points"></wireless-aps-graph>
 		<table class="table" ng-show="access_points">
 			<thead>
-				<th translate>SSID</th>
-				<th translate>Frequency</th>
-				<th translate>Channel</th>
-				<th translate>RSSI</th>
-				<th translate>Cipher</th>
-				<th translate>WPS</th>
+				<th><a href="" ng-click="order('ssid')" translate>SSID</a></th>
+				<th><a href="" ng-click="order('frequency')" translate>Frequency</a></th>
+				<th><a href="" ng-click="order('channel')" translate>Channel</a></th>
+				<th><a href="" ng-click="order('rssi')" translate>RSSI</a></th>
+				<th><a href="" ng-click="order('noise')" translate>Noise</a></th>
+				<th><a href="" ng-click="order('cipher')" translate>Cipher</a></th>
+				<th><a href="" ng-click="order('wps_version')" translate>WPS</a></th>
 			</thead>
-			<tr ng-repeat="ap in access_points">
+			<tr ng-repeat="ap in access_points | orderBy:predicate:reverse">
 				<td>{{ap.ssid}}</td>
 				<td>{{ap.frequency}}</td>
 				<td>{{ap.channel}}</td>
 				<td>{{ap.rssi}}</td>
+				<td>{{ap.noise}}</td>
 				<td>{{ap.cipher}}</td>
 				<td>{{ap.wps_version}}</td>
 			</tr>

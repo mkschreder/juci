@@ -2,6 +2,11 @@
 
 JUCI.app
 .controller("WifiStatusPage", function($scope, $uci, $wireless, gettext){
+	$scope.order = function(pred){
+		$scope.predicate = pred; 
+		$scope.reverse = ($scope.predicate === pred) ? !$scope.reverse : false;
+	}
+
 	JUCI.interval.repeat("wifi-status", 8000, function(done){
 		$wireless.scan(); 
 		setTimeout(function(){
