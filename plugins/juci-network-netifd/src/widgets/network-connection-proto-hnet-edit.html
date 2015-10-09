@@ -1,0 +1,15 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Mode'|translate}}">
+			<juci-select ng-model="interface.device.value" ng-items="allHnetModes"/>
+		</juci-config-line>
+		<juci-config-line title="{{'IPv6 Assign'|translate}}">
+			<input class="form-control" ng-model="interface.ip6assign.value" placeholder="{{'Prefix Size'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'IPv4 Assign'|translate}}">
+			<input class="form-control" ng-model="interface.ip4assign.value" placeholder="{{'Prefix Size'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'DNS Name'|translate}}">
+			<input class="form-control" ng-model="interface.dnsname.value" placeholder="{{'DNS Name'|translate}}"></input>
+		</juci-config-line>
+</div>

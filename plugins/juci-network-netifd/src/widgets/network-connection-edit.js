@@ -1,9 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("networkConnectionEdit", function($compile, $parse){
-	var plugin_root = $juci.module("internet").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/network-connection-edit.html", 
+		templateUrl: "/widgets/network-connection-edit.html", 
 		scope: {
 			conn: "=ngModel"
 		}, 

@@ -1,9 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("networkConnectionProtoDhcpEdit", function($compile, $parse){
-	var plugin_root = $juci.module("internet").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/network-connection-proto-dhcp-edit.html", 
+		templateUrl: "/widgets/network-connection-proto-dhcp-edit.html", 
 		scope: {
 			interface: "=ngModel"
 		}, 

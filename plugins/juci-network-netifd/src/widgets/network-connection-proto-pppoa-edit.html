@@ -1,0 +1,13 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'VCI'|translate}}">
+			<input type="text" class="form-control" ng-model="interface.vci.value" placeholder="{{'PPPoA VCI'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'VPI'|translate}}">
+			<input type="text" class="form-control" ng-model="interface.vci.value" placeholder="{{'PPPoA VPI'|translate}}"/>
+		</juci-config-line>
+	</juci-config-lines>
+	<juci-config-section>
+		<network-connection-dns-config ng-model="interface"/>
+	</juci-config-section>
+</div>

@@ -1,0 +1,19 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Device'|translate}}">
+			<juci-select ng-model="interface.device.value" ng-items="allQmiDevices"/>
+		</juci-config-line>
+		<juci-config-line title="{{'APN'|translate}}">
+			<input class="form-control" ng-model="interface.apn.value" placeholder="{{'APN'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'PIN-code'|translate}}">
+			<input class="form-control" ng-model="interface.pincode.value" placeholder="{{'PIN-code'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'Username'|translate}}">
+			<input class="form-control" ng-model="interface.username.value" placeholder="{{'Username'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'Password'|translate}}">
+			<input class="form-control" ng-model="interface.password.value" placeholder="{{'Password'|translate}}"></input>
+		</juci-config-line>
+	</juci-config-lines>
+</div>

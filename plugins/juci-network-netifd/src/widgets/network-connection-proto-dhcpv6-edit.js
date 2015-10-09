@@ -1,9 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("networkConnectionProtoDhcpv6Edit", function($compile, $parse){
-	var plugin_root = $juci.module("internet").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/network-connection-proto-dhcpv6-edit.html", 
+		templateUrl: "/widgets/network-connection-proto-dhcpv6-edit.html", 
 		scope: {
 			interface: "=ngModel"
 		}, 
@@ -12,6 +11,15 @@ JUCI.app
 		require: "^ngModel"
 	 };  
 })
-.controller("networkConnectionProtoDhcpv6Edit", function($scope, $uci, $network, $rpc, $log, gettext){
-	
+.controller("networkConnectionProtoDhcpv6Edit", function($scope, $uci, $network, $rpc, $log, $tr, gettext){
+	$scope.allReqAddrTypes = [
+		{ label: $tr(gettext("Try")), value: "try" }, 
+		{ label: $tr(gettext("Force")), value: "try" }, 
+		{ label: $tr(gettext("None")), value: "try" }
+	]; 
+	$scope.allPrefixReqTypes = [
+		{ label: $tr(gettext("Auto")), value: "auto" }, 
+		{ label: $tr(gettext("No")), value: "no" }
+	]; 
+	for(var i = 0; i < 65; i++) $scope.allPrefixReqTypes.push({ label: ""+i, value: i }); 
 }); 
