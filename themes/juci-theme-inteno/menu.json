@@ -1,0 +1,353 @@
+{
+	"overview": {
+		"page": "overview", 
+		"title": "Overview",
+	},
+	"phone": {
+		"title": "Phone", 
+		"redirect": "phone/call_log", 
+		"acls": [ "juci-asterisk"  ],
+	}, 
+	"phone/call_log": {
+		"page": "phone-call-log", 
+		"title": "Call Log",
+		"acls": [ "juci-asterisk"  ]
+	},
+	"phone/number_blocking": {
+		"page": "phone-number-blocking", 
+		"title": "Number Blocking",
+		"modes": [ "expert" ], 
+		"acls": [ "juci-asterisk"  ]
+	},
+	"phone/ringing_schedule": {
+		"page": "phone-ringing-schedule"
+		"title": "Ringing Schedule",
+		"acls": [ "juci-asterisk"  ],
+		"modes": [ "expert" ] 
+	},
+	"phone/numbers": {
+		"page": "phone-numbers", 
+		"title": "SIP Accounts",
+		"acls": [ "juci-asterisk"  ],
+		"modes": [ "expert" ] 
+	},
+	"phone/lines": {
+		"page": "phone-lines", 
+		"title": "Phone Lines",
+		"acls": [ "juci-asterisk"  ],
+		"modes": [ "expert" ], 
+		"acls": [  ]
+	},
+	"phone/speed_dialing": {
+		"page": "phone-speed-dialing", 
+		"title": "Speed Dialing", 
+		"acls": [ "juci-asterisk"  ],
+		"modes": [ "expert" ] 
+	},
+	"phone/dect": {
+		"page": "phone-dect", 
+		"title": "DECT", 
+		"acls": [ "juci-natalie-dect" ]
+	},
+	"internet": {
+		"page": "internet", 
+		"title": "Network",
+		"redirect": "internet/ethernet" 
+	},
+	"internet/ethernet": {
+		"page": "internet-ethernet", 
+		"title": "Devices",
+		"acls": [ "juci-network-netifd" ]
+	},
+	"internet/ethernet/phy": {
+		"page": "internet-ethernet-phy", 
+		"title": "Ethernet",
+		"acls": [ "juci-broadcom-ethernet" ]
+	},
+	"internet/ethernet/adsl": {
+		"page": "internet-ethernet-adsl", 
+		"title": "ADSL", 
+		"acls": [ "juci-broadcom-dsl" ] 
+	}, 
+	"internet/ethernet/vdsl": {
+		"page": "internet-ethernet-vdsl", 
+		"title": "VDSL", 
+		"acls": [ "juci-broadcom-dsl" ] 
+	}, 
+	"internet/ethernet/wifi": {
+		"page": "internet-ethernet-wifi", 
+		"title": "Wireless", 
+		"acls": [ "juci-broadcom-wl" ]
+	},
+	"internet/ethernet/vlan": {
+		"page": "internet-ethernet-vlan", 
+		"title": "VLAN",
+		"acls": [ "juci-broadcom-vlan" ]
+	},	
+	"internet/network": {
+		"page": "internet-network", 
+		"title": "Connections",
+		"acls": [ "juci-network-netifd" ]
+	},
+	"internet/routes": {
+		"page": "internet-routes", 
+		"title": "Routes", 
+		"acls": [ "juci-network-netifd" ] 
+	}, 
+	"internet/firewall": {
+		"page": "internet-firewall", 
+		"title": "Firewall",
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/zones": {
+		"page": "internet-firewall-zones", 
+		"title": "Zones",
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/rules": {
+		"page": "internet-firewall-rules", 
+		"title": "Rules",
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/forwarding": {
+		"page": "internet-firewall-forwarding", 
+		"title": "Forwarding",
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/urlblock": {
+		"page": "internet-firewall-urlblock", 
+		"title": "URL Filter",
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/wordfilter": {
+		"page": "internet-firewall-wordfilter", 
+		"title": "Keyword Filter",
+		"files": [ "/foobar/notexist" ], 
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/svcfilter": {
+		"page": "internet-firewall-svcfilter", 
+		"title": "Service Filter",
+		"files": [ "/foobar/notexist" ], 
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/port_mapping": {
+		"page" "internet-firewall-port-mapping", 
+		"title": "Port Mapping",
+		"modes": [ "expert" ], 
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/firewall/services": {
+		"page": "internet-firewall-services", 
+		"title": "Services", 
+		"acls": [ "juci-firewall-fw3" ] 
+	}, 
+	"internet/firewall/dmz": {
+		"page": "internet-firewall-dmz", 
+		"title": "DMZ",
+		"modes": [ "expert" ], 
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/parental_control": {
+		"page": "internet-parental_control", 
+		"title": "Parental Control",
+		"acls": [ "juci-firewall-fw3" ]
+	},
+	"internet/multiwan": {
+		"page": "internet-multiwan", 
+		"title": "MultiWAN",
+		"acls": [ "juci-multiwan" ]
+	},
+	"internet/services/minidlna": {
+		"page": "internet-services-minidlna", 
+		"title": "MiniDLNA",
+		"acls": [ "juci-minidlna" ]
+	},
+	"internet/services": {
+		"page": "internet-services", 
+		"title": "Services",
+		"acls": [ "juci-network-netifd" ]
+	},
+	"internet/services/ntp": {
+		"page": "internet-services-ntp", 
+		"title": "NTP",  
+		"acls": [ "juci-mod-system" ] 
+	},
+	"internet/services/upnp": {
+		"page": "internet-services-upnp", 
+		"title": "UPnP",
+		"acls": [ "juci-upnp" ]
+	},
+	"internet/services/ddns": {
+		"page": "internet-services-ddns", 
+		"title": "DDNS",
+		"acls": [ "juci-ddns" ]
+	},	
+	"internet/services/samba": {
+		"page": "internet-services-samba", 
+		"title": "Samba", 
+		"acls": [ "juci-samba" ]
+	},
+	"wifi": {
+		"title": "WiFi",
+		"files": [ "/etc/config/wireless" ], 
+		"redirect": "wifi/general" 
+	},
+	"wifi/general": {
+		"page": "wifi-general", 
+		"title": "General",
+		"files": [ "/etc/config/wireless" ] 
+	},
+	"wifi/general/devices": {
+		"page": "wifi-general-devices", 
+		"title": "Radios",
+		"files": [ "/etc/config/wireless" ] 
+	},
+	"wifi/general/interfaces": {
+		"page": "wifi-general-interfaces", 
+		"title": "Interfaces",
+		"files": [ "/etc/config/wireless" ] 
+	},
+	"wifi/general/clients": {
+		"page": "wifi-general-clients", 
+		"title": "Clients",
+		"files": [ "/etc/config/wireless" ] 
+	},
+	"wifi/schedule": {
+		"page": "wifi-schedule", 
+		"title": "Schedule",
+		"files": [ "/etc/config/wireless" ] 
+	},
+	"wifi/wps": {
+		"page": "wifi-wps", 
+		"title": "WPS",
+		"files": [ "/etc/config/wireless" ] 
+	},
+	"wifi/mac_filter": {
+		"page": "wifi-mac-filter", 
+		"title": "MAC filter",
+		"files": [ "/etc/config/wireless" ], 
+		"modes": [ "expert" ] 
+	},
+	"wifi/client": {
+		"page": "wifi-client", 
+		"title": "WiFi Client",
+		"acls": [ "juci-broadcom-wl" ] 
+	}, 
+	"settings": {
+		"title": "System",
+		"redirect": "settings/system" 
+	},
+	"settings/system": {
+		"page": "settings-system", 
+		"title": "General", 
+		"acls": [ "juci-mod-system" ]
+	}, 
+	"settings/password": {
+		"page": "settings-password", 
+		"title": "Router Password",
+		"acls": [ "juci-mod-system" ]
+	},
+	"settings/upgrade": {
+		"page": "settings-upgrade", 
+		"title": "Firmware Upgrade",
+		"acls": [ "juci-sysupgrade" ]
+	},
+	"settings/upgrade/options": {
+		"page": "settings-upgrade-options", 
+		"title": "Options",
+		"acls": [ "juci-sysupgrade" ]
+	},
+	"settings/configuration": {
+		"page": "settings-configuration", 
+		"title": "Backup",
+		"acls": [ "juci-mod-system" ]
+	},
+	"settings/management": {
+		"page": "settings-management", 
+		"title": "Management", 
+		"acls": [ "juci-mod-system" ] 
+	},
+	"settings/management/dropbear": {
+		"page": "settings-management-dropbear", 
+		"title": "SSH",
+		"acls": [ "juci-dropbear" ]
+	},
+	"settings/services": {
+		"page": "settings-services", 
+		"title": "Services",
+		"acls": [ "juci-mod-system" ]
+	},
+	"status": {
+		"title": "Status",
+		"redirect": "status/system" 
+	},
+	"status/system": {
+		"page": "status-system", 
+		"title": "System",  
+		"acls": [ "juci-mod-system" ] 
+	},
+	"status/system/processes": {
+		"page": "status-system-process", 
+		"title": "Processes",  
+		"acls": [ "juci-mod-system" ] 
+	},
+	"status/tv": {
+		"page": "status-tv", 
+		"title": "IPTV", 
+		"acls": [ "juci-igmpsnoop" ] 
+	},
+	"status/wifi": {
+		"page": "status-wifi", 
+		"title": "Wireless", 
+		"acls": [ "juci-broadcom-wl" ]
+	},
+	"status/dsl": {
+		"page": "status-dsl", 
+		"title": "DSL",
+		"acls": [ "juci-broadcom-dsl" ]
+	},
+	"status/usb": {
+		"page": "status-usb", 
+		"title": "USB",
+		"acls": [ "juci-usb" ] 
+	},
+	"status/network": {
+		"page": "status-network", 
+		"title": "Network", 
+		"acls": [ "juci-network-netifd" ] 
+	},
+	"status/network/routes": {
+		"page": "status-network-routes", 
+		"title": "Routes", 
+		"acls": [ "juci-network-netifd" ] 
+	},
+	"status/network/nat": {
+		"page": "status-network-nat", 
+		"title": "NAT", 
+		"acls": [ "juci-network-netifd" ] 
+	},
+	"status/diagnostics": {
+		"page": "status-diagnostics", 
+		"title": "Diagnostics",
+		"acls": [ "juci-diagnostics" ]
+	},
+	"status/phone": {
+		"page": "status-phone", 
+		"title": "Phone",
+		"acls": [ "juci-asterisk" ]
+	},
+	"status/events": {
+		"page": "status-events", 
+		"title": "Events",
+		"modes": [ "expert" ] 
+	}, 
+	"status/restart": {
+		"page": "status-restart", 
+		"title": "Restart"
+	},
+	"status/about": {
+		"page": "status-about", 
+		"title": "About" 
+	}
+}

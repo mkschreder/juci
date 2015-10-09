@@ -1,7 +1,0 @@
-{
-	"internet/services/upnp": {
-		"title": "UPnP",
-		"acls": [ "juci-upnp" ],
-		"index": 20
-	}
-}

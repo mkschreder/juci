@@ -1,7 +1,0 @@
-{
-	"status/tv": {
-		"title": "IPTV", 
-		"acls": [ "juci-igmpsnoop" ], 
-		"index": 8
-	}
-}

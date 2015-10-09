@@ -1,7 +1,0 @@
-{
-	"internet/services/ddns": {
-			"title": "DDNS",
-			"acls": [ "juci-ddns" ],
-			"index": 40
-	}
-}

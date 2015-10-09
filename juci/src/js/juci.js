@@ -145,7 +145,7 @@
 							//console.log("MENU: "+path); 
 							var obj = {
 								path: path, 
-								href: path.replace(/\//g, "-").replace(/_/g, "-"), 
+								href: menu.page || path.replace(/\//g, "-").replace(/_/g, "-"), 
 								modes: data.menu[key].modes || [ ], 
 								text: data.menu[key].title, 
 								index: data.menu[key].index || 0
