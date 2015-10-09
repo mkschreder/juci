@@ -1,6 +1,7 @@
 CONFIG_PACKAGE_juci=y
 CONFIG_PACKAGE_juci-ethernet=y
 CONFIG_PACKAGE_juci-asterisk=y
+CONFIG_PACKAGE_juci-dropbear=y
 CONFIG_PACKAGE_juci-broadcom-wl=y
 CONFIG_PACKAGE_juci-broadcom-dsl=y
 CONFIG_PACKAGE_juci-broadcom-vlan=y
