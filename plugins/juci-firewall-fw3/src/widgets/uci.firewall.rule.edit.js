@@ -2,7 +2,7 @@
 JUCI.app
 .directive("uciFirewallRuleEdit", function($compile, $parse){
 	return {
-		templateUrl: plugin_root+"/widgets/uci.firewall.rule.edit.html", 
+		templateUrl: "/widgets/uci.firewall.rule.edit.html", 
 		scope: {
 			ngModel: "=ngModel"
 		}, 

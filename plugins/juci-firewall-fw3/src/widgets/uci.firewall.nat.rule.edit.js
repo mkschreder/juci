@@ -1,9 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("uciFirewallNatRuleEdit", function($compile, $parse){
-	var plugin_root = $juci.module("internet").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/uci.firewall.nat.rule.edit.html", 
+		templateUrl: "/widgets/uci.firewall.nat.rule.edit.html", 
 		scope: {
 			ngModel: "=ngModel"
 		}, 
