@@ -1,27 +1,40 @@
 #!/bin/bash	
 
-if [ ! -f "/usr/share/juci/.bootstrapped" ]; then 
-	if [ "$(whoami)" != "root" ]; then 
-		echo "JUCI needs to install build dependencies. You will now be prompted for your root password."
-		echo "( this will only be done once on each build machine )"
-		read -p "Do you want to continue (y/n): " ans; 
-		if [ "$ans" != "y" ]; then exit 0; fi
-	fi
-	sudo apt-get install npm nodejs yui-compressor 
-	npm install
-	sudo npm install -g grunt-cli
-	sudo npm install -g mocha 
-	sudo npm install -g bower 
-	sudo npm install -g uglify-js
-	sudo mkdir -p /usr/share/juci/
-	sudo touch /usr/share/juci/.bootstrapped
+function perr() {
+	echo -e "\e[31;40m$1\e[m"; 
+}
 
-	if [ "$(which node)" == "" ]; then 
-		NODEJS=$(which nodejs)
-		if [ "$NODEJS" == "" ]; then 
-			sudo apt-get install nodejs
-		fi
-		ln -s "$NODEJS" "/usr/bin/node"
+if [ "$(which npm)" == "" ]; then 
+	perr "!!! node npm utility is missing. Please install package 'npm' on your distribution"; 
+	ERR=1
+fi 
+
+if [ "$(which yui-compressor)" == "" ]; then
+	perr "!!! yui-compressor is missing. Please install package yui-compressor."; 
+	ERR=1
+fi 
+
+if [ "$(which node)" == "" ]; then 
+	perr "!!! node js is missing or there is no symplink from /usr/bin/node to /usr/bin/nodejs"; 
+	perr "!!! if you have issues then do ln -s /usr/bin/nodejs /usr/bin/node"; 
+fi
+
+if [ "$(which grunt)" == "" ]; then 
+	perr "!!! grunt command line program is missing. Please install it using npm install -g grunt-cli"
+	ERR=1; 
+fi 
+
+if [ "$(which uglifyjs)" == "" ]; then 
+	perr "!!! uglify-js is missing. Please install it using npm install -g uglify-js"
+	ERR=1
+fi 
+
+if [ "$ERR" == "1" ]; then 
+	if [ "$(whoami)" != "root" ]; then 
+		perr "JUCI build dependencies are missing!."
+		perr "You can install then on ubuntu by running scripts/ubuntu-bootstrap.sh"
+		exit 1
 	fi
 fi
 
+exit 0
