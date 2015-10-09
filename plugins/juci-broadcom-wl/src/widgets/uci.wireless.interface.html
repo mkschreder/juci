@@ -27,13 +27,13 @@
 			<juci-config-line title="{{'wifi-iface.key'|translate}}">
 				<div class="input-group">
 					<input type="{{(!showPassword)?'password':'text'}}" class="form-control" placeholder="{{'wifi-iface.key'|translate}}" ng-model="interface.key.value" />
-					<span style="cursor: pointer;" title="{{'Reset to default password'|translate}}" class="input-group-addon" id="basic-addon1" ng-click="interface.key.value = default_key"><i class="fa fa-rotate-left"/></span>
+					<span style="cursor: pointer;" title="{{'Reset to default password'|translate}}" class="input-group-addon" id="basic-addon1" ng-click="interface.key.value = default_key"><i class="fa fa-rotate-left"></i></span>
 				</div>
 			</juci-config-line>
 		</div>
 		<div ng-show="interface.encryption.value == 'wep' || interface.encryption.value == 'wep-shared'">
 			<juci-config-line title="{{'wifi-iface.key'|translate}}">
-				<juci-select ng-model="interface.key_index.value" ng-items="keyChoices" placeholder="Choose Key"/>
+				<juci-select ng-model="interface.key_index.value" ng-items="keyChoices" placeholder="{{'Choose Key'|translate}}"/>
 			</juci-config-line>
 			<juci-config-line ng-repeat="key in ['1', '2', '3', '4']" 
 				title="{{('wifi-iface.key'+key)|translate}}">

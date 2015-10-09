@@ -9,6 +9,18 @@
 		<juci-config-line title="{{'Channel'|translate}}">
 			<juci-select ng-model="device.channel.value" ng-items="allChannels" placeholder="{{'Pick Channel'|translate}}"/>
 		</juci-config-line>
+		<juci-config-line title="{{'RIFS'|translate}}">
+			<switch class="green" ng-model="device.rifs.value"/>
+		</juci-config-line>	
+		<juci-config-line title="{{'RIFS Advertisement'|translate}}">
+			<switch class="green" ng-model="device.rifs_advert.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'RX Chain PowerSave Quiet Time'|translate}}">
+			<switch class="green" ng-model="device.rxchainps_qt.value"/>
+		</juci-config-line>	
+		<juci-config-line title="{{'RX Chain PowerSave PPS'|translate}}">
+			<switch class="green" ng-model="device.rxchainps_pps.value"/>
+		</juci-config-line>	
 		<juci-config-line title="{{'Max. Assoc Clients'|translate}}">
 			<input type="text" class="form-control" ng-model="device.maxassoc.value" placeholder="{{'Maximum Assoc Clients'|translate}}"/>
 		</juci-config-line>

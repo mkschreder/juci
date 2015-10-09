@@ -20,19 +20,19 @@ JUCI.app
 		$scope.errors.push(err); 
 	}); 
 	$scope.keyChoices = [
-		{label: gettext("Key") + " #1", value: 1},
-		{label: gettext("Key") + " #2", value: 2},
-		{label: gettext("Key") + " #3", value: 3},
-		{label: gettext("Key") + " #4", value: 4}
+		{label: $tr(gettext("Key")) + " #1", value: 1},
+		{label: $tr(gettext("Key")) + " #2", value: 2},
+		{label: $tr(gettext("Key")) + " #3", value: 3},
+		{label: $tr(gettext("Key")) + " #4", value: 4}
 	];
 	$scope.psk2_ciphers = [
-		{label: gettext("Auto"), value: "auto"},
-		{label: gettext("CCMP (AES)"), value: "ccmp"}
+		{label: $tr(gettext("Auto")), value: "auto"},
+		{label: $tr(gettext("CCMP (AES)")), value: "ccmp"}
 	]; 
 	$scope.mixed_psk_ciphers = [
-		{label: gettext("Auto"), value: "auto"},
-		{label: gettext("CCMP (AES)"), value: "ccmp"},
-		{label: gettext("TKIP/CCMP (AES)"), value: "ccmp"}
+		{label: $tr(gettext("Auto")), value: "auto"},
+		{label: $tr(gettext("CCMP (AES)")), value: "ccmp"},
+		{label: $tr(gettext("TKIP/CCMP (AES)")), value: "ccmp"}
 	];  
 	$network.getNetworks().done(function(nets){
 		$scope.networks = nets.map(function(net){
