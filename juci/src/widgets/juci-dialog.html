@@ -1,11 +1,11 @@
 <div>
-	<div class="modal-header">
+	<div class="modal-header" ng-show="opts.title">
 		<h3 class="modal-title">{{opts.title}}</h3>
 	</div>
 	<div class="modal-body">
 		<div dynamic="opts.widget" ng-model="opts.model"/>
 	</div>
-	<div class="modal-footer">
+	<div class="modal-footer" ng-show="opts.buttons">
 		<button ng-repeat="btn in opts.buttons" class="btn" 
 			ng-class="{ 'btn-primary': btn.primary, 'btn-default': !btn.primary }" 
 			ng-click="onButtonClick(btn)">{{btn.label}}</button>
