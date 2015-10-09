@@ -28,6 +28,13 @@ JUCI.app
 	$scope.hasChildren = function(menu){
 		return menu.children_list > 0; 
 	}
+	
+	$scope.onLogout = function(){
+		$rpc.$logout().always(function(){
+			window.location.href="/";
+		});
+	}
+
 	$scope.isActive = function (viewLocation) { 
 		return viewLocation === $location.path();
 	};
