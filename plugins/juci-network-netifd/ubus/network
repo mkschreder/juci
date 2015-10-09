@@ -2,11 +2,6 @@
 
 . /usr/share/libubox/jshn.sh
 
-network_adapters(){
-	# moved to lua. result: went from taking 0.71 sec to 0.49 sec with more details
-	/usr/lib/ubus/juci/network.lua adapters
-}
-
 network_clients(){
 	# we have moved this one to lua implementation
 	/usr/lib/ubus/juci/network.lua clients
@@ -78,7 +73,7 @@ network_nameservers(){
 
 case $1 in 
 	.methods) 
-		echo "clients,load,adapters,nameservers,nat_table"; 
+		echo "clients,load,nameservers,nat_table"; 
 		exit 0
 		;;
 	clients) 
@@ -89,9 +84,6 @@ case $1 in
 		;;
 	nat_table)
 		network_nat_table
-		;;
-	adapters)
-		network_adapters
 		;;
 	nameservers)
 		network_nameservers

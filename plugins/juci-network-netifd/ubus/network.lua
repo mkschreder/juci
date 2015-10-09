@@ -21,13 +21,7 @@ function network_list_connected_clients()
 	print(json.encode({ clients = clients })); 	
 end
 
-function network_list_network_adapters()
-	local adapters = ethernet.adapters(); 
-	print(json.encode({ adapters = adapters })); 
-end 
-
 juci.ubus({
 	["services"] = network_list_services,
 	["clients"] = network_list_connected_clients, 
-	["adapters"] = network_list_network_adapters
 }, arg); 

@@ -88,15 +88,6 @@
 			return deferred.promise(); 
 		}
 		
-		NetworkBackend.prototype.getAdapters = function(){
-			var deferred = $.Deferred();  
-			$rpc.juci.network.adapters().done(function(result){
-				if(result && result.adapters) deferred.resolve(result.adapters); 
-				else deferred.reject(); 
-			}); 
-			return deferred.promise(); 
-		}
-		
 		// getVirtualDevices
 		NetworkBackend.prototype.getNetworks = function(){
 			var deferred = $.Deferred(); 
@@ -263,18 +254,18 @@
 							$uci.$sync("layer2_interface_ethernet").done(function(){
 								// match adapters with device names in configuration (quite ugly right now!)
 								// TODO: unuglify
-								$network.getAdapters().done(function(devs){
+								$ethernet.getAdapters().done(function(devs){
 									devs.map(function(dev){
-										var info = infos.find(function(i){ return i.device == dev.name }); 
-										var wanport = $uci.layer2_interface_ethernet["@ethernet_interface"].find(function(i){ return i.ifname.value == dev.name; }); 
-										var ethport = sysinfo.eth_ports.find(function(i){ return i.device == dev.name; }); 
-										var name = dev.name; 
+										var info = infos.find(function(i){ return i.device == dev.device }); 
+										var wanport = $uci.layer2_interface_ethernet["@ethernet_interface"].find(function(i){ return i.ifname.value == dev.device; }); 
+										var ethport = sysinfo.eth_ports.find(function(i){ return i.device == dev.device; }); 
+										var name = dev.device; 
 										if(wanport) name = "VLAN-"+wanport.name.value; 
 										else if(ethport) name = "PORT-"+ethport.name;
 										else if(info) name = "VIF-"+info.interface.toUpperCase();  
 										devices.push({
 											get name(){ return name; },
-											get id(){ return dev.name; },
+											get id(){ return dev.device; },
 											get type(){ return "baseif"; },
 											get up() { return dev.state == "UP" }, 
 											set bridged(value){ if(wanport) wanport.bridge.value = true }, 
