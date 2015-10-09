@@ -2,9 +2,8 @@
 
 JUCI.app
 .directive("wirelessApsGraph", function($compile, $parse){
-	var plugin_root = $juci.module("wifi").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/wireless-aps-graph.html", 
+		templateUrl: "/widgets/wireless-aps-graph.html", 
 		scope: {
 			scan_list: "=ngModel"
 		}, 

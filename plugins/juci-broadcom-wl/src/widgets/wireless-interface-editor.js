@@ -2,9 +2,8 @@
 
 JUCI.app
 .directive("wirelessInterfaceEditor", function($compile, $parse){
-	var plugin_root = $juci.module("wifi").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/wireless-interface-editor.html", 
+		templateUrl: "/widgets/wireless-interface-editor.html", 
 		controller: "wirelessInterfaceEditor", 
 		replace: true, 
 		require: "^ngModel"

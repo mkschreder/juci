@@ -2,9 +2,8 @@
 
 JUCI.app
 .directive("wifiSignalIndicator", function($compile, $parse){
-	var plugin_root = $juci.module("wifi").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/wifi.signal.indicator.html", 
+		templateUrl: "/widgets/wifi.signal.indicator.html", 
 		scope: {
 			value: "=ngModel"
 		}, 

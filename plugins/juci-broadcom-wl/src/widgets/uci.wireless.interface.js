@@ -2,9 +2,8 @@
 
 JUCI.app
 .directive("uciWirelessInterface", function($compile){
-	var plugin_root = $juci.module("wifi").plugin_root; 
 	return {
-		templateUrl: plugin_root+"/widgets/uci.wireless.interface.html", 
+		templateUrl: "/widgets/uci.wireless.interface.html", 
 		scope: {
 			interface: "=ngModel"
 		}, 
