@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
  
 JUCI.app
-.controller("PhoneCallLogPageCtrl", function($scope, $uci, gettext, $tr, $rpc){ 
+.controller("PagePhoneCallLog", function($scope, $uci, gettext, $tr, $rpc){ 
 	$scope.phoneFilter = ""; 
 	$scope.phoneFilterSelected = {}; 
 	$scope.phoneList = []; 

@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("StatusPhone", function($scope, $rpc, $uci){
+.controller("PageStatusPhone", function($scope, $rpc, $uci){
 	if($rpc.asterisk){
 		$scope.voice_available = true; 
 		JUCI.interval.repeat("voice.status", 4000, function(done){

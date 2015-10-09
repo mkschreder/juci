@@ -22,7 +22,7 @@
  */
  
 $juci.module("phone")
-.controller("PhoneNumberBlockingPageCtrl", function($scope, $uci){
+.controller("PagePhoneNumberBlocking", function($scope, $uci){
 	function updateRuleLists(){
 		$scope.outgoingRules = $uci.voice_client["@call_filter_rule_outgoing"].filter(function(x){
 			return x.owner.value == "call_filter0"; 

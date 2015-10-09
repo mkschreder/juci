@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("StatsCtrl", function($scope, $rpc, gettext, $tr){
+.controller("PageBroadcomDslStatus", function($scope, $rpc, gettext, $tr){
 		$scope.dslstats = {}; 
 		
 		$scope.dslConnectionInfo = {

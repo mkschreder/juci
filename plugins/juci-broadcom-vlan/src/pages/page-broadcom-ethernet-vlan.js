@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("BCMVLANPage", function($scope, $uci, $network, gettext){
+.controller("PageBroadcomEthernetVlan", function($scope, $uci, $network, gettext){
 	$scope.getItemTitle = function(dev){
 		if(!dev) return "Unknown"; 
 		return dev.name.value + " (" +dev.ifname.value + ")"; 

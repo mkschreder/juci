@@ -22,7 +22,7 @@
  */
  
 JUCI.app
-.controller("PhoneRingingScheduleCtrl", function($scope, $uci, gettext){
+.controller("PagePhoneRingingSchedule", function($scope, $uci, gettext){
 	$scope.allSipAccountsMap = {}; 
 	$scope.enabledDisabledItems = [
 		{ label: gettext("Enabled"), value: true }, 

@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
  
 JUCI.app
-.controller("PhoneNumbersPageCtrl", function($scope, $uci){
+.controller("PagePhoneNumbers", function($scope, $uci){
 	$scope.defaultNumber = gettext("N/A"); 
 	$uci.$sync("voice_client").done(function(){
 		$scope.phone_numbers = $uci.voice_client["@sip_service_provider"]; 

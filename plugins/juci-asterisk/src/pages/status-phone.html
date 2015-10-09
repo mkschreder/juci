@@ -1,5 +1,5 @@
 <juci-layout-with-sidebar>
-	<div ng-controller="StatusPhone">
+	<div ng-controller="PageStatusPhone">
 		<juci-config-section ng-show="voice_available">
 			<juci-config-heading>{{ 'Voice Status' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'status.voice.info' | translate }}</juci-config-info>
@@ -16,8 +16,8 @@
 					<td>{{sip[".config"].user.value}}</td>
 					<td>{{sip[".config"].host.value}}</td>
 					<td style="text-align: center;">
-						<i class="fa fa-check-circle fa-2x text-success" ng-show="sip.registered"/>
-						<i class="fa fa-times-circle fa-2x" ng-hide="sip.registered"/>
+						<i class="fa fa-check-circle fa-2x text-success" ng-show="sip.registered"></i>
+						<i class="fa fa-times-circle fa-2x" ng-hide="sip.registered"></i>
 					</td>
 				</tr>
 			</table>

@@ -1,12 +1,12 @@
 {
 	"overview": {
 		"page": "overview", 
-		"title": "Overview",
+		"title": "Overview"
 	},
 	"phone": {
 		"title": "Phone", 
 		"redirect": "phone/call_log", 
-		"acls": [ "juci-asterisk"  ],
+		"acls": [ "juci-asterisk"  ]
 	}, 
 	"phone/call_log": {
 		"page": "phone-call-log", 
@@ -20,7 +20,7 @@
 		"acls": [ "juci-asterisk"  ]
 	},
 	"phone/ringing_schedule": {
-		"page": "phone-ringing-schedule"
+		"page": "phone-ringing-schedule",
 		"title": "Ringing Schedule",
 		"acls": [ "juci-asterisk"  ],
 		"modes": [ "expert" ] 
@@ -60,27 +60,27 @@
 		"acls": [ "juci-network-netifd" ]
 	},
 	"internet/ethernet/phy": {
-		"page": "internet-ethernet-phy", 
+		"page": "page-broadcom-ethernet-phy", 
 		"title": "Ethernet",
 		"acls": [ "juci-broadcom-ethernet" ]
 	},
 	"internet/ethernet/adsl": {
-		"page": "internet-ethernet-adsl", 
+		"page": "page-broadcom-adsl", 
 		"title": "ADSL", 
 		"acls": [ "juci-broadcom-dsl" ] 
 	}, 
 	"internet/ethernet/vdsl": {
-		"page": "internet-ethernet-vdsl", 
+		"page": "page-broadcom-vdsl", 
 		"title": "VDSL", 
 		"acls": [ "juci-broadcom-dsl" ] 
 	}, 
 	"internet/ethernet/wifi": {
-		"page": "internet-ethernet-wifi", 
+		"page": "page-broadcom-wl-interfaces", 
 		"title": "Wireless", 
 		"acls": [ "juci-broadcom-wl" ]
 	},
 	"internet/ethernet/vlan": {
-		"page": "internet-ethernet-vlan", 
+		"page": "page-broadcom-ethernet-vlan", 
 		"title": "VLAN",
 		"acls": [ "juci-broadcom-vlan" ]
 	},	
@@ -132,7 +132,7 @@
 		"acls": [ "juci-firewall-fw3" ]
 	},
 	"internet/firewall/port_mapping": {
-		"page" "internet-firewall-port-mapping", 
+		"page": "internet-firewall-port-mapping", 
 		"title": "Port Mapping",
 		"modes": [ "expert" ], 
 		"acls": [ "juci-firewall-fw3" ]
@@ -230,7 +230,7 @@
 		"modes": [ "expert" ] 
 	},
 	"wifi/client": {
-		"page": "wifi-client", 
+		"page": "page-broadcom-wifi-client-conf", 
 		"title": "WiFi Client",
 		"acls": [ "juci-broadcom-wl" ] 
 	}, 
@@ -298,12 +298,12 @@
 		"acls": [ "juci-igmpsnoop" ] 
 	},
 	"status/wifi": {
-		"page": "status-wifi", 
+		"page": "page-broadcom-wifi-status", 
 		"title": "Wireless", 
 		"acls": [ "juci-broadcom-wl" ]
 	},
 	"status/dsl": {
-		"page": "status-dsl", 
+		"page": "page-broadcom-dsl-status", 
 		"title": "DSL",
 		"acls": [ "juci-broadcom-dsl" ]
 	},

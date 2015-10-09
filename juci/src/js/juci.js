@@ -133,9 +133,10 @@
 						//console.log(JSON.stringify(data)); 
 						// get menu keys and sort them so that parent elements will come before their children
 						// this will automatically happen using normal sort because parent element paths are always shorter than their childrens. 
-						var keys = Object.keys(data.menu).sort(function (a, b) { 
-							return a.localeCompare(b) ; 
-						}); 
+						//var keys = Object.keys(data.menu).sort(function (a, b) { 
+						//	return a.localeCompare(b) ; 
+						//}); 
+						var keys = Object.keys(data.menu); 
 						
 						keys.map(function(key){
 							var menu = data.menu[key]; 
@@ -146,9 +147,8 @@
 							var obj = {
 								path: path, 
 								href: menu.page || path.replace(/\//g, "-").replace(/_/g, "-"), 
-								modes: data.menu[key].modes || [ ], 
-								text: data.menu[key].title, 
-								index: data.menu[key].index || 0
+								modes: menu.modes || [ ], 
+								text: menu.title 
 							}; 
 							$juci.navigation.register(obj); 
 							if(redirect) redirect = redirect.replace(/\//g, "-").replace(/_/g, "-"); 
@@ -158,7 +158,8 @@
 							// - This also allows plugins to override existing pages simply by supplying their own versions of the page templates
 							// - Conclusion: this is one of the things that should almost never be rewritten without providing 
 							//   a fallback mechanism for supporting the old (this) way because all plugins depend on this.  
-							JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
+							// JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
+							JUCI.page(obj.href, "pages/"+obj.href+".html", redirect); 
 						}); 
 						//console.log("NAV: "+JSON.stringify($navigation.tree())); 
 						//$rootScope.$apply(); 

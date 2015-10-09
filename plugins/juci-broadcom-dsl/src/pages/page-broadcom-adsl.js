@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("BCMADSLPage", function($scope, $uci, $broadcomDsl, dslBaseDevicePicker){
+.controller("PageBroadcomAdsl", function($scope, $uci, $broadcomDsl, dslBaseDevicePicker){
 	$scope.getItemTitle = function(dev){
 		if(!dev) return "Unknown"; 
 		return dev.name.value + " (" +dev.ifname.value + ")"; 

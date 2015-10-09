@@ -22,7 +22,7 @@
  */
  
 JUCI.app
-.controller("PhoneSpeedDialingCtrl", function($scope, $uci){
+.controller("PagePhoneSpeedDialing", function($scope, $uci){
 	$scope.speed_dials = []; 
 	$scope.speed_dialing = true; 
 	

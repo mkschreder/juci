@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetEthernetPhysical", function($scope, $uci, $broadcomEthernet, gettext){
+.controller("PageBroadcomEthernetPhy", function($scope, $uci, $broadcomEthernet, gettext){
 	$scope.data = {}; 
 	$scope.getItemTitle = function(item) {
 		if(!item) return "error";
