@@ -10,8 +10,8 @@ JUCI.app.factory("$broadcomVLAN", function($uci, $rpc){
 				list.map(function(x){ ports[x.id] = x; }); 
 				adapters.map(function(adapter){
 					if(adapter.device in ports) {
-						adapter.name = ports[dev.device].name; 
-						delete ports[dev.device]; 
+						adapter.name = ports[adapter.device].name; 
+						delete ports[adapter.device]; 
 					}
 				}); 
 				Object.keys(ports).map(function(port){
