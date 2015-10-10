@@ -29,6 +29,21 @@
 			} 
 			return obj; 
 		};
+		this.findNodeByHref = function(href){
+			var list = []; 
+			function flatten(tree){
+				list.push(tree); 
+				tree.children_list.map(function(ch){ 
+					if(!ch.href) return; 
+					if(ch._visited) alert("ERROR: loops in menu structure are not allowed! node "+ch.href+" already visited!"); 
+					ch._visited = true; 
+					flatten(ch); 
+				}); 
+			}
+			flatten(data); 
+			list.map(function(ch){ ch._visited = false; }); // reset the flag for next time 
+			return list.find(function(ch){ console.log(ch.href); return ch.href == href; }); 
+		}
 		this.insertLeaf = function(path, item){
 			//console.log("INSERT LEAF: "+path); 
 			var parts = item.path.split("/"); 

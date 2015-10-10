@@ -48,9 +48,13 @@ JUCI.app
 	};
 
 	function activate(){
-		var path = $location.path().replace(/^\/+|\/+$/g, '');
-		var subtree = path.split("-")[0];
-		$scope.tree = $navigation.tree(subtree);
+		var node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
+		if(node) {
+			$scope.tree = $navigation.tree(node.path.split("/")[0]); 
+		}
+		//var path = $location.path().replace(/^\/+|\/+$/g, '');
+		//var subtree = path.split("-")[0];
+		//$scope.tree = $navigation.tree(subtree);
 	}
 	activate();
 	
