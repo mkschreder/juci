@@ -54,6 +54,7 @@
 					obj = obj.children[parts.shift()]; 
 				} else {
 					var item = {
+						title: "(none)",
 						children: {},
 						children_list: []
 					};

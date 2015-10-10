@@ -256,7 +256,8 @@
 		// the global error handler
 		app.factory('$exceptionHandler', function() {
 			return function(exception) {
-				throw exception+": \n\n"+exception.stack;
+				throw exception; 
+				//throw exception+": \n\n"+exception.stack;
 			};
 		});
 
