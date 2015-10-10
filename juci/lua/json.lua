@@ -331,7 +331,8 @@ end
 function encodeString(s)
   s = string.gsub(s,'\\','\\\\')
   s = string.gsub(s,'"','\\"')
-  s = string.gsub(s,"'","\\'")
+  -- this is in fact incorrect because if you have json strings in quotes (") then you don't escape single quotes and doing so is a json ERROR!
+  -- s = string.gsub(s,"'","\\'")
   s = string.gsub(s,'\n','\\n')
   s = string.gsub(s,'\t','\\t')
   return s 
