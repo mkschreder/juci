@@ -44,7 +44,10 @@
 					"info"
 				]
 
-			}
+			},
+			"uci": [
+				"system"
+			]
 		},
 		"write": {
 			"juci-io": [ "upload" ], 
@@ -56,7 +59,10 @@
 					"disable",
 					"reload"
 				]
-			}
+			},
+			"uci": [
+				"system"
+			]
 		}
 	}
 }
