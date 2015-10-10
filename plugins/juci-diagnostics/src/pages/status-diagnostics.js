@@ -1,13 +1,11 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("StatusDiagnostics", function($scope, $rpc){
+.controller("StatusDiagnostics", function($scope, $rpc, $network){
 	$scope.data = {}; 
-	$rpc.router.networks().done(function(result){
-		if(result){
-			$scope.data.allInterfaces = Object.keys(result).map(function(x){return {label: x, value: x};}); 
-			$scope.$apply(); 
-		}
+	$network.getNetworks().done(function(nets){
+		$scope.data.allInterfaces = nets.map(function(x){ return { label: x[".name"], value: x[".name"] }; }); 
+		$scope.$apply(); 
 	}); 
 	$scope.onTraceTest = function(){
 		$rpc.juci.diagnostics.traceroute({ host: $scope.data.traceHost }).done(function(result){
