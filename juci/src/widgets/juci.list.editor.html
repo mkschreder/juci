@@ -1,7 +1,7 @@
 <div>
-	<div class="row" 
+	<div class="row"> 
 		<div ng-class="{ 'col-xs-9': !hideButtons, 'col-xs-12': hideButtons }">
-			<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"/>
+			<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"></i>
 			<div class="list-group" ng-show="items" >
 				<a href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}</a>
 			</div>
@@ -13,7 +13,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="clear: both;"></div>
+	<div style="clear: both; margin-top: 10px;"></div>
 	<div ng-show="item">
 		<div dynamic="dynamicHtml"/>
 	</div>
