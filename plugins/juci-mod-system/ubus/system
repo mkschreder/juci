@@ -48,27 +48,41 @@ function system_defaultreset()
 	juci.shell("/sbin/reboot"); 
 end
 
+function trim(s)
+  -- from PiL2 20.4
+  	if(not s) then return nil; end
+    return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
 function system_info()
 	local system = {}; 
 	local db_str = juci.shell("db show hw.board"); 
 	local db = {}; 
+	local cpuinfo = {}; 
 	for line in db_str:gmatch("[^\r\n]+") do 
 		local name, value = line:match("([^=]+)=(.*)"); 
 		db[name] = value; 
 	end
-	
+	for line in tostring(juci.readfile("/proc/cpuinfo")):gmatch("[^\r\n]+") do 
+		local name, value = line:match("([^:]+):(.*)"); 
+		if( name) then 
+			cpuinfo[trim(name)] = trim(value); 
+		end
+	end
+	local version = tostring(juci.readfile("/proc/version") or ""); 
+	local systype,_,sysversion = version:match("(%S+)%s+(%S+)%s+(%S+)"); 	
 	system["name"] = juci.readfile("/proc/sys/kernel/hostname"); 
 	system["hardware"] = db["hw.board.hardwareVersion"]; 
 	system["model"] = db["hw.board.routerModel"]; 
 	system["boardid"] = db["hw.board.boardId"]; 
 	system["firmware"] = db["hw.board.iopVersion"]; 
 	system["brcmver"] = db["hw.board.brcmVersion"]; 
-	system["socmod"] = db["hw.board.socModel"]; 
-	system["socver"] = db["hw.board.socRevision"]; 
+	system["socmod"] = cpuinfo["Revision"]; --db["hw.board.socModel"]; 
+	system["socver"] = cpuinfo["Hardware"]; --db["hw.board.socRevision"]; 
 	system["cfever"] = db["hw.board.cfeVersion"]; 
-	system["kernel"] = db["hw.board.kernelVersion"]; 
+	system["kernel"] = systype.." "..sysversion; --db["hw.board.kernelVersion"]; 
 	system["basemac"] = db["hw.board.BaseMacAddr"]; 
-	system["serialno"] = db["hw.board.serialNumber"]; 
+	system["serialno"] = cpuinfo["Serial"]; --db["hw.board.serialNumber"]; 
 	
 	local keys = {
 		auth = db["hw.board.authKey"], 

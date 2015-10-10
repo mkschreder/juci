@@ -41,9 +41,10 @@ JUCI.app
 			}
 			$scope.systemStatusTbl.rows = [
 				[$tr(gettext("Hostname")), info.system.name],
-				[$tr(gettext("Model")), info.system.hardware],
-				[$tr(gettext("Firmware Version")), info.system.firmware],
-				[$tr(gettext("Kernel Version")), info.system.kernel],
+				[$tr(gettext("Model")), info.system.hardware || $tr(gettext("N/A"))],
+				[$tr(gettext("Firmware Version")), info.system.firmware || $tr(gettext("N/A"))],
+				[$tr(gettext("Kernel Version")), info.system.kernel || $tr(gettext("N/A"))],
+				[$tr(gettext("SoC Version")), info.system.socver || $tr(gettext("N/A"))], 
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
 				[$tr(gettext("Load Average")), sys.load[0] + " " + sys.load[1] + " " + sys.load[2]]
@@ -57,7 +58,7 @@ JUCI.app
 			
 			$scope.systemStorageTbl.rows = []; 
 			filesystems.map(function(disk){
-				$scope.systemStorageTbl.rows.push([disk.filesystem+" ("+disk.path+")", '<juci-progress value="'+Math.round(disk.used / 1000)+'" total="'+ Math.round(disk.total / 1000) +'" units="kB"></juci-progress>']); 
+				$scope.systemStorageTbl.rows.push([disk.filesystem+" ("+disk.path+")", '<juci-progress value="'+Math.round(disk.used)+'" total="'+ Math.round(disk.total) +'" units="kB"></juci-progress>']); 
 			}); 
 			$scope.$apply(); 
 			resume(); 
