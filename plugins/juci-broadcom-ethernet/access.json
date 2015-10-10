@@ -2,6 +2,11 @@
 	"juci-broadcom-ethernet": {
 		"description": "Broadcom ethernet plugin",
 		"read": {
+			"ubus": {
+				"/juci/ethernet": [
+					"adapters"
+				] 
+			}, 
 			"uci": [
 				"layer2_interface_ethernet",
 				"ports"

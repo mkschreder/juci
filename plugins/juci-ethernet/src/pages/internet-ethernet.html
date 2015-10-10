@@ -16,11 +16,11 @@
 					<td>{{dev.device}}</td>
 					<td>{{dev.macaddr}}</td>
 					<td>{{dev.mtu}}</td>
-					<td style="white-space: nowrap;"><i class="fa fa-circle" ng-class="{'text-success': dev.state=='UP'}"/> {{dev.state}}</td>
+					<td style="white-space: nowrap;"><i class="fa fa-circle" ng-class="{'text-success': dev.state=='UP'}"></i> {{dev.state}}</td>
 				</tr>
 			</table>
 		</juci-config-section>
-		<i class="fa fa-spinner fa-spin fa-2x" ng-hide="adapters"/>
+		<i class="fa fa-spinner fa-spin fa-2x" ng-hide="adapters"></i>
 		<!--<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>-->
 	</div>

@@ -7,7 +7,6 @@
 					"clients", 
 					"load", 
 					"nat_table", 
-					"adapters", 
 					"nameservers"
 				], 
 				"/juci/network.lua": [ "services" ], 

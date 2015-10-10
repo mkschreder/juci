@@ -211,7 +211,7 @@
 	}); 
 	
 	// register basic vlan support 
-	JUCI.app.run(function($network, $uci, $rpc, $events, gettext, $tr, networkConnectionPicker){
+	JUCI.app.run(function($network, $uci, $rpc, $events, gettext, $tr, $ethernet, networkConnectionPicker){
 		/*$events.subscribe("dongle-up", function(ev){
 			alert($tr(gettext("Your dongle ({0}) has been configured as wan port internet device.".format(ev.data.device)))); 
 		}); 
