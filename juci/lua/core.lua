@@ -32,7 +32,9 @@ function shell(fmt, ...)
 	end
 	local p = base.assert(io.popen(string.format(fmt, base.unpack(arg)))); 
 	local s = p:read("*a"); 
-	local r = p:close(); 
+	local r = p:close();
+	-- there is no 'true' or 'false' in process return status world, yet for some reason lua returns true when return status is 1
+	if r == true then r = 1 elseif r == false then r = 0 end
 	return s,r; 
 end
 
