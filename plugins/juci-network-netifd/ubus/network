@@ -14,6 +14,7 @@ network_load(){
 	json_dump
 }
 
+# TODO: this currently depends on kmod-ipt-conntrack. Need to make this generic!
 network_nat_table(){
 	ESTABLISHED=$(awk '
 		/ESTABLISHED/ { 
