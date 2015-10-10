@@ -1,25 +1,33 @@
 <div>
 	<juci-config-lines ng-show="interface.proto.value == 'static'">
-		<juci-config-line title="{{'IPv4 Address'|translate}}" error="interface.ipaddr.error">
-			<input class="form-control" ng-model="interface.ipaddr.value" placeholder="{{'Static IP Address'|translate}}"></input>
-		</juci-config-line>
-		<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}">
-			<input class="form-control" ng-model="interface.netmask.value" placeholder="{{'Netmask'|translate}}"></input>
-		</juci-config-line>
-		<juci-config-line title="{{'IPv6 Address'|translate}}">
-			<input class="form-control" ng-model="interface.ip6addr.value" placeholder="{{'Static IPv6 Address'|translate}}"></input>
-		</juci-config-line>
-		<juci-config-line title="{{'IPv6 Prefix'|translate}}">
-			<input class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 Address Mask'|translate}}"></input>
-		</juci-config-line>
-		<!--<juci-config-line title="{{'Configure As Default Route'|translate}}">
-			<switch ng-model="interface.defaultroute.value" class="green"/>
-		</juci-config-line>-->
-		<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value">
-			<input class="form-control" ng-model="interface.gateway.value" placeholder="{{'Default Gateway'|translate}}"></input>
-		</juci-config-line>
-		<juci-config-line title="{{'IPv6 Default Gateway'|translate}}" ng-show="interface.defaultroute.value">
-			<input class="form-control" ng-model="interface.ip6gw.value" placeholder="{{'Default IPv6 Gateway'|translate}}"></input>
-		</juci-config-line>
-	</juci-config-lines>
+		<juci-config-heading translate>IPv4 Settings</juci-config-heading>
+		<juci-config-lines>
+			<juci-config-line title="{{'IPv4 Address'|translate}}" error="interface.ipaddr.error">
+				<input class="form-control" ng-model="interface.ipaddr.value" placeholder="{{'Static IP Address'|translate}}"></input>
+			</juci-config-line>
+			<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}">
+				<input class="form-control" ng-model="interface.netmask.value" placeholder="{{'Netmask'|translate}}"></input>
+			</juci-config-line>
+			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value">
+				<input class="form-control" ng-model="interface.gateway.value" placeholder="{{'Default Gateway'|translate}}"></input>
+			</juci-config-line>	
+		</juci-config-lines>
+	</juci-config-section>
+	<juci-config-section>
+		<juci-config-heading translate>IPv6 Settings</juci-config-heading>
+		<juci-config-lines>
+			<juci-config-line title="{{'IPv6 Address'|translate}}">
+				<input class="form-control" ng-model="interface.ip6addr.value" placeholder="{{'Static IPv6 Address'|translate}}"></input>
+			</juci-config-line>
+			<juci-config-line title="{{'IPv6 Prefix'|translate}}">
+				<input class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 Address Mask'|translate}}"></input>
+			</juci-config-line>
+			<!--<juci-config-line title="{{'Configure As Default Route'|translate}}">
+				<switch ng-model="interface.defaultroute.value" class="green"/>
+			</juci-config-line>-->
+			<juci-config-line title="{{'IPv6 Default Gateway'|translate}}" ng-show="interface.defaultroute.value">
+				<input class="form-control" ng-model="interface.ip6gw.value" placeholder="{{'Default IPv6 Gateway'|translate}}"></input>
+			</juci-config-line>
+		</juci-config-lines>
+	</juci-config-section>
 </div>

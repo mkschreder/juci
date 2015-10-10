@@ -83,7 +83,8 @@
 				}).always(function(){ next(); }); 
 			}, function(){
 				self._devices = devices; 
-				deferred.resolve(devices); 
+				// use timeout because we will be not be deferred yet if no subsystems are present 
+				setTimeout(function(){ deferred.resolve(devices); },0); 
 			}); 
 			return deferred.promise(); 
 		}
@@ -236,18 +237,11 @@
 				}); 
 			}
 		}); 
-		$network.subsystem(function(){
+		/*$network.subsystem(function(){
 			return {
 				getDevices: function(){
 					var deferred = $.Deferred(); 
 					var devices = []; 
-					/* Do not add loopback device for now because we hardly ever use it and it is basically filtered in all interfaces. 
-					var devices = [{
-						get name(){ return "loopback"; },
-						get id() { return "lo"; },  
-						get type(){ return "baseif"; }, 
-						base: { name: "loopback", id: "lo" }
-					}]; */
 					$rpc.network.interface.dump().done(function(res){
 						var infos = res.interface; 
 						$rpc.juci.system.info().done(function(sysinfo){
@@ -286,7 +280,7 @@
 					return deferred.promise(); 
 				}
 			}
-		}); 
+		});*/ 
 	}); 
 }(); 
 

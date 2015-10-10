@@ -25,22 +25,22 @@ JUCI.app
 		}
 	}; 
 })
-.controller("networkConnectionCreateModal", function($scope, $modalInstance, $wireless, gettext){
+.controller("networkConnectionCreateModal", function($scope, $modalInstance, gettext){
 	$scope.data = {}; 
 	$scope.interfaceTypes = [
 		{ label: "Standard", value: "" },
 		{ label: "AnyWAN", value: "anywan"}, 
 		{ label: "Bridge", value: "bridge"}
 	]; 
-  $scope.ok = function () {
+	$scope.ok = function () {
 		if(!$scope.data.name) {
 			alert(gettext("You need to specify both name and type!")); 
 			return; 
 		}
 		$modalInstance.close($scope.data);
-  };
+	};
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+	$scope.cancel = function () {
+    	$modalInstance.dismiss('cancel');
+	};
 })

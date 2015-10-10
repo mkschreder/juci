@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("bridgeDevicePicker", function($scope, $modalInstance, $wireless, devices, gettext){
+.controller("bridgeDevicePicker", function($scope, $modalInstance, devices, gettext){
 	$scope.devices = devices; 
 	$scope.data = {}; 
 	$scope.ok = function () {

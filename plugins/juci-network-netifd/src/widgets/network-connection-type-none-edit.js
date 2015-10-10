@@ -13,10 +13,10 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("networkConnectionTypeNoneEdit", function($scope, $network, $modal, $tr, gettext){
-	$network.getDevices().done(function(devs){
+.controller("networkConnectionTypeNoneEdit", function($scope, $ethernet, $modal, $tr, gettext){
+	$ethernet.getAdapters().done(function(devs){
 		$scope.baseDevices = devs.filter(function(dev){ return !dev.loopback }).map(function(dev){
-			return { label: dev.name + " ("+dev.id+")", value: dev.id }; 
+			return { label: dev.device + " ("+dev.name+")", value: dev.device }; 
 		});
 		$scope.$apply();  
 	}); 

@@ -49,7 +49,10 @@ JUCI.app
 		if(!$scope.conn) return; 
 		$scope.conn.$proto_editor = "<network-connection-proto-"+$scope.conn.proto.value+"-edit ng-model='conn'/>"; 
 	}); 
-	
+	$scope.$watch("conn.type.value", function(value){
+		if(!$scope.conn) return; 
+		$scope.conn.$type_editor = "<network-connection-type-"+($scope.conn.type.value||'none')+"-edit ng-model='conn'/>"; 
+	}); 
 	$scope.$watch("conn", function(iface){
 		if(!iface) return; 
 		iface.$type_editor = "<network-connection-type-"+(iface.type.value||'none')+"-edit ng-model='conn'/>"; 
