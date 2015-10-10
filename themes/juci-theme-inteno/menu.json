@@ -34,9 +34,8 @@
 	"phone/lines": {
 		"page": "phone-lines", 
 		"title": "Phone Lines",
-		"acls": [ "juci-asterisk"  ],
-		"modes": [ "expert" ], 
-		"acls": [  ]
+		"acls": [ "juci-asterisk" ],
+		"modes": [ "expert" ] 
 	},
 	"phone/speed_dialing": {
 		"page": "phone-speed-dialing", 
@@ -149,7 +148,7 @@
 		"acls": [ "juci-firewall-fw3" ]
 	},
 	"internet/parental_control": {
-		"page": "internet-parental_control", 
+		"page": "internet-parental-control", 
 		"title": "Parental Control",
 		"acls": [ "juci-firewall-fw3" ]
 	},
@@ -288,7 +287,7 @@
 		"acls": [ "juci-mod-system" ] 
 	},
 	"status/system/processes": {
-		"page": "status-system-process", 
+		"page": "status-system-processes", 
 		"title": "Processes",  
 		"acls": [ "juci-mod-system" ] 
 	},
