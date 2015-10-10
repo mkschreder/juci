@@ -20,7 +20,7 @@ JUCI.app.run(function($uci, $rpc, $tr, gettext, upgradePopup){
 		}, 
 		function(next){
 			$rpc.juci.system.upgrade.check().done(function(response){
-				if(response.all.length) {
+				if(response.all && response.all.length) {
 					/*upgradePopup.show({ images: response.all.map(function(x){ return { label: x, value: x }; }) }).done(function(selected){
 						$rpc
 					}); */

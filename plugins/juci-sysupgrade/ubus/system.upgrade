@@ -8,11 +8,13 @@ function sysupgrade_check(params)
 	elseif params["type"] == "usb" then type = {"usb"} end;
 	local res = { all = {} }; 
 	for k,v in ipairs(type) do
-		local path = juci.shell("sysupgrade --"..v);  
-		path = path:gsub("\n", ""); 
-		if path and path:len() > 0 then 
-			res[v] = path;
-			table.insert(res.all, path); 
+		local path,ret = juci.shell("sysupgrade --"..v.." 2>/dev/null");  
+		if( ret == 0 ) then
+			path = path:gsub("\n", ""); 
+			if path and path:len() > 0 then 
+				res[v] = path;
+				table.insert(res.all, path); 
+			end
 		end
 	end
 	print(json.encode(res)); 
