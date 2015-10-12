@@ -45,7 +45,7 @@ function system_reboot()
 end
 
 function system_defaultreset()
-	juci.shell("/sbin/reboot"); 
+	juci.shell("/sbin/defaultreset"); 
 end
 
 function trim(s)
