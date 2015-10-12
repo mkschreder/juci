@@ -1,9 +1,5 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
-// TODO: make this automatic
-if(!window.JUCI_COMPILED) window.JUCI_COMPILED = 1; 
-//if(!global.JUCI_PLUGINS) global.JUCI_COMPILED = 0; 
-
 // a few functions for string conversions
 String.prototype.toDash = function(){
 	return this.replace(/([A-Z])/g, function($1){return "-"+$1.toLowerCase();});
@@ -24,8 +20,6 @@ require.config({
     urlArgs: 'v=1.0'
 });
 
-
-
 JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $urlRouterProvider, $controllerProvider, $templateCacheProvider, $provide) {
 	console.log("CONF"); 
 	//$locationProvider.otherwise({ redirectTo: "/" });
@@ -43,40 +37,8 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 
 	$juci.$urlRouterProvider = $urlRouterProvider; 
 	$juci.redirect = function(page){
-		var DEVMODE = (JUCI_COMPILED)?"":"devgui.html"; 
-		window.location.href = DEVMODE+"#!/"+page; 
+		window.location.href = "#!/"+page; 
 	}
-	/*
-	$stateProvider.state("404", {
-		url: "/404", 
-		views: {
-			"content": {
-				templateUrl: "/html/404.html"
-			}
-		},
-		onEnter: function(){
-			if(!$juci._initialized){
-				$juci.redirect("/init/404"); 
-			}
-		}
-	}); 
-	// application init state. All initialization is done here. 
-	$stateProvider.state("init", {
-		url: "/init/:redirect", 
-		views: {
-			"content": {
-				templateUrl: "html/init.html"
-			}
-		}, 
-		onEnter: function($state, $stateParams, $config, $rpc, $navigation, $location, $rootScope, $http){
-			if($juci._initialized) {
-				$juci.redirect($stateParams.redirect || "overview"); 
-				return;
-			} else {
-				
-			}
-		},
-	}); */
 	$urlRouterProvider.otherwise("404"); 
 })
 .run(function($templateCache){
@@ -122,42 +84,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	gettextCatalog.currentLanguage = "en"; 
 	gettextCatalog.debug = true;
 	
-	var path = $location.path().replace(/\//g, "").replace(/\./g, "_");  
-	
-	// Generate states for all loaded pages
-	/*Object.keys($juci.plugins).map(function(pname){
-		var plugin = $juci.plugins[pname]; 
-		Object.keys(plugin.pages||{}).map(function(k){
-			var page = plugin.pages[k]; 
-			if(page.view){
-				//scripts.push(plugin_root + "/" + page.view); 
-				var url = k.replace(/\./g, "-").replace(/_/g, "-").replace(/\//g, "-"); 
-				var name = url.replace(/\//g, "_").replace(/-/g, "_"); 
-				//console.log("Registering state "+name+" at "+url); 
-				var plugin_root = "/plugins/"+pname; 
-				$juci.$stateProvider.state(name, {
-					url: "/"+url, 
-					views: {
-						"content": {
-							templateUrl: plugin_root + "/" + page.view + ".html"
-						}
-					},
-					onEnter: function($uci, $rootScope){
-						$rootScope.errors.splice(0, $rootScope.errors.length); 
-						
-						// do a revert of any changes upon each page load so that we make sure we start form "clean page"
-						$uci.$revert();
-						
-						document.title = $tr(k.replace(/\//g, ".")+".title")+" - "+$tr(gettext("application.name")); 
-					}, 
-					onExit: function($interval){
-						JUCI.interval.$clearAll(); 
-					}
-				}); 
-			}
-		}); 
-	}); */
-	
+	var path = $location.path().replace(/\//g, ""); 
 	// load the right page from the start
 	if($rpc.$isLoggedIn()){
 		$juci.redirect(path||"overview"); 
