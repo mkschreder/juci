@@ -42,7 +42,7 @@
 			}
 			flatten(data); 
 			list.map(function(ch){ ch._visited = false; }); // reset the flag for next time 
-			return list.find(function(ch){ console.log(ch.href); return ch.href == href; }); 
+			return list.find(function(ch){ return ch.href == href; }); 
 		}
 		this.insertLeaf = function(path, item){
 			//console.log("INSERT LEAF: "+path); 

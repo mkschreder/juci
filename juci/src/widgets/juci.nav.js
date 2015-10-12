@@ -20,23 +20,27 @@ JUCI.app
 		return Object.keys(menu.children) > 0;
 	};
 	$scope.isItemActive = function (item) {
-		if ('/' + item.href === $location.path()) {
+		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
+		if(!active_node) return false; 
+		if(item.path === active_node.path) {
 			if(item.children_list && item.children_list.length > 0) {
 				$scope.showSubMenuItems = true;
 			} else {
 				$scope.showSubMenuItems = false;
 			}
-				return true;
-		} else if ($location.path().indexOf('/' + item.href) === 0) {
-			$scope.showSubMenuItems = true;
+			return true;
+		} else if (active_node.path.indexOf(item.path) === 0){
+			$scope.showSubMenuItems = true; 
 		} else {
-			$scope.showSubMenuItems = false;
+			$scope.showSubMenuItems = false; 
 		}
 		return false;
 	};
 
 	$scope.isSubItemActive = function (item) {
-		return '/' + item.href === $location.path();
+		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
+		if(!active_node) return false; 
+		return item.path === active_node.path;
 	};
 
 	$scope.itemVisible = function(item){
