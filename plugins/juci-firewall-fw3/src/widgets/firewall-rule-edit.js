@@ -26,7 +26,8 @@ JUCI.app
 	$scope.targetChoices = [
 		{ label: gettext("ACCEPT"), value: "ACCEPT" }, 
 		{ label: gettext("REJECT"), value: "REJECT" }, 
-		{ label: gettext("FORWARD"), value: "FORWARD" }
+		{ label: gettext("FORWARD"), value: "FORWARD" },
+		{ label: gettext("DROP"), value: "DROP" }
 	]; 
 	
 	$firewall.getZones().done(function(zones){
