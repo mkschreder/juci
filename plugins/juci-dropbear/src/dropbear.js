@@ -2,7 +2,7 @@
 
 UCI.$registerConfig("dropbear"); 
 UCI.dropbear.$registerSectionType("dropbear", {
-	"enable": 				{ dvalue: true, type: Boolean }, //Set to 0 to disable starting dropbear at system boot.
+	//"enable": 				{ dvalue: true, type: Boolean }, //Set to 0 to disable starting dropbear at system boot.
 	"verbose": 				{ dvalue: false, type: Boolean }, //Set to 1 to enable verbose output by the start script.
 	"BannerFile": 			{ dvalue: "", type: String} , //Name of a file to be printed before the user has authenticated successfully.
 	"PasswordAuth": 		{ dvalue: true, type: Boolean }, //Set to 0 to disable authenticating with passwords.

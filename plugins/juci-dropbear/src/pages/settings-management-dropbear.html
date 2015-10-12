@@ -4,13 +4,16 @@
 			<juci-config-heading>{{ 'Dropbear SSH' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'settings.dropbear.info' | translate }}</juci-config-info>
 			<juci-config-lines>
-				<juci-config-line title="{{'Enabled'|translate}}" help="Set to 0 to disable starting dropbear at system boot.">
-					<switch ng-model="dropbear.enable.value" class="green" ></switch>
+				<juci-config-line title="{{'Start/Stop Service'|translate}}" help="{{'Start or stop service'|translate}}">
+					<button class="btn btn-default" ng-click="onStartStopService()"><i class="fa" ng-class="{'fa-play':!service.running,'fa-stop':service.running}"></i></button>
 				</juci-config-line>
-				<juci-config-line title="{{'Verbose logging'|translate}}" help="Set to 1 to enable verbose output by the start script.">
+				<juci-config-line title="{{'Enabled'|translate}}" help="{{'Enable/Disable starting SSH service during boot'|translate}}">
+					<switch ng-model="service.enabled" ng-change="onServiceEnableDisable()" class="green" ></switch>
+				</juci-config-line>
+				<juci-config-line title="{{'Verbose logging'|translate}}" help="{{'Set to 1 to enable verbose output by the start script'|translate}}">
 					<switch ng-model="dropbear.verbose.value" class="green" ></switch>
 				</juci-config-line>
-				<!--<juci-config-line title="{{'Banner File'|translate}}" help="Name of a file to be printed before the user has authenticated successfully.">
+				<!--<juci-config-line title="{{'Banner File'|translate}}" help="{{'Name of a file to be printed before the user has authenticated successfully'|translate}}">
 					<input placeholder="{{'Banner File Path'|translate}}" class="form-control" ng-model="dropbear.BannerFile.value" ng-blur="onApply()"></input>
 				</juci-config-line>-->
 				<juci-config-line title="{{'Password Authentication'|translate}}" help="Set to 0 to disable authenticating with passwords.">
