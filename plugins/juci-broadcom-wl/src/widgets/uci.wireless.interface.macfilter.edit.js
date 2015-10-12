@@ -93,11 +93,6 @@ JUCI.app
 		$scope.showModal = 1; 
 	}
 	
-	$scope.onFilterEnable = function(){
-		$scope.filterEnabled = !$scope.filterEnabled; 
-		//console.log("Filter: "+$scope.filterEnabled); 
-	}
-	
 	$scope.onAddNewClient = function(){
 		$scope.maclist.push({ hostname: "", macaddr: "" }); 
 	}
