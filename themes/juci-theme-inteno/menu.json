@@ -136,11 +136,6 @@
 		"modes": [ "expert" ], 
 		"acls": [ "juci-firewall-fw3" ]
 	},
-	"internet/firewall/services": {
-		"page": "internet-firewall-services", 
-		"title": "Services", 
-		"acls": [ "juci-firewall-fw3" ] 
-	}, 
 	"internet/firewall/dmz": {
 		"page": "internet-firewall-dmz", 
 		"title": "DMZ",
@@ -272,6 +267,16 @@
 		"title": "SSH",
 		"acls": [ "juci-dropbear" ]
 	},
+	"settings/management/uhttpd": {
+		"page": "page-uhttpd-settings", 
+		"title": "HTTPD", 
+		"acls": [ "juci-uhttpd" ]
+	}, 
+	"settings/management/services": {
+		"page": "internet-firewall-services", 
+		"title": "Services", 
+		"acls": [ "juci-firewall-fw3" ] 
+	}, 
 	"settings/services": {
 		"page": "settings-services", 
 		"title": "Services",
