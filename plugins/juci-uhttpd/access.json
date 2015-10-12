@@ -1,0 +1,15 @@
+{
+	"juci-uhttpd": {
+		"description": "JUCI uHTTPD plugin",
+		"read": {
+			"uci": [
+				"uhttpd"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"uhttpd"
+			]
+		}
+	}
+}
