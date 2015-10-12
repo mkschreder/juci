@@ -19,7 +19,7 @@
 
 		async.series([
 			function(next){
-				UCI.sync("boardpanel").done(function(){
+				UCI.$sync("boardpanel").done(function(){
 					if(UCI.boardpanel && UCI.boardpanel.settings){
 						var net = UCI.boardpanel.network; 
 						if(net.internet.value) self["wan_interface"] = net.internet.value; 
@@ -30,7 +30,7 @@
 				}).always(function(){ next(); }); 
 			}, function(next){
 				// try loading hardware model from system display name
-				UCI.sync("system").done(function(){
+				UCI.$sync("system").done(function(){
 					if(UCI.system){
 						var system = UCI.system["@system"]; 
 						if(system && system.length && system[0].displayname.value){
@@ -51,7 +51,7 @@
 				}
 			}, function(next){
 				// load any remaining settings from juci config
-				UCI.sync("juci").done(function(){
+				UCI.$sync("juci").done(function(){
 					if(UCI.juci && UCI.juci.settings){
 						console.log("Using settings from config/juci on router"); 
 						Object.keys(UCI.juci.settings).map(function(k){

@@ -4,7 +4,7 @@ require("./lib-juci");
 
 describe("UCI", function(){
 	beforeEach(function(done){
-		$uci.sync().done(function(){
+		$uci.$sync().done(function(){
 			expect($uci).to.have.property("juci");
 			var to_delete = $uci.juci["@test"].map(function(x){
 				return x; 
@@ -68,7 +68,7 @@ describe("UCI", function(){
 			expect($uci.juci["@test"]).to.contain(section); 
 			section.str.value = "test"; 
 			$uci.save().done(function(){
-				$uci.sync("juci").done(function(){
+				$uci.$sync("juci").done(function(){
 					expect($uci.juci["@test"]).to.contain(section); 
 					expect($uci.juci[section[".name"]]).to.be.ok(); 
 					expect($uci.juci[section[".name"]].str.value).to.eql("test"); 
@@ -100,11 +100,11 @@ describe("UCI", function(){
 		$uci.juci.create({".type": "test"}).done(function(section){
 			expect($uci.juci["@test"]).to.contain(section); 
 			expect($uci.juci["@test"].length).to.be(1); 
-			$uci.sync("juci").done(function(){
+			$uci.$sync("juci").done(function(){
 				expect($uci.juci["@test"]).to.be.empty(); 
 				expect($uci.juci["@test"]).not.to.contain(section);
 				$uci.save().done(function(){ // this should not commit previulsy added section!
-					$uci.sync("juci").done(function(){
+					$uci.$sync("juci").done(function(){
 						expect($uci.juci["@test"]).to.be.empty(); 
 						expect($uci.juci["@test"]).not.to.contain(section);
 						done(); 
@@ -122,7 +122,7 @@ describe("UCI", function(){
 		$uci.juci.create({".type": "test", ".name": "testname"}).done(function(section){
 			expect($uci.juci.testname).to.be.ok(); 
 			$uci.save().done(function(){
-				$uci.sync("juci").done(function(){
+				$uci.$sync("juci").done(function(){
 					expect($uci.juci.testname).to.be.ok(); 
 					expect($uci.juci["@test"]).to.contain(section); 
 					expect($uci.juci["@test"].length).to.be(1); 

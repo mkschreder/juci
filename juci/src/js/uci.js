@@ -624,10 +624,11 @@
 		return deferred.promise(); 
 	}
 	
+	/*
 	UCI.prototype.sync = function(opts){
 		console.error("$uci.sync() is deprecated and will be replaced with $uci.$sync() in future version to avoid config collisions. Please do not use it!"); 
 		return this.$sync(opts); 
-	}
+	}*/
 
 	UCI.prototype.$revert = function(){
 		var revert_list = []; 
