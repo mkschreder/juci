@@ -6,12 +6,9 @@ JUCI.app
 		if(!dev) return "Unknown"; 
 		return dev.name.value + " (" +dev.ifname.value + ")"; 
 	}
-	$network.getDevices().done(function(devices){
-		$scope.vlan_devices = devices.filter(function(dev){
-			return dev.type == "vlan"; 
-		}).map(function(dev){
-			return dev.base; 
-		}); 
+	
+	$uci.$sync("layer2_interface_vlan").done(function(){
+		$scope.vlan_devices = $uci.layer2_interface_vlan["@vlan_interface"]; 
 		$scope.$apply(); 
 	}); 
 	
