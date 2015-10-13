@@ -152,15 +152,15 @@
 		"title": "MultiWAN",
 		"acls": [ "juci-multiwan" ]
 	},
-	"internet/services/minidlna": {
-		"page": "internet-services-minidlna", 
-		"title": "MiniDLNA",
-		"acls": [ "juci-minidlna" ]
-	},
 	"internet/services": {
 		"page": "internet-services", 
 		"title": "Services",
 		"acls": [ "juci-network-netifd" ]
+	},
+	"internet/services/minidlna": {
+		"page": "internet-services-minidlna", 
+		"title": "MiniDLNA",
+		"acls": [ "juci-minidlna" ]
 	},
 	"internet/services/ntp": {
 		"page": "internet-services-ntp", 
