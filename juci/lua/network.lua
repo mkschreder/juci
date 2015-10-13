@@ -47,10 +47,39 @@ function network_list_connected_clients(opts)
 		proc_arp:close(); 
 		return arp; 
 	end 
-	
+		
+	function read_ip6_clients()
+		local proc = io.popen("ip -6 neigh show"); 
+		local result = {}; 
+		local line = proc:read("*l");
+		while line do 
+			local ip,_,dev,_,mac,status = line:match("(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)"); 
+			-- some lines also contain "router" string in place of status. Maybe we should parse values as key/value pairs instead? 
+			local _,_,_,_,_,_,status2 = line:match("(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)"); 
+			local obj = {
+				ip6addr = ip, 
+				ip6status = status,
+				device = dev, 
+				macaddr = mac,
+				router = false 
+			};
+			if(status2) then 
+				if(status == "router") then
+					obj.router = true
+				end
+				obj.ip6status = status2; 
+			end
+			table.insert(result, obj); 
+			line = proc:read("*l"); 
+		end
+		proc:close(); 
+		return result; 
+	end 
+
 	function read_clients()
 		local result = read_arp_info(); -- arp info is usually better for getting clients that are actually connected
 		local dhcp_leases = read_dhcp_info(); 
+		local ip6clients = read_ip6_clients(); 
 		
 		-- combine fields
 		for mac,dhcp in pairs(dhcp_leases) do 
@@ -61,9 +90,17 @@ function network_list_connected_clients(opts)
 				end
 			end
 		end
+		for _,cl in ipairs(ip6clients) do
+			if result[cl.macaddr] then 
+				result[cl.macaddr]["ip6addr"] = cl.ip6addr; 
+				result[cl.macaddr]["ip6status"] = cl.ip6status; 
+			elseif(cl.macaddr ~= nil) then 
+				result[cl.macaddr] = cl; 
+			end
+		end
 		return result; 
 	end
-	
+
 	local clients_map = read_clients(); 
 	local clients_list = {}; 
 	for mac,cl in pairs(clients_map) do 
