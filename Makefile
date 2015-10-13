@@ -82,7 +82,11 @@ ifeq ($(CONFIG_PACKAGE_juci-ubus-core),y)
 	UBUS_MODS += backend/juci-core
 endif
 
-prepare: 	
+.cleaned: Makefile Makefile.local Makefile.basic 
+	@make clean 
+	@touch .cleaned
+
+prepare: .cleaned	
 	@echo "======= JUCI CONFIG ========="
 	@echo "TARGETS: $(TARGETS)"
 	@echo "BACKEND: $(UBUS_MODS)"
@@ -111,10 +115,20 @@ debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\e[0;33m [UPDATE] $@ \e[m"
 	@./juci-update $(BIN)/www DEBUG
 
+DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) 
+DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD))
+docs: $(DOCS_HTML) 
+	@echo -e "\e[0;33m [DOCS] $@ $^ \e[m"
+
+%.html: %.md 
+	@echo -e "\e[0;33m[DOC]: $^\e[m"
+	@mkdir -p manual
+	@ronn --pipe -5 $^ > $(addprefix manual/,$(notdir $@))
+
 install: 
 	@cp -Rp $(BIN)/* $(DESTDIR)
 
-.PHONY: $(PHONY) $(UBUS_MODS) 
+.PHONY: docs $(PHONY) $(UBUS_MODS) 
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"
