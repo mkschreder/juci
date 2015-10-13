@@ -9,13 +9,19 @@
 			<tr>
 				<td ><strong translate>Internet</strong></td>
 				<td>
-					<strong ng-show="internet_wan.up" class="text-success" translate>ONLINE</strong>
-					<strong ng-show="!internet_wan.up" class="text-danger" translate>OFFLINE</strong>
+					<strong ng-show="default_route_ifs.length" class="text-success" translate>ONLINE</strong>
+					<strong ng-show="!default_route_ifs.length" class="text-danger" translate>OFFLINE</strong>
 				</td>
 			</tr>
-			<tr ng-show="internet_wan.up"><td ><strong translate>WAN IP</strong></td><td>{{internet_wan['ipv4-address'][0].address}}</td></tr>
-			<tr ng-show="internet_wan.up"><td ><strong translate>Gateway</strong></td></td><td><strong>{{internet_wan.route[0].nexthop}}</strong></td></tr>
-			<tr ng-show="internet_wan.up"><td ><strong translate>Type</strong></td></td><td><strong>{{internet_wan.connection_type}}</strong></td></tr>
+			<tr ng-show="default_route_ifs.length"><td ><strong translate>WAN IP(s)</strong></td>
+				<td><span ng-repeat="i in default_route_ifs track by $index">{{i['ipv4-address'][0].address}} {{i['ipv6-address'][0].address}}<br/></span></td>
+			</tr>
+			<tr ng-show="default_route_ifs.length"><td ><strong translate>Gateway(s)</strong></td>
+				<td><span ng-repeat="i in default_route_ifs track by $index"><span ng-repeat="r in i.route track by $index">{{r.nexthop}}<br/></span></span></td>
+			</tr>
+			<tr ng-show="default_route_ifs.length"><td ><strong translate>Connection</strong></td>
+				<td><span ng-repeat="i in connection_types track by $index">{{i}}<br/></span></td>
+			</tr>
 		</table>
 	</div>
 </div>

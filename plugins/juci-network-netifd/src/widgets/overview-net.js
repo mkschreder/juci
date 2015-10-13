@@ -2,17 +2,17 @@
 JUCI.app
 .directive("overviewWidget10Network", function(){
 	return {
-		templateUrl: "widgets/overview.net.html", 
+		templateUrl: "widgets/overview-net.html", 
 		controller: "overviewWidgetNetwork", 
 		replace: true
 	 };  
 })
 .directive("overviewStatusWidget10Network", function(){
 	return {
-		templateUrl: "widgets/overview.net.small.html", 
+		templateUrl: "widgets/overview-net-small.html", 
 		controller: "overviewStatusWidgetNetwork", 
 		replace: true
-	 };  
+	};  
 })
 .controller("overviewStatusWidgetNetwork", function($scope, $uci, $rpc){
 	$scope.statusClass = "text-success"; 
