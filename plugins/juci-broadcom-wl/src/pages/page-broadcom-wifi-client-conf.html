@@ -4,6 +4,12 @@
 		<juci-config-info>{{ 'wifi.client.info' | translate }}</juci-config-info>
 		<i class="fa fa-spinner fa-spin" ng-hide="access_points"></i>
 		<table class="table" ng-show="access_points">
+			<thead>
+				<th translate>SSID</th>
+				<th translate>SNR</th>
+				<th translate>Cipher</th>
+				<th translate>Connect</th>
+			</thead>
 			<tr ng-repeat="ap in access_points">
 				<td>{{ap.ssid}}</td>
 				<td>{{ap.snr}}</td>
@@ -13,6 +19,5 @@
 				</td>
 			</tr>
 		</table>
-		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

@@ -3,10 +3,14 @@
 JUCI.app
 .controller("PageBroadcomWifiClientConf", function($scope, $uci, $wireless, gettext){
 	$wireless.scan(); 
-	setTimeout(function(){
-		$wireless.getScanResults().done(function(result){
-			$scope.access_points = result.access_points;
-			$scope.$apply(); 
-		});
-	}, 5000); 
+	JUCI.interval.repeat("wifi-scan", 5000, function(done){
+		$wireless.scan(); 
+		setTimeout(function(){
+			$wireless.getScanResults().done(function(aps){
+				$scope.access_points = aps;
+				$scope.$apply(); 
+				done(); 
+			});
+		}, 4000); 
+	}); 
 }); 
