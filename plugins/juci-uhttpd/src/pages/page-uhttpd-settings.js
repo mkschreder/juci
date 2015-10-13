@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("PageUhttpdSettings", function($scope, $uci, gettext){
+.controller("PageUhttpdSettings", function($scope, $uci, $systemService, gettext){
 	$uci.$sync("uhttpd").done(function(){
 		$scope.config = $uci.uhttpd.main; 
 		$scope.$apply(); 
