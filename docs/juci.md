@@ -3,8 +3,22 @@ JUCI
 
 JUCI WebGUI is designed for building modern and dynamic web interfaces for embedded devices. 
 
+CORE SUBSYTEMS
+==============
+
+* [$rpc](rpc.html) - JUCI rpc subsystem for making remote calls to the server
+* [$uci](uci.html) - JUCI uci subsystem for managing configuration options in uci on the server
+* [$ethernet](ethernet.html) - get information about low level devices
+* [$network](network.html) - get information about ip network and clients connected to it
+* [$wireless](wireless.html) - get information about wireless clients and wireless devices
+
+TUTORIALS
+=========
+
+* [Creating Pages](creating-pages.html) - learn how to setup a new page in juci plugin
+
 CORE OBJECTS
-------------
+============
 
 The core system of juci is very small. In fact, it is there basically to provide a simple startup code and to bind all other parts together. JUCI is built almost entirely using angular.js and all components are tied together mostly through angular. The core codebase merely provides ways for juci to make RPC calls to the backend and manipulate configuration settings in UCI. The core is located in /juci/src/js/ folder of the source tree.
 
@@ -53,3 +67,4 @@ JUCI language and translation system. This is really just a simple wrapper to ma
 # juci/src/js/uci.js
 
 The juci UCI subsystem. Together with juci RPC this system allows to easily handle uci data by providing a convenient getter/setter based interface to uci objects so that values can easily be set inside the browser and then sync-ed automatically to the server with only changed values being sent over the wire. 
+

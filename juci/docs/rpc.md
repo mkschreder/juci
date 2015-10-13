@@ -1,4 +1,5 @@
-# $rpc factory
+JUCI $rpc SUBSYSTEM
+===================
 
 This factory provides access to the rpc subsystem on OpenWRT through
 uhttpd-mod-ubus plugin. In juci, all dynamic data requests are done through
@@ -6,14 +7,14 @@ json rpc. So most plugins will use this module to communicate with the backend.
 
 The rpc module is available in two ways: 
 
-* 	angular $rpc factory / service
-* 	$rpc variable in the browser window object (you can access it like that in
+* angular $rpc factory / service
+* $rpc variable in the browser window object (you can access it like that in
  	browser console)
 
 For the most part you will be using the angular service for doing rpc calls
 because most of juci plugins are angular objects. 
 
-### accessing $rpc in angular
+`accessing $rpc in angular`
 
 	JUCI.app.controller("yourController", function($rpc){
 		$rpc.juci.ui.menu().done(function(){
@@ -21,7 +22,7 @@ because most of juci plugins are angular objects.
 		}); 
 	});
 
-### accessing in window
+`accessing in window`
 
 	$rpc.juci.ui.menu().done(function(){
 
@@ -42,7 +43,8 @@ access.json file and then install it with unique name into
 /usr/share/rpcd/acl.d/ folder on the router. Exactly how to configure acl lists
 is described in more detail in OpenWRT rpcd documentation. 
 
-## rpc object methods
+METHODS
+=======
 	
 	$sid: function(sid) -> sid
 		Set or get current session id for currently active session
@@ -72,22 +74,27 @@ is described in more detail in OpenWRT rpcd documentation.
 		in using current version of rpcd. In the future this may change to
 		include only the methods availabel through unauthenticated session. 
 
-## building the backend
+BACKEND
+=======
 
-JUCI backend can be any kind of ubus plugin, but juci itself uses lua plugins
-that are loaded by the main juci rpcd module. This allows you to write the juci
-backend in any scripting language that you like (which of course needs to be
-present on the router). JUCI prefers to use lua for backend scripting though. 
+In order for RPC calls to work, you obviously need a backend that will execute
+the call on the actual device. JUCI supports writing backend in any language
+that can publish objects on ubus and it also provides support for writing ubus
+objects in shell scripts. So you have a very wide choice in how exactly you
+will implement your backend. JUCI is for the most part now using Lua to
+implement backend functions because it has proven to be dynamic enough and also
+fast on actual hardware.
 
-## communicating with the backend
-
-Once your backend is accessible on ubus and you have configured uhttpd to allow
-you access to it's ubus methods, you can use the $rpc object to access your
-method just as though it would have been any javascript method. 
+Once your backend publishes it's rpc functions on ubus, they will automatically
+become available in juci $rpc object once you reload the page. 
 
 Example:
 
 	$rpc.my.object.method().done(function(result){
 		console.log(JSON.stringify(result)); 
 	}); 
+
+You do however need to configure proper access rights for your ubus methods
+before you can call them. This is part of the access list (acl) configuration. 
+
 
