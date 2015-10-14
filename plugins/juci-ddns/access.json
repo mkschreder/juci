@@ -5,7 +5,12 @@
 			"uci": [
 				"network", 
 				"ddns"
-			]
+			], 
+			"ubus": {
+				"/juci/ddns": [ 
+					"providers"
+				]
+			}
 		},
 		"write": {
 			"uci": [

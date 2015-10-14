@@ -1,5 +1,26 @@
 <div>
-	<juci-config-lines ng-show="ddns.enabled.value">
+	<juci-config-lines>
+		<juci-config-line title="{{'Enabled'|translate}}">
+			<switch ng-model="ddns.enabled.value" class="green"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Label'|translate}}">
+			<input type="text" class="form-control" ng-model="ddns['.name']"/>
+		</juci-config-line>
+		<juci-config-line title="{{'IP Retreival Method'|translate}}">
+			<juci-select ng-model="ddns.ip_source.value" ng-items="allSourceTypes"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{'Pick Connection'|translate}}" ng-show="ddns.ip_source.value == 'network'">
+			<juci-select ng-model="ddns.ip_network.value" ng-items="allSourceNetworks"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{'Pick Interface'|translate}}" ng-show="ddns.ip_source.value == 'interface'">
+			<juci-select ng-model="ddns.ip_interface.value" ng-items="allSourceDevices"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'Enter website to poll for ip address'|translate}}" ng-show="ddns.ip_source.value == 'web'">
+			<input type="text" class="form-control" placeholder="{{'http://checkip.dyndns.com/'}}" ng-model="ddns.ip_url.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Script Path'|translate}}" ng-show="ddns.ip_source.value == 'script'">
+			<input type="text" class="form-control" placeholder="{{'Enter path to script on router'|translate}}" ng-model="ddns.ip_script.value"/>
+		</juci-config-line>
 		<juci-config-line title="{{'Provider'|translate}}">
 			<div ng-show="enterDNSProvider">
 				<input type="text" class="form-control" ng-model="ddns.service_name.value" placeholder="{{'For example'}} noip.com"/>
@@ -13,13 +34,16 @@
 			</div>
 		</juci-config-line>
 		<juci-config-line title="{{'Domain name'|translate}}">
-				<input type="text" class="form-control" ng-model="ddns.domain.value" placeholder="{{'Domain name'|translate}}" />
+			<input type="text" class="form-control" ng-model="ddns.domain.value" placeholder="{{'Domain name'|translate}}" />
 		</juci-config-line>
 		<juci-config-line title="{{'Username'|translate}}">
-				<input type="text" class="form-control" ng-model="ddns.username.value" placeholder="{{'Username'|translate}}" />
+			<input type="text" class="form-control" ng-model="ddns.username.value" placeholder="{{'Username'|translate}}" />
 		</juci-config-line>
 		<juci-config-line title="{{'Password'|translate}}">
-				<input type="password" class="form-control" ng-model="ddns.password.value" placeholder="{{'Password'|translate}}" />
+			<input type="password" class="form-control" ng-model="ddns.password.value" placeholder="{{'Password'|translate}}" />
+		</juci-config-line>
+		<juci-config-line title="{{'Use HTTPS'|translate}}">
+			<switch ng-model="ddns.use_https.value" class="green"></switch>
 		</juci-config-line>
 	</juci-config-lines>
 </div>
