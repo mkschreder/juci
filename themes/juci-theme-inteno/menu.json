@@ -6,7 +6,7 @@
 	"phone": {
 		"title": "Phone", 
 		"redirect": "phone/call_log", 
-		"acls": [ "juci-asterisk"  ]
+		"acls": [ "juci-asterisk", "juci-natalie-dect" ]
 	}, 
 	"phone/call_log": {
 		"page": "phone-call-log", 
