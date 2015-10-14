@@ -464,6 +464,11 @@
 		
 		// creates a new object that will have values set to values
 		UCIConfig.prototype.create = function(item, offline){
+			console.error("UCI.section.create is deprecated. Use $create() instead!"); 
+			return this.$create(item, offline); 
+		}
+
+		UCIConfig.prototype.$create = function(item, offline){
 			var self = this; 
 			if(!(".type" in item)) throw new Error("Missing '.type' parameter!"); 
 			var type = section_types[self[".name"]][item[".type"]]; 
