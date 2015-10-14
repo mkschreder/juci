@@ -72,7 +72,7 @@ JUCI.app
 		$juciDialog.show("uci-wireless-interface", {
 			title: $tr(gettext("Edit wireless interface")),  
 			on_apply: function(btn, dlg){
-				$uci.$save();
+				$uci.$save(); 
 				return true; 
 			}, 
 			model: iface.uci_dev
@@ -82,6 +82,7 @@ JUCI.app
 	}
 
 	function refresh() {
+		var def = $.Deferred(); 
 		$scope.wifiSchedStatus = gettext("off"); 
 		$scope.wifiWPSStatus = gettext("off"); 
 		async.series([
@@ -122,6 +123,13 @@ JUCI.app
 			},
 		], function(){
 			$scope.$apply(); 
+			def.resolve(); 
 		}); 
-	}; refresh(); 
+		return def.promise(); 
+	}; 
+	JUCI.interval.repeat("wifi-overview", 10000, function(done){
+		refresh().done(function(){
+			done(); 
+		}); 
+	}); 
 }); 
