@@ -15,6 +15,15 @@
 		<juci-config-line title="{{'RIFS Advertisement'|translate}}">
 			<switch class="green" ng-model="device.rifs_advert.value"/>
 		</juci-config-line>
+		<juci-config-line title="{{'Framebursting'|translate}}">
+			<switch class="green" ng-model="device.frameburst.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Beamforming'|translate}}">
+			<switch class="green" ng-model="device.beamforming.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'OBSS Co-Existence'|translate}}" ng-show="device.bandwidth.value == '40' || device.bandwidth.value == '20/40'">
+			<switch class="green" ng-model="device.obss_coex.value"/>
+		</juci-config-line>
 		<juci-config-line title="{{'RX Chain PowerSave Quiet Time'|translate}}">
 			<switch class="green" ng-model="device.rxchainps_qt.value"/>
 		</juci-config-line>	
