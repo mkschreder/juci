@@ -44,6 +44,12 @@ JUCI.app
 		$rpc.juci.system.upgrade.test({"path": path}).done(function(result){
 			$scope.showUpgradeStatus = 0; 
 			$scope.$apply(); 
+
+			if(result && result.error) {
+				alert("Image check failed: "+result.stdout); 
+				return; 
+			}
+
 			confirmKeep().done(function(keep){
 				$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep)?1:0)}); // this never completes
 				window.location = "/reboot.html";  

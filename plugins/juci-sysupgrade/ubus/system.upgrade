@@ -24,7 +24,9 @@ function sysupgrade_test(params)
 	local res = {}; 
 	local path = "/tmp/firmware.bin"; 
 	if params["path"] then path = params["path"] end
-	res["stdout"] = juci.shell("sysupgrade --test %s", path); 
+	local stdout,ret = juci.shell("sysupgrade --test %s", path); 
+	res["stdout"] = stdout; 
+	res["error"] = ret; 
 	print(json.encode(res)); 
 end
 
@@ -34,7 +36,7 @@ function sysupgrade_start(params)
 	local keep = ""; 
 	if params["keep"] ~= 1 then keep = "-n" end
 	if params["path"] then path = params["path"] end
-	res["stdout"] = juci.shell("sysupgrade "..keep.." %s", path); 
+	res["stdout"],res["error"] = juci.shell("sysupgrade "..keep.." %s", path); 
 	print(json.encode(res)); 
 end
 
