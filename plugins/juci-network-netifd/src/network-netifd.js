@@ -193,8 +193,9 @@
 		
 		NetworkBackend.prototype.getWanNetworks = function(){
 			var deferred = $.Deferred(); 
+			console.log("$network.getWanNetworks() is deprecated. You should list firewall zone wan to get whole list"); 
 			this.getNetworks().done(function(nets){
-				deferred.resolve(nets.filter(function(x){ return x.is_lan.value == 0; })); 
+				deferred.resolve(nets.filter(function(x){ return !x.is_lan.value; })); 
 			}); 
 			return deferred.promise(); 
 		}
@@ -320,16 +321,17 @@ UCI.network.$registerSectionType("interface", {
 	"ifname":				{ dvalue: '', type: String }, 
 	"device":				{ dvalue: '', type: String }, 
 	"proto":				{ dvalue: '', type: String }, 
-	"proto6":				{ dvalue: '', type: String }, 
 	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask":				{ dvalue: '', type: String }, 
 	"gateway":				{ dvalue: '', type: String }, 
 	"ip6addr":				{ dvalue: '', type: String }, 
+	"ip6gw": 				{ dvalue: '', type: String },
 	"ip6prefix":			{ dvalue: '', type: String }, 
-	"ip6gateway":			{ dvalue: '', type: String }, 
+	"ip6gateway":			{ dvalue: '', type: String },  
+	"ip6assign":			{ dvalue: 128, type: Number }, 
+	"ip6hint": 				{ dvalue: '', type: String },
 	"type":					{ dvalue: '', type: String }, 
-	"defaultroute":			{ dvalue: false, type: Boolean }, 
-	"ip6assign":			{ dvalue: 60, type: Number }, 
+	"defaultroute":			{ dvalue: false, type: Boolean },	
 	"bridge_instance": 		{ dvalue: false, type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
 	"ipv6":					{ dvalue: false, type: Boolean },
@@ -354,18 +356,6 @@ UCI.network.$registerSectionType("route", {
 	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
 	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }
 }); 
-
-UCI.$registerConfig("ddns");
-UCI.ddns.$registerSectionType("service", {
-	"enabled":              { dvalue: 0, type: Number },
-	"interface":            { dvalue: "", type: String },
-	"use_syslog":           { dvalue: 0, type: Number },
-	"service_name":         { dvalue: "", type: String },
-	"domain":               { dvalue: "", type: String },
-	"username":             { dvalue: "", type: String },
-	"password":             { dvalue: "", type: String }
-});
-			
 
 UCI.$registerConfig("hosts");
 UCI.hosts.$registerSectionType("host", {
