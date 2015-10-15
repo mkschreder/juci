@@ -1,7 +1,19 @@
 CREATING PAGES AND WIDGETS
 ==============
 
-A JUCI based interface is typically built from a number of pages that are accessible through a navigation menu and where each page can consist of unlimited number of widgets that build up the page. Thus pages are relatively static components that you refer to from your theme's menu.json file, while widgets are reusable components that can appear in any number of pages. Widgets are typically refered (or included) into a page by means of using the directive(1) of a widget. In JUCI all widgets should have the same filename as the name of the directive that they implement. 
+A JUCI based interface is typically built from a number of pages that are
+accessible through a navigation menu and where each page can consist of
+unlimited number of widgets that build up the page. Thus pages are relatively
+static components that you refer to from your theme's menu.json file, while
+widgets are reusable components that can appear in any number of pages. Widgets
+are typically refered (or included) into a page by means of using the
+directive(1) of a widget. In JUCI all widgets should have the same filename as
+the name of the directive that they implement. 
+
+STANDARD CONTROLS
+=================
+
+When creating pages you may want to take advantage of [juci standard controls library](standard-controls.html)
 
 CREATING A PAGE
 ===============

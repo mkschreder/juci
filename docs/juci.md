@@ -12,6 +12,11 @@ CORE SUBSYTEMS
 * [$network](network.html) - get information about ip network and clients connected to it
 * [$wireless](wireless.html) - get information about wireless clients and wireless devices
 
+CONTROLS LIBRARY
+================
+
+* [JUCI standard controls](standard-controls.html)
+
 TUTORIALS
 =========
 
