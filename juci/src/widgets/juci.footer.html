@@ -10,7 +10,7 @@
 			<!--<juci-theme-picker></juci-theme-picker>-->
 		</div>
 		<div id="info">
-			WAN IP Address: {{wanip}} | Firmware version: {{firmware}}
+			WAN IP Address: <span ng-repeat="i in wanifs track by $index">{{i["ipv4-address"][0].address}} {{i["ipv6-address"][0].address}}</span> | Firmware version: {{firmware}}
 		</div>
 		
 	</div>

@@ -18,7 +18,7 @@ JUCI.app
 	$scope.setLanguage = function(lang){
 		$languages.setLanguage(lang.short_code); 
 	}; 
-	$scope.wanip = $tr(gettext("Not connected")); 
+	$scope.wanifs = []; 
 
 	$scope.onLogout = function(){
 		console.log("logging out");
@@ -34,8 +34,8 @@ JUCI.app
 				$rpc.network.interface.dump().done(function(result){
 					if(result && result.interface) {
 						result.interface.map(function(i){
-							if(i.interface == $config.wan_interface && i["ipv4-address"] && i["ipv4-address"].length){
-								$scope.wanip = i["ipv4-address"][0].address; 
+							if(i.route && i.route.length && i.route.find(function(r){ return r.target == "0.0.0.0" || r.target == "::"; })){
+								$scope.wanifs.push(i); 
 							}
 						}); 
 					}
