@@ -19,3 +19,5 @@ plugins/**/build
 services/**/build
 *~
 Makefile.local
+.cleaned 
+manual
