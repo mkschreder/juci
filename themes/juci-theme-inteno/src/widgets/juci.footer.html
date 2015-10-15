@@ -15,7 +15,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', end
 			</div>
 			<div class="col-sm-6 col-xs-12 form-group footer-right" >
 				<div class="row">{{firmware}}</div>
-				<div class="row"><span translate>WAN IP Address</span>: {{wanip}}</div>
+				<div class="row"><span translate>WAN IP Address</span>: 
+					<span ng-repeat="i in wanifs track by $index">
+						<span ng-show="i['ipv4-address'][0]">IPv4: {{i["ipv4-address"][0].address}}</span>
+						<span ng-show="i['ipv6-address'][0]">IPv6: {{i["ipv6-address"][0].address}}</span>
+					</span>
+				</div>
 			</div>
 		</div>
 		<div class="row">
