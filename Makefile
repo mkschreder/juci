@@ -86,6 +86,8 @@ endif
 	@make clean 
 	@touch .cleaned
 
+Makefile.local: ;
+
 prepare: .cleaned	
 	@echo "======= JUCI CONFIG ========="
 	@echo "TARGETS: $(TARGETS)"
