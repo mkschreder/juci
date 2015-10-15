@@ -16,6 +16,7 @@
     "watchjs": "*",
     "uglify-js": "*", 
     "array.prototype.find": "*",
+	"node-getopt": "*", 
 	"underscore": "*"
   },
   "engines": {
