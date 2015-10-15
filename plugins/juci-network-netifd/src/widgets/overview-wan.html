@@ -17,7 +17,7 @@
 				<td><span ng-repeat="i in default_route_ifs track by $index">{{i['ipv4-address'][0].address}} {{i['ipv6-address'][0].address}}<br/></span></td>
 			</tr>
 			<tr ng-show="default_route_ifs.length"><td ><strong translate>Gateway(s)</strong></td>
-				<td><span ng-repeat="i in default_route_ifs track by $index"><span ng-repeat="r in i.route track by $index">{{r.nexthop}}<br/></span></span></td>
+				<td><span ng-repeat="g in all_gateways track by $index">{{g}}<br/></span></td>
 			</tr>
 			<tr ng-show="default_route_ifs.length"><td ><strong translate>Connection</strong></td>
 				<td><span ng-repeat="i in connection_types track by $index">{{i}}<br/></span></td>

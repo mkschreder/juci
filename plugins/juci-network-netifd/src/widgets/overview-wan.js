@@ -26,18 +26,24 @@ JUCI.app
 					return wan.network.value.find(function(net) { return net == x.interface; }); 
 				}); 
 				var default_route_ifs = wan_ifs.filter(function(x){ 
-					return x.route && x.route[0] && 
+					return x.route && x.route.length && 
 						(x.route.find(function(r){ return r.target == "0.0.0.0" || r.target == "::"; }));
 				}); 
 				var con_types = {}; 
+				var all_gateways = {}; 
 				default_route_ifs.map(function(i){
 					var con_type = "ETH"; 
-					if(i.device.match(/atm/)) con_type = "ADSL"; 
-					else if(i.device.match(/ptm/)) con_type = "VDSL"; 
-					else if(i.device.match(/wwan/)) con_type = "3G/4G"; 
+					if(i.l3_device.match(/atm/)) con_type = "ADSL"; 
+					else if(i.l3_device.match(/ptm/)) con_type = "VDSL"; 
+					else if(i.l3_device.match(/wwan/)) con_type = "3G/4G"; 
 					con_types[con_type] = con_type; 
+					i.route.map(function(r){
+						if(r.nexthop != "0.0.0.0" && r.nexthop != "::") // ignore dummy routes. Note that current gateways should actually be determined by pinging them, but showing all of them is sufficient for now. 
+							all_gateways[r.nexthop] = true; 
+					}); 
 				}); 
 				$scope.connection_types = Object.keys(con_types); 
+				$scope.all_gateways = Object.keys(all_gateways); 
 				$scope.default_route_ifs = default_route_ifs; 
 				$scope.wan_ifs = wan_ifs; 
 				$scope.$apply(); 
