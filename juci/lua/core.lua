@@ -2,10 +2,13 @@ local table = require("table");
 local string = require("string"); 
 local io = require("io"); 
 local json = require("juci/json"); 
+local posix = require("posix.unistd"); 
+local sys = require("posix.sys.wait");
+local stdio = require("posix.stdio");
 
 local base = _G
 
-module("juci"); 
+--module("juci"); 
 
 function readfile(name)
 	local f = base.assert(io.open(name, "r")); 
@@ -21,7 +24,39 @@ function log(source, msg)
 	fd:close();
 end
 
-function shell(fmt, ...)
+function shell(cmd, args)
+	-- ask the shell which command we should run
+	local pt = io.popen("which "..cmd); 
+	if(not pt) then return -1, "", "no 'which' command found! "..(cmd or ""); end 
+	local cmd = tostring(pt:read("*a")):gsub("\n", ""); 
+	if(cmd == "") then return -1, "", "no such file or directory! "..(cmd or ""); end
+	pt:close(); 
+	
+	local rd, wr = posix.pipe()
+	local rderr, wrerr = posix.pipe()
+	io.flush(); 
+	local child = posix.fork(); 
+	if child == 0 then
+		posix.close(rd)
+		posix.close(rderr); 
+		posix.dup2(wr, stdio.fileno(io.stdout))
+		posix.dup2(wrerr, stdio.fileno(io.stderr))
+		posix.exec(cmd, args)
+		os.exit(2)
+	end
+	posix.close(wr)
+	posix.close(wrerr); 
+	
+	local str = posix.read(rd, 65535)
+	local strerr = posix.read(rderr, 65535); 
+	posix.close(rd); 
+	posix.close(rderr);
+
+	local ret = sys.wait(child)
+	return str, ret, strerr; 
+end
+
+function old_shell(fmt, ...)
 	for k,v in base.ipairs(arg) do
 		-- TODO: this is inherently dangerous way to do shell commands. 
 		-- This way gets rid of basic forms of injection attacks, but
