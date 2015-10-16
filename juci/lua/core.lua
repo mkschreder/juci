@@ -52,8 +52,8 @@ function exec(cmd, args)
 	posix.close(rd); 
 	posix.close(rderr);
 
-	local ret = sys.wait(child)
-	return ret, stdout, strerr; 
+	local _,_,ret = sys.wait(child)
+	return ret, str, strerr; 
 end
 
 function shell(fmt, ...)
