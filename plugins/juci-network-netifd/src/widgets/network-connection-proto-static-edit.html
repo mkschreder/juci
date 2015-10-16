@@ -3,13 +3,13 @@
 		<juci-config-heading translate>IPv4 Settings</juci-config-heading>
 		<juci-config-lines>
 			<juci-config-line title="{{'IPv4 Address'|translate}}" error="interface.ipaddr.error">
-				<input type="text" class="form-control" ng-model="interface.ipaddr.value" placeholder="{{'Static IP Address'|translate}}"></input>
+				<juci-input-ipv4-address ng-model="interface.ipaddr.value"></juci-input-ipv4-address>
 			</juci-config-line>
 			<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}">
-				<input type="text" class="form-control" ng-model="interface.netmask.value" placeholder="{{'Netmask'|translate}}"></input>
+				<juci-input-ipv4-address ng-model="interface.netmask.value"></juci-input-ipv4-address>
 			</juci-config-line>
 			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value">
-				<input type="text" class="form-control" ng-model="interface.gateway.value" placeholder="{{'Default Gateway'|translate}}"></input>
+				<juci-input-ipv4-address ng-model="interface.gateway.value"></juci-input-ipv4-address>
 			</juci-config-line>	
 		</juci-config-lines>
 	</juci-config-section>
