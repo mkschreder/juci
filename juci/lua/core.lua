@@ -24,7 +24,7 @@ function log(source, msg)
 	fd:close();
 end
 
-function shell(cmd, args)
+function exec(cmd, args)
 	-- ask the shell which command we should run
 	local pt = io.popen("which "..cmd); 
 	if(not pt) then return -1, "", "no 'which' command found! "..(cmd or ""); end 
@@ -53,10 +53,10 @@ function shell(cmd, args)
 	posix.close(rderr);
 
 	local ret = sys.wait(child)
-	return str, ret, strerr; 
+	return ret, stdout, strerr; 
 end
 
-function old_shell(fmt, ...)
+function shell(fmt, ...)
 	for k,v in base.ipairs(arg) do
 		-- TODO: this is inherently dangerous way to do shell commands. 
 		-- This way gets rid of basic forms of injection attacks, but
@@ -94,6 +94,7 @@ return {
 	readfile = readfile, 
 	log = log, 
 	shell = shell, 
+	exec = exec, 
 	ubus = ubus
 }; 
 
