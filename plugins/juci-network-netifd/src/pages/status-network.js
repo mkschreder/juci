@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("StatsOverviewCtrl", function ($scope, $uci, $rpc, gettext, $config) {
+.controller("NetifdNetworkStatusPage", function ($scope, $uci, $rpc, gettext, $config) {
 	//$scope.expanded = false; 
 	
 	JUCI.interval.repeat("status.refresh", 2000, function(resume){
