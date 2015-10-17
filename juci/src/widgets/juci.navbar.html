@@ -14,7 +14,7 @@
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav" auto-active>
 			<li class="dropdown" ng-repeat="item in tree.children_list track by $index">
-				<a href="#!{{item.path}}" role="button" >{{item.text | translate}} </a>
+				<a href="#!{{item.href}}" role="button" >{{item.text | translate}} </a>
 			</li>
 		</ul>
 	</div>
