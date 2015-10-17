@@ -1,0 +1,15 @@
+{
+	"juci-snmp": {
+		"description": "JUCI SNMP module",
+		"read": {
+			"uci": [
+				"snmp"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"snmp"
+			]
+		}
+	}
+}
