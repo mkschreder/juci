@@ -357,6 +357,32 @@ UCI.network.$registerSectionType("route", {
 	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }
 }); 
 
+UCI.network.$registerSectionType("switch", {
+	"enable": 	{ dvalue: false, type: Boolean }
+}); 
+
+UCI.network.$registerSectionType("switch_vlan", {
+	"vlan":		{ dvalue: 0, type: Number }, 
+	"device": 	{ dvalue: "", type: String },
+	"ports": 	{ dvalue: "", type: String }
+}); 
+
+UCI.network.$registerSectionType("switch_port", {
+	"port": 	{ dvalue: 0, type: Number }, 
+	"pvid": 	{ dvalue: 0, type: Number }
+}); 
+
+UCI.$registerConfig("ddns");
+UCI.ddns.$registerSectionType("service", {
+	"enabled":              { dvalue: 0, type: Number },
+	"interface":            { dvalue: "", type: String },
+	"use_syslog":           { dvalue: 0, type: Number },
+	"service_name":         { dvalue: "", type: String },
+	"domain":               { dvalue: "", type: String },
+	"username":             { dvalue: "", type: String },
+	"password":             { dvalue: "", type: String }
+});
+
 UCI.$registerConfig("hosts");
 UCI.hosts.$registerSectionType("host", {
 	"device":            { dvalue: "", type: String },

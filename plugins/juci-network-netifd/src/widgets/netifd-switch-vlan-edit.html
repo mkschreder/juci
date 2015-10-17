@@ -1,0 +1,13 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'VLAN Tag'|translate}}">
+			<input type="number" class="form-control" ng-model="vlan.vlan.value" />
+		</juci-config-line>
+		<juci-config-line title="{{'Device'|translate}}">
+			<juci-select ng-model="vlan.device.value" ng-items="allBaseDevices"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{'Ports'|translate}}">
+			<input type="text" class="form-control" ng-model="vlan.ports.value"/>
+		</juci-config-line>
+	</juci-config-lines>
+</div>
