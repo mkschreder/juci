@@ -1,0 +1,64 @@
+#!/usr/bin/lua
+
+-- wlan0     ESSID: "OpenWrt"
+--          Access Point: 00:23:6A:BE:F6:22
+--          Mode: Master  Channel: 11 (2.462 GHz)
+--          Tx-Power: 1496 dBm  Link Quality: unknown/70
+--          Signal: unknown  Noise: unknown
+--          Bit Rate: unknown
+--          Encryption: WPA2 PSK (CCMP)
+--          Type: nl80211  HW Mode(s): 802.11bgn
+--          Hardware: 14E4:AA52 14E4:AA52 [Generic MAC80211]
+--          TX power offset: unknown
+--          Frequency offset: unknown
+--          Supports VAPs: yes  PHY name: phy0
+
+local juci = require("juci.core"); 
+local iwinfo = require("iwinfo"); 
+
+function wireless_devices()
+	local output = juci.shell("find /sys/class/net/**/*phy80211* | awk 'BEGIN{FS=\"/\"} { print $5 }'"); 
+	local result = { devices = {} }; 
+	for wldev in output:gmatch("[^\r\n]+") do   
+		local iw = iwinfo[iwinfo.type(wldev)];
+		if(iw) then 
+			table.insert(result.devices, {
+				device = wldev, 
+				ssid = iw.ssid(wldev), 
+				bssid = iw.bssid(wldev),
+				type = iwinfo.type(wldev), 
+				hwmodes = iw.hwmodelist(wldev), 
+				mode = iw.mode(wldev), 
+				channel = iw.channel(wldev), 
+				frequency = iw.frequency(wldev), 
+				txpower = iw.txpower(wldev),
+				quality = iw.quality(wldev), 
+				quality_max = iw.quality(wldev),
+				signal = iw.signal(wldev),
+				noise = iw.noise(wldev),
+				bitrate = iw.bitrate(wldev),
+				encryption = iw.encryption(wldev),
+				mbssid_support = iw.mbssid_support(wldev),
+				--txpwrlist = iw.txpwrlist(wldev),
+				--freqlist = iw.freqlist(wldev),
+				country = iw.country(wldev)
+				--countrylist = iw.countrylist(wldev)
+			}); 
+		end
+	end
+	print(json.encode(result)); 
+end
+
+function wireless_radios()
+
+end
+
+function wireless_clients()
+
+end 
+
+juci.ubus({
+	devices = wireless_devices,
+	radios = wireless_radios, 
+	clients = wireless_clients
+}, arg); 

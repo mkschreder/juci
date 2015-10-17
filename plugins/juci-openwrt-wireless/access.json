@@ -1,0 +1,14 @@
+{
+	"juci-openwrt-wireless": {
+		"description": "JUCI OpenWRT Wireless Configuration",
+		"read": {
+			"ubus": {
+				"/juci/openwrt.wireless": [
+					"devices",
+					"radios", 
+					"clients"
+				]
+			}
+		}
+	}
+}
