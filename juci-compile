@@ -3,15 +3,18 @@
 # ensure that bash exits with non-zero status if any command fails!
 set -e 
 
+BIN=$1
+if [ "$1" == "" ]; then BIN=bin; fi
+
 grunt 
 
-for file in `find bin/www/js/ -name "*.js"`; do 
+for file in `find $BIN/www/js/ -name "*.js"`; do 
 	echo "Compiling JS ${file}.."
 	uglifyjs ${file} > ${file}.out
 	mv ${file}.out ${file}
 done
 
-for file in `find bin/www/css/ -name "*.css"`; do 
+for file in `find $BIN/www/css/ -name "*.css"`; do 
 	echo "Compiling CSS ${file}.."
 	yui-compressor ${file} > ${file}.out
 	mv ${file}.out ${file}
