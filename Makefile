@@ -1,6 +1,6 @@
 DIRS-y:=juci 
 PLUGINS-y:=
-BIN:=bin
+BIN:=$(MODULE)/bin
 BACKEND_BIN_DIR:=$(BIN)/usr/lib/ubus/juci/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
@@ -61,11 +61,15 @@ $(1)-install:
 	$(Q)if [ -f $(CURDIR)/$(2)/$(1)/access.json ]; then $(CP) $(CURDIR)/$(2)/$(1)/access.json $(BIN)/usr/share/rpcd/acl.d/$(1).json; fi
 endef
 
-$(eval $(call BuildDir-y,juci,./))
+ifneq ($(MODULE),)
+$(eval $(call BuildDir-y,$(notdir $(MODULE)),$(dir $(MODULE))))
+else
+$(eval $(call BuildDir-$(CONFIG_PACKAGE_juci),juci,./))
 $(foreach th,$(wildcard plugins/*),$(eval $(call BuildDir-$(CONFIG_PACKAGE_$(notdir $(th))),$(notdir $(th)),./plugins)))
 $(foreach th,$(wildcard themes/*),$(eval $(call BuildDir-$(CONFIG_PACKAGE_$(notdir $(th))),$(notdir $(th)),./themes)))
+endif
 
-UBUS_MODS:= backend/igmpinfo
+UBUS_MODS:=
 
 export CC:=$(CC)
 export CFLAGS:=$(CFLAGS)
@@ -74,9 +78,9 @@ ifeq ($(DESTDIR),)
 	DESTDIR:=/
 endif
 
-ifneq ($(SELECT_ALL),)
-	DIRS-y += $(wildcard plugins/*)
-endif
+ifeq ($(CONFIG_PACKAGE_juci-igmpinfo),y)
+	UBUS_MODS += backend/igmpinfo
+endif 
 
 ifeq ($(CONFIG_PACKAGE_juci-ubus-core),y)
 	UBUS_MODS += backend/juci-core
@@ -92,6 +96,8 @@ prepare: .cleaned
 	@echo "======= JUCI CONFIG ========="
 	@echo "TARGETS: $(TARGETS)"
 	@echo "BACKEND: $(UBUS_MODS)"
+	@echo "DIRS: $(DIRS-y)"
+	@echo "MODULE: $(MODULE)"
 	@./bootstrap.sh
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
@@ -108,8 +114,7 @@ node_modules: package.json
 release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 	@echo "======= JUCI BUILD =========="
 	@./juci-compile 
-	@./juci-update $(BIN)/www RELEASE
-
+	@if [ "$(CONFIG_PACKAGE_juci)" == "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
 
 debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\e[0;33m [GRUNT] $@ \e[m"
