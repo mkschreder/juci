@@ -23,8 +23,10 @@ JUCI.app
 		replace: true
 	}; 
 })
-.controller("NavigationCtrl", function($scope, $location, $navigation, $rootScope, $config, $rpc){
+.controller("NavigationCtrl", function($scope, $location, $navigation, $rootScope, $config, $rpc, $events){
 	$scope.tree = $navigation.tree(); 
+	$scope.log_events = []; 
+
 	$scope.hasChildren = function(menu){
 		return menu.children_list > 0; 
 	}
@@ -38,6 +40,11 @@ JUCI.app
 	$scope.isActive = function (viewLocation) { 
 		return viewLocation === $location.path();
 	};
+
+	$events.subscribe("logread.msg", function(ev){
+		$scope.log_events.push(ev); 
+		setTimeout(function(){ $scope.$apply(); }, 0); 
+	}); 
 	/*
 	$(function(){
 		var themes = $config.themes; 
