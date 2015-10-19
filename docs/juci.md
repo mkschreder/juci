@@ -21,6 +21,7 @@ TUTORIALS
 =========
 
 * [Creating Pages](creating-pages.html) - learn how to setup a new page in juci plugin
+* [Creating themes for JUCI](creating-themes.html) - learn how theming works and how to develop custom styles
 
 CORE OBJECTS
 ============
