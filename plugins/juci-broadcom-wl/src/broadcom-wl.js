@@ -227,40 +227,40 @@ JUCI.app.run(function($ethernet, $wireless, $uci){
 		"maxassoc":		{ dvalue: 0, type: Number },
 		"doth":				{ dvalue: 0, type: Boolean },
 		"dfsc":				{ dvalue: 0, type: Boolean }, // ? 
-		"hwmode":			{ dvalue: "auto", type: String, allow: [ "auto", "11a", "11n", "11ac" ] },
+		"hwmode":			{ dvalue: "auto", type: String },
 		"disabled":		{ dvalue: false, type: Boolean },
 		"frameburst": 	{ dvalue: false, type: Boolean }
 	}); 
 	UCI.wireless.$registerSectionType("wifi-iface", {
-		"device": 		{ dvalue: "", type: String },
-		"ifname": 		{ dvalue: "", type: String }, // name of the created device 
-		"network":		{ dvalue: "", type: String },
-		"mode":				{ dvalue: "ap", type: String, allow: [ "ap" ] },
+		"device": 			{ dvalue: "", type: String },
+		"ifname": 			{ dvalue: "", type: String }, // name of the created device 
+		"network":			{ dvalue: "", type: String },
+		"mode":				{ dvalue: "ap", type: String },
 		"ssid":				{ dvalue: "", type: String },
-		"encryption":	{ dvalue: "mixed-psk", type: String, allow: [ "none", "wep", "wep-shared", "psk2", "mixed-psk", "wpa2", "mixed-wpa" ] },
-		"cipher":			{ dvalue: "auto", type: String, allow: [ "auto" ] },
+		"encryption":		{ dvalue: "mixed-psk", type: String },
+		"cipher":			{ dvalue: "auto", type: String },
 		"key":				{ dvalue: "", type: String },
-		"key_index": 	{ dvalue: 1, type: Number }, 
-		"key1":				{ dvalue: "1111111111", type: String },
-		"key2":				{ dvalue: "2222222222", type: String },
-		"key3":				{ dvalue: "3333333333", type: String },
-		"key4":				{ dvalue: "4444444444", type: String },
-		"radius_server":				{ dvalue: "", type: String },
-		"radius_port":				{ dvalue: "", type: String },
-		"radius_secret":				{ dvalue: "", type: String },
+		"key_index": 		{ dvalue: 1, type: Number }, 
+		"key1":				{ dvalue: "", type: String },
+		"key2":				{ dvalue: "", type: String },
+		"key3":				{ dvalue: "", type: String },
+		"key4":				{ dvalue: "", type: String },
+		"radius_server":	{ dvalue: "", type: String },
+		"radius_port":		{ dvalue: "", type: String },
+		"radius_secret":	{ dvalue: "", type: String },
 		"ifname":			{ dvalue: "", type: String },
-		"gtk_rekey":	{ dvalue: false, type: Boolean },
-		"net_rekey":	{ dvalue: 0, type: Number },
-		"wps_pbc":		{ dvalue: false, type: Boolean },
-		"wmf_bss_enable":{ dvalue: false, type: Boolean },
-		"bss_max":		{ dvalue: 0, type: Number },
-		"instance":		{ dvalue: 0, type: Number },
-		"up":					{ dvalue: false, type: Boolean },
+		"gtk_rekey":		{ dvalue: false, type: Boolean },
+		"net_rekey":		{ dvalue: 0, type: Number },
+		"wps_pbc":			{ dvalue: false, type: Boolean },
+		"wmf_bss_enable":	{ dvalue: false, type: Boolean },
+		"bss_max":			{ dvalue: 0, type: Number },
+		"instance":			{ dvalue: 0, type: Number },
+		"up":				{ dvalue: false, type: Boolean },
 		"closed":			{ dvalue: false, type: Boolean },
-		"disabled":		{ dvalue: false, type: Boolean },
-		"macmode":		{ dvalue: 1, type: Number, allow: [ 0, 1, 2 ] },
-		"macfilter":	{ dvalue: false, type: Boolean },
-		"maclist":		{ dvalue: [], type: Array, match_each: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/ }
+		"disabled":			{ dvalue: false, type: Boolean },
+		"macmode":			{ dvalue: 1, type: Number },
+		"macfilter":		{ dvalue: false, type: Boolean },
+		"maclist":			{ dvalue: [], type: Array } // match_each: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/ }
 	}, function validator(section){
 		// validate ssid
 		if(section.ssid.value.length >= 32) 
@@ -284,7 +284,5 @@ JUCI.app.run(function($ethernet, $wireless, $uci){
 				break; 
 		}
 		return null; 
-	}); 
-	
-	
+	}); 	
 })(); 
