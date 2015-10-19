@@ -59,6 +59,8 @@ Juci also uses modified version of rpcd, which too is available from iopsys sdk.
 Getting started
 ---------------
 
+New: you can now find compiled juci manuals here: [http://mkschreder.github.io/juci/](http://mkschreder.github.io/juci/)
+
 Ideally you should get iopsys (OpenWRT based) sdk and build juci from there. This updated version is heavily based on updated versions of openwrt packages found in iopsys sdk and so you should use that primarily. (kinda-sorta-like-this: git clone http://ihgsp.inteno.se/git/iopsysAA.git iop && cd iop && git checkout BB && ./iop_get_feeds.sh && make)..  
 
 Building compiled and gzipped htdocs: 
@@ -177,24 +179,24 @@ The menu system in the gui is actually created on the router side and retreived 
 License Notice
 --------------
 
-Copyright (C) 2015 JUCI Project. All rights reserved.
+	Copyright (C) 2015 JUCI Project. All rights reserved.
 
-Contributors: 
-	- Martin K. Schröder <mkschreder.uk@gmail.com>
-	- Reidar Cederqvist <reidar.cederqvist@gmail.com>
-	- Noel Wuyts <skype: noel.wuyts>: angular, widgets, development
-	- Feten Besbes <skype: feten_besbes>: css
+	Contributors: 
+		- Martin K. Schröder <mkschreder.uk@gmail.com>
+		- Reidar Cederqvist <reidar.cederqvist@gmail.com>
+		- Noel Wuyts <skype: noel.wuyts>: angular, widgets, development
+		- Feten Besbes <skype: feten_besbes>: css
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-version 3 as published by the Free Software Foundation.
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	version 3 as published by the Free Software Foundation.
 
-This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-General Public License for more details.
+	This program is distributed in the hope that it will be useful, but
+	WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
-02110-1301 USA
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+	02110-1301 USA
