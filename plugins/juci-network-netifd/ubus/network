@@ -16,32 +16,7 @@ network_load(){
 
 # TODO: this currently depends on kmod-ipt-conntrack. Need to make this generic!
 network_nat_table(){
-	ESTABLISHED=$(awk '
-		/ESTABLISHED/ { 
-			printf "proto=\"" $1 "\";"; 
-			printf "state=\"" $4 "\";";
-			printf "remote_ip=\"" substr($5, index($5, "=")+1) "\";";
-			printf "local_ip=\"" substr($6, index($6, "=")+1) "\";";
-			printf "remote_port=\"" substr($7, index($7, "=")+1) "\";";
-			printf "local_port=\"" substr($8, index($8, "=")+1) "\";\n";
-		}' /proc/net/ip_conntrack); 
-		
-	IFS=$'\n'; 
-	json_init
-	json_add_array "table"
-	for FIELDS in $ESTABLISHED; do
-		eval $FIELDS; 
-		json_add_object ""; 
-		json_add_string "proto" $proto; 
-		json_add_string "state" $state; 
-		json_add_string "local_ip" $local_ip; 
-		json_add_string "remote_ip" $remote_ip; 
-		json_add_int "local_port" $local_port;
-		json_add_int "remote_port" $remote_port; 
-		json_close_object; 
-	done
-	json_close_array
-	json_dump
+	/usr/lib/ubus/juci/network.lua nat_table
 }
 
 network_bridges() {

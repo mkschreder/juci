@@ -21,7 +21,35 @@ function network_list_connected_clients()
 	print(json.encode({ clients = clients })); 	
 end
 
+function network_nat_table()
+	-- tcp      6 2 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=60962 dport=40713 src=127.0.0.1 dst=127.0.0.1 sport=40713 dport=60962 [ASSURED] mark=0 use=2
+	local file = io.open("/proc/net/ip_conntrack"); 
+	local result = {table={}}; 
+	if(not file) then
+		print(json.encode(result)); 
+		return; 
+	end
+	local line = file:read("*l"); 
+	while(line) do
+		local proto,_,_,state,remote_ip,local_ip,remote_port,local_port = line:match("^(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+src=(%S+)%s+dst=(%S+)%s+sport=(%S+)%s+dport=(%S+).*"); 	
+		if(proto and state) then
+			table.insert(result.table, {
+				proto = proto, 
+				state = state, 
+				remote_ip = remote_ip, 
+				local_ip = local_ip, 
+				remote_port = remote_port, 
+				local_port = local_port
+			}); 
+		end
+		line = file:read("*l"); 
+	end
+	file:close(); 
+	print(json.encode(result)); 
+end
+
 juci.ubus({
 	["services"] = network_list_services,
 	["clients"] = network_list_connected_clients, 
+	["nat_table"] = network_nat_table
 }, arg); 

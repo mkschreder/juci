@@ -32,18 +32,18 @@
 			<table class="table" style="font-size: 12px">
 				<thead>
 					<!--<th>IPV6</th>-->
-					<th>Protocol</th>
+					<th><a href="" ng-click="order('proto')" translate>Protocol</a></th>
 					<!--<th>Expires</th>-->
-					<th>Source</th>
-					<th>Dest.</th>
-					<th>Source Port</th>
-					<th>Dest. Port</th>
+					<th><a href="" ng-click="order('local_ip')" translate>Source</a></th>
+					<th><a href="" ng-click="order('remote_ip')" translate>Dest.</a></th>
+					<th><a href="" ng-click="order('local_port')" translate>Source Port</a></th>
+					<th><a href="" ng-click="order('remote_port')" translate>Dest. Port</a></th>
 					<!--<th>RX Packets</th>
 					<th>TX Packets</th>
 					<th>RX Bytes</th>
 					<th>TX Bytes</th>-->
 				</thead>
-				<tr ng-repeat="con in connections">
+				<tr ng-repeat="con in connections | orderBy:predicate:reverse">
 					<!--<td>{{con.ipv6}}</td>-->
 					<td>{{con.proto|uppercase}}</td>
 					<!--<td>{{con.expires}}</td>-->

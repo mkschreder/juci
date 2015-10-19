@@ -2,6 +2,11 @@
 
 JUCI.app
 .controller("StatusNATPageCtrl", function($scope, $rpc, $tr, $network, gettext){
+	$scope.order = function(pred){
+		$scope.predicate = pred; 
+		$scope.reverse = ($scope.predicate === pred) ? !$scope.reverse : false;
+	}
+
 	$network.getNetworkLoad().done(function(load){
 		$scope.load = load; 
 		$scope.$apply(); 
