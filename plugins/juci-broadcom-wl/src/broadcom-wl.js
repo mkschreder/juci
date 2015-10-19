@@ -229,7 +229,9 @@ JUCI.app.run(function($ethernet, $wireless, $uci){
 		"dfsc":				{ dvalue: 0, type: Boolean }, // ? 
 		"hwmode":			{ dvalue: "auto", type: String },
 		"disabled":		{ dvalue: false, type: Boolean },
-		"frameburst": 	{ dvalue: false, type: Boolean }
+		"frameburst": 	{ dvalue: false, type: Boolean },
+		"obss_coex": 	{ dvalue: false, type: Boolean }, 
+		"beamforming": 	{ dvalue: false, type: Boolean }
 	}); 
 	UCI.wireless.$registerSectionType("wifi-iface", {
 		"device": 			{ dvalue: "", type: String },
