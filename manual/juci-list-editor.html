@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>JUCI LIST EDITOR</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>juci-list-editor</li>
+    <li class='tc'></li>
+    <li class='tr'>juci-list-editor</li>
+  </ol>
+
+  <h1>JUCI LIST EDITOR</h1>
+<p>This is a generic control that handles a list of objects and allows you to
+select, edit and delete the items in the list. This control is very useful for
+creating dynamic editable lists for up to 10-20 items. It is designed to be
+responsive so that it works just as well on a mobile device as in web browser.
+In JUCI this control is used for editing lists of uci objects - such as wifi
+interfaces, network interfaces etc.</p>
+
+<h1>PARAMETERS</h1>
+
+<ul>
+<li><p><code>ng-items</code> - an <code>Array</code> of items that will be edited.</p></li>
+<li><p><code>item-editor</code> - the name of the directive that will be used for editing an item (without the <var> and </var>). Directive must accept ng-model parameter that will be set to the currently edited item.</p></li>
+<li><p><code>get-item-title</code> - a function or expression that retreives the title of an item to be shown in the gui. $item variable can be used to refer to the actual item.</p></li>
+<li><p><code>on-create</code> - a function to be called when user presses Add button.</p></li>
+<li><p><code>on-delete</code> - a function to be called when user deletes and item.</p></li>
+</ul>
+
+
+<h1>TRANSLATION</h1>
+
+<p>The <code>get-item-title</code> function should return an already translated string.</p>
+
+<h1>EXAMPLE</h1>
+
+<pre><code>&lt;juci-item-editor ng-items="item_array"
+    item-editor="item-edit-directive"
+    get-item-title="$item.title"
+    on-create="onCreateItem()"
+    on-delete="onDeleteItem($item)" /&gt;
+</code></pre>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>October 2015</li>
+    <li class='tr'>juci-list-editor</li>
+  </ol>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>$uci factory</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#UCI-methods">UCI methods</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>uci</li>
+    <li class='tc'></li>
+    <li class='tr'>uci</li>
+  </ol>
+
+  <h1>$uci factory</h1>
+<p>UCI interface simplifies your access to the uci subsystem through the
+javascript interface. This library uses $rpc service underneath to issue rpc
+calls to the uci object on the backend (implemented in rpcd).</p>
+
+<p>This module will load all of the uci configs into local browser memory so that
+you can just modify uci settings as though they were ordinary variables.</p>
+
+<p>The UCI subsystem consists of a number of objects:</p>
+
+<ul>
+<li>UCI - main subsystem</li>
+<li>UCIConfig - interface to a uci config</li>
+<li>UCISection - interface to a config section</li>
+<li>UCIField - a field inside a uci section</li>
+</ul>
+
+
+<h2 id="UCI-methods">UCI methods</h2>
+
+<pre><code>$init: function() -&gt; promise
+    Initializes UCI subsystem and populates the list of configs with all
+    available configs. UBUS subsystem has to already be initialized. 
+
+$registerConfig: function(name) -&gt; none
+    Registers a config with UCI subsystem. This does not create any config
+    file on the system or modify any UCI settings. It merely tells the uci
+    system that this config exists so that it can be accessed through the
+    $uci.&lt;config> interface. This method is used to register config schemas
+    in plugins in order to tell UCI how to interpret a configuration file.  
+
+$sync: function(name|list[name]) -&gt; promise
+    Synchronizes the given config from uci with local representation of the
+    data. This method should be called before any sections can be accessed
+    though $uci.config.&lt;section> interface. Usually you would call this
+    method before changing any uci settings. 
+
+$revert: function() -&gt; promise
+    Reverts all currently loaded configs. This will actually call uci
+    revert on each config in series. If you want to revert a specific
+    config then call $uci.&lt;config>.$revert() instead. 
+
+$rollback: function() -&gt; promise
+    Calls uci rollback method. This rolls back all current uci changes
+    using a single call (while $revert needs a config parameter).  
+
+$apply: function() -&gt; promise
+    Calls uci apply. You don't actually need to use this method because
+    $uci.$save does the same thing but much better.  
+
+$save: function() -&gt; promise
+    This method goes through all currently loaded configs and calculates
+    the changes that have been made. After it has a list of changes, it
+    calls uci set for each configuration file that has been changed and
+    finally saves the changes to uci. You should call this method when you
+    are done with editing uci configuration and want to save your changes. 
+</code></pre>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>September 2015</li>
+    <li class='tr'>uci</li>
+  </ol>
+
+  </div>
+</body>
+</html>

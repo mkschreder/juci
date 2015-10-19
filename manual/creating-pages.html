@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>CREATING PAGES AND WIDGETS</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>creating-pages</li>
+    <li class='tc'></li>
+    <li class='tr'>creating-pages</li>
+  </ol>
+
+  <h1>CREATING PAGES AND WIDGETS</h1>
+<p>A JUCI based interface is typically built from a number of pages that are
+accessible through a navigation menu and where each page can consist of
+unlimited number of widgets that build up the page. Thus pages are relatively
+static components that you refer to from your theme's menu.json file, while
+widgets are reusable components that can appear in any number of pages. Widgets
+are typically refered (or included) into a page by means of using the
+<span class="man-ref">directive<span class="s">(1)</span></span> of a widget. In JUCI all widgets should have the same filename as
+the name of the directive that they implement.</p>
+
+<h1>STANDARD CONTROLS</h1>
+
+<p>When creating pages you may want to take advantage of <a href="standard-controls.html">juci standard controls library</a></p>
+
+<h1>CREATING A PAGE</h1>
+
+<p>Create two files in plugins/your_plugin/src/pages/ directory and give them a descriptive (and globally unique name):</p>
+
+<pre><code>|--pages/
+|----yourplugin-page-main.js
+|----yourplugin-page-main.html
+</code></pre>
+
+<p>Now you will create an angular controller and a template for your page. Pages typically directly refer to their controller in the page html using ng-controller tag. This is mainly an artifact from when this system was created.</p>
+
+<p>yourplugin-page-main.js:</p>
+
+<pre><code>JUCI.app.controller("yourpluginPageMain", function($scope, $rpc, $uci){
+    $rpc.juci.system.info().done(function(info){
+        $scope.text = JSON.stringify(info); 
+        $scope.$apply(); 
+    }); 
+}); 
+</code></pre>
+
+<p>yourplugin-page-main.html:</p>
+
+<pre><code>&lt;juci-layout-single-column&gt;
+    &lt;div ng-controller="yourpluginPageMain"&gt;
+        &lt;pre&gt;{{text}}&lt;/pre&gt;
+    &lt;/div&gt;
+&lt;/juci-layout-single-column&gt;
+</code></pre>
+
+<p>Here we create a page with single column layout (in reality layout-single-column is in fact a juci widget that you can use to setup this kind of layout) and then we add code to make a ubus call to rpc function located in /usr/lib/ubus/juci/system. The result is placed inside a scope variable called <em>text</em> and then the view is updated using $scope.$apply(); Note that you only need to do $scope.$apply() here because this is an asynchronous method call. In the main controller function you do not need to call apply() in order to make changes visible - but when result is only available at some later point in time after your code has already exited your controller function then you do need to call $apply() manually.</p>
+
+<p>If you now build juci (after adding CONFIG_PACKAGE_yourplugin=y to Makefile.local) and go to page http://juci/#!/yourplugin-page-main then you should be able to see a JSON representation of the result from the ubus call to get system info.</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>October 2015</li>
+    <li class='tr'>creating-pages</li>
+  </ol>
+
+  </div>
+</body>
+</html>

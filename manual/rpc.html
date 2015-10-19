@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>JUCI $rpc SUBSYSTEM</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>rpc</li>
+    <li class='tc'></li>
+    <li class='tr'>rpc</li>
+  </ol>
+
+  <h1>JUCI $rpc SUBSYSTEM</h1>
+<p>This factory provides access to the rpc subsystem on OpenWRT through
+uhttpd-mod-ubus plugin. In juci, all dynamic data requests are done through
+json rpc. So most plugins will use this module to communicate with the backend.</p>
+
+<p>The rpc module is available in two ways:</p>
+
+<ul>
+<li>angular $rpc factory / service</li>
+<li>$rpc variable in the browser window object (you can access it like that in
+  browser console)</li>
+</ul>
+
+
+<p>For the most part you will be using the angular service for doing rpc calls
+because most of juci plugins are angular objects.</p>
+
+<p><code>accessing $rpc in angular</code></p>
+
+<pre><code>JUCI.app.controller("yourController", function($rpc){
+    $rpc.juci.ui.menu().done(function(){
+
+    }); 
+});
+</code></pre>
+
+<p><code>accessing in window</code></p>
+
+<pre><code>$rpc.juci.ui.menu().done(function(){
+
+}); 
+</code></pre>
+
+<p>All rpc methods return a jquery promise which has three methods: done, fail and
+always. You can supply your callback to these methods which will be called when
+the request either succeeds or fails. always() callback will be called in every
+case.</p>
+
+<p>RPC methods themselves are created on the fly in juci based on the list of
+available rpc methods present on the target system (it uses list of ubus
+objects for this). So you will never need to add methods to this object
+manually. Just add them in the backend and they will appear in the object.
+There are however access control lists that may prevent you from accessing your
+method from the gui, and to fix this you will need to create corresponding
+access.json file and then install it with unique name into
+/usr/share/rpcd/acl.d/ folder on the router. Exactly how to configure acl lists
+is described in more detail in OpenWRT rpcd documentation.</p>
+
+<h1>METHODS</h1>
+
+<pre><code>$sid: function(sid) -&gt; sid
+    Set or get current session id for currently active session
+
+$isLoggedIn: function() -&gt; bool
+    Check if you are currently logged in to rpc. Returns true or false. 
+
+$authenticate: function() -&gt; promise
+    Attempt to access the current session. Will succeed if you are logged
+    in, but will fail when your session ends abruptly or times out on the
+    router. This is a good way to test if you still can access your
+    session. 
+
+$login: function({username, password}) -&gt; promise
+    Login using supplied credentials. For this method to work, your rpcd
+    test should allow you to access session.login method when you are not
+    authenticated (default defined in unauthenticated.json acl list). 
+
+$logout: function() -&gt; promise 
+    Logout current session. 
+
+$init: function() -&gt; promise
+    Initializes the $rpc object. This method will also generate appropriate
+    methods in the $rpc object that correspond to the ubus methods that are
+    available on the backend. Note that this method currently will be able
+    to get all of the available ubus methods through http without logging
+    in using current version of rpcd. In the future this may change to
+    include only the methods availabel through unauthenticated session. 
+</code></pre>
+
+<h1>BACKEND</h1>
+
+<p>In order for RPC calls to work, you obviously need a backend that will execute
+the call on the actual device. JUCI supports writing backend in any language
+that can publish objects on ubus and it also provides support for writing ubus
+objects in shell scripts. So you have a very wide choice in how exactly you
+will implement your backend. JUCI is for the most part now using Lua to
+implement backend functions because it has proven to be dynamic enough and also
+fast on actual hardware.</p>
+
+<p>Once your backend publishes it's rpc functions on ubus, they will automatically
+become available in juci $rpc object once you reload the page.</p>
+
+<p>Example:</p>
+
+<pre><code>$rpc.my.object.method().done(function(result){
+    console.log(JSON.stringify(result)); 
+}); 
+</code></pre>
+
+<p>You do however need to configure proper access rights for your ubus methods
+before you can call them. This is part of the access list (acl) configuration.</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>October 2015</li>
+    <li class='tr'>rpc</li>
+  </ol>
+
+  </div>
+</body>
+</html>

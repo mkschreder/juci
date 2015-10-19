@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>CREATING THEMES</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>creating-themes</li>
+    <li class='tc'></li>
+    <li class='tr'>creating-themes</li>
+  </ol>
+
+  <h1>CREATING THEMES</h1>
+<p>There are 5 ways that you can customize your juci interface.</p>
+
+<ul>
+<li><code>style your theme with CSS</code> - this way you can make colorscheme adjustments to an exiting theme</li>
+<li><code>override existing page html</code> - this way you can tweak html structure of existing controlls and pages</li>
+<li><code>write new pages</code> - you can also create completely new pages using html and javascript</li>
+<li><code>write custom plugins</code> - you can put together complete replacements for existing packages</li>
+<li><code>develop a completely standalone interface that uses juci RPC calls</code> - this way you can for example create native mobile apps and extensions.</li>
+</ul>
+
+
+<h1>THEMES</h1>
+
+<p>At the core level there is little difference between a theme and a plugin. JUCI treats both plugins and themes the same. The main difference is that you can only have a single theme active, but you can have many plugins selected. In this way, themes are always in conflict with all other themes, and plugins are usually written in a way that allows them to coexist with other plugins. Themes are also typically loaded last in the html file so that they always override all styles and templates from all other JUCI modules. This order of loading is however user determined and works the same way even for plugins. So essentially you can have a plugin that implements all of the theme functionality - but this is not recommended becuase it is then not clear to the user what is a theme and what is a plugin.</p>
+
+<h1>COMPILING A THEME</h1>
+
+<p>There are two ways to compile your theme:</p>
+
+<ul>
+<li><code>add a symplink to your theme in the main juci themes directory</code> then select CONFIG_PACKAGE_<var>your theme dir name</var>=y makefile variable and run make (you can set this in your Makefile.local if you want to test using your local server)</li>
+<li><code>create a separate directory outside of juci tree</code> and build using juci external mode make: make -C <var>path to juci source</var> MODULE=<var>absolute path to your theme source</var></li>
+</ul>
+
+
+<p>When juci builds your theme as an external module it will create a <var>bin</var> folder in your plugin directory where it will place all processed files just like they will be installed in the final root tree. So you can just copy the contents of this bin folder to the root of your final installation in order to install the theme.</p>
+
+<h1>TESTING USING LOCAL SERVER</h1>
+
+<p>You can test your theme using local server. For this you will need to tell your local make to build all the necessary plugins.</p>
+
+<ul>
+<li>copy example-Makefile.local to Makefile.local and make adjustments to it. Select all the packages you need, including your theme.</li>
+<li>run "make debug".</li>
+<li>run ./juci-local-server --host <code>a working rpc host</code></li>
+</ul>
+
+
+<p>Even though the server works locally, you still need to have a working installation somewhere that will provide your local interface with RPC data.</p>
+
+<p>When you make changes, run "make debug" again and reload the page for changes to take effect. The reason you will use debug target is so that you can see your javascript code unmodified. Default make target will typically compress javascript code and make it difficult to debug.</p>
+
+<h1>ADDING IMAGES AND OTHER ASSETS</h1>
+
+<p>In your theme folder you can have an optional Makefile with special JUCI target Package/your_plugin/install where you can define extra commands that will run as part of installing all necessary files to root.</p>
+
+<pre><code>define Package/myplugin/install
+    $(INSTALL_DIR) $(1)/www/img
+    $(CP) $(PLUGIN_DIR)/img/* $(1)/www/img/
+endef
+</code></pre>
+
+<p>The syntax of this section is very similar to how you would write these sections in openwrt make system.</p>
+
+<ul>
+<li>$(1) is the install directory</li>
+<li>$(PLUGIN_DIR) is the directory where your plugin is currently being built</li>
+<li>$(INSTALL_DIR) is basically defined as "mkdir -p"</li>
+<li>$(CP) is "cp -Rp" etc.</li>
+</ul>
+
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>October 2015</li>
+    <li class='tr'>creating-themes</li>
+  </ol>
+
+  </div>
+</body>
+</html>
