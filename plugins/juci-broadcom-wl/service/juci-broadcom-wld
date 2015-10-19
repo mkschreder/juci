@@ -116,6 +116,7 @@ function start_service()
 		wifimon:scan(); 
 		tscanresults:set(1000); 
 		tscanstart:set(20000); 
+		collectgarbage(); 
 	end
 	
 	tscanresults = uloop.timer(parse_results); 

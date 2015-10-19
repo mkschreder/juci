@@ -102,6 +102,7 @@ local event_handlers = {
 		elseif msg.action == "remove" then 
 			ev_network_device_remove({ device = msg.interface }); 
 		end
+		collectgarbage(); 
 	end,
 }
 
