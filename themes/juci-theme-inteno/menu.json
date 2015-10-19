@@ -321,6 +321,11 @@
 		"title": "Network", 
 		"acls": [ "juci-network-netifd" ] 
 	},
+	"status/network/clients": {
+		"page": "netifd-status-clients", 
+		"title": "Clients", 
+		"acls": [ "juci-network-netifd" ]
+	}, 
 	"status/network/routes": {
 		"page": "status-network-routes", 
 		"title": "Routes", 
