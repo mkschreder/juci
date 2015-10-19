@@ -6,7 +6,7 @@
 	</div>
 	<div class="panel-body ">
 		<tabset>
-			<tab heading="General">
+			<tab heading="{{'General'|translate}}">
 				<h3 translate>Status</h3>
 				<div class="alert alert-danger" ng-show="conn.$info.errors.length">
 					<ul>
@@ -16,6 +16,12 @@
 				<juci-config-lines>
 					<juci-config-line title="{{'Interface Type'|translate}}">
 						<juci-select ng-model="conn.type.value" ng-items="allInterfaceTypes"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Bring-Up on Boot'|translate}}">
+						<switch ng-model="conn.auto.value" class="green"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Automatic Default Route'|translate}}">
+						<switch ng-model="interface.defaultroute.value" class="green"/>
 					</juci-config-line>
 				</juci-config-lines>
 				<table class="table table-condensed">
@@ -27,6 +33,20 @@
 				</table>
 			</tab>
 			<tab heading="{{'network.interface.type.' + (conn.type.value || 'none') +'.tab.title'|translate}}"><div dynamic="conn.$type_editor"/></tab>
+			<tab heading="{{'Advanced'|translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{'Override MAC Address'|translate}}">
+						<input type="text" class="form-control" ng-model="conn.macaddr.value" placeholder="{{'MAC Address'|translate}}"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Override MTU'|translate}}">
+						<input type="text" class="form-control" ng-model="conn.mtu.value" placeholder="{{'MTU'|translate}}"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Custom Delegated IPv6 Prefix'|translate}}">
+						<input type="text" class="form-control" ng-model="conn.ip6prefix.value" placeholder="{{'IPv6 Prefix'|translate}}"/>
+					</juci-config-line>
+
+				</juci-config-lines>
+			</tab>
 			<tab heading="Address">
 				<juci-config-lines>
 					<juci-config-line title="{{'Configuration Method'|translate}}">

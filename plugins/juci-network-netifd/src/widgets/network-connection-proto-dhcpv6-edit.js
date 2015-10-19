@@ -18,8 +18,12 @@ JUCI.app
 		{ label: $tr(gettext("None")), value: "try" }
 	]; 
 	$scope.allPrefixReqTypes = [
+		{ label: "48", value: "48" }, 
+		{ label: "52", value: "52" }, 
+		{ label: "56", value: "56" }, 
+		{ label: "60", value: "60" }, 
+		{ label: "64", value: "64" }, 
 		{ label: $tr(gettext("Auto")), value: "auto" }, 
-		{ label: $tr(gettext("No")), value: "no" }
+		{ label: $tr(gettext("Disabled")), value: "no" }
 	]; 
-	for(var i = 0; i < 65; i++) $scope.allPrefixReqTypes.push({ label: ""+i, value: i }); 
 }); 

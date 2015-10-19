@@ -1,19 +1,16 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'DHCP Default Route'|translate}}">
-			<switch ng-model="interface.defaultroute.value" class="green"/>
-		</juci-config-line>
-		<juci-config-line title="{{'Request Behaviour'|translate}}">
+		<juci-config-line title="{{'Request IPv6 address'|translate}}">
 			<juci-select ng-model="interface.reqaddress.value" ng-items="allReqAddrTypes"/>
 		</juci-config-line>
-		<juci-config-line title="{{'Request Prefix Behaviour'|translate}}">
+		<juci-config-line title="{{'Request Prefix Length'|translate}}">
 			<juci-select ng-model="interface.reqprefix.value" ng-items="allPrefixReqTypes"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Override Link Local ID'|translate}}">
 			<input type="text" class="form-control" placeholder="{{'IPv6 Address'|translate}}" ng-model="interface.ifaceid.value"/>
 		</juci-config-line>
-		<juci-config-line title="{{'Additional IPv6 Prefix'|translate}}">
-			<input type="text" class="form-control" placeholder="{{'Additional IPv6 prefix'|translate}}" ng-model="interface.ip6prefix.value"/>
+		<juci-config-line title="{{'Client ID to send when requesting DHCP'|translate}}">
+			<input type="text" class="form-control" placeholder="{{'Client ID'|translate}}" ng-model="interface.clientid.value"/>
 		</juci-config-line>
 	</juci-config-lines>
 	<juci-config-section>

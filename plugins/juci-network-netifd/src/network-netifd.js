@@ -318,6 +318,7 @@ UCI.validators.MACListValidator = function(){
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {
 	"is_lan":				{ dvalue: false, type: Boolean }, // please stop relying on this!
+	"auto": 				{ dvalue: true, type: Boolean }, // bring up on boot
 	"ifname":				{ dvalue: '', type: String }, 
 	"device":				{ dvalue: '', type: String }, 
 	"proto":				{ dvalue: '', type: String }, 
@@ -328,14 +329,17 @@ UCI.network.$registerSectionType("interface", {
 	"ip6gw": 				{ dvalue: '', type: String },
 	"ip6prefix":			{ dvalue: '', type: String }, 
 	"ip6gateway":			{ dvalue: '', type: String },  
-	"ip6assign":			{ dvalue: 128, type: Number }, 
+	"ip6assign":			{ dvalue: null, type: Number }, 
 	"ip6hint": 				{ dvalue: '', type: String },
+	"clientid": 			{ dvalue: "", type: String },
 	"type":					{ dvalue: '', type: String }, 
 	"defaultroute":			{ dvalue: false, type: Boolean },	
 	"bridge_instance": 		{ dvalue: false, type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
 	"ipv6":					{ dvalue: false, type: Boolean },
 	"dns": 					{ dvalue: [], type: Array }, 
+	"macaddr":				{ dvalue: "", type: String }, 
+	"mtu":					{ dvalue: null, type: Number },
 	"enabled": 				{ dvalue: true, type: Boolean }, 
 	// dhcp settings
 	// "broadcast": 			{ dvalue: false, type: Boolean }, 
