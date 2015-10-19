@@ -1,0 +1,21 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="NetifdStatusClientsPage">
+		<h2 translate>Connected Clients</h2>
+		<table class="table">
+			<thead>
+				<th translate>Hostname</th>
+				<th translate>IPv4 Address</th>
+				<th translate>IPv6 Address</th>
+				<th translate>MAC Address</th>
+				<th translate>Device</th>
+			</thead>
+			<tr ng-repeat="cl in clients">
+				<td>{{cl.hostname || '-'}}</td>
+				<td>{{cl.ipaddr}}</td>
+				<td>{{cl.ip6addr || '-'}}</td>
+				<td>{{cl.macaddr}}</td>
+				<td>{{cl.device}}</td>
+			</tr>
+		</table>
+	</div>
+</juci-layout-with-sidebar>
