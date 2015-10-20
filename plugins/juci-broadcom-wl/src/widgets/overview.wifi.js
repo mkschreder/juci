@@ -40,6 +40,7 @@ JUCI.app
 				}); 
 				$scope.wifiClients = clients; 
 				$scope.wifiBands = Object.keys(clients); 
+				$scope.$apply(); 
 			}); 
 		}], function(){
 			done(); 
