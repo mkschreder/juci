@@ -1,6 +1,6 @@
 local juci = require("juci/core"); 
 
-function list_services(opts)
+local function list_services(opts)
 	local netstat = juci.shell("netstat -nlp 2>/dev/null");
 	local services = {};  
 	for line in netstat:gmatch("[^\r\n]+") do

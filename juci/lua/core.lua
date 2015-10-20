@@ -10,7 +10,7 @@ local base = _G
 
 --module("juci"); 
 
-function readfile(name)
+local function readfile(name)
 	local f = base.assert(io.open(name, "r")); 
 	local s = f:read("*a"); 
 	s = s:gsub("\n+$", "");  -- remove trailing new line
@@ -18,13 +18,13 @@ function readfile(name)
 	return s; 
 end
 
-function log(source, msg)
+local function log(source, msg)
 	local fd = io.open("/dev/console", "w"); 
 	fd:write((source or "juci")..": "..(msg or "").."\n"); 
 	fd:close();
 end
 
-function exec(cmd, args)
+local function exec(cmd, args)
 	-- ask the shell which command we should run
 	local pt = io.popen("which "..cmd); 
 	if(not pt) then return -1, "", "no 'which' command found! "..(cmd or ""); end 
@@ -56,7 +56,7 @@ function exec(cmd, args)
 	return ret, str, strerr; 
 end
 
-function shell(fmt, ...)
+local function shell(fmt, ...)
 	for k,v in base.ipairs(arg) do
 		-- TODO: this is inherently dangerous way to do shell commands. 
 		-- This way gets rid of basic forms of injection attacks, but
@@ -73,7 +73,7 @@ function shell(fmt, ...)
 	return s,r; 
 end
 
-function ubus(_calls, arg) 
+local function ubus(_calls, arg) 
 	local call_list = ""; 
 	for k,v in base.pairs(_calls) do 
 		if call_list ~= "" then call_list = call_list..","; end

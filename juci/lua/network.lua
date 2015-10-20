@@ -1,6 +1,6 @@
 local juci = require("juci/core"); 
 
-function network_list_connected_clients(opts)
+local function network_list_connected_clients(opts)
 	-- parse out dhcp information 
 	function read_dhcp_info()
 		local dhcp = {}; 

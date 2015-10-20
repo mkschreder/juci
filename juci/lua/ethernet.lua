@@ -1,6 +1,6 @@
 local juci = require("juci/core"); 
 
-function network_list_adapters(opts)
+local function network_list_adapters(opts)
 	function words(str) 
 		local f = {}; 
 		local count = 0; 
