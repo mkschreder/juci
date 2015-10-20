@@ -150,7 +150,7 @@
 	"internet/multiwan": {
 		"page": "internet-multiwan", 
 		"title": "MultiWAN",
-		"acls": [ "juci-multiwan" ]
+		"acls": [ "juci-inteno-multiwan" ]
 	},
 	"internet/services": {
 		"page": "internet-services", 
