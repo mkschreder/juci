@@ -3,7 +3,7 @@
 JUCI.app
 .directive("juciTopBar", function($compile){
 	return {
-		templateUrl: "/widgets/juci.top_bar.html", 
+		templateUrl: "/widgets/juci-top-bar.html", 
 		controller: "juciTopBarController", 
 		replace: true
 	 };  

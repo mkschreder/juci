@@ -1,9 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
 .directive("juciInputPort", function () {
-	var plugin_root = $juci.module("core").plugin_root;
 	return {
-		templateUrl: plugin_root + "/widgets/juci.input.port.html",
+		templateUrl: "/widgets/juci-input-port.html",
 		restrict: 'E',
 		replace: true,
 		scope: {

@@ -27,9 +27,9 @@ JUCI.app
 				title: "@", 
 				noequalize: "="
 			}, 
-			templateUrl: "widgets/juci.table.html", 
+			templateUrl: "widgets/juci-table.html", 
 			replace: true, 
-			controller: "TableControl",
+			controller: "juciTable",
 			controllerAs: "ctrl"
 			/*link: function(scope, element, attributes){
 				 $compile('<juci-progress value="50" total="100"></juci-progress>')(scope, function(cloned, scope){ 
@@ -38,7 +38,7 @@ JUCI.app
 				}*/
 		 };  
 	})
-	.controller("TableControl", function($scope){
+	.controller("juciTable", function($scope){
 		if(!$scope.data)
 			$scope.data = {}; 
 		// assign columns from passed argument if present

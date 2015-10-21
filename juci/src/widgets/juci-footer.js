@@ -2,10 +2,8 @@
 
 JUCI.app
 .directive("juciFooter", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
-	
 	return {
-		templateUrl: plugin_root+"/widgets/juci.footer.html", 
+		templateUrl: "/widgets/juci-footer.html", 
 		controller: "juciFooter"
 	}; 
 })

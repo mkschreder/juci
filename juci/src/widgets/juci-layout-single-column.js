@@ -22,15 +22,17 @@
  */
  
 $juci.module("core")
-.directive("juciLayoutNaked", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
+.directive("juciLayoutSingleColumn", function(){
 	return {
-		templateUrl: plugin_root+"/widgets/juci.layout.naked.html", 
+		// accepted parameters for this tag
+		scope: {
+		}, 
+		templateUrl: "/widgets/juci-layout-single-column.html", 
 		transclude: true,
-		controller: "juciLayoutNakedController",
+		controller: "juciLayoutSingleColumnController",
 		controllerAs: "ctrl"
 	}; 
 })
-.controller("juciLayoutNakedController", function($scope){
+.controller("juciLayoutSingleColumnController", function($scope){
 	
 }); 

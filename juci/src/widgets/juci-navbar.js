@@ -2,7 +2,6 @@
 
 JUCI.app
 .directive("juciNavbar", function($location, $rootScope){
-	var plugin_root = $juci.module("core").plugin_root; 
 	function activate(){
 		var path = $location.path().replace(/^\/+|\/+$/g, ''); 
 		var subtree = path.split("-")[0]; 
@@ -18,7 +17,7 @@ JUCI.app
 	});
 	return {
 		restrict: 'E', 
-		templateUrl: plugin_root+"/widgets/juci.navbar.html", 
+		templateUrl: "/widgets/juci-navbar.html", 
 		controller: "NavigationCtrl",
 		replace: true
 	}; 

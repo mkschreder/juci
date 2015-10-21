@@ -1,8 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 $juci.app.directive("juciInputTimespan", function () {
-	var plugin_root = $juci.module("core").plugin_root;
 	return {
-		templateUrl: plugin_root + "/widgets/juci.input.timespan.html",
+		templateUrl: "/widgets/juci-input-timespan.html",
 		restrict: 'E',
 		replace: true,
 		scope: {

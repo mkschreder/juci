@@ -7,7 +7,7 @@ JUCI.app
 		scope: {
 			ngModel: "="
 		}, 
-		templateUrl: "/widgets/juci.errors.html", 
+		templateUrl: "/widgets/juci-errors.html", 
 		replace: true, 
 		controller: "juciErrors"
 	}; 

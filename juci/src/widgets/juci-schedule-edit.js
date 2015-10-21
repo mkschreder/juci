@@ -3,7 +3,7 @@
 JUCI.app
 .directive("juciScheduleEdit", function($compile){
 	return {
-		templateUrl: "/widgets/juci.schedule.edit.html", 
+		templateUrl: "/widgets/juci-schedule-edit.html", 
 		scope: {
 			schedule: "=ngModel"
 		}, 

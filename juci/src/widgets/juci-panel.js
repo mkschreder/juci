@@ -3,7 +3,7 @@
 JUCI.app
 .directive("juciPanel", function(){
 	return {
-		templateUrl: "/widgets/juci.panel.html", 
+		templateUrl: "/widgets/juci-panel.html", 
 		replace: true, 
 		scope: {
 			title: "@", 

@@ -2,7 +2,6 @@
 
 JUCI.app
 .directive("juciProgress", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		// accepted parameters for this tag
 		scope: {
@@ -10,7 +9,7 @@ JUCI.app
 			total: "=", 
 			units: "="
 		}, 
-		templateUrl: plugin_root+"/widgets/juci.progress.html", 
+		templateUrl: "/widgets/juci-progress.html", 
 		replace: true, 
 		controller: "juciProgressControl",
 		link: function(scope, element, attributes){

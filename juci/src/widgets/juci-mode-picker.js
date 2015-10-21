@@ -3,7 +3,7 @@
 JUCI.app
 .directive("juciModePicker", function($compile){
 	return {
-		templateUrl: "/widgets/juci.mode.picker.html", 
+		templateUrl: "/widgets/juci-mode-picker.html", 
 		controller: "juciModePicker", 
 		replace: true
 	 };  

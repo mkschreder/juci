@@ -14,7 +14,7 @@ JUCI.app
 			hideButtons: "@hideButtons"
 		}, 
 		controller: "juciListEditor", 
-		templateUrl: "/widgets/juci.list.editor.html", 
+		templateUrl: "/widgets/juci-list-editor.html", 
 		compile: function(element, attrs){
        if (!attrs.allowEdit) { attrs.allowEdit = true; }
        if (attrs.allowEdit == "false") { attrs.allowEdit = false; }

@@ -2,7 +2,6 @@
 
 JUCI.app
 .directive("juciBrightness", function(){
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
 		// accepted parameters for this tag
 		scope: { 
@@ -11,7 +10,7 @@ JUCI.app
 			max: "@", 
 			ngChange: "&"
 		}, 
-		templateUrl: plugin_root+"/widgets/juci.brightness.html", 
+		templateUrl: "/widgets/juci.brightness.html", 
 		replace: true, 
 		controller: "juciBrightness"
 	}; 

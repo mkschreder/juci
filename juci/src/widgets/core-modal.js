@@ -2,9 +2,8 @@
 
 JUCI.app
 .directive('modal', function ($parse) {
-	var plugin_root = $juci.module("core").plugin_root; 
 	return {
-		templateUrl: plugin_root + "/widgets/core.modal.html", 
+		templateUrl: "/widgets/core-modal.html", 
 		restrict: 'E',
 		transclude: true,
 		replace:true,

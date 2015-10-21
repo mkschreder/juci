@@ -3,7 +3,7 @@
 JUCI.app
 .directive("juciMaclistEdit", function($compile){
 	return {
-		templateUrl: "/widgets/juci.maclist.edit.html", 
+		templateUrl: "/widgets/juci-maclist-edit.html", 
 		scope: {
 			macList: "=ngModel"
 		}, 
