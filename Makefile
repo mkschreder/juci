@@ -130,8 +130,12 @@ debug: prepare $(TARGETS) $(UBUS_MODS)
 
 DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) 
 DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD))
-docs: $(DOCS_HTML) 
+PHONY+=docs  
+docs: docs/plugins.toc $(DOCS_HTML) 
 	@echo -e "\e[0;33m [DOCS] $@ $^ \e[m"
+docs/plugins.toc: $(wildcard plugins/**/docs/*.md)
+	@# for md in $^; do sed -i "/%PLUGINS_TOC%/a [$$(head -n 1 $$md)]($$(basename $${md%.md}))" docs/juci.md; done
+	./scripts/build_docs .
 
 %.html: %.md 
 	@echo -e "\e[0;33m[DOC]: $^\e[m"
@@ -141,7 +145,7 @@ docs: $(DOCS_HTML)
 install: 
 	@cp -Rp $(BIN)/* $(DESTDIR)
 
-.PHONY: docs $(PHONY) $(UBUS_MODS) 
+.PHONY: $(PHONY) $(UBUS_MODS) 
 
 $(UBUS_MODS): 
 	@echo "Building UBUS module $@"

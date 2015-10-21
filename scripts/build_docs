@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# juci main page is actually in the template 
+cp docs/juci.md.tpl docs/juci.md
+
+# generate list of links for plugins 
+for plug in plugins/*; do 
+	title=$(basename $plug); 
+	if [ -f $plug/docs/$title.md ]; then 
+		sed -i "/%PLUGINS_TOC%/a * [$title]($title.html)" docs/juci.md; 
+	else 
+		sed -i "/%PLUGINS_TOC%/a * $title" docs/juci.md; 
+	fi; 
+done
+
+# generate docs for all core widgets 
+for widget in $(ls juci/src/widgets/*.js); do 
+	title=$(basename ${widget%.js})
+	if [ -f juci/docs/$title.md ]; then 
+		sed -i "/%CORE_WIDGETS_TOC%/a * [$title]($title.html)" docs/juci.md; 
+	else 
+		sed -i "/%CORE_WIDGETS_TOC%/a * $title" docs/juci.md; 
+	fi; 
+done
+
+# generate docs for all plugin widgets 
+for widget in $(ls plugins/**/src/widgets/*.js); do 
+	title=$(basename ${widget%.js})
+	directory=$(dirname $(dirname $(dirname $widget)))
+	plug=$(basename $directory)
+	if [ -f plugins/$plug/docs/$title.md ]; then 
+		sed -i "/%WIDGETS_TOC%/a * [$title ($plug)]($title.html)" docs/juci.md; 
+	else 
+		sed -i "/%WIDGETS_TOC%/a * $title ($plug)" docs/juci.md; 
+	fi; 
+done
+
+# remove the placebolders 	
+sed -i "/%PLUGINS_TOC%/d" docs/juci.md
+sed -i "/%CORE_WIDGETS_TOC%/d" docs/juci.md
+sed -i "/%WIDGETS_TOC%/d" docs/juci.md
+
