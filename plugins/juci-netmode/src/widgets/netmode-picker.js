@@ -8,7 +8,7 @@ JUCI.app
 			$netmode.list().done(function(modes){
 				var modalInstance = $modal.open({
 					animation: true,
-					templateUrl: 'widgets/netmode.picker.html',
+					templateUrl: 'widgets/netmode-picker.html',
 					controller: 'netmodePicker',
 					resolve: {
 						modes: function () {
@@ -39,15 +39,15 @@ JUCI.app
 	$scope.data = { 
 		selected: modes.find(function(x){ return x[".name"] == selected; }) 
 	}; 
-  $scope.ok = function () {
+	$scope.ok = function () {
 		if(!$scope.data.selected) {
 			alert(gettext("You need to select a netmode!")); 
 			return; 
 		}
 		$modalInstance.close(($scope.data.selected || {})[".name"]);
-  };
+	};
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
 })

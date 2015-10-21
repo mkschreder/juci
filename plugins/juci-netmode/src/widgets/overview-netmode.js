@@ -15,18 +15,16 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("overviewWidgetNetmode", function($scope, $uci, $rpc, $netmode, $netmodePicker){
+.controller("overviewWidgetNetmode", function($scope, $tr, gettext, $uci, $rpc, $netmode, $netmodePicker){
 	$scope.done = 1;  
 	
-	$scope.data = {}
-
 	$netmode.getCurrentMode().done(function(current_mode){
 		$scope.currentNetmode = current_mode; 
 		$netmode.list().done(function(modes){
 			$scope.allNetmodes = modes.map(function(x){
-				return { label: x.desc.value, value: x }; 
+				return { label: $tr(x.desc.value), value: x }; 
 			}); 
-			$scope.data.selected = modes.find(function(x){ return x[".name"] == current_mode[".name"]; }); 
+			$scope.currentNetmode = modes.find(function(x){ return x[".name"] == current_mode[".name"]; }); 
 			$scope.$apply(); 
 		}); 
 	}); 
@@ -41,5 +39,19 @@ JUCI.app
 				window.location = "/reboot.html"; 
 			}); 
 		}); 
+	}
+
+	$scope.onApplyNetmode = function(){
+		if(!$scope.currentNetmode) return; 
+		$netmode.select($scope.currentNetmode[".name"]).done(function(){
+			console.log("Netmode set to "+$scope.currentNetmode['.name']); 
+			window.location = "/reboot.html"; 
+		}); 
+	}
+
+	$scope.onChangeModeConfirm = function(){
+		if(confirm($tr(gettext("Changing netmode will reset your configuration completely to match that netmode. Do you want to continue?")))){
+			$scope.onApplyNetmode(); 
+		}
 	}
 }); 
