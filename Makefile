@@ -128,11 +128,18 @@ debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\e[0;33m [UPDATE] $@ \e[m"
 	@./juci-update $(BIN)/www DEBUG
 
-DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) 
+DOCS_MD:= README.md docs/juci.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) 
 DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD))
 PHONY+=docs  
 docs: docs/plugins.toc $(DOCS_HTML) 
 	@echo -e "\e[0;33m [DOCS] $@ $^ \e[m"
+	@mkdir -p manual/js
+	@mkdir -p manual/css
+	@cp juci/src/lib/js/bootstrap.min.js manual/js/
+	@cp juci/src/lib/css/bootstrap.min.css manual/css/
+	@# remove juci generated md file 
+	@rm -f docs/juci.md
+
 docs/plugins.toc: $(wildcard plugins/**/docs/*.md)
 	@# for md in $^; do sed -i "/%PLUGINS_TOC%/a [$$(head -n 1 $$md)]($$(basename $${md%.md}))" docs/juci.md; done
 	./scripts/build_docs .
@@ -140,7 +147,11 @@ docs/plugins.toc: $(wildcard plugins/**/docs/*.md)
 %.html: %.md 
 	@echo -e "\e[0;33m[DOC]: $^\e[m"
 	@mkdir -p manual
-	@ronn --pipe -5 $^ > $(addprefix manual/,$(notdir $@))
+	@ronn --pipe -f $^ > docs/.tmp.ronn
+	@cp docs/page.html.tpl docs/.tmp
+	@sed -i -e '/%CONTENT%/r docs/.tmp.ronn' -e 's///' docs/.tmp
+	@mv docs/.tmp $(addprefix manual/,$(notdir $@)) 
+	@rm -f docs/.tmp.ronn
 
 install: 
 	@cp -Rp $(BIN)/* $(DESTDIR)
