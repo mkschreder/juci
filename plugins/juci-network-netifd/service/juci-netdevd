@@ -13,7 +13,7 @@ local console = {
 	end
 }; 
 
-function find(tbl, cb) 
+local function find(tbl, cb) 
 	for _,v in pairs(tbl) do 
 		if cb(v) then return v; end
 	end
@@ -27,9 +27,7 @@ if not conn then
 	error("Failed to connect to ubus")
 end
 
-function ev_network_device_add(opts)
-	if(not string.match(opts.device, "usb.*") and not string.match(opts.device, "wwan.*")) then return; end
-	
+local function ev_network_dongle_autoconf(opts)
 	local network = conn:call("uci", "get", { config = "network" }).values; 
 	local multiwan = conn:call("uci", "get", { config = "multiwan" }).values; 
 	local firewall = conn:call("uci", "get", { config = "firewall" }).values; 
@@ -75,7 +73,7 @@ function ev_network_device_add(opts)
 	conn:call("uci", "commit", { config = "multiwan" }); 
 	conn:call("uci", "commit", { config = "network" }); 
 	
-	conn:send("dongle-up", opts); 
+	conn:send("juci.netmond.dongle.configured", opts); 
 	
 	console.log("Multiwan setup completed: "..opts.device); 
 end
@@ -98,7 +96,12 @@ end
 local event_handlers = {
 	["hotplug.net"] = function(msg, type)
 		if msg.action == "add" then 
-			ev_network_device_add({ device = msg.interface }); 
+			-- TODO: instead of just checking device name, check the capabilities of the device and ident it as a dongle
+			-- we can for example have dongles that come up as eth devices - then we need to make this work for them as well!
+			if(string.match(opts.device, "usb.*") or string.match(opts.device, "wwan.*")) then 
+				conn:send("juci.netdevd.dongle.up", msg);
+				ev_network_dongle_autoconf({ device = msg.interface }); 
+			end
 		elseif msg.action == "remove" then 
 			ev_network_device_remove({ device = msg.interface }); 
 		end
