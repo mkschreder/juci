@@ -75,12 +75,39 @@ local function network_list_connected_clients(opts)
 		proc:close(); 
 		return result; 
 	end 
+	
+	-- to get dhcp mac addresses: awk '$1 == "#"{print substr($9, 0, index($9, "/") - 1) " " $2}' /tmp/hosts/odhcpd | xargs ndisc6 -1 | awk '/Target.*link.*/{print $4}'
+	function read_ip6_dhcp_info()
+		local lines = juci.readfile("/tmp/hosts/odhcpd"); 
+		if(not lines) then return {}; end
+		local result = {}; 
+		for line in lines:gmatch("[^\r\n]+") do
+			-- scanf(line, "# %s %s %x %s %d %x %d %s", clients6[cno].device, clients6[cno].duid, &iaid, clients6[cno].hostname, &ts, &id, &length, clients6[cno].ip6addr)
+			-- # br-lan 000415a02f71b2054d230f438af04844b708 99bf8deb vlatko-HP-ProBook-650-G1 1445260051 187 128 2a03:8000:3e3:300::187/128
+			-- note: iaid is last 4 bytes of mac address. (why the hell not all of them?)
+			local device,duid,iaid,hostname,ts,id,length,ip6addr = line:match("# (%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+).*"); 
+			if(device and duid) then 
+				result[iaid] = {
+					device = device, 
+					duid = duid, 
+					iaid = iaid, 
+					hostname = hostname, 
+					ts = ts, 
+					id = id, 
+					length = length, 
+					ip6addr = ip6addr
+				}; 
+			end
+		end
+		return result; 
+	end
 
 	function read_clients()
 		local result = read_arp_info(); -- arp info is usually better for getting clients that are actually connected
 		local dhcp_leases = read_dhcp_info(); 
 		local ip6clients = read_ip6_clients(); 
-		
+		local ip6dhcp = read_ip6_dhcp_info(); 
+
 		-- combine fields
 		for mac,dhcp in pairs(dhcp_leases) do 
 			local r = result[mac]; 
@@ -90,10 +117,25 @@ local function network_list_connected_clients(opts)
 				end
 			end
 		end
+
 		for _,cl in ipairs(ip6clients) do
+			-- find in the dhcp6 table an entry that belongs to our mac address
+			if cl.macaddr then
+				local iaid = cl.macaddr:gsub(":", ""):sub(5); 
+				local dhcp = ip6dhcp[iaid]; 
+				if dhcp then 
+					cl.ip6duid = dhcp.duid; 
+					if not cl.hostname then cl.hostname = dhcp.hostname; end
+					cl.ip6hostid = dhcp.id; 
+				end
+			end
+
 			if result[cl.macaddr] then 
-				result[cl.macaddr]["ip6addr"] = cl.ip6addr; 
-				result[cl.macaddr]["ip6status"] = cl.ip6status; 
+				result[cl.macaddr].ip6addr = cl.ip6addr; 
+				result[cl.macaddr].ip6status = cl.ip6status; 
+				result[cl.macaddr].ip6duid = cl.ip6duid; 
+				result[cl.macaddr].ip6hostid = cl.ip6hostid; 
+				if not result[cl.macaddr].hostname then result[cl.macaddr].hostname = cl.hostname; end 
 			elseif(cl.macaddr ~= nil) then 
 				result[cl.macaddr] = cl; 
 			end

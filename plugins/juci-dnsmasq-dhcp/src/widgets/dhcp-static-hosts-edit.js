@@ -26,7 +26,7 @@ JUCI.app
 				return true; // for now let's include all of them since the new lua based clients listing does not supply us with "network" field. 
 			}).map(function(cl){
 				return {
-					label: cl.hostname || cl.ipaddr, 
+					label: cl.hostname || cl.ipaddr || cl.ip6addr, 
 					value: cl
 				}; 
 			}); 
@@ -43,7 +43,8 @@ JUCI.app
 			network: $scope.dhcp.interface.value, 
 			name: host.hostname ,
 			mac: host.macaddr, 
-			ip: host.ipaddr
+			ip: host.ipaddr,
+			duid: host.ip6duid
 		}).done(function(section){
 			console.log("Added new dhcp section"); 
 			$scope.dhcp.staticHosts.push(section); 

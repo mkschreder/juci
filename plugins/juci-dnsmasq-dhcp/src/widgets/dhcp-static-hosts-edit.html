@@ -10,6 +10,7 @@
 		<div class="col-sm-4 form-group">
 			<label class="visible-xs" translate>Device Name</label>
 			<input type="text" class="form-control" ng-model="host.name.value" placeholder="{{'Hostname'|translate}}"/>
+			<span>{{host.duid.value}}</span>
 		</div>
 		<div class="col-sm-4 form-group">
 			<label class="visible-xs" translate>MAC Address</label>
@@ -18,7 +19,8 @@
 		</div>
 		<div class="col-sm-3 form-group">
 			<label class="visible-xs" translate>IP Address</label>
-			<input type="text" class="form-control" ng-model="host.ip.value" placeholder="{{'IP Address'|translate}}"/>
+			<input type="text" class="form-control" ng-model="host.ip.value" placeholder="{{'IPv4 Address'|translate}}"/>
+			<input type="text" class="form-control" ng-model="host.hostid.value" ng-show="host.duid.value" placeholder="{{'IPv6 Address ID'|translate}}"/>
 			<juci-error value="host.ip.error"/>
 		</div>
 		<div class="col-sm-1 form-group" style="white-space: nowrap">
