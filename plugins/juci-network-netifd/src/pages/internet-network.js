@@ -45,8 +45,6 @@ JUCI.app
 		}); 
 	}); 
 	
-	
-	
 	$scope.onGetItemTitle = function(i){
 		return i[".name"]; 
 	}
@@ -66,8 +64,8 @@ JUCI.app
 	}
 	
 	$scope.onDeleteConnection = function(conn){
-		if(!conn) alert(gettext("Please select a connection in the list!")); 
-		if(confirm(gettext("Are you sure you want to delete this connection?"))){
+		if(!conn) alert($tr(gettext("Please select a connection in the list!"))); 
+		if(confirm($tr(gettext("Are you sure you want to delete this connection?")))){
 			conn.$delete().done(function(){
 				$scope.networks = $scope.networks.filter(function(net){
 					return net[".name"] != conn[".name"]; 

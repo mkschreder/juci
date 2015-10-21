@@ -4,16 +4,16 @@
 		<table class="table">
 			<thead>
 				<th translate>Hostname</th>
+				<th translate>MAC Address</th>
 				<th translate>IPv4 Address</th>
 				<th translate>IPv6 Address</th>
-				<th translate>MAC Address</th>
 				<th translate>Device</th>
 			</thead>
-			<tr ng-repeat="cl in clients">
+			<tr ng-repeat="cl in clients track by $index">
 				<td>{{cl.hostname || '-'}}</td>
-				<td>{{cl.ipaddr}}</td>
-				<td>{{cl.ip6addr || '-'}}</td>
 				<td>{{cl.macaddr}}</td>
+				<td>{{cl.ipaddr || '-'}}</td>
+				<td><span ng-show="cl.ip6addr">{{cl.ip6addr}} ({{cl.ip6status}})</span></td>
 				<td>{{cl.device}}</td>
 			</tr>
 		</table>

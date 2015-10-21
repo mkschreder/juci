@@ -15,5 +15,4 @@ JUCI.app
 			$scope.$apply(); 
 		}); 
 	}
-	
 }); 
