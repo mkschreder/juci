@@ -93,7 +93,7 @@ JUCI.app
 						$scope.wifi = $uci.wireless;  
 						$scope.vifs = result.devices.map(function(dev){
 							var uci_dev = $uci.wireless["@wifi-iface"].find(function(w){
-								return w.device.value == dev.device; 
+								return w.ifname.value == dev.device; 
 							}); 
 							dev.uci_dev = uci_dev; 
 							return dev; 
