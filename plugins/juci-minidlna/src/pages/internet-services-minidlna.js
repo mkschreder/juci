@@ -12,10 +12,9 @@ JUCI.app
 				title: $tr(gettext("Add folder to share")),
 				model: model,
 				on_apply: function(btn, dlg){
-					console.log(model);
+					console.log(JSON.stringify(model.selected))
 					return true;
-				}
-				
+				}	
 			});
 		};
 	}); 

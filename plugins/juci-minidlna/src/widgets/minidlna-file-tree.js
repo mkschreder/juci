@@ -23,6 +23,9 @@ JUCI.app
 		]
 	}; 
 	$scope.model.selected_dirtype = $scope.data.dirtypes[0].value;
+	$scope.on_select = function(branch){
+		$scope.model.selected = branch; 
+	}
 	$rpc.juci.minidlna.folders().done(function(data){
 		function to_tree_format(obj){
 			return Object.keys(obj).map(function(folder){
@@ -37,9 +40,8 @@ JUCI.app
 				}
 			});
 		}
-		//console.log(to_tree_format(data));
 		$scope.data.tree = to_tree_format(data); 
-		$scope.model.selected = $scope.data.tree[0].children[0];
+		$scope.model.selected = {};
 		$scope.$apply();
 	});
 });

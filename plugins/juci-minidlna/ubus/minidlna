@@ -25,7 +25,12 @@ local function list_folders()
 	local tree = dir_tree("/etc/");
 	print(json.encode(tree)); 
 end
+	
+local function list() 
+	
+end
 
 juci.ubus({
-	["folders"] = list_folders
+	["folders"] = list_folders,
+	["list"] = list_current
 }, arg);

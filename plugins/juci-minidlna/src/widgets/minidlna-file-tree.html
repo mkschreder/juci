@@ -1,9 +1,12 @@
 <div>
 	<label translate>Select folder</label>
-	<div><abn-tree tree-data="data.tree" tree-control="model.selected" icon-leaf="fa fa-folder"></abn-tree></div>
+	<div style="max-height: 300px; overflow:auto;">
+		<abn-tree tree-data="data.tree" on-select="on_select(branch)" icon-leaf="fa fa-folder">
+		</abn-tree>
+	</div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Media type' | translate}}">
-			<juci-select ng-items="data.dirtypes" ng-model="model.selected_dirtype"></juci-select>
+			<juci-select ng-items="data.dirtypes" ng-model="model.selected_dirtype" ></juci-select>
 		</juci-config-line>
 	</juci-config-lines>
 </div>
