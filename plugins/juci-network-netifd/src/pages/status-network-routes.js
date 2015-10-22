@@ -12,4 +12,7 @@ JUCI.app
 			}); 
 		}); 
 	}); 
+	$rpc.juci.network.status.ipv6neigh().done(function(){
+		
+	}); 
 }); 

@@ -7,7 +7,7 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $firewall, $config){
+.controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $firewall, $config, $juciDialog, $tr, gettext){
 	function drawCyGraph(){
 		var nodes = []; 
 		var edges = []; 
@@ -422,8 +422,9 @@ JUCI.app
 									image: "/img/net-laptop-icon.png", 
 									shape: "image",
 									x: node.x * (2 + Math.floor(count / 10)), 
-									fixed: { x: true, y: false }
+									fixed: { x: true, y: false },
 								}; 
+								if(zone == lan) cl_node._lan_client = cl; 
 								count ++; 
 								var flags = []; 
 								if(gw_if && gw_if.route[0].nexthop == cl.ipaddr) flags.push("Default GW"); 
@@ -445,7 +446,35 @@ JUCI.app
 					};
 
 					var network = new vis.Network(containerFA, dataFA, optionsFA);
-					
+					// if we click on a node, we want to open it up!
+					network.on("click", function (params) {
+						if (params.nodes.length == 1) {
+							var node = nodes.find(function(x){ return x.id == params.nodes[0]; }); 
+							if(!node || !node._lan_client) return; 
+							// this is probably ugliest part of juci right now. 
+							// juci dialog creates network-client-edit, we supply our own controller inside which we set the model of that network-client-edit
+							// the network-client-edit then responds to a user click and calls close on the modal instance that is part of the model passed to it. 
+							// in other words: this sucks. Needs a major rewrite!
+							$juciDialog.show("network-client-edit", {
+								controller: function($scope, $modalInstance, $wireless, dialogOptions, gettext){
+									$scope.opts = dialogOptions; 
+									$scope.data = {};
+									$scope.on_button = function(btn){ 
+										if(btn && btn.value == "cancel") $modalInstance.dismiss("cancel"); 
+									}, 
+									$scope.model = {
+										client: dialogOptions.model,
+										modal: $modalInstance
+									}; 
+								}, 
+								model: node._lan_client,
+								buttons: [ { label: $tr(gettext("Cancel")), value: "cancel" } ] 
+							}).done(function(){
+
+							}); 
+						}
+					});
+
 					/*(function clusterNodes(){
 						var clusterIndex = 0; 
 						var clusters = []; 
