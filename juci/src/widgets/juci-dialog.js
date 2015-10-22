@@ -21,9 +21,10 @@ JUCI.app
 			}
 			opts.widget = "<" + widget + " ng-model='model'/>"; 
 			var modalInstance = $modal.open({
-				animation: true,
-				templateUrl: 'widgets/juci-dialog.html',
-				controller: 'juciDialog',
+				animation: false,
+				backdrop: "static", 
+				templateUrl: opts.templateUrl || 'widgets/juci-dialog.html',
+				controller: opts.controller || 'juciDialog',
 				resolve: {
 					dialogOptions: function () {
 						return opts; 
@@ -48,7 +49,7 @@ JUCI.app
 	$scope.opts = dialogOptions; 
 	$scope.data = {}; 
 	$scope.model = dialogOptions.model; 
-	$scope.onButtonClick = function (btn) {
+	$scope.on_button = opts.on_button || function (btn) {
 		if(dialogOptions.validate && typeof dialogOptions.validate == "function" && !dialogOptions.validate(btn)){
 			return; 
 		}
