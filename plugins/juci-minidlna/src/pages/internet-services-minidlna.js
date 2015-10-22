@@ -12,6 +12,7 @@ JUCI.app
 				title: $tr(gettext("Add folder to share")),
 				model: model,
 				on_apply: function(btn, dlg){
+					if(!model.selected || !model.selected.path)return false;
 					$scope.config.media_dir.value.push(model.selected.path);
 					console.log(JSON.stringify($scope.config.media_dir.value));
 					return true;
