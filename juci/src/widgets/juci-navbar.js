@@ -4,7 +4,7 @@ JUCI.app
 .directive("juciNavbar", function($location, $rootScope, $navigation){
 	function activate(){
 		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
-		if(!active_ndoe) return; 
+		if(!active_node) return; 
 		var top_node = $navigation.findNodeByPath(active_node.path.split("/")[0]); 
 		if(!top_node) return; 	
 		setTimeout(function(){
