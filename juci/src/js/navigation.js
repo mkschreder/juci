@@ -29,6 +29,9 @@
 			} 
 			return obj; 
 		};
+		this.findNodeByPath = function(path){
+			return this.findLeaf(path); 
+		}; 
 		this.findNodeByHref = function(href){
 			var list = []; 
 			function flatten(tree){

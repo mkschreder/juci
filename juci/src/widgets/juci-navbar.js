@@ -1,15 +1,16 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.directive("juciNavbar", function($location, $rootScope){
+.directive("juciNavbar", function($location, $rootScope, $navigation){
 	function activate(){
-		var path = $location.path().replace(/^\/+|\/+$/g, ''); 
-		var subtree = path.split("-")[0]; 
-		
+		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
+		if(!active_ndoe) return; 
+		var top_node = $navigation.findNodeByPath(active_node.path.split("/")[0]); 
+		if(!top_node) return; 	
 		setTimeout(function(){
 			$("ul.nav li a").parent().removeClass("open"); 
-			$("ul.nav li a[href='#!"+subtree+"']").addClass("open"); 
-			$("ul.nav li a[href='#!"+subtree+"']").parent().addClass("open"); 
+			$("ul.nav li a[href='#!"+top_node.path+"']").addClass("open"); 
+			$("ul.nav li a[href='#!"+top_node.path+"']").parent().addClass("open"); 
 		}, 0); 
 	}; activate(); 
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
