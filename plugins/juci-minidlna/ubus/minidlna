@@ -22,7 +22,7 @@ local function dir_tree(src, obj)
 end
 
 local function list_folders()
-	local tree = dir_tree("/etc/");
+	local tree = dir_tree("/mnt/");
 	print(json.encode(tree)); 
 end
 	
