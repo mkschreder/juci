@@ -128,7 +128,7 @@ debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\e[0;33m [UPDATE] $@ \e[m"
 	@./juci-update $(BIN)/www DEBUG
 
-DOCS_MD:= README.md docs/juci.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) 
+DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) docs/juci.md
 DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD))
 PHONY+=docs  
 docs: docs/plugins.toc $(DOCS_HTML) 

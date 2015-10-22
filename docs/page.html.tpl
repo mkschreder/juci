@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	</head>
-	<body>
+	<body style="font-family: sans; font-size: 1.5em">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -26,15 +26,18 @@
 				</div>
 			</div>
 		</nav>
-		<div class="container-fluid" style="padding-top: 60px;">
+		<div class="container" style="padding-top: 60px;">
 			<div class="row">
-				<div class="col-md-2 sidebar">
+				<div class="col-md-3 sidebar">
 					<ul class="nav nav-sidebar">
 						<li><a href="juci.html">Overview</a></li>
 					</ul>
 				</div>
-				<div class="col-md-10 main">
+				<div class="col-md-7 main">
 					%CONTENT%
+				</div>
+				<div class="col-md-2">
+					
 				</div>
 			</div>
 		</div>	
