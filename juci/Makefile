@@ -14,6 +14,8 @@ define Plugin/juci
 	STYLES-y+=src/lib/css/angular-ui-switch.min.css
 	STYLES-y+=src/lib/css/awesome-bootstrap-checkbox.css
 	STYLES-y+=src/lib/css/vis.min.css
+	STYLES-y+=src/lib/css/ng-tags-input.css
+	STYLES-y+=src/lib/css/ng-tags-input.bootstrap.css
 	STYLES-y+=src/css/nga.min.css
 	STYLES-y+=src/css/app.css
 	
@@ -39,6 +41,7 @@ define Plugin/juci
 	JAVASCRIPT-y+=src/lib/js/angular-ui-switch.min.js
 	JAVASCRIPT-y+=src/lib/js/angular-modal-service.min.js
 	JAVASCRIPT-y+=src/lib/js/angular-checklist-model.js
+	JAVASCRIPT-y+=src/lib/js/ng-tags-input.js
 
 	JAVASCRIPT-y+=src/js/compat.js
 	JAVASCRIPT-y+=src/js/rpc.js

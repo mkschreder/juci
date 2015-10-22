@@ -185,6 +185,9 @@
 	
 	scope.JUCI = scope.$juci = new JUCIMain(); 
 	if(typeof angular !== "undefined"){
+		// TODO: this list should eventually be split out into plugins.
+		// we should in fact use JUCI.app.depends.push("...") for this then
+		// otherwise this list of things that are always included in juci will become quite big..
 		var app = scope.JUCI.app = angular.module("juci", [
 			"ui.bootstrap",
 			"ui.router", 
@@ -196,7 +199,8 @@
 			"gettext", 
 			"dndLists", 
 			"cgPrompt", 
-			"checklist-model"
+			"checklist-model",
+			"ngTagsInput"
 		]); 
 		app.config(function($stateProvider){
 			Object.keys(scope.JUCI.pages).map(function(name){
