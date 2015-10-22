@@ -11,7 +11,8 @@ local base = _G
 --module("juci"); 
 
 local function readfile(name)
-	local f = base.assert(io.open(name, "r")); 
+	local f = io.open(name, "r");
+	if(not f) then return nil; end 
 	local s = f:read("*a"); 
 	s = s:gsub("\n+$", "");  -- remove trailing new line
 	f:close(); 
