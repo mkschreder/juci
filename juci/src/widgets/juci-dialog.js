@@ -57,4 +57,7 @@ JUCI.app
 			dialogOptions.on_button(btn, $modalInstance); 
 		}
 	};
+	$scope.on_button_click = function(btn){
+		return $scope.on_button(btn, $modalInstance); 
+	}
 }); 
