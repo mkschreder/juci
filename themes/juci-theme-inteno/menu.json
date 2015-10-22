@@ -168,7 +168,7 @@
 		"acls": [ "juci-mod-system" ] 
 	},
 	"internet/services/upnp": {
-		"page": "internet-services-upnp", 
+		"page": "upnpd-settings", 
 		"title": "UPnP",
 		"acls": [ "juci-upnp" ]
 	},
@@ -330,6 +330,11 @@
 		"page": "status-network-routes", 
 		"title": "Routes", 
 		"acls": [ "juci-network-netifd" ] 
+	},
+	"status/network/upnpd": {
+		"page": "upnpd-status", 
+		"title": "UPnP", 
+		"acls": [ "juci-upnp" ] 
 	},
 	"status/network/nat": {
 		"page": "status-network-nat", 

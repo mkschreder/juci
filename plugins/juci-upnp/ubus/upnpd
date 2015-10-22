@@ -10,6 +10,12 @@ local function upnp_list_open_ports()
 		-- 1       16867  1155229 postrouting_rule  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* user chain for postrouting */
 		local num,pkts,bytes,target,prot,opt,_,_,src,dst = line:match("^(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+).*"); 
 		table.insert(result.ports, {
+			num = num, 
+			packets = pkts, 
+			bytes = bytes, 
+			target = target, 
+			proto = proto, 
+			opt = opt, 
 			src = src, 
 			dst = dst
 		}); 
@@ -18,5 +24,5 @@ local function upnp_list_open_ports()
 end
 
 juci.ubus({
-	open_ports = upnp_list_open_ports
+	ports = upnp_list_open_ports
 }, arg); 

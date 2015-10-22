@@ -1,0 +1,28 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="UPNPStatusPage">
+		<h2 translate>UPnP Open Ports</h2>
+		<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
+		<table class="table" ng-show="upnpOpenPorts.length">
+			<thead>
+				<th>#</th>
+				<th translate>Packets cnt.</th>
+				<th translate>Bytes</th>
+				<th translate>Target</th>
+				<th translate>Proto</th>
+				<th translate>Opt</th>
+				<th translate>Source</th>
+				<th translate>Dest.</th>
+			</thead>
+			<tr ng-repeat="port in upnpOpenPorts">
+				<td>{{port.num}}</td>
+				<td>{{port.packets}}</td>
+				<td>{{port.bytes}}</td>
+				<td>{{port.target}}</td>
+				<td>{{port.proto}}</td>
+				<td>{{port.opt}}</td>
+				<td>{{port.src}}</td>
+				<td>{{port.dst}}</td>
+			</tr>
+		</table>
+	</div>
+</juci-layout-with-sidebar>
