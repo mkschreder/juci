@@ -1,4 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+JUCI.app.requires.push("angularBootstrapNavTree"); 
+JUCI.app.requires.push("isteven-multi-select");
+
 JUCI.app
 .factory("$minidlna", function($uci){
 	function MiniDLNA(){
@@ -32,7 +36,7 @@ UCI.minidlna.$registerSectionType("minidlna", {
 	"serial":         	{ dvalue: "", type: String },
 	"model_number":			{ dvalue: "", type: String },
 	"root_container":		{ dvalue: "", type: String },
-	"media_dir":				{ dvalue: "", type: String },
+	"media_dir":				{ dvalue: [], type: Array },
 	"album_art_names":	{ dvalue: "", type: String }
 });
 			

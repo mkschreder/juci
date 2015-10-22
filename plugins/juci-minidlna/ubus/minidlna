@@ -1,0 +1,31 @@
+#!/usr/bin/lua
+
+local juci = require("juci.core");
+local json = require("juci.json");
+
+local function dir_tree(src, obj)
+	local list = juci.shell("find %s -type d | sort", src);
+	if(list == "") then return nil; end
+	local root = { }; 
+	for line in list:gmatch("[^\n\r]+") do
+		local parent = root; 
+		local path = "/";
+		for node in line:gmatch("[^/]+") do
+			path = path .. node .. "/"; 
+			if not parent[node] then 
+				parent[node] = { path = path, children = {} }; 
+			end
+			parent = parent[node].children; 
+		end
+	end
+	return root; 
+end
+
+local function list_folders()
+	local tree = dir_tree("/etc/");
+	print(json.encode(tree)); 
+end
+
+juci.ubus({
+	["folders"] = list_folders
+}, arg);

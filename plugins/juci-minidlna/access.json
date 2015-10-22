@@ -4,12 +4,22 @@
 		"read": {
 			"uci": [
 				"minidlna"
-			]
+			],
+			"ubus": {
+				"/juci/minidlna": [
+					"folders"
+				]
+			}
 		},
 		"write": {
 			"uci": [
 				"minidlna"
-			]
+			],
+			"ubus": {
+				"/juci/minidlna": [
+					"folders"
+				]
+			}
 		}
 	}
 }
