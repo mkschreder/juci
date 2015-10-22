@@ -31,7 +31,8 @@ JUCI.app
 			return Object.keys(obj).map(function(folder){
 				if(obj[folder]["children"]){
 					var tmp = {
-						label: "/"+folder+"/"
+						label: "/"+folder+"/",
+						path: obj[folder]["path"]
 					}
 					if(typeof obj[folder]["children"] == "object"){
 						tmp.children = to_tree_format(obj[folder]["children"]);

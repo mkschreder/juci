@@ -12,10 +12,17 @@ JUCI.app
 				title: $tr(gettext("Add folder to share")),
 				model: model,
 				on_apply: function(btn, dlg){
-					console.log(JSON.stringify(model.selected))
+					$scope.config.media_dir.value.push(model.selected.path);
+					console.log(JSON.stringify($scope.config.media_dir.value));
 					return true;
 				}	
 			});
+		};
+		$scope.onDeleteFolder = function(item){
+			var index = $scope.config.media_dir.value.indexOf(item);
+			if(index > -1){
+				$scope.config.media_dir.value.splice(index, 1);
+			}
 		};
 	}); 
 }); 
