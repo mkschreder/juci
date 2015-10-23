@@ -6,9 +6,11 @@
 	</div>
 	<div class="panel-body">
 		<i ng-show="!allNetmodes" class="fa fa-spinner fa-spin"></i>
-		<div class="col-xs-12" style="white-space: nowrap;">
+		<div class="col-xs-8" style="white-space: nowrap;">
 			<juci-select ng-model="currentNetmode" ng-items="allNetmodes" ></juci-select>
-			<button class="btn btn-success" ng-click="onChangeModeConfirm()" translate>Apply</button>
+		</div>
+		<div class="col-xs-4">
+			<button class="btn btn-success pull-right" ng-click="onChangeModeConfirm()" translate>Apply</button>
 		</div>
 	</div>
 </div>

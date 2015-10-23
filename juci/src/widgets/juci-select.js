@@ -24,7 +24,7 @@ JUCI.app
 			$scope.$watch("ngItems", function(){
 				if(!$scope.ngItems) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
-			}, true); 
+			}); 
 
 			$scope.$watch("ngModel", function(value){
 				if(!value) return; 
