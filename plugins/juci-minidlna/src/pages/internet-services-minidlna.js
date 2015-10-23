@@ -34,6 +34,15 @@ JUCI.app
 				}	
 			});
 		};
+		$scope.onTagAdded = function(tag){
+			$scope.tagslistData = $scope.tagslistData.map(function(k){
+				if(k.text == tag.text){
+					k.path = "/mnt"+k.text;
+				}
+				return k;
+			});
+			$scope.updateConfig();
+		};
 		$scope.updateConfig =  function(){
 			$scope.config.media_dir.value = $scope.tagslistData.map(function(dir){
 				return dir.path;
