@@ -151,7 +151,8 @@ UCI.firewall.$registerSectionType("include", {
 
 UCI.firewall.$registerSectionType("dmz", {
 	"enabled": 			{ dvalue: false, type: Boolean }, 
-	"host": 			{ dvalue: "", type: String } // TODO: change to ip address
+	"host": 			{ dvalue: "", type: String }, // TODO: change to ip address
+	"ip6addr":			{ dvalue: "", type: String, validator: UCI.validators.IP6AddressValidator }
 }); 
 
 UCI.firewall.$registerSectionType("rule", {
