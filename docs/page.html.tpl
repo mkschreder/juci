@@ -31,13 +31,24 @@
 				<div class="col-md-3 sidebar">
 					<ul class="nav nav-sidebar">
 						<li><a href="juci.html">Overview</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
 					</ul>
 				</div>
 				<div class="col-md-7 main">
 					%CONTENT%
 				</div>
 				<div class="col-md-2">
-					
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
 				</div>
 			</div>
 		</div>	
