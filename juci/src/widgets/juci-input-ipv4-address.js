@@ -8,25 +8,27 @@ JUCI.app
 		scope: {
 				ngModel: "="
 		},
-		require: "^ngModel"
+		require: "ngModel"
 	};
 })
-.controller("juciInputIpv4Address", function($scope){
-	$scope.data = {parts: ["0", "0", "0", "0"]};
+.controller("juciInputIpv4Address", function($scope, $attrs, $parse){
+	$scope.data = { parts: [ "0", "0", "0", "0" ] };
+		
+	var ngModel = $parse($attrs.ngModel);
 	
+	// extract model into the parts
 	$scope.$watch("ngModel", function(value){
-		if(!$scope.ngModel || !$scope.ngModel.split) return; 
-		var parts = $scope.ngModel.split("."); 
-		// update only if changed to avoid looping updates
-		Object.keys(parts).map(function(k){
-			if(parts[k] != $scope.data.parts[k])
-				$scope.data.parts[k] = parts[k]; 
+		if(!value) return; 
+		var parts = value.split("."); 
+		parts.forEach(function(v, i){
+			$scope.data.parts[i] = v; 
 		}); 
-	}); 
-
+	},true); 
+	
+	// reassemble model when parts change 
 	$scope.$watch("data.parts", function() {
-		if(!$scope.data.parts || !$scope.data.parts.join) return; 
-		var ipaddr = $scope.data.parts.join('.');
-		if($scope.ngModel != ipaddr) $scope.ngModel = ipaddr; 
+		if(!$scope.data.parts) return; 
+		var ipaddr = Object.keys($scope.data.parts).map(function(x){ return $scope.data.parts[x] }).join("."); 
+		if($scope.ngModel != ipaddr) ngModel.assign($scope, ipaddr); 
 	}, true);
 }); 
