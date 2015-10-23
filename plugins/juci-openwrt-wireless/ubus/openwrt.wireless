@@ -15,11 +15,21 @@
 
 local juci = require("juci.core"); 
 local iwinfo = require("iwinfo"); 
+require("ubus"); 
 
-function wireless_devices()
+local function wireless_get_80211_device_names()
 	local output = juci.shell("find /sys/class/net/**/*phy80211* | awk 'BEGIN{FS=\"/\"} { print $5 }'"); 
-	local result = { devices = {} }; 
+	local devices = {}; 
 	for wldev in output:gmatch("[^\r\n]+") do   
+		table.insert(devices, wldev); 
+	end
+	return devices; 
+end
+
+local function wireless_get_80211_devices()
+	local devices = wireless_get_80211_device_names(); 
+	local result = { devices = {} }; 
+	for _,wldev in ipairs(devices) do 
 		local iw = iwinfo[iwinfo.type(wldev)];
 		if(iw) then 
 			table.insert(result.devices, {
@@ -46,6 +56,36 @@ function wireless_devices()
 			}); 
 		end
 	end
+	return result.devices; 
+end
+
+local function wireless_get_80211_caps()
+	local devices = wireless_get_80211_device_names(); 
+	local result = { devices = {} }; 
+	for _,wldev in ipairs(devices) do 
+		local iw = iwinfo[iwinfo.type(wldev)];
+		if(iw) then 
+			table.insert(result.devices, {
+				device = wldev, 
+				txpwrlist = iw.txpwrlist(wldev),
+				freqlist = iw.freqlist(wldev),
+				country = iw.country(wldev),
+				countrylist = iw.countrylist(wldev)
+			}); 
+		end
+	end
+	return result.devices; 
+end 
+
+function wireless_devices()
+	local result = {}; 
+	result.devices = wireless_get_80211_devices(); 
+	print(json.encode(result)); 
+end
+
+local function wireless_get_caps()
+	local result = {}; 
+	result.devices = wireless_get_80211_caps();
 	print(json.encode(result)); 
 end
 
@@ -54,11 +94,29 @@ function wireless_radios()
 end
 
 function wireless_clients()
-
+	local devices = wireless_get_80211_device_names(); 
+	local result = { clients = {} }; 
+	for _,wldev in ipairs(devices) do
+		local cn = ubus.connect(); 
+		if(cn) then
+			local cl = cn:call("hostapd."..wldev, "get_clients", {}); 
+			for macaddr,client in pairs(cl.clients) do 
+				local str = juci.shell("iw dev %s station get \"%s\"", wldev, macaddr); 
+				
+				table.insert(result.clients, {
+					device = wldev, 
+					macaddr = macaddr
+				}); 
+			end
+			cn:close(); 
+		end
+	end
+	print(json.encode(result)); 
 end 
 
 juci.ubus({
 	devices = wireless_devices,
+	caps = wireless_get_caps,
 	radios = wireless_radios, 
 	clients = wireless_clients
 }, arg); 

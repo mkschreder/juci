@@ -1,0 +1,22 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="OpenwrtWirelessClientsPage">
+		<h2 translate>Wireless Clients</h2>
+		<juci-config-info translate>wireless.clients.info</juci-config-info>
+		<table class="table">
+			<thead>
+				<th translate>Hostname</th>
+				<th translate>MAC Address</th>
+				<th translate>IPv4</th>
+				<th translate>IPv6</th>
+				<th translate>Device</th>
+			</thead>
+			<tr ng-repeat="cl in clients track by $index">
+				<td>{{cl.hostname}}</td>
+				<td>{{cl.macaddr}}</td>
+				<td>{{cl.ipaddr}}</td>
+				<td>{{cl.ip6addr}}</td>
+				<td>{{cl.device}}</td>
+			</tr>
+		</table>
+	</div>
+</juci-layout-with-sidebar>

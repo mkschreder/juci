@@ -1,0 +1,58 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Enabled'|translate}}"><switch ng-model="iface.disabled.value" class="green" inverted></switch></juci-config-line>
+	</juci-config-lines>
+	<juci-config-lines ng-hide="iface.disabled.value">
+		<juci-config-line title="{{'SSID'|translate}}">
+			<input type="text" class="form-control" placeholder="Wifi Name" ng-model="iface.ssid.value" maxlength="32"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Broadcast SSID'|translate}}">
+			<switch id="enabled" name="enabled" ng-model="iface.closed.value" on-change="onShowSSIDToggle()" class="green" inverted></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Encryption'|translate}}">
+			<juci-select ng-model="iface.encryption.value" ng-items="cryptoChoices" placeholder="Choose Encryption" on-change="onEncryptionChanged($value, $oldvalue)"/>
+		</juci-config-line>
+		<div ng-show="iface.encryption.value == 'psk2' || iface.encryption.value == 'mixed-psk'">
+			<juci-config-line title="{{'Cipher'|translate}}">
+				<div ng-show="iface.encryption.value == 'psk2'">
+					<juci-select ng-model="iface.cipher.value" ng-items="psk2_ciphers" placeholder="Choose Cipher"/>
+				</div>
+				<div ng-show="iface.encryption.value == 'mixed-psk'">
+					<juci-select ng-model="iface.cipher.value" ng-items="mixed_psk_ciphers" placeholder="Choose Cipher"/>
+				</div>
+			</juci-config-line>
+			<juci-config-line title="{{'Key'|translate}}">
+				<div class="input-group">
+					<input type="{{(!showPassword)?'password':'text'}}" class="form-control" placeholder="{{'Key'|translate}}" ng-model="iface.key.value" />
+					<span style="cursor: pointer;" title="{{'Reset to default password'|translate}}" class="input-group-addon" id="basic-addon1" ng-click="iface.key.value = default_key"><i class="fa fa-rotate-left"></i></span>
+				</div>
+			</juci-config-line>
+		</div>
+		<div ng-show="iface.encryption.value == 'wep' || iface.encryption.value == 'wep-shared'">
+			<juci-config-line title="{{'Key'|translate}}">
+				<juci-select ng-model="iface.key_index.value" ng-items="keyChoices" placeholder="{{'Choose Key'|translate}}"/>
+			</juci-config-line>
+			<juci-config-line ng-repeat="key in ['1', '2', '3', '4']" 
+				title="{{'Key'|translate}} {{key}}">
+				<input type="{{(!showPassword)?'password':'text'}}" class="form-control" placeholder="{{('Key'+key)|translate}}" ng-model="iface['key'+key].value" />
+			</juci-config-line>
+		</div>
+		<div ng-show="iface.encryption.value == 'wpa2' || iface.encryption.value == 'mixed-wpa'">
+			<juci-config-line title="{{'Radius Server'|translate}}">
+				<input type="text" class="form-control" placeholder="{{'wifi-iface.radius_server'|translate}}" ng-model="iface.radius_server.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'Radius Port'|translate}}">
+				<input type="text" class="form-control" placeholder="{{'wifi-iface.radius_port'|translate}}" ng-model="iface.radius_port.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'Radius Secret'|translate}}">
+				<input type="{{(!showPassword)?'password':'text'}}" class="form-control" placeholder="{{'wifi-iface.radius_secret'|translate}}" ng-model="iface.radius_secret.value" />
+			</juci-config-line>
+		</div>
+		<juci-config-line ng-show="iface.encryption.value != 'none'">
+			<div class="checkbox checkbox-info">
+				<input type="checkbox" ng-model="showPassword" ng-click="toggleShowPassword()"/>
+				<label><strong>{{'Show Password'|translate}}</strong></label>
+			</div>
+		</juci-config-line>
+	</juci-config-lines>
+</div>

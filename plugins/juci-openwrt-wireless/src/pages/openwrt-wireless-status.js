@@ -1,4 +1,5 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 JUCI.app
 .controller("OpenwrtWirelessStatusPage", function($scope, $rpc, $tr, gettext){
 	JUCI.interval.repeat("wireless-refresh", 5000, function(done){
