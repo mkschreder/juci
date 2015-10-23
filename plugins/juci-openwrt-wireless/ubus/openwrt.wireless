@@ -77,6 +77,24 @@ local function wireless_get_80211_caps()
 	return result.devices; 
 end 
 
+local function wireless_get_extended_stainfo(wldev, macaddr)
+	-- run the iw station get and parse output. It's output is basically a ":" separated key value list, but the keys contain spaces. 
+	-- so what we do is we strip the spaces and convert the list to a proper key value list using awk
+	local stdout = juci.shell("iw dev %s station get %s | tail -n +2 | awk 'BEGIN{FS=\":\"}{gsub(/^[ \\t]+/, \"\", $2); gsub(/^[ \\t]+/,\"\", $1); gsub(/\\//, \"_\", $1); gsub(/ /, \"_\", $1);  gsub(/ .*/, \"\", $2); print tolower($1) \" \" $2}'", wldev, macaddr); 
+	local info = {}; 
+	-- then we parse one line at a time
+	for line in stdout:gmatch("[^\r\n]+") do 
+		-- and get our key value pairs that have been prepared for us
+		local key,val = line:match("(%S+)%s+(%S+)"); 
+		-- next we convert all numbers from string to digits and convert yes/no to true/false
+		local num = tonumber(val); 
+		if num ~= nil then val = num;end 
+		if val == "yes" then val = true; elseif val == "no" then val = false; end
+		info[key] = val; 
+	end
+	return info; 
+end
+
 function wireless_devices()
 	local result = {}; 
 	result.devices = wireless_get_80211_devices(); 
@@ -101,12 +119,16 @@ function wireless_clients()
 		if(cn) then
 			local cl = cn:call("hostapd."..wldev, "get_clients", {}); 
 			for macaddr,client in pairs(cl.clients) do 
-				local str = juci.shell("iw dev %s station get \"%s\"", wldev, macaddr); 
+				local extinfo = wireless_get_extended_stainfo(wldev, macaddr); 
 				
-				table.insert(result.clients, {
+				local client = {
 					device = wldev, 
 					macaddr = macaddr
-				}); 
+				}; 
+
+				for k,v in pairs(extinfo) do client[k] = v; end
+
+				table.insert(result.clients, client); 
 			end
 			cn:close(); 
 		end
