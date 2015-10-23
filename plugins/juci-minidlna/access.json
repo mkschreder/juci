@@ -7,19 +7,15 @@
 			],
 			"ubus": {
 				"/juci/minidlna": [
-					"folders"
+					"folder_tree",
+					"autocomplete"
 				]
 			}
 		},
 		"write": {
 			"uci": [
 				"minidlna"
-			],
-			"ubus": {
-				"/juci/minidlna": [
-					"folders"
-				]
-			}
+			]
 		}
 	}
 }

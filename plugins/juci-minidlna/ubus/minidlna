@@ -4,7 +4,7 @@ local juci = require("juci.core");
 local json = require("juci.json");
 
 local function dir_tree(src, obj)
-	local list = juci.shell("find %s -type d | sort", src);
+	local list = juci.shell("find %s -type d | sort 2>/dev/null", src);
 	if(list == "") then return nil; end
 	local root = { }; 
 	for line in list:gmatch("[^\n\r]+") do
@@ -21,12 +21,12 @@ local function dir_tree(src, obj)
 	return root; 
 end
 
-local function list_folders()
+local function folder_tree()
 	local tree = dir_tree("/mnt/");
 	print(json.encode(tree)); 
 end
 	
-local function list(opts) 
+local function autocomplete(opts) 
 	if(type(opts.path) ~= "string")
 	then
 		return 1;
@@ -35,7 +35,7 @@ local function list(opts)
 	then 
 		opts.path = opts.path:sub(2);
 	end
-	local stdout = juci.shell("find /mnt/%s* -maxdepth 0 -type d | sed -e 's|$|/|'", opts.path);
+	local stdout = juci.shell("find /mnt/%s* -maxdepth 0 -type d | sed -e 's|$|/|' | sed 's/^\\/mnt//g' 2>/dev/null", opts.path);
 	local result = { folders = {} }
 	for line in stdout:gmatch("[^\r\n]+") do 
 		table.insert(result.folders, line); 
@@ -44,6 +44,6 @@ local function list(opts)
 end
 
 juci.ubus({
-	["folders"] = list_folders,
-	["list"] = list
+	["folder_tree"] = folder_tree,
+	["autocomplete"] = autocomplete
 }, arg);

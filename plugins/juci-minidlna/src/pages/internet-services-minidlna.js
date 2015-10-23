@@ -48,10 +48,10 @@ JUCI.app
 		var tag_promise = null;
 		$scope.loadTags = function(text){
 			console.log(text);
-			if(!tag_promise)tag_promise = new Promise(function(resolve, reject){
-				$rpc.juci.minidlna.list({path:text}).done(function(data){
+			if(!tag_promise) tag_promise = new Promise(function(resolve, reject){
+				$rpc.juci.minidlna.autocomplete({path:text}).done(function(data){
 					tag_promise = null;
-					if(data.folders)resolve(data.folders);
+					if(data.folders) resolve(data.folders);
 					else reject(data);
 				})
 			});

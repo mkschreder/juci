@@ -10,23 +10,23 @@ JUCI.app
 		require: "^ngModel",
 		controller: "minidlnaFileTreeController"
 	};
-}).controller("minidlnaFileTreeController", function($scope, $rpc){
+}).controller("minidlnaFileTreeController", function($scope, $rpc, $tr, gettext){
 	$scope.data = {
 			tree: [{
-			label: "Loading.."
+			label: $tr(gettext("Loading.."))
 		}], 
 		dirtypes: [ 
-			{label:"All types", value:"-"}, 
-			{label:"Video only", value:"V"},
-			{label:"Audio only", value:"A"},
-			{label:"Pictures only", value:"P"}
+			{ label: $tr(gettext("All types")), value:"-" }, 
+			{ label: $tr(gettext("Video only")), value:"V" },
+			{ label: $tr(gettext("Audio only")), value:"A" },
+			{ label: $tr(gettext("Pictures only")), value:"P" }
 		]
 	}; 
 	$scope.model.selected_dirtype = $scope.data.dirtypes[0].value;
 	$scope.on_select = function(branch){
 		$scope.model.selected = branch; 
 	}
-	$rpc.juci.minidlna.folders().done(function(data){
+	$rpc.juci.minidlna.folder_tree().done(function(data){
 		function to_tree_format(obj){
 			return Object.keys(obj).map(function(folder){
 				if(obj[folder]["children"]){
