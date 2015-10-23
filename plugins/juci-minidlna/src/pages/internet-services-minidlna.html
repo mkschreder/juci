@@ -24,9 +24,14 @@
 					<input type="text" class="form-control" ng-model="config.root_container.value"/>
 				</juci-config-line>
 				<juci-config-line title="{{'Media Directories'|translate}}" no-pull>
-					<tags-input ng-model="config.media_dir.value">
-						<!-- TODO <auto-complete source="loadItems($query)"></auto-complete>-->
-					</tags-input><br/>
+					<div class="input-group">
+						<span class="input-group-addon">/mnt</span>
+						<tags-input ng-model="tagslistData" display-property="text"
+									on-tag-added="updateConfig()" on-tag-removed="updateConfig()"
+									add-from-autocomplete-only="true">
+									<auto-complete source="loadTags($query)"></auto-complete>
+						</tags-input>
+					</div>
 					<button class="btn btn-default pull-right" ng-click="onAddFolder()"><i class="fa fa-plus"></i></button>
 				</juci-config-line>
 				<juci-config-line title="{{'Album-Art Names'|translate}}">

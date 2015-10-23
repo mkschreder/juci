@@ -26,11 +26,25 @@ local function list_folders()
 	print(json.encode(tree)); 
 end
 	
-local function list() 
-	
+local function list(opts) 
+	if(type(opts.path) ~= "string")
+	then
+		return 1;
+	end
+	if(opts.path:sub(1,1) == "/")
+	then 
+		opts.path = opts.path:sub(2);
+	end
+	local stdout = juci.shell("find /mnt/%s* -maxdepth 0 -type d | sed -e 's|$|/|'", opts.path);
+	local result = { folders = {} }
+	print(stdout);
+	for line in stdout:gmatch("[^\r\n]+") do 
+		table.insert(result.folders, line); 
+	end 
+	print(json.encode(result));
 end
 
 juci.ubus({
 	["folders"] = list_folders,
-	["list"] = list_current
+	["list"] = list
 }, arg);
