@@ -31,15 +31,14 @@ function WifiMonitor:new(o)
 	return o; 
 end 
 
-function WifiMonitor:scan()
-	juci.shell("wlctl -i wl1 scan"); 
+function WifiMonitor:scan(radio)
+	juci.shell("wlctl -i %s scan", (radio or "wl1")); 
 end
 
-function WifiMonitor:poll_scan_results()
-	local f = assert(io.popen("wlctl -i wl1 scanresults")); 
+function WifiMonitor:poll_scan_results(radio)
+	local stdout = juci.shell("wlctl -i %s scanresults", (readio or "wl1")); 
 	local aps = {}; 
 	local obj = {}; 
-	local s = f:read("*l"); 
 
 	function store_object() 
 		if(obj.rssi and obj.noise) then 
@@ -51,7 +50,7 @@ function WifiMonitor:poll_scan_results()
 
 		table.insert(aps, obj) 
 	end
-	while s do
+	for s in stdout:gmatch("[^\r\n]+") do 
 		local fields = {}
 		for w in s:gmatch("%S+") do table.insert(fields, w) end
 		for i,v in ipairs(fields) do
@@ -73,7 +72,6 @@ function WifiMonitor:poll_scan_results()
 			if v == "Primary" and fields[i+1] == "channel:" then obj["primary_channel"] = tonumber(fields[i+2]) end
 			if v == "WPS:" then obj["wps_version"] = fields[i+1] end
 		end
-		s = f:read("*l"); 
 	end
 	if next(obj) ~= nil then 
 		store_object(); 
@@ -93,12 +91,12 @@ function WifiMonitor:update_ap_list()
 			self.scanresults[ap.ssid] = nil; 
 		else 
 			-- the ap is a new access point
-			conn:send("juci.bcmwifiscand.ap.up", ap); 
+			conn:send("juci.broadcom.wld.ap.up", ap); 
 		end
 	end
 	-- go through remaining aps in the previous list and report them as disconnected
 	for ssid,ap in pairs(self.scanresults) do
-		conn:send("juci.bcmwifiscand.ap.down", ap); 
+		conn:send("juci.broadcom.wld.ap.down", ap); 
 	end
 	self.scanresults = online_aps; 
 end
@@ -129,29 +127,14 @@ local status = {
 
 conn:add({
 	["juci.broadcom.wld"] = {
-		lock = {
-			function(req, msg)
-				status.locked = true; 
-			end, {}
-		}, 
-		unlock = {
-			function(req, msg)
-				status.locked = false; 
-			end, {}
-		}, 
-		status = {
-			function(req, msg)
-				conn:reply(req, { locked = status.locked }); 
-			end, {}
-		}, 
 		scan = {
 			function(req, msg)
-				wifimon:scan(); 			
-			end, {}
+				wifimon:scan(msg.device); 			
+			end, { device = ubus.STRING }
 		}, 
 		scanresults = {
 			function(req, msg)
-				conn:reply(req, { list = wifimon:poll_scan_results() }); 
+				conn:reply(req, { list = wifimon:poll_scan_results(msg.device) }); 
 			end, {}
 		}
 	}; 
