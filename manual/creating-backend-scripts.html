@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-3 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+					</ul>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h1>Creating a Backend</h1>
+<p>JUCI has two primary backends: UCI and UBUS. UCI is a data backend and UBUS is
+a functional backend. This section already assumes that you are familiar with
+ubus. If you are not, then more information is available on OpenWRT website.</p>
+
+<h1>Short summary of UBUS</h1>
+
+<ul>
+<li>Promarily designed for interprocess communication between processes on systems with constrained resources.</li>
+<li>Is not limited to communication between processes on the same system (since ubus is fully socket based)</li>
+<li>Each client connects to a ubus server through tcp and tells it which objects and methods it exports.</li>
+<li>Binary protocol, yet with good support for json through use of userspace tools.</li>
+<li>Flat hierarchy: objects and methods.</li>
+</ul>
+
+
+<h1>How ubus works with JUCI </h1>
+
+<p>When a user presses a button in the web interface and angular dispatches it to
+a callback, the code in the browser may decide that it needs to execute the
+action on the server. It then creates a JSON object and executes an ajax
+request to the server /ubus url (or whatever you have configured as your ubus
+endpoint) and does a POST request formatted as JSONRPC request. When this
+request arrives at the uhttpd endpoint, the first thing that the uhttpd
+endpoint does is it checks if this call is allowed by current session acl list.
+If it is then the JSON data is parsed and encoded into a blob buffer (a binary
+representation of the json buffer) which is then passed to a ubus_invoke()
+method. ubus_invoke() is part of the ubus library that is linked into the
+calling executable. It requires a ubus connection to the server to be
+established in order to send the rpc request and wait for the response. Then
+this blob buffer is sent to the ubus server, which in turn looks up which
+client socket the specified object and method is published by. The request is
+then forwarded by ubusd to the client.</p>
+
+<p>When client receives the request, the ubus library automatically looks up the
+method and invokes the method on the client. All of this is done in the same
+thread as the rest of the client application. Ubus uses a single threaded,
+select/poll based loop usually referred to as uloop. Any service that wants to
+publish a method on ubus currently needs a uloop as well (unfortunately uloop
+is basically static so there can only ever be a single uloop in a program - at
+least as currently implemented by OpenWRT).</p>
+
+<p>The callback method parses the blob buffer and prepares another blob buffer as
+a response. The response is then sent back to the caller through the same path
+backwards.</p>
+
+<h1>Types UBUS services in JUCI </h1>
+
+<p>JUCI uses two main formats for implementing backend ubus functions:</p>
+
+<ul>
+<li>script</li>
+<li>service</li>
+</ul>
+
+
+<p>A script is a program that is loaded again for each subsequent call and which
+exits when the call is done. Scripts can not maintain state across multiple
+calls.</p>
+
+<p>A <code>service</code> is a ubus program that publishes it's own ubus objects and then
+runs in the background waiting for events. A service can maintain state over
+multiple calls, and usually services poll data from other sources and make that
+data easily available on ubus.</p>
+
+<p>JUCI scripts and services are handled entirely by a small C program called
+<code>ubus-scriptd</code>. This program first forks off into multiple instances - one for
+each service that it finds - and in the main instance it creates ubus objects
+for all the scripts that are published into /usr/lib/ubus/ directory tree. For
+each script, <code>ubus-scriptd</code> creates a ubus object and then listens for incoming
+ubus calls. Any methods that are exported by the script also become available
+on ubus as part of the script object. Whenever a ubus call is made to any such
+method, a new instance of the script is run by ubus-scriptd and the result is
+then returned to the client.</p>
+
+<h1>Writing a ubus script</h1>
+
+<p>Note: even though these programs are called "scripts", they can very well be
+binary programs. In fact, you are not even restricted to any specific
+programming language as long as:</p>
+
+<ul>
+<li>it can return list of methods that it supports when called with single ".methods" argument.</li>
+<li>it returns valid json as response when called with "<var>method</var> <var>json</var>" arguments.</li>
+<li>it always prints only valid json in the console stdout.</li>
+</ul>
+
+
+<p>When <code>ubus-scriptd</code> starts, it will run each script that it finds and pass it a
+single ".methods" argument. When script gets this argument, it should print the
+list of methods that it supports - and NOTHING else. The list can be either a
+comma separated list, or a json object that describes each method in detail -
+including the types of arguments that the method accepts.</p>
+
+<pre><code>&lt;yourscript> .methods
+get,set,update
+
+or..
+
+&lt;yourscript> .methods
+{"method":{"arg":"int","arg2":"string"}}
+</code></pre>
+
+<p>Valid types for arguments are: int, string and bool.</p>
+
+<h1>Writing a ubus service</h1>
+
+<p>Services are different from scripts in that they register their own ubus
+methods directly and always maintain a running instance of the service in the
+background. <code>ubus-scriptd</code> will fork off a separate process for each service
+that you put into /usr/lib/ubus-services/ directory.</p>
+
+<p>All <code>ubus-scriptd</code> services are written in lua. Obviously if you want to write
+your service in some other language then you don't even need <code>ubus-scriptd</code> to
+begin with. Instead you would write your service, connect to ubus and export
+methods on ubus. In fact, each lua service that is managed by <code>ubus-scriptd</code>
+can just as well run as a standalone service without ubus-scriptd to manage it.
+It is only more convenient to manage it though the same automatic process and
+to just have to drop it into the services directory without having to write
+separate init scripts for your service.</p>
+
+<p>Best place to start when it comes to writing lua ubus services is by reading
+OpenWRT documentation on workign with ubus in lua:</p>
+
+<p><a href="http://wiki.openwrt.org/doc/techref/ubus" data-bare-link="true">http://wiki.openwrt.org/doc/techref/ubus</a></p>
+
+<p>And here is an example: <a href="https://github.com/commodo/ubus/blob/master/lua/test.lua" data-bare-link="true">https://github.com/commodo/ubus/blob/master/lua/test.lua</a></p>
+
+</div>
+				</div>
+				<div class="col-md-2">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

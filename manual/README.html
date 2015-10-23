@@ -1,79 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv='content-type' value='text/html;charset=utf8'>
-  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
-  <title>README</title>
-  <style type='text/css' media='all'>
-  /* style: man */
-  body#manpage {margin:0}
-  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
-  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
-  .mp h2 {margin:10px 0 0 0}
-  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
-  .mp h3 {margin:0 0 0 4ex}
-  .mp dt {margin:0;clear:left}
-  .mp dt.flush {float:left;width:8ex}
-  .mp dd {margin:0 0 0 9ex}
-  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
-  .mp pre {margin-bottom:20px}
-  .mp pre+h2,.mp pre+h3 {margin-top:22px}
-  .mp h2+pre,.mp h3+pre {margin-top:5px}
-  .mp img {display:block;margin:auto}
-  .mp h1.man-title {display:none}
-  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
-  .mp h2 {font-size:16px;line-height:1.25}
-  .mp h1 {font-size:20px;line-height:2}
-  .mp {text-align:justify;background:#fff}
-  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
-  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
-  .mp u {text-decoration:underline}
-  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
-  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
-  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
-  .mp b.man-ref {font-weight:normal;color:#434241}
-  .mp pre {padding:0 4ex}
-  .mp pre code {font-weight:normal;color:#434241}
-  .mp h2+pre,h3+pre {padding-left:0}
-  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
-  ol.man-decor {width:100%}
-  ol.man-decor li.tl {text-align:left}
-  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
-  ol.man-decor li.tr {text-align:right;float:right}
-  </style>
-</head>
-<!--
-  The following styles are deprecated and will be removed at some point:
-  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
-
-  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
-  .man-navigation should be used instead.
--->
-<body id='manpage'>
-  <div class='mp' id='man'>
-
-  <div class='man-navigation' style='display:none'>
-    <a href="#NAME">NAME</a>
-    <a href="#JUCI-Webgui-for-Embedded-Routers">JUCI Webgui for Embedded Routers</a>
-    <a href="#Usage-on-OpenWRT">Usage on OpenWRT</a>
-    <a href="#What-is-JUCI-">What is JUCI? </a>
-    <a href="#Simple-Summary">Simple Summary</a>
-    <a href="#Getting-started">Getting started</a>
-    <a href="#Common-Issues">Common Issues</a>
-    <a href="#Unit-testing">Unit testing</a>
-    <a href="#Using-UCI-from-the-web-console">Using UCI from the web console</a>
-    <a href="#JSONRPC-service">JSONRPC service</a>
-    <a href="#Getting-to-know-the-source-code">Getting to know the source code</a>
-    <a href="#License-Notice">License Notice</a>
-  </div>
-
-  <ol class='man-decor man-head man head'>
-    <li class='tl'>README</li>
-    <li class='tc'></li>
-    <li class='tr'>README</li>
-  </ol>
-
-  <h2 id="NAME">NAME</h2>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-3 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+					</ul>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h2 id="NAME">NAME</h2>
 <p class="man-name">
   <code>README</code>
 </p>
@@ -135,6 +101,8 @@ src-git juci https://github.com/mkschreder/juci-openwrt-feed.git</p></li>
 <p>Juci also uses modified version of rpcd, which too is available from iopsys sdk.</p>
 
 <h2 id="Getting-started">Getting started</h2>
+
+<p>New: you can now find compiled juci manuals here: <a href="http://mkschreder.github.io/juci/" data-bare-link="true">http://mkschreder.github.io/juci/</a></p>
 
 <p>Ideally you should get iopsys (OpenWRT based) sdk and build juci from there. This updated version is heavily based on updated versions of openwrt packages found in iopsys sdk and so you should use that primarily. (kinda-sorta-like-this: git clone http://ihgsp.inteno.se/git/iopsysAA.git iop &amp;&amp; cd iop &amp;&amp; git checkout BB &amp;&amp; ./iop_get_feeds.sh &amp;&amp; make)..</p>
 
@@ -253,37 +221,45 @@ uci.wireless.cfg012345 // access a section with an automatically created uci nam
 
 <h2 id="License-Notice">License Notice</h2>
 
-<p>Copyright (C) 2015 JUCI Project. All rights reserved.</p>
+<pre><code>Copyright (C) 2015 JUCI Project. All rights reserved.
 
-<p>Contributors:</p>
+Contributors: 
+    - Martin K. Schröder &lt;mkschreder.uk@gmail.com&gt;
+    - Reidar Cederqvist &lt;reidar.cederqvist@gmail.com&gt;
+    - Noel Wuyts &lt;skype: noel.wuyts&gt;: angular, widgets, development
+    - Feten Besbes &lt;skype: feten_besbes&gt;: css
 
-<pre><code>- Martin K. Schröder &lt;mkschreder.uk@gmail.com&gt;
-- Reidar Cederqvist &lt;reidar.cederqvist@gmail.com&gt;
-- Noel Wuyts &lt;skype: noel.wuyts&gt;: angular, widgets, development
-- Feten Besbes &lt;skype: feten_besbes&gt;: css
-</code></pre>
-
-<p>This program is free software; you can redistribute it and/or
+This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
-version 3 as published by the Free Software Foundation.</p>
+version 3 as published by the Free Software Foundation.
 
-<p>This program is distributed in the hope that it will be useful, but
+This program is distributed in the hope that it will be useful, but
 WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-General Public License for more details.</p>
+General Public License for more details.
 
-<p>You should have received a copy of the GNU General Public License
+You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
-02110-1301 USA</p>
+02110-1301 USA
+</code></pre>
 
-
-  <ol class='man-decor man-foot man foot'>
-    <li class='tl'></li>
-    <li class='tc'>October 2015</li>
-    <li class='tr'>README</li>
-  </ol>
-
-  </div>
-</body>
+</div>
+				</div>
+				<div class="col-md-2">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
 </html>

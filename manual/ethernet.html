@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv='content-type' value='text/html;charset=utf8'>
-  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
-  <title>JUCI Ethernet Subsystem</title>
-  <style type='text/css' media='all'>
-  /* style: man */
-  body#manpage {margin:0}
-  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
-  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
-  .mp h2 {margin:10px 0 0 0}
-  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
-  .mp h3 {margin:0 0 0 4ex}
-  .mp dt {margin:0;clear:left}
-  .mp dt.flush {float:left;width:8ex}
-  .mp dd {margin:0 0 0 9ex}
-  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
-  .mp pre {margin-bottom:20px}
-  .mp pre+h2,.mp pre+h3 {margin-top:22px}
-  .mp h2+pre,.mp h3+pre {margin-top:5px}
-  .mp img {display:block;margin:auto}
-  .mp h1.man-title {display:none}
-  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
-  .mp h2 {font-size:16px;line-height:1.25}
-  .mp h1 {font-size:20px;line-height:2}
-  .mp {text-align:justify;background:#fff}
-  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
-  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
-  .mp u {text-decoration:underline}
-  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
-  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
-  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
-  .mp b.man-ref {font-weight:normal;color:#434241}
-  .mp pre {padding:0 4ex}
-  .mp pre code {font-weight:normal;color:#434241}
-  .mp h2+pre,h3+pre {padding-left:0}
-  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
-  ol.man-decor {width:100%}
-  ol.man-decor li.tl {text-align:left}
-  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
-  ol.man-decor li.tr {text-align:right;float:right}
-  </style>
-</head>
-<!--
-  The following styles are deprecated and will be removed at some point:
-  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
-
-  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
-  .man-navigation should be used instead.
--->
-<body id='manpage'>
-  <div class='mp' id='man'>
-
-  <div class='man-navigation' style='display:none'>
-  </div>
-
-  <ol class='man-decor man-head man head'>
-    <li class='tl'>ethernet</li>
-    <li class='tc'></li>
-    <li class='tr'>ethernet</li>
-  </ol>
-
-  <h1>JUCI Ethernet Subsystem</h1>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-3 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+					</ul>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h1>JUCI Ethernet Subsystem</h1>
 <p>This module is the core ethernet subsytem that ties together any other plugins that manage ethernet devices of some kind. It allows the user to have a standard interface for querying ethernet adapters. For example if you have a plugin for configuring vendor specific wireless settings then you would register that plugin as a subsystem of $ethernet and you will then be able to provide your vendor specific data as part of the list of adapters as it is returned by <code>getAdapters</code> method.</p>
 
 <p>This plugin gets most of it's information from the <span class="man-ref">ip<span class="s">(8)</span></span> command and so it will always return a list of all adapters that the system knows about. However, things like adapter names and proper presentation of adapters is usually specific to the vendor. For example, you could have an ethernet port that is tied to an ethernet port with label LAN2 printed on the box. In this case this information will be probably provided by some board specific configuration file where you specifically assign interface names to the actual port numbers which are printed on the cover of the box. This is where subsystems come to resque because they allow you to implement your vendor speciffic package separately and then to annotate the existing list of adapters inside your callback which you register with the $ethernet subsystem.</p>
@@ -101,13 +79,22 @@ inside other configuration files on the server before returning the
 modified list - all of which usually involves asynchronous operations. 
 </code></pre>
 
-
-  <ol class='man-decor man-foot man foot'>
-    <li class='tl'></li>
-    <li class='tc'>October 2015</li>
-    <li class='tr'>ethernet</li>
-  </ol>
-
-  </div>
-</body>
+</div>
+				</div>
+				<div class="col-md-2">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
 </html>

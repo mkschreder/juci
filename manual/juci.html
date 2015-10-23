@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv='content-type' value='text/html;charset=utf8'>
-  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
-  <title>JUCI</title>
-  <style type='text/css' media='all'>
-  /* style: man */
-  body#manpage {margin:0}
-  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
-  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
-  .mp h2 {margin:10px 0 0 0}
-  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
-  .mp h3 {margin:0 0 0 4ex}
-  .mp dt {margin:0;clear:left}
-  .mp dt.flush {float:left;width:8ex}
-  .mp dd {margin:0 0 0 9ex}
-  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
-  .mp pre {margin-bottom:20px}
-  .mp pre+h2,.mp pre+h3 {margin-top:22px}
-  .mp h2+pre,.mp h3+pre {margin-top:5px}
-  .mp img {display:block;margin:auto}
-  .mp h1.man-title {display:none}
-  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
-  .mp h2 {font-size:16px;line-height:1.25}
-  .mp h1 {font-size:20px;line-height:2}
-  .mp {text-align:justify;background:#fff}
-  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
-  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
-  .mp u {text-decoration:underline}
-  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
-  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
-  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
-  .mp b.man-ref {font-weight:normal;color:#434241}
-  .mp pre {padding:0 4ex}
-  .mp pre code {font-weight:normal;color:#434241}
-  .mp h2+pre,h3+pre {padding-left:0}
-  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
-  ol.man-decor {width:100%}
-  ol.man-decor li.tl {text-align:left}
-  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
-  ol.man-decor li.tr {text-align:right;float:right}
-  </style>
-</head>
-<!--
-  The following styles are deprecated and will be removed at some point:
-  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
-
-  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
-  .man-navigation should be used instead.
--->
-<body id='manpage'>
-  <div class='mp' id='man'>
-
-  <div class='man-navigation' style='display:none'>
-  </div>
-
-  <ol class='man-decor man-head man head'>
-    <li class='tl'>juci</li>
-    <li class='tc'></li>
-    <li class='tr'>juci</li>
-  </ol>
-
-  <h1>JUCI</h1>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-3 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+					</ul>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h1>JUCI</h1>
 <p>JUCI WebGUI is designed for building modern and dynamic web interfaces for embedded devices.</p>
 
 <h1>CORE SUBSYTEMS</h1>
@@ -78,7 +56,156 @@
 <h1>CONTROLS LIBRARY</h1>
 
 <ul>
-<li><a href="standard-controls.html">JUCI standard controls</a></li>
+<li>theme-picker</li>
+<li>juci-top-bar</li>
+<li>juci-table</li>
+<li><a href="juci-select.html">juci-select</a></li>
+<li>juci-schedule-edit</li>
+<li>juci-progress</li>
+<li>juci-panel</li>
+<li>juci-nav</li>
+<li>juci-navbar</li>
+<li>juci-mode-picker</li>
+<li>juci-maclist-edit</li>
+<li>juci-login</li>
+<li><a href="juci-list-editor.html">juci-list-editor</a></li>
+<li><a href="juci-layout-with-sidebar.html">juci-layout-with-sidebar</a></li>
+<li><a href="juci-layout-single-column.html">juci-layout-single-column</a></li>
+<li><a href="juci-layout-naked.html">juci-layout-naked</a></li>
+<li>juci-input-timespan</li>
+<li>juci-input-radio</li>
+<li>juci-input-port</li>
+<li><a href="juci-input-ipv4-address.html">juci-input-ipv4-address</a></li>
+<li>juci-footer</li>
+<li>juci-expandable</li>
+<li>juci-errors</li>
+<li><a href="juci-dialog.html">juci-dialog</a></li>
+<li>juci-contentbox</li>
+<li>juci-config</li>
+<li>juci-brightness</li>
+<li>core-modal</li>
+</ul>
+
+
+<h1>PLUGINS</h1>
+
+<ul>
+<li>juci-utils</li>
+<li>juci-usb</li>
+<li>juci-upnp</li>
+<li>juci-uhttpd</li>
+<li>juci-sysupgrade</li>
+<li>juci-snmp</li>
+<li>juci-samba</li>
+<li>juci-router-openwrt</li>
+<li>juci-openwrt-wireless</li>
+<li>juci-network-netifd</li>
+<li>juci-netmode</li>
+<li>juci-natalie-dect</li>
+<li>juci-mod-system</li>
+<li>juci-mod-status</li>
+<li>juci-minidlna</li>
+<li>juci-macdb</li>
+<li>juci-jquery-console</li>
+<li>juci-inteno-router</li>
+<li>juci-inteno-multiwan</li>
+<li>juci-igmpinfo</li>
+<li>juci-freecwmp</li>
+<li>juci-firewall-fw3</li>
+<li>juci-event</li>
+<li>juci-ethernet</li>
+<li>juci-dropbear</li>
+<li>juci-dnsmasq-dhcp</li>
+<li>juci-diagnostics</li>
+<li>juci-ddns</li>
+<li>juci-broadcom-wl</li>
+<li>juci-broadcom-vlan</li>
+<li>juci-broadcom-ethernet</li>
+<li>juci-broadcom-dsl</li>
+<li>juci-asterisk</li>
+</ul>
+
+
+<h1>PLUGIN WIDGETS LIST</h1>
+
+<ul>
+<li>utils-add-testserver-picker (juci-utils)</li>
+<li>diagnostics-widget-speedtest (juci-utils)</li>
+<li>overview.usb (juci-usb)</li>
+<li>upgrade.popup (juci-sysupgrade)</li>
+<li>samba-share-edit (juci-samba)</li>
+<li>openwrt-wireless-interface-edit (juci-openwrt-wireless)</li>
+<li>overview-wan (juci-network-netifd)</li>
+<li>overview-slider-network (juci-network-netifd)</li>
+<li>overview-net (juci-network-netifd)</li>
+<li>network-host-picker (juci-network-netifd)</li>
+<li>network-device-ethernet-edit (juci-network-netifd)</li>
+<li>network-device-edit (juci-network-netifd)</li>
+<li>network-device-baseif-edit (juci-network-netifd)</li>
+<li>network-connection-type-none-edit (juci-network-netifd)</li>
+<li>network-connection-type-bridge-edit (juci-network-netifd)</li>
+<li>network-connection-type-anywan-edit (juci-network-netifd)</li>
+<li>network-connection-proto-static-edit (juci-network-netifd)</li>
+<li>network-connection-proto-relay-edit (juci-network-netifd)</li>
+<li>network-connection-proto-qmi-edit (juci-network-netifd)</li>
+<li>network-connection-proto-pptp-edit (juci-network-netifd)</li>
+<li>network-connection-proto-pppoe-edit (juci-network-netifd)</li>
+<li>network-connection-proto-pppoa-edit (juci-network-netifd)</li>
+<li>network-connection-proto-ppp-edit (juci-network-netifd)</li>
+<li>network-connection-proto-ncm-edit (juci-network-netifd)</li>
+<li>network-connection-proto-l2tp-edit (juci-network-netifd)</li>
+<li>network-connection-proto-hnet-edit (juci-network-netifd)</li>
+<li>network-connection-proto-grev6tap-edit (juci-network-netifd)</li>
+<li>network-connection-proto-grev6-edit (juci-network-netifd)</li>
+<li>network-connection-proto-gretap-edit (juci-network-netifd)</li>
+<li>network-connection-proto-gre-edit (juci-network-netifd)</li>
+<li>network-connection-proto-dslite-edit (juci-network-netifd)</li>
+<li>network-connection-proto-dhcpv6-edit (juci-network-netifd)</li>
+<li>network-connection-proto-dhcp-edit (juci-network-netifd)</li>
+<li>network-connection-proto-aiccu-edit (juci-network-netifd)</li>
+<li>network-connection-proto-6rd-edit (juci-network-netifd)</li>
+<li>network-connection-proto-6in4-edit (juci-network-netifd)</li>
+<li>network-connection-proto-3g-edit (juci-network-netifd)</li>
+<li>network-connection-picker (juci-network-netifd)</li>
+<li>network-connection-edit (juci-network-netifd)</li>
+<li>network-connection-dns-config (juci-network-netifd)</li>
+<li>network-connection-create (juci-network-netifd)</li>
+<li>network-client-lan-display-widget (juci-network-netifd)</li>
+<li>network-client-edit (juci-network-netifd)</li>
+<li>netifd-switch-vlan-edit (juci-network-netifd)</li>
+<li>bridge-device-picker (juci-network-netifd)</li>
+<li>overview-netmode (juci-netmode)</li>
+<li>netmode-picker (juci-netmode)</li>
+<li>minidlna-file-tree (juci-minidlna)</li>
+<li>multiwan.interface.edit (juci-inteno-multiwan)</li>
+<li>uci.firewall.rule.edit (juci-firewall-fw3)</li>
+<li>uci.firewall.nat.rule.edit (juci-firewall-fw3)</li>
+<li>firewall-zone-edit (juci-firewall-fw3)</li>
+<li>firewall-wan-service-edit (juci-firewall-fw3)</li>
+<li>firewall-urlfilter-editor (juci-firewall-fw3)</li>
+<li>firewall-rule-edit (juci-firewall-fw3)</li>
+<li>network-connection-dhcp-server-settings (juci-dnsmasq-dhcp)</li>
+<li>dhcp-static-hosts-edit (juci-dnsmasq-dhcp)</li>
+<li>dhcp-entry-edit (juci-dnsmasq-dhcp)</li>
+<li>dhcp-basic-settings-edit (juci-dnsmasq-dhcp)</li>
+<li>ddns-network-settings-edit (juci-ddns)</li>
+<li>wireless-interface-editor (juci-broadcom-wl)</li>
+<li>wireless-client-lan-display-widget (juci-broadcom-wl)</li>
+<li>wireless-aps-graph (juci-broadcom-wl)</li>
+<li>wifi.signal.indicator (juci-broadcom-wl)</li>
+<li>wifi-radio-picker-modal (juci-broadcom-wl)</li>
+<li>uci.wireless.interface.macfilter.edit (juci-broadcom-wl)</li>
+<li>uci.wireless.interface (juci-broadcom-wl)</li>
+<li>uci.wireless.device.edit (juci-broadcom-wl)</li>
+<li>overview.wifi (juci-broadcom-wl)</li>
+<li>network-device-wireless-edit (juci-broadcom-wl)</li>
+<li>network-device-vlan-edit (juci-broadcom-vlan)</li>
+<li>network-device-ethernet-port-edit (juci-broadcom-ethernet)</li>
+<li>network-device-vdsl-edit (juci-broadcom-dsl)</li>
+<li>network-device-adsl-edit (juci-broadcom-dsl)</li>
+<li>dsl-base-device-picker (juci-broadcom-dsl)</li>
+<li>uci.voice_client.call_filter (juci-asterisk)</li>
+<li>overview.voice (juci-asterisk)</li>
 </ul>
 
 
@@ -90,63 +217,29 @@
 </ul>
 
 
-<h1>CORE OBJECTS</h1>
+<h1>APPENDIX</h1>
 
-<p>The core system of juci is very small. In fact, it is there basically to provide a simple startup code and to bind all other parts together. JUCI is built almost entirely using angular.js and all components are tied together mostly through angular. The core codebase merely provides ways for juci to make RPC calls to the backend and manipulate configuration settings in UCI. The core is located in /juci/src/js/ folder of the source tree.</p>
-
-<p>JUCI is built in such a way that almost every file that exists in juci environment overrides something or extends already existing objects with methods and properties. Usually this is done to angular by adding controllers, directives and factories. But it is also a standard way of extending other parts of the system.</p>
-
-<h1>juci/src/js/app.js</h1>
-
-<p>This file takes care of registering <span class="man-ref">angular.run<span class="s">(2)</span></span> callbacks which will setup the angular application and configure default settings. All run() callbacks will run each time the application is loaded - and configure() callbacks will run before all run callbacks.</p>
-
-<h1>juci/src/js/compat.js</h1>
-
-<p>This is the browser compatibility layer for JUCI. It implements methods like Object.assign and Array.find which may not be present in some browsers.</p>
-
-<h1>juci/src/js/config.js</h1>
-
-<p>This file is actually quite old and needs to be rewriteen to be more platform independent - and in fact, most of the things that it does can be done in better ways. But the basic purpose of this subsystem is to load configuration for juci either from /etc/config/juci uci file or from config.json found in the www root folder.</p>
-
-<h1>juci/src/js/juci.js</h1>
-
-<p>This is main juci library file that is supposed to initialize UCI and UBUS modules. This file supports being loaded standalone for initializing juci library and for running juci UBUS and UCI api inside for example node.js.</p>
-
-<h1>juci/src/js/localStorage.js</h1>
-
-<p>JUCI wrapper for localStorage in browser.</p>
-
-<h1>juci/src/js/navigation.js</h1>
-
-<p>This file implements menu navigation model in juci.</p>
-
-<h1>juci/src/js/rpc.js</h1>
-
-<p>This library provides interface to ubus RPC on the server.</p>
-
-<h1>juci/src/js/theme.js</h1>
-
-<p>Theme manager in juci. This is actually no longer used, because loading a theme has become a little more complicated than just loading a css file. But this file is still left in the tree for now because it is used by theme picker control.</p>
-
-<h1>juci/src/js/timeout.js</h1>
-
-<p>Timeout system for implementing timeouts and intervals of limited lifespan that only live until next page is loaded.</p>
-
-<h1>juci/src/js/tr.js</h1>
-
-<p>JUCI language and translation system. This is really just a simple wrapper to make using gettext more convenient.</p>
-
-<h1>juci/src/js/uci.js</h1>
-
-<p>The juci UCI subsystem. Together with juci RPC this system allows to easily handle uci data by providing a convenient getter/setter based interface to uci objects so that values can easily be set inside the browser and then sync-ed automatically to the server with only changed values being sent over the wire.</p>
+<ul>
+<li><a href="core-files.html">Core Files</a> - description of juci core files</li>
+</ul>
 
 
-  <ol class='man-decor man-foot man foot'>
-    <li class='tl'></li>
-    <li class='tc'>October 2015</li>
-    <li class='tr'>juci</li>
-  </ol>
-
-  </div>
-</body>
+</div>
+				</div>
+				<div class="col-md-2">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
 </html>

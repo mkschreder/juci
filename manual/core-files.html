@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-3 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+					</ul>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h1>CORE OBJECTS</h1>
+<p>The core system of juci is very small. In fact, it is there basically to provide a simple startup code and to bind all other parts together. JUCI is built almost entirely using angular.js and all components are tied together mostly through angular. The core codebase merely provides ways for juci to make RPC calls to the backend and manipulate configuration settings in UCI. The core is located in /juci/src/js/ folder of the source tree.</p>
+
+<p>JUCI is built in such a way that almost every file that exists in juci environment overrides something or extends already existing objects with methods and properties. Usually this is done to angular by adding controllers, directives and factories. But it is also a standard way of extending other parts of the system.</p>
+
+<h1>juci/src/js/app.js</h1>
+
+<p>This file takes care of registering <span class="man-ref">angular.run<span class="s">(2)</span></span> callbacks which will setup the angular application and configure default settings. All run() callbacks will run each time the application is loaded - and configure() callbacks will run before all run callbacks.</p>
+
+<h1>juci/src/js/compat.js</h1>
+
+<p>This is the browser compatibility layer for JUCI. It implements methods like Object.assign and Array.find which may not be present in some browsers.</p>
+
+<h1>juci/src/js/config.js</h1>
+
+<p>This file is actually quite old and needs to be rewriteen to be more platform independent - and in fact, most of the things that it does can be done in better ways. But the basic purpose of this subsystem is to load configuration for juci either from /etc/config/juci uci file or from config.json found in the www root folder.</p>
+
+<h1>juci/src/js/juci.js</h1>
+
+<p>This is main juci library file that is supposed to initialize UCI and UBUS modules. This file supports being loaded standalone for initializing juci library and for running juci UBUS and UCI api inside for example node.js.</p>
+
+<h1>juci/src/js/localStorage.js</h1>
+
+<p>JUCI wrapper for localStorage in browser.</p>
+
+<h1>juci/src/js/navigation.js</h1>
+
+<p>This file implements menu navigation model in juci.</p>
+
+<h1>juci/src/js/rpc.js</h1>
+
+<p>This library provides interface to ubus RPC on the server.</p>
+
+<h1>juci/src/js/theme.js</h1>
+
+<p>Theme manager in juci. This is actually no longer used, because loading a theme has become a little more complicated than just loading a css file. But this file is still left in the tree for now because it is used by theme picker control.</p>
+
+<h1>juci/src/js/timeout.js</h1>
+
+<p>Timeout system for implementing timeouts and intervals of limited lifespan that only live until next page is loaded.</p>
+
+<h1>juci/src/js/tr.js</h1>
+
+<p>JUCI language and translation system. This is really just a simple wrapper to make using gettext more convenient.</p>
+
+<h1>juci/src/js/uci.js</h1>
+
+<p>The juci UCI subsystem. Together with juci RPC this system allows to easily handle uci data by providing a convenient getter/setter based interface to uci objects so that values can easily be set inside the browser and then sync-ed automatically to the server with only changed values being sent over the wire.</p>
+
+</div>
+				</div>
+				<div class="col-md-2">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

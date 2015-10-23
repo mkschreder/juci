@@ -39,45 +39,21 @@
 				<div class="col-md-7 main">
 					
 <div class='mp'>
-<h1>JUCI SELECT</h1>
-<p>JUCI select is a generic dropdown implementation for juci. It takes a list of
-display elements as <var>ng-items</var> argument which consist of a label and a value.
-It also takes an <var>ng-model</var> argument that determines the currently selected
-element value.</p>
+<h1>JUCI SIMPLE LAYOUT</h1>
+<p>This layout widget is typically used for showing wide content but still presering header and footer.</p>
 
-<p>The control will automatically select the element in the list that corresponds
-to the initial value of the model and also update the selection when model
-value changes.</p>
+<h1>USAGE</h1>
 
-<h1>PARAMETERS</h1>
-
-<ul>
-<li><p><code>ng-items</code> - an <code>Array</code> of items that represents items that are available for
-selection in the list. Each item in this array should have a <code>label</code> and
-<code>value</code> field. The <code>label</code> field will represent human readable text in the
-dropdown and the <code>value</code> will represent the value that will be assigned to the
-model when user selects that particular item.</p></li>
-<li><p><code>ng-model</code> - the model value who's value will correspond to the <code>value</code> field
-of one of the items.</p></li>
-</ul>
-
-
-<h1>TRANSLATION</h1>
-
-<p>The control itself does not do any translation in place. Instead you need to translate your labels yourself using $tr() and gettext() methods.</p>
-
-<h1>EXAMPLE</h1>
-
-<pre><code>&lt;juci-select ng-items="items" ng-model="model"/&gt;
-
-$scope.items = [
-    { label: $tr(gettext("Label Text")), value: { .. value object .. } }, 
-    { label: $tr(gettext("Label #2")), value: 2
-]; 
-$scope.model = 2; 
+<pre><code>&lt;juci-layout-single-column&gt;
+    &lt;div ng-controller="yourpageController"&gt;
+        &lt;!-- content -->
+    &lt;/div&gt;
+&lt;/juci-layout-single-column&gt;
 </code></pre>
 
-<p>The above example will create a dropdwon list which initially will show "Label #2" as selected item.</p>
+<h1>TIPS</h1>
+
+<p>In your theme plugin you can override a layout by simply having an html file with the same name.</p>
 
 </div>
 				</div>

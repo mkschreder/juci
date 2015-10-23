@@ -39,45 +39,68 @@
 				<div class="col-md-7 main">
 					
 <div class='mp'>
-<h1>JUCI SELECT</h1>
-<p>JUCI select is a generic dropdown implementation for juci. It takes a list of
-display elements as <var>ng-items</var> argument which consist of a label and a value.
-It also takes an <var>ng-model</var> argument that determines the currently selected
-element value.</p>
+<h1>JUCI POPUP DIALOG</h1>
+<p>A widget for showing a configuration page / widget inside a popup modal dialog.</p>
 
-<p>The control will automatically select the element in the list that corresponds
-to the initial value of the model and also update the selection when model
-value changes.</p>
-
-<h1>PARAMETERS</h1>
+<h1>USAGE</h1>
 
 <ul>
-<li><p><code>ng-items</code> - an <code>Array</code> of items that represents items that are available for
-selection in the list. Each item in this array should have a <code>label</code> and
-<code>value</code> field. The <code>label</code> field will represent human readable text in the
-dropdown and the <code>value</code> will represent the value that will be assigned to the
-model when user selects that particular item.</p></li>
-<li><p><code>ng-model</code> - the model value who's value will correspond to the <code>value</code> field
-of one of the items.</p></li>
+<li><code>$juciDialog</code> - a factory for use in controller.
+
+<ul>
+<li>show(params) - async method that pops up the dialog. <var>params</var> is an object with configuration parameters.</li>
+</ul>
+</li>
 </ul>
 
 
-<h1>TRANSLATION</h1>
+<h1>SHOWING DIALOG BOX</h1>
 
-<p>The control itself does not do any translation in place. Instead you need to translate your labels yourself using $tr() and gettext() methods.</p>
+<ul>
+<li><p><code>show(widget:string, params:object)</code></p>
 
-<h1>EXAMPLE</h1>
+<p>  Widget:</p>
 
-<pre><code>&lt;juci-select ng-items="items" ng-model="model"/&gt;
+<ul>
+<li>string name of the directive that will be dynamically created in the modal. This directive can accept ngModel which will be set to the model supplied in the options.</li>
+</ul>
 
-$scope.items = [
-    { label: $tr(gettext("Label Text")), value: { .. value object .. } }, 
-    { label: $tr(gettext("Label #2")), value: 2
-]; 
-$scope.model = 2; 
+
+<p>  Params:</p>
+
+<ul>
+<li><code>model</code> - object that represents the model that will be passed to the widget inside the dialog box.</li>
+<li><code>buttons</code> - object with fields <label>, <var>value</var> and <var>primary</var></label></li>
+<li><code>on_button(button, modalInstance)</code> - callback that gets called on button being clicked (default: close on cancel, call on_apply on accept)</li>
+<li><code>on_apply(button, modalInstance)</code> - gets called as default action for apply button (only called if you don't override on_button)</li>
+</ul>
+
+
+<p>  Returns: promise</p>
+
+<ul>
+<li>default: resolve when on_apply returns true, reject if closed or cancel is pressed.</li>
+</ul>
+</li>
+</ul>
+
+
+<h1>USAGE</h1>
+
+<pre><code>$juciDialog.show("uci-wireless-interface", {
+    title: $tr(gettext("Edit wireless interface")),  
+    on_apply: function(btn, dlg){
+        // here we have opportunity to validate the data and not close dialog if data is invalid (by returning false)
+        $uci.$save(); 
+        return true; 
+    }, 
+    model: iface.uci_dev
+}).done(function(){
+    // we get here when dialog is closed (and has been accepted)    
+}).fail(function(){
+    // called when dialog is canceled or closed
+}); 
 </code></pre>
-
-<p>The above example will create a dropdwon list which initially will show "Label #2" as selected item.</p>
 
 </div>
 				</div>

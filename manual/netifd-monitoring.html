@@ -39,45 +39,54 @@
 				<div class="col-md-7 main">
 					
 <div class='mp'>
-<h1>JUCI SELECT</h1>
-<p>JUCI select is a generic dropdown implementation for juci. It takes a list of
-display elements as <var>ng-items</var> argument which consist of a label and a value.
-It also takes an <var>ng-model</var> argument that determines the currently selected
-element value.</p>
-
-<p>The control will automatically select the element in the list that corresponds
-to the initial value of the model and also update the selection when model
-value changes.</p>
-
-<h1>PARAMETERS</h1>
+<h1>NETIFD NETWORK MONITOR</h1>
+<p>This plugin includes two services:</p>
 
 <ul>
-<li><p><code>ng-items</code> - an <code>Array</code> of items that represents items that are available for
-selection in the list. Each item in this array should have a <code>label</code> and
-<code>value</code> field. The <code>label</code> field will represent human readable text in the
-dropdown and the <code>value</code> will represent the value that will be assigned to the
-model when user selects that particular item.</p></li>
-<li><p><code>ng-model</code> - the model value who's value will correspond to the <code>value</code> field
-of one of the items.</p></li>
+<li>juci-netdevd - which monitors new devices that get plugged into the system (basically listens for hotplug events)</li>
+<li>juci-netmond - which listens for clients connecting to the box and montoring their status.</li>
 </ul>
 
 
-<h1>TRANSLATION</h1>
+<p>Events that each service emits when it is running are described in detail below:</p>
 
-<p>The control itself does not do any translation in place. Instead you need to translate your labels yourself using $tr() and gettext() methods.</p>
+<h2 id="NETDEVD-EVENTS">NETDEVD EVENTS</h2>
 
-<h1>EXAMPLE</h1>
+<ul>
+<li>juci.netdevd.dongle.up - currently fired when a network device called wwanX or usbX is plugged in. Data is as follows:</li>
+<li>juci.netdevd.dongle.configured - fired when a dongle that was identifed as being up has also been autoconfigued with multiwan and such.</li>
+</ul>
 
-<pre><code>&lt;juci-select ng-items="items" ng-model="model"/&gt;
 
-$scope.items = [
-    { label: $tr(gettext("Label Text")), value: { .. value object .. } }, 
-    { label: $tr(gettext("Label #2")), value: 2
-]; 
-$scope.model = 2; 
-</code></pre>
+<p>Device events are accompanied with data that has following format:</p>
 
-<p>The above example will create a dropdwon list which initially will show "Label #2" as selected item.</p>
+<ul>
+<li><code>device</code>: the name of the device</li>
+</ul>
+
+
+<h2 id="NETMOND-EVENTS">NETMOND EVENTS</h2>
+
+<ul>
+<li>juci.netmond.client.up - fired when a client comes up on the network. Netmond will regularly ping the client and make sure it is online.</li>
+<li>juci.netmond.client.down - fired when a client goes down or can not be reached anymore.</li>
+</ul>
+
+
+<p>Client events have data that has the same format as output of /juci/network clients ubus call. Currently these fields will be available:</p>
+
+<ul>
+<li><code>ipaddr</code>: ip address of the device</li>
+<li><code>ip6status</code>: either REACHABLE or STALE or other status. Same format as ip -6 neigh format.</li>
+<li><code>ip6hostid</code>: this is the hostid as currently reported by openwrt odhcpd</li>
+<li><code>leasetime</code>: dhcp leasetime remaining (if available)</li>
+<li><code>ip6addr</code>: ipv6 address of the client (if available)</li>
+<li><code>ip6duid</code>: ipv6 duid number (if client has a dhcpv6 lease)</li>
+<li><code>macaddr</code>: mac address of the client.</li>
+<li><code>hostname</code>: hostname of the client</li>
+<li><code>device</code>: device to which this client is currently connected. This can be for example br-lan if client is connected to bridge.</li>
+</ul>
+
 
 </div>
 				</div>
