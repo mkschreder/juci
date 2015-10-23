@@ -29,7 +29,7 @@
 						<tags-input ng-model="tagslistData" display-property="text"
 									on-tag-added="updateConfig()" on-tag-removed="updateConfig()"
 									add-from-autocomplete-only="true">
-									<auto-complete source="loadTags($query)"></auto-complete>
+									<auto-complete source="loadTags($query)" min-length="0"></auto-complete>
 						</tags-input>
 					</div>
 					<button class="btn btn-default pull-right" ng-click="onAddFolder()"><i class="fa fa-plus"></i></button>

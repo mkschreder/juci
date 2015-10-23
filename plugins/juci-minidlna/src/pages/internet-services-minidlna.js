@@ -47,8 +47,13 @@ JUCI.app
 		};
 		var tag_promise = null;
 		$scope.loadTags = function(text){
-			if(!tag_promise)tag_promise = $rpc.juci.minidlna.list({path:text}).allways(function(){
-				tag_promise = null;
+			console.log(text);
+			if(!tag_promise)tag_promise = new Promise(function(resolve, reject){
+				$rpc.juci.minidlna.list({path:text}).done(function(data){
+					tag_promise = null;
+					if(data.folders)resolve(data.folders);
+					else reject(data);
+				})
 			});
 			return tag_promise;
 		};
