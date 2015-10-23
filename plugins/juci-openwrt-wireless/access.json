@@ -5,10 +5,15 @@
 			"ubus": {
 				"/juci/openwrt.wireless": [
 					"devices",
+					"caps", 
 					"radios", 
 					"clients"
 				]
-			}
+			},
+			"uci": [ "wireless" ]
+		},
+		"write": {
+			"uci": [ "wireless" ]
 		}
 	}
 }

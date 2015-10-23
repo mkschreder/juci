@@ -78,7 +78,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 
 	Wireless.prototype.getConnectedClients = function(){
 		var def = $.Deferred(); 
-		$rpc.juci.broadcom.wireless.clients().done(function(clients){
+		$rpc.juci.openwrt.wireless.clients().done(function(clients){
 			if(clients && clients.clients) {
 				clients.clients.map(function(cl){
 					cl.snr = Math.floor(1 - (cl.rssi / cl.noise)); 
@@ -130,7 +130,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	
 	Wireless.prototype.getDefaults = function(){
 		var deferred = $.Deferred(); 
-		$rpc.juci.broadcom.wireless.defaults().done(function(result){
+		$rpc.juci.openwrt.wireless.defaults().done(function(result){
 			if(!result) {
 				deferred.reject(); 
 				return; 
@@ -142,7 +142,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		});  
 		return deferred.promise(); 
 	}
-	
+/*	
 	Wireless.prototype.scan = function(){
 		var deferred = $.Deferred(); 
 		$rpc.juci.broadcom.wld.scan().done(function(result){
@@ -160,7 +160,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		}); 
 		return deferred.promise(); 
 	}
-	
+*/	
 	return new Wireless(); 
 }); 
 
