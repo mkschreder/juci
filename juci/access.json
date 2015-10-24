@@ -29,5 +29,18 @@
 				]
 			}
 		}
+	},
+
+	"juci-core": {
+		"read": {
+			"juci-io": {
+				"backup": [ "read" ]
+			}
+		},
+		"write": {
+			"juci-io": {
+				"upload": [ "write" ]
+			}
+		}
 	}
 }
