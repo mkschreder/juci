@@ -258,7 +258,7 @@ app.post('/ubus', function(req, res) {
 		var timeout = setTimeout(function(){
 			var body = {
 				jsonrpc: "2.0", 
-				result: [1, "ETIMEOUT"]
+				result: [1, "ETIMEOUT", data]
 			};
 			timedOut = true; 
 			sendResponse(body); 
