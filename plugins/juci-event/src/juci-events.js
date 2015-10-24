@@ -13,7 +13,7 @@
 		var last_handled_time = 0;  
 		var self = JUCI.events;
 		setInterval(function(){
-			if(!$rpc.juci.event || !$rpc.juci.event.poll) return;  
+			if($rpc.juci == undefined || !$rpc.juci.event || !$rpc.juci.event.poll) return;  
 			$rpc.juci.event.poll({clear: 1}).done(function(result){
 				var new_time = 0; 
 				if(!result || !result.list) return; 
