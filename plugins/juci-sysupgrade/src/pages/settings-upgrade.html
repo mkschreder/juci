@@ -5,7 +5,7 @@
 			<juci-config-info>{{ 'settings.upgrade.info' | translate }}</juci-config-info>
 			<juci-config-lines>
 				<juci-config-line title="{{'Current Firmware Version'|translate}}">
-					<strong>{{config.system.firmware}}</strong>
+					<strong>{{config.system.firmware || board.release.description}} {{board.release.revision}}</strong>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
@@ -15,7 +15,7 @@
 			<juci-config-lines>
 				<juci-config-line title="{{onlineUpgrade}}">
 					<button ng-hide="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onOnlineCheck()">
-						<i class="fa fa-spinner fa-spin" ng-show="onlineCheckInProgress"/>{{'Check for Upgrade'|translate}}</button>
+						<i class="fa fa-spinner fa-spin" ng-show="onlineCheckInProgress"></i>{{'Check for Upgrade'|translate}}</button>
 					<button ng-show="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onUpgradeOnline()">{{'Install Upgrade'|translate}}</button>
 				</juci-config-line>
 			</juci-config-lines>
@@ -28,7 +28,7 @@
 					<button class="btn btn-lg btn-default" ng-click="onUpgradeUSB()">{{'Install Upgrade'|translate}}</button>
 				</juci-config-line>
 				<juci-config-line title="{{usbUpgrade}}" ng-hide="usbUpgradeAvailable">
-					<button class="btn btn-lg btn-default" ng-click="onCheckUSB()"><i class="fa fa-spinner fa-spin" ng-show="usbCheckInProgress"/>{{'Check for Upgrade'|translate}}</button>
+					<button class="btn btn-lg btn-default" ng-click="onCheckUSB()"><i class="fa fa-spinner fa-spin" ng-show="usbCheckInProgress"></i>{{'Check for Upgrade'|translate}}</button>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>

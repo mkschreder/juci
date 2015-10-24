@@ -14,6 +14,11 @@ JUCI.app
 		$scope.$apply(); 
 	}); 
 	
+	$rpc.system.board().done(function(info){
+		$scope.board = info; 
+		$scope.$apply(); 
+	}); 
+
 	function confirmKeep(){
 		var deferred = $.Deferred(); 
 		
