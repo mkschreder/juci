@@ -41,7 +41,8 @@
 					"reload"
 				],
 				"system": [
-					"info"
+					"info",
+					"board"
 				]
 
 			},

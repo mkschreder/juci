@@ -56,9 +56,10 @@ end
 
 function system_info()
 	local system = {}; 
-	local db_str = juci.shell("db show hw.board"); 
+	local db_str = juci.shell("db show hw.board 2>/dev/null"); 
 	local db = {}; 
-	local cpuinfo = {}; 
+	local cpuinfo = { }; 
+	local cpuload = {} 
 	for line in db_str:gmatch("[^\r\n]+") do 
 		local name, value = line:match("([^=]+)=(.*)"); 
 		db[name] = value; 
@@ -68,6 +69,24 @@ function system_info()
 		if( name) then 
 			cpuinfo[trim(name)] = trim(value); 
 		end
+	end
+	-- top needs to gather info for at least 1s to give good results. We can not pause 1s in a ubus call. 
+	-- so we assume that the only time when load info is relevant is when gui frequently reads system status
+	-- in that case the gui will get load values. Otherwise gui will get an empty list or values that are old.  
+	-- we are reading PREVIOUS top output here so we don't have to wait 1s!
+	local top_output = juci.readfile("/tmp/juci-top-output"); 
+	-- this needs to come after because if we run this and try to read, we will fail because file is in use
+	juci.shell("top -b -n 1 | grep \"^Cpu(s)\" > /tmp/juci-top-output &"); 
+	for cent in (top_output or ""):gmatch("%S+") do
+		local val,typ = cent:match("([^%%]+)%%([^,]+)[,]*"); 
+		if(typ == "us") then cpuload.user = tonumber(val) * 100; 
+		elseif(typ == "sy") then cpuload.system = tonumber(val) * 100; 
+		elseif(typ == "ni") then cpuload.user_nice = tonumber(val) * 100; 
+		elseif(typ == "id") then cpuload.idle = tonumber(val) * 100; 
+		elseif(typ == "wa") then cpuload.wait = tonumber(val) * 100;
+		elseif(typ == "hi") then cpuload.hardware_irq = tonumber(val) * 100; 
+		elseif(typ == "si") then cpuload.software_irq = tonumber(val) * 100; 
+		elseif(typ == "st") then cpuload.stolen_time = tonumber(val) * 100; end 
 	end
 	local version = tostring(juci.readfile("/proc/version") or ""); 
 	local systype,_,sysversion = version:match("(%S+)%s+(%S+)%s+(%S+)"); 	
@@ -117,6 +136,7 @@ function system_info()
 	
 	print(json.encode({
 		system = system, 
+		load = cpuload, 
 		keys = keys, 
 		memoryKB = memory, 
 		eth_ports = ports

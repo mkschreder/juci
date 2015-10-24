@@ -12,9 +12,9 @@ JUCI.app
 		}, 
 		function(next){
 			$rpc.juci.system.time.zonelist().done(function(result){
-				if(result && result.list){
-					$scope.allTimeZones = result.list.sort(function(a, b){ return a.localeCompare(b); }).map(function(z){
-						return { label: z, value: z }; 
+				if(result && result.zones){
+					$scope.allTimeZones = Object.keys(result.zones).map(function(k){
+						return { label: k, value: result.zones[k] }; 
 					}); 
 				}
 				next(); 

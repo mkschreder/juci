@@ -13,12 +13,17 @@ JUCI.app
 	}; 
 	var info = {};
 	var sys = {};  
+	var board = { release: {} }; 
 	var filesystems = []; 
 	
 	JUCI.interval.repeat("status.system.refresh", 1000, function(resume){
 		async.parallel([
 			function (cb){$rpc.juci.system.info().done(function(res){info = res; cb();}).fail(function(res){cb();});},
 			function (cb){$rpc.system.info().done(function(res){sys = res; cb();}).fail(function(res){cb();});},
+			function (cb){
+				if(!$rpc.system.board) cb(); 
+				else $rpc.system.board().done(function(res){board = res; cb();}).fail(function(res){cb();});
+			},
 			function (cb){$rpc.juci.system.filesystems().done(function(res){
 				filesystems = res.filesystems; 
 				cb();
@@ -40,13 +45,15 @@ JUCI.app
 				return ((days > 0)?""+days+"d ":"")+pad(hours,2)+":"+pad(minutes,2)+":"+pad(seconds,2);
 			}
 			$scope.systemStatusTbl.rows = [
-				[$tr(gettext("Hostname")), info.system.name],
-				[$tr(gettext("Model")), info.system.hardware || $tr(gettext("N/A"))],
-				[$tr(gettext("Firmware Version")), info.system.firmware || $tr(gettext("N/A"))],
-				[$tr(gettext("Kernel Version")), info.system.kernel || $tr(gettext("N/A"))],
-				[$tr(gettext("SoC Version")), info.system.socver || $tr(gettext("N/A"))], 
+				[$tr(gettext("Hostname")), board.hostname || info.system.name],
+				[$tr(gettext("Model")), board.model || info.system.hardware || $tr(gettext("N/A"))],
+				[$tr(gettext("Release")), board.release.description || info.system.firmware || $tr(gettext("N/A"))],
+				[$tr(gettext("Firmware Version")), board.release.revision || $tr(gettext("N/A"))],
+				[$tr(gettext("Kernel Version")), board.kernel || info.system.kernel || $tr(gettext("N/A"))],
+				[$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))], 
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
+				[$tr(gettext("CPU")), ""+(info.load.user / 100) + "%"], 
 				[$tr(gettext("Load Average")), sys.load[0] + " " + sys.load[1] + " " + sys.load[2]]
 			]; 
 			$scope.systemMemoryTbl.rows = [
