@@ -11,10 +11,10 @@ JUCI.app
 		replace: true, 
 		require: "^ngModel"
 	 };  
-}).controller("netifdSwitchVlanEdit", function($scope, $ethernet){	
-	$ethernet.getAdapters().done(function(devs){
-		$scope.allBaseDevices = devs.map(function(d){
-			return { label: d.name, value: d.device }; 
+}).controller("netifdSwitchVlanEdit", function($scope, $ethernet, $uci){	
+	$uci.$sync("network").done(function(){
+		$scope.allBaseDevices = $uci.network["@switch"].map(function(d){
+			return { label: d.name.value, value: d.name.value }; 
 		}); 
 		$scope.$apply(); 
 	}); 

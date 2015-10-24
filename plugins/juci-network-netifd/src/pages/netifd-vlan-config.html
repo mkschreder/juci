@@ -5,7 +5,7 @@
 			<juci-list-editor 
 				ng-items="vlans" 
 				item-editor="netifd-switch-vlan-edit" 
-				get-item-title="$item['.name']" 
+				get-item-title="$item.displayname.value || $item['.name']" 
 				on-create="onAddVlan()" 
 				on-delete="$item.$delete()"
 			/>

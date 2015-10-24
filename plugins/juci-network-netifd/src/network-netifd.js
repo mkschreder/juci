@@ -387,10 +387,14 @@ UCI.network.$registerSectionType("route", {
 }); 
 
 UCI.network.$registerSectionType("switch", {
+	"name": 	{ dvalue: "", type: String },
+	"reset":	{ dvalue: undefined, type: Boolean }, 
+	"enable_vlan": { dvalue: true, type: Boolean },
 	"enable": 	{ dvalue: false, type: Boolean }
 }); 
 
 UCI.network.$registerSectionType("switch_vlan", {
+	"displayname": { dvalue: "", type: String },
 	"vlan":		{ dvalue: 0, type: Number }, 
 	"device": 	{ dvalue: "", type: String },
 	"ports": 	{ dvalue: "", type: String }

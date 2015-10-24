@@ -1,5 +1,8 @@
 <div>
 	<juci-config-lines>
+		<juci-config-line title="{{'Name'|translate}}">
+			<input type="text" class="form-control" ng-model="vlan.displayname.value" placeholder="{{'Displayname'|translate}}"/>
+		</juci-config-line>
 		<juci-config-line title="{{'VLAN Tag'|translate}}">
 			<input type="number" class="form-control" ng-model="vlan.vlan.value" />
 		</juci-config-line>
