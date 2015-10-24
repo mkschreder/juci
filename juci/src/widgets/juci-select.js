@@ -22,12 +22,12 @@ JUCI.app
 				console.log(JSON.stringify(item)); 
 			}
 			$scope.$watch("ngItems", function(){
-				if(!$scope.ngItems) return; 
+				if(!$scope.ngItems || !$scope.ngModel) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
 			}); 
 
 			$scope.$watch("ngModel", function(value){
-				if(!value) return; 
+				if(!value || !$scope.ngItems) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
 			});
 		}
