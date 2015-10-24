@@ -62,15 +62,15 @@
 		async.series([
 			function(next){
 				scope.UBUS.$init().done(function(){
-					if(!scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
+					if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
 						// TODO: make this prettier. 
-						alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
-						return; 
-					} else {
-						next();
-					}
+						//alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
+						//return; 
+					} 
+					next();
 				}).fail(function(){
-					console.error("UBUS failed to initialize!"); 
+					console.warning("UBUS failed to initialize: this means that no rpc calls will be available. You may get errors if other parts of the application assume a valid RPC connection!"); 
+					next(); 
 				}); 
 			},  
 			function(next){
@@ -127,50 +127,51 @@
 			},*/ 
 			function(next){
 				// get the menu navigation
-				if($rpc.juci){
-					console.log("juci: loading menu from server.."); 
-					$rpc.juci.ui.menu().done(function(data){
-						//console.log(JSON.stringify(data)); 
-						// get menu keys and sort them so that parent elements will come before their children
-						// this will automatically happen using normal sort because parent element paths are always shorter than their childrens. 
-						//var keys = Object.keys(data.menu).sort(function (a, b) { 
-						//	return a.localeCompare(b) ; 
-						//}); 
-						var keys = Object.keys(data.menu); 
-						
-						keys.map(function(key){
-							var menu = data.menu[key]; 
-							var view = menu.view; 
-							var redirect = menu.redirect; 
-							var path = key; 
-							//console.log("MENU: "+path); 
-							var obj = {
-								path: path, 
-								href: menu.page || path.replace(/\//g, "-").replace(/_/g, "-"), 
-								modes: menu.modes || [ ], 
-								text: menu.title 
-							}; 
-							$juci.navigation.register(obj); 
-							if(redirect) redirect = redirect.replace(/\//g, "-").replace(/_/g, "-"); 
-							// NOTE: all juci page templates currently have form word<dot>word<dot>..html
-							// And their names correspond to the structure of the menu we get from the box.
-							// - This makes it easy to find the right page file and simplifies managing a lot of pages.
-							// - This also allows plugins to override existing pages simply by supplying their own versions of the page templates
-							// - Conclusion: this is one of the things that should almost never be rewritten without providing 
-							//   a fallback mechanism for supporting the old (this) way because all plugins depend on this.  
-							// JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
-							JUCI.page(obj.href, "pages/"+obj.href+".html", redirect); 
-						}); 
-						//console.log("NAV: "+JSON.stringify($navigation.tree())); 
-						//$rootScope.$apply(); 
-						next(); 
-					}).fail(function(){
-						next();
-					}); 
-				} else {
-					console.error("Menu call is not present!"); 
+				if(!$rpc.juci){
+					console.log("skipping menu init");  
 					next(); 
+					return; 
 				}
+
+				console.log("juci: loading menu from server.."); 
+				$rpc.juci.ui.menu().done(function(data){
+					//console.log(JSON.stringify(data)); 
+					// get menu keys and sort them so that parent elements will come before their children
+					// this will automatically happen using normal sort because parent element paths are always shorter than their childrens. 
+					//var keys = Object.keys(data.menu).sort(function (a, b) { 
+					//	return a.localeCompare(b) ; 
+					//}); 
+					var keys = Object.keys(data.menu); 
+					
+					keys.map(function(key){
+						var menu = data.menu[key]; 
+						var view = menu.view; 
+						var redirect = menu.redirect; 
+						var path = key; 
+						//console.log("MENU: "+path); 
+						var obj = {
+							path: path, 
+							href: menu.page || path.replace(/\//g, "-").replace(/_/g, "-"), 
+							modes: menu.modes || [ ], 
+							text: menu.title 
+						}; 
+						$juci.navigation.register(obj); 
+						if(redirect) redirect = redirect.replace(/\//g, "-").replace(/_/g, "-"); 
+						// NOTE: all juci page templates currently have form word<dot>word<dot>..html
+						// And their names correspond to the structure of the menu we get from the box.
+						// - This makes it easy to find the right page file and simplifies managing a lot of pages.
+						// - This also allows plugins to override existing pages simply by supplying their own versions of the page templates
+						// - Conclusion: this is one of the things that should almost never be rewritten without providing 
+						//   a fallback mechanism for supporting the old (this) way because all plugins depend on this.  
+						// JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
+						JUCI.page(obj.href, "pages/"+obj.href+".html", redirect); 
+					}); 
+					//console.log("NAV: "+JSON.stringify($navigation.tree())); 
+					//$rootScope.$apply(); 
+					next(); 
+				}).fail(function(){
+					next();
+				}); 
 			}, 
 			function(next){
 				// set various gui settings such as mode (and maybe theme) here

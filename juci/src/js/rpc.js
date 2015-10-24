@@ -43,43 +43,38 @@
 			this.request(type, {
 				params: [ RPC_SESSION_ID, namespace, method, data],
 				success: function(result){
-					//console.log("SID: "+sid + " :: "+ JSON.stringify(result)); 
-					if(type == "call" && result && result.result) {
-						// TODO: modify all rpc UCI services so that they ALWAYS return at least 
-						// an empty json object. Otherwise we have no way to differentiate success 
-						// from failure of a request. This has to be done on the host side. 
-						if(result.result[0] != 0){ // || result.result[1] == undefined) {
-							function _errstr(error){
-								switch(error){
-									case 0: return gettext("OK"); 
-									case 1: return gettext("Invalid command"); 
-									case 2: return gettext("Invalid parameters"); 
-									case 3: return gettext("Method not found"); 
-									case 4: return gettext("Object not found"); 
-									case 5: return gettext("No data"); 
-									case 6: return gettext("Access denied"); 
-									case 7: return gettext("Timed out"); 
-									case 8: return gettext("Not supported"); 
-									case 9: return gettext("Unknown error"); 
-									case 10: return gettext("Connection failed"); 
-									default: return gettext("RPC error #")+result.result[0]+": "+result.result[1]; 
-								}
+					if(result.result instanceof Array && result.result[0] != 0){ // || result.result[1] == undefined) {
+						function _errstr(error){
+							switch(error){
+								case 0: return gettext("OK"); 
+								case 1: return gettext("Invalid command"); 
+								case 2: return gettext("Invalid parameters"); 
+								case 3: return gettext("Method not found"); 
+								case 4: return gettext("Object not found"); 
+								case 5: return gettext("No data"); 
+								case 6: return gettext("Access denied"); 
+								case 7: return gettext("Timed out"); 
+								case 8: return gettext("Not supported"); 
+								case 9: return gettext("Unknown error"); 
+								case 10: return gettext("Connection failed"); 
+								default: return gettext("RPC error #")+result.result[0]+": "+result.result[1]; 
 							}
-							console.log("RPC succeeded ("+namespace+"."+method+"), but returned error: "+JSON.stringify(result)+": "+_errstr(result.result[0]));
-							RPC_CACHE[key].deferred.reject(_errstr(result.result[0])); 
-						} else {
-							// put the data into cache
-							RPC_CACHE[key].time = new Date();
-							RPC_CACHE[key].data = result.result[1];
-							RPC_CACHE[key].deferred.resolve(result.result[1]);
 						}
-					} else if(type == "list" && result && result.result){
-						if((typeof result.result) == "object")
-							RPC_CACHE[key].deferred.resolve(result.result); 
-						else 
-							RPC_CACHE[key].deferred.reject(result.result[1]); // for etimeout [1, "ETIMEOUT"]
+						console.log("RPC succeeded ("+namespace+"."+method+"), but returned error: "+JSON.stringify(result)+": "+_errstr(result.result[0]));
+						RPC_CACHE[key].deferred.reject(_errstr(result.result[0])); 
+						return; 
+					}
+
+					//console.log("SID: "+sid + " :: "+ JSON.stringify(result)); 
+					RPC_CACHE[key].time = new Date();
+					// valid rpc response is either [code,{result}] or just {result}
+					// we handle both! (if code == 0 it means success. We already check for errors above) 
+					if(result.result instanceof Array){	
+						RPC_CACHE[key].data = result.result[1];
+						RPC_CACHE[key].deferred.resolve(result.result[1]);
 					} else {
-						RPC_CACHE[key].deferred.reject(); 
+						RPC_CACHE[key].data = result.result; 
+						RPC_CACHE[key].deferred.resolve(result.result); 
 					}
 				}, 
 				error: function(result){
@@ -166,11 +161,16 @@
 		$authenticate: function(){
 			var self = this; 
 			var deferred  = $.Deferred(); 
-					
+			
+			if(!self.session){
+				setTimeout(function(){ deferred.reject(); }, 0); 
+				return deferred.promise(); 
+			}
+
 			self.session.access({
 				"keys": ""
 			}).done(function(result){
-        if(!("username" in (result.data||{}))) {
+        		if(!("username" in (result.data||{}))) {
 					// username must be returned in the response. If it is not returned then rpcd is of wrong version. 
 					//alert(gettext("You have been logged out due to inactivity")); 
 					RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; // reset sid to 000..
@@ -193,6 +193,11 @@
 			var self = this; 
 			var deferred  = $.Deferred(); 
 			
+			if(!self.session) {
+				setTimeout(function(){ deferred.reject(); }, 0);  
+				return deferred.promise(); 
+			}
+
 			self.session.login({
 				"username": opts.username, 
 				"password": opts.password
@@ -211,6 +216,12 @@
 		$logout: function(){
 			var deferred = $.Deferred(); 
 			var self = this; 
+
+			if(!self.session) {
+				setTimeout(function(){ deferred.reject(); }, 0);  
+				return deferred.promise(); ; 
+			}
+
 			self.session.destroy().done(function(){
 				RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; // reset sid to 000..
 				scope.localStorage.setItem("sid", RPC_SESSION_ID); 
@@ -246,6 +257,17 @@
 			var npath = object; 
 			if(object.startsWith("/")) npath = object.substring(1); 
 			_find(npath.split(/[\.\/]/), method, self); 
+		}, 
+		$isConnected: function(){
+			// we do a simple list request. If it fails then we assume we do not have a proper connection to the router
+			var self = this; 
+			var deferred = $.Deferred(); 
+			rpc_request("list", "*", "", {}).done(function(result){
+				deferred.resolve(); 
+			}).fail(function(){
+				deferred.reject(); 
+			}); 
+			return deferred.promise(); 
 		}, 
 		$init: function(host){
 			var self = this; 

@@ -380,6 +380,12 @@
 			var deferred = $.Deferred(); 
 			var self = this; 
 			
+			if(!$rpc.uci) {
+				// this will happen if there is no router connection!
+				setTimeout(function(){ deferred.reject(); }, 0); 
+				return deferred.promise(); 
+			}
+
 			var to_delete = {}; 
 			Object.keys(self).map(function(x){
 				if(self[x].constructor == UCI.Section) to_delete[x] = self[x]; 
@@ -445,7 +451,13 @@
 		UCIConfig.prototype.$deleteSection = function(section){
 			var self = this; 
 			var deferred = $.Deferred(); 
-			
+				
+			if(!$rpc.uci) {
+				// this will happen if there is no router connection!
+				setTimeout(function(){ deferred.reject(); }, 0); 
+				return deferred.promise(); 
+			}
+
 			//self[".need_commit"] = true; 
 			$rpc.uci.delete({
 				"config": self[".name"], 
@@ -473,7 +485,15 @@
 			if(!(".type" in item)) throw new Error("Missing '.type' parameter!"); 
 			var type = section_types[self[".name"]][item[".type"]]; 
 			if(!type) throw Error("Trying to create section of unrecognized type ("+self[".name"]+"."+item[".type"]+")"); 
+		
+			var deferred = $.Deferred(); 
 			
+			if(!$rpc.uci) {
+				// this will happen if there is no router connection!
+				setTimeout(function(){ deferred.reject(); }, 0); 
+				return deferred.promise(); 
+			}
+
 			// TODO: validate values!
 			var values = {}; 
 			Object.keys(type).map(function(k){ 
@@ -483,7 +503,6 @@
 					values[k] = type[k].dvalue; 
 				}
 			}); 
-			var deferred = $.Deferred(); 
 			
 			if((".name" in item) && (item[".name"] in self)){ // section with specified name already exists
 				setTimeout(function(){
@@ -536,6 +555,7 @@
 		var deferred = $.Deferred(); 
 		console.log("Init UCI"); 
 		var self = this; 
+
 		if(!$rpc.uci) {
 			setTimeout(function(){ deferred.reject(); }, 0); 
 			return deferred.promise(); 
@@ -641,6 +661,12 @@
 		var errors = []; 
 		var self = this; 
 		
+		if(!$rpc.uci) {
+			// this will happen if there is no router connection!
+			setTimeout(function(){ deferred.reject(); }, 0); 
+			return deferred.promise(); 
+		}
+
 		Object.keys(self).map(function(k){
 			if(self[k].constructor == UCI.Config){
 				//if(self[k][".need_commit"]) revert_list.push(self[k][".name"]); 
@@ -663,12 +689,19 @@
 	}
 	
 	UCI.prototype.$rollback = function(){
+		if(!$rpc.uci) {
+			var deferred = $.Deferred(); 
+			setTimeout(function(){ deferred.reject(); }, 0); 
+			return deferred.promise(); 
+		}
+
 		return $rpc.uci.rollback(); 
 	}
 	
 	UCI.prototype.$apply = function(){
 		console.error("Apply method is deprecated and will be removed. Use $save() instead."); 
-		return $rpc.uci.apply({rollback: 0, timeout: 5000}); 
+		return this.$save(); 
+		//return $rpc.uci.apply({rollback: 0, timeout: 5000}); 
 	}
 	
 	UCI.prototype.$save = function(){
@@ -678,6 +711,11 @@
 		var add_requests = []; 
 		var errors = []; 
 		
+		if(!$rpc.uci) {
+			setTimeout(function(){ deferred.reject(); }, 0); 
+			return deferred.promise(); 
+		}
+
 		async.series([
 			function(next){ // send all changes to the server
 				console.log("Checking for errors..."); 
