@@ -4,7 +4,7 @@
 			<juci-config-heading>{{ 'Status' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'status.status.info' | translate }}</juci-config-info>
 		</juci-config-section>
-		<juci-expandable title="{{sec.name}}" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface">
+		<juci-expandable title="{{sec.name|uppercase}}" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface">
 			<juci-config-lines ng-hide="sec.interface.errors" >
 				<juci-config-line ng-show="sec.interface['ipv4-address'][0]" 
 					title="{{'IP Address'|translate}}">
