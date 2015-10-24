@@ -5,28 +5,42 @@
 	</div>
 	<form ng-hide="loggedIn" class="form-signin" ng-model="form">
 		<h2 class="form-signin-heading" translate>Please sign in</h2>
-		<div class="alert alert-danger" ng-show="errors.length">
-			<ul>
-				<li ng-repeat="item in errors track by $index">{{item}}</li>
-			</ul>
+		<div class="form-group" ng-show="!connecting && !is_connected">
+			<div class="alert alert-danger">
+				<p translate>You do not have an RPC connection to the router!</p>
+			</div>
+		</div>
+		<div class="form-group" ng-show="connecting">
+			<div class="alert alert-info">
+				<p><i class="fa fa-spinner fa-spin"></i> <span translate>Connecting...</span><p>
+			</div>
 		</div>
 		<div class="form-group" ng-show="showHost">
 			<label class="sr-only" translate>Host</label>
-			<input ng-model="form.host" type="text" class="form-control" placeholder="Router IP">
+			<input ng-disabled="!is_connected" ng-model="form.host" type="text" class="form-control" placeholder="Router IP">
 		</div>
 		<div class="form-group" ng-show="showlogin">
 			<label for="inputEmail"  class="sr-only" translate>Username</label>
-			<input ng-model="form.username" type="text" id="inputEmail" class="form-control" placeholder="{{'Username'|translate}}" required >
+			<input ng-disabled="!is_connected" ng-model="form.username" type="text" id="inputEmail" class="form-control" placeholder="{{'Username'|translate}}" required >
 		</div>
 		<div class="form-group">
 			<label for="inputPassword" class="sr-only" translate>Password</label>
-			<input ng-model="form.password" type="password" id="inputPassword" class="form-control" placeholder="{{'Password'|translate}}" required autofocus>
+			<input ng-change="errors = []" ng-disabled="!is_connected" ng-model="form.password" type="password" id="inputPassword" class="form-control" placeholder="{{'Password'|translate}}" required autofocus>
 		</div>
 		<!--<div class="checkbox">
 			<label>
 				<input ng-model="form.remember" type="checkbox" value="remember-me" translate> Remember me
 			</label>
 		</div>-->
-		<button ng-click="doLogin()" class="btn btn-lg btn-primary btn-block" type="submit" translate>Sign in</button>
+		<div class="form-group">
+			<button ng-disabled="!is_connected" ng-click="doLogin()" class="btn btn-lg btn-primary btn-block" type="submit" translate>Sign in</button>
+		</div>
+		<div class="form-group" ng-show="errors.length">
+			<div class="alert alert-danger">
+				<ul>
+					<li ng-repeat="item in errors track by $index">{{item}}</li>
+				</ul>
+			</div>
+		</div>
 	</form>
 </div>

@@ -22,7 +22,8 @@ JUCI.app
 	}; 
 	$scope.showlogin = $config.showlogin; 
 	$scope.form.username = $config.defaultuser||"admin"; 
-	
+	$scope.connecting = true; 
+
 	$scope.errors = []; 
 	$scope.showHost = 0; 
 	if($rpc.local){
@@ -36,6 +37,18 @@ JUCI.app
 			$scope.$apply(); 
 		}); 
 	}
+
+	JUCI.interval.repeat("login-connection-check", 5000, function(done){
+		$rpc.$isConnected().done(function(){
+			$scope.is_connected = true; 
+		}).fail(function(){
+			$scope.is_connected = false; 
+		}).always(function(){
+			$scope.connecting = false; 
+			$scope.$apply(); 
+			done(); 
+		}); 
+	}); 
 	$scope.doLogin = function(){
 		var deferred = $.Deferred(); 
 		$scope.errors = []; 
@@ -61,7 +74,7 @@ JUCI.app
 					$window.location.href="/"; 
 					deferred.resolve(); 
 				}).fail(function fail(res){
-					$scope.errors.push(res); 
+					//$scope.errors.push(res); 
 					$scope.errors.push(gettext("Please enter correct username and password!"));
 					$scope.$apply(); 
 					deferred.reject(); 
