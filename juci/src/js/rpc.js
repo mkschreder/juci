@@ -168,7 +168,8 @@
 			}
 
 			self.session.access({
-				"keys": ""
+				//"ubus_rpc_session": RPC_SESSION_ID,
+				"scope": "ubus" 
 			}).done(function(result){
         		if(!("username" in (result.data||{}))) {
 					// username must be returned in the response. If it is not returned then rpcd is of wrong version. 
