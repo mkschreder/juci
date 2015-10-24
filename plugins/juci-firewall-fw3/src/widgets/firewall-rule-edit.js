@@ -15,7 +15,8 @@ JUCI.app
 		{ label: "UDP", value: "udp"}, 
 		{ label: "TCP", value: "tcp"}, 
 		{ label: "ICMP", value: "icmp"}, 
-		{ label: "TCP + UDP", value: "tcpudp" }
+		{ label: "TCP + UDP", value: "tcpudp" },
+		{ label: "ESP", value: "esp" }
 	]; 
 	
 	$scope.familyChoices = [

@@ -11,7 +11,7 @@ JUCI.app
 		$scope.$apply(); 
 	});  
 	$scope.getItemTitle = function(item){
-		return item.name.value; 
+		return item.name.value || item[".name"]; 
 	}
 	
 	
