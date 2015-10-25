@@ -28,27 +28,29 @@
 		</nav>
 		<div class="container" style="padding-top: 60px;">
 			<div class="row">
-				<div class="col-md-3 sidebar">
+				<div class="col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
 						<li><a href="juci.html">Overview</a></li>
 						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
 						<li><a href="creating-pages.html">Creating Pages</a></li>
 						<li><a href="creating-themes.html">Creating Themes</a></li>
 					</ul>
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- juci left -->
-					<ins class="adsbygoogle"
-						 style="display:inline-block;width:160px;height:600px"
-						 data-ad-client="ca-pub-0092476366635849"
-						 data-ad-slot="9060201735"></ins>
-					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>		
+					<center>
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- juci left -->
+						<ins class="adsbygoogle"
+							 style="display:inline-block;width:160px;height:600px"
+							 data-ad-client="ca-pub-0092476366635849"
+							 data-ad-slot="9060201735"></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>		
+					</center>
 				</div>
 				<div class="col-md-7 main">
 					%CONTENT%
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- JUCI -->
 				<ins class="adsbygoogle"
