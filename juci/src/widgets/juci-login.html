@@ -33,7 +33,10 @@
 			</label>
 		</div>-->
 		<div class="form-group">
-			<button ng-disabled="!is_connected" ng-click="doLogin()" class="btn btn-lg btn-primary btn-block" type="submit" translate>Sign in</button>
+			<button ng-disabled="!is_connected || logging_in" ng-click="doLogin()" class="btn btn-lg btn-primary btn-block" type="submit">
+				<i class="fa fa-spinner fa-spin" ng-show="logging_in"></i> <span ng-show="!logging_in" translate>Sign in</span>
+				<span ng-show="logging_in" translate>Signing in...</span>
+			</button>
 		</div>
 		<div class="form-group" ng-show="errors.length">
 			<div class="alert alert-danger">

@@ -52,6 +52,7 @@ JUCI.app
 	$scope.doLogin = function(){
 		var deferred = $.Deferred(); 
 		$scope.errors = []; 
+		$scope.logging_in = true; 
 		async.series([
 			function(next){
 				if($scope.form.host.length > 0){
@@ -76,6 +77,7 @@ JUCI.app
 				}).fail(function fail(res){
 					//$scope.errors.push(res); 
 					$scope.errors.push(gettext("Please enter correct username and password!"));
+					$scope.logging_in = false; 
 					$scope.$apply(); 
 					deferred.reject(); 
 				}); 
