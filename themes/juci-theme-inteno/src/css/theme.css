@@ -1,3 +1,7 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+
 @font-face {
     font-family: "eurostyle";
     src: url("/fonts/proximanova-regular-webfont.woff") format('woff');
