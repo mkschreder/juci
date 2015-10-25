@@ -1,6 +1,6 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("SnmpConfigPage", function($scope, $samba, gettext){
+.controller("SnmpConfigPage", function($scope, gettext){
 	
 }); 

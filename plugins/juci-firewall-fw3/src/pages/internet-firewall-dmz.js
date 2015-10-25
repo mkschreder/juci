@@ -27,16 +27,6 @@ $juci.module("internet")
 	
 			}).always(function(){ next(); }); 
 		}, 
-		function(next){
-			var fw = $uci.firewall; 
-			$network.getConnectedClients().done(function(clients){
-				$scope.connectedHosts = Object.keys(clients).map(function(k){
-					if((clients[k].ipaddr == fw.dmz.host.value && fw.dmz.ip6addr.value == "") || clients[k].ip6addr == fw.dmz.ip6addr.value) $scope.data.selected = clients[k]; 
-					return { label: (clients[k].hostname)?(clients[k].hostname+" ("+clients[k].ipaddr+")"):clients[k].ipaddr, value: clients[k] }; 
-				}); 
-				$scope.$apply(); 
-			}).always(function(){ next(); }); 
-		}, 
 		function(next){ 
 			if($uci.firewall.dmz == undefined){
 				$uci.firewall.create({".type": "dmz", ".name": "dmz"}).done(function(dmz){
@@ -47,6 +37,17 @@ $juci.module("internet")
 			} else {
 				next(); 
 			}
+		}, 
+		function(next){
+			var fw = $uci.firewall; 
+			
+			$network.getConnectedClients().done(function(clients){
+				$scope.connectedHosts = Object.keys(clients).map(function(k){
+					if((clients[k].ipaddr == fw.dmz.host.value && fw.dmz.ip6addr.value == "") || clients[k].ip6addr == fw.dmz.ip6addr.value) $scope.data.selected = clients[k]; 
+					return { label: (clients[k].hostname)?(clients[k].hostname+" ("+clients[k].ipaddr+")"):clients[k].ipaddr, value: clients[k] }; 
+				}); 
+				$scope.$apply(); 
+			}).always(function(){ next(); }); 
 		}, 
 		function(next){
 			$rpc.network.interface.status({
