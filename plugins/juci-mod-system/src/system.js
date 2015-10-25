@@ -3,13 +3,17 @@
 UCI.$registerConfig("system"); 
 
 UCI.system.$registerSectionType("system", {
+	"hostname":		{ dvalue: '', type: String },
 	"timezone":		{ dvalue: '', type: String },
 	"zonename":		{ dvalue: '', type: String },
-	"conloglevel":		{ dvalue: 0, type: Number },
-	"cronloglevel":		{ dvalue: 0, type: Number },
-	"hostname":		{ dvalue: '', type: String },
-	"displayname":		{ dvalue: '', type: String },
-	"log_size":		{ dvalue: 200, type: Number }
+	"conloglevel":		{ dvalue: 7, type: Number },
+	"cronloglevel":		{ dvalue: 5, type: Number },
+	"log_size":		{ dvalue: 16, type: Number },
+	"log_file": 	{ dvalue: "", type: String },
+	"log_ip": 		{ dvalue: "", type: String },
+	"log_port": 	{ dvalue: undefined, type: Number },
+	"log_prefix": 	{ dvalue: "", type: String }, 
+	"log_remote": 	{ dvalue: false, type: Boolean }
 }); 
 
 UCI.system.$registerSectionType("timeserver", {
