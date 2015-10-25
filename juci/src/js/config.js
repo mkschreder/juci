@@ -30,14 +30,16 @@
 				}).always(function(){ next(); }); 
 			}, function(next){
 				// try loading hardware model from system display name
-				UCI.$sync("system").done(function(){
+				// NOTE: this is redundant now. 
+				/*UCI.$sync("system").done(function(){
 					if(UCI.system){
 						var system = UCI.system["@system"]; 
 						if(system && system.length && system[0].displayname.value){
 							self.hardware_model = system[0].displayname.value; 
 						} 
 					}
-				}).always(function(){ next(); }); 
+				}).always(function(){ next(); }); */
+				next(); 
 			}, function(next){
 				if(self.hardware_model) { next(); return; }
 				// try loading hardware model from the router info
