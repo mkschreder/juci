@@ -10,6 +10,7 @@ JUCI.app
 			
 			var modalInstance = $modal.open({
 				animation: true,
+				backdrop: "static", 
 				templateUrl: 'widgets/upgrade.popup.html',
 				controller: 'upgradePopup',
 				resolve: {
