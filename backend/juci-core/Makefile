@@ -6,7 +6,6 @@ CFLAGS+=-Os -Wall -Wno-format-y2k -W -Wstrict-prototypes -Wmissing-prototypes -W
 BUILD_DIR:=build
 SHARED_OBJECT:=$(BUILD_DIR)/usr/lib/rpcd/$(MODULE_NAME).so
 CGI_SCRIPT:=$(BUILD_DIR)/usr/libexec/rpcd/$(MODULE_NAME)-cgi
-ACL_LIST:=$(BUILD_DIR)/usr/share/rpcd/acl.d/$(MODULE_NAME).json
 CGI_BIN:=$(BUILD_DIR)/www/cgi-bin/
 SO_SOURCE_FILES:=$(wildcard plugin/*.c)
 IO_SOURCE_FILES:=$(wildcard io/*.c)
@@ -22,7 +21,6 @@ $(SHARED_OBJECT): $(SO_OBJECT_FILES)
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/lib/rpcd/
 	$(CC) $(LDFLAGS) -Wl,-z,defs -shared -o $(SHARED_OBJECT) $(SO_OBJECT_FILES) -lubox -lubus -luci -lblobmsg_json -lcrypt -lpthread
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/rpcd/acl.d/
-	$(CP) access.json $(ACL_LIST)
 	$(CP) etc $(BUILD_DIR)/
 	
 $(CGI_SCRIPT): $(IO_OBJECT_FILES)
