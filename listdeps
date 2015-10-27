@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 for dir in `find plugins/ -mindepth 1 -maxdepth 1 -type d | sort`; do
 	echo "LISTING $dir"

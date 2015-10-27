@@ -44,17 +44,17 @@ define BuildDir-y
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES-y))))
 	PHONY += $(1)-install
 $(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) 
-	@echo -e "\e[0;33m[JS]\t$(1) -> $$@\e[m"
+	@echo "\033[0;33m[JS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
 $(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1))
-	@echo -e "\e[0;33m[CSS]\t$(1) -> $$@\e[m"
+	@echo "\033[0;33m[CSS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$(STYLES_$(1))"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
 $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
-	@echo -e "\e[0;33m[HTML]\t$(1) -> $$@\e[m"
+	@echo "\033[0;33m[HTML]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then ./juci-build-tpl-cache $$^ $$@; fi
@@ -120,19 +120,19 @@ node_modules: package.json
 release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 	@echo "======= JUCI BUILD =========="
 	@./juci-compile $(BIN) 
-	@if [ "$(CONFIG_PACKAGE_juci)" == "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
+	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
 
 debug: prepare $(TARGETS) $(UBUS_MODS)
-	@echo -e "\e[0;33m [GRUNT] $@ \e[m"
+	@echo "\033[0;33m [GRUNT] $@ \033[m"
 	@grunt 
-	@echo -e "\e[0;33m [UPDATE] $@ \e[m"
+	@echo "\033[0;33m [UPDATE] $@ \033[m"
 	@./juci-update $(BIN)/www DEBUG
 
 DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) docs/juci.md
 DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD)) docs/juci.html
 PHONY+=docs  
 docs: $(DOCS_HTML) 
-	@echo -e "\e[0;33m [DOCS] $@ $^ \e[m"
+	@echo "\033[0;33m [DOCS] $@ $^ \033[m"
 	@mkdir -p manual/js
 	@mkdir -p manual/css
 	@cp juci/src/lib/js/bootstrap.min.js manual/js/
@@ -145,7 +145,7 @@ docs/juci.md: $(wildcard plugins/**/docs/*.md)
 	@./scripts/build_docs .
 
 %.html: %.md 
-	@echo -e "\e[0;33m[DOC]: $^\e[m"
+	@echo "\033[0;33m[DOC]: $^\033[m"
 	@mkdir -p manual
 	@ronn --pipe -f $^ > docs/.tmp.ronn
 	@cp docs/page.html.tpl docs/.tmp

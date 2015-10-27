@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/bash 
 
 cp -Rp $1/htdocs/* $2/www/ 2>/dev/null; rm -rf $1/htdocs
 cp -Rp $1/build/* $2/ 2>/dev/null; rm -rf $1/build 

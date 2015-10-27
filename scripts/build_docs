@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # juci main page is actually in the template 
 cp docs/juci.md.tpl docs/juci.md
