@@ -25,25 +25,26 @@ JUCI.app
 	return new Samba(); 
 }); 
 
-(function(){
-	UCI.$registerConfig("samba"); 
-	UCI.samba.$registerSectionType("samba", {
-		"name":		{ dvalue: "", type: String }, 
-		"workgroup":		{ dvalue: "", type: String },
-		"description":	{ dvalue: "", type: String },
-		"homes":	{ dvalue: false, type: Boolean }
-	}); 
-	UCI.samba.$registerSectionType("sambashare", {
-		"create_mask":		{ dvalue: "0700", type: String }, 
-		"dir_mask":		{ dvalue: "0700", type: String }, 
-		"name":		{ dvalue: "", type: String }, 
-		"users":		{ dvalue: [], type: Array }, 
-		"guest_ok":		{ dvalue: "", type: String }, // Yes/no
-		"read_only":		{ dvalue: "", type: String }, // Yes/no
-		"path":		{ dvalue: "/mnt", type: String }
-	}); 
-	UCI.samba.$registerSectionType("sambausers", {
-		"user":		{ dvalue: "", type: String }, 
-		"password":		{ dvalue: "", type: String }
-	}); 
-})(); 
+UCI.$registerConfig("samba"); 
+UCI.samba.$registerSectionType("samba", {
+	"name":			{ dvalue: "", type: String }, 
+	"workgroup":	{ dvalue: "", type: String },
+	"description":	{ dvalue: "", type: String },
+	"charset": 		{ dvalue: "", type: String },
+	"homes":		{ dvalue: false, type: Boolean }
+}); 
+
+UCI.samba.$registerSectionType("sambashare", {
+	"name":			{ dvalue: "", type: String }, 
+	"path":			{ dvalue: "/mnt", type: String },
+	"users":		{ dvalue: "", type: String }, // comma separated list
+	"read_only":	{ dvalue: "", type: String }, // Yes/no
+	"guest_ok":		{ dvalue: "", type: String }, // Yes/no
+	"create_mask":	{ dvalue: "0700", type: String }, 
+	"dir_mask":		{ dvalue: "0700", type: String } 
+}); 
+
+UCI.samba.$registerSectionType("sambausers", {
+	"user":		{ dvalue: "", type: String }, 
+	"password":		{ dvalue: "", type: String }
+}); 

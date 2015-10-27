@@ -14,17 +14,18 @@
 					<input type="text" ng-model="config.description.value" class="form-control" placeholder="{{'Description'|translate}}"/>
 				</juci-config-line>
 				<juci-config-line title="{{'Share User Home Directory'|translate}}">
-					<input type="checkbox" ng-model="config.homes.value" class="form-control" />
+					<switch ng-model="config.homes.value" class="green"></switch>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
 		<juci-config-section>
 			<juci-config-heading>{{ 'Samba Shares' | translate }}</juci-config-heading>
-			<juci-list-editor ng-items="shares" item-editor="samba-share-edit" get-item-title="getSambaShareTitle($item)"></juci-list-editor>
-		</juci-config-section>
-		<juci-config-section>
-			<juci-config-heading>{{ 'Samba Users' | translate }}</juci-config-heading>
-			<p>TODO</p>
+			<juci-config-info translate>samba.shares.info</juci-config-info>
+			<juci-list-editor ng-items="shares" 
+				item-editor="samba-share-edit" 
+				get-item-title="getSambaShareTitle($item)"
+				on-create="onCreateShare()"
+				on-delete="onDeleteShare($item)"></juci-list-editor>
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>

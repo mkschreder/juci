@@ -7,10 +7,10 @@
 			<input type="text" class="form-control" ng-model="share.path.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Allow Guest Access'|translate}}">
-			<input type="checkbox" class="form-control" ng-model="data.guest_ok"/>
+			<switch ng-model="data.guest_ok" class="green"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Read only?'|translate}}">
-			<input type="checkbox" class="form-control" ng-model="data.read_only"/>
+			<switch ng-model="data.read_only" class="green"/>
 		</juci-config-line>
 	</juci-config-lines>
 </div>
