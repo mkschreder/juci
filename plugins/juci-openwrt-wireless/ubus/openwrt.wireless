@@ -18,7 +18,8 @@ local iwinfo = require("iwinfo");
 require("ubus"); 
 
 local function wireless_get_80211_device_names()
-	local output = juci.shell("find /sys/class/net/**/*phy80211* | awk 'BEGIN{FS=\"/\"} { print $5 }'"); 
+	-- this will get list of devices that support phy80211 interface. 
+	local output = juci.shell("find /sys/class/net/**/*phy80211* 2> /dev/null | awk 'BEGIN{FS=\"/\"} { print $5 }'"); 
 	local devices = {}; 
 	for wldev in output:gmatch("[^\r\n]+") do   
 		table.insert(devices, wldev); 
@@ -95,7 +96,7 @@ local function wireless_get_extended_stainfo(wldev, macaddr)
 	return info; 
 end
 
-function wireless_devices()
+local function wireless_devices()
 	local result = {}; 
 	result.devices = wireless_get_80211_devices(); 
 	print(json.encode(result)); 
@@ -107,11 +108,11 @@ local function wireless_get_caps()
 	print(json.encode(result)); 
 end
 
-function wireless_radios()
+local function wireless_radios()
 
 end
 
-function wireless_clients()
+local function wireless_clients()
 	local devices = wireless_get_80211_device_names(); 
 	local result = { clients = {} }; 
 	for _,wldev in ipairs(devices) do
