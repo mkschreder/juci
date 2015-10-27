@@ -15,14 +15,10 @@ JUCI.app
 			$scope.interfaces = interfaces; 
 			var devcounter = {}; 
 			$scope.interfaces.map(function(x){
-				var dev = devices.find(function(dev) { return dev[".name"] == x.device.value; }); 
-				x[".frequency"] = (dev||{})[".frequency"]; 
-				// TODO: this is a workaround for automatically setting ifname. It should be reworked so that ifname is actually set to the value of ifname in the broadcom wifi script!
-				var devid = ""; 
-				var devname = dev[".name"]; 
-				if(!devcounter[devname]) devcounter[devname] = 1; 
-				else devid = devcounter[devname]++; 
-				x.ifname.value = devname+((devid)?("."+devid):""); 
+				var dev = devices.find(function(dev) { return dev[".name"] == x.device.value; });  
+				if(dev){
+					x[".frequency"] = dev[".frequency"]; 
+				}
 			}); 
 			$scope.$apply(); 
 		}); 
