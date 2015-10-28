@@ -40,7 +40,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 				if(dev.device in ports){
 					dev.name = ports[dev.device].name; 
 					delete ports[dev.device]; 
-				} else if(dev.device.match(/br-.*/)){
+				} else if(dev.device && dev.device.match(/br-.*/)){
 					// rename the bridge to a better name
 					dev.name = "BRIDGE-" + dev.device.substr(3).toUpperCase(); 
 				}
