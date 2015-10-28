@@ -14,7 +14,7 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("overviewWidgetVoice", function($scope, $rpc, $uci, $config, $tr, gettext){
+.controller("overviewWidgetVoice", function($scope, $rpc, $uci, $tr, gettext){
 	$scope.sipAccounts = []; 
 	$scope.phoneSchedStatus = gettext("off"); 
 	async.series([
