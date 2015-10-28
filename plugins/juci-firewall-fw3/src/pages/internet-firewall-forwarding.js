@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetFirewallForwardingPage", function($scope, $uci, $firewall, $config){
+.controller("InternetFirewallForwardingPage", function($scope, $uci, $firewall){
 	$scope.data = {}; 
 	$firewall.getZones().done(function(zones){
 		$uci.$sync("firewall").done(function(){

@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetFirewallPageCtrl", function($scope, $uci, $firewall, $config){
+.controller("InternetFirewallPageCtrl", function($scope, $uci, $firewall){
 	$scope.data = {}; 
 	$firewall.getZones().done(function(zones){
 		$scope.zones = zones; 

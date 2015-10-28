@@ -50,11 +50,18 @@ $juci.module("internet")
 			}).always(function(){ next(); }); 
 		}, 
 		function(next){
-			$rpc.network.interface.status({
-				"interface": $config.wan_interface
-			}).done(function(wan){
-				if("ipv4-address" in wan)
-					$scope.wan.ip = wan["ipv4-address"][0].address; 
+			// get all wan interfaces and list their ip addresses
+			$network.getDefaultRouteNetworks().done(function(nets){
+				var addr = []; 
+				nets.map(function(net){
+					net.$info["ipv4-address"].map(function(a){
+						addr.push(a.address); 
+					}); 
+					net.$info["ipv6-address"].map(function(a){
+						addr.push(a.address); 
+					}); 
+					$scope.wan.ip = addr.join(","); 
+				}); 
 			}).always(function(){ next(); }); 
 		}
 	], function(){

@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetFirewallRulesPage", function($scope, $uci, $firewall, $config){
+.controller("InternetFirewallRulesPage", function($scope, $uci, $firewall){
 	$firewall.getRules().done(function(rules){
 		$scope.rules = rules; 
 		$scope.$apply(); 
