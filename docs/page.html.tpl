@@ -34,6 +34,7 @@
 						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
 						<li><a href="creating-pages.html">Creating Pages</a></li>
 						<li><a href="creating-themes.html">Creating Themes</a></li>
+						<li><a href="creating-translations.html">Creating Translations</a></li>
 					</ul>
 					<center>
 						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

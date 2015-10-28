@@ -3,6 +3,13 @@ JUCI
 
 JUCI WebGUI is designed for building modern and dynamic web interfaces for embedded devices. 
 
+Tutorials
+=========
+
+* [Creating Pages](creating-pages.html) - learn how to setup a new page in juci plugin
+* [Creating themes for JUCI](creating-themes.html) - learn how theming works and how to develop custom styles
+* [Creating translations](creating-translations.html) - learn how to add support for new languages
+
 Core Subsystems
 ==============
 
@@ -26,12 +33,6 @@ Plugin Widgets Library
 ==================
 
 %WIDGETS_TOC%
-
-Tutorials
-=========
-
-* [Creating Pages](creating-pages.html) - learn how to setup a new page in juci plugin
-* [Creating themes for JUCI](creating-themes.html) - learn how theming works and how to develop custom styles
 
 Appendix
 ========
