@@ -76,24 +76,7 @@
 		}
 	}
 	
-	var section_types = {
-		"juci": {
-			"settings": {
-				"theme":					{ dvalue: "", type: String }, 
-				"showlogin":			{ dvalue: true, type: Boolean }, 
-				"defaultuser":		{ dvalue: "admin", type: String }, 
-				"lang":						{ dvalue: "", type: String }, 
-				"themes":					{ dvalue: [], type: Array }, 
-				"plugins":				{ dvalue: [], type: Array }, 
-				"languages":			{ dvalue: [], type: Array }
-			}, 
-			"test": { // used for unit testing!
-				"str":						{ dvalue: "", type: String }, 
-				"num":						{ dvalue: 0, type: Number },
-				"bool":						{ dvalue: false, type: Boolean }
-			}
-		}
-	};
+	var section_types = {};
 	function UCI(){
 		
 	}
@@ -388,7 +371,8 @@
 
 			var to_delete = {}; 
 			Object.keys(self).map(function(x){
-				if(self[x].constructor == UCI.Section) to_delete[x] = self[x]; 
+				// prevent deletion of automatically created type sections with default value which are created by registerSectionType..
+				if(self[x].constructor == UCI.Section && self[x][".type"] != self[x][".name"]) to_delete[x] = self[x]; 
 			}); 
 			//console.log("To delete: "+Object.keys(to_delete)); 
 		
@@ -448,6 +432,14 @@
 			//console.log("Registered new section type "+config+"."+name); 
 		}
 		
+		UCIConfig.prototype.$insertDefaults = function(typename, sectionname){
+			if(!sectionname) sectionname = typename; 
+			// insert a default section with the same name as the type
+			// this allows us to use $uci.config.section.setting.value without having to first check for the existence of the section.
+			// we will get defaults by default and if the section exists in the config file then we will get the values from the config.
+			_insertSection(this, { ".type": typename, ".name": sectionname });  
+		}
+
 		UCIConfig.prototype.$deleteSection = function(section){
 			var self = this; 
 			var deferred = $.Deferred(); 

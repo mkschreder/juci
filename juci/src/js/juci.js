@@ -85,46 +85,12 @@
 			}, 
 			function(next){
 				$rpc.$authenticate().done(function(){
-					// here we get router info part of the config. It will allow us to 
-					// pick the correct theme in the init script. TODO: perhaps do this somewhere else? 
-					$rpc.juci.system.info().done(function(info){
-						//console.log("Router info: "+JSON.stringify(info.system)); 
-						if(info && info.system) JUCI.config.system = info.system; 
-						next(); 
-					}).fail(function(){
-						console.error("Could not get system info. This gui depends on questd. You likely do not have it installed on your system!"); 
-						next(); 
-					});
+					next(); 
 				}).fail(function(){
 					console.log("Failed to verify session."); 
 					next(); 
 				}); 
 			},
-			// Themes are no longer loaded like this - instead they are compiled in right now and only one can be used at a time. 
-			// TODO: make theme changing work again just like before. 
-			/*function(next){	
-				// TODO: this will be moved somewhere else. What we want to do is 
-				// pick both a theme and plugins based on the router model. 
-				//console.log("Detected hardware model: "+$juci.config.system.hardware); 
-				var $config = $juci.config; 
-				
-				$config.mode = localStorage.getItem("mode") || "basic"; 
-				$config.theme = localStorage.getItem("theme") || "inteno"; 
-				
-				if($config.theme == "default") $config.theme = "inteno"; 
-
-				$juci.theme.changeTheme($config.theme).done(function(){
-				
-				}).always(function(){
-					next(); 
-				}); 
-			}, */
-			// no longer used! 
-			/*function(next){
-				require(scripts, function(module){
-					next(); 
-				}); 
-			},*/ 
 			function(next){
 				// get the menu navigation
 				if(!$rpc.juci){
@@ -175,7 +141,8 @@
 			}, 
 			function(next){
 				// set various gui settings such as mode (and maybe theme) here
-				$juci.config.mode = localStorage.getItem("mode") || "basic"; 
+				// TODO: fix this. (mode will not be set automatically for now when we load the page. Need to decide where to put this one) 
+				//$juci.config.mode = localStorage.getItem("mode") || "basic"; 
 				next(); 
 			}
 		], function(){
@@ -287,4 +254,20 @@
 			return scope.localStorage; 
 		});
 	}
+
+	UCI.$registerConfig("juci"); 
+
+	UCI.juci.$registerSectionType("login", {
+		"showusername":		{ dvalue: true, type: Boolean }, // whether to show or hide the username on login page 
+		"defaultuser":		{ dvalue: "admin", type: String }, // default user to display on login page or to use when username is hidden 
+	}); 
+	UCI.juci.$insertDefaults("login"); 
+
+	UCI.juci.$registerSectionType("localization", {
+		"default_language":		{ dvalue: "en", type: String }, // language used when user first visits the page 
+		"languages":			{ dvalue: [], type: Array } // list of languages available (use name of po file without .po extension and in lower case: se, en etc..)
+	});  
+	// register default localization localization section so that we don't need to worry about it not existing
+	UCI.juci.$insertDefaults("localization"); 
+
 })(typeof exports === 'undefined'? this : exports); 

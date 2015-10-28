@@ -1,17 +1,18 @@
 {
-	"juciguest": {
-		"description": "Functions allowed for non logged-in users",
+	"unauthenticated": {
+		"description": "These extend default unauthenticated acl with some extra things for juci",
 		"read": {
 			"ubus": {
 				"juci.ui": [
 					"themes"
 				]
-			}
+			}, 
+			"uci": [ "juci" ] 
 		}
 	},
 
 	"core": {
-		"description": "Core functions for JUCI",
+		"description": "Core functions for JUCI (TODO: remove)",
 		"read": {
 			"ubus": {
 				"/juci/system": [

@@ -8,10 +8,11 @@ JUCI.app.factory('$tr', function(gettextCatalog) {
 });
 
 JUCI.app.factory('$languages', function($config, gettextCatalog, $localStorage) {
-	gettextCatalog.currentLanguage = $localStorage.getItem("language") || "en"; 
+	gettextCatalog.currentLanguage = $localStorage.getItem("language") || $config.settings.localization.default_language.value || "en"; 
 	return {
 		getLanguages: function(){
-			return $config.languages.filter(function(lang){
+			var languages = ($config.settings.localization)?($config.settings.localization.languages.value):[]; 
+			return languages.filter(function(lang){
 				return lang in gettextCatalog.strings; 
 			}).map(function(lang){
 				return {
