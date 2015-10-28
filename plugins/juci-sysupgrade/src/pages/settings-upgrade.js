@@ -7,7 +7,7 @@ JUCI.app
 	$scope.usbFileName = "()"; 
 	$scope.usbUpgradeAvailable = false;  
 	
-	$scope.current_version = $config.board.distribution + "-" + $config.board.revision; 
+	$scope.current_version = $config.board.release.distribution + "-" + $config.board.release.revision; 
 	
 	$uci.$sync("system").done(function(){
 		$scope.system = $uci.system; 
