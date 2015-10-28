@@ -176,10 +176,6 @@ JUCI.app.run(function($ethernet, $wireless, $uci){
 				$uci.save();
 			});  
 		} 
-		// remove the deprecated network field from all wireless configs
-		$uci.wireless["@wifi-iface"].map(function(x){
-			x.network.value = ""; 
-		}); 
 		$uci.$save(); 
 	}); 
 }); 
