@@ -59,7 +59,8 @@ and then tag the static format string to be included in the database. You will
 then translate a format string with tags in it to different languages. Like
 this: 
 
-	String.format($tr(gettext("There were {1} people in the room")), person_count); 
+	String.format($tr(gettext("There were {1} people in the room")), 
+		person_count); 
 
 Wheat about dynamic data in configs? 
 ------------------------------------
@@ -93,5 +94,23 @@ with new strings and put into /www/99-translations.js in the final package.
 If you already have a language file from before, you can open it with `poedit`
 and update it from the new .pot file. Poedit will then hide strings that are no
 longer used and add new ones. 
+
+Configuring available translations in JUCI
+==========================================
+
+To set default language and list of translations you currently need to add it
+in your /etc/config/juci file. 
+
+	config localization localization
+		option default_language 'en'
+		list languages 'en'
+		list languages 'se'
+
+Note: if you have selected a language on the web page and then set default
+language, next time you load the page you will still get the language that you
+have selected. This is because juci saves the language in your browser
+localStorage and loads it when you visit the site. If the value is not present
+in your localStorage, you will get the default_language setting selected
+instead. 
 
 
