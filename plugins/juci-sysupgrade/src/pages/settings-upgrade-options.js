@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("SettingsUpgradeOptions", function($scope, $config, $uci, $rpc, $tr, gettext){
+.controller("SettingsUpgradeOptions", function($scope, $uci, $rpc, $tr, gettext){
 	$scope.allImageExtensions = [
 		{ label: $tr(gettext(".w (JFFS Image)")), value: ".w" },
 		{ label: $tr(gettext(".y (UBIFS Image)")), value: ".y" }, 

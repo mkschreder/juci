@@ -1,13 +1,13 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("SettingsUpgradeCtrl", function($scope, $config, $uci, $rpc, gettext){
+.controller("SettingsUpgradeCtrl", function($scope, $uci, $config, $rpc, gettext){
 	$scope.sessionID = $rpc.$sid();
 	$scope.uploadFilename = "/tmp/firmware.bin";
 	$scope.usbFileName = "()"; 
 	$scope.usbUpgradeAvailable = false;  
 	
-	$scope.config = $config; 
+	$scope.current_version = $config.board.distribution + "-" + $config.board.revision; 
 	
 	$uci.$sync("system").done(function(){
 		$scope.system = $uci.system; 

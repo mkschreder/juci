@@ -5,7 +5,7 @@
 			<juci-config-info>{{ 'settings.upgrade.info' | translate }}</juci-config-info>
 			<juci-config-lines>
 				<juci-config-line title="{{'Current Firmware Version'|translate}}">
-					<strong>{{config.system.firmware || board.release.description}} {{board.release.revision}}</strong>
+					<strong>{{current_version}}</strong>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
