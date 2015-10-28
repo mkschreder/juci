@@ -36,7 +36,7 @@ function WifiMonitor:scan(radio)
 end
 
 function WifiMonitor:poll_scan_results(radio)
-	local stdout = juci.shell("wlctl -i %s scanresults", (readio or "wl1")); 
+	local stdout = juci.shell("wlctl -i %s scanresults 2>/dev/null", (radio or "wl1")); 
 	local aps = {}; 
 	local obj = {}; 
 
@@ -76,7 +76,6 @@ function WifiMonitor:poll_scan_results(radio)
 	if next(obj) ~= nil then 
 		store_object(); 
 	end
-	f:close(); 
 	return aps; 
 end
 
