@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="how-juci-works.html">How JUCI Works</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+						<li><a href="creating-translations.html">Creating Translations</a></li>
+					</ul>
+					<center>
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- juci left -->
+						<ins class="adsbygoogle"
+							 style="display:inline-block;width:160px;height:600px"
+							 data-ad-client="ca-pub-0092476366635849"
+							 data-ad-slot="9060201735"></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>		
+					</center>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h1>JUCI $rpc SUBSYSTEM</h1>
+<p>This factory provides access to the rpc subsystem on OpenWRT through
+uhttpd-mod-ubus plugin. In juci, all dynamic data requests are done through
+json rpc. So most plugins will use this module to communicate with the backend.</p>
+
+<p>The rpc module is available in two ways:</p>
+
+<ul>
+<li>angular $rpc factory / service</li>
+<li>$rpc variable in the browser window object (you can access it like that in
+  browser console)</li>
+</ul>
+
+
+<p>For the most part you will be using the angular service for doing rpc calls
+because most of juci plugins are angular objects.</p>
+
+<p><code>accessing $rpc in angular</code></p>
+
+<pre><code>JUCI.app.controller("yourController", function($rpc){
+    $rpc.juci.ui.menu().done(function(){
+
+    }); 
+});
+</code></pre>
+
+<p><code>accessing in window</code></p>
+
+<pre><code>$rpc.juci.ui.menu().done(function(){
+
+}); 
+</code></pre>
+
+<p>All rpc methods return a jquery promise which has three methods: done, fail and
+always. You can supply your callback to these methods which will be called when
+the request either succeeds or fails. always() callback will be called in every
+case.</p>
+
+<p>RPC methods themselves are created on the fly in juci based on the list of
+available rpc methods present on the target system (it uses list of ubus
+objects for this). So you will never need to add methods to this object
+manually. Just add them in the backend and they will appear in the object.
+There are however access control lists that may prevent you from accessing your
+method from the gui, and to fix this you will need to create corresponding
+access.json file and then install it with unique name into
+/usr/share/rpcd/acl.d/ folder on the router. Exactly how to configure acl lists
+is described in more detail in OpenWRT rpcd documentation.</p>
+
+<h1>METHODS</h1>
+
+<pre><code>$sid: function(sid) -&gt; sid
+    Set or get current session id for currently active session
+
+$isLoggedIn: function() -&gt; bool
+    Check if you are currently logged in to rpc. Returns true or false. 
+
+$authenticate: function() -&gt; promise
+    Attempt to access the current session. Will succeed if you are logged
+    in, but will fail when your session ends abruptly or times out on the
+    router. This is a good way to test if you still can access your
+    session. 
+
+$login: function({username, password}) -&gt; promise
+    Login using supplied credentials. For this method to work, your rpcd
+    test should allow you to access session.login method when you are not
+    authenticated (default defined in unauthenticated.json acl list). 
+
+$logout: function() -&gt; promise 
+    Logout current session. 
+
+$init: function() -&gt; promise
+    Initializes the $rpc object. This method will also generate appropriate
+    methods in the $rpc object that correspond to the ubus methods that are
+    available on the backend. Note that this method currently will be able
+    to get all of the available ubus methods through http without logging
+    in using current version of rpcd. In the future this may change to
+    include only the methods availabel through unauthenticated session. 
+</code></pre>
+
+<h1>BACKEND</h1>
+
+<p>In order for RPC calls to work, you obviously need a backend that will execute
+the call on the actual device. JUCI supports writing backend in any language
+that can publish objects on ubus and it also provides support for writing ubus
+objects in shell scripts. So you have a very wide choice in how exactly you
+will implement your backend. JUCI is for the most part now using Lua to
+implement backend functions because it has proven to be dynamic enough and also
+fast on actual hardware.</p>
+
+<p>Once your backend publishes it's rpc functions on ubus, they will automatically
+become available in juci $rpc object once you reload the page.</p>
+
+<p>Example:</p>
+
+<pre><code>$rpc.my.object.method().done(function(result){
+    console.log(JSON.stringify(result)); 
+}); 
+</code></pre>
+
+<p>You do however need to configure proper access rights for your ubus methods
+before you can call them. This is part of the access list (acl) configuration.</p>
+
+</div>
+				</div>
+				<div class="col-md-3">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -50,7 +50,37 @@
 					</center>
 				</div>
 				<div class="col-md-7 main">
-					%CONTENT%
+					
+<div class='mp'>
+<h1>JUCI SWITCH</h1>
+<p>The <code>juci-switch</code> control basically shows a toggle switch in the browser that
+can be toggled by the user. It's <code>ng-model</code> parameter should point to a boolean
+value that will be updated when user toggles the switch.</p>
+
+<h1>PARAMETERS</h1>
+
+<ul>
+<li><p><code>ng-model</code> - boolean value that will be updated when switch is toggled.</p></li>
+<li><p><code>class</code> - usually set to "green" and specifies css class for the switch.</p></li>
+</ul>
+
+
+<h1>EXAMPLE</h1>
+
+<pre><code>&lt;switch ng-model="data.model" class="green"/&gt;
+
+$scope.data = { model: false }; 
+</code></pre>
+
+<h1>NOTE</h1>
+
+<p>Currently the switch control does not work correctly when the boolean value is
+placed directly in scope. For this reason it needs to receive an object field
+as model which in the example above is data.model. This will work, while
+placing the boolean value directly as a member of scope and using just "model"
+as model will result in value not being updated correctly.</p>
+
+</div>
 				</div>
 				<div class="col-md-3">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

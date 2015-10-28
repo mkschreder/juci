@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="how-juci-works.html">How JUCI Works</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+						<li><a href="creating-translations.html">Creating Translations</a></li>
+					</ul>
+					<center>
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- juci left -->
+						<ins class="adsbygoogle"
+							 style="display:inline-block;width:160px;height:600px"
+							 data-ad-client="ca-pub-0092476366635849"
+							 data-ad-slot="9060201735"></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>		
+					</center>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h1>CREATING THEMES</h1>
+<p>There are 5 ways that you can customize your juci interface.</p>
+
+<ul>
+<li><code>style your theme with CSS</code> - this way you can make colorscheme adjustments to an exiting theme</li>
+<li><code>override existing page html</code> - this way you can tweak html structure of existing controlls and pages</li>
+<li><code>write new pages</code> - you can also create completely new pages using html and javascript</li>
+<li><code>write custom plugins</code> - you can put together complete replacements for existing packages</li>
+<li><code>develop a completely standalone interface that uses juci RPC calls</code> - this way you can for example create native mobile apps and extensions.</li>
+</ul>
+
+
+<h1>THEMES</h1>
+
+<p>At the core level there is little difference between a theme and a plugin. JUCI treats both plugins and themes the same. The main difference is that you can only have a single theme active, but you can have many plugins selected. In this way, themes are always in conflict with all other themes, and plugins are usually written in a way that allows them to coexist with other plugins. Themes are also typically loaded last in the html file so that they always override all styles and templates from all other JUCI modules. This order of loading is however user determined and works the same way even for plugins. So essentially you can have a plugin that implements all of the theme functionality - but this is not recommended becuase it is then not clear to the user what is a theme and what is a plugin.</p>
+
+<h1>COMPILING A THEME</h1>
+
+<p>There are two ways to compile your theme:</p>
+
+<ul>
+<li><code>add a symplink to your theme in the main juci themes directory</code> then select CONFIG_PACKAGE_<var>your theme dir name</var>=y makefile variable and run make (you can set this in your Makefile.local if you want to test using your local server)</li>
+<li><code>create a separate directory outside of juci tree</code> and build using juci external mode make: make -C <var>path to juci source</var> MODULE=<var>absolute path to your theme source</var></li>
+</ul>
+
+
+<p>When juci builds your theme as an external module it will create a <var>bin</var> folder in your plugin directory where it will place all processed files just like they will be installed in the final root tree. So you can just copy the contents of this bin folder to the root of your final installation in order to install the theme.</p>
+
+<h1>TESTING USING LOCAL SERVER</h1>
+
+<p>You can test your theme using local server. For this you will need to tell your local make to build all the necessary plugins.</p>
+
+<ul>
+<li>copy example-Makefile.local to Makefile.local and make adjustments to it. Select all the packages you need, including your theme.</li>
+<li>run "make debug".</li>
+<li>run ./juci-local-server --host <code>a working rpc host</code></li>
+</ul>
+
+
+<p>Even though the server works locally, you still need to have a working installation somewhere that will provide your local interface with RPC data.</p>
+
+<p>When you make changes, run "make debug" again and reload the page for changes to take effect. The reason you will use debug target is so that you can see your javascript code unmodified. Default make target will typically compress javascript code and make it difficult to debug.</p>
+
+<h1>ADDING IMAGES AND OTHER ASSETS</h1>
+
+<p>In your theme folder you can have an optional Makefile with special JUCI target Package/your_plugin/install where you can define extra commands that will run as part of installing all necessary files to root.</p>
+
+<pre><code>define Package/myplugin/install
+    $(INSTALL_DIR) $(1)/www/img
+    $(CP) $(PLUGIN_DIR)/img/* $(1)/www/img/
+endef
+</code></pre>
+
+<p>The syntax of this section is very similar to how you would write these sections in openwrt make system.</p>
+
+<ul>
+<li>$(1) is the install directory</li>
+<li>$(PLUGIN_DIR) is the directory where your plugin is currently being built</li>
+<li>$(INSTALL_DIR) is basically defined as "mkdir -p"</li>
+<li>$(CP) is "cp -Rp" etc.</li>
+</ul>
+
+
+<h1>INTEGRATING WITH OPENWRT</h1>
+
+<p>To integrate your theme package into openwrt you will also need to create a separate openwrt Makefile for your theme. You will typically put this Makefile into a feed and make it available for inclusion into an OpenWRT build. The source code of your theme can then either be included into the feed, or downloaded separately when openwrt builds your theme. Do not include any OpenWRT specific things into the main theme Makefile. Even though it may look compatible - it is not the same.</p>
+
+</div>
+				</div>
+				<div class="col-md-3">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

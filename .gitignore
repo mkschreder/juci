@@ -20,7 +20,6 @@ services/**/build
 *~
 /Makefile.local
 .cleaned
-manual
 *.pot
 *.mo
 translations.tar.gz

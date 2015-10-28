@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JUCI WebGUI Documentation Manual</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body style="font-family: sans; font-size: 1.5em">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="juci.html">JUCI Docs</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					</ul>
+					<!--<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>-->
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="padding-top: 60px;">
+			<div class="row">
+				<div class="col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="juci.html">Overview</a></li>
+						<li><a href="how-juci-works.html">How JUCI Works</a></li>
+						<li><a href="creating-backend-scripts.html">Creating Backend</a></li>
+						<li><a href="creating-pages.html">Creating Pages</a></li>
+						<li><a href="creating-themes.html">Creating Themes</a></li>
+						<li><a href="creating-translations.html">Creating Translations</a></li>
+					</ul>
+					<center>
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- juci left -->
+						<ins class="adsbygoogle"
+							 style="display:inline-block;width:160px;height:600px"
+							 data-ad-client="ca-pub-0092476366635849"
+							 data-ad-slot="9060201735"></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>		
+					</center>
+				</div>
+				<div class="col-md-7 main">
+					
+<div class='mp'>
+<h1>Creating Translations</h1>
+<p>JUCI is written with multi-language support from the start. Translations are
+added through a combination of special directives and a translation database.</p>
+
+<p>All text strings that need to be translated are first tagged using any one of
+these methods:</p>
+
+<ul>
+<li>translate directive: &lt;div translate>Text to be translated&lt;/div></li>
+<li>angular filter: {{'text string'|translate}}</li>
+<li>or directly in code: $tr(gettext("text string))</li>
+</ul>
+
+
+<p>In code, strings are <var>tagged</var> using the <code>gettext</code> method (which does not do
+anything - it is an empty method that is there just for easy parsing of the
+strings), and they are translated using $tr() juci service. This is why you
+typically write <code>$tr(gettext(...))</code>.</p>
+
+<p>When you write your code, you should try to make sure that you only ever
+translate static strings. So do no write {{variable|translate}}. This should be
+avoided because it will only work if variable actually contains translatable
+text. If it does not, then it will not work obviously and the string extracting
+process has no way of knowing in advance what value the variable can have. So
+instead, use a lookup table of translatable strings if you do want to look up a
+string based on a variable.</p>
+
+<h2 id="Where-do-the-strings-end-up-">Where do the strings end up? </h2>
+
+<p>The strings are extracted from all js and html files during the build process.
+The makefile will run <code>angular-gettext</code> job through <code>grunt</code> and extract them. It
+will put them into the po files folder in a sisngle file called juci_all_strings.pot</p>
+
+<pre><code>po/
+|-- custom.js
+|-- de.po
+|-- en.po
+|-- fi.po
+|-- juci_all_strings.pot
+|-- sv.po
+|-- titles.js
+</code></pre>
+
+<p>You can add custom strings to the database by simply tagging them using
+<code>gettext(...)</code>. Normally you would do this exactly in the place where the string
+is to be used. In html you will use <var>translate</var> directive and in code you will
+tag them with <code>gettext</code> and typically also translate them. If, however, you have
+strings that you still want to translate but which can not be put anywhere
+else, then you can put them in a separate javascript file in your plugin which
+you will with lines just enclosing strings in <code>gettext</code> function call:</p>
+
+<pre><code>gettext("foo")
+gettext("bar") 
+</code></pre>
+
+<h2 id="Handling-dynamic-strings">Handling dynamic strings</h2>
+
+<p>Dynamic data is often problematic. What you can do though is use String.format
+and then tag the static format string to be included in the database. You will
+then translate a format string with tags in it to different languages. Like
+this:</p>
+
+<pre><code>String.format($tr(gettext("There were {1} people in the room")), 
+    person_count); 
+</code></pre>
+
+<h2 id="Wheat-about-dynamic-data-in-configs-">Wheat about dynamic data in configs? </h2>
+
+<p>This one is harded. You still need to know the full domain of strings to be
+translated - this is unavoidable. What you would do then is put your language
+tables into a json file and compile it into a js translation file that you will
+load on top of main translation using a script provided by juci called
+<code>./scripts/json-to-lang-js</code>. You then put this file into /www/ folder and run
+<code>juci-update</code> to regenerate index.html so that it includes this file as well.</p>
+
+<h2 id="What-other-things-are-included-in-the-database-">What other things are included in the database? </h2>
+
+<p>The makefile will also include menu titles and autogenerated page title keys
+into the database so that you can translate them as well. Page title keys will
+have the form of dotted page filename with .title appended after it. So
+internet-settings page title key will be called internet.settings.title.</p>
+
+<h1>Translating the po template (.POT)  </h1>
+
+<p>What you end up with after you build juci is a single file that contains all
+strings from all plugins included in the build. <code>poedit</code> is then used to
+translate this file into different languages. You fire up poedit, create a new
+database (if your language does not already exist) and choose Catalog ->
+Update from POT. And then you translate the strings and save the .po file in
+po/ folder. When you then run make, your translation databse will be rebuild
+with new strings and put into /www/99-translations.js in the final package.</p>
+
+<p>If you already have a language file from before, you can open it with <code>poedit</code>
+and update it from the new .pot file. Poedit will then hide strings that are no
+longer used and add new ones.</p>
+
+<h1>Configuring available translations in JUCI</h1>
+
+<p>To set default language and list of translations you currently need to add it
+in your /etc/config/juci file.</p>
+
+<pre><code>config localization localization
+    option default_language 'en'
+    list languages 'en'
+    list languages 'se'
+</code></pre>
+
+<p>Note: if you have selected a language on the web page and then set default
+language, next time you load the page you will still get the language that you
+have selected. This is because juci saves the language in your browser
+localStorage and loads it when you visit the site. If the value is not present
+in your localStorage, you will get the default_language setting selected
+instead.</p>
+
+</div>
+				</div>
+				<div class="col-md-3">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- JUCI -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:600px"
+					 data-ad-client="ca-pub-0092476366635849"
+					 data-ad-slot="4270075334"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>				
+				</div>
+			</div>
+		</div>	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

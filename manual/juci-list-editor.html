@@ -50,7 +50,41 @@
 					</center>
 				</div>
 				<div class="col-md-7 main">
-					%CONTENT%
+					
+<div class='mp'>
+<h1>JUCI LIST EDITOR</h1>
+<p>This is a generic control that handles a list of objects and allows you to
+select, edit and delete the items in the list. This control is very useful for
+creating dynamic editable lists for up to 10-20 items. It is designed to be
+responsive so that it works just as well on a mobile device as in web browser.
+In JUCI this control is used for editing lists of uci objects - such as wifi
+interfaces, network interfaces etc.</p>
+
+<h1>PARAMETERS</h1>
+
+<ul>
+<li><p><code>ng-items</code> - an <code>Array</code> of items that will be edited.</p></li>
+<li><p><code>item-editor</code> - the name of the directive that will be used for editing an item (without the <var> and </var>). Directive must accept ng-model parameter that will be set to the currently edited item.</p></li>
+<li><p><code>get-item-title</code> - a function or expression that retreives the title of an item to be shown in the gui. $item variable can be used to refer to the actual item.</p></li>
+<li><p><code>on-create</code> - a function to be called when user presses Add button.</p></li>
+<li><p><code>on-delete</code> - a function to be called when user deletes and item.</p></li>
+</ul>
+
+
+<h1>TRANSLATION</h1>
+
+<p>The <code>get-item-title</code> function should return an already translated string.</p>
+
+<h1>EXAMPLE</h1>
+
+<pre><code>&lt;juci-item-editor ng-items="item_array"
+    item-editor="item-edit-directive"
+    get-item-title="$item.title"
+    on-create="onCreateItem()"
+    on-delete="onDeleteItem($item)" /&gt;
+</code></pre>
+
+</div>
 				</div>
 				<div class="col-md-3">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

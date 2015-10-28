@@ -50,7 +50,63 @@
 					</center>
 				</div>
 				<div class="col-md-7 main">
-					%CONTENT%
+					
+<div class='mp'>
+<h1>JUCI Config Tools</h1>
+<p>This module consists of several widgets that are typically used for designing
+configuration pages.</p>
+
+<p>The list includes:</p>
+
+<ul>
+<li><code>juci-config-section</code> - a section in the config (typically with a separating line underneath)</li>
+<li><code>juci-config-heading</code> - a heading inside the config</li>
+<li><code>juci-config-info</code> - an information paragraph. Typically underneath a heading</li>
+<li><code>juci-config-lines</code> - for creating a group of lines (like table or enclosing div)</li>
+<li><code>juci-config-line</code> - for structuring title | control pairs
+
+<ul>
+<li><code>title</code> - string to display as the heading of the line</li>
+<li><code>help</code> - paragraph that describes what this setting does</li>
+<li><code>error</code> - variable that points to error text updated by the validator of the field.</li>
+</ul>
+</li>
+<li><code>juci-config-apply</code> - apply and cancel buttons at the bottom of the page.
+
+<ul>
+<li>calls $uci.$save()</li>
+<li>will save all uncommited changes.</li>
+<li>cancel currently reloads the page and thus also reverts all uci changes</li>
+<li>room for improvement</li>
+</ul>
+</li>
+</ul>
+
+
+<p>These are basic building blocks that you will use to create a configuration
+page.</p>
+
+<p>You do not have to use any of these building blocks to build your pages of
+course - they are however a very good way to make all pages look consistent and
+make it easy to restyle not just the CSS, but also the html of all pages at the
+same time.</p>
+
+<h1>Example </h1>
+
+<pre><code>&lt;juci-config-section&gt;
+    &lt;juci-config-heading translate&gt;My Section&lt;/juci-config-heading&gt;
+    &lt;juci-config-info translate&gt;some.key.id.for.info&lt;/juci-config-info&gt;
+    &lt;juci-config-lines&gt;
+        &lt;juci-config-line title="{{'Config Option'|translate}}" 
+            help="{{'help text..'|translate}}" 
+            error="uci.field.$error"&gt;
+            .. control here .. 
+        &lt;/juci-config-line&gt;
+    &lt;/juci-config-lines&gt;
+&lt;/juci-config-section&gt;
+</code></pre>
+
+</div>
 				</div>
 				<div class="col-md-3">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

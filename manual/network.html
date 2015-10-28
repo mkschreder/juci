@@ -50,7 +50,32 @@
 					</center>
 				</div>
 				<div class="col-md-7 main">
-					%CONTENT%
+					
+<div class='mp'>
+<h1>the $network factory</h1>
+<p>This service is responsible for managing network layer that works on top of
+ethernet layer. This includes keeping track of clients that are identifiable on
+the network and managing actual network connections. Note that there can be
+multiple network connections on a single ethernet adapter - such as cases where
+you have multiple ip addresses on a single ethernet interface. The network
+module is responsible for the protocol part of the picture.</p>
+
+<h2 id="functionality">functionality</h2>
+
+<pre><code>function: getClients return:promise, callback(list:network_client)
+
+    this function gets the list of clients that are currently identifiable
+    on the network. Usually this is done using arp or wireless assoc list.
+    The central point for getting the list of clients is the arp table.
+    Once the system has the arp table, it will filter it through each
+    registered subsystem (such as wireless or 3g modem managers or dhcp)
+    which will fill in more details about the client. Thus the basic info
+    is merely an IP address and MAC address - but more information can be
+    queried through plugin modules that register themselves with the
+    network subsystem. 
+</code></pre>
+
+</div>
 				</div>
 				<div class="col-md-3">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

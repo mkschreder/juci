@@ -50,7 +50,28 @@
 					</center>
 				</div>
 				<div class="col-md-7 main">
-					%CONTENT%
+					
+<div class='mp'>
+<h1>JUCI LED Brightness Control</h1>
+<p><code>juci-brightness</code> is a bar selector with two buttons and a 5 step intensity scale. It is mainly to be used for controlling led brightness.</p>
+
+<h1>Parameters</h1>
+
+<ul>
+<li><code>ng-model</code> - the model where to put the resulting value</li>
+<li><code>min</code> - minimum value (default: 0)</li>
+<li><code>max</code> - maximum value (default: 100)</li>
+</ul>
+
+
+<p>The difference between min and max is divided by the number of bars and becomes the increment/decrement step value.</p>
+
+<h1>Example</h1>
+
+<pre><code>&lt;juci-brightness ng-model="config.leds.status.brightness.value" min="0" max="0"/&gt;
+</code></pre>
+
+</div>
 				</div>
 				<div class="col-md-3">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
