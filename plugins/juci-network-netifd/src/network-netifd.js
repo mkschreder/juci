@@ -200,6 +200,38 @@
 			return deferred.promise(); 
 		}
 		
+		// returns list of config sections belong to devices that are configured as default routes along with their runtime info in $info field
+		NetworkBackend.prototype.getDefaultRouteNetworks = function(){
+			var def = $.Deferred(); 
+	
+			$uci.$sync("network").done(function(){
+				$rpc.network.interface.dump().done(function(result){
+					if(result && result.interface) {
+						var wanifs = []; 
+						result.interface.map(function(i){
+							if(i.route && i.route.length && i.route.find(function(r){ return r.target == "0.0.0.0" || r.target == "::"; })){
+								// lookup the config section for this device 
+								var conf = $uci.network["@interface"].find(function(x){ return x[".name"] == i.interface; }); 
+								if(conf) {	
+									conf.$info = i; 
+									wanifs.push(conf); 
+								}
+							}
+						}); 
+						def.resolve(wanifs); 
+					} else {
+						def.reject(); 
+					}
+				}).fail(function(){
+					def.reject(); 
+				}); 
+			}).fail(function(){
+				def.reject(); 
+			}); 
+
+			return def.promise(); 
+		}	
+
 		NetworkBackend.prototype.getServices = function(){
 			var def = $.Deferred(); 
 			$rpc.juci.network.lua.services().done(function(result){
@@ -426,4 +458,10 @@ UCI.hosts.$registerSectionType("host", {
 	"hostname":		{ dvalue: "", type: String, required: true}, 
 	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, required: true}
 });
-			
+
+UCI.juci.$registerSectionType("network", {
+	"wan4_interface": 	{ dvalue: "wan", type: String }, // default wan4 interface name 
+	"wan6_interface": 	{ dvalue: "wan6", type: String }, // default wan6 interface name 
+	"voice_interface": 	{ dvalue: "wan", type: String }, 
+	"iptv_interface": 	{ dvalue: "wan", type: String }
+}); 

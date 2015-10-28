@@ -29,7 +29,7 @@ JUCI.app
 	}); 
 	
 })
-.controller("overviewWidgetNetwork", function($scope, $rpc, $uci, $config, $network, $firewall, $tr, gettext){
+.controller("overviewWidgetNetwork", function($scope, $rpc, $uci, $network, $firewall, $tr, gettext){
 	$scope.defaultHostName = $tr(gettext("Unknown")); 
 	async.series([
 	function(next){
@@ -37,8 +37,10 @@ JUCI.app
 		$rpc.network.interface.dump().done(function(interfaces){
 			var conn = ""; 
 			if(interfaces && interfaces.interface){
+				var wan4_interface = "wan"; 
+				if($uci.juci.network) wan4_interface = $uci.juci.network.wan4_interface.value; 
 				var i = interfaces.interface.find(function(x){
-					return x.interface == $config.wan_interface; 
+					return x.interface == wan4_interface; 
 				})
 				if(i){
 					var dev = i.l3_device||i.device||""; 

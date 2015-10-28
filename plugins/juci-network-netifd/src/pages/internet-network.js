@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $config, gettext, networkConnectionCreate){
+.controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, gettext, networkConnectionCreate){
 	$scope.data = {}; 
 	
 	$network.getDevices().done(function(devices){

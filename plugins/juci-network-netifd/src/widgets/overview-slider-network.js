@@ -7,7 +7,7 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $firewall, $config, $juciDialog, $tr, gettext){
+.controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $config, $firewall, $juciDialog, $tr, gettext){
 	function drawCyGraph(){
 		var nodes = []; 
 		var edges = []; 
@@ -15,7 +15,7 @@ JUCI.app
 		nodes.push({
 			data: {
 				id: "root", 
-				name: $config.hardware_model, 
+				name: $config.board.system, 
 				group: "networks",
 				weight: 100, 
 				mainColor: '#F5A45D', 
@@ -58,7 +58,17 @@ JUCI.app
 				mainColor: '#F5A45D', 
 				shape: 'rectangle'
 			}; 
-			if(net_id == $config.wan_interface || net_id == $config.voice_interface || net_id == $config.iptv_interface || net_id == $config.ipv6_interface){
+			var wan4_interface = "wan", wan6_interface = "wan6", iptv_interface = "wan", voice_interface = "wan"; 
+			var settings = $config.settings.network; 
+
+			if(settings) {
+				wan4_interface = settings.wan4_interface.value;
+				wan6_interface = settings.wan6_interface.value;
+				iptv_interface = settings.iptv_interface.value;
+				voice_interface = settings.voice_interface.value;
+			}
+
+			if(net_id == wan_interface || net_id == voice_interface || net_id == iptv_interface || net_id == ipv6_interface){
 				item.parent = "world"; 
 			} else if(net_id == "lan"){
 				item.parent = "user"; 
@@ -354,7 +364,7 @@ JUCI.app
 	
 	nodes.push({
 		id: ".root",
-		label: $config.system.hardware,
+		label: $config.board.system,
 		image: "/img/net-router-icon.png", 
 		shape: "image", 
 		x: 0, y: 0, 
