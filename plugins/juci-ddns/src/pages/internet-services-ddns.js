@@ -1,6 +1,6 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 JUCI.app
-.controller("DDNSPage", function ($scope, $uci, $network, $config) {
+.controller("DDNSPage", function ($scope, $uci, $network) {
 	$scope.data = {}; 
 	$uci.$sync(["ddns"]).done(function () {
 		$scope.ddns_list = $uci.ddns["@service"]; 
