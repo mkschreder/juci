@@ -9,8 +9,8 @@ JUCI.app
 		if(!top_node) return; 	
 		setTimeout(function(){
 			$("ul.nav li a").parent().removeClass("open"); 
-			$("ul.nav li a[href='#!"+top_node.path+"']").addClass("open"); 
-			$("ul.nav li a[href='#!"+top_node.path+"']").parent().addClass("open"); 
+			$("ul.nav li a[href='#!"+top_node.href+"']").addClass("open"); 
+			$("ul.nav li a[href='#!"+top_node.href+"']").parent().addClass("open"); 
 		}, 0); 
 	}; activate(); 
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
