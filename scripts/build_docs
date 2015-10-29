@@ -7,9 +7,9 @@ cp docs/juci.md.tpl docs/juci.md
 for plug in plugins/*; do 
 	title=$(basename $plug); 
 	if [ -f $plug/docs/$title.md ]; then 
-		sed -i "/%PLUGINS_TOC%/a * [$title]($title.html)" docs/juci.md; 
+		sed -i "/%PLUGINS_TOC%/i * [$title]($title.html)" docs/juci.md; 
 	else 
-		sed -i "/%PLUGINS_TOC%/a * $title" docs/juci.md; 
+		sed -i "/%PLUGINS_TOC%/i * $title" docs/juci.md; 
 	fi; 
 done
 
@@ -17,9 +17,9 @@ done
 for widget in $(ls juci/src/widgets/*.js); do 
 	title=$(basename ${widget%.js})
 	if [ -f juci/docs/$title.md ]; then 
-		sed -i "/%CORE_WIDGETS_TOC%/a * [$title]($title.html)" docs/juci.md; 
+		sed -i "/%CORE_WIDGETS_TOC%/i * [$title]($title.html)" docs/juci.md; 
 	else 
-		sed -i "/%CORE_WIDGETS_TOC%/a * $title" docs/juci.md; 
+		sed -i "/%CORE_WIDGETS_TOC%/i * $title" docs/juci.md; 
 	fi; 
 done
 
@@ -29,9 +29,9 @@ for widget in $(ls plugins/**/src/widgets/*.js); do
 	directory=$(dirname $(dirname $(dirname $widget)))
 	plug=$(basename $directory)
 	if [ -f plugins/$plug/docs/$title.md ]; then 
-		sed -i "/%WIDGETS_TOC%/a * [$title ($plug)]($title.html)" docs/juci.md; 
+		sed -i "/%WIDGETS_TOC%/i * [$title ($plug)]($title.html)" docs/juci.md; 
 	else 
-		sed -i "/%WIDGETS_TOC%/a * $title ($plug)" docs/juci.md; 
+		sed -i "/%WIDGETS_TOC%/i * $title ($plug)" docs/juci.md; 
 	fi; 
 done
 
