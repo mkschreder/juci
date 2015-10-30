@@ -35,5 +35,26 @@
 				</tr>
 			</table>
 		</juci-config-section>
+		<juci-config-section>
+			<h3 translate>IPv6 Neighbors Table</h3>
+			<div class="alert alert-info" ng-hide="neighbors.length" translate>No IPv6 devices connected</div>
+			<table class="table" ng-show="neighbors.length">
+				<thead>
+					<th translate>IPv6 address</th>
+					<th translate>IPv6 status</th>
+					<th translate>Device</th>
+					<th translate>MAC Address</th>
+					<th translate>Router</th>
+				</thead>
+				<tr ng-repeat="n in neighbors">
+					<td>{{n.ip6addr}}</td>
+					<td>{{n.ip6status}}</td>
+					<td>{{n.device}}</td>
+					<td>{{n.macaddr}}</td>
+					<td>{{n.router}}</td>
+				</tr>
+			</table>
+		</juci-config-section>
+
 	</div>
 </juci-layout-with-sidebar>

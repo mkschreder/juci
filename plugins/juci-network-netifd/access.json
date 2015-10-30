@@ -13,7 +13,8 @@
 				"/juci/network.status": [ 
 					"arp", 
 					"ipv4routes", 
-					"ipv6routes" 
+					"ipv6routes",
+					"ipv6neigh"
 				], 
 				"network.interface": [
 					"dump"
