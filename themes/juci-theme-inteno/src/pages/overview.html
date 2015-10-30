@@ -23,8 +23,8 @@
 			</div>
 		</div>
 		<div class="container overview-widgets" style="min-height: 600px;">
-			<div class="row">
-				<div class="col-sm-4 overview-box" ng-repeat="widget in overviewWidgets">
+			<div class="row" ng-repeat="row in overviewWidgetRows">
+				<div class="col-sm-4 overview-box" ng-repeat="widget in row">
 					<div dynamic="widget"/>
 				</div>
 			</div>
