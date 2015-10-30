@@ -5,7 +5,7 @@ UCI.juci.$registerSectionType("mod-system-status", {
 	"show_meminfo": 	{ dvalue: true, type: Boolean }, 
 	"show_diskinfo": 	{ dvalue: true, type: Boolean }
 }); 
-UCI.juci.$insertDefaults("modsystem"); 
+UCI.juci.$insertDefaults("mod-system-status"); 
 
 JUCI.app
 .controller("StatusSystemPage", function ($scope, $rootScope, $rpc, gettext, $tr) {
