@@ -7,4 +7,7 @@ UCI.uhttpd.$registerSectionType("uhttpd", {
 	"max_connections":	{ dvalue: false, type: Number }, 
 	"ubus_prefix":		{ dvalue: true, type: String } 
 }); 
-
+UCI.uhttpd.$registerSectionType("logopts", {
+	"ubus_status":		{ dvalue: [], type: Array },
+	"ubus_method": 		{ dvalue: [], type: Array }
+});
