@@ -1,5 +1,8 @@
 <div>
 	<juci-config-lines>
+		<juci-config-line title="{{'Enabled'|translate}}">
+			<switch ng-model="device.disabled.value" class="green" inverted/>
+		</juci-config-line>
 		<juci-config-line title="{{'Wifi Mode'|translate}}">
 			<juci-select ng-model="device.hwmode.value" ng-items="allModes" placeholder="{{'Pick Hardware Mode'|translate}}"/>
 		</juci-config-line>

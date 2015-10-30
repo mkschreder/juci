@@ -119,19 +119,21 @@ local function wireless_clients()
 		local cn = ubus.connect(); 
 		if(cn) then
 			local cl = cn:call("hostapd."..wldev, "get_clients", {}); 
-			for macaddr,client in pairs(cl.clients) do 
-				local extinfo = wireless_get_extended_stainfo(wldev, macaddr); 
-				
-				local client = {
-					device = wldev, 
-					macaddr = macaddr
-				}; 
+			if(cl) then 
+				for macaddr,client in pairs(cl.clients) do 
+					local extinfo = wireless_get_extended_stainfo(wldev, macaddr); 
+					
+					local client = {
+						device = wldev, 
+						macaddr = macaddr
+					}; 
 
-				for k,v in pairs(extinfo) do client[k] = v; end
+					for k,v in pairs(extinfo) do client[k] = v; end
 
-				table.insert(result.clients, client); 
+					table.insert(result.clients, client); 
+				end
+				cn:close(); 
 			end
-			cn:close(); 
 		end
 	end
 	print(json.encode(result)); 
