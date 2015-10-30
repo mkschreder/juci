@@ -1,0 +1,15 @@
+<div>
+	<div class="row"> 
+		<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"></i>
+		<div class="list-group" ng-show="items" >
+			<div class="list-group-item" ng-repeat="i in items track by $index" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}<button ng-class="{disabled: !editable || !items}" ng-hide"hideButtons"><i class="fa fa-close" ng-click="onListRemoveItem"></i></button></div>
+		</div>
+
+		<div ng-hide="hideButtons">
+			<button class="btn btn-lg btn-default" ng-click="onListAddItem()" translate>Add</button>
+		</div>
+	</div>
+	<div style="clear: both; margin-top: 10px;"></div>
+	<div ng-show="item">
+	</div>
+</div>
