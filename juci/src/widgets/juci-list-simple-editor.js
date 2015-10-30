@@ -5,12 +5,13 @@ JUCI.app
 		scope: {
 			items: "=ngItems", 
 			getItemTitle: "&getItemTitle", 
-			onCreate: "&onCreate", 
-			onDelete: "&onDelete", 
+			onCreate: "&onAddItem", 
+			onDelete: "&onDeleteItem", 
 			hideButtons: "@hideButtons"
 		}, 
 		controller: "juciListSimpleEditor", 
 		templateUrl: "/widgets/juci-list-simple-editor.html", 
+		transclude: true
 	}; 
 })
 .controller("juciListSimpleEditor", function($scope){

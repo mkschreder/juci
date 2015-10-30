@@ -4,13 +4,13 @@
 		<div class="list-group" ng-show="items" >
 			<div class="list-group-item" ng-repeat="i in items track by $index">
 				{{getItemTitle({"$item": i})}}
-				<button ng-click="onListRemoveItem(i)" ng-class="{disabled: !editable || !items}" ng-hide"hideButtons">
+				<button ng-click="onListRemoveItem(i)" ng-class="{disabled: !editable || !items}" ng-hide="hideButtons == 'true'">
 					<i class="fa fa-close"></i>
 				</button>
 			</div>
 		</div>
-
-		<div ng-hide="hideButtons">
+		<ng-transclude></ng-transclude>
+		<div ng-hide="hideButtons == 'true'">
 			<button class="btn btn-lg btn-default" ng-click="onListAddItem()" translate>Add</button>
 		</div>
 	</div>

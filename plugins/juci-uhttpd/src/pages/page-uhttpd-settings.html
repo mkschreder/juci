@@ -18,6 +18,14 @@
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="Ubus return statuses">
+					<juci-list-simple-editor ng-items="logopts.ubus_status.value" get-item-title="getItemTitle($item)" on-add-item="addItem()" on-delet-item="deleteItem" hide-buttons="false">
+						<juci-select ng-model="status.new" ng-items="status.items"></juci-select>
+					</juci-list-simple-editor>
+			</juci-config-lines>
+		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

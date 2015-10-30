@@ -11,3 +11,4 @@ UCI.uhttpd.$registerSectionType("logopts", {
 	"ubus_status":		{ dvalue: [], type: Array },
 	"ubus_method": 		{ dvalue: [], type: Array }
 });
+UCI.uhttpd.$insertDefaults("logopts");
