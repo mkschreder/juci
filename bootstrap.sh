@@ -9,8 +9,8 @@ if [ "$(which npm)" == "" ]; then
 	ERR=1
 fi 
 
-if [ "$(which yui-compressor)" == "" ]; then
-	perr "!!! yui-compressor is missing. Please install package yui-compressor."; 
+if [ "$(which yui-compressor)" == "" ] && [ "$(which yuicompressor)" == "" ]; then
+	perr "!!! yui-compressor is missing. Please install package yui-compressor or yuicompressor."; 
 	ERR=1
 fi 
 
