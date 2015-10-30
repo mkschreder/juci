@@ -154,6 +154,8 @@ docs/juci.md: $(wildcard plugins/**/docs/*.md)
 	@rm -f docs/.tmp.ronn
 
 install: 
+	$(INSTALL_DIR) $(BIN)/usr/bin/
+	@cp juci-update $(BIN)/usr/bin/
 	@cp -Rp $(BIN)/* $(DESTDIR)
 
 .PHONY: $(PHONY) $(UBUS_MODS) 
