@@ -1,8 +1,8 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="UPNPStatusPage">
 		<h2 translate>UPnP Open Ports</h2>
-		<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
-		<table class="table" ng-show="upnpOpenPorts.length">
+		<div class="alert alert-info" ng-show="loaded && !upnpOpenPorts.length" translate>No UPnP ports currently in use</div>
+		<table class="table" ng-show="loaded && upnpOpenPorts.length">
 			<thead>
 				<th>#</th>
 				<th translate>Packets cnt.</th>

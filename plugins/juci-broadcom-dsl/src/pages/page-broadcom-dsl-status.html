@@ -1,7 +1,8 @@
 <juci-layout-with-sidebar>
-	<div id="dslstats" ng-controller="PageBroadcomDslStatus" ng-form='myForm'>
+	<div ng-controller="PageBroadcomDslStatus">
 		<h2 translate>DSL Status</h2>
 		<p translate>dsl.status.info</p>
+		<p ng-show="!tables.length" translate>No DSL info available.</p>
 		<div  ng-repeat="tbl in tables track by $index">
 			<h2>{{tbl.title|translate}}</h2>
 			<table class="table">

@@ -12,7 +12,8 @@ JUCI.app
 			}); 
 		}); 
 	}); 
-	$rpc.juci.network.status.ipv6neigh().done(function(){
-		
+	$rpc.juci.network.status.ipv6neigh().done(function(result){
+		$scope.neighbors = result.neighbors; 	
+		$scope.$apply(); 
 	}); 
 }); 

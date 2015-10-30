@@ -1,8 +1,9 @@
 #!/usr/bin/lua
 
 local juci = require("juci/core"); 
+local network = require("juci/network"); 
 
-function fields(str)
+local function fields(str)
 	local words = {}; 
 	for w in str:gmatch("%S+") do 
 		table.insert(words, w); 
@@ -10,7 +11,7 @@ function fields(str)
 	return words; 
 end
 
-function network_status_arp()
+local function network_status_arp()
 	local output = juci.readfile("/proc/net/arp"); 
 	local clients = {}; 
 	for line in output:gmatch("[^\r\n]+") do 
@@ -29,7 +30,7 @@ function network_status_arp()
 	print(json.encode({ clients = clients })); 
 end
 
-function network_status_ipv4routes()
+local function network_status_ipv4routes()
 	local output = juci.shell("route"); 
 	local routes = {}; 
 	for line in output:gmatch("[^\r\n]+") do 
@@ -50,7 +51,7 @@ function network_status_ipv4routes()
 	print(json.encode({ routes = routes })); 
 end
 
-function network_status_ipv6routes()
+local function network_status_ipv6routes()
 	local output = juci.shell("route -A inet6"); 
 	local routes = {}; 
 	for line in output:gmatch("[^\r\n]+") do 
@@ -70,8 +71,14 @@ function network_status_ipv6routes()
 	print(json.encode({ routes = routes })); 
 end
 
+local function network_status_ipv6neigh()
+	local neigh = network.ipv6neigh(); 
+	print(json.encode({ neighbors = neigh })); 
+end
+
 juci.ubus({
 	["arp"] = network_status_arp,
 	["ipv4routes"] = network_status_ipv4routes, 
-	["ipv6routes"] = network_status_ipv6routes
+	["ipv6routes"] = network_status_ipv6routes,
+	["ipv6neigh"] = network_status_ipv6neigh
 }, arg); 

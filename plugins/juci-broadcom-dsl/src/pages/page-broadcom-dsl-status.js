@@ -26,7 +26,7 @@ JUCI.app
 		$scope.dslCellInfo = {
 			rows: []
 		}; 
-		
+
 		JUCI.interval.repeat("dslstatus", 1000, function(done){
 			$rpc.juci.broadcom.dsl.status().done(function(dslstats){
 				dslstats = dslstats.dslstats; 

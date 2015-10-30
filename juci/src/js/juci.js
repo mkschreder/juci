@@ -196,7 +196,7 @@
 						}
 					},*/
 					// this function will run upon load of every page in the gui
-					onEnter: function($uci, $rootScope, $tr, gettext){
+					onEnter: function($uci, $window, $rootScope, $tr, gettext){
 						if(page.redirect) {
 							//alert("page redirect to "+page.redirect); 
 							$juci.redirect(page.redirect); 
@@ -213,6 +213,9 @@
 						});
 						
 						document.title = $tr(name.replace(/\//g, ".").replace(/-/g, ".")+".title")+" - "+$tr(gettext("application.name")); 
+						
+						// scroll to top
+						$window.scrollTo(0, 0); 
 					}, 
 					onExit: function($interval){
 						// clear all juci intervals when leaving a page

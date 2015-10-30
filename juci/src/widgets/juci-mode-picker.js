@@ -18,7 +18,7 @@ JUCI.app
 		$scope.selectedModeValue = selected; 
 		console.log("selected value", selected);
 		$localStorage.setItem("mode", selected);
-		$config.mode = selected;
+		$config.local.mode = selected;
 		$state.reload();
 	};
 }); 
