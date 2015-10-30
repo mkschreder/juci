@@ -5,7 +5,11 @@
 			"ubus": {
 				"juci.ui": [
 					"themes"
-				]
+				], 
+				"uci": [ 
+					"get",
+					"state"
+				 ]
 			}, 
 			"uci": [ "juci" ] 
 		}
