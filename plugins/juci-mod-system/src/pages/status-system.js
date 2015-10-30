@@ -1,5 +1,12 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
+
+UCI.juci.$registerSectionType("mod-system-status", {
+	"show_meminfo": 	{ dvalue: true, type: Boolean }, 
+	"show_diskinfo": 	{ dvalue: true, type: Boolean }
+}); 
+UCI.juci.$insertDefaults("modsystem"); 
+
 JUCI.app
 .controller("StatusSystemPage", function ($scope, $rootScope, $rpc, gettext, $tr) {
 	$scope.systemStatusTbl = {
@@ -53,7 +60,7 @@ JUCI.app
 				[$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))], 
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
-				[$tr(gettext("CPU")), ""+(info.load.user / 100) + "%"], 
+				[$tr(gettext("CPU")), ""+((info.load.user)?((info.load.user / 100) + "%"):"N/A")], 
 				[$tr(gettext("Load Average")), sys.load[0] + " " + sys.load[1] + " " + sys.load[2]]
 			]; 
 			$scope.systemMemoryTbl.rows = [
@@ -63,12 +70,16 @@ JUCI.app
 				[$tr(gettext("Swap")), '<juci-progress value="'+Math.round((sys.swap.total - sys.swap.free) / 1000)+'" total="'+ Math.round(sys.swap.total / 1000) +'" units="kB"></juci-progress>']
 			];
 			
-			$scope.systemStorageTbl.rows = []; 
-			filesystems.map(function(disk){
-				$scope.systemStorageTbl.rows.push([disk.filesystem+" ("+disk.path+")", '<juci-progress value="'+Math.round(disk.used)+'" total="'+ Math.round(disk.total) +'" units="kB"></juci-progress>']); 
-			}); 
+			if($uci.juci["mod-system-status"].show_diskinfo.value){ 
+				$scope.systemStorageTbl.rows = []; 
+				filesystems.map(function(disk){
+					$scope.systemStorageTbl.rows.push([disk.filesystem+" ("+disk.path+")", '<juci-progress value="'+Math.round(disk.used)+'" total="'+ Math.round(disk.total) +'" units="kB"></juci-progress>']); 
+				}); 
+			}
+
 			$scope.$apply(); 
 			resume(); 
 		});
 	}); 
 }); 
+
