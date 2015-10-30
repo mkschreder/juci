@@ -44,7 +44,7 @@ JUCI.app
 
 	$scope.itemVisible = function(item){
 		if(!item.modes || !item.modes.length) return true; 
-		else if(item.modes && item.modes.indexOf($config.mode) == -1) {
+		else if(item.modes && item.modes.indexOf($config.local.mode) == -1) {
 			return false; 
 		} 
 		else return true; 
