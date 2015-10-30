@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiWPSPageCtrl", function($scope, $uci, $rpc, $interval, $router, gettext, $tr){
+.controller("wirelessWPSPage", function($scope, $uci, $rpc, $interval, $router, gettext, $tr){
 	var wps_status_strings = {
 		"-1": $tr(gettext("wps.status.disabled")),
 		0: $tr(gettext("wps.status.init")),

@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiSchedulePageCtrl", function($scope, $uci, gettext){
+.controller("wirelessSchedulePage", function($scope, $uci, gettext){
 	$scope.statusItems = [
 		{ label: gettext("Enabled"), value: true },
 		{ label: gettext("Disabled"), value: false }

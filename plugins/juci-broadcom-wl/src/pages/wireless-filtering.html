@@ -1,5 +1,5 @@
 <juci-layout-with-sidebar>
-	<div ng-controller="WifiMacFilterPageCtrl">
+	<div ng-controller="wirelessFilteringPage">
 		<juci-config-heading>{{ 'MAC Filter' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'wifi.macfilter.info' | translate }}</juci-config-info>
 		<juci-config-section ng-show="interfaces && interfaces.length != 0" ng-repeat="iface in interfaces">

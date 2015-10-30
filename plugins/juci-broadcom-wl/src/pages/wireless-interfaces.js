@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiInterfacesPage", function($scope, $uci, $wireless, gettext, prompt, $modal){
+.controller("wirelessInterfacesPage", function($scope, $uci, $wireless, gettext, prompt, $modal){
 	$wireless.getInterfaces().done(function(interfaces){
 		$wireless.getDevices().done(function(devices){
 			$scope.devices = devices; 

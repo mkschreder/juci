@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiGeneralClientsPage", function($scope, $uci, $wireless){
+.controller("wirelessClientsPage", function($scope, $uci, $wireless){
 	$scope.lines = [
 		{ title: "Hostname", field: "hostname" }, 
 		{ title: "IPv4 Address", field: "ipaddr" }, 

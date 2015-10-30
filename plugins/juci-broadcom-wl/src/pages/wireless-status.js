@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("PageBroadcomWifiStatus", function($scope, $uci, $wireless, gettext){
+.controller("wirelessStatusPage", function($scope, $uci, $wireless, gettext){
 	$scope.order = function(pred){
 		$scope.predicate = pred; 
 		$scope.reverse = ($scope.predicate === pred) ? !$scope.reverse : false;

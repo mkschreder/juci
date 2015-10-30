@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("PageBroadcomWifiClientConf", function($scope, $uci, $wireless, gettext){
+.controller("wirelessClientModePage", function($scope, $uci, $wireless, gettext){
 	$wireless.scan(); 
 	JUCI.interval.repeat("wifi-scan", 5000, function(done){
 		$wireless.scan(); 

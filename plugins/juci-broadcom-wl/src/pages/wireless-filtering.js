@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("WifiMacFilterPageCtrl", function($scope, $uci, gettext){
+.controller("wirelessFilteringPage", function($scope, $uci, gettext){
 	window.uci = $uci; 
 	$scope.uci = $uci; 
 	
