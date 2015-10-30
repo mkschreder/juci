@@ -3,12 +3,12 @@
 		"description": "JUCI SNMP module",
 		"read": {
 			"uci": [
-				"snmp"
+				"snmpd"
 			]
 		}, 
 		"write": {
 			"uci": [
-				"snmp"
+				"snmpd"
 			]
 		}
 	}
