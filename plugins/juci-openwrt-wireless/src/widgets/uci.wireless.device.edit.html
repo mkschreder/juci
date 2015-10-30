@@ -1,0 +1,50 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Wifi Mode'|translate}}">
+			<juci-select ng-model="device.hwmode.value" ng-items="allModes" placeholder="{{'Pick Hardware Mode'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Bandwidth'|translate}}">
+			<juci-select ng-model="device.bandwidth.value" ng-items="allBandwidths" placeholder="{{'Pick Bandwidth'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Channel'|translate}}">
+			<juci-select ng-model="device.channel.value" ng-items="allChannels" placeholder="{{'Pick Channel'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'RIFS'|translate}}">
+			<switch class="green" ng-model="device.rifs.value"/>
+		</juci-config-line>	
+		<juci-config-line title="{{'RIFS Advertisement'|translate}}">
+			<switch class="green" ng-model="device.rifs_advert.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Framebursting'|translate}}">
+			<switch class="green" ng-model="device.frameburst.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Beamforming'|translate}}">
+			<switch class="green" ng-model="device.beamforming.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'OBSS Co-Existence'|translate}}" ng-show="device.bandwidth.value == '40' || device.bandwidth.value == '80' || device.bandwidth.value == '160' || device.bandwidth.value == '20/40'">
+			<switch class="green" ng-model="device.obss_coex.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'RX Chain PowerSave Quiet Time'|translate}}">
+			<switch class="green" ng-model="device.rxchainps_qt.value"/>
+		</juci-config-line>	
+		<juci-config-line title="{{'RX Chain PowerSave PPS'|translate}}">
+			<switch class="green" ng-model="device.rxchainps_pps.value"/>
+		</juci-config-line>	
+		<juci-config-line title="{{'Max. Assoc Clients'|translate}}">
+			<input type="text" class="form-control" ng-model="device.maxassoc.value" placeholder="{{'Maximum Assoc Clients'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Scan Timer'|translate}}">
+			<input type="text" class="form-control" ng-model="device.scantimer.value" placeholder="{{'Timer Interval'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Enable WMM Multimedia Extensions'|translate}}">
+			<switch class="green" ng-model="device.wmm.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Disable WMM Ack'|translate}}">
+			<switch class="green" ng-model="device.wmm_noack.value"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Enable WMM UAPSD Power Saving'|translate}}">
+			<switch class="green" ng-model="device.wmm_apsd.value"/>
+		</juci-config-line>
+	</juci-config-lines>
+</div>
+

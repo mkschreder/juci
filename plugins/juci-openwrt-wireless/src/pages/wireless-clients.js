@@ -1,9 +1,9 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("OpenwrtWirelessClientsPage", function($scope, $network, $rpc, $tr, gettext){
+.controller("wirelessClientsPage", function($scope, $network, $rpc, $tr, gettext){
 	JUCI.interval.repeat("wireless-clients-refresh", 5000, function(done){
-		$rpc.juci.openwrt.wireless.clients().done(function(result){
+		$rpc.juci.wireless.clients().done(function(result){
 			if(!result || !result.clients) return; 
 			$network.getConnectedClients().done(function(clients){
 				$scope.clients = clients.filter(function(cl){

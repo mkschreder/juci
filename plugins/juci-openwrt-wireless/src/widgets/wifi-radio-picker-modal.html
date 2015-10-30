@@ -1,0 +1,27 @@
+<div>
+	<div class="modal-header">
+		<h3 class="modal-title" translate>New Wireless Interface</h3>
+	</div>
+	<div class="modal-body">
+		<juci-config-lines>
+			<juci-config-line title="{{'Pick Wireless Radio'|translate}}">
+				<juci-select ng-model="data.radio" ng-items="allRadios" placeholder="Select Wireless Radio"></juci-select>
+			</juci-config-line>
+			<juci-config-line title="{{'Pick SSID'|translate}}">
+				<input type="text" class="form-control" ng-model="data.ssid" placeholder="{{'New SSID'|translate}}"/>
+			</juci-config-line>
+			<juci-config-line title="{{'Mode'|translate}}">
+				<juci-select ng-model="data.mode" ng-items="allModes" placeholder="Select Interface Mode"></juci-select>
+			</juci-config-line>
+		</juci-config-lines>
+		<div class="alert alert-danger" ng-show="errors.length">
+			<ul>
+				<li ng-repeat="err in errors">{{err}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">OK</button>
+		<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

@@ -3,7 +3,7 @@
 		"description": "JUCI OpenWRT Wireless Configuration",
 		"read": {
 			"ubus": {
-				"/juci/openwrt.wireless": [
+				"/juci/wireless": [
 					"devices",
 					"caps", 
 					"radios", 

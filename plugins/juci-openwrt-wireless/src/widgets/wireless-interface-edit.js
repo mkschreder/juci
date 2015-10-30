@@ -1,17 +1,17 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.directive("openwrtWirelessInterfaceEdit", function($compile){
+.directive("wirelessInterfaceEdit", function($compile){
 	return {
 		scope: {
 			iface: "=ngModel"
 		}, 
-		templateUrl: "/widgets/openwrt-wireless-interface-edit.html", 
-		controller: "openwrtWirelessInterfaceEdit", 
+		templateUrl: "/widgets/wireless-interface-edit.html", 
+		controller: "wirelessInterfaceEdit", 
 		replace: true
 	 };  
 })
-.controller("openwrtWirelessInterfaceEdit", function($scope, $wireless, $network, $tr, gettext, $uci){
+.controller("wirelessInterfaceEdit", function($scope, $wireless, $network, $tr, gettext, $uci){
 	$scope.errors = []; 
 	$scope.showPassword = true; 
 	$scope.$on("error", function(ev, err){
