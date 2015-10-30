@@ -12,7 +12,7 @@ start_service() {
 }
 
 stop() {
-
+	return 0
 }
 
 reload() {
