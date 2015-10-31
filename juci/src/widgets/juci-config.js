@@ -17,7 +17,7 @@ JUCI.app
 })
 .directive("juciConfigInfo", function(){
 	return {
-		template: '<p class="juci-config-info" ng-transclude></p>', 
+		template: '<div class="juci-config-info" ng-transclude></div>', 
 		replace: true, 
 		transclude: true
 	 };  

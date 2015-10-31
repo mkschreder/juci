@@ -1,7 +1,7 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="PhoneDectPage">
 		<h2 translate>DECT Radio</h2>
-		<juci-config-info translate>phone.dect.info</juci-config-info>
+		<juci-config-info>{{'phone.dect.info'|translate}}</juci-config-info>
 		<table class="table">
 			<tr><td style="font-weight:bold;" translate>Pair DECT Device</td><td><button class="btn btn-default" ng-click="onStartPairing()" translate>Pair</button></td></tr>
 			<tr><td style="font-weight:bold;" translate>Radio Status</td><td style="width:1%">{{status.radio.state}}</td></tr>

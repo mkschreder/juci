@@ -81,7 +81,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		$rootScope.errors.splice(0, $rootScope.errors.length); 
 	}); 
 	// set current language
-	gettextCatalog.currentLanguage = "en"; 
+	gettextCatalog.setCurrentLanguage("en"); 
 	gettextCatalog.debug = true;
 	
 	var path = $location.path().replace(/\//g, ""); 
