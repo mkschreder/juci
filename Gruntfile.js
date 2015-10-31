@@ -17,6 +17,8 @@ module.exports = function(grunt){
 						'juci/src/pages/*html',
 						'plugins/juci*/src/**/*.js',
 						'plugins/juci*/src/**/*.html',
+						'themes/**/src/**/*.html',
+						'themes/**/src/**/*.js',
 						'po/*js'
 					]
 				}

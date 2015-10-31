@@ -16,6 +16,10 @@ done
 
 for file in `find $BIN/www/css/ -name "*.css"`; do 
 	echo "Compiling CSS ${file}.."
-	yui-compressor ${file} > ${file}.out
+	if [ "$(which yui-compressor)" != "" ]; then
+		yui-compressor ${file} > ${file}.out
+	else
+		yuicompressor ${file} > ${file}.out
+	fi
 	mv ${file}.out ${file}
 done
