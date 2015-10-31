@@ -1,11 +1,11 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 
-UCI.juci.$registerSectionType("mod-system-status", {
+UCI.juci.$registerSectionType("pagesystemstatus", {
 	"show_meminfo": 	{ dvalue: true, type: Boolean }, 
 	"show_diskinfo": 	{ dvalue: true, type: Boolean }
 }); 
-UCI.juci.$insertDefaults("mod-system-status"); 
+UCI.juci.$insertDefaults("pagesystemstatus"); 
 
 JUCI.app
 .controller("StatusSystemPage", function ($scope, $rootScope, $uci, $rpc, gettext, $tr) {
@@ -70,7 +70,8 @@ JUCI.app
 				[$tr(gettext("Swap")), '<juci-progress value="'+Math.round((sys.swap.total - sys.swap.free) / 1000)+'" total="'+ Math.round(sys.swap.total / 1000) +'" units="kB"></juci-progress>']
 			];
 			
-			if($uci.juci["mod-system-status"] && $uci.juci["mod-system-status"].show_diskinfo.value){ 
+			if($uci.juci["pagesystemstatus"] && $uci.juci["pagesystemstatus"].show_diskinfo.value){ 
+				$scope.show_diskinfo = true; 
 				$scope.systemStorageTbl.rows = []; 
 				filesystems.map(function(disk){
 					$scope.systemStorageTbl.rows.push([disk.filesystem+" ("+disk.path+")", '<juci-progress value="'+Math.round(disk.used)+'" total="'+ Math.round(disk.total) +'" units="kB"></juci-progress>']); 
