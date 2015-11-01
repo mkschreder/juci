@@ -10,6 +10,7 @@ endif
 BACKEND_BIN_DIR:=$(BIN)/usr/lib/ubus/juci/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
+PO_DIR:=po/templates/
 TARGETS:=
 PHONY:=debug release clean prepare node_modules 
 CP:=cp -Rp 
@@ -38,7 +39,7 @@ define BuildDir-y
 	$(eval PLUGIN_DIR:=$(2))
 	$(eval -include $(2)/Makefile)
 	$(eval $(Plugin/$(1)))
-	$(eval TARGETS+=$(1)-install $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
+	$(eval TARGETS+=$(1)-install $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
 	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/,$(JAVASCRIPT-y))))
 	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/,$(TEMPLATES-y))))
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES-y))))
@@ -58,6 +59,11 @@ $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@#echo "   * $$^"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then ./juci-build-tpl-cache $$^ $$@; fi
+$(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
+	@echo -e "\033[0;33m[POT]\t$(1) -> $$@\033[m"
+	@mkdir -p $$(dirname $$@)
+	@echo "" > $$@
+	$(Q)if [ "" != "$$^" ]; then ./scripts/extract-strings $$^ > $$@; msguniq $$@ > $$@.tmp; mv $$@.tmp $$@; fi
 $(1)-install: 
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
@@ -105,6 +111,7 @@ prepare: .cleaned
 	@echo "DIRS: $(DIRS-y)"
 	@echo "MODULE: $(MODULE)"
 	@./bootstrap.sh
+	@mkdir -p $(PO_DIR)
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
 	@mkdir -p $(BIN)/usr/share/lua/

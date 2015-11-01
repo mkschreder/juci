@@ -5,11 +5,11 @@ if [ "$1" = "" ]; then
 	exit 1
 fi 
 
-for file in $1; do
+for file in "$@"; do
 	# extract all angular filter translations
-	grep -RPoin "{{[[:space:]]*'.*'[[:space:]]*\|[[:space:]]*translate[[:space:]]*}}" $file|awk "BEGIN{FS=\":\"}{ match(\$2, /'(.*)'/, arr); print \"# $file :\" \$1 \"\nmsgid \\\"\" arr[1] \"\\\"\nmsgstr \\\"\\\"\n\" }"
+	grep -RPoin "{{[[:space:]]*'.+?'[[:space:]]*\|[[:space:]]*translate[[:space:]]*}}" $file|awk "{ match(\$0, /'(.*)'/, arr); gsub(/\"/, \"'\", arr[1]); if(arr[1] != \"\") print \"# $file \nmsgid \\\"\" arr[1] \"\\\"\nmsgstr \\\"\\\"\n\" }"
 	# extract all html tag translations
-	grep -RPoin "<([a-z\-_0-9]+?).*?translate.*?>(.*?)<\/\1>" $file | awk "BEGIN{FS=\":\"}{ match(\$2, /translate.*?>(.*)<.*/, arr); print \"# $file: \" \$1 \"\nmsgid \\\"\" arr[1] \"\\\"\nmsgstr \\\"\\\"\n\"; }"
+	grep -RPoin "<([a-z\-_0-9]+?).*?[[:space:]]translate.*?>(.+?)<\/\1>" $file | awk "{ match(\$0, /translate.*?>(.*)<.*/, arr); gsub(/\"/, \"'\", arr[1]); if(arr[1] != \"\") print \"# $file \nmsgid \\\"\" arr[1] \"\\\"\nmsgstr \\\"\\\"\n\"; }"
 	# extract all gettext(...) translations
-	grep -RPoin "gettext\(\"(.*?)\"\)" $file | awk "BEGIN{FS=\":\"}{ match(\$2, /gettext\(\"(.*)\"\)/, arr); print \"# $file: \" \$1 \"\nmsgid \\\"\" arr[1] \"\\\"\nmsgstr \\\"\\\"\n\"; }"
+	grep -RPoin "gettext\(\"(.+?)\"\)" $file | awk "{ match(\$0, /gettext\(\"(.+?)\"\)/, arr); gsub(/\"/, \"'\", arr[1]); if(arr[1] != \"\") print \"# $file \nmsgid \\\"\" arr[1] \"\\\"\nmsgstr \\\"\\\"\n\"; }"
 done
