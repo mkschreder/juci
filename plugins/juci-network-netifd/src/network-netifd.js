@@ -432,6 +432,11 @@ UCI.network.$registerSectionType("switch_vlan", {
 	"ports": 	{ dvalue: "", type: String }
 }); 
 
+UCI.network.$registerSectionType("switch_port_label", {
+	"name": 	{ dvalue: "", type: String }, 
+	"id": 		{ dvalue: undefined, type: Number }
+}); 
+
 UCI.network.$registerSectionType("switch_port", {
 	"port": 	{ dvalue: 0, type: Number }, 
 	"pvid": 	{ dvalue: 0, type: Number }

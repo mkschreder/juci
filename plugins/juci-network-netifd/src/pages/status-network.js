@@ -11,7 +11,9 @@ JUCI.app
 			}, 
 			function(next){
 				$rpc.network.interface.dump().done(function(result){
-					_interfaces = result.interface; 
+					_interfaces = result.interface.filter(function(x){
+						return x.interface != "loopback"; // filter out loopback. Is there any use case where we would want it? 
+					}); 
 					next(); 
 				}); 
 			}, 
