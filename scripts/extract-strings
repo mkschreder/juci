@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$1" = "" ]; then
+	echo "Usage: extract-strings <file>"
+	exit 1
+fi 
+
 for file in $1; do
 	# extract all angular filter translations
 	grep -RPoin "{{[[:space:]]*'.*'[[:space:]]*\|[[:space:]]*translate[[:space:]]*}}" $file|awk "BEGIN{FS=\":\"}{ match(\$2, /'(.*)'/, arr); print \"# $file :\" \$1 \"\nmsgid \\\"\" arr[1] \"\\\"\nmsgstr \\\"\\\"\n\" }"
