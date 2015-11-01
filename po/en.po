@@ -2492,7 +2492,6 @@ msgid "Port speed"
 msgstr ""
 
 #: plugins/juci-network-netifd/src/widgets/netifd-switch-vlan-edit.html:12
-#: plugins/juci-network-netifd/src/widgets/netifd-switch-vlan-edit.html:15
 msgid "Ports"
 msgstr ""
 
@@ -3795,39 +3794,39 @@ msgstr ""
 
 #: po/titles.js:61
 msgid "admin.diagnostics.title"
-msgstr ""
+msgstr "Diagnostics"
 
 #: po/titles.js:67
 msgid "admin.log.config.title"
-msgstr ""
+msgstr "Log Settings"
 
 #: po/titles.js:69
 msgid "admin.log.events.title"
-msgstr ""
+msgstr "Events"
 
 #: po/titles.js:65
 msgid "admin.log.title"
-msgstr ""
+msgstr "Logging"
 
 #: po/titles.js:59
 msgid "admin.password.title"
-msgstr ""
+msgstr "Password"
 
 #: po/titles.js:71
 msgid "admin.restart.title"
-msgstr ""
+msgstr "Reboot"
 
 #: po/titles.js:63
 msgid "admin.smartrg-diagnostics.title"
-msgstr ""
+msgstr "Diagnostics"
 
 #: po/titles.js:53
 msgid "admin.title"
-msgstr ""
+msgstr "Administration"
 
 #: po/titles.js:55
 msgid "admin.upgrade.title"
-msgstr ""
+msgstr "System Upgrade"
 
 #: po/custom.js:74
 msgid "application.name"
@@ -3854,7 +3853,7 @@ msgstr "This status page shows technical parameters of your DSL connection."
 
 #: themes/juci-theme-smartrg/src/pages/smartrg-tr069.html:4
 msgid "easycwmp.config.info"
-msgstr ""
+msgstr "EasyCWMP configuration"
 
 #: po/custom.js:75
 msgid "encryption.none"
@@ -3976,11 +3975,11 @@ msgstr "Configure UPNP and ports"
 
 #: plugins/juci-firewall-fw3/src/pages/internet-firewall-services.html:5
 msgid "internet.wan.services.info"
-msgstr "WAN services configuration"
+msgstr "WAN Services configuration"
 
 #: themes/juci-theme-smartrg/src/pages/smartrg-lan-config.html:4
 msgid "lan.config.info"
-msgstr "LAN configuration"
+msgstr "LAN Configuration"
 
 #: po/custom.js:78
 msgid "language.de"
@@ -4014,19 +4013,19 @@ msgstr "Netmode selection and configuration"
 
 #: po/titles.js:33
 msgid "network.clients.title"
-msgstr "Clients"
+msgstr "Network Clients"
 
 #: po/titles.js:27
 msgid "network.firewall.dmz.title"
-msgstr "DMZ"
+msgstr "Firewall DMZ"
 
 #: po/titles.js:25
 msgid "network.firewall.forwarding.title"
-msgstr "Forwarding"
+msgstr "Firewall Forwarding"
 
 #: po/titles.js:23
 msgid "network.firewall.rules.title"
-msgstr "Rules"
+msgstr "Firewall Rules"
 
 #: po/titles.js:19
 msgid "network.firewall.title"
@@ -4034,7 +4033,7 @@ msgstr "Firewall"
 
 #: po/titles.js:21
 msgid "network.firewall.zones.title"
-msgstr "Zones"
+msgstr "Firewall Zones"
 
 #: plugins/juci-network-netifd/src/widgets/network-connection-edit.html:35
 msgid "network.interface.type.' + (conn.type.value || 'none') +'.tab.title"
@@ -4070,7 +4069,7 @@ msgstr "Port Mapping"
 
 #: po/titles.js:9
 msgid "network.status.title"
-msgstr "Status"
+msgstr "Network Status"
 
 #: po/titles.js:7
 msgid "network.title"
@@ -4123,7 +4122,7 @@ msgstr "Overview"
 #: plugins/juci-asterisk/src/pages/phone-call-log.html:5
 #: plugins/juci-asterisk/src/pages/phone.html:5
 msgid "phone.call_log.info"
-msgstr " "
+msgstr "Latest calls."
 
 #: plugins/juci-natalie-dect/src/pages/phone-dect.html:4
 msgid "phone.dect.info"
@@ -4163,15 +4162,15 @@ msgstr "Samba shares configuration"
 
 #: po/titles.js:47
 msgid "services.cwmp.title"
-msgstr "TR069 configuration"
+msgstr "TR-069 Configuration"
 
 #: plugins/juci-samba/src/pages/internet-services-samba.html:5
 msgid "services.samba.info"
-msgstr "Samba configuration"
+msgstr "General samba settings."
 
 #: po/titles.js:49
 msgid "services.snmp.title"
-msgstr "SNMP configuration"
+msgstr "SNMP Configuration"
 
 #: po/titles.js:45
 msgid "services.title"
@@ -4179,7 +4178,7 @@ msgstr "Services"
 
 #: po/titles.js:51
 msgid "services.upnp.title"
-msgstr "UPNP"
+msgstr "UPNP Configuration"
 
 #: plugins/juci-mod-system/src/pages/settings-configuration.html:5
 msgid "settings.config.info"
@@ -4199,7 +4198,6 @@ msgid "settings.energy.info"
 msgstr "Reduce power consumption by switching off unused functionality."
 
 #: plugins/juci-network-netifd/src/pages/internet-network.html:10
-#, fuzzy
 msgid "settings.network.default.route.info"
 msgstr ""
 "This page allows to configure IP addresses used in your home network. In "
@@ -4221,7 +4219,7 @@ msgstr "Set a new password to restrict management access to the router."
 
 #: plugins/juci-mod-system/src/pages/settings-system.html:4
 msgid "settings.system.general"
-msgstr "System Settings"
+msgstr "General system settings."
 
 #: plugins/juci-sysupgrade/src/pages/settings-upgrade.html:5
 msgid "settings.upgrade.info"
@@ -4243,7 +4241,7 @@ msgstr ""
 
 #: plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html:5
 msgid "settings.upgrade.options.info"
-msgstr "Upgrade options"
+msgstr "Configure system upgrade options. "
 
 #: plugins/juci-sysupgrade/src/pages/settings-upgrade.html:25
 msgid "settings.upgrade.usb.info"
@@ -4308,7 +4306,7 @@ msgstr ""
 
 #: plugins/juci-mod-system/src/pages/status-system-processes.html:4
 msgid "status.system.processes.info"
-msgstr "System processes information."
+msgstr "Processes currently running on the router. "
 
 #: plugins/juci-igmpinfo/src/pages/status-tv.html:5
 msgid "status.tv.info"
@@ -4327,11 +4325,11 @@ msgstr "Status of your voice lines."
 
 #: plugins/juci-broadcom-wl/src/pages/page-broadcom-wifi-status.html:4
 msgid "status.wifi.info"
-msgstr "Wireless configuration"
+msgstr "Wireless status information"
 
 #: plugins/juci-mod-system/src/pages/settings-management.html:5
 msgid "system.management.info"
-msgstr "Management configuration"
+msgstr "Configure settings for managing your box over WAN interface. "
 
 #: juci/src/widgets/juci-input-timespan.html:9
 #: plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html:31
@@ -4344,7 +4342,7 @@ msgstr ""
 
 #: plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html:5
 msgid "uhttpd.settings.info"
-msgstr "UHTTPD configuration"
+msgstr "Configuration for uHTTPd micro web server. "
 
 #: plugins/juci-usb/src/pages/status-usb.html:4
 #, fuzzy
@@ -4482,7 +4480,7 @@ msgstr "2.4Ghz Wireless"
 
 #: po/titles.js:41
 msgid "wifi.5g.title"
-msgstr "5Ghz Wireless"
+msgstr "5Ghz Wireless Configuration"
 
 #: plugins/juci-broadcom-wl/src/pages/page-broadcom-wifi-client-conf.html:4
 #, fuzzy
@@ -4492,12 +4490,11 @@ msgstr ""
 "Note: If WiFi is turned off, both Main and Guest WiFi are disabled"
 
 #: plugins/juci-broadcom-wl/src/pages/wifi-general-clients.html:4
-#, fuzzy
 msgid "wifi.clients.info"
 msgstr ""
 "Wireless interfaces are visible to the user in the form of wireless access "
 "point names. Each radio can have several SSIDs and each SSID interface can "
-"be configured as part of a network bridge or firewall group. "
+"be configured as part of a network bridge or firewall group."
 
 #: po/titles.js:43
 msgid "wifi.clients.title"
@@ -4615,15 +4612,15 @@ msgstr "2.4Ghz wireless configuration."
 
 #: themes/juci-theme-smartrg/src/pages/smartrg-5g-wireless.html:4
 msgid "wireless.5g.info"
-msgstr "5Ghz wireless configuration"
+msgstr "Configure your 5Ghz wireless hotspot."
 
 #: plugins/juci-openwrt-wireless/src/pages/openwrt-wireless-clients.html:4
 msgid "wireless.clients.info"
-msgstr "Wireless clients list"
+msgstr "Clients connected to your AP over wireless interfaces. "
 
 #: plugins/juci-openwrt-wireless/src/pages/openwrt-wireless-status.html:4
 msgid "wireless.status.info"
-msgstr "Wireless status information"
+msgstr "This page shows wireless status information. "
 
 #: plugins/juci-netmode/src/widgets/netmode-picker.html:12
 msgid "{{data.selected.exp.value}}"
