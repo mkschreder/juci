@@ -14,14 +14,14 @@
 				</div>
 				<juci-config-lines>
 					<juci-config-line title="{{'Wifi Network'|translate}}" ng-show="status.schedule.value">
-						<a href="#!wifi-schedule"><strong>{{'Scheduled'|translate}}</strong></a>
+						<a href="#!wireless-schedule"><strong>{{'Scheduled'|translate}}</strong></a>
 					</juci-config-line>
 					<juci-config-line title="{{'Enable WiFi'|translate}}" ng-hide="status.schedule.value">
 						<switch ng-model="status.wlan.value" class="green"></switch>
 					</juci-config-line>
-					<juci-config-line title="{{'Enable WiFi On/Off button'|translate}}" ng-show="router">
+					<!--<juci-config-line title="{{'Enable WiFi On/Off button'|translate}}" ng-show="router">
 						<switch ng-model="router.wifi_button_enabled" class="green"></switch>
-					</juci-config-line>
+					</juci-config-line>-->
 				</juci-config-lines>
 			</juci-config-section>
 			<juci-config-apply></juci-config-apply>

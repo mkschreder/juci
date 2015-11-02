@@ -11,77 +11,164 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnostic Utility"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
+msgid "Weight"
 msgstr ""
 
-msgid "status.diagnostics.info"
-msgstr ""
-"This section shows a list of tools which can be used to check the status of "
-"your network connection."
-
-msgid "Automated Diagnostics"
-msgstr "Automated Diagnostics"
-
-msgid "status.diagnostics.auto.info"
-msgstr ""
-"This diagnosis should take up to 2 minutes and cannot be cancelled once it "
-"has been started."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnose"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
+msgid "Health"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping Test"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
+msgid "ICMP Hosts"
 msgstr ""
 
-msgid "status.diagnostics.ping.info"
-msgstr "Please enter a valid hostname or IP address to execute the Ping test."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to ping"
+# /home/martin/juci/plugins/juci-igmpinfo/src/pages/status-tv.html
+msgid "Timeout"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
+msgid "Health Fail Retries"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping results"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
+msgid "Health Recovery Retries"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Error"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
+msgid "Failover To"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Tracing Tool"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
+msgid "DNS"
 msgstr ""
 
-msgid "status.diagnostics.trace.info"
-msgstr ""
-"Please choose the connection type and location where you would like to save "
-"the tracing. The tracing will then begin automatically in a separate popup "
-"window."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to trace"
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/pages/internet-multiwan.html
+msgid "MultiWAN Configuration"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace"
+msgid "internet.multiwan.info"
+msgstr "MultiWAN Configuration"
+
+# /home/martin/juci/plugins/juci-inteno-multiwan/src/pages/internet-multiwan.html
+msgid "MultiWAN Enabled"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace results"
-msgstr ""
+msgid "Default Route"
+msgstr "Default Route"
+
+#~ msgid "IGPM TV Status"
+#~ msgstr "IGPM TV Status"
+
+#~ msgid "status.tv.info"
+#~ msgstr ""
+#~ "This page allows to verify the connection status of your IPTV Services."
+
+#~ msgid "LAN Port"
+#~ msgstr "LAN Port"
+
+#~ msgid "Zone members:"
+#~ msgstr "Zone members:"
+
+#~ msgid "Rule Name"
+#~ msgstr "Rule Name"
+
+#~ msgid "Dst. Device"
+#~ msgstr "Dst. Device"
+
+#~ msgid "Private port"
+#~ msgstr "Private port"
+
+#~ msgid "Device"
+#~ msgstr "Device"
+
+#~ msgid "internet.exposed_host.info"
+#~ msgstr ""
+#~ "If you have a local network device that cannot run an Internet "
+#~ "application properly behind the firewall, you can allow unrestricted "
+#~ "Internet access to the network device (Exposed Host)."
+
+#~ msgid "Firewall Forwarding"
+#~ msgstr "Firewall Forwarding"
+
+#~ msgid "internet.firewall.forwarding.info"
+#~ msgstr "Configure port forwarding here."
+
+#~ msgid "internet.firewall.info"
+#~ msgstr ""
+#~ "Firewall allows you to filter traffic, set up port forwarding or expose "
+#~ "certain services to the outside world. "
+
+#~ msgid "to"
+#~ msgstr "To"
+
+#~ msgid "internet.firewall.rules.info"
+#~ msgstr ""
+#~ "Firewall rules are more fine grained filtering rules for filtering your "
+#~ "traffic. "
+
+#~ msgid "internet.wan.services.info"
+#~ msgstr "WAN Services configuration"
+
+#~ msgid "Service Filtering"
+#~ msgstr "Service Filtering"
+
+#~ msgid "internet.firewall.svcfilter.info"
+#~ msgstr ""
+#~ "This filter allows you to filter out packets going out to a specific "
+#~ "port. "
+
+#~ msgid "internet.firewall.urlfilter.info"
+#~ msgstr ""
+#~ "URL filtering allows you to filter out dns requests to specific URL's. "
+#~ "Warning: this still does not prevent the user from using an IP address "
+#~ "directly. "
+
+#~ msgid "internet.firewall.zones.info"
+#~ msgstr ""
+#~ "Here you can configure firewall zones. Each zone can contain multiple "
+#~ "networks, or interfaces, which you have set up earlier. "
+
+#~ msgid "internet.parental.control.info"
+#~ msgstr "Here you can setup parental control settings. "
+
+#~ msgid "internet.ethernet.info"
+#~ msgstr ""
+#~ "Ethernet devices are the low level devices that you can use to access a "
+#~ "network. These are MAC level devices and so do not have IP addresses. You "
+#~ "should configure IP addresses in the connections section. "
+
+#~ msgid "settings.dropbear.info"
+#~ msgstr "Configure SSH access to the router."
 
 #~ msgid "Interface"
 #~ msgstr "Interface"
 
 #~ msgid "Network"
 #~ msgstr "Network"
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "This section shows a list of tools which can be used to check the status "
+#~ "of your network connection."
+
+#~ msgid "Automated Diagnostics"
+#~ msgstr "Automated Diagnostics"
+
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
+#~ "it has been started."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr ""
+#~ "Please enter a valid hostname or IP address to execute the Ping test."
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Please choose the connection type and location where you would like to "
+#~ "save the tracing. The tracing will then begin automatically in a separate "
+#~ "popup window."
 
 #~ msgid "Pick Interface"
 #~ msgstr "Pick Interface"
@@ -101,9 +188,6 @@ msgstr ""
 #~ msgid "New interface"
 #~ msgstr "New interface"
 
-#~ msgid "Base Device"
-#~ msgstr "Base Device"
-
 #~ msgid "Pick base device"
 #~ msgstr "Pick base device"
 
@@ -116,14 +200,8 @@ msgstr ""
 #~ msgid "internet.ethernet.phy.info"
 #~ msgstr "Physical ethernet interfaces configuration"
 
-#~ msgid "Ethernet Ports"
-#~ msgstr "Ethernet Ports"
-
 #~ msgid "New device"
 #~ msgstr "New device"
-
-#~ msgid "Service Type"
-#~ msgstr "Service Type"
 
 #~ msgid "internet.ethernet.adsl.info"
 #~ msgstr "This page allows you to configure ADSL devices. "
@@ -156,14 +234,6 @@ msgstr ""
 #~ msgstr "802.11n"
 
 #, fuzzy
-#~ msgid "Default Route"
-#~ msgstr "Static Routes"
-
-#, fuzzy
-#~ msgid "Interface Name"
-#~ msgstr "Interfaces"
-
-#, fuzzy
 #~ msgid "Interface Type"
 #~ msgstr "Interfaces"
 
@@ -187,9 +257,6 @@ msgstr ""
 #~ msgid "Pick Network"
 #~ msgstr "Network"
 
-#~ msgid "Service"
-#~ msgstr "Service"
-
 #~ msgid "Services"
 #~ msgstr "Services"
 
@@ -198,9 +265,6 @@ msgstr ""
 
 #~ msgid "Static Routes"
 #~ msgstr "Static Routes"
-
-#~ msgid "Status"
-#~ msgstr "Status"
 
 #~ msgid "System"
 #~ msgstr "System"
@@ -214,9 +278,6 @@ msgstr ""
 
 #~ msgid "WiFi"
 #~ msgstr "WiFi"
-
-#~ msgid "Zone members:"
-#~ msgstr "Zone members:"
 
 #~ msgid "admin.diagnostics.title"
 #~ msgstr "Diagnostics"
@@ -266,69 +327,16 @@ msgstr ""
 #~ msgid "interface.macmode.deny"
 #~ msgstr "Deny"
 
-#~ msgid "internet.ethernet.info"
-#~ msgstr ""
-#~ "Ethernet devices are the low level devices that you can use to access a "
-#~ "network. These are MAC level devices and so do not have IP addresses. You "
-#~ "should configure IP addresses in the connections section. "
-
-#~ msgid "internet.exposed_host.info"
-#~ msgstr ""
-#~ "If you have a local network device that cannot run an Internet "
-#~ "application properly behind the firewall, you can allow unrestricted "
-#~ "Internet access to the network device (Exposed Host)."
-
-#, fuzzy
-#~ msgid "internet.firewall.forwarding.info"
-#~ msgstr ""
-#~ "Here you can configure firewall zones. Each zone can contain multiple "
-#~ "networks, or interfaces, which you have set up earlier. "
-
-#~ msgid "internet.firewall.info"
-#~ msgstr ""
-#~ "Firewall allows you to filter traffic, set up port forwarding or expose "
-#~ "certain services to the outside world. "
-
-#~ msgid "internet.firewall.rules.info"
-#~ msgstr ""
-#~ "Firewall rules are more fine grained filtering rules for filtering your "
-#~ "traffic. "
-
-#~ msgid "internet.firewall.svcfilter.info"
-#~ msgstr ""
-#~ "This filter allows you to filter out packets going out to a specific "
-#~ "port. "
-
-#~ msgid "internet.firewall.urlfilter.info"
-#~ msgstr ""
-#~ "URL filtering allows you to filter out dns requests to specific URL's. "
-#~ "Warning: this still does not prevent the user from using an IP address "
-#~ "directly. "
-
-#~ msgid "internet.firewall.zones.info"
-#~ msgstr ""
-#~ "Here you can configure firewall zones. Each zone can contain multiple "
-#~ "networks, or interfaces, which you have set up earlier. "
-
 #~ msgid "internet.lan.routes.info"
 #~ msgstr ""
 #~ "Static routes are useful if you have several networks accessible from "
 #~ "your router and you want to correctly route packets between them. "
-
-#~ msgid "internet.multiwan.info"
-#~ msgstr "MultiWAN Configuration"
-
-#~ msgid "internet.parental.control.info"
-#~ msgstr "Here you can setup parental control settings. "
 
 #~ msgid "internet.services.info"
 #~ msgstr "Here you can configure network services. "
 
 #~ msgid "internet.services.upnp.info"
 #~ msgstr "Configure UPNP and ports"
-
-#~ msgid "internet.wan.services.info"
-#~ msgstr "WAN Services configuration"
 
 #~ msgid "lan.config.info"
 #~ msgstr "LAN Configuration"
@@ -474,9 +482,6 @@ msgstr ""
 #~ "Your router can save your configuration to a computer. We recommend to "
 #~ "always save your last changed settings to a computer."
 
-#~ msgid "settings.dropbear.info"
-#~ msgstr "Configure SSH access to the router."
-
 #~ msgid "settings.energy.info"
 #~ msgstr "Reduce power consumption by switching off unused functionality."
 
@@ -553,10 +558,6 @@ msgstr ""
 #~ msgid "status.system.processes.info"
 #~ msgstr "Processes currently running on the router. "
 
-#~ msgid "status.tv.info"
-#~ msgstr ""
-#~ "This page allows to verify the connection status of your IPTV Services."
-
 #~ msgid "status.voice.info"
 #~ msgstr ""
 #~ "Here you find an overview of your active phone numbers. For any change "
@@ -570,9 +571,6 @@ msgstr ""
 
 #~ msgid "system.management.info"
 #~ msgstr "Configure settings for managing your box over WAN interface. "
-
-#~ msgid "to"
-#~ msgstr "To"
 
 #~ msgid "uhttpd.settings.info"
 #~ msgstr "Configuration for uHTTPd micro web server. "
@@ -799,10 +797,6 @@ msgstr ""
 
 #~ msgid "Phone Numbers"
 #~ msgstr "Phone Numbers"
-
-#, fuzzy
-#~ msgid "Service Filter"
-#~ msgstr "Service"
 
 #~ msgid "WAN Settings"
 #~ msgstr "WAN Settings"

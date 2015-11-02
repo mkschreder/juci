@@ -11,77 +11,478 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnostic Utility"
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.js
+msgid "Please select a rule to delete!"
 msgstr ""
 
-msgid "status.diagnostics.info"
-msgstr ""
-"This section shows a list of tools which can be used to check the status of "
-"your network connection."
-
-msgid "Automated Diagnostics"
-msgstr "Automated Diagnostics"
-
-msgid "status.diagnostics.auto.info"
-msgstr ""
-"This diagnosis should take up to 2 minutes and cannot be cancelled once it "
-"has been started."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnose"
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.js
+msgid "Are you sure you want to delete this rule?"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping Test"
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-zones.js
+msgid "Please select a zone to delete!"
 msgstr ""
 
-msgid "status.diagnostics.ping.info"
-msgstr "Please enter a valid hostname or IP address to execute the Ping test."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to ping"
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-zones.js
+msgid "Are you sure you want to delete this zone?"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping"
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.js
+msgid "Parental Rule"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping results"
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
+msgid "ACCEPT"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Error"
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
+msgid "REJECT"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Tracing Tool"
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
+msgid "FORWARD"
 msgstr ""
 
-msgid "status.diagnostics.trace.info"
-msgstr ""
-"Please choose the connection type and location where you would like to save "
-"the tracing. The tracing will then begin automatically in a separate popup "
-"window."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to trace"
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
+msgid "DROP"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace"
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
+msgid "Unspecified"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace results"
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
+msgid "Any"
 msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
+msgid "Please select a connection in the list!"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
+msgid "Are you sure you want to remove this network from this zone?"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.js
+msgid "UDP"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.js
+msgid "TCP"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.js
+msgid "TCP + UDP"
+msgstr ""
+
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Name"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "Source zone"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "IP"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "IP Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "MAC"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "MAC Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "Port"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "Destination zone"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "Family"
+msgstr ""
+
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Protocol"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "Firewall Action"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "Source"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "Destination"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-urlfilter-editor.html
+msgid "URL"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-wan-service-edit.html
+msgid "Enable WAN forwarding for this service"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-wan-service-edit.html
+msgid "Configure firewall rule for this service"
+msgstr ""
+
+msgid "Default Policy"
+msgstr "Default Policy"
+
+msgid "Zone members:"
+msgstr "Zone members:"
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
+msgid "Input"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
+msgid "Output"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
+msgid "Forward"
+msgstr ""
+
+msgid "Rule Name"
+msgstr "Rule Name"
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+msgid "Select Zone"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+msgid "Destination Zone"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+msgid "Source IP Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+msgid "Select connected device"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+msgid "Source Zone"
+msgstr ""
+
+msgid "Dst. Device"
+msgstr "Dst. Device"
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+msgid "Dst. IP Address"
+msgstr ""
+
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
+msgid "Public port"
+msgstr ""
+
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
+msgid "Public port range"
+msgstr ""
+
+msgid "Private port"
+msgstr "Private port"
+
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
+# #-#-#-#-#  template.pot  #-#-#-#-#
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
+msgid "Private port range"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
+msgid "Select protocol"
+msgstr ""
+
+msgid "Device"
+msgstr "Device"
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
+msgid "Local IP Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
+msgid "Type"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "DMZ / Exposed Host"
+msgstr ""
+
+msgid "internet.exposed_host.info"
+msgstr ""
+"If you have a local network device that cannot run an Internet application "
+"properly behind the firewall, you can allow unrestricted Internet access to "
+"the network device (Exposed Host)."
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "Enable"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "WAN IP Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "Host IPv4 Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "Host IPv6 Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "IPv6 Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "Pick Existing Host"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "Select Existing Host"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid ""
+"Choose the local IP address that should be exposed to Internet. Additionally "
+"you should configure this IP address as static DHCP address for your device "
+"(see Settings/Network)."
+msgstr ""
+
+msgid "Firewall Forwarding"
+msgstr "Firewall Forwarding"
+
+msgid "internet.firewall.forwarding.info"
+msgstr "Configure port forwarding here."
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall.html
+msgid "Enable firewall"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall.html
+msgid "Enable NAT"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall.html
+msgid "Firewall settings"
+msgstr ""
+
+msgid "internet.firewall.info"
+msgstr ""
+"Firewall allows you to filter traffic, set up port forwarding or expose "
+"certain services to the outside world. "
+
+msgid "to"
+msgstr "To"
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Add / Edit Port Mapping"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Cancel"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Save"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Port Mapping"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid ""
+"Port mapping allows remote computers to connect to a specific device within "
+"your private network."
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Direction"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Dst. IP"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Local port"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Public Port"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.html
+msgid "Rules"
+msgstr ""
+
+msgid "internet.firewall.rules.info"
+msgstr ""
+"Firewall rules are more fine grained filtering rules for filtering your "
+"traffic. "
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-services.html
+msgid "Allow WAN Access To Running Services"
+msgstr ""
+
+msgid "internet.wan.services.info"
+msgstr "WAN Services configuration"
+
+msgid "Service Filtering"
+msgstr "Service Filtering"
+
+msgid "internet.firewall.svcfilter.info"
+msgstr ""
+"This filter allows you to filter out packets going out to a specific port. "
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-urlblock.html
+msgid "URL Filtering"
+msgstr ""
+
+msgid "internet.firewall.urlfilter.info"
+msgstr ""
+"URL filtering allows you to filter out dns requests to specific URL's. "
+"Warning: this still does not prevent the user from using an IP address "
+"directly. "
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-urlblock.html
+msgid "Add URL's to URL blocking list"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-zones.html
+msgid "Firewall Zones"
+msgstr ""
+
+msgid "internet.firewall.zones.info"
+msgstr ""
+"Here you can configure firewall zones. Each zone can contain multiple "
+"networks, or interfaces, which you have set up earlier. "
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "URL Blocking"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "Parental Control"
+msgstr ""
+
+msgid "internet.parental.control.info"
+msgstr "Here you can setup parental control settings. "
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "URL Blocking Function"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "Internet Access Scheduling"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "Weekdays"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "Start Time"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "Stop Time"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
+msgid "MAC Addresses"
+msgstr ""
+
+#~ msgid "internet.ethernet.info"
+#~ msgstr ""
+#~ "Ethernet devices are the low level devices that you can use to access a "
+#~ "network. These are MAC level devices and so do not have IP addresses. You "
+#~ "should configure IP addresses in the connections section. "
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "settings.dropbear.info"
+#~ msgstr "Configure SSH access to the router."
+
+#~ msgid "Listen Port"
+#~ msgstr "Listen Port"
 
 #~ msgid "Interface"
 #~ msgstr "Interface"
 
 #~ msgid "Network"
 #~ msgstr "Network"
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "This section shows a list of tools which can be used to check the status "
+#~ "of your network connection."
+
+#~ msgid "Automated Diagnostics"
+#~ msgstr "Automated Diagnostics"
+
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
+#~ "it has been started."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr ""
+#~ "Please enter a valid hostname or IP address to execute the Ping test."
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Please choose the connection type and location where you would like to "
+#~ "save the tracing. The tracing will then begin automatically in a separate "
+#~ "popup window."
 
 #~ msgid "Pick Interface"
 #~ msgstr "Pick Interface"
@@ -101,9 +502,6 @@ msgstr ""
 #~ msgid "New interface"
 #~ msgstr "New interface"
 
-#~ msgid "Base Device"
-#~ msgstr "Base Device"
-
 #~ msgid "Pick base device"
 #~ msgstr "Pick base device"
 
@@ -116,14 +514,8 @@ msgstr ""
 #~ msgid "internet.ethernet.phy.info"
 #~ msgstr "Physical ethernet interfaces configuration"
 
-#~ msgid "Ethernet Ports"
-#~ msgstr "Ethernet Ports"
-
 #~ msgid "New device"
 #~ msgstr "New device"
-
-#~ msgid "Service Type"
-#~ msgstr "Service Type"
 
 #~ msgid "internet.ethernet.adsl.info"
 #~ msgstr "This page allows you to configure ADSL devices. "
@@ -156,14 +548,6 @@ msgstr ""
 #~ msgstr "802.11n"
 
 #, fuzzy
-#~ msgid "Default Route"
-#~ msgstr "Static Routes"
-
-#, fuzzy
-#~ msgid "Interface Name"
-#~ msgstr "Interfaces"
-
-#, fuzzy
 #~ msgid "Interface Type"
 #~ msgstr "Interfaces"
 
@@ -187,9 +571,6 @@ msgstr ""
 #~ msgid "Pick Network"
 #~ msgstr "Network"
 
-#~ msgid "Service"
-#~ msgstr "Service"
-
 #~ msgid "Services"
 #~ msgstr "Services"
 
@@ -198,9 +579,6 @@ msgstr ""
 
 #~ msgid "Static Routes"
 #~ msgstr "Static Routes"
-
-#~ msgid "Status"
-#~ msgstr "Status"
 
 #~ msgid "System"
 #~ msgstr "System"
@@ -214,9 +592,6 @@ msgstr ""
 
 #~ msgid "WiFi"
 #~ msgstr "WiFi"
-
-#~ msgid "Zone members:"
-#~ msgstr "Zone members:"
 
 #~ msgid "admin.diagnostics.title"
 #~ msgstr "Diagnostics"
@@ -266,50 +641,6 @@ msgstr ""
 #~ msgid "interface.macmode.deny"
 #~ msgstr "Deny"
 
-#~ msgid "internet.ethernet.info"
-#~ msgstr ""
-#~ "Ethernet devices are the low level devices that you can use to access a "
-#~ "network. These are MAC level devices and so do not have IP addresses. You "
-#~ "should configure IP addresses in the connections section. "
-
-#~ msgid "internet.exposed_host.info"
-#~ msgstr ""
-#~ "If you have a local network device that cannot run an Internet "
-#~ "application properly behind the firewall, you can allow unrestricted "
-#~ "Internet access to the network device (Exposed Host)."
-
-#, fuzzy
-#~ msgid "internet.firewall.forwarding.info"
-#~ msgstr ""
-#~ "Here you can configure firewall zones. Each zone can contain multiple "
-#~ "networks, or interfaces, which you have set up earlier. "
-
-#~ msgid "internet.firewall.info"
-#~ msgstr ""
-#~ "Firewall allows you to filter traffic, set up port forwarding or expose "
-#~ "certain services to the outside world. "
-
-#~ msgid "internet.firewall.rules.info"
-#~ msgstr ""
-#~ "Firewall rules are more fine grained filtering rules for filtering your "
-#~ "traffic. "
-
-#~ msgid "internet.firewall.svcfilter.info"
-#~ msgstr ""
-#~ "This filter allows you to filter out packets going out to a specific "
-#~ "port. "
-
-#~ msgid "internet.firewall.urlfilter.info"
-#~ msgstr ""
-#~ "URL filtering allows you to filter out dns requests to specific URL's. "
-#~ "Warning: this still does not prevent the user from using an IP address "
-#~ "directly. "
-
-#~ msgid "internet.firewall.zones.info"
-#~ msgstr ""
-#~ "Here you can configure firewall zones. Each zone can contain multiple "
-#~ "networks, or interfaces, which you have set up earlier. "
-
 #~ msgid "internet.lan.routes.info"
 #~ msgstr ""
 #~ "Static routes are useful if you have several networks accessible from "
@@ -318,17 +649,11 @@ msgstr ""
 #~ msgid "internet.multiwan.info"
 #~ msgstr "MultiWAN Configuration"
 
-#~ msgid "internet.parental.control.info"
-#~ msgstr "Here you can setup parental control settings. "
-
 #~ msgid "internet.services.info"
 #~ msgstr "Here you can configure network services. "
 
 #~ msgid "internet.services.upnp.info"
 #~ msgstr "Configure UPNP and ports"
-
-#~ msgid "internet.wan.services.info"
-#~ msgstr "WAN Services configuration"
 
 #~ msgid "lan.config.info"
 #~ msgstr "LAN Configuration"
@@ -474,9 +799,6 @@ msgstr ""
 #~ "Your router can save your configuration to a computer. We recommend to "
 #~ "always save your last changed settings to a computer."
 
-#~ msgid "settings.dropbear.info"
-#~ msgstr "Configure SSH access to the router."
-
 #~ msgid "settings.energy.info"
 #~ msgstr "Reduce power consumption by switching off unused functionality."
 
@@ -570,9 +892,6 @@ msgstr ""
 
 #~ msgid "system.management.info"
 #~ msgstr "Configure settings for managing your box over WAN interface. "
-
-#~ msgid "to"
-#~ msgstr "To"
 
 #~ msgid "uhttpd.settings.info"
 #~ msgstr "Configuration for uHTTPd micro web server. "
@@ -799,10 +1118,6 @@ msgstr ""
 
 #~ msgid "Phone Numbers"
 #~ msgstr "Phone Numbers"
-
-#, fuzzy
-#~ msgid "Service Filter"
-#~ msgstr "Service"
 
 #~ msgid "WAN Settings"
 #~ msgstr "WAN Settings"

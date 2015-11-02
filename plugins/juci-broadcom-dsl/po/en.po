@@ -11,113 +11,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnostic Utility"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Full auto-negotiation"
 msgstr ""
 
-msgid "status.diagnostics.info"
-msgstr ""
-"This section shows a list of tools which can be used to check the status of "
-"your network connection."
-
-msgid "Automated Diagnostics"
-msgstr "Automated Diagnostics"
-
-msgid "status.diagnostics.auto.info"
-msgstr ""
-"This diagnosis should take up to 2 minutes and cannot be cancelled once it "
-"has been started."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnose"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 100Mb auto-negotiation, full duplex"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping Test"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 100Mb auto-negotiation, half duplex"
 msgstr ""
 
-msgid "status.diagnostics.ping.info"
-msgstr "Please enter a valid hostname or IP address to execute the Ping test."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to ping"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 10Mb auto-negotiation, full duplex"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 10Mb auto-negotiation, half duplex"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping results"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 100Mb, full duplex"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Error"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 100Mb, half duplex"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Tracing Tool"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 10Mb, full duplex"
 msgstr ""
 
-msgid "status.diagnostics.trace.info"
-msgstr ""
-"Please choose the connection type and location where you would like to save "
-"the tracing. The tracing will then begin automatically in a separate popup "
-"window."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to trace"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 10Mb, half duplex"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Disabled"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace results"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
+msgid "Port speed"
 msgstr ""
 
-#~ msgid "Interface"
-#~ msgstr "Interface"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
+msgid "Pause frames"
+msgstr ""
 
-#~ msgid "Network"
-#~ msgstr "Network"
+msgid "internet.ethernet.phy.info"
+msgstr "Physical ethernet interfaces configuration"
 
-#~ msgid "Pick Interface"
-#~ msgstr "Pick Interface"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
+msgid ""
+"This will be the port that will be used to configure the physical ethernet "
+"port as upling port for routing out to the internet."
+msgstr ""
 
-#~ msgid "Choose DNS Provider"
-#~ msgstr "Choose DNS Provider"
+msgid "Ethernet Ports"
+msgstr "Ethernet Ports"
 
-#~ msgid "Enter DDNS Provider"
-#~ msgstr "Enter DDNS Provider"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
+msgid "Pick uplink port"
+msgstr ""
 
-#~ msgid "ddns.config.info"
-#~ msgstr ""
-#~ "DDNS allows you to access your router from the Internet using a domain "
-#~ "name instead of IP address. You will need an account on a DDNS service "
-#~ "provider."
-
-#~ msgid "New interface"
-#~ msgstr "New interface"
-
-#~ msgid "Base Device"
-#~ msgstr "Base Device"
-
-#~ msgid "Pick base device"
-#~ msgstr "Pick base device"
-
-#~ msgid "internet.ethernet.vlan.info"
-#~ msgstr "This section allows you to configure VLAN interfaces. "
-
-#~ msgid "VLAN Devices"
-#~ msgstr "VLAN Devices"
-
-#~ msgid "internet.ethernet.phy.info"
-#~ msgstr "Physical ethernet interfaces configuration"
-
-#~ msgid "Ethernet Ports"
-#~ msgstr "Ethernet Ports"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
+msgid " socket will be used for passing packets to the internet."
+msgstr ""
 
 #~ msgid "New device"
 #~ msgstr "New device"
@@ -167,6 +127,12 @@ msgstr ""
 #~ msgid "Interface Type"
 #~ msgstr "Interfaces"
 
+#~ msgid "Interface UP:"
+#~ msgstr "Interface UP:"
+
+#~ msgid "Interfaces"
+#~ msgstr "Interfaces"
+
 #, fuzzy
 #~ msgid "Internal Number"
 #~ msgstr "Interfaces"
@@ -177,6 +143,9 @@ msgstr ""
 #~ msgid "MiniDLNA Settings"
 #~ msgstr "MiniDLNA Settings"
 
+#~ msgid "Network"
+#~ msgstr "Network"
+
 #~ msgid "Overview"
 #~ msgstr "Overview"
 
@@ -186,6 +155,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Pick Network"
 #~ msgstr "Network"
+
+#, fuzzy
+#~ msgid "Select Base Device"
+#~ msgstr "Services"
 
 #~ msgid "Service"
 #~ msgstr "Service"
@@ -251,6 +224,12 @@ msgstr ""
 #~ msgid "auto"
 #~ msgstr "Auto"
 
+#~ msgid "ddns.config.info"
+#~ msgstr ""
+#~ "DDNS allows you to access your router from the Internet using a domain "
+#~ "name instead of IP address. You will need an account on a DDNS service "
+#~ "provider."
+
 #~ msgid "easycwmp.config.info"
 #~ msgstr "EasyCWMP configuration"
 
@@ -271,6 +250,9 @@ msgstr ""
 #~ "Ethernet devices are the low level devices that you can use to access a "
 #~ "network. These are MAC level devices and so do not have IP addresses. You "
 #~ "should configure IP addresses in the connections section. "
+
+#~ msgid "internet.ethernet.vlan.info"
+#~ msgstr "This section allows you to configure VLAN interfaces. "
 
 #~ msgid "internet.exposed_host.info"
 #~ msgstr ""
@@ -525,6 +507,26 @@ msgstr ""
 #~ "start the automatic firmware upgrade. Please note that there should be "
 #~ "only one firmware file on the storage and that one shall be located under "
 #~ "the main directory (no search under subfolders)."
+
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
+#~ "it has been started."
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "This section shows a list of tools which can be used to check the status "
+#~ "of your network connection."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr ""
+#~ "Please enter a valid hostname or IP address to execute the Ping test."
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Please choose the connection type and location where you would like to "
+#~ "save the tracing. The tracing will then begin automatically in a separate "
+#~ "popup window."
 
 #~ msgid "status.eventlog.info"
 #~ msgstr ""
@@ -784,8 +786,16 @@ msgstr ""
 #~ msgid "wireless.status.info"
 #~ msgstr "This page shows wireless status information. "
 
+#, fuzzy
+#~ msgid "Choose Network"
+#~ msgstr "Network"
+
 #~ msgid "DNS Settings"
 #~ msgstr "DNS Settings"
+
+#, fuzzy
+#~ msgid "Devices"
+#~ msgstr "Services"
 
 #~ msgid "Internet IPv6"
 #~ msgstr "Internet IPv6"

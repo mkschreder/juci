@@ -11,131 +11,234 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnostic Utility"
+msgid "Today"
 msgstr ""
 
-msgid "status.diagnostics.info"
-msgstr ""
-"This section shows a list of tools which can be used to check the status of "
-"your network connection."
-
-msgid "Automated Diagnostics"
-msgstr "Automated Diagnostics"
-
-msgid "status.diagnostics.auto.info"
-msgstr ""
-"This diagnosis should take up to 2 minutes and cannot be cancelled once it "
-"has been started."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnose"
+msgid "N/A"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping Test"
+msgid "Enabled"
 msgstr ""
 
-msgid "status.diagnostics.ping.info"
-msgstr "Please enter a valid hostname or IP address to execute the Ping test."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to ping"
+msgid "Disabled"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping"
+msgid "off"
+msgstr "Off"
+
+msgid "on"
+msgstr "On"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Schedule"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping results"
+msgid "OFFLINE"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Error"
+# phone
+msgid "Call Log"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Tracing Tool"
+msgid "phone.call_log.info"
+msgstr "Latest calls."
+
+msgid "Show calls for"
 msgstr ""
 
-msgid "status.diagnostics.trace.info"
-msgstr ""
-"Please choose the connection type and location where you would like to save "
-"the tracing. The tracing will then begin automatically in a separate popup "
-"window."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to trace"
+msgid "Pick phone"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace"
+msgid "Date"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace results"
+msgid "Time"
 msgstr ""
 
-#~ msgid "Interface"
-#~ msgstr "Interface"
+msgid "External Number"
+msgstr ""
 
-#~ msgid "Network"
-#~ msgstr "Network"
+msgid "Your number"
+msgstr ""
 
-#~ msgid "Pick Interface"
-#~ msgstr "Pick Interface"
+msgid "Duration"
+msgstr ""
 
-#~ msgid "Choose DNS Provider"
-#~ msgstr "Choose DNS Provider"
+msgid "Phone Lines"
+msgstr ""
 
-#~ msgid "Enter DDNS Provider"
-#~ msgstr "Enter DDNS Provider"
+msgid "phone.lines.info"
+msgstr "Configure phone lines."
 
-#~ msgid "ddns.config.info"
-#~ msgstr ""
-#~ "DDNS allows you to access your router from the Internet using a domain "
-#~ "name instead of IP address. You will need an account on a DDNS service "
-#~ "provider."
+msgid "Name"
+msgstr ""
 
-#~ msgid "New interface"
-#~ msgstr "New interface"
+#, fuzzy
+msgid "Internal Number"
+msgstr "Interfaces"
 
-#~ msgid "Base Device"
-#~ msgstr "Base Device"
+msgid "Outgoing Calls Number"
+msgstr ""
 
-#~ msgid "Pick base device"
-#~ msgstr "Pick base device"
+msgid "Pick Outgoing Number"
+msgstr ""
 
-#~ msgid "internet.ethernet.vlan.info"
-#~ msgstr "This section allows you to configure VLAN interfaces. "
+msgid "Call Waiting"
+msgstr ""
 
-#~ msgid "VLAN Devices"
-#~ msgstr "VLAN Devices"
+msgid "Call ID Restriction"
+msgstr ""
 
-#~ msgid "internet.ethernet.phy.info"
-#~ msgstr "Physical ethernet interfaces configuration"
+msgid "Number Blocking"
+msgstr ""
 
-#~ msgid "Ethernet Ports"
-#~ msgstr "Ethernet Ports"
+msgid "phone.number_blocking.info"
+msgstr ""
+"Stay in control of your bills and block outgoing calls to unwanted numbers."
 
-#~ msgid "New device"
-#~ msgstr "New device"
+msgid "Outgoing Number Blocking"
+msgstr ""
 
-#~ msgid "Service Type"
-#~ msgstr "Service Type"
+msgid "Phone Extension"
+msgstr ""
 
-#~ msgid "internet.ethernet.adsl.info"
-#~ msgstr "This page allows you to configure ADSL devices. "
+msgid "Block connections to all foreign numbers"
+msgstr ""
 
-#~ msgid "DSL Status"
-#~ msgstr "DSL Status"
+msgid "Block connections to all special rate numbers"
+msgstr ""
 
-#~ msgid "dsl.status.info"
-#~ msgstr "This status page shows technical parameters of your DSL connection."
+msgid "Incoming Number Blocking"
+msgstr ""
 
-#~ msgid "internet.ethernet.vdsl.info"
-#~ msgstr "This section allows you to configure VDSL interfaces. "
+msgid "Do not allow connections from these numbers"
+msgstr ""
+
+msgid "Outgoing Calls"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-asterisk/src/pages/phone-number-blocking.html
+msgid ""
+"You can also block ranges of numbers.For example: '0160#' blocks all numbers "
+"starting with '0160'."
+msgstr ""
+
+msgid "Incoming Calls"
+msgstr ""
+
+msgid "SIP Accounts"
+msgstr ""
+
+msgid "phone.sip.accounts.info"
+msgstr "SIP accounts configuration."
+
+msgid "Account Name"
+msgstr ""
+
+msgid "SIP Host"
+msgstr ""
+
+msgid "SIP Server"
+msgstr ""
+
+msgid "SIP Proxy"
+msgstr ""
+
+msgid "SIP Auth User"
+msgstr ""
+
+msgid "Auth User"
+msgstr ""
+
+msgid "SIP User"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "SIP Password"
+msgstr ""
+
+msgid "***********"
+msgstr ""
+
+msgid "Incoming Phone Lines"
+msgstr ""
+
+msgid "Ringing Schedule"
+msgstr ""
+
+msgid "phone.schedule.info"
+msgstr "Define schedules when your phones should or should not ring."
+
+msgid "During this time ringing is"
+msgstr ""
+
+msgid "Select Schedule Mode"
+msgstr ""
+
+msgid "Add a new Ringing Schedule"
+msgstr ""
+
+msgid "Phone Number"
+msgstr ""
+
+msgid "Pick Phone Number"
+msgstr ""
+
+msgid "Day"
+msgstr ""
+
+msgid "Number"
+msgstr ""
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Speed Dialing"
+msgstr ""
+
+msgid "phone.speed_dialing.info"
+msgstr ""
+"This feature activates speed dialing to connect you faster to your preferred "
+"contacts."
+
+msgid "Remove all entries from speed dial list"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Voice Status"
+msgstr ""
+
+msgid "status.voice.info"
+msgstr ""
+"Here you find an overview of your active phone numbers. For any change you "
+"would like to make to the current section, please visit Phone menu."
+
+msgid "Your Phone Numbers"
+msgstr ""
+
+msgid "Voice Lines"
+msgstr ""
+
+msgid "status.voice_lines.info"
+msgstr "Status of your voice lines."
+
+msgid "Your Phone Lines"
+msgstr ""
+
+msgid "Domain"
+msgstr ""
+
+msgid "State"
+msgstr ""
+
+msgid "Voice service is not available!"
+msgstr ""
 
 #~ msgid "11a"
 #~ msgstr "802.11a"
@@ -155,6 +258,9 @@ msgstr ""
 #~ msgid "11n"
 #~ msgstr "802.11n"
 
+#~ msgid "DSL Status"
+#~ msgstr "DSL Status"
+
 #, fuzzy
 #~ msgid "Default Route"
 #~ msgstr "Static Routes"
@@ -167,8 +273,10 @@ msgstr ""
 #~ msgid "Interface Type"
 #~ msgstr "Interfaces"
 
-#, fuzzy
-#~ msgid "Internal Number"
+#~ msgid "Interface UP:"
+#~ msgstr "Interface UP:"
+
+#~ msgid "Interfaces"
 #~ msgstr "Interfaces"
 
 #~ msgid "Internet"
@@ -177,17 +285,28 @@ msgstr ""
 #~ msgid "MiniDLNA Settings"
 #~ msgstr "MiniDLNA Settings"
 
+#~ msgid "Network"
+#~ msgstr "Network"
+
+#~ msgid "Network device"
+#~ msgstr "Network device"
+
 #~ msgid "Overview"
 #~ msgstr "Overview"
-
-#~ msgid "Phone"
-#~ msgstr "Phone"
 
 #, fuzzy
 #~ msgid "Pick Network"
 #~ msgstr "Network"
 
+#, fuzzy
+#~ msgid "Select Base Device"
+#~ msgstr "Services"
+
 #~ msgid "Service"
+#~ msgstr "Service"
+
+#, fuzzy
+#~ msgid "Service Type"
 #~ msgstr "Service"
 
 #~ msgid "Services"
@@ -198,9 +317,6 @@ msgstr ""
 
 #~ msgid "Static Routes"
 #~ msgstr "Static Routes"
-
-#~ msgid "Status"
-#~ msgstr "Status"
 
 #~ msgid "System"
 #~ msgstr "System"
@@ -251,6 +367,15 @@ msgstr ""
 #~ msgid "auto"
 #~ msgstr "Auto"
 
+#~ msgid "ddns.config.info"
+#~ msgstr ""
+#~ "DDNS allows you to access your router from the Internet using a domain "
+#~ "name instead of IP address. You will need an account on a DDNS service "
+#~ "provider."
+
+#~ msgid "dsl.status.info"
+#~ msgstr "This status page shows technical parameters of your DSL connection."
+
 #~ msgid "easycwmp.config.info"
 #~ msgstr "EasyCWMP configuration"
 
@@ -266,11 +391,27 @@ msgstr ""
 #~ msgid "interface.macmode.deny"
 #~ msgstr "Deny"
 
+#~ msgid "internet.ethernet.adsl.info"
+#~ msgstr "This page allows you to configure ADSL devices. "
+
 #~ msgid "internet.ethernet.info"
 #~ msgstr ""
 #~ "Ethernet devices are the low level devices that you can use to access a "
 #~ "network. These are MAC level devices and so do not have IP addresses. You "
 #~ "should configure IP addresses in the connections section. "
+
+#, fuzzy
+#~ msgid "internet.ethernet.phy.info"
+#~ msgstr ""
+#~ "Ethernet devices are the low level devices that you can use to access a "
+#~ "network. These are MAC level devices and so do not have IP addresses. You "
+#~ "should configure IP addresses in the connections section. "
+
+#~ msgid "internet.ethernet.vdsl.info"
+#~ msgstr "This section allows you to configure VDSL interfaces. "
+
+#~ msgid "internet.ethernet.vlan.info"
+#~ msgstr "This section allows you to configure VLAN interfaces. "
 
 #~ msgid "internet.exposed_host.info"
 #~ msgstr ""
@@ -407,12 +548,6 @@ msgstr ""
 #~ msgid "network.wan.title"
 #~ msgstr "WAN"
 
-#~ msgid "off"
-#~ msgstr "Off"
-
-#~ msgid "on"
-#~ msgstr "On"
-
 #~ msgid "overview.settings.title"
 #~ msgstr "Settings"
 
@@ -423,30 +558,8 @@ msgstr ""
 #~ msgid "overview.title"
 #~ msgstr "Overview"
 
-#~ msgid "phone.call_log.info"
-#~ msgstr "Latest calls."
-
 #~ msgid "phone.dect.info"
 #~ msgstr "DECT configuration"
-
-#~ msgid "phone.lines.info"
-#~ msgstr "Configure phone lines."
-
-#~ msgid "phone.number_blocking.info"
-#~ msgstr ""
-#~ "Stay in control of your bills and block outgoing calls to unwanted "
-#~ "numbers."
-
-#~ msgid "phone.schedule.info"
-#~ msgstr "Define schedules when your phones should or should not ring."
-
-#~ msgid "phone.sip.accounts.info"
-#~ msgstr "SIP accounts configuration."
-
-#~ msgid "phone.speed_dialing.info"
-#~ msgstr ""
-#~ "This feature activates speed dialing to connect you faster to your "
-#~ "preferred contacts."
 
 #~ msgid "samba.shares.info"
 #~ msgstr "Samba shares configuration"
@@ -526,6 +639,26 @@ msgstr ""
 #~ "only one firmware file on the storage and that one shall be located under "
 #~ "the main directory (no search under subfolders)."
 
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
+#~ "it has been started."
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "This section shows a list of tools which can be used to check the status "
+#~ "of your network connection."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr ""
+#~ "Please enter a valid hostname or IP address to execute the Ping test."
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Please choose the connection type and location where you would like to "
+#~ "save the tracing. The tracing will then begin automatically in a separate "
+#~ "popup window."
+
 #~ msgid "status.eventlog.info"
 #~ msgstr ""
 #~ "Select the categories for which you would like to view the event log."
@@ -556,14 +689,6 @@ msgstr ""
 #~ msgid "status.tv.info"
 #~ msgstr ""
 #~ "This page allows to verify the connection status of your IPTV Services."
-
-#~ msgid "status.voice.info"
-#~ msgstr ""
-#~ "Here you find an overview of your active phone numbers. For any change "
-#~ "you would like to make to the current section, please visit Phone menu."
-
-#~ msgid "status.voice_lines.info"
-#~ msgstr "Status of your voice lines."
 
 #~ msgid "status.wifi.info"
 #~ msgstr "Wireless status information"
@@ -784,8 +909,20 @@ msgstr ""
 #~ msgid "wireless.status.info"
 #~ msgstr "This page shows wireless status information. "
 
+#, fuzzy
+#~ msgid "Choose Network"
+#~ msgstr "Network"
+
 #~ msgid "DNS Settings"
 #~ msgstr "DNS Settings"
+
+#, fuzzy
+#~ msgid "Devices"
+#~ msgstr "Services"
+
+#, fuzzy
+#~ msgid "Ethernet"
+#~ msgstr "Internet"
 
 #~ msgid "Internet IPv6"
 #~ msgstr "Internet IPv6"

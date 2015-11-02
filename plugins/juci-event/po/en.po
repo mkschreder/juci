@@ -11,77 +11,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnostic Utility"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Log size"
 msgstr ""
 
-msgid "status.diagnostics.info"
-msgstr ""
-"This section shows a list of tools which can be used to check the status of "
-"your network connection."
-
-msgid "Automated Diagnostics"
-msgstr "Automated Diagnostics"
-
-msgid "status.diagnostics.auto.info"
-msgstr ""
-"This diagnosis should take up to 2 minutes and cannot be cancelled once it "
-"has been started."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnose"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Size of the file or circular memory buffer in KiB."
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping Test"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Log size in KB"
 msgstr ""
 
-msgid "status.diagnostics.ping.info"
-msgstr "Please enter a valid hostname or IP address to execute the Ping test."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to ping"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Console Log Level"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid ""
+"Number between 1-8. The maximum log level for kernel messages to be logged "
+"to the console. Only messages with a level lower than this will be printed "
+"to the console."
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping results"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Log level 1-8"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Error"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Enable remote logging"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Tracing Tool"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Logging server IP"
 msgstr ""
 
-msgid "status.diagnostics.trace.info"
-msgstr ""
-"Please choose the connection type and location where you would like to save "
-"the tracing. The tracing will then begin automatically in a separate popup "
-"window."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to trace"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid ""
+"IP address of a syslog server to which the log messages should be sent in "
+"addition to the local destination."
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Log port"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace results"
+# /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
+msgid "Port number of the remote syslog server specified with log_ip."
 msgstr ""
+
+msgid "Server port"
+msgstr "Server port"
+
+#~ msgid "internet.ethernet.info"
+#~ msgstr ""
+#~ "Ethernet devices are the low level devices that you can use to access a "
+#~ "network. These are MAC level devices and so do not have IP addresses. You "
+#~ "should configure IP addresses in the connections section. "
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "settings.dropbear.info"
+#~ msgstr "Configure SSH access to the router."
+
+#~ msgid "Listen Port"
+#~ msgstr "Listen Port"
 
 #~ msgid "Interface"
 #~ msgstr "Interface"
 
 #~ msgid "Network"
 #~ msgstr "Network"
+
+#~ msgid "Device Name"
+#~ msgstr "Device Name"
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "This section shows a list of tools which can be used to check the status "
+#~ "of your network connection."
+
+#~ msgid "Automated Diagnostics"
+#~ msgstr "Automated Diagnostics"
+
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
+#~ "it has been started."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr ""
+#~ "Please enter a valid hostname or IP address to execute the Ping test."
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Please choose the connection type and location where you would like to "
+#~ "save the tracing. The tracing will then begin automatically in a separate "
+#~ "popup window."
 
 #~ msgid "Pick Interface"
 #~ msgstr "Pick Interface"
@@ -116,14 +143,8 @@ msgstr ""
 #~ msgid "internet.ethernet.phy.info"
 #~ msgstr "Physical ethernet interfaces configuration"
 
-#~ msgid "Ethernet Ports"
-#~ msgstr "Ethernet Ports"
-
 #~ msgid "New device"
 #~ msgstr "New device"
-
-#~ msgid "Service Type"
-#~ msgstr "Service Type"
 
 #~ msgid "internet.ethernet.adsl.info"
 #~ msgstr "This page allows you to configure ADSL devices. "
@@ -160,10 +181,6 @@ msgstr ""
 #~ msgstr "Static Routes"
 
 #, fuzzy
-#~ msgid "Interface Name"
-#~ msgstr "Interfaces"
-
-#, fuzzy
 #~ msgid "Interface Type"
 #~ msgstr "Interfaces"
 
@@ -198,9 +215,6 @@ msgstr ""
 
 #~ msgid "Static Routes"
 #~ msgstr "Static Routes"
-
-#~ msgid "Status"
-#~ msgstr "Status"
 
 #~ msgid "System"
 #~ msgstr "System"
@@ -265,12 +279,6 @@ msgstr ""
 
 #~ msgid "interface.macmode.deny"
 #~ msgstr "Deny"
-
-#~ msgid "internet.ethernet.info"
-#~ msgstr ""
-#~ "Ethernet devices are the low level devices that you can use to access a "
-#~ "network. These are MAC level devices and so do not have IP addresses. You "
-#~ "should configure IP addresses in the connections section. "
 
 #~ msgid "internet.exposed_host.info"
 #~ msgstr ""
@@ -473,9 +481,6 @@ msgstr ""
 #~ "\n"
 #~ "Your router can save your configuration to a computer. We recommend to "
 #~ "always save your last changed settings to a computer."
-
-#~ msgid "settings.dropbear.info"
-#~ msgstr "Configure SSH access to the router."
 
 #~ msgid "settings.energy.info"
 #~ msgstr "Reduce power consumption by switching off unused functionality."

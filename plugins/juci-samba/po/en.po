@@ -11,80 +11,463 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnostic Utility"
+#, fuzzy
+msgid "New samba share"
+msgstr "Samba shares configuration"
+
+#, fuzzy
+msgid "Name"
+msgstr "Rule Name"
+
+# /home/martin/juci/plugins/juci-samba/src/widgets/samba-share-edit.html
+msgid "Path"
 msgstr ""
 
-msgid "status.diagnostics.info"
-msgstr ""
-"This section shows a list of tools which can be used to check the status of "
-"your network connection."
-
-msgid "Automated Diagnostics"
-msgstr "Automated Diagnostics"
-
-msgid "status.diagnostics.auto.info"
-msgstr ""
-"This diagnosis should take up to 2 minutes and cannot be cancelled once it "
-"has been started."
-
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Diagnose"
+# /home/martin/juci/plugins/juci-samba/src/widgets/samba-share-edit.html
+msgid "Allow Guest Access"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping Test"
+# /home/martin/juci/plugins/juci-samba/src/widgets/samba-share-edit.html
+msgid "Read only?"
 msgstr ""
 
-msgid "status.diagnostics.ping.info"
-msgstr "Please enter a valid hostname or IP address to execute the Ping test."
+#, fuzzy
+msgid "General Settings"
+msgstr "Energy Settings"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to ping"
+msgid "services.samba.info"
+msgstr "General samba settings."
+
+# /home/martin/juci/plugins/juci-samba/src/pages/internet-services-samba.html
+msgid "Workgroup"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping"
+#, fuzzy
+msgid "Description"
+msgstr "Off"
+
+# /home/martin/juci/plugins/juci-samba/src/pages/internet-services-samba.html
+msgid "Share User Home Directory"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Ping results"
-msgstr ""
+#, fuzzy
+msgid "Samba Shares"
+msgstr "Samba shares configuration"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Error"
-msgstr ""
+msgid "samba.shares.info"
+msgstr "Samba shares configuration"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Tracing Tool"
-msgstr ""
+#~ msgid "off"
+#~ msgstr "Off"
 
-msgid "status.diagnostics.trace.info"
-msgstr ""
-"Please choose the connection type and location where you would like to save "
-"the tracing. The tracing will then begin automatically in a separate popup "
-"window."
+#~ msgid "on"
+#~ msgstr "On"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Host to trace"
-msgstr ""
+#, fuzzy
+#~ msgid "Edit wireless interface"
+#~ msgstr "New interface"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace"
-msgstr ""
+#~ msgid "auto"
+#~ msgstr "Auto"
 
-# /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
-msgid "Trace results"
-msgstr ""
+#~ msgid "WiFi"
+#~ msgstr "WiFi"
 
-#~ msgid "Interface"
-#~ msgstr "Interface"
+#, fuzzy
+#~ msgid "MAC Filtering"
+#~ msgstr "Service Filtering"
+
+#, fuzzy
+#~ msgid "New Wireless Interface"
+#~ msgstr "New interface"
+
+#, fuzzy
+#~ msgid "Choose Encryption"
+#~ msgstr "Reset Configuration"
+
+#~ msgid "wifi-iface.radius_server"
+#~ msgstr "Radius Server"
+
+#~ msgid "wifi-iface.radius_port"
+#~ msgstr "Radius Port"
+
+#~ msgid "wifi-iface.radius_secret"
+#~ msgstr "Radius Secret"
+
+#~ msgid "wifi.client.info"
+#~ msgstr "Wireless client information"
+
+#~ msgid "wireless.clients.info"
+#~ msgstr "Clients connected to your AP over wireless interfaces. "
+
+#, fuzzy
+#~ msgid "Wireless Clients"
+#~ msgstr "Clients connected to your AP over wireless interfaces. "
+
+#~ msgid "Device"
+#~ msgstr "Device"
+
+#~ msgid "wifi.radios.info"
+#~ msgstr ""
+#~ "This page allows you to configure wireless radios that you have installed "
+#~ "on your system. A wireless radio is not the same thing as an access "
+#~ "point. Access points are interfaces and each radio can have several "
+#~ "interfaces on it. "
+
+#~ msgid "wifi.macfilter.info"
+#~ msgstr ""
+#~ "To make your wireless network more secure, you can specify which devices "
+#~ "are allowed to connect. The devices are identified by their MAC address. "
+#~ "You can manage up to 32 devices."
+
+#~ msgid "wifi.general.info"
+#~ msgstr ""
+#~ "Your router supports the industry-wide WiFi standards, enabling easy "
+#~ "wireless connection of your devices."
+
+#, fuzzy
+#~ msgid "Wifi Network"
+#~ msgstr "Network"
+
+#, fuzzy
+#~ msgid "Wireless Interfaces"
+#~ msgstr "Pick Interface"
+
+#~ msgid "wifi.interfaces.info"
+#~ msgstr ""
+#~ "Wireless interfaces are visible to the user in the form of wireless "
+#~ "access point names. Each radio can have several SSIDs and each SSID "
+#~ "interface can be configured as part of a network bridge or firewall "
+#~ "group. "
+
+#, fuzzy
+#~ msgid "WiFi Status"
+#~ msgstr "Status"
+
+#~ msgid "status.wifi.info"
+#~ msgstr "Wireless status information"
+
+#~ msgid "wireless.status.info"
+#~ msgstr "This page shows wireless status information. "
+
+#, fuzzy
+#~ msgid "Wireless Status"
+#~ msgstr "Status"
+
+#, fuzzy
+#~ msgid "Static Address"
+#~ msgstr "Static Routes"
+
+#, fuzzy
+#~ msgid "Ethernet GRE over IPv6"
+#~ msgstr "Internet IPv6"
+
+#~ msgid "network.interface.type.none.tab.title"
+#~ msgstr "Standard"
 
 #~ msgid "Network"
 #~ msgstr "Network"
 
-#~ msgid "Pick Interface"
-#~ msgstr "Pick Interface"
+#, fuzzy
+#~ msgid "Network device"
+#~ msgstr "New device"
+
+#, fuzzy
+#~ msgid "Pick network device"
+#~ msgstr "Pick base device"
+
+#, fuzzy
+#~ msgid "Ports"
+#~ msgstr "USB Port"
+
+#, fuzzy
+#~ msgid "Interface Name"
+#~ msgstr "Interfaces"
+
+#, fuzzy
+#~ msgid "Interface Type"
+#~ msgstr "Interfaces"
+
+#, fuzzy
+#~ msgid "Automatic DNS Configuration"
+#~ msgstr "Reset Configuration"
+
+#, fuzzy
+#~ msgid "Automatic Default Route"
+#~ msgstr "Default Route"
+
+#, fuzzy
+#~ msgid "network.interface.type.' + (conn.type.value || 'none') +'.tab.title"
+#~ msgstr "AnyWAN"
+
+#, fuzzy
+#~ msgid "Override MTU"
+#~ msgstr "Overview"
+
+#, fuzzy
+#~ msgid "Configuration Method"
+#~ msgstr "Reset Configuration"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#, fuzzy
+#~ msgid "Dial Number"
+#~ msgstr "Interfaces"
+
+#, fuzzy
+#~ msgid "Server IP"
+#~ msgstr "Service"
+
+#, fuzzy
+#~ msgid "IPv4 Default Gateway"
+#~ msgstr "Default Route"
+
+#, fuzzy
+#~ msgid "Configure As Default Route"
+#~ msgstr "Default Route"
+
+#, fuzzy
+#~ msgid "IPv6 Default Gateway"
+#~ msgstr "Default Route"
+
+#, fuzzy
+#~ msgid "Default IPv6 Gateway"
+#~ msgstr "Default Route"
+
+#, fuzzy
+#~ msgid "IPv4 Settings"
+#~ msgstr "NTP Settings"
+
+#, fuzzy
+#~ msgid "IPv6 Settings"
+#~ msgstr "NTP Settings"
+
+#, fuzzy
+#~ msgid "Select Base Device"
+#~ msgstr "Pick base device"
+
+#, fuzzy
+#~ msgid "Device ID"
+#~ msgstr "Device"
+
+#, fuzzy
+#~ msgid "Base Device"
+#~ msgstr "Dst. Device"
+
+#, fuzzy
+#~ msgid "Pick a host"
+#~ msgstr "Pick Preset"
+
+#~ msgid "settings.network.info"
+#~ msgstr ""
+#~ "This page allows to configure IP addresses used in your home network. In "
+#~ "case DHCP is used, your router automatically assignes an IP address to "
+#~ "devices connected to the network. Using static DHCP it is possible to "
+#~ "always assign the same IP address to specific devices."
+
+#~ msgid "Default Route"
+#~ msgstr "Default Route"
+
+#~ msgid "settings.network.default.route.info"
+#~ msgstr ""
+#~ "This page allows to configure IP addresses used in your home network. In "
+#~ "case DHCP is used, your router automatically assignes an IP address to "
+#~ "devices connected to the network. Using static DHCP it is possible to "
+#~ "always assign the same IP address to specific devices."
+
+#~ msgid "Static Routes"
+#~ msgstr "Static Routes"
+
+#~ msgid "internet.lan.routes.info"
+#~ msgstr ""
+#~ "Static routes are useful if you have several networks accessible from "
+#~ "your router and you want to correctly route packets between them. "
+
+#, fuzzy
+#~ msgid "Default Gateway"
+#~ msgstr "Default Route"
+
+#, fuzzy
+#~ msgid "Interface"
+#~ msgstr "Interfaces"
+
+#~ msgid "Services"
+#~ msgstr "Services"
+
+#~ msgid "internet.services.info"
+#~ msgstr "Here you can configure network services. "
+
+#, fuzzy
+#~ msgid "VLAN Configuration"
+#~ msgstr "Reset Configuration"
+
+#~ msgid "status.status.info"
+#~ msgstr ""
+#~ "This page provides an overview of main parameters of your router. This "
+#~ "can help you to optimize your router or identify potential problems."
+
+#~ msgid "status.nat.connections.info"
+#~ msgstr "This page shows the active connection for each device."
+
+#~ msgid "status.nat.info"
+#~ msgstr "This page shows the active connection for each device."
+
+#~ msgid "status.network.routes.info"
+#~ msgstr "Static routes configuration"
+
+#, fuzzy
+#~ msgid "Routing Status"
+#~ msgstr "Status"
+
+#, fuzzy
+#~ msgid "IPv6 status"
+#~ msgstr "IGPM TV Status"
+
+#~ msgid "modal.netmode.select.info"
+#~ msgstr "Netmode selection and configuration"
+
+#~ msgid "phone.dect.info"
+#~ msgstr "DECT configuration"
+
+#~ msgid "settings.config.info"
+#~ msgstr ""
+#~ "Save your settings, restore previously saved settings, and reset your "
+#~ "router to its factory state.\n"
+#~ "\n"
+#~ "Your router can save your configuration to a computer. We recommend to "
+#~ "always save your last changed settings to a computer."
+
+#~ msgid "Factory Settings"
+#~ msgstr "Factory Settings"
+
+#~ msgid "settings.energy.info"
+#~ msgstr "Reduce power consumption by switching off unused functionality."
+
+#~ msgid "system.management.info"
+#~ msgstr "Configure settings for managing your box over WAN interface. "
+
+#~ msgid "settings.password.info"
+#~ msgstr "Set a new password to restrict management access to the router."
+
+#~ msgid "settings.system.general"
+#~ msgstr "General system settings."
+
+#~ msgid "System Status"
+#~ msgstr "System Status"
+
+#~ msgid "status.system.processes.info"
+#~ msgstr "Processes currently running on the router. "
+
+#~ msgid "status.eventlog.info"
+#~ msgstr ""
+#~ "Select the categories for which you would like to view the event log."
+
+#~ msgid "status.restart.info"
+#~ msgstr ""
+#~ "This page allows to restart your Internet connection and reboot your "
+#~ "router. Please note that for the entire process all phone, internet and "
+#~ "TV services will be temporarily unavailable. "
+
+#~ msgid "MiniDLNA Settings"
+#~ msgstr "MiniDLNA Settings"
+
+#~ msgid "minidlna.settings.info"
+#~ msgstr ""
+#~ "MiniDLNA allows you to share your media from a hard drive connected to "
+#~ "your router."
+
+#~ msgid "internet.multiwan.info"
+#~ msgstr "MultiWAN Configuration"
+
+#~ msgid "status.tv.info"
+#~ msgstr ""
+#~ "This page allows to verify the connection status of your IPTV Services."
+
+#~ msgid "Zone members:"
+#~ msgstr "Zone members:"
+
+#~ msgid "Private port"
+#~ msgstr "Private port"
+
+#~ msgid "internet.exposed_host.info"
+#~ msgstr ""
+#~ "If you have a local network device that cannot run an Internet "
+#~ "application properly behind the firewall, you can allow unrestricted "
+#~ "Internet access to the network device (Exposed Host)."
+
+#~ msgid "Firewall Forwarding"
+#~ msgstr "Firewall Forwarding"
+
+#~ msgid "internet.firewall.forwarding.info"
+#~ msgstr "Configure port forwarding here."
+
+#~ msgid "internet.firewall.info"
+#~ msgstr ""
+#~ "Firewall allows you to filter traffic, set up port forwarding or expose "
+#~ "certain services to the outside world. "
+
+#~ msgid "to"
+#~ msgstr "To"
+
+#~ msgid "internet.firewall.rules.info"
+#~ msgstr ""
+#~ "Firewall rules are more fine grained filtering rules for filtering your "
+#~ "traffic. "
+
+#~ msgid "internet.wan.services.info"
+#~ msgstr "WAN Services configuration"
+
+#~ msgid "internet.firewall.svcfilter.info"
+#~ msgstr ""
+#~ "This filter allows you to filter out packets going out to a specific "
+#~ "port. "
+
+#~ msgid "internet.firewall.urlfilter.info"
+#~ msgstr ""
+#~ "URL filtering allows you to filter out dns requests to specific URL's. "
+#~ "Warning: this still does not prevent the user from using an IP address "
+#~ "directly. "
+
+#~ msgid "internet.firewall.zones.info"
+#~ msgstr ""
+#~ "Here you can configure firewall zones. Each zone can contain multiple "
+#~ "networks, or interfaces, which you have set up earlier. "
+
+#~ msgid "internet.parental.control.info"
+#~ msgstr "Here you can setup parental control settings. "
+
+#~ msgid "internet.ethernet.info"
+#~ msgstr ""
+#~ "Ethernet devices are the low level devices that you can use to access a "
+#~ "network. These are MAC level devices and so do not have IP addresses. You "
+#~ "should configure IP addresses in the connections section. "
+
+#~ msgid "settings.dropbear.info"
+#~ msgstr "Configure SSH access to the router."
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "This section shows a list of tools which can be used to check the status "
+#~ "of your network connection."
+
+#~ msgid "Automated Diagnostics"
+#~ msgstr "Automated Diagnostics"
+
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
+#~ "it has been started."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr ""
+#~ "Please enter a valid hostname or IP address to execute the Ping test."
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Please choose the connection type and location where you would like to "
+#~ "save the tracing. The tracing will then begin automatically in a separate "
+#~ "popup window."
 
 #~ msgid "Choose DNS Provider"
 #~ msgstr "Choose DNS Provider"
@@ -98,15 +481,6 @@ msgstr ""
 #~ "name instead of IP address. You will need an account on a DDNS service "
 #~ "provider."
 
-#~ msgid "New interface"
-#~ msgstr "New interface"
-
-#~ msgid "Base Device"
-#~ msgstr "Base Device"
-
-#~ msgid "Pick base device"
-#~ msgstr "Pick base device"
-
 #~ msgid "internet.ethernet.vlan.info"
 #~ msgstr "This section allows you to configure VLAN interfaces. "
 
@@ -116,20 +490,8 @@ msgstr ""
 #~ msgid "internet.ethernet.phy.info"
 #~ msgstr "Physical ethernet interfaces configuration"
 
-#~ msgid "Ethernet Ports"
-#~ msgstr "Ethernet Ports"
-
-#~ msgid "New device"
-#~ msgstr "New device"
-
-#~ msgid "Service Type"
-#~ msgstr "Service Type"
-
 #~ msgid "internet.ethernet.adsl.info"
 #~ msgstr "This page allows you to configure ADSL devices. "
-
-#~ msgid "DSL Status"
-#~ msgstr "DSL Status"
 
 #~ msgid "dsl.status.info"
 #~ msgstr "This status page shows technical parameters of your DSL connection."
@@ -155,52 +517,11 @@ msgstr ""
 #~ msgid "11n"
 #~ msgstr "802.11n"
 
-#, fuzzy
-#~ msgid "Default Route"
-#~ msgstr "Static Routes"
-
-#, fuzzy
-#~ msgid "Interface Name"
-#~ msgstr "Interfaces"
-
-#, fuzzy
-#~ msgid "Interface Type"
-#~ msgstr "Interfaces"
-
-#, fuzzy
-#~ msgid "Internal Number"
-#~ msgstr "Interfaces"
-
 #~ msgid "Internet"
 #~ msgstr "Internet"
 
-#~ msgid "MiniDLNA Settings"
-#~ msgstr "MiniDLNA Settings"
-
-#~ msgid "Overview"
-#~ msgstr "Overview"
-
 #~ msgid "Phone"
 #~ msgstr "Phone"
-
-#, fuzzy
-#~ msgid "Pick Network"
-#~ msgstr "Network"
-
-#~ msgid "Service"
-#~ msgstr "Service"
-
-#~ msgid "Services"
-#~ msgstr "Services"
-
-#~ msgid "Settings"
-#~ msgstr "Settings"
-
-#~ msgid "Static Routes"
-#~ msgstr "Static Routes"
-
-#~ msgid "Status"
-#~ msgstr "Status"
 
 #~ msgid "System"
 #~ msgstr "System"
@@ -211,12 +532,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "USB Devices"
 #~ msgstr "Services"
-
-#~ msgid "WiFi"
-#~ msgstr "WiFi"
-
-#~ msgid "Zone members:"
-#~ msgstr "Zone members:"
 
 #~ msgid "admin.diagnostics.title"
 #~ msgstr "Diagnostics"
@@ -248,14 +563,8 @@ msgstr ""
 #~ msgid "application.name"
 #~ msgstr "JUCI"
 
-#~ msgid "auto"
-#~ msgstr "Auto"
-
 #~ msgid "easycwmp.config.info"
 #~ msgstr "EasyCWMP configuration"
-
-#~ msgid "encryption.none"
-#~ msgstr "Off"
 
 #~ msgid "from"
 #~ msgstr "From"
@@ -266,69 +575,8 @@ msgstr ""
 #~ msgid "interface.macmode.deny"
 #~ msgstr "Deny"
 
-#~ msgid "internet.ethernet.info"
-#~ msgstr ""
-#~ "Ethernet devices are the low level devices that you can use to access a "
-#~ "network. These are MAC level devices and so do not have IP addresses. You "
-#~ "should configure IP addresses in the connections section. "
-
-#~ msgid "internet.exposed_host.info"
-#~ msgstr ""
-#~ "If you have a local network device that cannot run an Internet "
-#~ "application properly behind the firewall, you can allow unrestricted "
-#~ "Internet access to the network device (Exposed Host)."
-
-#, fuzzy
-#~ msgid "internet.firewall.forwarding.info"
-#~ msgstr ""
-#~ "Here you can configure firewall zones. Each zone can contain multiple "
-#~ "networks, or interfaces, which you have set up earlier. "
-
-#~ msgid "internet.firewall.info"
-#~ msgstr ""
-#~ "Firewall allows you to filter traffic, set up port forwarding or expose "
-#~ "certain services to the outside world. "
-
-#~ msgid "internet.firewall.rules.info"
-#~ msgstr ""
-#~ "Firewall rules are more fine grained filtering rules for filtering your "
-#~ "traffic. "
-
-#~ msgid "internet.firewall.svcfilter.info"
-#~ msgstr ""
-#~ "This filter allows you to filter out packets going out to a specific "
-#~ "port. "
-
-#~ msgid "internet.firewall.urlfilter.info"
-#~ msgstr ""
-#~ "URL filtering allows you to filter out dns requests to specific URL's. "
-#~ "Warning: this still does not prevent the user from using an IP address "
-#~ "directly. "
-
-#~ msgid "internet.firewall.zones.info"
-#~ msgstr ""
-#~ "Here you can configure firewall zones. Each zone can contain multiple "
-#~ "networks, or interfaces, which you have set up earlier. "
-
-#~ msgid "internet.lan.routes.info"
-#~ msgstr ""
-#~ "Static routes are useful if you have several networks accessible from "
-#~ "your router and you want to correctly route packets between them. "
-
-#~ msgid "internet.multiwan.info"
-#~ msgstr "MultiWAN Configuration"
-
-#~ msgid "internet.parental.control.info"
-#~ msgstr "Here you can setup parental control settings. "
-
-#~ msgid "internet.services.info"
-#~ msgstr "Here you can configure network services. "
-
 #~ msgid "internet.services.upnp.info"
 #~ msgstr "Configure UPNP and ports"
-
-#~ msgid "internet.wan.services.info"
-#~ msgstr "WAN Services configuration"
 
 #~ msgid "lan.config.info"
 #~ msgstr "LAN Configuration"
@@ -347,14 +595,6 @@ msgstr ""
 
 #~ msgid "login.title"
 #~ msgstr "JUCI Login"
-
-#~ msgid "minidlna.settings.info"
-#~ msgstr ""
-#~ "MiniDLNA allows you to share your media from a hard drive connected to "
-#~ "your router."
-
-#~ msgid "modal.netmode.select.info"
-#~ msgstr "Netmode selection and configuration"
 
 #~ msgid "network.clients.title"
 #~ msgstr "Network Clients"
@@ -380,9 +620,6 @@ msgstr ""
 #~ msgid "network.interface.type.bridge.tab.title"
 #~ msgstr "Bridge"
 
-#~ msgid "network.interface.type.none.tab.title"
-#~ msgstr "Standard"
-
 #~ msgid "network.lan.dhcp.title"
 #~ msgstr "LAN DHCP "
 
@@ -407,12 +644,6 @@ msgstr ""
 #~ msgid "network.wan.title"
 #~ msgstr "WAN"
 
-#~ msgid "off"
-#~ msgstr "Off"
-
-#~ msgid "on"
-#~ msgstr "On"
-
 #~ msgid "overview.settings.title"
 #~ msgstr "Settings"
 
@@ -425,9 +656,6 @@ msgstr ""
 
 #~ msgid "phone.call_log.info"
 #~ msgstr "Latest calls."
-
-#~ msgid "phone.dect.info"
-#~ msgstr "DECT configuration"
 
 #~ msgid "phone.lines.info"
 #~ msgstr "Configure phone lines."
@@ -448,14 +676,8 @@ msgstr ""
 #~ "This feature activates speed dialing to connect you faster to your "
 #~ "preferred contacts."
 
-#~ msgid "samba.shares.info"
-#~ msgstr "Samba shares configuration"
-
 #~ msgid "services.cwmp.title"
 #~ msgstr "TR-069 Configuration"
-
-#~ msgid "services.samba.info"
-#~ msgstr "General samba settings."
 
 #~ msgid "services.snmp.title"
 #~ msgstr "SNMP Configuration"
@@ -465,40 +687,6 @@ msgstr ""
 
 #~ msgid "services.upnp.title"
 #~ msgstr "UPNP Configuration"
-
-#~ msgid "settings.config.info"
-#~ msgstr ""
-#~ "Save your settings, restore previously saved settings, and reset your "
-#~ "router to its factory state.\n"
-#~ "\n"
-#~ "Your router can save your configuration to a computer. We recommend to "
-#~ "always save your last changed settings to a computer."
-
-#~ msgid "settings.dropbear.info"
-#~ msgstr "Configure SSH access to the router."
-
-#~ msgid "settings.energy.info"
-#~ msgstr "Reduce power consumption by switching off unused functionality."
-
-#~ msgid "settings.network.default.route.info"
-#~ msgstr ""
-#~ "This page allows to configure IP addresses used in your home network. In "
-#~ "case DHCP is used, your router automatically assignes an IP address to "
-#~ "devices connected to the network. Using static DHCP it is possible to "
-#~ "always assign the same IP address to specific devices."
-
-#~ msgid "settings.network.info"
-#~ msgstr ""
-#~ "This page allows to configure IP addresses used in your home network. In "
-#~ "case DHCP is used, your router automatically assignes an IP address to "
-#~ "devices connected to the network. Using static DHCP it is possible to "
-#~ "always assign the same IP address to specific devices."
-
-#~ msgid "settings.password.info"
-#~ msgstr "Set a new password to restrict management access to the router."
-
-#~ msgid "settings.system.general"
-#~ msgstr "General system settings."
 
 #~ msgid "settings.upgrade.info"
 #~ msgstr ""
@@ -526,37 +714,6 @@ msgstr ""
 #~ "only one firmware file on the storage and that one shall be located under "
 #~ "the main directory (no search under subfolders)."
 
-#~ msgid "status.eventlog.info"
-#~ msgstr ""
-#~ "Select the categories for which you would like to view the event log."
-
-#~ msgid "status.nat.connections.info"
-#~ msgstr "This page shows the active connection for each device."
-
-#~ msgid "status.nat.info"
-#~ msgstr "This page shows the active connection for each device."
-
-#~ msgid "status.network.routes.info"
-#~ msgstr "Static routes configuration"
-
-#~ msgid "status.restart.info"
-#~ msgstr ""
-#~ "This page allows to restart your Internet connection and reboot your "
-#~ "router. Please note that for the entire process all phone, internet and "
-#~ "TV services will be temporarily unavailable. "
-
-#~ msgid "status.status.info"
-#~ msgstr ""
-#~ "This page provides an overview of main parameters of your router. This "
-#~ "can help you to optimize your router or identify potential problems."
-
-#~ msgid "status.system.processes.info"
-#~ msgstr "Processes currently running on the router. "
-
-#~ msgid "status.tv.info"
-#~ msgstr ""
-#~ "This page allows to verify the connection status of your IPTV Services."
-
 #~ msgid "status.voice.info"
 #~ msgstr ""
 #~ "Here you find an overview of your active phone numbers. For any change "
@@ -564,15 +721,6 @@ msgstr ""
 
 #~ msgid "status.voice_lines.info"
 #~ msgstr "Status of your voice lines."
-
-#~ msgid "status.wifi.info"
-#~ msgstr "Wireless status information"
-
-#~ msgid "system.management.info"
-#~ msgstr "Configure settings for managing your box over WAN interface. "
-
-#~ msgid "to"
-#~ msgstr "To"
 
 #~ msgid "uhttpd.settings.info"
 #~ msgstr "Configuration for uHTTPd micro web server. "
@@ -640,15 +788,6 @@ msgstr ""
 #~ msgid "wifi-iface.network"
 #~ msgstr "WiFi Network"
 
-#~ msgid "wifi-iface.radius_port"
-#~ msgstr "Radius Port"
-
-#~ msgid "wifi-iface.radius_secret"
-#~ msgstr "Radius Secret"
-
-#~ msgid "wifi-iface.radius_server"
-#~ msgstr "Radius Server"
-
 #~ msgid "wifi-iface.show_password"
 #~ msgstr "Show Key Text"
 
@@ -669,13 +808,6 @@ msgstr ""
 
 #~ msgid "wifi.5g.title"
 #~ msgstr "5Ghz Wireless Configuration"
-
-#, fuzzy
-#~ msgid "wifi.client.info"
-#~ msgstr ""
-#~ "Schedule the times when your WiFi should be turned on or off "
-#~ "automatically. Note: If WiFi is turned off, both Main and Guest WiFi are "
-#~ "disabled"
 
 #~ msgid "wifi.clients.info"
 #~ msgstr ""
@@ -710,33 +842,8 @@ msgstr ""
 #~ msgid "wifi.enc.wpa2"
 #~ msgstr "WPA2-EAP"
 
-#~ msgid "wifi.general.info"
-#~ msgstr ""
-#~ "Your router supports the industry-wide WiFi standards, enabling easy "
-#~ "wireless connection of your devices."
-
 #~ msgid "wifi.general.setup.info"
 #~ msgstr "Configure your wireless interfaces."
-
-#~ msgid "wifi.interfaces.info"
-#~ msgstr ""
-#~ "Wireless interfaces are visible to the user in the form of wireless "
-#~ "access point names. Each radio can have several SSIDs and each SSID "
-#~ "interface can be configured as part of a network bridge or firewall "
-#~ "group. "
-
-#~ msgid "wifi.macfilter.info"
-#~ msgstr ""
-#~ "To make your wireless network more secure, you can specify which devices "
-#~ "are allowed to connect. The devices are identified by their MAC address. "
-#~ "You can manage up to 32 devices."
-
-#~ msgid "wifi.radios.info"
-#~ msgstr ""
-#~ "This page allows you to configure wireless radios that you have installed "
-#~ "on your system. A wireless radio is not the same thing as an access "
-#~ "point. Access points are interfaces and each radio can have several "
-#~ "interfaces on it. "
 
 #~ msgid "wifi.schedule.info"
 #~ msgstr ""
@@ -778,18 +885,6 @@ msgstr ""
 #~ msgid "wireless.5g.info"
 #~ msgstr "Configure your 5Ghz wireless hotspot."
 
-#~ msgid "wireless.clients.info"
-#~ msgstr "Clients connected to your AP over wireless interfaces. "
-
-#~ msgid "wireless.status.info"
-#~ msgstr "This page shows wireless status information. "
-
-#~ msgid "DNS Settings"
-#~ msgstr "DNS Settings"
-
-#~ msgid "Internet IPv6"
-#~ msgstr "Internet IPv6"
-
 #~ msgid "LAN Settings"
 #~ msgstr "LAN Settings"
 
@@ -799,10 +894,6 @@ msgstr ""
 
 #~ msgid "Phone Numbers"
 #~ msgstr "Phone Numbers"
-
-#, fuzzy
-#~ msgid "Service Filter"
-#~ msgstr "Service"
 
 #~ msgid "WAN Settings"
 #~ msgstr "WAN Settings"
@@ -911,10 +1002,6 @@ msgstr ""
 #~ msgid "ip.address.label"
 #~ msgstr "IP address"
 
-#, fuzzy
-#~ msgid "network.interface.type.' + conn.type.value +'.tab.title"
-#~ msgstr "AnyWAN"
-
 #~ msgid "phone.call.log.title"
 #~ msgstr "Call Log"
 
@@ -940,9 +1027,6 @@ msgstr ""
 
 #~ msgid "phone.title"
 #~ msgstr "Call Log"
-
-#~ msgid "settings.configuration.title"
-#~ msgstr "Configuration"
 
 #~ msgid "settings.dhcp.info"
 #~ msgstr ""
