@@ -122,6 +122,15 @@ msgstr ""
 msgid "Active Stations"
 msgstr ""
 
+msgid "status-restart-title"
+msgstr "Restart"
+
+msgid "status-events-title"
+msgstr "Event Log"
+
+msgid "status-status-network-title"
+msgstr "Network Status"
+
 #~ msgid "Port"
 #~ msgstr "Port"
 
@@ -1029,14 +1038,8 @@ msgstr ""
 #~ msgid "status.diagnostics.title"
 #~ msgstr "Diagnostic Utility"
 
-#~ msgid "status.events.title"
-#~ msgstr "Event Log"
-
 #~ msgid "status.nat.title"
 #~ msgstr "NAT Mapping Table"
-
-#~ msgid "status.restart.title"
-#~ msgstr "Restart"
 
 #~ msgid "status.status.dsl.title"
 #~ msgstr "DSL Status"
@@ -1047,9 +1050,6 @@ msgstr ""
 
 #~ msgid "status.status.system.title"
 #~ msgstr "System"
-
-#~ msgid "status.status.title"
-#~ msgstr "Status"
 
 #~ msgid "status.status.tv.title"
 #~ msgstr "IPTV"

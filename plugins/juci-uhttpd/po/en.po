@@ -41,6 +41,9 @@ msgstr ""
 msgid "ex. /ubus"
 msgstr ""
 
+msgid "page-uhttpd-settings-title"
+msgstr "uHTTPd Micro Web-Server Settings"
+
 #~ msgid "settings.upgrade.info"
 #~ msgstr ""
 #~ "Your router automatically installs the latest firmware release available. "

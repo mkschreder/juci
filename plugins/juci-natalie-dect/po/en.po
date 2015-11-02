@@ -33,6 +33,9 @@ msgstr "Status"
 msgid "Action"
 msgstr ""
 
+msgid "phone-dect-title"
+msgstr "DECT Status"
+
 #~ msgid "NTP Settings"
 #~ msgstr "NTP Settings"
 
@@ -916,9 +919,6 @@ msgstr ""
 
 #~ msgid "phone.speed.dialing.title"
 #~ msgstr "Speed Dialing"
-
-#~ msgid "phone.title"
-#~ msgstr "Call Log"
 
 #~ msgid "settings.configuration.title"
 #~ msgstr "Configuration"

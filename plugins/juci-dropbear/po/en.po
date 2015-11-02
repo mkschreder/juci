@@ -97,6 +97,9 @@ msgstr ""
 msgid "Idle Timeout"
 msgstr ""
 
+msgid "settings-management-dropbear-title"
+msgstr "SSH (dropbear)"
+
 #~ msgid "Network"
 #~ msgstr "Network"
 
@@ -983,9 +986,6 @@ msgstr ""
 
 #~ msgid "settings.energy.title"
 #~ msgstr "Energy Settings"
-
-#~ msgid "settings.network.title"
-#~ msgstr "Network"
 
 #~ msgid "settings.password.title"
 #~ msgstr "Router Password"

@@ -793,6 +793,64 @@ msgstr "IGPM TV Status"
 msgid "Router"
 msgstr ""
 
+msgid "status-network-routes-title"
+msgstr "Static Routes"
+
+msgid "internet-services-title"
+msgstr "Services"
+
+msgid "internet-network-title"
+msgstr "Network"
+
+# share/menu.d/status.json
+msgid "status-network-nat-title"
+msgstr "NAT"
+
+msgid "netifd-status-clients-title"
+msgstr "Clients"
+
+# /home/martin/juci/plugins/juci-network-netifd/src/pages/netifd-vlan-config.html
+msgid "netifd-vlan-config-title"
+msgstr "VLAN"
+
+# share/menu.d/status.json
+msgid "status-network-title"
+msgstr "Network"
+
+# share/menu.d/internet.json
+msgid "internet-routes-title"
+msgstr "Routes"
+
+#, fuzzy
+#~ msgid "phone-lines-title"
+#~ msgstr "Lines"
+
+#, fuzzy
+#~ msgid "phone-ringing-schedule-title"
+#~ msgstr "Schedule"
+
+#, fuzzy
+#~ msgid "phone-title"
+#~ msgstr "Call Log"
+
+#, fuzzy
+#~ msgid "phone-speed-dialing-title"
+#~ msgstr "Speed Dialing"
+
+#, fuzzy
+#~ msgid "phone-number-blocking-title"
+#~ msgstr ""
+#~ "Stay in control of your bills and block outgoing calls to unwanted "
+#~ "numbers."
+
+#, fuzzy
+#~ msgid "phone-call-log-title"
+#~ msgstr "Call Log"
+
+#, fuzzy
+#~ msgid "phone-numbers-title"
+#~ msgstr "Numbers"
+
 #~ msgid "modal.netmode.select.info"
 #~ msgstr "Netmode selection and configuration"
 
@@ -1517,9 +1575,6 @@ msgstr ""
 #~ msgid "internet.lan.title"
 #~ msgstr "LAN"
 
-#~ msgid "internet.network.title"
-#~ msgstr "Network"
-
 #~ msgid "internet.parental.control.title"
 #~ msgstr "Parental Control"
 
@@ -1529,13 +1584,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "internet.services.samba.title"
 #~ msgstr "Services"
-
-#~ msgid "internet.services.title"
-#~ msgstr "Services"
-
-# share/menu.d/internet.json
-#~ msgid "internet.title"
-#~ msgstr "Internet"
 
 #~ msgid "internet.wan.ddns.title"
 #~ msgstr "Dynamic DNS"
@@ -1554,31 +1602,8 @@ msgstr ""
 #~ msgid "ip.address.label"
 #~ msgstr "IP address"
 
-#~ msgid "phone.call.log.title"
-#~ msgstr "Call Log"
-
-#~ msgid "phone.lines.title"
-#~ msgstr "Lines"
-
-#~ msgid "phone.number.blocking.title"
-#~ msgstr ""
-#~ "Stay in control of your bills and block outgoing calls to unwanted "
-#~ "numbers."
-
 #~ msgid "phone.numbers.info"
 #~ msgstr "Control your phone accounts."
-
-#~ msgid "phone.numbers.title"
-#~ msgstr "Numbers"
-
-#~ msgid "phone.ringing.schedule.title"
-#~ msgstr "Schedule"
-
-#~ msgid "phone.speed.dialing.title"
-#~ msgstr "Speed Dialing"
-
-#~ msgid "phone.title"
-#~ msgstr "Call Log"
 
 #~ msgid "settings.dhcp.info"
 #~ msgstr ""
@@ -1610,9 +1635,6 @@ msgstr ""
 #~ msgid "status.diagnostics.title"
 #~ msgstr "Diagnostic Utility"
 
-#~ msgid "status.events.title"
-#~ msgstr "Event Log"
-
 #~ msgid "status.nat.title"
 #~ msgstr "NAT Mapping Table"
 
@@ -1634,10 +1656,6 @@ msgstr ""
 
 #~ msgid "status.status.tv.title"
 #~ msgstr "IPTV"
-
-# share/menu.d/status.json
-#~ msgid "status.title"
-#~ msgstr "Status"
 
 # share/menu.d/status.json
 #, fuzzy

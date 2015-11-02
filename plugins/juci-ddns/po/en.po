@@ -91,6 +91,9 @@ msgstr ""
 "DDNS allows you to access your router from the Internet using a domain name "
 "instead of IP address. You will need an account on a DDNS service provider."
 
+msgid "internet-services-ddns-title"
+msgstr "DDNS"
+
 #~ msgid "New interface"
 #~ msgstr "New interface"
 
@@ -898,9 +901,6 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "internet.services.samba.title"
-#~ msgstr "Services"
-
-#~ msgid "internet.services.title"
 #~ msgstr "Services"
 
 # share/menu.d/internet.json

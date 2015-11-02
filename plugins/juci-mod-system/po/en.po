@@ -281,6 +281,38 @@ msgstr "Processes currently running on the router. "
 msgid "Running Processes"
 msgstr ""
 
+msgid "settings-password-title"
+msgstr "Router Password"
+
+msgid "settings-configuration-title"
+msgstr "Configuration"
+
+# share/menu.d/settings.json
+msgid "settings-system-title"
+msgstr "System Settings"
+
+msgid "status-system-processes-title"
+msgstr "Processes"
+
+msgid "internet-services-ntp-title"
+msgstr "NTP Configuration"
+
+msgid "settings-services-title"
+msgstr "Services"
+
+msgid "status-system-title"
+msgstr "System Status"
+
+# share/menu.d/settings.json
+msgid "settings-uci-title"
+msgstr "UCI Settings"
+
+msgid "settings-management-title"
+msgstr "Management Settings"
+
+msgid "settings-energy-title"
+msgstr "Energy Settings"
+
 #~ msgid "status.eventlog.info"
 #~ msgstr ""
 #~ "Select the categories for which you would like to view the event log."
@@ -696,9 +728,6 @@ msgstr ""
 #~ msgid "services.snmp.title"
 #~ msgstr "SNMP Configuration"
 
-#~ msgid "services.title"
-#~ msgstr "Services"
-
 #~ msgid "services.upnp.title"
 #~ msgstr "UPNP Configuration"
 
@@ -1073,9 +1102,6 @@ msgstr ""
 #~ msgid "internet.services.samba.title"
 #~ msgstr "Services"
 
-#~ msgid "internet.services.title"
-#~ msgstr "Services"
-
 # share/menu.d/internet.json
 #~ msgid "internet.title"
 #~ msgstr "Internet"
@@ -1127,29 +1153,9 @@ msgstr ""
 #~ msgid "phone.title"
 #~ msgstr "Call Log"
 
-#~ msgid "settings.configuration.title"
-#~ msgstr "Configuration"
-
 #~ msgid "settings.dhcp.info"
 #~ msgstr ""
 #~ "DHCP server settings are for configuring dhcp SERVER on a lan interface. "
-
-#~ msgid "settings.energy.title"
-#~ msgstr "Energy Settings"
-
-#~ msgid "settings.network.title"
-#~ msgstr "Network"
-
-#~ msgid "settings.password.title"
-#~ msgstr "Router Password"
-
-# share/menu.d/settings.json
-#~ msgid "settings.system.title"
-#~ msgstr "System"
-
-# share/menu.d/settings.json
-#~ msgid "settings.title"
-#~ msgstr "Settings"
 
 #~ msgid "settings.upgrade.title"
 #~ msgstr "Firmware Update"
@@ -1175,9 +1181,6 @@ msgstr ""
 # share/menu.d/status.vodafone.json
 #~ msgid "status.status.services.title"
 #~ msgstr "Services"
-
-#~ msgid "status.status.system.title"
-#~ msgstr "System"
 
 #~ msgid "status.status.title"
 #~ msgstr "Status"

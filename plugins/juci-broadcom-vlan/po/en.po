@@ -38,6 +38,9 @@ msgstr "This section allows you to configure VLAN interfaces. "
 msgid "VLAN Devices"
 msgstr "VLAN Devices"
 
+msgid "page-broadcom-ethernet-vlan-title"
+msgstr "VLAN Devices"
+
 #~ msgid "Interface"
 #~ msgstr "Interface"
 
@@ -790,9 +793,6 @@ msgstr "VLAN Devices"
 
 #~ msgid "internet.ethernet.vdsl.title"
 #~ msgstr "VDSL Devices"
-
-#~ msgid "internet.ethernet.vlan.title"
-#~ msgstr "VLAN Devices"
 
 #~ msgid "internet.ethernet.wifi.title"
 #~ msgstr "Wireless Devices"

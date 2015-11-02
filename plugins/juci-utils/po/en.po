@@ -39,17 +39,40 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#, fuzzy
 msgid "Server"
-msgstr "Service"
+msgstr "Server"
 
-#, fuzzy
 msgid "Port"
-msgstr "USB Port"
+msgstr "Port"
 
 # /home/martin/juci/plugins/juci-utils/src/widgets/utils-add-testserver-picker.html
 msgid "Add test server"
 msgstr ""
+
+# share/menu.d/status.json
+#~ msgid "status-phone-title"
+#~ msgstr "Status"
+
+#~ msgid "phone-lines-title"
+#~ msgstr "Lines"
+
+#~ msgid "phone-ringing-schedule-title"
+#~ msgstr "Schedule"
+
+#~ msgid "phone-title"
+#~ msgstr "Call Log"
+
+#~ msgid "phone-speed-dialing-title"
+#~ msgstr "Speed Dialing"
+
+#~ msgid "phone-number-blocking-title"
+#~ msgstr "Number Blocking"
+
+#~ msgid "phone-call-log-title"
+#~ msgstr "Call Log"
+
+#~ msgid "phone-numbers-title"
+#~ msgstr "Numbers"
 
 #~ msgid "USB Devices"
 #~ msgstr "USB Devices"
@@ -1008,31 +1031,8 @@ msgstr ""
 #~ msgid "ip.address.label"
 #~ msgstr "IP address"
 
-#~ msgid "phone.call.log.title"
-#~ msgstr "Call Log"
-
-#~ msgid "phone.lines.title"
-#~ msgstr "Lines"
-
-#~ msgid "phone.number.blocking.title"
-#~ msgstr ""
-#~ "Stay in control of your bills and block outgoing calls to unwanted "
-#~ "numbers."
-
 #~ msgid "phone.numbers.info"
 #~ msgstr "Control your phone accounts."
-
-#~ msgid "phone.numbers.title"
-#~ msgstr "Numbers"
-
-#~ msgid "phone.ringing.schedule.title"
-#~ msgstr "Schedule"
-
-#~ msgid "phone.speed.dialing.title"
-#~ msgstr "Speed Dialing"
-
-#~ msgid "phone.title"
-#~ msgstr "Call Log"
 
 #~ msgid "settings.dhcp.info"
 #~ msgstr ""
@@ -1088,10 +1088,6 @@ msgstr ""
 
 #~ msgid "status.status.tv.title"
 #~ msgstr "IPTV"
-
-# share/menu.d/status.json
-#~ msgid "status.title"
-#~ msgstr "Status"
 
 # share/menu.d/status.json
 #, fuzzy

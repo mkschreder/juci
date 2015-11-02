@@ -49,6 +49,10 @@ msgstr ""
 msgid "Timeout"
 msgstr ""
 
+# share/menu.d/status.json
+msgid "status-tv-title"
+msgstr "IGMP Status"
+
 #~ msgid "Default Policy"
 #~ msgstr "Default Policy"
 
@@ -980,10 +984,6 @@ msgstr ""
 
 #~ msgid "status.status.tv.title"
 #~ msgstr "IPTV"
-
-# share/menu.d/status.json
-#~ msgid "status.title"
-#~ msgstr "Status"
 
 # share/menu.d/status.json
 #, fuzzy

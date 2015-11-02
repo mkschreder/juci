@@ -57,6 +57,9 @@ msgstr "Samba shares configuration"
 msgid "samba.shares.info"
 msgstr "Samba shares configuration"
 
+msgid "internet-services-samba-title"
+msgstr "Samba Configuration"
+
 #~ msgid "off"
 #~ msgstr "Off"
 
@@ -973,10 +976,6 @@ msgstr "Samba shares configuration"
 
 #~ msgid "internet.services.minidlna.title"
 #~ msgstr "MiniDLNA"
-
-#, fuzzy
-#~ msgid "internet.services.samba.title"
-#~ msgstr "Services"
 
 #~ msgid "internet.services.title"
 #~ msgstr "Services"

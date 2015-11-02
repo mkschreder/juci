@@ -172,6 +172,12 @@ msgstr ""
 msgid "USB Upgrade"
 msgstr ""
 
+msgid "settings-upgrade-options-title"
+msgstr "System Upgrade Options"
+
+msgid "settings-upgrade-title"
+msgstr "Firmware Upgrade"
+
 #, fuzzy
 #~ msgid "New samba share"
 #~ msgstr "Samba shares configuration"
@@ -1163,9 +1169,6 @@ msgstr ""
 # share/menu.d/settings.json
 #~ msgid "settings.title"
 #~ msgstr "Settings"
-
-#~ msgid "settings.upgrade.title"
-#~ msgstr "Firmware Update"
 
 #~ msgid "status.about.title"
 #~ msgstr "About"

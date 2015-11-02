@@ -63,6 +63,9 @@ msgstr ""
 msgid "Server port"
 msgstr "Server port"
 
+msgid "event-log-config-title"
+msgstr "Log Settings"
+
 #~ msgid "internet.ethernet.info"
 #~ msgstr ""
 #~ "Ethernet devices are the low level devices that you can use to access a "
@@ -234,9 +237,6 @@ msgstr "Server port"
 
 #~ msgid "admin.diagnostics.title"
 #~ msgstr "Diagnostics"
-
-#~ msgid "admin.log.config.title"
-#~ msgstr "Log Settings"
 
 #~ msgid "admin.log.events.title"
 #~ msgstr "Events"

@@ -11,38 +11,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-msgid "New interface"
-msgstr "New interface"
-
-# /home/martin/juci/plugins/juci-broadcom-vlan/src/pages/page-broadcom-ethernet-vlan.js
-msgid "Please select a device in the list!"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Full auto-negotiation"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-broadcom-vlan/src/pages/page-broadcom-ethernet-vlan.js
-msgid "Are you sure you want to delete this device?"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 100Mb auto-negotiation, full duplex"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-broadcom-vlan/src/widgets/network-device-vlan-edit.html
-msgid "Name"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 100Mb auto-negotiation, half duplex"
 msgstr ""
 
-msgid "Base Device"
-msgstr "Base Device"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 10Mb auto-negotiation, full duplex"
+msgstr ""
 
-msgid "Pick base device"
-msgstr "Pick base device"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 10Mb auto-negotiation, half duplex"
+msgstr ""
 
-msgid "internet.ethernet.vlan.info"
-msgstr "This section allows you to configure VLAN interfaces. "
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 100Mb, full duplex"
+msgstr ""
 
-msgid "VLAN Devices"
-msgstr "VLAN Devices"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 100Mb, half duplex"
+msgstr ""
 
-#~ msgid "internet.ethernet.phy.info"
-#~ msgstr "Physical ethernet interfaces configuration"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 10Mb, full duplex"
+msgstr ""
 
-#~ msgid "Ethernet Ports"
-#~ msgstr "Ethernet Ports"
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 10Mb, half duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Disabled"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
+msgid "Port speed"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
+msgid "Pause frames"
+msgstr ""
+
+msgid "internet.ethernet.phy.info"
+msgstr "Physical ethernet interfaces configuration"
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
+msgid ""
+"This will be the port that will be used to configure the physical ethernet "
+"port as upling port for routing out to the internet."
+msgstr ""
+
+msgid "Ethernet Ports"
+msgstr "Ethernet Ports"
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
+msgid "Pick uplink port"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
+msgid " socket will be used for passing packets to the internet."
+msgstr ""
+
+msgid "page-broadcom-ethernet-phy-title"
+msgstr "Ethernet Devices"
+
+#~ msgid "New interface"
+#~ msgstr "New interface"
+
+#~ msgid "Base Device"
+#~ msgstr "Base Device"
+
+#~ msgid "Pick base device"
+#~ msgstr "Pick base device"
+
+#~ msgid "internet.ethernet.vlan.info"
+#~ msgstr "This section allows you to configure VLAN interfaces. "
+
+#~ msgid "VLAN Devices"
+#~ msgstr "VLAN Devices"
 
 #~ msgid "New device"
 #~ msgstr "New device"
@@ -778,10 +831,6 @@ msgstr "VLAN Devices"
 
 #~ msgid "internet.ethernet.adsl.title"
 #~ msgstr "ADSL Devices"
-
-#, fuzzy
-#~ msgid "internet.ethernet.phy.title"
-#~ msgstr "Ethernet Devices"
 
 #~ msgid "internet.ethernet.title"
 #~ msgstr "Ethernet Devices"

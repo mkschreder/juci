@@ -440,6 +440,39 @@ msgstr ""
 msgid "MAC Addresses"
 msgstr ""
 
+msgid "internet-firewall-zones-title"
+msgstr "Firewall Zones"
+
+msgid "internet-firewall-port-mapping-title"
+msgstr "Port Mapping"
+
+msgid "internet-firewall-wordfilter-title"
+msgstr "Word Filter"
+
+msgid "internet-firewall-svcfilter-title"
+msgstr "Service Filter"
+
+msgid "internet-firewall-title"
+msgstr "Firewall"
+
+msgid "internet-firewall-rules-title"
+msgstr "Firewall Rules"
+
+msgid "internet-firewall-dmz-title"
+msgstr "DMZ"
+
+msgid "internet-parental-control-title"
+msgstr "Parental Control"
+
+msgid "internet-firewall-forwarding-title"
+msgstr "Forwarding"
+
+msgid "internet-firewall-services-title"
+msgstr "Services"
+
+msgid "internet-firewall-urlblock-title"
+msgstr "URL Blocking Filter"
+
 #~ msgid "internet.ethernet.info"
 #~ msgstr ""
 #~ "Ethernet devices are the low level devices that you can use to access a "
@@ -1149,32 +1182,6 @@ msgstr ""
 #~ msgid "internet.ethernet.wifi.title"
 #~ msgstr "Wireless Devices"
 
-#, fuzzy
-#~ msgid "internet.firewall.forwarding.title"
-#~ msgstr "Firewall Zones"
-
-#, fuzzy
-#~ msgid "internet.firewall.port.mapping.title"
-#~ msgstr "Port Mapping"
-
-#~ msgid "internet.firewall.rules.title"
-#~ msgstr "Firewall Rules"
-
-#~ msgid "internet.firewall.svcfilter.title"
-#~ msgstr "Services Filter"
-
-#~ msgid "internet.firewall.title"
-#~ msgstr "Firewall"
-
-#~ msgid "internet.firewall.urlblock.title"
-#~ msgstr "URL Blocking Filter"
-
-#~ msgid "internet.firewall.wordfilter.title"
-#~ msgstr "Forwarding Filter"
-
-#~ msgid "internet.firewall.zones.title"
-#~ msgstr "Firewall Zones"
-
 #~ msgid "internet.lan.dhcp.title"
 #~ msgstr "DHCP"
 
@@ -1191,9 +1198,6 @@ msgstr ""
 
 #~ msgid "internet.network.title"
 #~ msgstr "Network"
-
-#~ msgid "internet.parental.control.title"
-#~ msgstr "Parental Control"
 
 #~ msgid "internet.services.minidlna.title"
 #~ msgstr "MiniDLNA"

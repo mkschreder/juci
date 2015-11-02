@@ -77,6 +77,9 @@ msgstr ""
 "MiniDLNA allows you to share your media from a hard drive connected to your "
 "router."
 
+msgid "internet-services-minidlna-title"
+msgstr "MiniDLNA"
+
 #~ msgid "internet.multiwan.info"
 #~ msgstr "MultiWAN Configuration"
 
@@ -885,9 +888,6 @@ msgstr ""
 
 #~ msgid "internet.parental.control.title"
 #~ msgstr "Parental Control"
-
-#~ msgid "internet.services.minidlna.title"
-#~ msgstr "MiniDLNA"
 
 #, fuzzy
 #~ msgid "internet.services.samba.title"

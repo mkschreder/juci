@@ -38,6 +38,10 @@ msgstr ""
 msgid "Device Name"
 msgstr "Device Name"
 
+# share/menu.d/status.json
+msgid "status-usb-title"
+msgstr "USB Status"
+
 #~ msgid "UPNP Settings"
 #~ msgstr "UPNP Settings"
 
@@ -1074,11 +1078,6 @@ msgstr "Device Name"
 
 # share/menu.d/status.json
 #~ msgid "status.title"
-#~ msgstr "Status"
-
-# share/menu.d/status.json
-#, fuzzy
-#~ msgid "status.usb.title"
 #~ msgstr "Status"
 
 #, fuzzy

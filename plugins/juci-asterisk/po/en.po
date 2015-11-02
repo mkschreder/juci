@@ -240,6 +240,31 @@ msgstr ""
 msgid "Voice service is not available!"
 msgstr ""
 
+# share/menu.d/status.json
+msgid "status-phone-title"
+msgstr "Status"
+
+msgid "phone-lines-title"
+msgstr "Lines"
+
+msgid "phone-ringing-schedule-title"
+msgstr "Schedule"
+
+msgid "phone-title"
+msgstr "Call Log"
+
+msgid "phone-speed-dialing-title"
+msgstr "Speed Dialing"
+
+msgid "phone-number-blocking-title"
+msgstr "Number Blocking"
+
+msgid "phone-call-log-title"
+msgstr "Call Log"
+
+msgid "phone-numbers-title"
+msgstr "Numbers"
+
 #~ msgid "11a"
 #~ msgstr "802.11a"
 
@@ -1052,31 +1077,8 @@ msgstr ""
 #~ msgid "network.interface.type.' + conn.type.value +'.tab.title"
 #~ msgstr "AnyWAN"
 
-#~ msgid "phone.call.log.title"
-#~ msgstr "Call Log"
-
-#~ msgid "phone.lines.title"
-#~ msgstr "Lines"
-
-#~ msgid "phone.number.blocking.title"
-#~ msgstr ""
-#~ "Stay in control of your bills and block outgoing calls to unwanted "
-#~ "numbers."
-
 #~ msgid "phone.numbers.info"
 #~ msgstr "Control your phone accounts."
-
-#~ msgid "phone.numbers.title"
-#~ msgstr "Numbers"
-
-#~ msgid "phone.ringing.schedule.title"
-#~ msgstr "Schedule"
-
-#~ msgid "phone.speed.dialing.title"
-#~ msgstr "Speed Dialing"
-
-#~ msgid "phone.title"
-#~ msgstr "Call Log"
 
 #~ msgid "settings.configuration.title"
 #~ msgstr "Configuration"
@@ -1135,10 +1137,6 @@ msgstr ""
 
 #~ msgid "status.status.tv.title"
 #~ msgstr "IPTV"
-
-# share/menu.d/status.json
-#~ msgid "status.title"
-#~ msgstr "Status"
 
 # share/menu.d/status.json
 #, fuzzy

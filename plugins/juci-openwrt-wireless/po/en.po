@@ -534,6 +534,30 @@ msgstr "Status"
 msgid " {{wldev.device}} ({{wldev.ssid}})"
 msgstr ""
 
+msgid "wireless-status-title"
+msgstr "Wireless Status"
+
+msgid "wireless-status-simple-title"
+msgstr "Wireless Status"
+
+msgid "wireless-filtering-title"
+msgstr "Wireless Filtering Setup"
+
+msgid "wireless-interfaces-title"
+msgstr "Wireless Interfaces"
+
+msgid "wireless-general-title"
+msgstr "Wireless General Settings"
+
+msgid "wireless-client-mode-title"
+msgstr "Wireless Client-Mode Setup"
+
+msgid "wireless-devices-title"
+msgstr "Wireless Devices Setup"
+
+msgid "wireless-clients-title"
+msgstr "Wireless Clients Status"
+
 #, fuzzy
 #~ msgid "Static Address"
 #~ msgstr "Static Routes"
@@ -1490,14 +1514,8 @@ msgstr ""
 #~ msgid "wifi.general.clients.title"
 #~ msgstr "Wireless Devices"
 
-#~ msgid "wifi.general.devices.title"
-#~ msgstr "Wireless Devices"
-
 #~ msgid "wifi.general.interfaces.title"
 #~ msgstr "Wireless Interfaces"
-
-#~ msgid "wifi.general.title"
-#~ msgstr "General"
 
 #~ msgid "wifi.mac.filter.title"
 #~ msgstr "MAC Filter"
@@ -1509,9 +1527,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Below you can change parameters for the two WiFi frequencies 2.4 GHz and "
 #~ "5 GHz."
-
-#~ msgid "wifi.settings.title"
-#~ msgstr "Settings"
 
 #~ msgid "wifi.wps.title"
 #~ msgstr "WPS"
