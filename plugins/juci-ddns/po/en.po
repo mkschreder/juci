@@ -94,6 +94,9 @@ msgstr ""
 msgid "internet-services-ddns-title"
 msgstr "DDNS"
 
+msgid "menu-internet-services-ddns-title"
+msgstr "DDNS"
+
 #~ msgid "New interface"
 #~ msgstr "New interface"
 

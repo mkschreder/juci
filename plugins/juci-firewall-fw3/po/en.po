@@ -473,6 +473,39 @@ msgstr "Services"
 msgid "internet-firewall-urlblock-title"
 msgstr "URL Blocking Filter"
 
+msgid "menu-internet-firewall-zones-title"
+msgstr "Zones"
+
+msgid "menu-internet-firewall-port-mapping-title"
+msgstr "Port Mapping"
+
+msgid "menu-internet-firewall-wordfilter-title"
+msgstr "Word Filter"
+
+msgid "menu-internet-firewall-svcfilter-title"
+msgstr "Service Filter"
+
+msgid "menu-internet-firewall-title"
+msgstr "Firewall"
+
+msgid "menu-internet-firewall-rules-title"
+msgstr "Rules"
+
+msgid "menu-internet-firewall-dmz-title"
+msgstr "DMZ"
+
+msgid "menu-internet-parental-control-title"
+msgstr "Parental Control"
+
+msgid "menu-internet-firewall-forwarding-title"
+msgstr "Forwarding"
+
+msgid "menu-internet-firewall-services-title"
+msgstr "Services"
+
+msgid "menu-internet-firewall-urlblock-title"
+msgstr "URL Blocking"
+
 #~ msgid "internet.ethernet.info"
 #~ msgstr ""
 #~ "Ethernet devices are the low level devices that you can use to access a "

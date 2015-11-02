@@ -122,6 +122,10 @@ msgstr ""
 msgid "Active Stations"
 msgstr ""
 
+# share/menu.d/status.json
+msgid "status-title"
+msgstr "Status"
+
 msgid "status-restart-title"
 msgstr "Restart"
 
@@ -129,6 +133,18 @@ msgid "status-events-title"
 msgstr "Event Log"
 
 msgid "status-status-network-title"
+msgstr "Network Status"
+
+msgid "menu-status-title"
+msgstr "Status"
+
+msgid "menu-status-restart-title"
+msgstr "Restart"
+
+msgid "menu-status-events-title"
+msgstr "Event Log"
+
+msgid "menu-status-status-network-title"
 msgstr "Network Status"
 
 #~ msgid "Port"
@@ -1053,10 +1069,6 @@ msgstr "Network Status"
 
 #~ msgid "status.status.tv.title"
 #~ msgstr "IPTV"
-
-# share/menu.d/status.json
-#~ msgid "status.title"
-#~ msgstr "Status"
 
 # share/menu.d/status.json
 #, fuzzy

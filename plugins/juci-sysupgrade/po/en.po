@@ -178,6 +178,12 @@ msgstr "System Upgrade Options"
 msgid "settings-upgrade-title"
 msgstr "Firmware Upgrade"
 
+msgid "menu-settings-upgrade-options-title"
+msgstr "Options"
+
+msgid "menu-settings-upgrade-title"
+msgstr "Firmware Upgrade"
+
 #, fuzzy
 #~ msgid "New samba share"
 #~ msgstr "Samba shares configuration"

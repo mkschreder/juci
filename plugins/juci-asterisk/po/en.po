@@ -75,9 +75,8 @@ msgstr "Configure phone lines."
 msgid "Name"
 msgstr ""
 
-#, fuzzy
 msgid "Internal Number"
-msgstr "Interfaces"
+msgstr "Internal Number"
 
 msgid "Outgoing Calls Number"
 msgstr ""
@@ -263,6 +262,31 @@ msgid "phone-call-log-title"
 msgstr "Call Log"
 
 msgid "phone-numbers-title"
+msgstr "Numbers"
+
+# share/menu.d/status.json
+msgid "menu-status-phone-title"
+msgstr "Status"
+
+msgid "menu-phone-lines-title"
+msgstr "Lines"
+
+msgid "menu-phone-ringing-schedule-title"
+msgstr "Schedule"
+
+msgid "menu-phone-title"
+msgstr "Phone"
+
+msgid "menu-phone-speed-dialing-title"
+msgstr "Speed Dialing"
+
+msgid "menu-phone-number-blocking-title"
+msgstr "Number Blocking"
+
+msgid "menu-phone-call-log-title"
+msgstr "Call Log"
+
+msgid "menu-phone-numbers-title"
 msgstr "Numbers"
 
 #~ msgid "11a"

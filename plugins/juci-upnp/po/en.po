@@ -92,6 +92,14 @@ msgstr "UPNP Settings"
 msgid "upnpd-status-title"
 msgstr "UPNP Status"
 
+# share/menu.d/settings.json
+msgid "menu-upnpd-settings-title"
+msgstr "UPNP"
+
+# share/menu.d/status.json
+msgid "menu-upnpd-status-title"
+msgstr "UPNP"
+
 #~ msgid "uHTTPD Settings"
 #~ msgstr "uHTTPD Settings"
 

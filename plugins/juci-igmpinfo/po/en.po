@@ -53,6 +53,10 @@ msgstr ""
 msgid "status-tv-title"
 msgstr "IGMP Status"
 
+# share/menu.d/status.json
+msgid "menu-status-tv-title"
+msgstr "IGMP Status"
+
 #~ msgid "Default Policy"
 #~ msgstr "Default Policy"
 

@@ -36,6 +36,9 @@ msgstr ""
 msgid "phone-dect-title"
 msgstr "DECT Status"
 
+msgid "menu-phone-dect-title"
+msgstr "DECT Status"
+
 #~ msgid "NTP Settings"
 #~ msgstr "NTP Settings"
 

@@ -82,6 +82,9 @@ msgstr ""
 msgid "page-broadcom-ethernet-phy-title"
 msgstr "Ethernet Devices"
 
+msgid "menu-page-broadcom-ethernet-phy-title"
+msgstr "Ethernet"
+
 #~ msgid "New interface"
 #~ msgstr "New interface"
 

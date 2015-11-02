@@ -821,6 +821,41 @@ msgstr "Network"
 msgid "internet-routes-title"
 msgstr "Routes"
 
+msgid "network-title"
+msgstr "Network"
+
+msgid "menu-status-network-routes-title"
+msgstr "Static Routes"
+
+msgid "menu-internet-services-title"
+msgstr "Services"
+
+msgid "menu-internet-network-title"
+msgstr "Connections"
+
+# share/menu.d/status.json
+msgid "menu-status-network-nat-title"
+msgstr "NAT"
+
+msgid "menu-netifd-status-clients-title"
+msgstr "Clients"
+
+# /home/martin/juci/plugins/juci-network-netifd/src/pages/netifd-vlan-config.html
+msgid "menu-netifd-vlan-config-title"
+msgstr "VLAN"
+
+# share/menu.d/status.json
+msgid "menu-status-network-title"
+msgstr "Network"
+
+# share/menu.d/internet.json
+msgid "menu-internet-routes-title"
+msgstr "Routes"
+
+# share/menu.d/status.json
+msgid "menu-network-title"
+msgstr "Network"
+
 #, fuzzy
 #~ msgid "phone-lines-title"
 #~ msgstr "Lines"
@@ -1182,9 +1217,6 @@ msgstr "Routes"
 
 #~ msgid "network.status.title"
 #~ msgstr "Network Status"
-
-#~ msgid "network.title"
-#~ msgstr "Network"
 
 #~ msgid "network.vlan.title"
 #~ msgstr "VLAN"

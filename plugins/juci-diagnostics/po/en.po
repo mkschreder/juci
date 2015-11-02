@@ -80,6 +80,9 @@ msgstr ""
 msgid "status-diagnostics-title"
 msgstr "Diagnostic Utility"
 
+msgid "menu-status-diagnostics-title"
+msgstr "Diagnostics"
+
 #~ msgid "Interface"
 #~ msgstr "Interface"
 

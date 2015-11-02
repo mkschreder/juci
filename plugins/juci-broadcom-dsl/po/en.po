@@ -213,15 +213,27 @@ msgstr "Services"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-dsl-status.html
 msgid "page-broadcom-dsl-status-title"
-msgstr ""
+msgstr "DSL Status"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-adsl.html
 msgid "page-broadcom-adsl-title"
-msgstr ""
+msgstr "ADSL"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-vdsl.html
 msgid "page-broadcom-vdsl-title"
-msgstr ""
+msgstr "VDSL"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-dsl-status.html
+msgid "menu-page-broadcom-dsl-status-title"
+msgstr "DSL Status"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-adsl.html
+msgid "menu-page-broadcom-adsl-title"
+msgstr "ADSL"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-vdsl.html
+msgid "menu-page-broadcom-vdsl-title"
+msgstr "VDSL"
 
 #~ msgid "internet.ethernet.phy.info"
 #~ msgstr "Physical ethernet interfaces configuration"

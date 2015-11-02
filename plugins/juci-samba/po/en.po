@@ -60,6 +60,9 @@ msgstr "Samba shares configuration"
 msgid "internet-services-samba-title"
 msgstr "Samba Configuration"
 
+msgid "menu-internet-services-samba-title"
+msgstr "Samba"
+
 #~ msgid "off"
 #~ msgstr "Off"
 

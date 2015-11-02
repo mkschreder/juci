@@ -303,6 +303,9 @@ msgstr "Services"
 msgid "status-system-title"
 msgstr "System Status"
 
+msgid "system-title"
+msgstr "System"
+
 # share/menu.d/settings.json
 msgid "settings-uci-title"
 msgstr "UCI Settings"
@@ -311,6 +314,41 @@ msgid "settings-management-title"
 msgstr "Management Settings"
 
 msgid "settings-energy-title"
+msgstr "Energy Settings"
+
+msgid "menu-settings-password-title"
+msgstr "Router Password"
+
+msgid "menu-settings-configuration-title"
+msgstr "Configuration"
+
+# share/menu.d/settings.json
+msgid "menu-settings-system-title"
+msgstr "Settings"
+
+msgid "menu-status-system-processes-title"
+msgstr "Processes"
+
+msgid "menu-internet-services-ntp-title"
+msgstr "NTP"
+
+msgid "menu-settings-services-title"
+msgstr "Services"
+
+msgid "menu-status-system-title"
+msgstr "System"
+
+msgid "menu-system-title"
+msgstr "System"
+
+# share/menu.d/settings.json
+msgid "menu-settings-uci-title"
+msgstr "UCI Settings"
+
+msgid "menu-settings-management-title"
+msgstr "Management"
+
+msgid "menu-settings-energy-title"
 msgstr "Energy Settings"
 
 #~ msgid "status.eventlog.info"

@@ -11,235 +11,188 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-# /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.js
-msgid "Add folder to share"
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-footer.html
+msgid "WAN IP Address"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-minidlna/src/widgets/minidlna-file-tree.js
-msgid "Loading.."
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-footer.html
+msgid "Logout"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-minidlna/src/widgets/minidlna-file-tree.js
-msgid "All types"
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-navbar.html
+msgid "Toggle navigation"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-minidlna/src/widgets/minidlna-file-tree.js
-msgid "Video only"
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-navbar.html
+msgid "No new events to show"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-minidlna/src/widgets/minidlna-file-tree.js
-msgid "Audio only"
+# /home/martin/juci/themes/juci-theme-inteno/src/pages/status-about.html
+msgid "About"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-minidlna/src/widgets/minidlna-file-tree.js
-msgid "Pictures only"
-msgstr ""
+msgid "status-about-title"
+msgstr "About"
 
-# /home/martin/juci/plugins/juci-minidlna/src/widgets/minidlna-file-tree.html
-msgid "Media type"
-msgstr ""
+# share/menu.d/overview.json
+msgid "overview-title"
+msgstr "Overview"
 
-# /home/martin/juci/plugins/juci-minidlna/src/widgets/minidlna-file-tree.html
-msgid "Select folder"
-msgstr ""
+msgid "menu-status-about-title"
+msgstr "About"
 
-# /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.html
-msgid "Enable"
-msgstr ""
+# share/menu.d/overview.json
+msgid "menu-overview-title"
+msgstr "Overview"
 
-msgid "Port"
-msgstr "Port"
+#~ msgid "off"
+#~ msgstr "Off"
 
-msgid "Interfaces"
-msgstr "Interfaces"
+#, fuzzy
+#~ msgid "wps.status.disabled"
+#~ msgstr "Wireless Status"
 
-# /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.html
-msgid "Friendly Name"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.html
-msgid "Root Container"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.html
-msgid "Media Directories"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.html
-msgid "Album-Art Names"
-msgstr ""
-
-msgid "MiniDLNA Settings"
-msgstr "MiniDLNA Settings"
-
-msgid "minidlna.settings.info"
-msgstr ""
-"MiniDLNA allows you to share your media from a hard drive connected to your "
-"router."
-
-msgid "internet-services-minidlna-title"
-msgstr "MiniDLNA"
-
-msgid "menu-internet-services-minidlna-title"
-msgstr "MiniDLNA"
-
-#~ msgid "internet.multiwan.info"
-#~ msgstr "MultiWAN Configuration"
-
-#~ msgid "Default Route"
-#~ msgstr "Default Route"
-
-#~ msgid "IGPM TV Status"
-#~ msgstr "IGPM TV Status"
-
-#~ msgid "status.tv.info"
-#~ msgstr ""
-#~ "This page allows to verify the connection status of your IPTV Services."
-
-#~ msgid "Zone members:"
-#~ msgstr "Zone members:"
-
-#~ msgid "Rule Name"
-#~ msgstr "Rule Name"
-
-#~ msgid "Dst. Device"
-#~ msgstr "Dst. Device"
-
-#~ msgid "Private port"
-#~ msgstr "Private port"
-
-#~ msgid "Device"
-#~ msgstr "Device"
-
-#~ msgid "internet.exposed_host.info"
-#~ msgstr ""
-#~ "If you have a local network device that cannot run an Internet "
-#~ "application properly behind the firewall, you can allow unrestricted "
-#~ "Internet access to the network device (Exposed Host)."
-
-#~ msgid "Firewall Forwarding"
-#~ msgstr "Firewall Forwarding"
-
-#~ msgid "internet.firewall.forwarding.info"
-#~ msgstr "Configure port forwarding here."
-
-#~ msgid "internet.firewall.info"
-#~ msgstr ""
-#~ "Firewall allows you to filter traffic, set up port forwarding or expose "
-#~ "certain services to the outside world. "
-
-#~ msgid "to"
-#~ msgstr "To"
-
-#~ msgid "internet.firewall.rules.info"
-#~ msgstr ""
-#~ "Firewall rules are more fine grained filtering rules for filtering your "
-#~ "traffic. "
-
-#~ msgid "internet.wan.services.info"
-#~ msgstr "WAN Services configuration"
-
-#~ msgid "Service Filtering"
-#~ msgstr "Service Filtering"
-
-#~ msgid "internet.firewall.svcfilter.info"
-#~ msgstr ""
-#~ "This filter allows you to filter out packets going out to a specific "
-#~ "port. "
-
-#~ msgid "internet.firewall.urlfilter.info"
-#~ msgstr ""
-#~ "URL filtering allows you to filter out dns requests to specific URL's. "
-#~ "Warning: this still does not prevent the user from using an IP address "
-#~ "directly. "
-
-#~ msgid "internet.firewall.zones.info"
-#~ msgstr ""
-#~ "Here you can configure firewall zones. Each zone can contain multiple "
-#~ "networks, or interfaces, which you have set up earlier. "
-
-#~ msgid "internet.parental.control.info"
-#~ msgstr "Here you can setup parental control settings. "
-
-#~ msgid "internet.ethernet.info"
-#~ msgstr ""
-#~ "Ethernet devices are the low level devices that you can use to access a "
-#~ "network. These are MAC level devices and so do not have IP addresses. You "
-#~ "should configure IP addresses in the connections section. "
-
-#~ msgid "settings.dropbear.info"
-#~ msgstr "Configure SSH access to the router."
-
-#~ msgid "Network"
-#~ msgstr "Network"
-
-#~ msgid "status.diagnostics.info"
-#~ msgstr ""
-#~ "This section shows a list of tools which can be used to check the status "
-#~ "of your network connection."
-
-#~ msgid "Automated Diagnostics"
-#~ msgstr "Automated Diagnostics"
-
-#~ msgid "status.diagnostics.auto.info"
-#~ msgstr ""
-#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
-#~ "it has been started."
-
-#~ msgid "status.diagnostics.ping.info"
-#~ msgstr ""
-#~ "Please enter a valid hostname or IP address to execute the Ping test."
-
-#~ msgid "status.diagnostics.trace.info"
-#~ msgstr ""
-#~ "Please choose the connection type and location where you would like to "
-#~ "save the tracing. The tracing will then begin automatically in a separate "
-#~ "popup window."
-
-#~ msgid "Pick Interface"
-#~ msgstr "Pick Interface"
-
-#~ msgid "Choose DNS Provider"
-#~ msgstr "Choose DNS Provider"
-
-#~ msgid "Enter DDNS Provider"
-#~ msgstr "Enter DDNS Provider"
-
-#~ msgid "ddns.config.info"
-#~ msgstr ""
-#~ "DDNS allows you to access your router from the Internet using a domain "
-#~ "name instead of IP address. You will need an account on a DDNS service "
-#~ "provider."
-
-#~ msgid "New interface"
-#~ msgstr "New interface"
-
-#~ msgid "Pick base device"
-#~ msgstr "Pick base device"
-
-#~ msgid "internet.ethernet.vlan.info"
-#~ msgstr "This section allows you to configure VLAN interfaces. "
-
-#~ msgid "VLAN Devices"
-#~ msgstr "VLAN Devices"
-
-#~ msgid "internet.ethernet.phy.info"
-#~ msgstr "Physical ethernet interfaces configuration"
-
-#~ msgid "New device"
-#~ msgstr "New device"
-
-#~ msgid "internet.ethernet.adsl.info"
-#~ msgstr "This page allows you to configure ADSL devices. "
-
-#~ msgid "DSL Status"
-#~ msgstr "DSL Status"
-
-#~ msgid "dsl.status.info"
+#, fuzzy
+#~ msgid "wps.status.init"
 #~ msgstr "This status page shows technical parameters of your DSL connection."
 
-#~ msgid "internet.ethernet.vdsl.info"
-#~ msgstr "This section allows you to configure VDSL interfaces. "
+#, fuzzy
+#~ msgid "wps.status.processing"
+#~ msgstr "Processes currently running on the router. "
+
+#, fuzzy
+#~ msgid "wps.status.fail"
+#~ msgstr "Wireless Status"
+
+#, fuzzy
+#~ msgid "wps.status.timeout"
+#~ msgstr "Wireless Status"
+
+#, fuzzy
+#~ msgid "wps.status.msgdone"
+#~ msgstr "This status page shows technical parameters of your DSL connection."
+
+#, fuzzy
+#~ msgid "wps.status.overlap"
+#~ msgstr "This status page shows technical parameters of your DSL connection."
+
+#, fuzzy
+#~ msgid "wps.status.unknown"
+#~ msgstr "This status page shows technical parameters of your DSL connection."
+
+#~ msgid "on"
+#~ msgstr "On"
+
+#~ msgid "auto"
+#~ msgstr "Auto"
+
+#~ msgid "wifi-iface.device"
+#~ msgstr "Frequency"
+
+#~ msgid "wifi-iface.network"
+#~ msgstr "WiFi Network"
+
+#~ msgid "wifi-iface.mode"
+#~ msgstr "Mode"
+
+#~ msgid "wifi-iface.ssid"
+#~ msgstr "WiFi Network Name (SSID)"
+
+#~ msgid "wifi-iface.encryption"
+#~ msgstr "Encryption"
+
+#~ msgid "wifi-iface.cipher"
+#~ msgstr "Cipher"
+
+#~ msgid "wifi-iface.key"
+#~ msgstr "WiFi Key (Password)"
+
+#~ msgid "wifi-iface.key1"
+#~ msgstr "WiFi Key #1"
+
+#~ msgid "wifi-iface.key2"
+#~ msgstr "WiFi Key #2"
+
+#~ msgid "wifi-iface.key3"
+#~ msgstr "WiFi Key #3"
+
+#~ msgid "wifi-iface.key4"
+#~ msgstr "WiFi Key #4"
+
+#~ msgid "wifi-iface.gtk_rekey"
+#~ msgstr "Rekey Interval"
+
+#~ msgid "wifi-iface.wps_pbc"
+#~ msgstr "WPS"
+
+#~ msgid "wifi-iface.wmf_bss_enable"
+#~ msgstr "BSS"
+
+#~ msgid "wifi-iface.bss_max"
+#~ msgstr "BSS Max"
+
+#~ msgid "wifi-iface.instance"
+#~ msgstr "Device"
+
+#~ msgid "wifi-iface.up"
+#~ msgstr "Up"
+
+#~ msgid "wifi-iface.closed"
+#~ msgstr "Broadcast SSID"
+
+#~ msgid "wifi-iface.disabled"
+#~ msgstr "Disabled"
+
+#~ msgid "wifi-iface.macmode"
+#~ msgstr "Mac Mode"
+
+#~ msgid "wifi-iface.macfilter"
+#~ msgstr "Mac Filter"
+
+#~ msgid "wifi-iface.maclist"
+#~ msgstr "Mac List"
+
+#~ msgid "interface.macmode.allow"
+#~ msgstr "Allow"
+
+#~ msgid "interface.macmode.deny"
+#~ msgstr "Deny"
+
+#~ msgid "wifi.enc.none"
+#~ msgstr "No Encryption (Dangerous!)"
+
+#~ msgid "wifi.enc.wep"
+#~ msgstr "WEP Open System"
+
+#~ msgid "wifi.enc.wep-shared"
+#~ msgstr "WEP Shared Key"
+
+#~ msgid "wifi.enc.wpa2"
+#~ msgstr "WPA2-EAP"
+
+#~ msgid "wifi.enc.mixed-wpa"
+#~ msgstr "WPA/WPA2-EAP Mixed"
+
+#~ msgid "wifi.enc.psk"
+#~ msgstr "WPA-PSK"
+
+#~ msgid "wifi.enc.psk2"
+#~ msgstr "WPA2-PSK"
+
+#~ msgid "wifi.enc.mixed-psk"
+#~ msgstr "WPA/WPA2-PSK Mixed"
+
+#~ msgid "11b"
+#~ msgstr "802.11b"
+
+#~ msgid "11g"
+#~ msgstr "802.11g"
+
+#~ msgid "11bg"
+#~ msgstr "802.11b/g"
+
+#~ msgid "11n"
+#~ msgstr "802.11n"
 
 #~ msgid "11a"
 #~ msgstr "802.11a"
@@ -247,21 +200,213 @@ msgstr "MiniDLNA"
 #~ msgid "11ac"
 #~ msgstr "802.11ac"
 
-#~ msgid "11b"
-#~ msgstr "802.11b"
+#~ msgid "WiFi"
+#~ msgstr "WiFi"
 
-#~ msgid "11bg"
-#~ msgstr "802.11b/g"
+#, fuzzy
+#~ msgid "Choose Key"
+#~ msgstr "Network"
 
-#~ msgid "11g"
-#~ msgstr "802.11g"
+#~ msgid "wifi-iface.radius_server"
+#~ msgstr "Radius Server"
 
-#~ msgid "11n"
-#~ msgstr "802.11n"
+#~ msgid "wifi-iface.radius_port"
+#~ msgstr "Radius Port"
+
+#~ msgid "wifi-iface.radius_secret"
+#~ msgstr "Radius Secret"
+
+#~ msgid "wifi-iface.show_password"
+#~ msgstr "Show Key Text"
+
+#, fuzzy
+#~ msgid "wifi.client.info"
+#~ msgstr ""
+#~ "Schedule the times when your WiFi should be turned on or off "
+#~ "automatically. Note: If WiFi is turned off, both Main and Guest WiFi are "
+#~ "disabled"
+
+#~ msgid "wifi.clients.info"
+#~ msgstr ""
+#~ "Wireless interfaces are visible to the user in the form of wireless "
+#~ "access point names. Each radio can have several SSIDs and each SSID "
+#~ "interface can be configured as part of a network bridge or firewall group."
+
+#~ msgid "wifi.radios.info"
+#~ msgstr ""
+#~ "This page allows you to configure wireless radios that you have installed "
+#~ "on your system. A wireless radio is not the same thing as an access "
+#~ "point. Access points are interfaces and each radio can have several "
+#~ "interfaces on it. "
+
+#~ msgid "wifi.macfilter.info"
+#~ msgstr ""
+#~ "To make your wireless network more secure, you can specify which devices "
+#~ "are allowed to connect. The devices are identified by their MAC address. "
+#~ "You can manage up to 32 devices."
+
+#, fuzzy
+#~ msgid "General WiFi Settings"
+#~ msgstr "WAN Settings"
+
+#~ msgid "wifi.general.info"
+#~ msgstr ""
+#~ "Your router supports the industry-wide WiFi standards, enabling easy "
+#~ "wireless connection of your devices."
+
+#, fuzzy
+#~ msgid "Wifi Network"
+#~ msgstr "Network"
+
+#, fuzzy
+#~ msgid "Wireless Interfaces"
+#~ msgstr "Interfaces"
+
+#~ msgid "wifi.interfaces.info"
+#~ msgstr ""
+#~ "Wireless interfaces are visible to the user in the form of wireless "
+#~ "access point names. Each radio can have several SSIDs and each SSID "
+#~ "interface can be configured as part of a network bridge or firewall "
+#~ "group. "
+
+#~ msgid "wifi.schedule.info"
+#~ msgstr ""
+#~ "Schedule the times when your WiFi should be turned on or off "
+#~ "automatically. Note: If WiFi is turned off, both Main and Guest WiFi are "
+#~ "disabled"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#, fuzzy
+#~ msgid "WiFi Status"
+#~ msgstr "Status"
+
+#~ msgid "status.wifi.info"
+#~ msgstr "Wireless status information"
+
+#~ msgid "wifi.wps.info"
+#~ msgstr ""
+#~ "Using WPS it is possible to easily connect wireless devices with your "
+#~ "router on an encrypted channel. Below, you can choose and configure "
+#~ "different connection methods."
+
+#~ msgid "wifi.wps.in.progress"
+#~ msgstr "Your router is now attempting to pair with other devices."
+
+#~ msgid "wifi.wps.pbc.info"
+#~ msgstr ""
+#~ "To pair your device, press \"Pair\". Afterwards, press the corresponding "
+#~ "button on the device you wish to connect. Your router will be open for "
+#~ "pairing for 2 minutes after you pressed Pair."
+
+#~ msgid "wifi.wps.pin.info"
+#~ msgstr "Enter the WPS-PIN below on the device you wish to pair."
+
+#~ msgid "wifi.wps.otherpin.info"
+#~ msgstr "Enter the WPS-PIN provided by the other device here."
+
+#, fuzzy
+#~ msgid "wireless-status-title"
+#~ msgstr "This page shows wireless status information. "
+
+#, fuzzy
+#~ msgid "wireless-filtering-title"
+#~ msgstr "Settings"
+
+#, fuzzy
+#~ msgid "wireless-interfaces-title"
+#~ msgstr "Wireless Interfaces"
+
+#, fuzzy
+#~ msgid "wireless-general-title"
+#~ msgstr "General"
+
+#, fuzzy
+#~ msgid "wireless-schedule-title"
+#~ msgstr "Schedule"
+
+#, fuzzy
+#~ msgid "wireless-wps-title"
+#~ msgstr "WPS"
+
+#, fuzzy
+#~ msgid "wireless-client-mode-title"
+#~ msgstr "Clients connected to your AP over wireless interfaces. "
+
+#, fuzzy
+#~ msgid "wireless-devices-title"
+#~ msgstr "Wireless Devices"
+
+#, fuzzy
+#~ msgid "wireless-clients-title"
+#~ msgstr "Clients connected to your AP over wireless interfaces. "
+
+#, fuzzy
+#~ msgid "menu-wireless-status-title"
+#~ msgstr "This page shows wireless status information. "
+
+#, fuzzy
+#~ msgid "menu-wireless-filtering-title"
+#~ msgstr "Settings"
+
+#, fuzzy
+#~ msgid "menu-wireless-interfaces-title"
+#~ msgstr "Wireless Interfaces"
+
+#, fuzzy
+#~ msgid "menu-wireless-general-title"
+#~ msgstr "General"
+
+#, fuzzy
+#~ msgid "menu-wireless-schedule-title"
+#~ msgstr "Schedule"
+
+#, fuzzy
+#~ msgid "menu-wireless-wps-title"
+#~ msgstr "WPS"
+
+#, fuzzy
+#~ msgid "menu-wireless-client-mode-title"
+#~ msgstr "Clients connected to your AP over wireless interfaces. "
+
+#, fuzzy
+#~ msgid "menu-wireless-devices-title"
+#~ msgstr "Wireless Devices"
+
+#, fuzzy
+#~ msgid "menu-wireless-clients-title"
+#~ msgstr "Clients connected to your AP over wireless interfaces. "
+
+#~ msgid "New device"
+#~ msgstr "New device"
+
+#~ msgid "Service Type"
+#~ msgstr "Service Type"
+
+#~ msgid "internet.ethernet.adsl.info"
+#~ msgstr "This page allows you to configure ADSL devices. "
+
+#~ msgid "DSL Status"
+#~ msgstr "DSL Status"
+
+#~ msgid "internet.ethernet.vdsl.info"
+#~ msgstr "This section allows you to configure VDSL interfaces. "
+
+#, fuzzy
+#~ msgid "Default Route"
+#~ msgstr "Static Routes"
+
+#, fuzzy
+#~ msgid "Interface Name"
+#~ msgstr "Interfaces"
 
 #, fuzzy
 #~ msgid "Interface Type"
 #~ msgstr "Interfaces"
+
+#~ msgid "Interface UP:"
+#~ msgstr "Interface UP:"
 
 #, fuzzy
 #~ msgid "Internal Number"
@@ -270,6 +415,12 @@ msgstr "MiniDLNA"
 #~ msgid "Internet"
 #~ msgstr "Internet"
 
+#~ msgid "MiniDLNA Settings"
+#~ msgstr "MiniDLNA Settings"
+
+#~ msgid "Network"
+#~ msgstr "Network"
+
 #~ msgid "Overview"
 #~ msgstr "Overview"
 
@@ -277,8 +428,11 @@ msgstr "MiniDLNA"
 #~ msgstr "Phone"
 
 #, fuzzy
-#~ msgid "Pick Network"
-#~ msgstr "Network"
+#~ msgid "Select Base Device"
+#~ msgstr "Services"
+
+#~ msgid "Service"
+#~ msgstr "Service"
 
 #~ msgid "Services"
 #~ msgstr "Services"
@@ -299,8 +453,8 @@ msgstr "MiniDLNA"
 #~ msgid "USB Devices"
 #~ msgstr "Services"
 
-#~ msgid "WiFi"
-#~ msgstr "WiFi"
+#~ msgid "Zone members:"
+#~ msgstr "Zone members:"
 
 #~ msgid "admin.diagnostics.title"
 #~ msgstr "Diagnostics"
@@ -332,8 +486,11 @@ msgstr "MiniDLNA"
 #~ msgid "application.name"
 #~ msgstr "JUCI"
 
-#~ msgid "auto"
-#~ msgstr "Auto"
+#~ msgid "ddns.config.info"
+#~ msgstr ""
+#~ "DDNS allows you to access your router from the Internet using a domain "
+#~ "name instead of IP address. You will need an account on a DDNS service "
+#~ "provider."
 
 #~ msgid "easycwmp.config.info"
 #~ msgstr "EasyCWMP configuration"
@@ -344,22 +501,79 @@ msgstr "MiniDLNA"
 #~ msgid "from"
 #~ msgstr "From"
 
-#~ msgid "interface.macmode.allow"
-#~ msgstr "Allow"
+#~ msgid "internet.ethernet.info"
+#~ msgstr ""
+#~ "Ethernet devices are the low level devices that you can use to access a "
+#~ "network. These are MAC level devices and so do not have IP addresses. You "
+#~ "should configure IP addresses in the connections section. "
 
-#~ msgid "interface.macmode.deny"
-#~ msgstr "Deny"
+#, fuzzy
+#~ msgid "internet.ethernet.phy.info"
+#~ msgstr ""
+#~ "Ethernet devices are the low level devices that you can use to access a "
+#~ "network. These are MAC level devices and so do not have IP addresses. You "
+#~ "should configure IP addresses in the connections section. "
+
+#~ msgid "internet.ethernet.vlan.info"
+#~ msgstr "This section allows you to configure VLAN interfaces. "
+
+#~ msgid "internet.exposed_host.info"
+#~ msgstr ""
+#~ "If you have a local network device that cannot run an Internet "
+#~ "application properly behind the firewall, you can allow unrestricted "
+#~ "Internet access to the network device (Exposed Host)."
+
+#, fuzzy
+#~ msgid "internet.firewall.forwarding.info"
+#~ msgstr ""
+#~ "Here you can configure firewall zones. Each zone can contain multiple "
+#~ "networks, or interfaces, which you have set up earlier. "
+
+#~ msgid "internet.firewall.info"
+#~ msgstr ""
+#~ "Firewall allows you to filter traffic, set up port forwarding or expose "
+#~ "certain services to the outside world. "
+
+#~ msgid "internet.firewall.rules.info"
+#~ msgstr ""
+#~ "Firewall rules are more fine grained filtering rules for filtering your "
+#~ "traffic. "
+
+#~ msgid "internet.firewall.svcfilter.info"
+#~ msgstr ""
+#~ "This filter allows you to filter out packets going out to a specific "
+#~ "port. "
+
+#~ msgid "internet.firewall.urlfilter.info"
+#~ msgstr ""
+#~ "URL filtering allows you to filter out dns requests to specific URL's. "
+#~ "Warning: this still does not prevent the user from using an IP address "
+#~ "directly. "
+
+#~ msgid "internet.firewall.zones.info"
+#~ msgstr ""
+#~ "Here you can configure firewall zones. Each zone can contain multiple "
+#~ "networks, or interfaces, which you have set up earlier. "
 
 #~ msgid "internet.lan.routes.info"
 #~ msgstr ""
 #~ "Static routes are useful if you have several networks accessible from "
 #~ "your router and you want to correctly route packets between them. "
 
+#~ msgid "internet.multiwan.info"
+#~ msgstr "MultiWAN Configuration"
+
+#~ msgid "internet.parental.control.info"
+#~ msgstr "Here you can setup parental control settings. "
+
 #~ msgid "internet.services.info"
 #~ msgstr "Here you can configure network services. "
 
 #~ msgid "internet.services.upnp.info"
 #~ msgstr "Configure UPNP and ports"
+
+#~ msgid "internet.wan.services.info"
+#~ msgstr "WAN Services configuration"
 
 #~ msgid "lan.config.info"
 #~ msgstr "LAN Configuration"
@@ -378,6 +592,11 @@ msgstr "MiniDLNA"
 
 #~ msgid "login.title"
 #~ msgstr "JUCI Login"
+
+#~ msgid "minidlna.settings.info"
+#~ msgstr ""
+#~ "MiniDLNA allows you to share your media from a hard drive connected to "
+#~ "your router."
 
 #~ msgid "modal.netmode.select.info"
 #~ msgstr "Netmode selection and configuration"
@@ -433,21 +652,11 @@ msgstr "MiniDLNA"
 #~ msgid "network.wan.title"
 #~ msgstr "WAN"
 
-#~ msgid "off"
-#~ msgstr "Off"
-
-#~ msgid "on"
-#~ msgstr "On"
-
 #~ msgid "overview.settings.title"
 #~ msgstr "Settings"
 
 #~ msgid "overview.status.title"
 #~ msgstr "Status"
-
-# share/menu.d/overview.json
-#~ msgid "overview.title"
-#~ msgstr "Overview"
 
 #~ msgid "phone.call_log.info"
 #~ msgstr "Latest calls."
@@ -500,6 +709,9 @@ msgstr "MiniDLNA"
 #~ "Your router can save your configuration to a computer. We recommend to "
 #~ "always save your last changed settings to a computer."
 
+#~ msgid "settings.dropbear.info"
+#~ msgstr "Configure SSH access to the router."
+
 #~ msgid "settings.energy.info"
 #~ msgstr "Reduce power consumption by switching off unused functionality."
 
@@ -549,6 +761,26 @@ msgstr "MiniDLNA"
 #~ "only one firmware file on the storage and that one shall be located under "
 #~ "the main directory (no search under subfolders)."
 
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "This diagnosis should take up to 2 minutes and cannot be cancelled once "
+#~ "it has been started."
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "This section shows a list of tools which can be used to check the status "
+#~ "of your network connection."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr ""
+#~ "Please enter a valid hostname or IP address to execute the Ping test."
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Please choose the connection type and location where you would like to "
+#~ "save the tracing. The tracing will then begin automatically in a separate "
+#~ "popup window."
+
 #~ msgid "status.eventlog.info"
 #~ msgstr ""
 #~ "Select the categories for which you would like to view the event log."
@@ -573,8 +805,9 @@ msgstr "MiniDLNA"
 #~ "This page provides an overview of main parameters of your router. This "
 #~ "can help you to optimize your router or identify potential problems."
 
-#~ msgid "status.system.processes.info"
-#~ msgstr "Processes currently running on the router. "
+#~ msgid "status.tv.info"
+#~ msgstr ""
+#~ "This page allows to verify the connection status of your IPTV Services."
 
 #~ msgid "status.voice.info"
 #~ msgstr ""
@@ -584,11 +817,11 @@ msgstr "MiniDLNA"
 #~ msgid "status.voice_lines.info"
 #~ msgstr "Status of your voice lines."
 
-#~ msgid "status.wifi.info"
-#~ msgstr "Wireless status information"
-
 #~ msgid "system.management.info"
 #~ msgstr "Configure settings for managing your box over WAN interface. "
+
+#~ msgid "to"
+#~ msgstr "To"
 
 #~ msgid "uhttpd.settings.info"
 #~ msgstr "Configuration for uHTTPd micro web server. "
@@ -602,191 +835,21 @@ msgstr "MiniDLNA"
 #~ msgid "wan.config.info"
 #~ msgstr "WAN configuration"
 
-#~ msgid "wifi-iface.bss_max"
-#~ msgstr "BSS Max"
-
-#~ msgid "wifi-iface.cipher"
-#~ msgstr "Cipher"
-
-#~ msgid "wifi-iface.closed"
-#~ msgstr "Broadcast SSID"
-
-#~ msgid "wifi-iface.device"
-#~ msgstr "Frequency"
-
-#~ msgid "wifi-iface.disabled"
-#~ msgstr "Disabled"
-
-#~ msgid "wifi-iface.encryption"
-#~ msgstr "Encryption"
-
-#~ msgid "wifi-iface.gtk_rekey"
-#~ msgstr "Rekey Interval"
-
-#~ msgid "wifi-iface.instance"
-#~ msgstr "Device"
-
-#~ msgid "wifi-iface.key"
-#~ msgstr "WiFi Key (Password)"
-
-#~ msgid "wifi-iface.key1"
-#~ msgstr "WiFi Key #1"
-
-#~ msgid "wifi-iface.key2"
-#~ msgstr "WiFi Key #2"
-
-#~ msgid "wifi-iface.key3"
-#~ msgstr "WiFi Key #3"
-
-#~ msgid "wifi-iface.key4"
-#~ msgstr "WiFi Key #4"
-
-#~ msgid "wifi-iface.macfilter"
-#~ msgstr "Mac Filter"
-
-#~ msgid "wifi-iface.maclist"
-#~ msgstr "Mac List"
-
-#~ msgid "wifi-iface.macmode"
-#~ msgstr "Mac Mode"
-
-#~ msgid "wifi-iface.mode"
-#~ msgstr "Mode"
-
-#~ msgid "wifi-iface.network"
-#~ msgstr "WiFi Network"
-
-#~ msgid "wifi-iface.radius_port"
-#~ msgstr "Radius Port"
-
-#~ msgid "wifi-iface.radius_secret"
-#~ msgstr "Radius Secret"
-
-#~ msgid "wifi-iface.radius_server"
-#~ msgstr "Radius Server"
-
-#~ msgid "wifi-iface.show_password"
-#~ msgstr "Show Key Text"
-
-#~ msgid "wifi-iface.ssid"
-#~ msgstr "WiFi Network Name (SSID)"
-
-#~ msgid "wifi-iface.up"
-#~ msgstr "Up"
-
-#~ msgid "wifi-iface.wmf_bss_enable"
-#~ msgstr "BSS"
-
-#~ msgid "wifi-iface.wps_pbc"
-#~ msgstr "WPS"
-
 #~ msgid "wifi.2g.title"
 #~ msgstr "2.4Ghz Wireless"
 
 #~ msgid "wifi.5g.title"
 #~ msgstr "5Ghz Wireless Configuration"
 
-#, fuzzy
-#~ msgid "wifi.client.info"
-#~ msgstr ""
-#~ "Schedule the times when your WiFi should be turned on or off "
-#~ "automatically. Note: If WiFi is turned off, both Main and Guest WiFi are "
-#~ "disabled"
-
-#~ msgid "wifi.clients.info"
-#~ msgstr ""
-#~ "Wireless interfaces are visible to the user in the form of wireless "
-#~ "access point names. Each radio can have several SSIDs and each SSID "
-#~ "interface can be configured as part of a network bridge or firewall group."
-
 #~ msgid "wifi.clients.title"
 #~ msgstr "Wireless Clients"
-
-#~ msgid "wifi.enc.mixed-psk"
-#~ msgstr "WPA/WPA2-PSK Mixed"
-
-#~ msgid "wifi.enc.mixed-wpa"
-#~ msgstr "WPA/WPA2-EAP Mixed"
-
-#~ msgid "wifi.enc.none"
-#~ msgstr "No Encryption (Dangerous!)"
-
-#~ msgid "wifi.enc.psk"
-#~ msgstr "WPA-PSK"
-
-#~ msgid "wifi.enc.psk2"
-#~ msgstr "WPA2-PSK"
-
-#~ msgid "wifi.enc.wep"
-#~ msgstr "WEP Open System"
-
-#~ msgid "wifi.enc.wep-shared"
-#~ msgstr "WEP Shared Key"
-
-#~ msgid "wifi.enc.wpa2"
-#~ msgstr "WPA2-EAP"
-
-#~ msgid "wifi.general.info"
-#~ msgstr ""
-#~ "Your router supports the industry-wide WiFi standards, enabling easy "
-#~ "wireless connection of your devices."
 
 #~ msgid "wifi.general.setup.info"
 #~ msgstr "Configure your wireless interfaces."
 
-#~ msgid "wifi.interfaces.info"
-#~ msgstr ""
-#~ "Wireless interfaces are visible to the user in the form of wireless "
-#~ "access point names. Each radio can have several SSIDs and each SSID "
-#~ "interface can be configured as part of a network bridge or firewall "
-#~ "group. "
-
-#~ msgid "wifi.macfilter.info"
-#~ msgstr ""
-#~ "To make your wireless network more secure, you can specify which devices "
-#~ "are allowed to connect. The devices are identified by their MAC address. "
-#~ "You can manage up to 32 devices."
-
-#~ msgid "wifi.radios.info"
-#~ msgstr ""
-#~ "This page allows you to configure wireless radios that you have installed "
-#~ "on your system. A wireless radio is not the same thing as an access "
-#~ "point. Access points are interfaces and each radio can have several "
-#~ "interfaces on it. "
-
-#~ msgid "wifi.schedule.info"
-#~ msgstr ""
-#~ "Schedule the times when your WiFi should be turned on or off "
-#~ "automatically. Note: If WiFi is turned off, both Main and Guest WiFi are "
-#~ "disabled"
-
-#~ msgid "wifi.status.title"
-#~ msgstr "Wireless Status"
-
 # share/menu.d/wifi.json
 #~ msgid "wifi.title"
 #~ msgstr "WiFi"
-
-#~ msgid "wifi.wps.in.progress"
-#~ msgstr "Your router is now attempting to pair with other devices."
-
-#~ msgid "wifi.wps.info"
-#~ msgstr ""
-#~ "Using WPS it is possible to easily connect wireless devices with your "
-#~ "router on an encrypted channel. Below, you can choose and configure "
-#~ "different connection methods."
-
-#~ msgid "wifi.wps.otherpin.info"
-#~ msgstr "Enter the WPS-PIN provided by the other device here."
-
-#~ msgid "wifi.wps.pbc.info"
-#~ msgstr ""
-#~ "To pair your device, press \"Pair\". Afterwards, press the corresponding "
-#~ "button on the device you wish to connect. Your router will be open for "
-#~ "pairing for 2 minutes after you pressed Pair."
-
-#~ msgid "wifi.wps.pin.info"
-#~ msgstr "Enter the WPS-PIN below on the device you wish to pair."
 
 #~ msgid "wireless.2g.info"
 #~ msgstr "2.4Ghz wireless configuration."
@@ -794,14 +857,16 @@ msgstr "MiniDLNA"
 #~ msgid "wireless.5g.info"
 #~ msgstr "Configure your 5Ghz wireless hotspot."
 
-#~ msgid "wireless.clients.info"
-#~ msgstr "Clients connected to your AP over wireless interfaces. "
-
-#~ msgid "wireless.status.info"
-#~ msgstr "This page shows wireless status information. "
-
 #~ msgid "DNS Settings"
 #~ msgstr "DNS Settings"
+
+#, fuzzy
+#~ msgid "Devices"
+#~ msgstr "Services"
+
+#, fuzzy
+#~ msgid "Ethernet"
+#~ msgstr "Internet"
 
 #~ msgid "Internet IPv6"
 #~ msgstr "Internet IPv6"
@@ -816,8 +881,9 @@ msgstr "MiniDLNA"
 #~ msgid "Phone Numbers"
 #~ msgstr "Phone Numbers"
 
-#~ msgid "WAN Settings"
-#~ msgstr "WAN Settings"
+#, fuzzy
+#~ msgid "Service Filter"
+#~ msgstr "Service"
 
 #~ msgid "dns.config.info"
 #~ msgstr ""
@@ -891,6 +957,9 @@ msgstr "MiniDLNA"
 
 #~ msgid "internet.parental.control.title"
 #~ msgstr "Parental Control"
+
+#~ msgid "internet.services.minidlna.title"
+#~ msgstr "MiniDLNA"
 
 #, fuzzy
 #~ msgid "internet.services.samba.title"
@@ -977,9 +1046,6 @@ msgstr "MiniDLNA"
 #~ msgid "settings.upgrade.title"
 #~ msgstr "Firmware Update"
 
-#~ msgid "status.about.title"
-#~ msgstr "About"
-
 #~ msgid "status.diagnostics.title"
 #~ msgstr "Diagnostic Utility"
 
@@ -1025,31 +1091,13 @@ msgstr "MiniDLNA"
 #~ msgid "wifi.general.clients.title"
 #~ msgstr "Wireless Devices"
 
-#~ msgid "wifi.general.devices.title"
-#~ msgstr "Wireless Devices"
-
-#~ msgid "wifi.general.interfaces.title"
-#~ msgstr "Wireless Interfaces"
-
-#~ msgid "wifi.general.title"
-#~ msgstr "General"
-
 #~ msgid "wifi.mac.filter.title"
 #~ msgstr "MAC Filter"
-
-#~ msgid "wifi.schedule.title"
-#~ msgstr "Schedule"
 
 #~ msgid "wifi.settings.info"
 #~ msgstr ""
 #~ "Below you can change parameters for the two WiFi frequencies 2.4 GHz and "
 #~ "5 GHz."
-
-#~ msgid "wifi.settings.title"
-#~ msgstr "Settings"
-
-#~ msgid "wifi.wps.title"
-#~ msgstr "WPS"
 
 #~ msgid "error.port.range.end.invalid"
 #~ msgstr "Port range ending port invalid"

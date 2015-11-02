@@ -40,6 +40,12 @@ msgstr ""
 msgid "Status"
 msgstr "Status"
 
+msgid "internet-ethernet-title"
+msgstr "Ethernet Devices"
+
+msgid "menu-internet-ethernet-title"
+msgstr "Devices"
+
 #~ msgid "settings.dropbear.info"
 #~ msgstr "Configure SSH access to the router."
 
@@ -796,9 +802,6 @@ msgstr "Status"
 
 #, fuzzy
 #~ msgid "internet.ethernet.phy.title"
-#~ msgstr "Ethernet Devices"
-
-#~ msgid "internet.ethernet.title"
 #~ msgstr "Ethernet Devices"
 
 #~ msgid "internet.ethernet.vdsl.title"

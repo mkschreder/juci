@@ -57,6 +57,12 @@ msgstr ""
 msgid "Default Route"
 msgstr "Default Route"
 
+msgid "internet-multiwan-title"
+msgstr "MultiWAN"
+
+msgid "menu-internet-multiwan-title"
+msgstr "MultiWAN"
+
 #~ msgid "IGPM TV Status"
 #~ msgstr "IGPM TV Status"
 
@@ -864,9 +870,6 @@ msgstr "Default Route"
 
 #~ msgid "internet.lan.iptv.title"
 #~ msgstr "IPTV"
-
-#~ msgid "internet.lan.title"
-#~ msgstr "LAN"
 
 #~ msgid "internet.network.title"
 #~ msgstr "Network"
