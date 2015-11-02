@@ -58,7 +58,7 @@ $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[HTML]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
 	@echo "" > $$@
-	$(Q)if [ "" != "$$^" ]; then ./juci-build-tpl-cache $$^ $$@; fi
+	$(Q)if [ "" != "$$^" ]; then ./scripts/juci-build-tpl-cache $$^ $$@; fi
 $(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[POT]\t$(1) -> $$@\033[m"
 	@mkdir -p "$$(dir $$@)"
@@ -113,7 +113,7 @@ prepare: .cleaned
 	@echo "BACKEND: $(UBUS_MODS)"
 	@echo "DIRS: $(DIRS-y)"
 	@echo "MODULE: $(MODULE)"
-	@./bootstrap.sh
+	@./scripts/bootstrap.sh
 	@mkdir -p $(PO_DIR)
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
@@ -129,7 +129,7 @@ node_modules: package.json
 
 release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 	@echo "======= JUCI BUILD =========="
-	@./juci-compile $(BIN) 
+	@./scripts/juci-compile $(BIN) 
 	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
 
 debug: prepare $(TARGETS) $(UBUS_MODS)
