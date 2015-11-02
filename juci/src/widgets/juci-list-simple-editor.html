@@ -1,17 +1,18 @@
 <div>
-	<div class="row"> 
+	<div> 
 		<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"></i>
-		<div class="list-group" ng-show="items" >
-			<div class="list-group-item" ng-repeat="i in items track by $index">
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="i in items track by $index">
 				{{getItemTitle({"$item": i})}}
-				<button ng-click="onListRemoveItem(i)" ng-class="{disabled: !editable || !items}" ng-hide="hideButtons == 'true'">
+				<button aria-label="Left Align" type="button" class="btn btn-default btn-xs pull-right" 
+					ng-click="onListRemoveItem(i)" ng-hide="hideButtons == 'true'">
 					<i class="fa fa-close"></i>
 				</button>
-			</div>
-		</div>
-		<ng-transclude></ng-transclude>
+			</li>
+		</ul>
 		<div ng-hide="hideButtons == 'true'">
-			<button class="btn btn-lg btn-default" ng-click="onListAddItem()" translate>Add</button>
+			<button class="btn btn-default pull-right" ng-click="onListAddItem()"><i class="fa fa-plus"></i></button>
+			<ng-transclude style="float: right; padding-right:10px;max-width:84%"></ng-transclude>
 		</div>
 	</div>
 	<div style="clear: both; margin-top: 10px;"></div>
