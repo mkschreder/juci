@@ -31,7 +31,7 @@ JUCI.app
 				next(); 
 			}); 
 		}, function(next){
-			$rpc.juci.broadcom.wireless.clients().done(function(result){
+			$rpc.juci.wireless.clients().done(function(result){
 				$scope.done = 1; 
 				var clients = {}; 
 				result.clients.map(function(x){ 
@@ -89,15 +89,16 @@ JUCI.app
 		async.series([
 			function(next){
 				$uci.$sync("wireless").done(function(){
-					$rpc.juci.broadcom.wireless.devices().done(function(result){
+					$rpc.juci.wireless.devices().done(function(result){
 						$scope.wifi = $uci.wireless;  
 						$scope.vifs = result.devices.map(function(dev){
+							if(dev.ssid == "") return null; 
 							var uci_dev = $uci.wireless["@wifi-iface"].find(function(w){
 								return w.ifname.value == dev.device; 
 							}); 
 							dev.uci_dev = uci_dev; 
 							return dev; 
-						}); //$uci.wireless["@wifi-iface"]; 
+						}).filter(function(x){ return x != null; });  
 						if($uci.wireless && $uci.wireless.status) {
 							$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
 							$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
@@ -106,12 +107,12 @@ JUCI.app
 				}); 
 			}, 
 			function(next){
-				$rpc.juci.broadcom.wps.showpin().done(function(result){
+				$rpc.juci.wireless.wps.showpin().done(function(result){
 					$scope.wps.pin = result.pin; 
 				}).always(function(){ next(); }); 
 			}, 
 			function(next){
-				$rpc.juci.broadcom.wireless.clients().done(function(clients){
+				$rpc.juci.wireless.clients().done(function(clients){
 					$scope.wireless.clients = clients.clients; 
 					$scope.wireless.clients.map(function(cl){
 						// check flags 

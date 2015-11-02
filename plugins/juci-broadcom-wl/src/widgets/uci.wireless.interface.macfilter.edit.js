@@ -62,7 +62,7 @@ JUCI.app
 		}
 	}; 
 	
-	$rpc.juci.broadcom.wireless.clients().done(function(clients){
+	$rpc.juci.wireless.clients().done(function(clients){
 		$scope.client_list = Object.keys(clients)
 			.filter(function(k){
 				return clients[k].connected; 

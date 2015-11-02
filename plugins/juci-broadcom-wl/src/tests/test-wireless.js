@@ -36,9 +36,9 @@ describe("Wireless", function(){
 		}); 
 	}); 
 	it("should have wps.pbc rpc call", function(){
-		expect($rpc.juci.broadcom.wps.pbc).to.be.a(Function); 
+		expect($rpc.juci.wireless.wps.pbc).to.be.a(Function); 
 	}); 
 	it("should have wps.status rpc call", function(){
-		expect($rpc.juci.broadcom.wps.status).to.be.a(Function); 
+		expect($rpc.juci.wireless.wps.status).to.be.a(Function); 
 	}); 
 }); 
