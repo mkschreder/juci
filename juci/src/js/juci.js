@@ -100,7 +100,23 @@
 				}
 
 				console.log("juci: loading menu from server.."); 
-				$rpc.juci.ui.menu().done(function(data){
+				$uci.juci["@menu"].map(function(menu){
+					var redirect = menu.redirect.value; 
+					var page = menu.page.value; 
+					if(page == "") page = undefined; 
+					if(redirect == "") redirect = undefined; 
+					page = redirect || page; 
+					var obj = {
+						path: menu.path.value, 
+						href: page, 
+						modes: menu.modes.value || [ ], 
+						text: "menu-"+(menu.page.value || menu.path.value.replace(/\//g, "-"))+"-title" 
+					}; 
+					$juci.navigation.register(obj); 
+					JUCI.page(page, "pages/"+page+".html", redirect); 
+				}); 
+				next(); 
+				/*$rpc.juci.ui.menu().done(function(data){
 					//console.log(JSON.stringify(data)); 
 					// get menu keys and sort them so that parent elements will come before their children
 					// this will automatically happen using normal sort because parent element paths are always shorter than their childrens. 
@@ -137,7 +153,7 @@
 					next(); 
 				}).fail(function(){
 					next();
-				}); 
+				});*/ 
 			}, 
 			function(next){
 				// set various gui settings such as mode (and maybe theme) here
@@ -260,6 +276,14 @@
 	}
 
 	UCI.$registerConfig("juci"); 
+	
+	UCI.juci.$registerSectionType("menu", {
+		"path": 			{ dvalue: undefined, type: String }, 
+		"page": 			{ dvalue: undefined, type: String }, 
+		"redirect":			{ dvalue: undefined, type: String }, 
+		"acls":				{ dvalue: [], type: Array }, 
+		"modes": 			{ dvalue: [], type: Array }
+	}); 
 
 	UCI.juci.$registerSectionType("login", {
 		"showusername":		{ dvalue: true, type: Boolean }, // whether to show or hide the username on login page 

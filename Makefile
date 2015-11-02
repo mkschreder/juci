@@ -64,7 +64,9 @@ $(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
 	@mkdir -p "$$(dir $$@)"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then ./scripts/extract-strings $$^ > $$@; msguniq $$@ > $$@.tmp; mv $$@.tmp $$@; fi
+	@echo "" >> $$@
 	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
+	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"menu-$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
 $(1)-install: 
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi

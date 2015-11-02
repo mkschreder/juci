@@ -18,10 +18,11 @@ JUCI.app
 	$scope.hasChildren = function(menu){
 		return Object.keys(menu.children) > 0;
 	};
+
 	$scope.isItemActive = function (item) {
 		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
 		if(!active_node) return false; 
-		if(item.path === active_node.path) {
+		if(item.href === active_node.href) {
 			if(item.children_list && item.children_list.length > 0) {
 				$scope.showSubMenuItems = true;
 			} else {
@@ -39,7 +40,7 @@ JUCI.app
 	$scope.isSubItemActive = function (item) {
 		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
 		if(!active_node) return false; 
-		return item.path === active_node.path;
+		return item.href === active_node.href;
 	};
 
 	$scope.itemVisible = function(item){
