@@ -1,6 +1,5 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
-
 UCI.juci.$registerSectionType("pagesystemstatus", {
 	"show_meminfo": 	{ dvalue: true, type: Boolean }, 
 	"show_diskinfo": 	{ dvalue: true, type: Boolean }

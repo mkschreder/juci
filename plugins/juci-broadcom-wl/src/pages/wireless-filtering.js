@@ -17,7 +17,8 @@ JUCI.app
 		}); 
 		$uci.wireless["@wifi-iface"].map(function(x){
 			var dev = $uci.wireless[x.device.value]; 
-			x[".frequency"] = dev[".label"]; 
+			if(dev)
+				x[".frequency"] = dev[".label"]; 
 		});  
 		// ========================
 		
