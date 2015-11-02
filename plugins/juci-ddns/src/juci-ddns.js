@@ -22,4 +22,3 @@ UCI.ddns.$registerSectionType("service", {
 	"ip_url": 				{ dvalue: "", type: String },
 	"update_url": 			{ dvalue: "", type: String }
 });
-	
