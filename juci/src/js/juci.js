@@ -212,8 +212,9 @@
 							$juci.redirect("login");
 						});
 						
-						document.title = $tr(name.replace(/\//g, ".").replace(/-/g, ".")+".title")+" - "+$tr(gettext("application.name")); 
-						
+						// document.title = $tr(name.replace(/\//g, ".").replace(/-/g, ".")+".title")+" - "+$tr(gettext("application.name")); 
+						document.title = $tr(name+"-title"); 
+
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
