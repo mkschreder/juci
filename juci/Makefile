@@ -63,7 +63,7 @@ define Plugin/juci/install
 	$(INSTALL_DIR) $(1)/www/
 	$(INSTALL_DIR) $(1)/etc/config/
 	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(CP) $(PLUGIN_DIR)/juci.default.conf $(1)/etc/config/juci
+	$(CP) $(PLUGIN_DIR)/juci.default.config $(1)/etc/config/juci
 	$(CP) $(PLUGIN_DIR)/juci.init $(1)/etc/init.d/juci
 	$(CP) $(PLUGIN_DIR)/src/img/ $(1)/www/
 	$(CP) $(PLUGIN_DIR)/src/fonts/ $(1)/www/
