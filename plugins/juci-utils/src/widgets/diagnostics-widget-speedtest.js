@@ -59,10 +59,8 @@ JUCI.app
 			"address": $scope.data.server.server.value
 		}).done(function(response){
 			if(response && response.message=="success"){
-				console.log("success running tptest");
 				$scope.data.state="running";
 			}else{
-				console.log("error running tptest");
 				$scope.data.state="";
 			}
 			$scope.$apply();
@@ -95,16 +93,12 @@ JUCI.app
 			}).done(function(){
 				$uci.$save().done(function(){
 					getServers();
-					if($scope.testServers.length==1)
-						$scope.data.server = $scope.testServers[0];
 					$scope.$apply();
 				});
 			});
-			console.log("address = " + data.address + "port = " + data.port);
 		});
 	}
 	$events.subscribe("juci.utils.speedtest", function(res){
-		console.log(res);
 		switch(res.data.status) {
 		case 0:
 			$scope.data.result="Upstream: " + res.data.upstream + "\nDownstream: " + res.data.downstream;
