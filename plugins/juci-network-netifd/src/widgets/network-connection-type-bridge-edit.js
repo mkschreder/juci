@@ -22,8 +22,9 @@ JUCI.app
 			var aptmap = {}; 
 			adapters.map(function(x){ aptmap[x.device] = x; }); 
 			net.$addedDevices = ((net.ifname.value != "")?net.ifname.value.split(" "):[])
-				.filter(function(x){return x && x != ""; })
+				.filter(function(x){return x && x != "" && aptmap[x]; })
 				.map(function(x){ 
+					// return device and delete it from map so the only ones left are the ones that can be added
 					var a = aptmap[x];
 					delete aptmap[x]; 
 					return { name: a.name, device: a.device, adapter: a }; 
