@@ -32,7 +32,7 @@
 		this.findNodeByPath = function(path){
 			return this.findLeaf(path); 
 		}; 
-		this.findNodeByHref = function(href){
+		this.findNodeByHref = function(href, node){
 			var list = []; 
 			function flatten(tree){
 				list.push(tree); 
@@ -43,7 +43,7 @@
 					flatten(ch); 
 				}); 
 			}
-			flatten(data); 
+			flatten(node || data); 
 			list.map(function(ch){ ch._visited = false; }); // reset the flag for next time 
 			return list.find(function(ch){ return ch.href == href; }); 
 		}

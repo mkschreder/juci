@@ -14,7 +14,7 @@ JUCI.app
 })
 .controller("NavCtrl", function($scope, $navigation, $location, $state, $rootScope, $config){
 	$scope.showSubMenuItems = false;
-
+	
 	$scope.hasChildren = function(menu){
 		return Object.keys(menu.children) > 0;
 	};

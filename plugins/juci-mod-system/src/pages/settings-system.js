@@ -23,12 +23,13 @@ JUCI.app
 			}); 
 		}
 	], function(){
+		$scope.loaded = true; 
 		$scope.$apply(); 
 	}); 
 	
 	$scope.$watch("system.zonename.value", function(value){
 		if(!value) return; 
-		$scope.system.timezone.value = timezones[value]; 
+		$scope.system.timezone.value = $scope.timezones[value]; 
 	}); 
 
 	JUCI.interval.repeat("system.time", 1000, function(done){
