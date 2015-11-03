@@ -50,7 +50,6 @@ JUCI.app
 		};
 		var tag_promise = null;
 		$scope.loadTags = function(text){
-			console.log(text);
 			if(!tag_promise) tag_promise = new Promise(function(resolve, reject){
 				$rpc.juci.minidlna.autocomplete({path:text}).done(function(data){
 					tag_promise = null;

@@ -28,7 +28,7 @@
 						<span class="input-group-addon">/mnt</span>
 						<tags-input ng-model="tagslistData" display-property="text"
 									on-tag-added="onTagAdded($tag)" on-tag-removed="updateConfig()"
-									add-from-autocomplete-only="true">
+									add-from-autocomplete-only="true" min-length="0">
 									<auto-complete source="loadTags($query)" min-length="0"></auto-complete>
 						</tags-input>
 					</div><br/>
