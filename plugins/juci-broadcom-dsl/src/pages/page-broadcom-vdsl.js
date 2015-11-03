@@ -6,6 +6,7 @@ JUCI.app
 		if(!dev) return "Unknown"; 
 		return dev.name.value + " (" +dev.ifname.value + ")"; 
 	}
+
 	$broadcomDsl.getDevices().done(function(devices){
 		$scope.vdsl_devices = devices.filter(function(dev){
 			return dev.type == "vdsl"; 
@@ -14,7 +15,6 @@ JUCI.app
 		}); 
 		$scope.$apply(); 
 	}); 
-	
 	
 	$scope.onCreateDevice = function(){
 		var baseifname = "ptm"; 
