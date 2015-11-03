@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-status-network.js
 msgid "Hostname"
@@ -64,7 +64,8 @@ msgid "Event Log"
 msgstr ""
 
 msgid "status.eventlog.info"
-msgstr "Select the categories for which you would like to view the event log."
+msgstr ""
+"Here you can view system event log (Note: only latest 20 lines are shown) "
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Select events to show"
