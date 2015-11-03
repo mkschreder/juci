@@ -255,12 +255,12 @@ app.post('/ubus', function(req, res) {
 		
 		var timedOut = false; 
 		var timeout = setTimeout(function(){
-			var body = {
+			/*var body = {
 				jsonrpc: "2.0", 
 				result: [1, "ETIMEOUT", data]
 			};
 			timedOut = true; 
-			sendResponse(body); 
+			sendResponse(body);*/ 
 		}, 5000); 
 		
 		request({ 
