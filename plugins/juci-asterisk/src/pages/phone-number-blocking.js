@@ -21,7 +21,7 @@
  * 02110-1301 USA
  */
  
-$juci.module("phone")
+JUCI.app
 .controller("PagePhoneNumberBlocking", function($scope, $uci){
 	function updateRuleLists(){
 		$scope.outgoingRules = $uci.voice_client["@call_filter_rule_outgoing"].filter(function(x){

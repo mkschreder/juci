@@ -27,7 +27,11 @@ module.exports = function(grunt){
 		nggettext_compile: {
 			all: {
 				files: {
-					'bin/www/js/99-translations.js': ['po/*.po']
+					'bin/www/js/99-translations.js': [
+						'plugins/**/po/*.po',
+						'themes/**/po/*.po',
+						'po/*.po'
+					]
 				}
 			}
 		}, 
@@ -108,6 +112,8 @@ module.exports = function(grunt){
 		}); 
 		console.log(files); 
 	});
-	grunt.registerTask('default', ['nggettext_extract', 'nggettext_compile', "extract_titles", "compile_pot"]);
+
+	grunt.registerTask('default', ['nggettext_compile']);
+	//grunt.registerTask('default', ['nggettext_extract', 'nggettext_compile', "extract_titles", "compile_pot"]);
 	
 }

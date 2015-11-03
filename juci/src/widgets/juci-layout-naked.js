@@ -21,7 +21,7 @@
  * 02110-1301 USA
  */
  
-$juci.module("core")
+JUCI.app
 .directive("juciLayoutNaked", function(){
 	return {
 		templateUrl: "/widgets/juci-layout-naked.html", 

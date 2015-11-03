@@ -27,6 +27,16 @@
 				on-create="onCreateShare()"
 				on-delete="onDeleteShare($item)"></juci-list-editor>
 		</juci-config-section>
+		<juci-config-section>
+			<juci-config-heading>{{ 'Samba Users' | translate }}</juci-config-heading>
+			<juci-config-info >{{'samba.users.info'|translate}}</juci-config-info>
+			<juci-list-editor ng-items="users" 
+				item-editor="samba-user-edit" 
+				get-item-title="$item.user.value"
+				on-create="onCreateUser()"
+				on-delete="onDeleteUser($item)"></juci-list-editor>
+		</juci-config-section>
+
 		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

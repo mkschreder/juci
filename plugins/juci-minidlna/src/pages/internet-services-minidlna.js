@@ -8,14 +8,8 @@ JUCI.app
 		$scope.tagslistData = $scope.config.media_dir.value.filter(function(dir){
 			return (dir.substring(0, 4) == "/mnt");
 		}).map(function(dir){
-			if(dir == "/mnt"){
-				return {
-					text: "/",
-					path: "/mnt/"
-				}
-			}
 			return {
-				text: dir.substring(4),
+				text: "/" + dir.substring(4),
 				path: dir
 			}
 		
@@ -40,6 +34,15 @@ JUCI.app
 				}	
 			});
 		};
+		$scope.onTagAdded = function(tag){
+			$scope.tagslistData = $scope.tagslistData.map(function(k){
+				if(k.text == tag.text){
+					k.path = "/mnt"+k.text;
+				}
+				return k;
+			});
+			$scope.updateConfig();
+		};
 		$scope.updateConfig =  function(){
 			$scope.config.media_dir.value = $scope.tagslistData.map(function(dir){
 				return dir.path;
@@ -47,7 +50,6 @@ JUCI.app
 		};
 		var tag_promise = null;
 		$scope.loadTags = function(text){
-			console.log(text);
 			if(!tag_promise) tag_promise = new Promise(function(resolve, reject){
 				$rpc.juci.minidlna.autocomplete({path:text}).done(function(data){
 					tag_promise = null;

@@ -3,7 +3,7 @@
 		"description": "Broadcom wireless plugin",
 		"read": {
 			"ubus": {
-				"/juci/broadcom.wps": [
+				"/juci/wireless.wps": [
 					"genpin", 
 					"pbc", 
 					"setpin", 
@@ -12,7 +12,7 @@
 					"status", 
 					"stop"
 				], 
-				"/juci/broadcom.wireless": [
+				"/juci/wireless": [
 					"defaults", 
 					"radios", 
 					"devices", 

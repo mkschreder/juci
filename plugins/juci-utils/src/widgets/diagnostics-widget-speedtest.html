@@ -1,14 +1,14 @@
 <div>
 	<juci-expandable title="TP test">
 		<juci-config-lines>
-			<juci-config-line title="{{'Test direction'|translate}}">
+			<juci-config-line title="{{'Direction'|translate}}">
 				<juci-select ng-model="data.test_type" ng-items="testType"/>
 			</juci-config-line>
-			<juci-config-line title="{{'Package size'|translate}}">
+			<juci-config-line title="{{'Package Size'|translate}}">
 				<input type="number" step="1000" class="form-control" ng-model="data.packagesize" />
 				<span class="label label-info">{{min + "-" + max}}</span>
 			</juci-config-line>
-			<juci-config-line title="{{'address and prot' | translate}}">
+			<juci-config-line title="{{'Speedtest Server' | translate}}">
 				<juci-select ng-model="data.server" ng-items="allTestServers"/>
 			</juci-config-line>
 			<juci-config-line>
@@ -30,7 +30,7 @@
 		</div>
 		<div class="alert alert-success" ng-show="data.state == 'running'">
 			<h4>
-				{{" Running test"|translate}}
+				{{"Running test"|translate}}
 				<i class="fa fa-spinner fa-pulse fa-2x"></i>
 			</h4>
 		</div>

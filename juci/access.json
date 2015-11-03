@@ -16,14 +16,6 @@
 		}
 	},
 	
-	"juci-telephony": {
-		"description": "This alows access to 'Phone' submenu", 
-		"read": { 
-			"ubus": {}
-		}, 
-		"write": {}
-	}, 
-
 	"core": {
 		"description": "Core functions for JUCI (TODO: remove)",
 		"read": {
@@ -49,6 +41,11 @@
 		"read": {
 			"juci-io": {
 				"backup": [ "read" ]
+			},
+			"ubus": {
+				"juci": [ 
+					"install" 
+				]
 			}
 		},
 		"write": {

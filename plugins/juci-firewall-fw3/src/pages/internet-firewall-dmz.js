@@ -1,6 +1,6 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
-$juci.module("internet")
+JUCI.app
 .controller("InternetExHostPageCtrl", function($scope, $rpc, $config, $network, $uci, $tr){
 	$scope.config = $config; 
 	$scope.wan = {}; 

@@ -1,0 +1,161 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "Enabled"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "Read Community"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "Community"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "Set Community"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "System Name"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "Name"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "System Location"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "Location"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "System Contact"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "E-Mail"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "Trap Manager IP"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "snmp-config-title"
+msgstr "SNMP"
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+msgid "menu-snmp-config-title"
+msgstr "SNMP"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-5g-wireless.html
+#~ msgid "wireless.5g.info"
+#~ msgstr "5Ghz wireless configuration"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-lan-config.html
+#~ msgid "lan.config.info"
+#~ msgstr "LAN configuration"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-tr069.html
+#~ msgid "easycwmp.config.info"
+#~ msgstr "EasyCWMP configuration"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-dhcp-config.html
+#~ msgid "dhcp.config.info"
+#~ msgstr "DHCP configuration"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-2g-wireless.html
+#~ msgid "wireless.2g.info"
+#~ msgstr "Configure your 2.4Ghz wireless network"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-wan-config.html
+#~ msgid "wan.config.info"
+#~ msgstr "WAN configuration"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-about.html
+#~ msgid "smartrg-about-title"
+#~ msgstr "About"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-dhcp-config.html
+#~ msgid "smartrg-dhcp-config-title"
+#~ msgstr "DHCP"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-2g-wireless.html
+#~ msgid "smartrg-2g-wireless-title"
+#~ msgstr "2.4Ghz Wireless"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-lan-config.html
+#~ msgid "smartrg-lan-config-title"
+#~ msgstr "LAN Configuration"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-logout.html
+#~ msgid "smartrg-logout-title"
+#~ msgstr "Logout"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-tr069.html
+#~ msgid "smartrg-tr069-title"
+#~ msgstr "TR069 "
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-wan-config.html
+#~ msgid "smartrg-wan-config-title"
+#~ msgstr "WAN"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/status-about.html
+#~ msgid "status-about-title"
+#~ msgstr "About"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-5g-wireless.html
+#~ msgid "smartrg-5g-wireless-title"
+#~ msgstr "5Ghz Wireless"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-about.html
+#~ msgid "menu-smartrg-about-title"
+#~ msgstr "About"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-dhcp-config.html
+#~ msgid "menu-smartrg-dhcp-config-title"
+#~ msgstr "DHCP"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-2g-wireless.html
+#~ msgid "menu-smartrg-2g-wireless-title"
+#~ msgstr "2.4Ghz"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-lan-config.html
+#~ msgid "menu-smartrg-lan-config-title"
+#~ msgstr "LAN"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-logout.html
+#~ msgid "menu-smartrg-logout-title"
+#~ msgstr "Logout"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-tr069.html
+#~ msgid "menu-smartrg-tr069-title"
+#~ msgstr "TR-069"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-wan-config.html
+#~ msgid "menu-smartrg-wan-config-title"
+#~ msgstr "WAN"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/status-about.html
+#~ msgid "menu-status-about-title"
+#~ msgstr "About"
+
+# /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-5g-wireless.html
+#~ msgid "menu-smartrg-5g-wireless-title"
+#~ msgstr "5Ghz"

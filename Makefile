@@ -38,7 +38,7 @@ define BuildDir-y
 	$(eval PLUGIN_DIR:=$(2))
 	$(eval -include $(2)/Makefile)
 	$(eval $(Plugin/$(1)))
-	$(eval TARGETS+=$(1)-install $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
+	$(eval TARGETS+=$(1)-install $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
 	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/,$(JAVASCRIPT-y))))
 	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/,$(TEMPLATES-y))))
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES-y))))
@@ -57,7 +57,15 @@ $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[HTML]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
 	@echo "" > $$@
-	$(Q)if [ "" != "$$^" ]; then ./juci-build-tpl-cache $$^ $$@; fi
+	$(Q)if [ "" != "$$^" ]; then ./scripts/juci-build-tpl-cache $$^ $$@; fi
+$(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
+	@echo -e "\033[0;33m[POT]\t$(1) -> $$@\033[m"
+	@mkdir -p "$$(dir $$@)"
+	@echo "" > $$@
+	$(Q)if [ "" != "$$^" ]; then ./scripts/extract-strings $$^ > $$@; msguniq $$@ > $$@.tmp; mv $$@.tmp $$@; fi
+	@echo "" >> $$@
+	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
+	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"menu-$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
 $(1)-install: 
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
@@ -104,9 +112,10 @@ prepare: .cleaned
 	@echo "BACKEND: $(UBUS_MODS)"
 	@echo "DIRS: $(DIRS-y)"
 	@echo "MODULE: $(MODULE)"
-	@./bootstrap.sh
+	@./scripts/bootstrap.sh
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
+	@mkdir -p $(BIN)/usr/share/juci/
 	@mkdir -p $(BIN)/usr/share/lua/
 	@mkdir -p $(BIN)/usr/share/rpcd/menu.d/
 	@mkdir -p $(BIN)/usr/share/rpcd/acl.d/
@@ -119,7 +128,7 @@ node_modules: package.json
 
 release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 	@echo "======= JUCI BUILD =========="
-	@./juci-compile $(BIN) 
+	@./scripts/juci-compile $(BIN) 
 	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
 
 debug: prepare $(TARGETS) $(UBUS_MODS)
@@ -155,6 +164,7 @@ docs/juci.md: $(wildcard plugins/**/docs/*.md)
 
 install: 
 	$(INSTALL_DIR) $(BIN)/usr/bin/
+	@cp juci.config.example $(BIN)/usr/share/juci/
 	@cp juci-update $(BIN)/usr/bin/
 	@cp -Rp $(BIN)/* $(DESTDIR)
 

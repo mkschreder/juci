@@ -1,0 +1,22 @@
+#!/usr/bin/node
+
+var JSON = require("JSON"); 
+var fs = require("fs"); 
+
+var obj = JSON.parse(fs.readFileSync(process.argv[2])); 
+
+Object.keys(obj).map(function(k){
+	var x = obj[k]; 
+	console.log("config menu"); 
+	console.log("\toption path \""+k+"\""); 
+	if(x.redirect) console.log("\toption redirect \""+x.redirect+"\""); 
+	if(x.page) console.log("\toption page \""+x.page+"\""); 
+	if(x.acls && x.acls instanceof Array) x.acls.map(function(acl){
+		console.log("\toption acls \""+acl+"\"");
+	}); 
+	if(x.modes && x.modes instanceof Array) x.modes.map(function(mode){
+		console.log("\toption modes \""+mode+"\""); 
+	}); 
+	console.log(""); 
+}); 
+

@@ -12,8 +12,7 @@ IO_SOURCE_FILES:=$(wildcard io/*.c)
 SO_OBJECT_FILES:=$(patsubst %.c, %.o, $(SO_SOURCE_FILES))
 IO_OBJECT_FILES:=$(patsubst %.c, %.o, $(IO_SOURCE_FILES))
 
-all: $(BUILD_DIR) $(SHARED_OBJECT) $(CGI_SCRIPT)
-	$(CP) ./etc $(BUILD_DIR)/
+all: $(BUILD_DIR) $(SHARED_OBJECT) $(CGI_SCRIPT);
 
 $(BUILD_DIR): 
 	mkdir -p $(BUILD_DIR)
@@ -22,7 +21,6 @@ $(SHARED_OBJECT): $(SO_OBJECT_FILES)
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/lib/rpcd/
 	$(CC) $(LDFLAGS) -Wl,-z,defs -shared -o $(SHARED_OBJECT) $(SO_OBJECT_FILES) -lubox -lubus -luci -lblobmsg_json -lcrypt -lpthread
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/share/rpcd/acl.d/
-	$(CP) etc $(BUILD_DIR)/
 	
 $(CGI_SCRIPT): $(IO_OBJECT_FILES)
 	$(INSTALL_DIR) $(BUILD_DIR)/usr/libexec/rpcd/

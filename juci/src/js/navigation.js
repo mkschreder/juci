@@ -32,7 +32,7 @@
 		this.findNodeByPath = function(path){
 			return this.findLeaf(path); 
 		}; 
-		this.findNodeByHref = function(href){
+		this.findNodeByHref = function(href, node){
 			var list = []; 
 			function flatten(tree){
 				list.push(tree); 
@@ -43,7 +43,7 @@
 					flatten(ch); 
 				}); 
 			}
-			flatten(data); 
+			flatten(node || data); 
 			list.map(function(ch){ ch._visited = false; }); // reset the flag for next time 
 			return list.find(function(ch){ return ch.href == href; }); 
 		}
@@ -56,7 +56,10 @@
 				if(obj.children.hasOwnProperty(parts[0])){
 					obj = obj.children[parts.shift()]; 
 				} else {
-					var item = {
+					// do not add items whos parents do not exist!
+					// we can thus hide full hierarchy by simply hiding an item
+					return ;
+					/*var item = {
 						title: "(none)",
 						children: {},
 						children_list: []
@@ -64,6 +67,7 @@
 					obj.children[parts[0]] = item; 
 					//obj.children_list.push(item); 
 					obj = obj.children[parts.shift()]; 
+					*/
 				}
 			} 
 			// make sure that inserted item has empty child lists

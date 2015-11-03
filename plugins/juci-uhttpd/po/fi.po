@@ -1,0 +1,1383 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: JUCI\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Inteno\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "uHTTPD Settings"
+msgstr ""
+
+#, fuzzy
+msgid "uhttpd.settings.info"
+msgstr "Puhelinlinjojen tila."
+
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "WWW-root"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "WWW-root path"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "Max Requests"
+msgstr ""
+
+#, fuzzy
+msgid "Max Connections"
+msgstr "Yhteys"
+
+#, fuzzy
+msgid "UBUS Prefix"
+msgstr "Lisä-IPv6 Prefix"
+
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "ex. /ubus"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "Object.Method"
+msgstr ""
+
+#, fuzzy
+msgid "page-uhttpd-settings-title"
+msgstr "Linjat"
+
+#, fuzzy
+msgid "menu-page-uhttpd-settings-title"
+msgstr "Linjat"
+
+#~ msgid ""
+#~ "A new system software upgrade is available. Do you want to visit upgrade "
+#~ "page and upgrade now?"
+#~ msgstr ""
+#~ "Ohjelmistopäivitys on saatavilla. Haluatko päivittää avata päivityssivun "
+#~ "ja päivittää nyt?"
+
+#~ msgid ".w (JFFS Image)"
+#~ msgstr ".w (JFFS Image)"
+
+#~ msgid ".y (UBIFS Image)"
+#~ msgstr ".y (UBIFS Image)"
+
+#, fuzzy
+#~ msgid "Firmware Upgrade"
+#~ msgstr "Nykyinen ohjelmistoversio"
+
+#, fuzzy
+#~ msgid "Current Firmware Version"
+#~ msgstr "Nykyinen ohjelmistoversio"
+
+#, fuzzy
+#~ msgid "settings.upgrade.online.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#~ msgid "Check for Upgrade"
+#~ msgstr "Tarkista päivitykset"
+
+#, fuzzy
+#~ msgid "Install Upgrade"
+#~ msgstr "DHCP-varauksen aika"
+
+#, fuzzy
+#~ msgid "USB Firmware Upgrade"
+#~ msgstr "DHCP-varauksen aika"
+
+#, fuzzy
+#~ msgid "settings.upgrade.usb.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "settings.upgrade.manual.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "Start upgrade"
+#~ msgstr "DHCP-varauksen aika"
+
+#, fuzzy
+#~ msgid "Upgrade"
+#~ msgstr "DHCP-varauksen aika"
+
+#~ msgid "Close"
+#~ msgstr "Sulje"
+
+#, fuzzy
+#~ msgid "settings.upgrade.options.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "HTTP Directory"
+#~ msgstr "Kesto"
+
+#, fuzzy
+#~ msgid "Firmware image extension"
+#~ msgstr "Nykyinen ohjelmistoversio"
+
+#, fuzzy
+#~ msgid "USB Upgrade"
+#~ msgstr "DHCP-varauksen aika"
+
+#, fuzzy
+#~ msgid "settings-upgrade-options-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "settings-upgrade-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "menu-settings-upgrade-options-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-settings-upgrade-title"
+#~ msgstr "Linjat"
+
+#~ msgid "Name"
+#~ msgstr "Nimi"
+
+#~ msgid "Allow Guest Access"
+#~ msgstr "Salli vierasverkkopääsy"
+
+#, fuzzy
+#~ msgid "Username"
+#~ msgstr "Käyttäjä"
+
+#, fuzzy
+#~ msgid "Password"
+#~ msgstr "SIP salasana"
+
+#, fuzzy
+#~ msgid "Description"
+#~ msgstr "Kesto"
+
+#, fuzzy
+#~ msgid "services.samba.info"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "samba.shares.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "Samba Users"
+#~ msgstr "SIP-käyttäjä"
+
+#, fuzzy
+#~ msgid "internet-services-samba-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-services-samba-title"
+#~ msgstr "Linjat"
+
+#~ msgid ""
+#~ "A new ethernet device has been connected to your router. Do you want to "
+#~ "add it to a network?"
+#~ msgstr ""
+#~ "Uusi ethernet-laite on kytketty reitittimeen. Haluatko lisätä sen "
+#~ "verkkoon?"
+
+#, fuzzy
+#~ msgid "Value must be a valid MAC-48 address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "value must be a valid MAC-48 address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "Are you sure you want to delete this connection?"
+#~ msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
+
+#~ msgid "AnyWAN"
+#~ msgstr "AnyWAN"
+
+#~ msgid "Bridge"
+#~ msgstr "Silta"
+
+#, fuzzy
+#~ msgid "Static Address"
+#~ msgstr "Osoite"
+
+#~ msgid "DHCP v4"
+#~ msgstr "DHCP IPv4"
+
+#~ msgid "DHCP v6"
+#~ msgstr "DHCPv6"
+
+#~ msgid "3G (ppp over GPRS/EvDO/CDMA or UTMS)"
+#~ msgstr "3G (GPRS/EvDO/CDMA/UMTS)"
+
+#~ msgid "Automatic IPv6 Connectivity Client"
+#~ msgstr "Automaattinen IPv6 Connectivity Client"
+
+#~ msgid "Disabled"
+#~ msgstr "Pois käytöstä"
+
+#, fuzzy
+#~ msgid ""
+#~ "Are you sure you want to remove device '+dev+' from network '+net['."
+#~ "name']+' and use it in this bridge?"
+#~ msgstr ""
+#~ "Haluatko varmasti poistaa tämän laitteen verkosta ja käyttää sitä tässä "
+#~ "sillassa?"
+
+#~ msgid "Are you sure you want to delete this device from bridge?"
+#~ msgstr "Haluatko varmasti poistaa tämän laitteen sillasta?"
+
+#~ msgid "Cancel"
+#~ msgstr "Peruuta"
+
+#, fuzzy
+#~ msgid "Pick network device"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Device"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Interface Name"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Interface Type"
+#~ msgstr "Fyysinen liitäntä"
+
+#~ msgid "Create New Network Interface"
+#~ msgstr "Luo Uusi Verkkoyhteys"
+
+#~ msgid "Automatic DNS Configuration"
+#~ msgstr "Automaattinen DNS kokoonpano"
+
+#, fuzzy
+#~ msgid "Automatic Default Route"
+#~ msgstr "DHCP Oletusreitti"
+
+#~ msgid "Advanced"
+#~ msgstr "Lisäasetukset"
+
+#, fuzzy
+#~ msgid "Override MAC Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "MAC Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "Custom Delegated IPv6 Prefix"
+#~ msgstr "Lisä-IPv6 Prefix"
+
+#, fuzzy
+#~ msgid "Configuration Method"
+#~ msgstr "Valitse Konfiguraatiovaihtoehto"
+
+#~ msgid "Choose Configuration Option"
+#~ msgstr "Valitse Konfiguraatiovaihtoehto"
+
+#, fuzzy
+#~ msgid "Status"
+#~ msgstr "Kunto"
+
+#~ msgid "APN"
+#~ msgstr "APN"
+
+#, fuzzy
+#~ msgid "Dial Number"
+#~ msgstr "Numero"
+
+#, fuzzy
+#~ msgid "Request IPv6 address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv6 Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "Client ID"
+#~ msgstr "Asiakas IP"
+
+#, fuzzy
+#~ msgid "Mode"
+#~ msgstr "Perusasetukset"
+
+#, fuzzy
+#~ msgid "IPv6 Assign"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv4 Assign"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "DNS Name"
+#~ msgstr "Nimi"
+
+#, fuzzy
+#~ msgid "Select Modem Device"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Server IP"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "IP Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv4 Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv4 Default Gateway"
+#~ msgstr "DHCP Oletusreitti"
+
+#, fuzzy
+#~ msgid "Static IPv6 Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv6 Address Mask"
+#~ msgstr "Osoite"
+
+#~ msgid "Configure As Default Route"
+#~ msgstr "Määritä Oletusreitiksi"
+
+#, fuzzy
+#~ msgid "IPv6 Default Gateway"
+#~ msgstr "DHCP Oletusreitti"
+
+#, fuzzy
+#~ msgid "Default IPv6 Gateway"
+#~ msgstr "DHCP Oletusreitti"
+
+#, fuzzy
+#~ msgid "Select Base Device"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Device ID"
+#~ msgstr "DNS Nimi"
+
+#, fuzzy
+#~ msgid "Base Device"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Select Connected Host"
+#~ msgstr "Lisää isäntäkone"
+
+#, fuzzy
+#~ msgid "Pick a host"
+#~ msgstr "Valitse puhelin"
+
+#, fuzzy
+#~ msgid "LAN"
+#~ msgstr "APN"
+
+#, fuzzy
+#~ msgid "WAN"
+#~ msgstr "APN"
+
+#, fuzzy
+#~ msgid "ONLINE"
+#~ msgstr "POIS PÄÄLTÄ"
+
+#~ msgid "OFFLINE"
+#~ msgstr "POIS PÄÄLTÄ"
+
+#, fuzzy
+#~ msgid "Default Route"
+#~ msgstr "DHCP Oletusreitti"
+
+#, fuzzy
+#~ msgid "Static Routes"
+#~ msgstr "Kunto"
+
+#, fuzzy
+#~ msgid "internet.lan.routes.info"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Target IP Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "Default Gateway"
+#~ msgstr "DHCP Oletusreitti"
+
+#, fuzzy
+#~ msgid "Interface"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Gateway"
+#~ msgstr "Vaihda salasana"
+
+#, fuzzy
+#~ msgid "Services"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "Connected Clients"
+#~ msgstr "Yhdistetyt Langattomat Laitteet"
+
+#, fuzzy
+#~ msgid "Hostname"
+#~ msgstr "Käyttäjä"
+
+#, fuzzy
+#~ msgid "VLAN Configuration"
+#~ msgstr "Konfiguraatio"
+
+#, fuzzy
+#~ msgid "Line Status"
+#~ msgstr "Puheen tila"
+
+#~ msgid "Active Connections"
+#~ msgstr "Aktiivisia yhteyksiä"
+
+#~ msgid "Connections for each Device"
+#~ msgstr "Laitteiden yhteydet"
+
+#, fuzzy
+#~ msgid "status.nat.connections.info"
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+
+#, fuzzy
+#~ msgid "NAT Connection Table"
+#~ msgstr "Yhteyden tila"
+
+#, fuzzy
+#~ msgid "status.nat.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "status.network.routes.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "Routing Status"
+#~ msgstr "Yhteyden tila"
+
+#~ msgid "ARP Table"
+#~ msgstr "ARP taulu"
+
+#, fuzzy
+#~ msgid "IP address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "MAC address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv4 address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv6 address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "IPv6 status"
+#~ msgstr "Tila"
+
+#, fuzzy
+#~ msgid "status-network-routes-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "internet-network-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "status-network-nat-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "netifd-status-clients-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "netifd-vlan-config-title"
+#~ msgstr "Puheluloki"
+
+#, fuzzy
+#~ msgid "status-network-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "internet-routes-title"
+#~ msgstr "Linjat"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-voice.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-asterisk.json
+#, fuzzy
+#~ msgid "network-title"
+#~ msgstr "Puheluloki"
+
+#, fuzzy
+#~ msgid "menu-status-network-routes-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-network-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-status-network-nat-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-netifd-status-clients-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-netifd-vlan-config-title"
+#~ msgstr "Puheluloki"
+
+#, fuzzy
+#~ msgid "menu-status-network-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-routes-title"
+#~ msgstr "Linjat"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-voice.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-asterisk.json
+#, fuzzy
+#~ msgid "menu-network-title"
+#~ msgstr "Puheluloki"
+
+#, fuzzy
+#~ msgid "Reset Configuration"
+#~ msgstr "Konfiguraatiomenetelmä"
+
+#, fuzzy
+#~ msgid "modal.netmode.select.info"
+#~ msgstr "Puheluloki"
+
+#~ msgid "Apply"
+#~ msgstr "Ota käyttöön"
+
+#~ msgid "DECT Radio"
+#~ msgstr "DECT Radio"
+
+#~ msgid "Action"
+#~ msgstr "Toiminto"
+
+#~ msgid "N/A"
+#~ msgstr "Ei saatavilla"
+
+#, fuzzy
+#~ msgid "Local Time"
+#~ msgstr "Aika"
+
+#~ msgid "Buffered"
+#~ msgstr "Puskuroitu"
+
+#, fuzzy
+#~ msgid "Save Configuration to Computer"
+#~ msgstr "Konfiguraatiomenetelmä"
+
+#~ msgid "Comments"
+#~ msgstr "Kommentit"
+
+#, fuzzy
+#~ msgid "Re-type password"
+#~ msgstr "Varmuuskopiotiedoston salasana"
+
+#~ msgid "Backup file password"
+#~ msgstr "Varmuuskopiotiedoston salasana"
+
+#~ msgid "Change Password"
+#~ msgstr "Vaihda salasana"
+
+#, fuzzy
+#~ msgid "Enable"
+#~ msgstr "Käytössä"
+
+#, fuzzy
+#~ msgid "settings-password-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "settings-system-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "settings-services-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "system-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "settings-management-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "settings-energy-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "menu-settings-password-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-settings-services-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-system-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-settings-management-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-settings-energy-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "MAC-Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "RX Rate"
+#~ msgstr "Bittinopeus"
+
+#, fuzzy
+#~ msgid "TX Rate"
+#~ msgstr "Bittinopeus"
+
+#, fuzzy
+#~ msgid "No active stations"
+#~ msgstr "Aktiivisia tukiasemia"
+
+#~ msgid "Date"
+#~ msgstr "Päivämäärä"
+
+#~ msgid "Click here to restart your device"
+#~ msgstr "Paina tästä käynnistääksesi laitteesi uudelleen"
+
+#~ msgid "DHCP Leases"
+#~ msgstr "DHCP-varaukset"
+
+#~ msgid "Active Stations"
+#~ msgstr "Aktiivisia tukiasemia"
+
+#, fuzzy
+#~ msgid "Select folder"
+#~ msgstr "Valitse yksi"
+
+#~ msgid "Album-Art Names"
+#~ msgstr "Albumin Kansikuvanimet"
+
+#, fuzzy
+#~ msgid "ICMP Hosts"
+#~ msgstr "SIP-palvelin"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#, fuzzy
+#~ msgid "IGMP TV Channels"
+#~ msgstr "Kanava"
+
+#, fuzzy
+#~ msgid "Are you sure you want to delete this rule?"
+#~ msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
+
+#~ msgid "ACCEPT"
+#~ msgstr "HYVÄKSY"
+
+#~ msgid "DROP"
+#~ msgstr "HYLKÄÄ"
+
+#~ msgid "Any"
+#~ msgstr "Kaikki"
+
+#~ msgid "Are you sure you want to remove this network from this zone?"
+#~ msgstr "Haluatko varmasti poistaa tämän verkon tältä vyöhykkeeltä?"
+
+#, fuzzy
+#~ msgid "Enable WAN forwarding for this service"
+#~ msgstr "Määritä palomuurisääntö tälle palvelulle"
+
+#~ msgid "Configure firewall rule for this service"
+#~ msgstr "Määritä palomuurisääntö tälle palvelulle"
+
+#, fuzzy
+#~ msgid "Zone members:"
+#~ msgstr "Puhelinnumero"
+
+#, fuzzy
+#~ msgid "Rule Name"
+#~ msgstr "Nimi"
+
+#, fuzzy
+#~ msgid "Dst. IP Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "Local IP Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "Host IPv4 Address"
+#~ msgstr "Osoite"
+
+#~ msgid ""
+#~ "Choose the local IP address that should be exposed to Internet. "
+#~ "Additionally you should configure this IP address as static DHCP address "
+#~ "for your device (see Settings/Network)."
+#~ msgstr ""
+#~ "Valitse paikallinen IP-osoite, jonka tulisi olla avoin Internettiin. "
+#~ "Lisäksi kannattaa määrittää tälle IP-osoitteelle staattinen IP-osoite "
+#~ "DHCP poolista (katso Asetukset/Verkko)."
+
+#, fuzzy
+#~ msgid "Enable firewall"
+#~ msgstr "Käytössä"
+
+#, fuzzy
+#~ msgid "Enable NAT"
+#~ msgstr "Käytössä"
+
+#, fuzzy
+#~ msgid "to"
+#~ msgstr "Automaattinen"
+
+#~ msgid "Add / Edit Port Mapping"
+#~ msgstr "Lisää / Muokkaa porttiohjausta"
+
+#, fuzzy
+#~ msgid "Port Mapping"
+#~ msgstr "Lisää / Muokkaa porttiohjausta"
+
+#~ msgid "Allow WAN Access To Running Services"
+#~ msgstr "Salli WAN-pääsy käynnissä oleviin palveluihin"
+
+#~ msgid "Add URL's to URL blocking list"
+#~ msgstr "Lisää URL estolistalle"
+
+#, fuzzy
+#~ msgid "URL Blocking"
+#~ msgstr "Numeron esto"
+
+#, fuzzy
+#~ msgid "Internet Access Scheduling"
+#~ msgstr "Valitse Aikataulutila"
+
+#, fuzzy
+#~ msgid "internet-firewall-zones-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-firewall-port-mapping-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-firewall-wordfilter-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-firewall-svcfilter-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-firewall-rules-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-firewall-dmz-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-parental-control-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-firewall-forwarding-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "internet-firewall-urlblock-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-zones-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-port-mapping-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-wordfilter-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-svcfilter-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-rules-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-dmz-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-parental-control-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-forwarding-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-internet-firewall-urlblock-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "Enable remote logging"
+#~ msgstr "Käytössä"
+
+#~ msgid "Adapter"
+#~ msgstr "Verkkolaite"
+
+#~ msgid "Banner File"
+#~ msgstr "Banner tiedosto"
+
+#~ msgid "Banner File Path"
+#~ msgstr "Bannerin tiedostopolku"
+
+#~ msgid "Connection Keep Alive"
+#~ msgstr "Yhteyksien elossapito"
+
+#~ msgid "Address Pool Start IP"
+#~ msgstr "Ensimmäinen osoite"
+
+#~ msgid "Address Pool End IP"
+#~ msgstr "Viimeinen osoite"
+
+#~ msgid "DHCP Lease Time"
+#~ msgstr "DHCP-varauksen aika"
+
+#~ msgid "DHCP Server"
+#~ msgstr "DHCP-palvelin"
+
+#~ msgid "Automated Diagnostics"
+#~ msgstr "Automatisoitu vianmääritys"
+
+#, fuzzy
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "Error"
+#~ msgstr "CRC virheitä"
+
+#, fuzzy
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr "Puhelinlinjojen tila."
+
+#, fuzzy
+#~ msgid "Pick Connection"
+#~ msgstr "Yhteydet"
+
+#, fuzzy
+#~ msgid "Pick Interface"
+#~ msgstr "Fyysinen liitäntä"
+
+#~ msgid "Choose DNS Provider"
+#~ msgstr "Valitse DNS-palveluntarjoaja"
+
+#, fuzzy
+#~ msgid "Domain name"
+#~ msgstr "Toimialue"
+
+#, fuzzy
+#~ msgid "Enter DDNS Provider"
+#~ msgstr "Valitse DNS-palveluntarjoaja"
+
+#~ msgid "DDNS (Dynamic DNS)"
+#~ msgstr "DDNS (Dynaaminen DNS)"
+
+#~ msgid "off"
+#~ msgstr "Pois päältä"
+
+#~ msgid "5GHz"
+#~ msgstr "5GHz"
+
+#~ msgid "2.4GHz"
+#~ msgstr "2.4GHz"
+
+#, fuzzy
+#~ msgid "Are you sure you want to delete this wireless interface?"
+#~ msgstr "Haluatko varmasti poistaa tämän säännön?"
+
+#, fuzzy
+#~ msgid "wps.status.init"
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+
+#, fuzzy
+#~ msgid "wps.status.fail"
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+
+#, fuzzy
+#~ msgid "wps.status.timeout"
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+
+#, fuzzy
+#~ msgid "wps.status.msgdone"
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+
+#, fuzzy
+#~ msgid "wps.status.overlap"
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+
+#, fuzzy
+#~ msgid "wps.status.unknown"
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+
+#~ msgid "on"
+#~ msgstr "Päällä"
+
+#, fuzzy
+#~ msgid "Edit wireless interface"
+#~ msgstr "Fyysinen liitäntä"
+
+#~ msgid "CCMP (AES)"
+#~ msgstr "CCMP (AES)"
+
+#, fuzzy
+#~ msgid "TKIP/CCMP (AES)"
+#~ msgstr "CCMP (AES)"
+
+#~ msgid "11b"
+#~ msgstr "802.11b"
+
+#~ msgid "11g"
+#~ msgstr "802.11bg"
+
+#~ msgid "11bg"
+#~ msgstr "802.11n"
+
+#~ msgid "11n"
+#~ msgstr "802.11a"
+
+#~ msgid "11a"
+#~ msgstr "802.11c"
+
+#~ msgid "11ac"
+#~ msgstr "802.11ac"
+
+#~ msgid "Access Point (AP)"
+#~ msgstr "Access Point (AP)"
+
+#~ msgid "Client (STA)"
+#~ msgstr "Client (STA)"
+
+#~ msgid ""
+#~ "Are you sure you want to create a new SSID with the same name and on the "
+#~ "same radio? This may result in undefined behaviour!"
+#~ msgstr ""
+#~ "Haluatko varmasti luoda uuden SSID:n, jolla on sama nimi samassa "
+#~ "radiossa? Tämä voi aiheuttaa määrittelemätöntä käyttäytymistä!"
+
+#~ msgid "Schedule"
+#~ msgstr "Ajastus"
+
+#~ msgid "Bandwidth"
+#~ msgstr "Kaistanleveys"
+
+#, fuzzy
+#~ msgid "Pick Bandwidth"
+#~ msgstr "Kaistanleveys"
+
+#~ msgid "Channel"
+#~ msgstr "Kanava"
+
+#, fuzzy
+#~ msgid "Disable WMM Ack"
+#~ msgstr "Pois käytöstä"
+
+#~ msgid "Choose Key"
+#~ msgstr "Valitse avain"
+
+#, fuzzy
+#~ msgid "Radius Server"
+#~ msgstr "SIP-palvelin"
+
+#~ msgid "Access for listed devices"
+#~ msgstr "Pääsy sallittu listatuille laitteille"
+
+#~ msgid "Currently added devices"
+#~ msgstr "Nykyiset lisätyt laitteet"
+
+#~ msgid "Add currently connected hosts to the list"
+#~ msgstr "Lisää kytketty laite listaan"
+
+#~ msgid "Add clients to MAC filtering list"
+#~ msgstr "Lisää isäntäkoneita MAC-suodatinlistaan"
+
+#, fuzzy
+#~ msgid "New Wireless Interface"
+#~ msgstr "Fyysinen liitäntä"
+
+#, fuzzy
+#~ msgid "SNR"
+#~ msgstr "CBR"
+
+#~ msgid "Cipher"
+#~ msgstr "Salausavain"
+
+#, fuzzy
+#~ msgid "wifi.clients.info"
+#~ msgstr "Puhelinlinjojen konfigurointi"
+
+#, fuzzy
+#~ msgid "Scheduled"
+#~ msgstr "Ajastus"
+
+#, fuzzy
+#~ msgid "wifi.schedule.info"
+#~ msgstr ""
+#~ "Aseta puhelinaikataulut milloin puhelimen tulisi hälyttää tai ei tulisi "
+#~ "hälyttää."
+
+#, fuzzy
+#~ msgid "Schedule Function"
+#~ msgstr "Ajastus"
+
+#, fuzzy
+#~ msgid "During this time the WiFi is"
+#~ msgstr "Tänä aika soittaminen on "
+
+#~ msgid "Choose Schedule Mode"
+#~ msgstr "Valitse ajoitustila"
+
+#~ msgid "Day"
+#~ msgstr "Päivä"
+
+#~ msgid "Attempting to Pair"
+#~ msgstr "Yritetään parittaa laitetta"
+
+#, fuzzy
+#~ msgid "wireless-status-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "wireless-schedule-title"
+#~ msgstr "Ajastus"
+
+#, fuzzy
+#~ msgid "wireless-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-wireless-status-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "menu-wireless-filtering-title"
+#~ msgstr "Pikavalinta"
+
+#, fuzzy
+#~ msgid "menu-wireless-general-title"
+#~ msgstr "Puhelin"
+
+#, fuzzy
+#~ msgid "menu-wireless-schedule-title"
+#~ msgstr "Ajastus"
+
+#, fuzzy
+#~ msgid "menu-wireless-wps-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-wireless-client-mode-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-wireless-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "menu-wireless-link-to-interfaces-title"
+#~ msgstr "Linjat"
+
+#, fuzzy
+#~ msgid "VLAN Devices"
+#~ msgstr "ADSL-laitteet"
+
+#, fuzzy
+#~ msgid "page-broadcom-ethernet-vlan-title"
+#~ msgstr "Numerot"
+
+#, fuzzy
+#~ msgid "menu-page-broadcom-ethernet-vlan-title"
+#~ msgstr "Numerot"
+
+#, fuzzy
+#~ msgid "Error Counter"
+#~ msgstr "Solulaskija"
+
+#~ msgid "Cell Statistics"
+#~ msgstr "Solutilastot"
+
+#~ msgid "CBR"
+#~ msgstr "CBR"
+
+#, fuzzy
+#~ msgid "PCR"
+#~ msgstr "CBR"
+
+#~ msgid "ADSL Devices"
+#~ msgstr "ADSL-laitteet"
+
+#, fuzzy
+#~ msgid "No DSL info available."
+#~ msgstr "Puhepalvelu ei ole saatavilla!"
+
+#, fuzzy
+#~ msgid "menu-page-broadcom-vdsl-title"
+#~ msgstr "Numerot"
+
+#~ msgid "Today"
+#~ msgstr "Tänään"
+
+#~ msgid "Phone"
+#~ msgstr "Puhelin"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# #-#-#-#-#  custom.pot  #-#-#-#-#
+# phone
+# #-#-#-#-#  custom.pot  #-#-#-#-#
+# phone
+#~ msgid "Call Log"
+#~ msgstr "Puheluloki"
+
+#~ msgid "Show calls for"
+#~ msgstr "Näytä puhelut"
+
+#~ msgid "External Number"
+#~ msgstr "Ulkoinen numero"
+
+#~ msgid "Your number"
+#~ msgstr "Puhelinnumerosi"
+
+#~ msgid "Phone Lines"
+#~ msgstr "Puhelinlinjat"
+
+#~ msgid "Internal Number"
+#~ msgstr "Sisänumero"
+
+#~ msgid "Outgoing Calls Number"
+#~ msgstr "Lähtevät numerot"
+
+#~ msgid "Pick Outgoing Number"
+#~ msgstr "Valitse lähtevä numero"
+
+#~ msgid "Call Waiting"
+#~ msgstr "Koputus"
+
+#~ msgid "Call ID Restriction"
+#~ msgstr "Puhelun Tunnuksen Rajoitus"
+
+#~ msgid "phone.number_blocking.info"
+#~ msgstr ""
+#~ "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+
+#~ msgid "Outgoing Number Blocking"
+#~ msgstr "Lähtevän Soitonesto"
+
+#~ msgid "Phone Extension"
+#~ msgstr "Alanumero"
+
+#~ msgid "Block connections to all foreign numbers"
+#~ msgstr "Estä kaikki ulkomaanpuhelut"
+
+#~ msgid "Block connections to all special rate numbers"
+#~ msgstr "Estä lisämaksulliset numerot"
+
+#~ msgid "Incoming Number Blocking"
+#~ msgstr "Saapuvien puheluiden esto"
+
+#~ msgid "Do not allow connections from these numbers"
+#~ msgstr "Estä soitot näistä numeroista"
+
+#~ msgid "Outgoing Calls"
+#~ msgstr "Lähtevät puhelut"
+
+#, fuzzy
+#~ msgid ""
+#~ "You can also block ranges of numbers.For example: '0160#' blocks all "
+#~ "numbers starting with '0160'."
+#~ msgstr ""
+#~ "Voit myös estää numeroalueen. Esimerkiksi \"0160#\" estää kaikki numerot "
+#~ "jotka ovat \"0160\"-alkuisia"
+
+#~ msgid "Incoming Calls"
+#~ msgstr "Saapuvat puhelut"
+
+#~ msgid "SIP Accounts"
+#~ msgstr "SIP tilit"
+
+#~ msgid "phone.sip.accounts.info"
+#~ msgstr "VoIP tilit"
+
+#~ msgid "Account Name"
+#~ msgstr "Tilin nimi"
+
+#~ msgid "SIP Proxy"
+#~ msgstr "SIP Välityspalvelin"
+
+#~ msgid "SIP Auth User"
+#~ msgstr "SIP autentikoitu käyttäjä"
+
+#~ msgid "Auth User"
+#~ msgstr "Autentikoitu käyttäjä"
+
+#~ msgid "***********"
+#~ msgstr "***********"
+
+#~ msgid "Incoming Phone Lines"
+#~ msgstr "VOIP-linjat"
+
+#~ msgid "Ringing Schedule"
+#~ msgstr "Aikataulu"
+
+#~ msgid "Add a new Ringing Schedule"
+#~ msgstr "Lisää uusi soittoajastus"
+
+#~ msgid "Pick Phone Number"
+#~ msgstr "Valitse puhelinnumero"
+
+#~ msgid "Speed Dialing"
+#~ msgstr "Pikavalinta"
+
+#~ msgid "phone.speed_dialing.info"
+#~ msgstr "Tämä toiminto aktivoi pikavalinnat"
+
+#~ msgid "Remove all entries from speed dial list"
+#~ msgstr "Poista kaikki merkinnät pikavalintaluettelosta"
+
+#~ msgid "Clear"
+#~ msgstr "Tyhjennä"
+
+#~ msgid "Your Phone Numbers"
+#~ msgstr "Puhelinnumerosi"
+
+#~ msgid "Voice Lines"
+#~ msgstr "Puhelinlinjat"
+
+#~ msgid "Your Phone Lines"
+#~ msgstr "Puhelinlinjasi"
+
+#, fuzzy
+#~ msgid "phone-speed-dialing-title"
+#~ msgstr "Pikavalinta"
+
+#, fuzzy
+#~ msgid "phone-number-blocking-title"
+#~ msgstr ""
+#~ "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+
+#, fuzzy
+#~ msgid "phone-call-log-title"
+#~ msgstr "Puheluloki"
+
+#, fuzzy
+#~ msgid "phone-numbers-title"
+#~ msgstr "Numerot"
+
+#, fuzzy
+#~ msgid "menu-phone-number-blocking-title"
+#~ msgstr ""
+#~ "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+
+#~ msgid "ADSL"
+#~ msgstr "ADSL"
+
+#~ msgid "About"
+#~ msgstr "Tietoja"
+
+#~ msgid "Actual Data Rate"
+#~ msgstr "Todellinen tiedonsiirtonopeus"
+
+#~ msgid "Add"
+#~ msgstr "Lisää"
+
+#~ msgid "Add test server"
+#~ msgstr "Lisää Testipalvelin"
+
+#~ msgid "Additional IPv6 prefix"
+#~ msgstr "Lisä-IPv6 prefix"
+
+#~ msgid "Address and port needed"
+#~ msgstr "Osoite ja portti tarvitaan"
+
+#~ msgid "All Weekend"
+#~ msgstr "Viikonloppu"
+
+#~ msgid "Backup"
+#~ msgstr "Varmuuskopio"
+
+#~ msgid "Clients"
+#~ msgstr "Asiakkaat"
+
+#~ msgid "Configure as default route"
+#~ msgstr "Määritä oletusreitiksi"
+
+#~ msgid "DDNS"
+#~ msgstr "DDNS"
+
+#~ msgid "DECT"
+#~ msgstr "DECT"
+
+#~ msgid "DMZ"
+#~ msgstr "DMZ"

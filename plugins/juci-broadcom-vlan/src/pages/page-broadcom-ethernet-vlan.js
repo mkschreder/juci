@@ -18,7 +18,6 @@ JUCI.app
 			".type": "vlan_interface",
 			"name": gettext("New interface")
 		}).done(function(interface){
-			$scope.vlan_devices.push(interface); 
 			$scope.$apply(); 
 		});
 	}

@@ -14,46 +14,60 @@ JUCI.app
 }).controller("WifiInterfaceController", function($scope, $uci, $tr, gettext, $wireless, $network){
 	$scope.errors = []; 
 	$scope.showPassword = true; 
+	
 	$scope.$on("error", function(ev, err){
 		ev.stopPropagation(); 
 		$scope.errors.push(err); 
 	}); 
+
 	$scope.keyChoices = [
 		{label: $tr(gettext("Key")) + " #1", value: 1},
 		{label: $tr(gettext("Key")) + " #2", value: 2},
 		{label: $tr(gettext("Key")) + " #3", value: 3},
 		{label: $tr(gettext("Key")) + " #4", value: 4}
 	];
+
 	$scope.psk2_ciphers = [
 		{label: $tr(gettext("Auto")), value: "auto"},
 		{label: $tr(gettext("CCMP (AES)")), value: "ccmp"}
-	]; 
+	];
+
 	$scope.mixed_psk_ciphers = [
 		{label: $tr(gettext("Auto")), value: "auto"},
 		{label: $tr(gettext("CCMP (AES)")), value: "ccmp"},
 		{label: $tr(gettext("TKIP/CCMP (AES)")), value: "ccmp"}
 	];  
+	
+	$scope.cryptoChoices = [
+		{ label: $tr(gettext("None")), value: "none" }, 
+		{ label: $tr(gettext("WEP")), value: "wep" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK)")), value: "psk2" }, 
+		{ label: $tr(gettext("WPA Personal (PSK)")), value: "psk" }, 
+		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode")), value: "mixed-psk" }, 
+		{ label: $tr(gettext("WPA2 Enterprise")), value: "wpa2" }, 
+		{ label: $tr(gettext("WPA Enterprise")), value: "wpa" }, 
+		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode")), value: "wpa-mixed" } 
+	]; 
+	
 	$network.getNetworks().done(function(nets){
 		$scope.networks = nets.map(function(net){
 			return { label: String(net[".name"]).toUpperCase(), value: net[".name"] }; 
 		}); 
 		$scope.$apply(); 
 	}); 
+	
 	$wireless.getDevices().done(function(devices){
 		$scope.devices = devices.map(function(x){
 			return { label: x[".frequency"], value: x[".name"] }; 
 		}); 
 		$scope.$apply(); 
 	}); 
+
 	$scope.$watch("interface", function(value){
 		if(!value) return; 
-		try {
-			$scope.cryptoChoices = $scope.interface.encryption.schema.allow.map(function(x){
-				return { label: $tr("wifi.enc."+x), value: x };
-			}); 
-		} catch(e) {} 
-		$scope.title = "wifi-iface.name="+$scope.interface[".name"]; 
+		//$scope.title = "wifi-iface.name="+$scope.interface[".name"]; 
 	});
+
 	$scope.$watch("interface.closed.value", function(value, oldvalue){
 		if(!$scope.interface) return; 
 		if(value && value != oldvalue){

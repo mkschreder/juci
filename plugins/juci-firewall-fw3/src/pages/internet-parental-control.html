@@ -28,7 +28,7 @@
 						<td>{{r.stop_time.value}}</td>
 						<td>
 							<div ng-repeat="mac in r.src_mac.value">
-								<div class="col-xs-2"><i class="fa fa-desktop"/></div>
+								<div class="col-xs-2"><i class="fa fa-desktop"></i></div>
 								<div class="col-xs-10" >{{mac}}</div>
 							</div>
 						</td>
@@ -51,7 +51,7 @@
 			<juci-schedule-edit ng-model="rule"></juci-schedule-edit>
 			<juci-config-lines>
 				<juci-config-line title="MAC List">
-					<juci-maclist-edit ng-model="rule.macList"/>
+					<firewall-maclist-edit ng-model="rule.macList"/>
 				</juci-config-line>
 			</juci-config-line>
 			<juci-errors ng-model="errors"/>

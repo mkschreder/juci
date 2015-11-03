@@ -78,10 +78,11 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 
 	Wireless.prototype.getConnectedClients = function(){
 		var def = $.Deferred(); 
-		$rpc.juci.openwrt.wireless.clients().done(function(clients){
+		$rpc.juci.wireless.clients().done(function(clients){
 			if(clients && clients.clients) {
 				clients.clients.map(function(cl){
-					cl.snr = Math.floor(1 - (cl.rssi / cl.noise)); 
+					if(cl.rssi && cl.noise && cl.noise > 0)
+						cl.snr = Math.floor(1 - (cl.rssi / cl.noise)); 
 				}); 
 				def.resolve(clients.clients); 
 			}
@@ -130,7 +131,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	
 	Wireless.prototype.getDefaults = function(){
 		var deferred = $.Deferred(); 
-		$rpc.juci.openwrt.wireless.defaults().done(function(result){
+		$rpc.juci.wireless.defaults().done(function(result){
 			if(!result) {
 				deferred.reject(); 
 				return; 

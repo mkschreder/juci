@@ -47,6 +47,8 @@ JUCI.app
 					}; 
 				}); 
 				deferred.resolve(Object.keys(devices).map(function(k){ return devices[k]; }), devices); 
+			}).fail(function(){
+				console.log("Could not sync DSL devices!"); 
 			}); 
 			return deferred.promise(); 
 		}, 

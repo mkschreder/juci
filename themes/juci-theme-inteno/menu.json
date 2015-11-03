@@ -74,7 +74,7 @@
 		"acls": [ "juci-broadcom-dsl" ] 
 	}, 
 	"internet/ethernet/wifi": {
-		"page": "page-broadcom-wl-interfaces", 
+		"page": "wireless-interfaces", 
 		"title": "Wireless", 
 		"acls": [ "juci-broadcom-wl" ]
 	},
@@ -185,46 +185,46 @@
 	"wifi": {
 		"title": "WiFi",
 		"files": [ "/etc/config/wireless" ], 
-		"redirect": "wifi/general" 
+		"redirect": "wireless-general" 
 	},
 	"wifi/general": {
-		"page": "wifi-general", 
+		"page": "wireless-general", 
 		"title": "General",
 		"files": [ "/etc/config/wireless" ] 
 	},
 	"wifi/general/devices": {
-		"page": "wifi-general-devices", 
+		"page": "wireless-devices", 
 		"title": "Radios",
 		"files": [ "/etc/config/wireless" ] 
 	},
 	"wifi/general/interfaces": {
-		"page": "wifi-general-interfaces", 
+		"page": "wireless-interfaces", 
 		"title": "Interfaces",
 		"files": [ "/etc/config/wireless" ] 
 	},
 	"wifi/general/clients": {
-		"page": "wifi-general-clients", 
+		"page": "wireless-clients", 
 		"title": "Clients",
 		"files": [ "/etc/config/wireless" ] 
 	},
 	"wifi/schedule": {
-		"page": "wifi-schedule", 
+		"page": "wireless-schedule", 
 		"title": "Schedule",
 		"files": [ "/etc/config/wireless" ] 
 	},
 	"wifi/wps": {
-		"page": "wifi-wps", 
+		"page": "wireless-wps", 
 		"title": "WPS",
 		"files": [ "/etc/config/wireless" ] 
 	},
 	"wifi/mac_filter": {
-		"page": "wifi-mac-filter", 
+		"page": "wireless-filtering", 
 		"title": "MAC filter",
 		"files": [ "/etc/config/wireless" ], 
 		"modes": [ "expert" ] 
 	},
 	"wifi/client": {
-		"page": "page-broadcom-wifi-client-conf", 
+		"page": "wireless-client-mode", 
 		"title": "WiFi Client",
 		"acls": [ "juci-broadcom-wl" ] 
 	}, 
@@ -302,7 +302,7 @@
 		"acls": [ "juci-igmpsnoop" ] 
 	},
 	"status/wifi": {
-		"page": "page-broadcom-wifi-status", 
+		"page": "wireless-status", 
 		"title": "Wireless", 
 		"acls": [ "juci-broadcom-wl" ]
 	},

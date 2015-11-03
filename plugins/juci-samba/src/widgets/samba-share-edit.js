@@ -1,5 +1,8 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
+JUCI.app.requires.push("ui.bootstrap.typeahead"); 
+JUCI.app.requires.push("ngAnimate"); 
+
 JUCI.app
 .directive("sambaShareEdit", function($compile){
 	return {
@@ -13,6 +16,7 @@ JUCI.app
 })
 .controller("sambaShareEdit", function($scope, $network, $modal){
 	$scope.data = {}; 
+
 	$scope.$watch("share", function(value){
 		if(!value) return; 
 		$scope.data.guest_ok = (value.guest_ok.value == "yes")?true:false; 
@@ -26,4 +30,18 @@ JUCI.app
 		if(!$scope.share) return; 
 		$scope.share.read_only.value = (value)?"yes":"no"; 
 	}); 
+
+	$scope.onAutocomplete = function(query){
+		var def = $.Deferred(); 
+		if($scope.path){
+			$rpc.juci.samba.autocomplete({ path: $scope.share.path.value }).done(function(result){
+				def.resolve(result.paths); 
+			}).fail(function(){
+				def.reject(); 
+			}); 
+		} else {
+			def.resolve([]); 
+		}
+		return def.promise(); 
+	}
 }); 

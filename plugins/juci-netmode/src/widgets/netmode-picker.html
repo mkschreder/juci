@@ -9,7 +9,7 @@
 				<juci-select ng-model="data.selected" ng-items="allNetmodes" ></juci-select>
 			</juci-config-line>
 		</juci-config-lines>
-		<p translate>{{data.selected.exp.value}}</p>
+		<p>{{data.selected.exp.value | translate}}</p>
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary" ng-click="ok()" translate>Apply</button>
