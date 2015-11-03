@@ -2,6 +2,7 @@
 
 JUCI.app
 .controller("SettingsSystemGeneral", function($scope, $rpc, $uci, $tr, gettext){
+	$scope.timezones = {} ; 
 	async.series([
 		function(next){
 			$uci.$sync("system").done(function(){
@@ -13,8 +14,9 @@ JUCI.app
 		function(next){
 			$rpc.juci.system.time.zonelist().done(function(result){
 				if(result && result.zones){
-					$scope.allTimeZones = Object.keys(result.zones).map(function(k){
-						return { label: k, value: result.zones[k] }; 
+					timezones = result.zones; 
+					$scope.allTimeZones = Object.keys(result.zones).sort().map(function(k){
+						return { label: k, value: k }; 
 					}); 
 				}
 				next(); 
@@ -24,6 +26,11 @@ JUCI.app
 		$scope.$apply(); 
 	}); 
 	
+	$scope.$watch("system.zonename.value", function(value){
+		if(!value) return; 
+		$scope.system.timezone.value = timezones[value]; 
+	}); 
+
 	JUCI.interval.repeat("system.time", 1000, function(done){
 		$rpc.juci.system.time.get().done(function(result){
 			$scope.localtime = (new Date(result.unix_time * 1000)).toLocaleString(); 
