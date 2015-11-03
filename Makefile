@@ -133,7 +133,7 @@ release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 
 debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\033[0;33m [GRUNT] $@ \033[m"
-	#@grunt 
+	@grunt 
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
 	@./juci-update $(BIN)/www DEBUG
 

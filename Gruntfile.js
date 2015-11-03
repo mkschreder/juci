@@ -112,6 +112,8 @@ module.exports = function(grunt){
 		}); 
 		console.log(files); 
 	});
-	grunt.registerTask('default', ['nggettext_extract', 'nggettext_compile', "extract_titles", "compile_pot"]);
+
+	grunt.registerTask('default', ['nggettext_compile']);
+	//grunt.registerTask('default', ['nggettext_extract', 'nggettext_compile', "extract_titles", "compile_pot"]);
 	
 }
