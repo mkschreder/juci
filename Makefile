@@ -117,6 +117,7 @@ prepare: .cleaned
 	@mkdir -p $(PO_DIR)
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
+	@mkdir -p $(BIN)/usr/share/juci/
 	@mkdir -p $(BIN)/usr/share/lua/
 	@mkdir -p $(BIN)/usr/share/rpcd/menu.d/
 	@mkdir -p $(BIN)/usr/share/rpcd/acl.d/
@@ -165,6 +166,7 @@ docs/juci.md: $(wildcard plugins/**/docs/*.md)
 
 install: 
 	$(INSTALL_DIR) $(BIN)/usr/bin/
+	@cp juci.config.example $(BIN)/usr/share/juci/
 	@cp juci-update $(BIN)/usr/bin/
 	@cp -Rp $(BIN)/* $(DESTDIR)
 
