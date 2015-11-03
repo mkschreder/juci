@@ -12,6 +12,7 @@ JUCI.app
 		});  
 		return def.promise(); 
 	}
+
 	Samba.prototype.getShares = function(){
 		var def = $.Deferred(); 
 		$uci.$sync("samba").done(function(){
@@ -22,6 +23,15 @@ JUCI.app
 		return def.promise();  
 	}
 	
+	Samba.prototype.getUsers = function(){
+		var def = $.Deferred(); 
+		$uci.$sync("samba").done(function(){
+			def.resolve($uci.samba["@sambausers"]); 
+		}).fail(function(){
+			def.reject(); 
+		}); 
+		return def.promise(); 
+	}
 	return new Samba(); 
 }); 
 
@@ -45,6 +55,7 @@ UCI.samba.$registerSectionType("sambashare", {
 }); 
 
 UCI.samba.$registerSectionType("sambausers", {
-	"user":		{ dvalue: "", type: String }, 
-	"password":		{ dvalue: "", type: String }
+	"user":			{ dvalue: "", type: String }, 
+	"password":		{ dvalue: "", type: String },
+	"desc": 		{ dvalue: "", type: String }
 }); 
