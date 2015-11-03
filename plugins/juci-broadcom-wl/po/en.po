@@ -58,6 +58,10 @@ msgstr ""
 msgid "Are you sure you want to delete this wireless interface?"
 msgstr ""
 
+#, fuzzy
+msgid "Wireless Interfaces"
+msgstr "Interfaces"
+
 msgid "Enabled"
 msgstr ""
 
@@ -561,15 +565,15 @@ msgid ""
 "automatically turned on and off based on your schedule settings"
 msgstr ""
 
-#, fuzzy
-msgid "Wireless Interfaces"
-msgstr "Interfaces"
-
 msgid "wifi.interfaces.info"
 msgstr ""
 "Wireless interfaces are visible to the user in the form of wireless access "
 "point names. Each radio can have several SSIDs and each SSID interface can "
 "be configured as part of a network bridge or firewall group. "
+
+# /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-link-to-interfaces.html
+msgid " page"
+msgstr ""
 
 msgid "wifi.schedule.info"
 msgstr ""
@@ -745,6 +749,9 @@ msgstr "WiFi"
 msgid "wireless-clients-title"
 msgstr "Wireless Clients"
 
+msgid "wireless-link-to-interfaces-title"
+msgstr "Wireless Interfaces"
+
 msgid "menu-wireless-status-title"
 msgstr "WiFi Status"
 
@@ -774,6 +781,9 @@ msgstr "WiFi"
 
 msgid "menu-wireless-clients-title"
 msgstr "Clients"
+
+msgid "menu-wireless-link-to-interfaces-title"
+msgstr "Wireless"
 
 #~ msgid "Phone"
 #~ msgstr "Phone"
