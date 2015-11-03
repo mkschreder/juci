@@ -18,7 +18,7 @@ config menu
 	option path "phone"
 	option page "phone"
 	option redirect "phone-call-log"
-	option acls "juci-telephony"
+	option acls "juci-asterisk"
 
 config menu
 	option path "phone/calllog"
