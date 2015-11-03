@@ -12,8 +12,7 @@ IO_SOURCE_FILES:=$(wildcard io/*.c)
 SO_OBJECT_FILES:=$(patsubst %.c, %.o, $(SO_SOURCE_FILES))
 IO_OBJECT_FILES:=$(patsubst %.c, %.o, $(IO_SOURCE_FILES))
 
-all: $(BUILD_DIR) $(SHARED_OBJECT) $(CGI_SCRIPT)
-	$(CP) ./etc $(BUILD_DIR)/
+all: $(BUILD_DIR) $(SHARED_OBJECT) $(CGI_SCRIPT);
 
 $(BUILD_DIR): 
 	mkdir -p $(BUILD_DIR)
