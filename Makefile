@@ -10,7 +10,6 @@ endif
 BACKEND_BIN_DIR:=$(BIN)/usr/lib/ubus/juci/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
-PO_DIR:=po/templates/
 TARGETS:=
 PHONY:=debug release clean prepare node_modules 
 CP:=cp -Rp 
@@ -114,7 +113,6 @@ prepare: .cleaned
 	@echo "DIRS: $(DIRS-y)"
 	@echo "MODULE: $(MODULE)"
 	@./scripts/bootstrap.sh
-	@mkdir -p $(PO_DIR)
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
 	@mkdir -p $(BIN)/usr/share/juci/
@@ -135,7 +133,7 @@ release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 
 debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\033[0;33m [GRUNT] $@ \033[m"
-	@grunt 
+	#@grunt 
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
 	@./juci-update $(BIN)/www DEBUG
 
