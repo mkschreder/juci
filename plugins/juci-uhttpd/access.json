@@ -3,12 +3,14 @@
 		"description": "JUCI uHTTPD plugin",
 		"read": {
 			"uci": [
-				"uhttpd"
+				"uhttpd",
+				"logopts"
 			]
 		}, 
 		"write": {
 			"uci": [
-				"uhttpd"
+				"uhttpd",
+				"logopts"
 			]
 		}
 	}

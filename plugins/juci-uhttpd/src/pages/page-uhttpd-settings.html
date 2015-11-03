@@ -18,6 +18,25 @@
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="Ubus return statuses" no-pull>
+					<juci-list-simple-editor ng-model="data.status" get-item-title="getStatusItemTitle($item)" 
+						on-add-item="addStatusItem()" on-delete-item="deleteStatusItem($item)" hide-buttons="false">
+						<juci-select ng-model="status.new" ng-items="status.items"></juci-select>
+					</juci-list-simple-editor>
+				</juci-config-line>
+				<juci-config-line title="Ubus method call" no-pull>
+					<juci-list-simple-editor ng-model="logopts.ubus_method.value" get-item-title="getMethodItemTitle($item)"
+						on-add-item="addMethodItem()" on-delete-item="deleteMethodItem($item)">
+						<div class="input-group">
+							<span class="input-group-addon" translate>Object.Method</span>
+							<input type="text" ng-model="method.new" ng-keyup="onKeyup($event)" class="form-control">
+						</div>
+					</juci-list-simple-editor>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

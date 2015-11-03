@@ -15,8 +15,6 @@
 				$.getJSON(theme_root+"/theme.json").done(function(data){
 					if(!data) return; 
 					
-					// create new module
-					//$juci.module(theme_id, theme_root, data); 
 					
 					themes[theme_id] = data; 
 					if(data.scripts){

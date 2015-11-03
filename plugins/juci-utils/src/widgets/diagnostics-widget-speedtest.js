@@ -18,27 +18,31 @@ JUCI.app
 	$scope.$watch('data.packagesize', function(new_value){
 		if(new_value < $scope.min)$scope.data.packagesize = $scope.min;
 		if(new_value > $scope.max)$scope.data.packagesize = $scope.max;
-		console.log("new_value = " + new_value);
 	});
+
 	function getServers(){
 		$scope.allTestServers = $scope.testServers.map(function(x){
 			return {
 				label: x.server.value + "/" + x.port.value, 
-				value: x
+				value: x.server.value
 			}
 		});
+		if($scope.allTestServers.length)
+			$scope.data.server = $scope.allTestServers[0].value; 
 	}
+
 	$scope.testType = [
 		{value:"up_down", label: "up and down"}, 
 		{value:"up", label: "up"}, 
-		{value:"down", label:"down"} ];
+		{value:"down", label:"down"} 
+	];
+
 	$uci.$sync("speedtest").done(function(){
 		$scope.testServers = $uci.speedtest["@testserver"];
 		getServers();
-		if($scope.testServers.length)
-			$scope.data.server = $scope.testServers[0]; 
 		$scope.$apply();
 	});
+
 	$scope.runTest = function(){
 		if(!$scope.testServers.length){
 			window.alert("Server and port is mandatory");
@@ -55,25 +59,30 @@ JUCI.app
 			"address": $scope.data.server.server.value
 		}).done(function(response){
 			if(response && response.message=="success"){
-				console.log("success running tptest");
 				$scope.data.state="running";
 			}else{
-				console.log("error running tptest");
 				$scope.data.state="";
 			}
 			$scope.$apply();
 		});
-	}
+	};
+	
 	$scope.onRemoveAddress = function(){
-		$scope.data.server.$delete().done(function(){
+		var server = $scope.testServers.filter(function(x){
+			return $scope.data.server == x.server.value
+		});
+		if(!server){
+			alert("error deleting server");
+			return;
+		}
+		server.$delete().done(function(){
 			$uci.$save().done(function(){
 				getServers();
-				if($scope.testServers.length)
-					$scope.data.server = $scope.testServers[0]; 
 				$scope.$apply();
 			});
 		});
-	}
+	};
+
 	$scope.onAddAddress = function(){
 		utilsAddTestserverPicker.show().done(function(data){
 			if(!data)return;
@@ -84,16 +93,12 @@ JUCI.app
 			}).done(function(){
 				$uci.$save().done(function(){
 					getServers();
-					if($scope.testServers.length==1)
-						$scope.data.server = $scope.testServers[0];
 					$scope.$apply();
 				});
 			});
-			console.log("address = " + data.address + "port = " + data.port);
 		});
 	}
 	$events.subscribe("juci.utils.speedtest", function(res){
-		console.log(res);
 		switch(res.data.status) {
 		case 0:
 			$scope.data.result="Upstream: " + res.data.upstream + "\nDownstream: " + res.data.downstream;
