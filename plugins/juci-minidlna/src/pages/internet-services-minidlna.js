@@ -8,14 +8,8 @@ JUCI.app
 		$scope.tagslistData = $scope.config.media_dir.value.filter(function(dir){
 			return (dir.substring(0, 4) == "/mnt");
 		}).map(function(dir){
-			if(dir == "/mnt"){
-				return {
-					text: "/",
-					path: "/mnt/"
-				}
-			}
 			return {
-				text: dir.substring(4),
+				text: "/" + dir.substring(4),
 				path: dir
 			}
 		

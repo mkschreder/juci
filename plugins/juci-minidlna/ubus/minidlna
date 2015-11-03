@@ -31,11 +31,8 @@ local function autocomplete(opts)
 	then
 		return 1;
 	end
-	if(opts.path:sub(1,1) == "/")
-	then 
-		opts.path = opts.path:sub(2);
-	end
-	local stdout = juci.shell("find /mnt/%s* -maxdepth 0 -type d | sed -e 's|$|/|' | sed 's/^\\/mnt//g' 2>/dev/null", opts.path);
+	opts.path = "/mnt/"..opts.path; 
+	local stdout = juci.shell("find \"$(dirname %s)\" -name \"$(basename %s)*\" -maxdepth 1 -type d | sed -e 's|$|/|' | sed 's/^\\/mnt//g' 2>/dev/null", opts.path, opts.path);
 	local result = { folders = {} }
 	for line in stdout:gmatch("[^\r\n]+") do 
 		table.insert(result.folders, line); 
