@@ -31,14 +31,11 @@ JUCI.app
 			function(next){
 				$network.getDefaultRouteNetworks().done(function(result){
 					$scope.wanifs = result.map(function(x){ return x.$info; }); 
+					$scope.$apply(); 
 				}); 
-			},
-			function(next){
-				$rpc.juci.system.info().done(function(result){
-					if(result.system) $scope.firmware = result.system.firmware; 
-				}).always(function(){ next(); }); 
 			}
 		], function(){
+			$scope.firmware = $config.board.release.distribution + " " + $config.board.release.version + " " + $config.board.release.revision; 
 			$scope.$apply(); 
 			deferred.resolve(); 
 		}); 
