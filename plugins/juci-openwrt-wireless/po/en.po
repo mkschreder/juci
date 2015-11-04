@@ -557,6 +557,10 @@ msgstr "Wireless Client-Mode Setup"
 msgid "wireless-clients-title"
 msgstr "Wireless Clients Status"
 
+# /data/intranet/software/juci/plugins/juci-openwrt-wireless/src/pages/wireless.html
+msgid "wireless-title"
+msgstr "WiFi"
+
 # /data/intranet/software/juci/plugins/juci-openwrt-wireless/src/pages/wireless-interfaces.html
 msgid "menu-wireless-interfaces-title"
 msgstr "Interfaces"
@@ -588,6 +592,10 @@ msgstr "Client Mode"
 # /data/intranet/software/juci/plugins/juci-openwrt-wireless/src/pages/wireless-clients.html
 msgid "menu-wireless-clients-title"
 msgstr "Clients"
+
+# /data/intranet/software/juci/plugins/juci-openwrt-wireless/src/pages/wireless.html
+msgid "menu-wireless-title"
+msgstr "WiFi"
 
 #, fuzzy
 #~ msgid "Static Address"
