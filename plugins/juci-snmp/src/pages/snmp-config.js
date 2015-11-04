@@ -3,8 +3,8 @@
 JUCI.app
 .controller("SnmpConfigPage", function($scope, $uci, gettext){
 	$uci.$sync("snmpd").done(function(){
-		if(!$uci.snmpd || !$uci.snmpd["@mini_snmpd"].length) return; 
-		$scope.config = $uci.snmpd["@mini_snmpd"]; 
+		if(!$uci.snmpd || !$uci.snmpd["@system"].length) return; 
+		$scope.config = $uci.snmpd["@system"][0]; 
 		$scope.$apply(); 
 	}); 
 }); 
