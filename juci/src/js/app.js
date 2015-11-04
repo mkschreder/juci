@@ -87,7 +87,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	var path = $location.path().replace(/\//g, ""); 
 	// load the right page from the start
 	if($rpc.$isLoggedIn()){
-		$juci.redirect(path||"overview"); 
+		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
 	} else {
 		$juci.redirect("login");
 	}
