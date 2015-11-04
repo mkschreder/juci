@@ -26,6 +26,8 @@ JUCI.app
 .controller("NavigationCtrl", function($scope, $location, $navigation, $rootScope, $config, $rpc, $events){
 	$scope.tree = $navigation.tree(); 
 	$scope.log_events = []; 
+	
+	$scope.homepage = $config.settings.juci.homepage.value; 
 
 	$scope.hasChildren = function(menu){
 		return menu.children_list > 0; 

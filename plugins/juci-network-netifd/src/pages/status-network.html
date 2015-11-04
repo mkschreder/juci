@@ -18,8 +18,8 @@
 					title="{{'IPv6 Prefix'|translate}}">
 					<strong>{{sec.interface['ipv6-prefix'][0].address + "/" + sec.interface['ipv6-prefix'][0].mask}}</strong>
 				</juci-config-line>
-				<juci-config-line title="{{'Gateway'|translate}}" ng-show="sec.interface['route'][0].nexthop">
-					<strong>{{sec.interface["route"][0].nexthop}}</strong>
+				<juci-config-line title="{{'Gateway'|translate}}" ng-show="sec.interface._defaultroute4.nexthop">
+					<strong>{{sec.interface._defaultroute4.nexthop}}</strong>
 				</juci-config-line>
 				<juci-config-line title="{{'Primary DNS'|translate}}" ng-show="sec.interface['dns-server'][0]">
 					<strong>{{sec.interface["dns-server"][0]}}</strong>

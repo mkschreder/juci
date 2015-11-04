@@ -276,7 +276,7 @@
 	}
 
 	UCI.$registerConfig("juci"); 
-	
+		
 	UCI.juci.$registerSectionType("menu", {
 		"path": 			{ dvalue: undefined, type: String }, 
 		"page": 			{ dvalue: undefined, type: String }, 
@@ -284,6 +284,11 @@
 		"acls":				{ dvalue: [], type: Array }, 
 		"modes": 			{ dvalue: [], type: Array }
 	}); 
+	
+	UCI.juci.$registerSectionType("juci", {
+		"homepage": 		{ dvalue: "overview", type: String }
+	}); 
+	UCI.juci.$insertDefaults("juci"); 
 
 	UCI.juci.$registerSectionType("login", {
 		"showusername":		{ dvalue: true, type: Boolean }, // whether to show or hide the username on login page 
