@@ -13,6 +13,10 @@ JUCI.app
 				$rpc.network.interface.dump().done(function(result){
 					_interfaces = result.interface.filter(function(x){
 						return x.interface != "loopback"; // filter out loopback. Is there any use case where we would want it? 
+					}).map(function(x){
+						// figure out correct default gateway
+						x._defaultroute4 = x.route.find(function(r){ return r.target == "0.0.0.0" });
+						return x; 
 					}); 
 					next(); 
 				}); 
