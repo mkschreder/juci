@@ -11,7 +11,7 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("wirelessInterfaceEdit", function($scope, $wireless, $network, $tr, gettext, $uci){
+.controller("wirelessInterfaceEdit", function($scope, $config, $wireless, $network, $tr, gettext, $uci){
 	$scope.errors = []; 
 	$scope.showPassword = true; 
 	$scope.$on("error", function(ev, err){
@@ -22,6 +22,7 @@ JUCI.app
 		{ label: $tr(gettext("None")), value: "none" }, 
 		{ label: $tr(gettext("WEP")), value: "wep" }, 
 		{ label: $tr(gettext("WPA2 Personal (PSK)")), value: "psk2" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK + CCMP)")), value: "psk2+ccmp" }, 
 		{ label: $tr(gettext("WPA Personal (PSK)")), value: "psk" }, 
 		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode")), value: "psk-mixed" }, 
 		{ label: $tr(gettext("WPA2 Enterprise")), value: "wpa2" }, 
@@ -29,6 +30,12 @@ JUCI.app
 		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode")), value: "wpa-mixed" } 
 	]; 
 	
+	if($config.settings.wireless.cryptochoices.value.length){
+		$scope.cryptoChoices = $scope.cryptoChoices.filter(function(x){
+			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
+		}); 
+	}
+
 	$scope.keyChoices = [
 		{label: $tr(gettext("Key")) + " #1", value: 1},
 		{label: $tr(gettext("Key")) + " #2", value: 2},
@@ -106,6 +113,7 @@ JUCI.app
 					$scope.iface.cipher.value = "ccmp"; 
 				break; 
 			}
+			case "psk2+ccmp": 
 			case "psk2": {
 				if(!$scope.psk2_ciphers.find(function(i){ return i.value == $scope.iface.cipher.value}))
 					$scope.iface.cipher.value = "ccmp"; 
