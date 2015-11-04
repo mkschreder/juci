@@ -14,3 +14,16 @@ UCI.snmpd.$registerSectionType("mini_snmpd", {
 	"read_community": 	{ dvalue: "", type: String }, 	
 	"set_community": 	{ dvalue: "", type: String }
 }); 
+
+UCI.snmpd.$registerSectionType("system", {
+	"enabled":			{ dvalue: "", type: String },
+	"contact":			{ dvalue: "", type: String }, 	
+	"manager_ip":		{ dvalue: "", type: String }, 	
+	"read_community": 	{ dvalue: "", type: String }, 	
+	"set_community": 	{ dvalue: "", type: String },
+	"sysLocation": 		{ dvalue: "", type: String }, 
+	"sysName":	 		{ dvalue: "", type: String }, 
+	"sysContact": 		{ dvalue: "", type: String }, 
+	"sysDescr": 		{ dvalue: "", type: String } 
+}); 
+

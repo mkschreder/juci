@@ -12,15 +12,15 @@
 		<juci-config-line title="{{'Encryption'|translate}}">
 			<juci-select ng-model="iface.encryption.value" ng-items="cryptoChoices" placeholder="{{'Choose Encryption'|translate}}" on-change="onEncryptionChanged($value, $oldvalue)"/>
 		</juci-config-line>
-		<div ng-show="iface.encryption.value == 'psk2' || iface.encryption.value == 'mixed-psk' || iface.encryption.value == 'psk-mixed'">
-			<juci-config-line title="{{'Cipher'|translate}}">
+		<div ng-show="iface.encryption.value.indexOf('psk') != -1">
+			<!--<juci-config-line title="{{'Cipher'|translate}}">
 				<div ng-show="iface.encryption.value == 'psk2'">
 					<juci-select ng-model="iface.cipher.value" ng-items="psk2_ciphers" placeholder="Choose Cipher"/>
 				</div>
 				<div ng-show="iface.encryption.value == 'mixed-psk'">
 					<juci-select ng-model="iface.cipher.value" ng-items="mixed_psk_ciphers" placeholder="Choose Cipher"/>
 				</div>
-			</juci-config-line>
+			</juci-config-line>-->
 			<juci-config-line title="{{'Key'|translate}}">
 				<div class="input-group">
 					<input type="{{(!showPassword)?'password':'text'}}" class="form-control" placeholder="{{'Key'|translate}}" ng-model="iface.key.value" />

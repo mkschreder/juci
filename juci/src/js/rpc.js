@@ -8,7 +8,6 @@
 	
 	var gettext = function(text){ return text; }; 
 	
-	// TODO: figure out a way to automatically fill out all rpc calls
 	var default_calls = [
 		"session.access", 
 		"session.login", 
@@ -32,6 +31,16 @@
 		} else {
 			RPC_CACHE[key].deferred = $.Deferred(); 
 		} 
+
+		// remove completed requests from cache
+		var retain = {}; 
+		Object.keys(RPC_CACHE).map(function(k){
+			if(RPC_CACHE[k].deferred && RPC_CACHE[k].deferred.state() == "pending"){
+				retain[k] = RPC_CACHE[k]; 
+			}
+		}); 
+		RPC_CACHE = retain; 
+
 		// setup default rpcs
 		$.jsonRPC.withOptions({
 			namespace: "", 

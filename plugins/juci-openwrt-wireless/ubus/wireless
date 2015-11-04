@@ -60,6 +60,30 @@ local function wireless_get_80211_devices()
 	return result.devices; 
 end
 
+local function wireless_get_80211_countrylist(wldev)
+	local iw = iwinfo[iwinfo.type(wldev)];
+	if(iw) then 
+		return iw.countrylist(wldev); 
+	end
+	return {}; 
+end
+
+local function wireless_get_80211_htmodelist(wldev)
+	local iw = iwinfo[iwinfo.type(wldev)];
+	if(iw) then 
+		return iw.htmodelist(wldev); 
+	end
+	return {}; 
+end
+
+local function wireless_get_80211_freqlist(wldev)
+	local iw = iwinfo[iwinfo.type(wldev)];
+	if(iw) then 
+		return iw.freqlist(wldev); 
+	end
+	return {}; 
+end
+
 local function wireless_get_80211_caps()
 	local devices = wireless_get_80211_device_names(); 
 	local result = { devices = {} }; 
@@ -112,6 +136,36 @@ local function wireless_radios()
 
 end
 
+local function wireless_countrylist(msg)
+	local result = {}
+	if(not msg.device) then
+		print(json.encode({ error = "no device specified!" })); 
+		return -1; 
+	end
+	result.countries = wireless_get_80211_countrylist(msg.device); 
+	print(json.encode(result)); 
+end
+
+local function wireless_htmodelist(msg)
+	local result = {}
+	if(not msg.device) then
+		print(json.encode({ error = "no device specified!" })); 
+		return -1; 
+	end
+	result.htmodes = wireless_get_80211_htmodelist(msg.device); 
+	print(json.encode(result)); 
+end
+
+local function wireless_freqlist(msg)
+	local result = {}
+	if(not msg.device) then
+		print(json.encode({ error = "no device specified!" })); 
+		return -1; 
+	end
+	result.channels = wireless_get_80211_freqlist(msg.device); 
+	print(json.encode(result)); 
+end
+
 local function wireless_clients()
 	local devices = wireless_get_80211_device_names(); 
 	local result = { clients = {} }; 
@@ -143,5 +197,8 @@ juci.ubus({
 	devices = wireless_devices,
 	caps = wireless_get_caps,
 	radios = wireless_radios, 
-	clients = wireless_clients
+	clients = wireless_clients,
+	countrylist = wireless_countrylist,
+	htmodelist = wireless_htmodelist,
+	freqlist = wireless_freqlist
 }, arg); 

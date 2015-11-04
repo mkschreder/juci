@@ -154,14 +154,13 @@ JUCI.app
 			var obj = {}; 
 			try {
 				obj = JSON.parse(json); 
+				upgradeStart($scope.uploadFilename); 
 			} catch(e){
 				$scope.error = "The server returned an error ("+JSON.stringify(json)+")";
 				$scope.message = "Upload completed!"
 				$scope.$apply();
 				//return;   
 			}
-			
-			upgradeStart($scope.uploadFilename); 
 			
 			$(this).unbind("load"); 
 		}); 

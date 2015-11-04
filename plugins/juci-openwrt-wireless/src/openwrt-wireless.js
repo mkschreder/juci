@@ -202,6 +202,7 @@ UCI.wireless.$registerSectionType("wifi-schedule", {
 UCI.wireless.$registerSectionType("wifi-device", {
 	"type": 			{ dvalue: "", type: String },
 	"country": 			{ dvalue: "", type: String},
+	"ifname":			{ dvalue: "", type: String }, // primary device of the radio in order to get countrylist from iwinfo
 	"band": 			{ dvalue: "none", type: String },
 	"bandwidth": 		{ dvalue: 0, type: String },
 	"htmode": 			{ dvalue: "", type: String },
@@ -283,4 +284,10 @@ UCI.wireless.$registerSectionType("wifi-iface", {
 			break; 
 	}
 	return null; 
-}); 	
+});
+
+UCI.juci.$registerSectionType("wireless", {
+	"cryptochoices": 			{ dvalue: [], type: Array }
+}); 
+UCI.juci.$insertDefaults("wireless"); 
+

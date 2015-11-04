@@ -7,7 +7,10 @@
 					"devices",
 					"caps", 
 					"radios", 
-					"clients"
+					"clients",
+					"countrylist",
+					"htmodelist", 
+					"freqlist"
 				]
 			},
 			"uci": [ "wireless" ]
