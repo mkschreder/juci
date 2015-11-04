@@ -32,6 +32,7 @@ define BuildDir-y
 	$(eval CODE_LOAD:=50) # same as LOAD, LOAD is deprecated
 	$(eval TPL_LOAD:=90)
 	$(eval STYLE_LOAD:=50)
+	$(eval PO-y:=po/*.po)
 	$(eval JAVASCRIPT-y:=src/*.js src/pages/*.js src/widgets/*.js)
 	$(eval TEMPLATES-y:=src/widgets/*.html src/pages/*.html)
 	$(eval STYLES-y:=src/css/*.css)
@@ -42,12 +43,14 @@ define BuildDir-y
 	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/,$(JAVASCRIPT-y))))
 	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/,$(TEMPLATES-y))))
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES-y))))
+	$(eval PO_$(1):=$(wildcard $(addprefix $(2)/,$(PO-y))))
 	PHONY += $(1)-install
-$(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) 
+$(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) $(PO_$(1))
 	@echo -e "\033[0;33m[JS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
 	@echo "" > $$@
-	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
+	$(Q)if [ "" != "$(JAVASCRIPT_$(1))" ]; then for file in $(JAVASCRIPT_$(1)); do cat $$$$file >> $$@; echo "" >> $$@; done; fi
+	$(Q)if [ "" != "$(PO_$(1))" ]; then ./scripts/po2js $(PO_$(1)) >> $$@; echo "" >> $$@; fi
 $(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1))
 	@echo -e "\033[0;33m[CSS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$(STYLES_$(1))"
@@ -133,7 +136,7 @@ release: prepare $(TARGETS) node_modules $(UBUS_MODS)
 
 debug: prepare $(TARGETS) $(UBUS_MODS)
 	@echo -e "\033[0;33m [GRUNT] $@ \033[m"
-	@grunt 
+	#@grunt 
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
 	@./juci-update $(BIN)/www DEBUG
 

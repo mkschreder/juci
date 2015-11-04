@@ -17,6 +17,7 @@
     "uglify-js": "*", 
     "array.prototype.find": "*",
 	"node-getopt": "*", 
+	"gettext-parser": "*",
 	"underscore": "*"
   },
   "engines": {
