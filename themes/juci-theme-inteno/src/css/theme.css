@@ -137,6 +137,10 @@ div.logo {
 	background-color: transparent; 
 }
 
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #888;
+}
+
 @media screen and (min-width: 968px) {
   .top-navbar .navbar-nav {
 		margin-top: 20px; 
