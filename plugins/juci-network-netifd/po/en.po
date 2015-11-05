@@ -825,7 +825,7 @@ msgid "network-title"
 msgstr "Network"
 
 msgid "menu-status-network-routes-title"
-msgstr "Static Routes"
+msgstr "Routing Table"
 
 msgid "menu-internet-services-title"
 msgstr "Services"
