@@ -14,18 +14,23 @@ if not conn then
 end
 
 local events = {}; 
+local event_count = 0; 
+
+local function prune_events()
+	-- remove all elements that are older than 10 seconds (old news are useless)
+	local t = os.time(os.date("*t")); 
+	local goodevents = {}; -- do not modify the list while iterating through it!
+	for i,v in pairs(events) do
+		if(v["time"] >= (t - 10)) then table.insert(goodevents, v); end
+	end
+	events = goodevents; 
+end
 
 local objects = {
 	["juci.event"] = {
 		poll = {
 			function(req, params)
-				-- first remove all elements that are older than 10 seconds (old news are useless)
-				local t = os.time(os.date("*t")); 
-				local goodevents = {}; -- do not modify the list while iterating through it!
-				for i,v in pairs(events) do
-					if(v["time"] >= (t - 10)) then table.insert(goodevents, v); end
-				end
-				events = goodevents; 
+				prune_events()
 				conn:reply(req, { list = events }); 
 				if(params and params["clear"]) then events = {}; collectgarbage(); end
 			end, { clear = ubus.INT32 }
@@ -37,6 +42,7 @@ conn:add(objects)
 
 local event_handlers = {
 	["*"] = function(msg, type)
+		prune_events(); 
 		local ev = {
 			time = os.time(os.date("*t")), -- add a timestamp
 			type = type, 
@@ -84,6 +90,7 @@ timer = uloop.timer(function()
 		}; 
 		if(event.time > last_logread_event_time) then table.insert(events, event) end
 		last_logread_event_time = event.time; 
+		prune_events(); 
 	end
 	timer:set(2000); 
 end); 
