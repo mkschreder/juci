@@ -14,8 +14,8 @@
 				<juci-config-line title="{{'Port'|translate}}">
 					<input type="text" class="form-control" ng-model="config.port.value"/>
 				</juci-config-line>
-				<juci-config-line title="{{'Interfaces'|translate}}">
-					
+				<juci-config-line title="{{'Network'|translate}}">
+					<isteven-multi-select input-model="network.all" output-model="network.selected" button-label="name" item-label="name" tick-property="selected"></isteven-multi-select>	
 				</juci-config-line>
 				<juci-config-line title="{{'Friendly Name'|translate}}">
 					<input type="text" class="form-control" ng-model="config.friendly_name.value"/>
