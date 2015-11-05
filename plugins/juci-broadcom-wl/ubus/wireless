@@ -41,7 +41,7 @@ wireless_devices(){
 				if($c == "Rates:") {
 					printf "string|rates="; 
 					c+=2; 
-					while($c != "]") {
+					while($c != "]" && c < NF) {
 						printf $(c); 
 						c++; 
 						if($c != "]") printf ","
@@ -54,9 +54,9 @@ wireless_devices(){
 				if($c == "MCS") {
 					printf "string|supported_channels="; 
 					c+=3; 
-					while($c != "]") {
-						printf $(c); 
-						if($c != "[" && $(c+1) != "]") printf ","
+					while($c != "]" && c < NF) {
+						if($c != "[" && $c != "]") printf $(c); 
+						if($c != "[" && $(c+1) != "]" && (c+1) != NF) printf ","
 						c++; 
 					} 
 					printf "\n"; 
