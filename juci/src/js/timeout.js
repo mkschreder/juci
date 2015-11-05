@@ -26,8 +26,8 @@
 		$clearAll: function(){
 			Object.keys(_timeouts).map(function(t){ 
 				clearTimeout(_timeouts[t]); 
-				_timeouts[t].cleared = true; 
 			});
+			_timeouts = {}; 
 		} 
 	}; 
 })(); 

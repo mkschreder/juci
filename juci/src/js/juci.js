@@ -13,7 +13,7 @@
 	
 	JUCIMain.prototype.module = function(name, root, data){
 		console.error("WARNING: JUCI.module() is deprecated! ["+name+"]"); 
-		var self = this; 
+		/*var self = this; 
 		if(data){
 			data.plugin_root = root; 
 			self.plugins[name] = data; 
@@ -37,7 +37,7 @@
 				$juci.$stateProvider.state(name, obj); 
 				return this; 
 			}
-		}
+		}*/
 	}; 
 	
 	JUCIMain.prototype.page = function(name, template, redirect){

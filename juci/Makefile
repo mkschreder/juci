@@ -29,7 +29,7 @@ define Plugin/juci
 	JAVASCRIPT-y+=src/lib/js/bootstrap.min.js
 	JAVASCRIPT-y+=src/lib/js/angular.min.js
 	JAVASCRIPT-y+=src/lib/js/angular-ui.min.js
-	JAVASCRIPT-y+=src/lib/js/angular-ui-router.min.js
+	JAVASCRIPT-y+=src/lib/js/angular-ui-router.js
 	JAVASCRIPT-y+=src/lib/js/angular-gettext.min.js
 	JAVASCRIPT-y+=src/lib/js/angular-prompt.js
 	JAVASCRIPT-y+=src/lib/js/bootstrap-select.min.js
