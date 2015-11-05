@@ -37,6 +37,7 @@ UCI.minidlna.$registerSectionType("minidlna", {
 	"model_number":			{ dvalue: "", type: String },
 	"root_container":		{ dvalue: "", type: String },
 	"media_dir":				{ dvalue: [], type: Array },
-	"album_art_names":	{ dvalue: "", type: String }
+	"album_art_names":	{ dvalue: "", type: String },
+	"network":			{ dvalue: "lan", type: String }
 });
 			
