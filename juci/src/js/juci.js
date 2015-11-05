@@ -98,9 +98,19 @@
 					next(); 
 					return; 
 				}
-
+				
+				// retrieve session acls map
+				var acls = {}; 
+				if(UBUS.$session && UBUS.$session.acls && UBUS.$session.acls["access-group"]){
+					acls = UBUS.$session.acls["access-group"]; 
+				}
 				console.log("juci: loading menu from server.."); 
 				$uci.juci["@menu"].map(function(menu){
+					// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
+					if(menu.acls.value.length && menu.acls.value.filter(function(x){
+						return acls[x]; 
+					}).length == 0) return; 
+
 					var redirect = menu.redirect.value; 
 					var page = menu.page.value; 
 					if(page == "") page = undefined; 
