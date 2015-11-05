@@ -19,7 +19,6 @@ JUCI.app
 				$scope.onChange({$item: item, $value: item.value, $oldvalue: ngModel($scope.$parent)}); 
 				ngModel.assign($scope.$parent, item.value); 
 				$scope.selected = item; 
-				console.log(JSON.stringify(item)); 
 			}
 			$scope.$watch("ngItems", function(){
 				if(!$scope.ngItems || !$scope.ngModel) return; 
