@@ -90,7 +90,7 @@ JUCI.app
 		$scope.success = null; 
 		$scope.errors = []; 
 		try {
-			$uci.save().done(function(){
+			$uci.$save().done(function(){
 				console.log("Saved uci configuration!"); 
 			}).fail(function(errors){
 				$scope.errors = errors; 
