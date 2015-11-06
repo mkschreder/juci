@@ -9,28 +9,30 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 msgid ""
 "A new system software upgrade is available. Do you want to visit upgrade "
 "page and upgrade now?"
 msgstr ""
-"Ohjelmistopäivitys on saatavilla. Haluatko päivittää avata päivityssivun ja "
-"päivittää nyt?"
+"Ohjelmistopäivitys on saatavilla. Haluatko avata päivityssivun ja päivittää "
+"nyt?"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.js
 msgid "Verifying firmware image"
-msgstr ""
+msgstr "Tarkistetaan ohjelmistoa"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.js
 msgid ""
 "Upgrade process has started. The web gui will not be available until the "
 "upgrade process has completed!"
 msgstr ""
+"Päivitys on alkanut. Web-hallinta ei ole käytettävissä ennen kuin päivitys "
+"on valmis!"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.js
 msgid "No upgrade has been found!"
-msgstr ""
+msgstr "Päivitystä ei saatavilla!"
 
 msgid ".w (JFFS Image)"
 msgstr ".w (JFFS Image)"
@@ -44,15 +46,15 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/widgets/upgrade.popup.js
 msgid "You need to select a network!"
-msgstr ""
+msgstr "Valitse verkko!"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/widgets/upgrade.popup.html
 msgid "Pick image to upgrade"
-msgstr ""
+msgstr "Valitse päivitystiedosto"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/widgets/upgrade.popup.html
 msgid "New software is available"
-msgstr ""
+msgstr "Uusi ohjelmisto on saatavilla"
 
 #, fuzzy
 msgid "Firmware Upgrade"
@@ -68,7 +70,7 @@ msgstr "Nykyinen ohjelmistoversio"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Online Update"
-msgstr ""
+msgstr "Verkkopäivitys"
 
 #, fuzzy
 msgid "settings.upgrade.online.info"
@@ -91,7 +93,7 @@ msgstr "Puhelinlinjojen tila."
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Manual Firmware Upgrade"
-msgstr ""
+msgstr "Manuaalinen ohjelmistopäivitys"
 
 #, fuzzy
 msgid "settings.upgrade.manual.info"
@@ -99,7 +101,7 @@ msgstr "Puhelinlinjojen tila."
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Pick firmware file to upload"
-msgstr ""
+msgstr "Valitse ladattava ohjelmisto"
 
 #, fuzzy
 msgid "Start upgrade"
@@ -111,11 +113,11 @@ msgstr "DHCP-varauksen aika"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Online upgrade is disabled"
-msgstr ""
+msgstr "Online päivitys poissa käytöstä"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "USB upgrade is disabled"
-msgstr ""
+msgstr "USB päivitys poissa käytöstä"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid ""
@@ -123,13 +125,15 @@ msgid ""
 "and restored after the upgrade has completed. If you choose 'no' then all "
 "your current confiration will be reset to defaults."
 msgstr ""
+"Jos valitset \"Kyllä\", asetuksesi säilytetään. Jos valitset \"Ei\", "
+"asetukset palautetaan tehdasasetuksille."
 
 msgid "Close"
 msgstr "Sulje"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html
 msgid "Upgrade Options"
-msgstr ""
+msgstr "Tarkista päivitykset"
 
 #, fuzzy
 msgid "settings.upgrade.options.info"
@@ -137,15 +141,15 @@ msgstr "Puhelinlinjojen tila."
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html
 msgid "URL for file with latest image filename"
-msgstr ""
+msgstr "Uusimman ohjelmiston URL"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html
 msgid "Upgrade URL base path"
-msgstr ""
+msgstr "Päivitysosoitteen polku"
 
 #, fuzzy
 msgid "HTTP Directory"
@@ -157,7 +161,7 @@ msgstr "Nykyinen ohjelmistoversio"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html
 msgid "Online Upgrade"
-msgstr ""
+msgstr "Online päivitys"
 
 #, fuzzy
 msgid "USB Upgrade"

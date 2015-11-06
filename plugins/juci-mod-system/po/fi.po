@@ -9,23 +9,25 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.js
 msgid ""
 "This will reset your configuration to factory defaults. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Tämä palauttaa tehdasasetukset. Haluatko jatkaa?"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-password.js
 msgid "Passwords do not match!"
-msgstr ""
+msgstr "Salasanat eivät täsmää!"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-password.js
 msgid ""
 "Was unable to set password. Please make sure you have entered correct "
 "current password!"
 msgstr ""
+"Salasanan asettaminen epäonnistui. Tarkista, että nykyinen salasana on "
+"oikein!"
 
 #, fuzzy
 msgid "Hostname"
@@ -33,14 +35,14 @@ msgstr "Käyttäjä"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Model"
-msgstr ""
+msgstr "Malli"
 
 msgid "N/A"
 msgstr "Ei saatavilla"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Release"
-msgstr ""
+msgstr "Julkaisuaika:"
 
 #, fuzzy
 msgid "Firmware Version"
@@ -48,11 +50,11 @@ msgstr "Nykyinen ohjelmistoversio"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Kernel Version"
-msgstr ""
+msgstr "Kernel versio"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Target"
-msgstr ""
+msgstr "Kohde"
 
 #, fuzzy
 msgid "Local Time"
@@ -60,42 +62,42 @@ msgstr "Aika"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Uptime"
-msgstr ""
+msgstr "Päälläoloaika"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Load Average"
-msgstr ""
+msgstr "Keskimääräinen kuormitus"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Usage"
-msgstr ""
+msgstr "Käyttö"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Shared"
-msgstr ""
+msgstr "Jaettu"
 
 msgid "Buffered"
 msgstr "Puskuroitu"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/internet-services-ntp.html
 msgid "List of NTP servers"
-msgstr ""
+msgstr "Luettelo NTP-palvelimista"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/internet-services-ntp.html
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/internet-services-ntp.html
 msgid "NTP Settings"
-msgstr ""
+msgstr "NTP-asetukset"
 
 #, fuzzy
 msgid "Configuration"
@@ -107,31 +109,31 @@ msgstr "Puhelinlinjojen tila."
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Save settings to computer with password protection"
-msgstr ""
+msgstr "Tallenna salasanalla suojattu asetusten varmuuskopio tietokoneelle"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Restore settings from a configuration saved on a computer"
-msgstr ""
+msgstr "Palauta asetukset tietokoneelle tallennetusta varmuuskopiosta"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Load"
-msgstr ""
+msgstr "Lataa"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Factory Settings"
-msgstr ""
+msgstr "Tehdasasetukset"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Reset restores the factory default settings of your gateway"
-msgstr ""
+msgstr "Palauta oletusasetuksiin palauttaa modeemin tehdasasetuksille"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Reset"
-msgstr ""
+msgstr "Palauta oletusasetuksiin"
 
 #, fuzzy
 msgid "Save Configuration to Computer"
@@ -150,14 +152,14 @@ msgstr "Varmuuskopiotiedoston salasana"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Pick configuration backup to upload"
-msgstr ""
+msgstr "Valitse ladattava varmuuskopio"
 
 msgid "Backup file password"
 msgstr "Varmuuskopiotiedoston salasana"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Password (if encrypted)"
-msgstr ""
+msgstr "Salasana (jos salattu)"
 
 #, fuzzy
 msgid "Start upgrade"
@@ -165,15 +167,15 @@ msgstr "DHCP-varauksen aika"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Upgrade"
-msgstr ""
+msgstr "﻿Päivitä"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Please add a comment describing this configuration"
-msgstr ""
+msgstr "Lisää kommentti tästä konfiguraatiosta"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "Energy Settings"
-msgstr ""
+msgstr "Virranhallinta"
 
 #, fuzzy
 msgid "settings.energy.info"
@@ -181,27 +183,27 @@ msgstr "Puhelinlinjojen tila."
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "USB Port"
-msgstr ""
+msgstr "USB-portti"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "Status-LED"
-msgstr ""
+msgstr "Status-LED"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "Power-LED"
-msgstr ""
+msgstr "Power-LED"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "Power-LED Brightness"
-msgstr ""
+msgstr "Power-LED:n kirkkaus"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "Missing uci config boardpanel."
-msgstr ""
+msgstr "Missing uci config boardpanel."
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-management.html
 msgid "Management"
-msgstr ""
+msgstr "Hallinta"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-management.html
 msgid "system.management.info"
@@ -217,7 +219,7 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-password.html
 msgid "Your account"
-msgstr ""
+msgstr "Tilisi"
 
 msgid "Change Password"
 msgstr "Vaihda salasana"
@@ -228,7 +230,7 @@ msgstr "Fyysinen liitäntä"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-services.html
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteetti"
 
 #, fuzzy
 msgid "Service"
@@ -247,31 +249,31 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-system.html
 msgid "Set to Browser Time"
-msgstr ""
+msgstr "Aseta selaimen aikaan"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-system.html
 msgid "Timezone"
-msgstr ""
+msgstr "Aikavyöhyke"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-system.html
 msgid "General System Settings"
-msgstr ""
+msgstr "Yleiset järjestelmäasetukset"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-uci.html
 msgid "Loading"
-msgstr ""
+msgstr "Lataan..."
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.html
 msgid "System Status"
-msgstr ""
+msgstr "Järjestelmän tila"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.html
 msgid "Memory"
-msgstr ""
+msgstr "Muisti"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.html
 msgid "Storage"
-msgstr ""
+msgstr "Tallennustila"
 
 #, fuzzy
 msgid "status.system.processes.info"
@@ -281,7 +283,7 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system-processes.html
 msgid "Running Processes"
-msgstr ""
+msgstr "Käynnissä olevat prosessit"
 
 #, fuzzy
 msgid "settings-password-title"

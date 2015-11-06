@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #, fuzzy
 msgid "Hostname"
@@ -25,11 +25,11 @@ msgstr "Osoite"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-status-network.js
 msgid "Leasetime remaining"
-msgstr ""
+msgstr "Leasetime - jäljellä oleva aika"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-status-network.js
 msgid "No active leases"
-msgstr ""
+msgstr "Ei aktiivisia leaseja"
 
 #, fuzzy
 msgid "MAC address"
@@ -37,11 +37,11 @@ msgstr "Osoite"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-status-network.js
 msgid "Signal"
-msgstr ""
+msgstr "Signaali"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-status-network.js
 msgid "Noise"
-msgstr ""
+msgstr "Kohina"
 
 #, fuzzy
 msgid "RX Rate"
@@ -60,7 +60,7 @@ msgstr "Aktiivisia tukiasemia"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Event Log"
-msgstr ""
+msgstr "Tapahtumaloki"
 
 #, fuzzy
 msgid "status.eventlog.info"
@@ -68,30 +68,30 @@ msgstr "Puhelinlinjojen tila."
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Select events to show"
-msgstr ""
+msgstr "Valitse näytettävät tapahtumat"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Log"
-msgstr ""
+msgstr "Loki"
 
 msgid "Date"
 msgstr "Päivämäärä"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Type"
-msgstr ""
+msgstr "Tyyppi"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Source"
-msgstr ""
+msgstr "Lähde"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Message"
-msgstr ""
+msgstr "Viesti"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-restart.html
 msgid "Restart"
-msgstr ""
+msgstr "Käynnistä uudelleen"
 
 #, fuzzy
 msgid "status.restart.info"
@@ -105,6 +105,8 @@ msgid ""
 "Restart takes about 3 minutes. When restart is completed the page will "
 "reload automatically. "
 msgstr ""
+"Uudelleenkäynnistys kestää noin 3 minuuttia. Kun uudelleenkäynnistys on "
+"valmis, sivu latautuu automaattisesti uudelleen."
 
 #, fuzzy
 msgid "Connections"

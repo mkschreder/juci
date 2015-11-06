@@ -9,21 +9,23 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 # /home/martin/juci/plugins/juci-netmode/src/widgets/netmode-picker.js
 msgid "You need to select a netmode!"
-msgstr ""
+msgstr "Sinun täytyy valita netmode!"
 
 # /home/martin/juci/plugins/juci-netmode/src/widgets/overview-netmode.js
 msgid ""
 "Changing netmode will reset your configuration completely to match that "
 "netmode. Do you want to continue?"
 msgstr ""
+"Changing netmode will reset your configuration completely to match that "
+"netmode. Do you want to continue?"
 
 # /home/martin/juci/plugins/juci-netmode/src/widgets/netmode-picker.html
 msgid "Pick Preset"
-msgstr ""
+msgstr "Esiasetukset"
 
 #, fuzzy
 msgid "Reset Configuration"
@@ -44,7 +46,7 @@ msgstr "Peruuta"
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-netmode/src/widgets/overview-netmode-small.html
 msgid "Profile"
-msgstr ""
+msgstr "Profiili"
 
 #~ msgid "DECT Radio"
 #~ msgstr "DECT Radio"

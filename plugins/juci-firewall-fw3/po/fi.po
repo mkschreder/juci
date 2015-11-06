@@ -9,11 +9,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.js
 msgid "Please select a rule to delete!"
-msgstr ""
+msgstr "Valitse poistettava sääntö!"
 
 #, fuzzy
 msgid "Are you sure you want to delete this rule?"
@@ -21,14 +21,14 @@ msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-zones.js
 msgid "Please select a zone to delete!"
-msgstr ""
+msgstr "Valitse poistettava vyöhyke!"
 
 msgid "Are you sure you want to delete this zone?"
 msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.js
 msgid "Parental Rule"
-msgstr ""
+msgstr "Vanhempien sääntö"
 
 msgid "ACCEPT"
 msgstr "HYVÄKSY"
@@ -38,43 +38,43 @@ msgstr "HYVÄKSY"
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
 msgid "REJECT"
-msgstr ""
+msgstr "HYLKÄÄ"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
 msgid "FORWARD"
-msgstr ""
+msgstr "EDELLEENLÄHETYS"
 
 msgid "DROP"
 msgstr "HYLKÄÄ"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.js
 msgid "Unspecified"
-msgstr ""
+msgstr "Määrittelemätön"
 
 msgid "Any"
 msgstr "Kaikki"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.js
 msgid "Please select a connection in the list!"
-msgstr ""
+msgstr "Valitse yhteys luettelosta!"
 
 msgid "Are you sure you want to remove this network from this zone?"
 msgstr "Haluatko varmasti poistaa tämän verkon tältä vyöhykkeeltä?"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.js
 msgid "UDP"
-msgstr ""
+msgstr "UDP"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.js
 msgid "TCP"
-msgstr ""
+msgstr "TCP"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.js
 msgid "TCP + UDP"
-msgstr ""
+msgstr "TCP +  UDP"
 
 #, fuzzy
 msgid "MAC Address"
@@ -85,7 +85,7 @@ msgstr "Osoite"
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
 msgid "Select Existing Host"
-msgstr ""
+msgstr "Valitse olemassa oleva isäntäkone"
 
 #, fuzzy
 msgid "Invalid MAC address"
@@ -96,11 +96,11 @@ msgstr "Nimi"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "Source zone"
-msgstr ""
+msgstr "Lähde vyöhyke"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #, fuzzy
 msgid "IP Address"
@@ -108,19 +108,19 @@ msgstr "Osoite"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "MAC"
-msgstr ""
+msgstr "MAC"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "Port"
-msgstr ""
+msgstr "Portti"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "Destination zone"
-msgstr ""
+msgstr "Kohde"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "Family"
-msgstr ""
+msgstr "Perhe"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
@@ -131,15 +131,15 @@ msgstr ""
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
 msgid "Protocol"
-msgstr ""
+msgstr "Protokolla"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "Firewall Action"
-msgstr ""
+msgstr "Palomuuritoiminto"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "Source"
-msgstr ""
+msgstr "Lähde"
 
 #, fuzzy
 msgid "Destination"
@@ -147,7 +147,7 @@ msgstr "Kesto"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-urlfilter-editor.html
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #, fuzzy
 msgid "Enable WAN forwarding for this service"
@@ -158,7 +158,7 @@ msgstr "Määritä palomuurisääntö tälle palvelulle"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
 msgid "Default Policy"
-msgstr ""
+msgstr "Oletussääntö"
 
 #, fuzzy
 msgid "Zone members:"
@@ -166,15 +166,15 @@ msgstr "Puhelinnumero"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
 msgid "Input"
-msgstr ""
+msgstr "Input"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
 msgid "Output"
-msgstr ""
+msgstr "Output"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-zone-edit.html
 msgid "Forward"
-msgstr ""
+msgstr "Forward"
 
 #, fuzzy
 msgid "Rule Name"
@@ -198,7 +198,7 @@ msgstr "Fyysinen liitäntä"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
 msgid "Source Zone"
-msgstr ""
+msgstr "Alue"
 
 #, fuzzy
 msgid "Dst. Device"
@@ -213,32 +213,32 @@ msgstr "Osoite"
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
 msgid "Public port"
-msgstr ""
+msgstr "Julkinen Portti"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
 msgid "Public port range"
-msgstr ""
+msgstr "Julkinen porttialue"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
 msgid "Private port"
-msgstr ""
+msgstr "Yksityinen portti"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.nat.rule.edit.html
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
 msgid "Private port range"
-msgstr ""
+msgstr "Yksityinen porttialue"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
 msgid "Select protocol"
-msgstr ""
+msgstr "Valitse protokolla"
 
 #, fuzzy
 msgid "Device"
@@ -250,11 +250,11 @@ msgstr "Osoite"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/uci.firewall.rule.edit.html
 msgid "Type"
-msgstr ""
+msgstr "Palvelutyyppi"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
 msgid "DMZ / Exposed Host"
-msgstr ""
+msgstr "DMZ / Exposed Host"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
 msgid "internet.exposed_host.info"
@@ -282,7 +282,7 @@ msgstr "Osoite"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
 msgid "Pick Existing Host"
-msgstr ""
+msgstr "Valitse isäntäkone"
 
 msgid ""
 "Choose the local IP address that should be exposed to Internet. Additionally "
@@ -295,7 +295,7 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-forwarding.html
 msgid "Firewall Forwarding"
-msgstr ""
+msgstr "Palomuuri Edelleenlähetys"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-forwarding.html
 msgid "internet.firewall.forwarding.info"
@@ -311,7 +311,7 @@ msgstr "Käytössä"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall.html
 msgid "Firewall settings"
-msgstr ""
+msgstr "Palomuuriasetukset"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall.html
 msgid "internet.firewall.info"
@@ -329,7 +329,7 @@ msgstr "Peruuta"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #, fuzzy
 msgid "Port Mapping"
@@ -340,6 +340,8 @@ msgid ""
 "Port mapping allows remote computers to connect to a specific device within "
 "your private network."
 msgstr ""
+"Porttiohjauksella sallitaan yhteys ulkoverkosta sisäverkon laitteen "
+"osoitteeseen."
 
 #, fuzzy
 msgid "Direction"
@@ -347,19 +349,19 @@ msgstr "Kesto"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
 msgid "Dst. IP"
-msgstr ""
+msgstr "Dst. IP"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
 msgid "Local port"
-msgstr ""
+msgstr "Paikallinen portti"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
 msgid "Public Port"
-msgstr ""
+msgstr "Julkinen Portti"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.html
 msgid "Rules"
-msgstr ""
+msgstr "Säännöt"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.html
 msgid "internet.firewall.rules.info"
@@ -377,7 +379,7 @@ msgstr "Fyysinen liitäntä"
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-wordfilter.html
 msgid "Service Filtering"
-msgstr ""
+msgstr "Palvelu suodatus"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-svcfilter.html
@@ -388,7 +390,7 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-urlblock.html
 msgid "URL Filtering"
-msgstr ""
+msgstr "URL"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-urlblock.html
 msgid "internet.firewall.urlfilter.info"
@@ -399,7 +401,7 @@ msgstr "Lisää URL estolistalle"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-zones.html
 msgid "Firewall Zones"
-msgstr ""
+msgstr "Palomuurivyöhykkeet"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-zones.html
 msgid "internet.firewall.zones.info"
@@ -411,7 +413,7 @@ msgstr "Numeron esto"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
 msgid "Parental Control"
-msgstr ""
+msgstr "Lapsilukko"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
 msgid "internet.parental.control.info"
@@ -419,7 +421,7 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
 msgid "URL Blocking Function"
-msgstr ""
+msgstr "Lisää URL estolistalle"
 
 #, fuzzy
 msgid "Internet Access Scheduling"
@@ -427,7 +429,7 @@ msgstr "Valitse Aikataulutila"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-parental-control.html
 msgid "Weekdays"
-msgstr ""
+msgstr "MA – PE, Arkisin"
 
 #, fuzzy
 msgid "Start Time"

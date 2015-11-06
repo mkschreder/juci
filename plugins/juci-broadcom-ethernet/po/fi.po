@@ -9,54 +9,54 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Full auto-negotiation"
-msgstr ""
+msgstr "Full auto-negotiation"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Max 100Mb auto-negotiation, full duplex"
-msgstr ""
+msgstr "Max 100Mb auto-negotiation, full duplex"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Max 100Mb auto-negotiation, half duplex"
-msgstr ""
+msgstr "Max 100Mb auto-negotiation, half duplex"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Max 10Mb auto-negotiation, full duplex"
-msgstr ""
+msgstr "Max 10Mb auto-negotiation, full duplex"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Max 10Mb auto-negotiation, half duplex"
-msgstr ""
+msgstr "Max 10Mb auto-negotiation, half duplex"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Only 100Mb, full duplex"
-msgstr ""
+msgstr "Only 100Mb, full duplex"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Only 100Mb, half duplex"
-msgstr ""
+msgstr "Only 100Mb, half duplex"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Only 10Mb, full duplex"
-msgstr ""
+msgstr "Only 100Mb, full duplex"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Only 10Mb, half duplex"
-msgstr ""
+msgstr "Only 100Mb, half duplex"
 
 msgid "Disabled"
 msgstr "Pois käytöstä"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
 msgid "Port speed"
-msgstr ""
+msgstr "Portin nopeus"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
 msgid "Pause frames"
-msgstr ""
+msgstr "Pause frames"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid "internet.ethernet.phy.info"
@@ -66,15 +66,15 @@ msgstr ""
 msgid ""
 "This will be the port that will be used to configure the physical ethernet "
 "port as upling port for routing out to the internet."
-msgstr ""
+msgstr "Tätä porttia käytetään Internetporttina"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid "Ethernet Ports"
-msgstr ""
+msgstr "Ethernet portit"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid "Pick uplink port"
-msgstr ""
+msgstr "Valitse Internetportti"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid " socket will be used for passing packets to the internet."

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #, fuzzy
 msgid "New device"
@@ -20,7 +20,7 @@ msgstr "Fyysinen liitäntä"
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-vdsl.js
 msgid "Please select a device in the list!"
-msgstr ""
+msgstr "Valitse laite luettelosta!"
 
 #, fuzzy
 msgid "Are you sure you want to delete this device?"
@@ -28,7 +28,7 @@ msgstr "Haluatko varmasti poistaa tämän säännön?"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-dsl-status.js
 msgid "DSL Status Information"
-msgstr ""
+msgstr "DSL Status"
 
 #, fuzzy
 msgid "Line Status"
@@ -43,7 +43,7 @@ msgstr "Bittinopeus"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-dsl-status.js
 msgid "Operating Data"
-msgstr ""
+msgstr "Käyttötiedot"
 
 #, fuzzy
 msgid "Error Counter"
@@ -54,74 +54,74 @@ msgstr "Solutilastot"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/dsl-base-device-picker.js
 msgid "You need to select a device!"
-msgstr ""
+msgstr "Valitse laite!"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "EoA"
-msgstr ""
+msgstr "EoA"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "PPPoA"
-msgstr ""
+msgstr "PPPoA"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "IPoA"
-msgstr ""
+msgstr "IPoA"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "LLC/SNAP-Bridging"
-msgstr ""
+msgstr "LLC / SNAP-Bridging"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "VC/MUX"
-msgstr ""
+msgstr "VC / MUX"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "UBR Without PCR"
-msgstr ""
+msgstr "UBR Without PCR"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "UBR With PCR"
-msgstr ""
+msgstr "UBR With PCR"
 
 msgid "CBR"
 msgstr "CBR"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "Non-Realtime VBR"
-msgstr ""
+msgstr "Non-Realtime VBR"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
 msgid "Realtime VBR"
-msgstr ""
+msgstr "Realtime VBR"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
 msgid "Latency Path 1"
-msgstr ""
+msgstr "Latenssi Path 1"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
 msgid "Latency Path 2"
-msgstr ""
+msgstr "Latenssi Path 1"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
 msgid "Latency Path 1 & 2"
-msgstr ""
+msgstr "Latenssi Path 1"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
 msgid "Normal Priority"
-msgstr ""
+msgstr "Normaali prioriteetti"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
 msgid "High Priority"
-msgstr ""
+msgstr "Korkea prioriteetti"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
 msgid "Strict Priority Precedence"
-msgstr ""
+msgstr "Määritelty prioriteettijärjestys"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
 msgid "Weighted Fair Queuing"
-msgstr ""
+msgstr "Painotettu Fair Queuing"
 
 #, fuzzy
 msgid "Pick Device"
@@ -141,15 +141,15 @@ msgstr "Fyysinen liitäntä"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html
 msgid "VPI"
-msgstr ""
+msgstr "VPI"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html
 msgid "VCI"
-msgstr ""
+msgstr "VCI"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html
 msgid "Service Type"
-msgstr ""
+msgstr "Palvelutyyppi"
 
 #, fuzzy
 msgid "PCR"
@@ -161,27 +161,27 @@ msgstr "CBR"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html
 msgid "MBS"
-msgstr ""
+msgstr "MBS"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html
 msgid "Select DSL Link Type"
-msgstr ""
+msgstr "Valitse DSL-linkkityyppi"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.html
 msgid "Encapsulation Mode"
-msgstr ""
+msgstr "Kapselointitila"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html
 msgid "DSL Latency Path"
-msgstr ""
+msgstr "DSL Latency Path"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html
 msgid "PTM Priority"
-msgstr ""
+msgstr "PTM Prioriteetti"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html
 msgid "IP QoS Scheduler Algorithm"
-msgstr ""
+msgstr "IP QoS Scheduler algoritmi"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-adsl.html
 msgid "internet.ethernet.adsl.info"
@@ -208,9 +208,8 @@ msgstr "Puhepalvelu ei ole saatavilla!"
 msgid "internet.ethernet.vdsl.info"
 msgstr ""
 
-#, fuzzy
 msgid "VDSL Devices"
-msgstr "ADSL-laitteet"
+msgstr "VDSL-laitteet"
 
 # /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-dsl-status.html
 msgid "page-broadcom-dsl-status-title"
