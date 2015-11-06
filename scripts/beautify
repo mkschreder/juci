@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for file in juci/src/{js,widgets,pages}/*.js plugins/**/src/{widgets,pages}/*.js themes/**/src/{widgets,pages}/*.js; do
+	echo "[beautify] $file"
+	js-beautify -P -d -f -n -s 1 -t $file > .beautify.tmp
+	cp .beautify.tmp $file
+done
