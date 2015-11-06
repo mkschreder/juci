@@ -22,10 +22,16 @@ function system_filesystems(opts)
 end
 
 function system_logread(opts)
+	local filter = opts.filter;
 	local res = {}; 
 	local lines = {}; 
 	res["lines"] = lines; 
-	local stdout = juci.shell("logread -l 20 2>/dev/null"); 
+	local stdout;
+	if (not filter or filter == "") then
+		stdout = juci.shell("logread | tail -n 20 2>/dev/null"); 
+	else
+		stdout = juci.shell("logread | grep \"%s\" | tail -n 20 2>/dev/null", filter); 
+	end
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local date,type,source,message = line:match("([^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*)%s+([^%s]*)%s+([^%s:]*):%s+(.*)"); 
 		string.gsub(message, "\n", ""); 
