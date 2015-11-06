@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.js
 msgid "Add folder to share"
@@ -39,13 +39,11 @@ msgstr "Vain kuvia"
 msgid "Media type"
 msgstr "Mediatyyppi"
 
-#, fuzzy
 msgid "Select folder"
-msgstr "Valitse yksi"
+msgstr "Valitse kansio"
 
-#, fuzzy
 msgid "Enable"
-msgstr "Käytössä"
+msgstr "Ota käyttöön"
 
 # /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.html
 msgid "Port"
@@ -76,15 +74,13 @@ msgstr "MiniDLNA Asetukset"
 
 # /home/martin/juci/plugins/juci-minidlna/src/pages/internet-services-minidlna.html
 msgid "minidlna.settings.info"
-msgstr ""
+msgstr "MiniDLNA mahdollistaa musiikin, videoiden, valokuvien ja tiedostojen jakamisen reitittimeen kytketyltä USB-kiintolevyltä."
 
-#, fuzzy
 msgid "internet-services-minidlna-title"
-msgstr "Linjat"
+msgstr "MiniDLNA"
 
-#, fuzzy
 msgid "menu-internet-services-minidlna-title"
-msgstr "Linjat"
+msgstr "MiniDLNA"
 
 #, fuzzy
 #~ msgid "Interfaces"

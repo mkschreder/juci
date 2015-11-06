@@ -9,19 +9,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-upnp/src/pages/upnpd-settings.html
 msgid "UPNP Settings"
 msgstr "UPNP asetukset"
 
-#, fuzzy
 msgid "internet.services.upnp.info"
-msgstr "Fyysinen liitäntä"
+msgstr "UPnP"
 
-#, fuzzy
 msgid "Enable"
-msgstr "Käytössä"
+msgstr "Ota käyttöön"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-upnp/src/pages/upnpd-settings.html
@@ -86,21 +84,17 @@ msgstr "Source"
 msgid "Dest."
 msgstr "Dest."
 
-#, fuzzy
 msgid "upnpd-settings-title"
-msgstr "Linjat"
+msgstr "UPNP"
 
-#, fuzzy
 msgid "upnpd-status-title"
-msgstr "Linjat"
+msgstr "UPNP asetukset"
 
-#, fuzzy
 msgid "menu-upnpd-settings-title"
-msgstr "Linjat"
+msgstr "UPNP"
 
-#, fuzzy
 msgid "menu-upnpd-status-title"
-msgstr "Puhelin"
+msgstr "PuhelinUPNP"
 
 #, fuzzy
 #~ msgid "uhttpd.settings.info"

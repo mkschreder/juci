@@ -9,19 +9,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
-#, fuzzy
 msgid "Hostname"
-msgstr "Käyttäjä"
+msgstr "Isäntäkoneen nimi"
 
-#, fuzzy
 msgid "IPv4-Address"
-msgstr "Osoite"
+msgstr "IPv4-osoite"
 
-#, fuzzy
 msgid "MAC-Address"
-msgstr "Osoite"
+msgstr "MAC Osoite"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-status-network.js
 msgid "Leasetime remaining"
@@ -31,9 +28,8 @@ msgstr "Leasetime - jäljellä oleva aika"
 msgid "No active leases"
 msgstr "Ei aktiivisia leaseja"
 
-#, fuzzy
 msgid "MAC address"
-msgstr "Osoite"
+msgstr "MAC-osoite"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-status-network.js
 msgid "Signal"
@@ -43,28 +39,24 @@ msgstr "Signaali"
 msgid "Noise"
 msgstr "Kohina"
 
-#, fuzzy
 msgid "RX Rate"
-msgstr "Bittinopeus"
+msgstr "RX Nopeus"
 
-#, fuzzy
 msgid "TX Rate"
-msgstr "Bittinopeus"
+msgstr "TX Nopeus"
 
 msgid "Active Connections"
 msgstr "Aktiivisia yhteyksiä"
 
-#, fuzzy
 msgid "No active stations"
-msgstr "Aktiivisia tukiasemia"
+msgstr "Ei aktiivisia tukiasemia"
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Event Log"
 msgstr "Tapahtumaloki"
 
-#, fuzzy
 msgid "status.eventlog.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Valitse kategoriat, jotka haluat nähdä tapahtumalokissa."
 
 # /home/martin/juci/plugins/juci-mod-status/src/pages/status-events.html
 msgid "Select events to show"
@@ -93,9 +85,11 @@ msgstr "Viesti"
 msgid "Restart"
 msgstr "Käynnistä uudelleen"
 
-#, fuzzy
 msgid "status.restart.info"
-msgstr "Puhelinlinjojen tila."
+msgstr ""
+"Tällä sivulla voit yhdistää Internetiin uudelleen ja käynnistää modeemin "
+"uudelleen. Huomioi, että puhelin, Internet ja TV palvelut ovat poissa "
+"käytöstä prosessin aikana."
 
 msgid "Click here to restart your device"
 msgstr "Paina tästä käynnistääksesi laitteesi uudelleen"
@@ -108,9 +102,8 @@ msgstr ""
 "Uudelleenkäynnistys kestää noin 3 minuuttia. Kun uudelleenkäynnistys on "
 "valmis, sivu latautuu automaattisesti uudelleen."
 
-#, fuzzy
 msgid "Connections"
-msgstr "Yhteys"
+msgstr "Yhteydet"
 
 msgid "DHCP Leases"
 msgstr "DHCP-varaukset"
@@ -118,37 +111,29 @@ msgstr "DHCP-varaukset"
 msgid "Active Stations"
 msgstr "Aktiivisia tukiasemia"
 
-#, fuzzy
 msgid "status-title"
-msgstr "Puhelin"
+msgstr "Status"
 
-#, fuzzy
 msgid "status-restart-title"
-msgstr "Puhelin"
+msgstr "Käynnistä uudelleen"
 
-#, fuzzy
 msgid "status-events-title"
-msgstr "Puhelin"
+msgstr "Tapahtumat"
 
-#, fuzzy
 msgid "status-status-network-title"
-msgstr "Linjat"
+msgstr "Verkko"
 
-#, fuzzy
 msgid "menu-status-title"
-msgstr "Linjat"
+msgstr "Status"
 
-#, fuzzy
 msgid "menu-status-restart-title"
-msgstr "Linjat"
+msgstr "Uudelleenkäynnistys"
 
-#, fuzzy
 msgid "menu-status-events-title"
-msgstr "Linjat"
+msgstr "Tapahtumat"
 
-#, fuzzy
 msgid "menu-status-status-network-title"
-msgstr "Linjat"
+msgstr "Verkko"
 
 #, fuzzy
 #~ msgid "Select folder"

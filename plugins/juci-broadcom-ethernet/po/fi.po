@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
 msgid "Full auto-negotiation"
@@ -60,7 +60,7 @@ msgstr "Pause frames"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid "internet.ethernet.phy.info"
-msgstr ""
+msgstr " "
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid ""
@@ -78,15 +78,13 @@ msgstr "Valitse Internetportti"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid " socket will be used for passing packets to the internet."
-msgstr ""
+msgstr "käytetään internetyhteytenä"
 
-#, fuzzy
 msgid "page-broadcom-ethernet-phy-title"
-msgstr "Numerot"
+msgstr "Ethernet"
 
-#, fuzzy
 msgid "menu-page-broadcom-ethernet-phy-title"
-msgstr "Numerot"
+msgstr "Ethernet"
 
 #, fuzzy
 #~ msgid "New device"

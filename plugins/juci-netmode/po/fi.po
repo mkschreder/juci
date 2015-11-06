@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-netmode/src/widgets/netmode-picker.js
 msgid "You need to select a netmode!"
@@ -27,13 +27,11 @@ msgstr ""
 msgid "Pick Preset"
 msgstr "Esiasetukset"
 
-#, fuzzy
 msgid "Reset Configuration"
-msgstr "Konfiguraatiomenetelmä"
+msgstr "Oletusasetukset"
 
-#, fuzzy
 msgid "modal.netmode.select.info"
-msgstr "Puheluloki"
+msgstr "Alasvetovalikosta valitaan eri profiili"
 
 msgid "Apply"
 msgstr "Ota käyttöön"

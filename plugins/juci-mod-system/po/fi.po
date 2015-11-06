@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.js
 msgid ""
@@ -29,9 +29,8 @@ msgstr ""
 "Salasanan asettaminen epäonnistui. Tarkista, että nykyinen salasana on "
 "oikein!"
 
-#, fuzzy
 msgid "Hostname"
-msgstr "Käyttäjä"
+msgstr "Isäntäkoneen nimi"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Model"
@@ -44,9 +43,8 @@ msgstr "Ei saatavilla"
 msgid "Release"
 msgstr "Julkaisuaika:"
 
-#, fuzzy
 msgid "Firmware Version"
-msgstr "Nykyinen ohjelmistoversio"
+msgstr "Ohjelmistoversio"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Kernel Version"
@@ -56,9 +54,8 @@ msgstr "Kernel versio"
 msgid "Target"
 msgstr "Kohde"
 
-#, fuzzy
 msgid "Local Time"
-msgstr "Aika"
+msgstr "Paikallinen aika"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.js
 msgid "Uptime"
@@ -99,13 +96,15 @@ msgstr "URL"
 msgid "NTP Settings"
 msgstr "NTP-asetukset"
 
-#, fuzzy
 msgid "Configuration"
-msgstr "Konfiguraatiomenetelmä"
+msgstr "Konfiguraatio"
 
-#, fuzzy
 msgid "settings.config.info"
-msgstr "Puhelinlinjojen tila."
+msgstr ""
+"Tallenna asetukset, palauta asetukset varmuuskopiosta tai palauta laitteen "
+"tehdasasetukset.\n"
+"Voit tallentaa varmuuskopion tietokoneellesi. Suosittelemme pitämään aina "
+"varmuuskopion tietokoneella viimeisimmästä konfiguraatiosta."
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Save settings to computer with password protection"
@@ -135,20 +134,17 @@ msgstr "Palauta oletusasetuksiin palauttaa modeemin tehdasasetuksille"
 msgid "Reset"
 msgstr "Palauta oletusasetuksiin"
 
-#, fuzzy
 msgid "Save Configuration to Computer"
 msgstr "Konfiguraatiomenetelmä"
 
 msgid "Comments"
 msgstr "Kommentit"
 
-#, fuzzy
 msgid "New Password"
-msgstr "SIP salasana"
+msgstr "Uusi salasana"
 
-#, fuzzy
 msgid "Re-type password"
-msgstr "Varmuuskopiotiedoston salasana"
+msgstr "Anna salasana uudelleen"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Pick configuration backup to upload"
@@ -161,9 +157,8 @@ msgstr "Varmuuskopiotiedoston salasana"
 msgid "Password (if encrypted)"
 msgstr "Salasana (jos salattu)"
 
-#, fuzzy
 msgid "Start upgrade"
-msgstr "DHCP-varauksen aika"
+msgstr "Aloita päivitys"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "Upgrade"
@@ -177,9 +172,8 @@ msgstr "Lisää kommentti tästä konfiguraatiosta"
 msgid "Energy Settings"
 msgstr "Virranhallinta"
 
-#, fuzzy
 msgid "settings.energy.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Vähennä virrankulusta poistamalla käyttämättömiä toimintoja käytöstä."
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "USB Port"
@@ -207,15 +201,15 @@ msgstr "Hallinta"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-management.html
 msgid "system.management.info"
-msgstr ""
+msgstr " "
 
-#, fuzzy
 msgid "Gateway Password"
-msgstr "Vaihda salasana"
+msgstr "Yhdyskäytävän salasana"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-password.html
 msgid "settings.password.info"
 msgstr ""
+"Aseta modeemin uusi salasana rajoittaaksesi modeemin hallintaan pääsyä."
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-password.html
 msgid "Your account"
@@ -224,7 +218,6 @@ msgstr "Tilisi"
 msgid "Change Password"
 msgstr "Vaihda salasana"
 
-#, fuzzy
 msgid "Services"
 msgstr "Fyysinen liitäntä"
 
@@ -232,20 +225,18 @@ msgstr "Fyysinen liitäntä"
 msgid "Priority"
 msgstr "Prioriteetti"
 
-#, fuzzy
 msgid "Service"
 msgstr "Fyysinen liitäntä"
 
-#, fuzzy
 msgid "Enable"
-msgstr "Käytössä"
+msgstr "Ota käyttöön"
 
 msgid "Action"
 msgstr "Toiminto"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-system.html
 msgid "settings.system.general"
-msgstr ""
+msgstr " "
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-system.html
 msgid "Set to Browser Time"
@@ -275,103 +266,79 @@ msgstr "Muisti"
 msgid "Storage"
 msgstr "Tallennustila"
 
-#, fuzzy
 msgid "status.system.processes.info"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr " "
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system-processes.html
 msgid "Running Processes"
 msgstr "Käynnissä olevat prosessit"
 
-#, fuzzy
 msgid "settings-password-title"
-msgstr "Linjat"
+msgstr "Salasana"
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-configuration.html
 msgid "settings-configuration-title"
-msgstr ""
+msgstr "Asetukset"
 
-#, fuzzy
 msgid "settings-system-title"
-msgstr "Puhelin"
+msgstr "Järjestelmä"
 
-#, fuzzy
 msgid "status-system-processes-title"
-msgstr "Puhelin"
+msgstr "Prosessit"
 
-#, fuzzy
 msgid "internet-services-ntp-title"
-msgstr "Linjat"
+msgstr "NTP"
 
-#, fuzzy
 msgid "settings-services-title"
-msgstr "Puhelin"
+msgstr "Palvelut"
 
-#, fuzzy
 msgid "status-system-title"
-msgstr "Puhelin"
+msgstr "Järjestelmä"
 
-#, fuzzy
 msgid "system-title"
-msgstr "Puhelin"
+msgstr "Järjestelmä"
 
-#, fuzzy
 msgid "settings-uci-title"
-msgstr "Puhelin"
+msgstr "UCI"
 
-#, fuzzy
 msgid "settings-management-title"
-msgstr "Puhelin"
+msgstr "Hallinta"
 
-#, fuzzy
 msgid "settings-energy-title"
-msgstr "Puhelin"
+msgstr "Virranhallinta"
 
-#, fuzzy
 msgid "menu-settings-password-title"
-msgstr "Linjat"
+msgstr "Salanat"
 
-#, fuzzy
 msgid "menu-settings-configuration-title"
-msgstr "Puheluloki"
+msgstr "Konfiguraatio"
 
-#, fuzzy
 msgid "menu-settings-system-title"
-msgstr "Linjat"
+msgstr "Järjestelmä"
 
-#, fuzzy
 msgid "menu-status-system-processes-title"
-msgstr "Linjat"
+msgstr "Prosessit"
 
-#, fuzzy
 msgid "menu-internet-services-ntp-title"
-msgstr "Linjat"
+msgstr "NTP"
 
-#, fuzzy
 msgid "menu-settings-services-title"
-msgstr "Linjat"
+msgstr "Palvelut"
 
-#, fuzzy
 msgid "menu-status-system-title"
-msgstr "Linjat"
+msgstr "Järjestelmä"
 
-#, fuzzy
 msgid "menu-system-title"
-msgstr "Linjat"
+msgstr "Järjestelmä"
 
-#, fuzzy
 msgid "menu-settings-uci-title"
-msgstr "Linjat"
+msgstr "UCI"
 
-#, fuzzy
 msgid "menu-settings-management-title"
-msgstr "Linjat"
+msgstr "Hallinta"
 
-#, fuzzy
 msgid "menu-settings-energy-title"
-msgstr "Linjat"
+msgstr "Virranhallinta"
 
 #, fuzzy
 #~ msgid "IPv4-Address"

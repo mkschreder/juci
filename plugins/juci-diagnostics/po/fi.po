@@ -9,22 +9,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Diagnostic Utility"
 msgstr "Diagnostiikkatyökalu"
 
-#, fuzzy
 msgid "status.diagnostics.info"
-msgstr "Puhelinlinjojen tila."
+msgstr " "
 
 msgid "Automated Diagnostics"
 msgstr "Automatisoitu vianmääritys"
 
-#, fuzzy
 msgid "status.diagnostics.auto.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Automaattinen diagnostiikka"
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Diagnose"
@@ -34,9 +32,8 @@ msgstr "Diagnostiikka"
 msgid "Ping Test"
 msgstr "Ping-testi"
 
-#, fuzzy
 msgid "status.diagnostics.ping.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Syötä oikea kohteen verkkonimi tai IP-osoite suorittaaksesi Ping testi."
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Host to ping"
@@ -50,17 +47,15 @@ msgstr "Ping"
 msgid "Ping results"
 msgstr "Ping-tulokset"
 
-#, fuzzy
 msgid "Error"
-msgstr "CRC virheitä"
+msgstr "Virhe"
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Tracing Tool"
 msgstr "Jäljitystyökalu"
 
-#, fuzzy
 msgid "status.diagnostics.trace.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Valitse yhteystyyppi ja sijainti mihin haluat tallentaa jäljityksen. Jäljitys alkaa automaattisesti erillisessä selainikkunassa."
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Host to trace"
@@ -74,13 +69,11 @@ msgstr "Jäljitä"
 msgid "Trace results"
 msgstr "Jäljityksen tulokset"
 
-#, fuzzy
 msgid "status-diagnostics-title"
-msgstr "Puhelin"
+msgstr "Diagnostiikka"
 
-#, fuzzy
 msgid "menu-status-diagnostics-title"
-msgstr "Linjat"
+msgstr "Diagnostiikka"
 
 #, fuzzy
 #~ msgid "Interface"

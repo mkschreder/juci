@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-ethernet/src/pages/internet-ethernet.html
 msgid "Layer-2 Ethernet Devices"
@@ -17,7 +17,7 @@ msgstr "Layer-2 Ethernet-laitteet"
 
 # /home/martin/juci/plugins/juci-ethernet/src/pages/internet-ethernet.html
 msgid "internet.ethernet.info"
-msgstr ""
+msgstr " "
 
 msgid "Name"
 msgstr "Nimi"
@@ -33,17 +33,14 @@ msgstr "MAC"
 msgid "MTU"
 msgstr "MTU"
 
-#, fuzzy
 msgid "Status"
-msgstr "Tila"
+msgstr "Status"
 
-#, fuzzy
 msgid "internet-ethernet-title"
-msgstr "Linjat"
+msgstr "Ethernet"
 
-#, fuzzy
 msgid "menu-internet-ethernet-title"
-msgstr "Linjat"
+msgstr "Ethernet"
 
 #~ msgid "Enabled"
 #~ msgstr "Käytössä"

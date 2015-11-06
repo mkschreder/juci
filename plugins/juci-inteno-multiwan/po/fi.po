@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 
 # /home/martin/juci/plugins/juci-inteno-multiwan/src/widgets/multiwan.interface.edit.html
 msgid "Weight"
@@ -19,9 +19,8 @@ msgstr "Weight"
 msgid "Health"
 msgstr "Health"
 
-#, fuzzy
 msgid "ICMP Hosts"
-msgstr "SIP-palvelin"
+msgstr "ICMP Hosts"
 
 # /home/martin/juci/plugins/juci-igmpinfo/src/pages/status-tv.html
 msgid "Timeout"
@@ -42,29 +41,24 @@ msgstr "Failover To"
 msgid "DNS"
 msgstr "DNS"
 
-#, fuzzy
 msgid "MultiWAN Configuration"
-msgstr "Konfiguraatio"
+msgstr "MultiWAN Määritys"
 
-#, fuzzy
 msgid "internet.multiwan.info"
-msgstr "Fyysinen liitäntä"
+msgstr "Multiwan"
 
 # /home/martin/juci/plugins/juci-inteno-multiwan/src/pages/internet-multiwan.html
 msgid "MultiWAN Enabled"
 msgstr "MultiWAN Käytössä"
 
-#, fuzzy
 msgid "Default Route"
-msgstr "DHCP Oletusreitti"
+msgstr "Oletusreitti"
 
-#, fuzzy
 msgid "internet-multiwan-title"
-msgstr "Linjat"
+msgstr "MultiWAN"
 
-#, fuzzy
 msgid "menu-internet-multiwan-title"
-msgstr "Linjat"
+msgstr "Multiwan"
 
 #, fuzzy
 #~ msgid "IGPM TV Status"
