@@ -296,13 +296,15 @@
 	}); 
 	
 	UCI.juci.$registerSectionType("juci", {
-		"homepage": 		{ dvalue: "overview", type: String }
+		"homepage": 		{ dvalue: "overview", type: String },
+		"language_debug":	{ dvalue: false, type: String },
+		"default_language": { dvalue: "en", type: String }
 	}); 
 	UCI.juci.$insertDefaults("juci"); 
 
 	UCI.juci.$registerSectionType("login", {
 		"showusername":		{ dvalue: true, type: Boolean }, // whether to show or hide the username on login page 
-		"defaultuser":		{ dvalue: "admin", type: String }, // default user to display on login page or to use when username is hidden 
+		"defaultuser":		{ dvalue: "admin", type: String } // default user to display on login page or to use when username is hidden 
 	}); 
 	UCI.juci.$insertDefaults("login"); 
 

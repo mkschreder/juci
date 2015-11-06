@@ -10,7 +10,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', end
 		<div class="row">
 			<div class="col-sm-6 col-xs-12 form-group">
 				<span ng-repeat="lang in languages">
-					<a style="text-decoration: {{isActiveLanguage(lang)?'underline':'none'}}; color: inherit;" href="" ng-click="setLanguage(lang)">{{lang.title|translate}}</a>{{$last ? '' : ' | '}}
+					<a style="text-decoration: {{isActiveLanguage(lang)?'underline':'none'}}; color: inherit;" href="" ng-click="setLanguage(lang)"><img src="/img/lang/{{lang.short_code}}.gif"/>{{lang.title|translate}}</a>{{$last ? '' : ' | '}}
 				</span>
 			</div>
 			<div class="col-sm-6 col-xs-12 form-group footer-right" >
