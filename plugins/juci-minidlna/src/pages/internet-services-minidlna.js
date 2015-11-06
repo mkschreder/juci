@@ -7,8 +7,10 @@ JUCI.app
 		all : [],
 		selected : []
 	};
+	$scope.album_art = []
 	$minidlna.getConfig().done(function(config){
 		$scope.config = config; 
+		$scope.album_art = $scope.config.album_art_names.value.split("/");
 		$scope.tagslistData = $scope.config.media_dir.value.filter(function(dir){
 			return (dir.substring(0, 4) == "/mnt");
 		}).map(function(dir){
@@ -28,6 +30,15 @@ JUCI.app
 			$scope.$apply();
 		});
 	});
+	$scope.onChangeAAName = function(tag){
+		var index = null;
+		if((index = $scope.album_art.indexOf(tag.text)) > -1){
+			$scope.album_art.splice(index,1);
+		}else{
+			$scope.album_art.push(tag.text);
+		}
+		$scope.config.album_art_names.value = $scope.album_art.join("/");
+	};
 	$scope.$watch("network.selected", function(){
 		if(!$scope.config)return;
 		$scope.config.network.value = $scope.network.selected.map(function(x){
