@@ -20,7 +20,7 @@ JUCI.app
 		var baseifname = "ptm"; 
 		var next_id = 0; 
 		// automatically pick an id for the new device
-		for(var id = 1; id < 255; id++){ 
+		for(var id = 0; id < 255; id++){ 
 			if(!$uci.layer2_interface_vdsl["@vdsl_interface"].find(function(i){ return String(i.ifname.value).indexOf(baseifname + id) == 0; })){
 				next_id = id; 
 				break; 
