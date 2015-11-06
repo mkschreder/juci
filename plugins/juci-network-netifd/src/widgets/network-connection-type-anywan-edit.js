@@ -12,5 +12,6 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionTypeAnywanEdit", function($scope, $network, $modal){
-	
+	// expose tab title 
+	gettext("network.interface.type.anywan.tab.title"); 
 }); 

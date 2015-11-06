@@ -13,6 +13,9 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionTypeBridgeEdit", function($scope, $network, $ethernet, $modal, $tr, gettext){
+	// expose tab title 
+	gettext("network.interface.type.bridge.tab.title"); 
+
 	$scope.getItemTitle = function(dev){
 		return dev.name + " ("+dev.device+")"; 
 	}

@@ -14,6 +14,9 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionTypeNoneEdit", function($scope, $ethernet, $modal, $tr, gettext){
+	// expose tab title 
+	gettext("network.interface.type.none.tab.title"); 
+
 	$ethernet.getAdapters().done(function(devs){
 		$scope.baseDevices = devs.filter(function(dev){ return !dev.loopback }).map(function(dev){
 			return { label: dev.device + " ("+dev.name+")", value: dev.device }; 
