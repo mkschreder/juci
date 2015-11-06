@@ -12,7 +12,7 @@
 		<juci-config-section ng-show="config.enabled.value">
 			<juci-config-lines>
 				<juci-config-line title="{{'Port'|translate}}">
-					<input type="text" class="form-control" ng-model="config.port.value"/>
+					<input type="number" class="form-control" min="0" max="65535" ng-model="port.value"/>
 				</juci-config-line>
 				<juci-config-line title="{{'Network'|translate}}">
 					<isteven-multi-select input-model="network.all" output-model="network.selected" button-label="name" item-label="name" tick-property="selected"></isteven-multi-select>	
