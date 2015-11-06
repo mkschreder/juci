@@ -84,7 +84,13 @@ local function read_ip6_dhcp_info()
 		-- scanf(line, "# %s %s %x %s %d %x %d %s", clients6[cno].device, clients6[cno].duid, &iaid, clients6[cno].hostname, &ts, &id, &length, clients6[cno].ip6addr)
 		-- # br-lan 000415a02f71b2054d230f438af04844b708 99bf8deb vlatko-HP-ProBook-650-G1 1445260051 187 128 2a03:8000:3e3:300::187/128
 		-- note: iaid is last 4 bytes of mac address. (why the hell not all of them?)
-		local device,duid,iaid,hostname,ts,id,length,ip6addr = line:match("# (%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+).*"); 
+		local device,duid,iaid,hostname,ts,id,length,ip6addr; 
+		device,duid,iaid,hostname,ts,id,length,ip6addr = line:match("# (%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+).*"); 
+		-- this will happen if dhcp server does not have a hostname, then line will look like this: 
+		-- # br-lan 00042aa82c08c6903678fc7befd58766add6 7544771b - 0 289 128
+		if(not device or device == "") then 
+			device,duid,iaid = line:match("# (%S+)%s+(%S+)%s+(%S+).*"); 
+		end
 		if(device and duid) then 
 			result[iaid] = {
 				device = device, 
