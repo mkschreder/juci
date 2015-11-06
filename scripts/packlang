@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ "$1" = "" ]; then
+	echo "No language specified.."
+fi 
+
+LANG="$1"
+TRANSDIR=translations
+for file in `find . -name "$LANG.po"`; do
+	mkdir -p "$TRANSDIR/$(dirname $file)"
+	cp -p "$file" "$TRANSDIR/$file"
+done
+
+for file in `find . -name "*.pot"`; do
+	mkdir -p "$TRANSDIR/$(dirname $file)"
+	cp -p "$file" "$TRANSDIR/$file"
+done 
+
+tar -czf translations.tar.gz translations
+rm -rf translations
