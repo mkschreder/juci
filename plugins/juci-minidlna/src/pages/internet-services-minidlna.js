@@ -89,4 +89,12 @@ JUCI.app
 		});
 		return tag_promise;
 	};
+	$scope.onPortChange = function(){
+		if(isNaN($scope.config.port.value)){
+			window.alert("port must be a number");
+			while(isNaN($scope.config.port.value)){
+				$scope.config.port.value = $scope.config.port.value.slice(0,-1);
+			}
+		}
+	};
 }); 
