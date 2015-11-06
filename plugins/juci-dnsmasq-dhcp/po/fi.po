@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js
 msgid "Hour"
@@ -52,6 +52,10 @@ msgstr "MAC"
 msgid "IPv4 Address"
 msgstr "IPv4-osoite"
 
+# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+msgid "IPv6 Unique ID"
+msgstr "IPv6 Unique ID"
+
 msgid "IPv6 Address ID"
 msgstr "IPv6-osoite ID"
 
@@ -73,11 +77,19 @@ msgid "IP Address"
 msgstr "IP-osoite"
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
-msgid "Modify"
-msgstr "Muokkaa"
+msgid "DUID (IPv6)"
+msgstr "DUID (IPv6)"
+
+# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+msgid "Host ID (IPv6)"
+msgstr "Host ID (IPv6)"
 
 msgid "DHCP Server"
 msgstr "DHCP-palvelin"
+
+# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+#~ msgid "Modify"
+#~ msgstr "Muokkaa"
 
 #, fuzzy
 #~ msgid "status.diagnostics.info"

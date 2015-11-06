@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.js
 msgid "Please select a rule to delete!"
@@ -426,13 +426,11 @@ msgstr "Palomuurivyöhykkeet"
 msgid "internet-firewall-port-mapping-title"
 msgstr "Porttiohjaus"
 
-#, fuzzy
 msgid "internet-firewall-wordfilter-title"
-msgstr "Linjat"
+msgstr "Sanasuodatin"
 
-#, fuzzy
 msgid "internet-firewall-svcfilter-title"
-msgstr "Linjat"
+msgstr "SVC"
 
 msgid "internet-firewall-title"
 msgstr "Palomuuri"
@@ -461,13 +459,11 @@ msgstr "Vyöhykkeet"
 msgid "menu-internet-firewall-port-mapping-title"
 msgstr "Porttiohjaus"
 
-#, fuzzy
 msgid "menu-internet-firewall-wordfilter-title"
-msgstr "Linjat"
+msgstr "Sanasuodatin"
 
-#, fuzzy
 msgid "menu-internet-firewall-svcfilter-title"
-msgstr "Linjat"
+msgstr "SVC"
 
 msgid "menu-internet-firewall-title"
 msgstr "Palomuuri"

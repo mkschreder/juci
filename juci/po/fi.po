@@ -11,96 +11,294 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.6\n"
 
-msgid "New interface"
-msgstr "Uusi liitäntä"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "OK"
+msgstr "OK"
 
-# /home/martin/juci/plugins/juci-broadcom-vlan/src/pages/page-broadcom-ethernet-vlan.js
-msgid "Please select a device in the list!"
-msgstr "Valitse laite luettelosta!"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Invalid command"
+msgstr "Virheellinen komento"
 
-msgid "Are you sure you want to delete this device?"
-msgstr "Haluatko varmasti poistaa tämän laitteen?"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Invalid parameters"
+msgstr "Virheellisiä parametreja"
 
-msgid "Name"
-msgstr "Nimi"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Method not found"
+msgstr "Menetelmää ei löytynyt"
 
-msgid "Base Device"
-msgstr "Fyysinen liitäntä"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Object not found"
+msgstr "Kohdetta ei löytynyt"
 
-msgid "Pick base device"
-msgstr "Valitse fyysinen liitäntä"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "No data"
+msgstr "Ei dataa"
 
-# /home/martin/juci/plugins/juci-broadcom-vlan/src/pages/page-broadcom-ethernet-vlan.html
-msgid "internet.ethernet.vlan.info"
-msgstr "Tässä voit konfiguroida VLAN liitännät"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Access denied"
+msgstr "Pääsy evätty"
 
-msgid "VLAN Devices"
-msgstr "VLAN-laitteet"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Timed out"
+msgstr "Aikakatkaistu"
 
-msgid "page-broadcom-ethernet-vlan-title"
-msgstr "VLAN"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Not supported"
+msgstr "Ei tuettu"
 
-msgid "menu-page-broadcom-ethernet-vlan-title"
-msgstr "NumerotVLAN"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Unknown error"
+msgstr "Tuntematon virhe"
 
-#~ msgid "Disabled"
-#~ msgstr "Pois käytöstä"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "Connection failed"
+msgstr "Yhteys epäonnistui"
 
-#, fuzzy
-#~ msgid "Line Status"
-#~ msgstr "Puheen tila"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "RPC error #"
+msgstr "RPC virhe #"
 
-#~ msgid "Bit Rate"
-#~ msgstr "Bittinopeus"
+# /home/martin/juci/juci//src/js/rpc.js
+msgid "You have been logged out due to inactivity"
+msgstr "Sinut on kirjattu ulos"
 
-#, fuzzy
-#~ msgid "Error Counter"
-#~ msgstr "Solulaskija"
+# /home/martin/juci/juci//src/js/uci.js
+msgid "please specify both hour and minute value for time separated by ':'"
+msgstr "määritä sekä tunnit, että minuutit eroteltuna ':'"
 
-#~ msgid "Cell Statistics"
-#~ msgstr "Solutilastot"
+# /home/martin/juci/juci//src/js/uci.js
+msgid "please enter valid time in form hh:mm"
+msgstr "kirjoita kelvollinen aika muodossa tt: mm"
 
-#~ msgid "CBR"
-#~ msgstr "CBR"
+# /home/martin/juci/juci//src/js/uci.js
+msgid "Please specify both start time and end time for schedule!"
+msgstr "Määritä sekä alkamisaika, että päättymisaika aikatauluun!"
 
-#, fuzzy
-#~ msgid "Select base DSL device"
-#~ msgstr "Fyysinen liitäntä"
+# /home/martin/juci/juci//src/js/uci.js
+msgid "Schedule start time must be lower than schedule end time!"
+msgstr "Aloitusaika täytyy olla pienempi kuin päättymisaika!"
 
-#, fuzzy
-#~ msgid "Device Name"
-#~ msgstr "DNS Nimi"
+# /home/martin/juci/juci//src/js/uci.js
+msgid "Please pick days between mon-sun"
+msgstr "Valitse päivä ma-su väliltä"
 
-#, fuzzy
-#~ msgid "Device ID"
-#~ msgstr "Fyysinen liitäntä"
+# /home/martin/juci/juci//src/js/uci.js
+msgid "Port value must be a valid port number or port range between 1 and 65536"
+msgstr "Portin arvon on oltava kelvollinen porttinumero tai porttialue 1–65536 väliltä"
 
-#, fuzzy
-#~ msgid "PCR"
-#~ msgstr "CBR"
+# /home/martin/juci/juci//src/js/uci.js
+msgid "Number value is not within valid range"
+msgstr "Numeroarvo ei ole sallittujen rajojen sisällä"
 
-#, fuzzy
-#~ msgid "SCR"
-#~ msgstr "CBR"
+# /home/martin/juci/juci//src/js/juci.js
+msgid "application.name"
+msgstr ""
 
-#~ msgid "ADSL Devices"
-#~ msgstr "ADSL-laitteet"
+# /home/martin/juci/juci//src/widgets/juci-config.js
+msgid "Settings have been applied successfully!"
+msgstr "Asetukset otettu käyttöön!"
 
-#, fuzzy
-#~ msgid "DSL Status"
-#~ msgstr "Tila"
+msgid "Apply"
+msgstr "Ota käyttöön"
 
-#, fuzzy
-#~ msgid "dsl.status.info"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgid "Cancel"
+msgstr "Peruuta"
 
-#, fuzzy
-#~ msgid "No DSL info available."
-#~ msgstr "Puhepalvelu ei ole saatavilla!"
+# /home/martin/juci/juci//src/widgets/juci-login.js
+msgid "Please enter correct username and password!"
+msgstr "Anna oikea käyttäjätunnus ja salasana!"
 
-#, fuzzy
-#~ msgid "menu-page-broadcom-vdsl-title"
-#~ msgstr "Numerot"
+msgid "Basic Mode"
+msgstr "Perusasetukset"
+
+# /home/martin/juci/juci//src/widgets/juci-mode-picker.js
+msgid "Expert Mode"
+msgstr "Edistyneet asetukset"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Individual Days"
+msgstr "Yksittäiset päivät"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Every Day"
+msgstr "Joka päivä"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Every Workday"
+msgstr "Joka työpäivä"
+
+msgid "All Weekend"
+msgstr "Viikonloppu"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Monday"
+msgstr "Maanantai"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Tuesday"
+msgstr "Tiistai"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Wednesday"
+msgstr "Keskiviikko"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Thursday"
+msgstr "Torstai"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Friday"
+msgstr "Perjantai"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Saturday"
+msgstr "Lauantai"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.js
+msgid "Sunday"
+msgstr "Sunnuntai"
+
+msgid "-- Select One --"
+msgstr "Valitse yksi"
+
+# /home/martin/juci/juci//src/widgets/juci-input-port.html
+msgid "Start port"
+msgstr "Aloitusportti"
+
+# /home/martin/juci/juci//src/widgets/juci-input-port.html
+msgid "End port"
+msgstr "Viimeinen portti"
+
+# /home/martin/juci/juci//src/widgets/juci-input-port.html
+msgid "Port (1-65535)"
+msgstr "Portti (1-65535)"
+
+# /home/martin/juci/juci//src/widgets/juci-input-timespan.html
+msgid "from"
+msgstr "alkaen"
+
+# /home/martin/juci/juci//src/widgets/juci-input-timespan.html
+msgid "to"
+msgstr "asti"
+
+msgid "Add"
+msgstr "Lisää"
+
+# /home/martin/juci/juci//src/widgets/juci-list-editor.html
+msgid "Delete"
+msgstr "Poista"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Username"
+msgstr "Käyttäjätunnus"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Password"
+msgstr "Salasana"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "You are logged in!"
+msgstr "Olet kirjautuneena nimellä %s"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Please sign in"
+msgstr "Kirjaudu sisään"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "You do not have an RPC connection to the router!"
+msgstr "Reitittimeen ei ole RPC yhteyttä"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Connecting..."
+msgstr "Yhdistetään"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Host"
+msgstr "Isäntäkone"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Sign in"
+msgstr "Kirjaudu sisään"
+
+# /home/martin/juci/juci//src/widgets/juci-login.html
+msgid "Signing in..."
+msgstr "Kirjautuminen..."
+
+# /home/martin/juci/juci//src/widgets/juci-mode-picker.html
+msgid "Select Mode"
+msgstr "Valitse tila"
+
+# /home/martin/juci/juci//src/widgets/juci-navbar.html
+msgid "Toggle navigation"
+msgstr "Vaihda navigaatiota"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.html
+msgid "Time Frame"
+msgstr "Aikakehys"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.html
+msgid "Preselected Days"
+msgstr "Ennalta valitut päivät"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.html
+msgid "Days"
+msgstr "Päivät"
+
+msgid "Time"
+msgstr "Aika"
+
+# /home/martin/juci/juci//src/widgets/theme-picker.html
+msgid "Select Theme"
+msgstr "Valitse teema"
+
+# /home/martin/juci/juci//src/pages/404.html
+msgid "The page you were trying to access was not found!"
+msgstr "Virhe404 - Sivu, jota yrität katsoa, ei löytynyt."
+
+# /home/martin/juci/juci//src/pages/404.html
+msgid "404-title"
+msgstr "404"
+
+# /home/martin/juci/juci//src/pages/default.html
+msgid "default-title"
+msgstr "Oletus"
+
+# /home/martin/juci/juci//src/pages/bootstrap.html
+msgid "bootstrap-title"
+msgstr "Bootstrap"
+
+# /home/martin/juci/juci//src/pages/login.html
+msgid "login-title"
+msgstr "Kirjaudu sisään"
+
+# /home/martin/juci/juci//src/pages/overview.html
+msgid "overview-title"
+msgstr "Yleisnäkymä"
+
+# /home/martin/juci/juci//src/pages/404.html
+msgid "menu-404-title"
+msgstr "404"
+
+# /home/martin/juci/juci//src/pages/default.html
+msgid "menu-default-title"
+msgstr "Default"
+
+# /home/martin/juci/juci//src/pages/bootstrap.html
+msgid "menu-bootstrap-title"
+msgstr "JUCI"
+
+# /home/martin/juci/juci//src/pages/login.html
+msgid "menu-login-title"
+msgstr "Kirjaudu sisään"
+
+# /home/martin/juci/juci//src/pages/overview.html
+msgid "menu-overview-title"
+msgstr "Yleisnäkymä"
 
 #~ msgid "Today"
 #~ msgstr "Tänään"
@@ -110,6 +308,9 @@ msgstr "NumerotVLAN"
 
 #~ msgid "Enabled"
 #~ msgstr "Käytössä"
+
+#~ msgid "Disabled"
+#~ msgstr "Pois käytöstä"
 
 #~ msgid "off"
 #~ msgstr "Pois päältä"
@@ -146,9 +347,6 @@ msgstr "NumerotVLAN"
 #~ msgid "Date"
 #~ msgstr "Päivämäärä"
 
-#~ msgid "Time"
-#~ msgstr "Aika"
-
 #~ msgid "External Number"
 #~ msgstr "Ulkoinen numero"
 
@@ -163,6 +361,9 @@ msgstr "NumerotVLAN"
 
 #~ msgid "phone.lines.info"
 #~ msgstr "Puhelinlinjojen konfigurointi"
+
+#~ msgid "Name"
+#~ msgstr "Nimi"
 
 #~ msgid "Internal Number"
 #~ msgstr "Sisänumero"
@@ -206,7 +407,6 @@ msgstr "NumerotVLAN"
 #~ msgid "Outgoing Calls"
 #~ msgstr "Lähtevät puhelut"
 
-#, fuzzy
 #~ msgid "You can also block ranges of numbers.For example: '0160#' blocks all numbers starting with '0160'."
 #~ msgstr "Voit myös estää numeroalueen. Esimerkiksi \"0160#\" estää kaikki numerot jotka ovat \"0160\"-alkuisia"
 
@@ -279,6 +479,9 @@ msgstr "NumerotVLAN"
 #~ msgid "Number"
 #~ msgstr "Numero"
 
+#~ msgid "Status"
+#~ msgstr "Tila"
+
 #~ msgid "Speed Dialing"
 #~ msgstr "Pikavalinta"
 
@@ -290,6 +493,12 @@ msgstr "NumerotVLAN"
 
 #~ msgid "Clear"
 #~ msgstr "Tyhjennä"
+
+#~ msgid "Voice Status"
+#~ msgstr "Puheen tila"
+
+#~ msgid "status.voice.info"
+#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #~ msgid "Your Phone Numbers"
 #~ msgstr "Puhelinnumerosi"
@@ -309,15 +518,15 @@ msgstr "NumerotVLAN"
 #~ msgid "State"
 #~ msgstr "Kunto"
 
-#, fuzzy
+#~ msgid "Voice service is not available!"
+#~ msgstr "Puhepalvelu ei ole saatavilla!"
+
 #~ msgid "status-phone-title"
 #~ msgstr "Puhelin"
 
-#, fuzzy
 #~ msgid "phone-lines-title"
 #~ msgstr "Linjat"
 
-#, fuzzy
 #~ msgid "phone-ringing-schedule-title"
 #~ msgstr "Ajastus"
 
@@ -325,19 +534,15 @@ msgstr "NumerotVLAN"
 # menu.d/juci-mod-voice.json
 # #-#-#-#-#  titles.pot  #-#-#-#-#
 # bin/usr/share/rpcd/menu.d/juci-asterisk.json
-#, fuzzy
 #~ msgid "phone-title"
-#~ msgstr "Puheluloki"
+#~ msgstr "Puhelin"
 
-#, fuzzy
 #~ msgid "phone-speed-dialing-title"
 #~ msgstr "Pikavalinta"
 
-#, fuzzy
 #~ msgid "phone-number-blocking-title"
-#~ msgstr "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+#~ msgstr "Puheluesto"
 
-#, fuzzy
 #~ msgid "phone-call-log-title"
 #~ msgstr "Puheluloki"
 
@@ -377,8 +582,9 @@ msgstr "NumerotVLAN"
 #~ msgid "menu-phone-call-log-title"
 #~ msgstr "Puheluloki"
 
-#~ msgid "-- Select One --"
-#~ msgstr "Valitse yksi"
+#, fuzzy
+#~ msgid "menu-phone-numbers-title"
+#~ msgstr "Numerot"
 
 #~ msgid ".w (JFFS Image)"
 #~ msgstr ".w (JFFS Image)"
@@ -425,6 +631,9 @@ msgstr "NumerotVLAN"
 #~ msgid "ADSL"
 #~ msgstr "ADSL"
 
+#~ msgid "ADSL Devices"
+#~ msgstr "ADSL-laitteet"
+
 #~ msgid "APN"
 #~ msgstr "APN"
 
@@ -454,9 +663,6 @@ msgstr "NumerotVLAN"
 
 #~ msgid "Adapter"
 #~ msgstr "Verkkolaite"
-
-#~ msgid "Add"
-#~ msgstr "Lisää"
 
 #~ msgid "Add / Edit Port Mapping"
 #~ msgstr "Lisää / Muokkaa porttiohjausta"
@@ -500,9 +706,6 @@ msgstr "NumerotVLAN"
 #~ msgid "Album-Art Names"
 #~ msgstr "Albumin Kansikuvanimet"
 
-#~ msgid "All Weekend"
-#~ msgstr "Viikonloppu"
-
 #~ msgid "Allow Guest Access"
 #~ msgstr "Salli vierasverkkopääsy"
 
@@ -515,14 +718,14 @@ msgstr "NumerotVLAN"
 #~ msgid "AnyWAN"
 #~ msgstr "AnyWAN"
 
-#~ msgid "Apply"
-#~ msgstr "Ota käyttöön"
-
 #~ msgid "Are you sure you want to create a new SSID with the same name and on the same radio? This may result in undefined behaviour!"
 #~ msgstr "Haluatko varmasti luoda uuden SSID:n, jolla on sama nimi samassa radiossa? Tämä voi aiheuttaa määrittelemätöntä käyttäytymistä!"
 
 #~ msgid "Are you sure you want to delete this device from bridge?"
 #~ msgstr "Haluatko varmasti poistaa tämän laitteen sillasta?"
+
+#~ msgid "Are you sure you want to delete this rule?"
+#~ msgstr "Haluatko varmasti poistaa tämän säännön?"
 
 #~ msgid "Are you sure you want to delete this zone?"
 #~ msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
@@ -563,8 +766,11 @@ msgstr "NumerotVLAN"
 #~ msgid "Banner File Path"
 #~ msgstr "Bannerin tiedostopolku"
 
-#~ msgid "Basic Mode"
-#~ msgstr "Perusasetukset"
+#~ msgid "Base Device"
+#~ msgstr "Fyysinen liitäntä"
+
+#~ msgid "Bit Rate"
+#~ msgstr "Bittinopeus"
 
 #~ msgid "Bridge"
 #~ msgstr "Silta"
@@ -572,14 +778,20 @@ msgstr "NumerotVLAN"
 #~ msgid "Buffered"
 #~ msgstr "Puskuroitu"
 
+#~ msgid "CBR"
+#~ msgstr "CBR"
+
 #~ msgid "CCMP (AES)"
 #~ msgstr "CCMP (AES)"
 
 #~ msgid "CRC Errors"
 #~ msgstr "CRC virheitä"
 
-#~ msgid "Cancel"
-#~ msgstr "Peruuta"
+#~ msgid "Cell Counter"
+#~ msgstr "Solulaskija"
+
+#~ msgid "Cell Statistics"
+#~ msgstr "Solutilastot"
 
 #~ msgid "Change Password"
 #~ msgstr "Vaihda salasana"
@@ -703,6 +915,9 @@ msgstr "NumerotVLAN"
 
 #~ msgid "DNS"
 #~ msgstr "DNS"
+
+#~ msgid "DNS Name"
+#~ msgstr "DNS Nimi"
 
 #~ msgid "DROP"
 #~ msgstr "HYLKÄÄ"
