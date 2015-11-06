@@ -3,6 +3,12 @@
 JUCI.app
 .controller("StatusEventsPageCtrl", function($scope, $rpc){
 	var allLogTypes = ["error", "warning", "info"]; 
+	var log = {
+		autoRefresh : true
+	};
+	var timeoutID = undefined;
+	var request = null;
+	$scope.data = { filter: "" };
 	$scope.selectedShowType = allLogTypes; 
 	$scope.selectedLogTypes = ["system", "network", "other"]; 
 	
@@ -10,16 +16,45 @@ JUCI.app
 		"system": ["dropbear", "peripheral_manager"], 
 		"network": ["netifd", "brcmnetlink", "dnsmasq-dhcp", "dnsmasq"]
 	}; 
-	
+
+	function update(){
+		if(request === null){
+			request = $rpc.juci.system.log({"filter":$scope.data.filter}).done(function(result){
+				console.log("test "+$scope.data.filter+" "+result.lines);
+				if(result && result.lines){
+					$scope.logs = result.lines; 
+					$scope.$apply();
+				}
+			}).always(function(){
+				request = null;
+			}); 
+		}
+		return request;
+	}
+
+	$scope.applyFilter = function(){
+		$scope.inprogress = true;
+		if(typeof timeoutID === "number"){
+			clearTimeout(timeoutID);
+		}
+		log.autoRefresh = false;
+		timeoutID = setTimeout(function(){log.autoRefresh = true;}, 1000);
+		update().always(function() {
+			$scope.inprogress = false;
+			$scope.$apply();	
+		});
+	};
+
 	JUCI.interval.repeat("syslog", 1000, function(done){
-		$rpc.juci.system.log().done(function(result){
-			if(result && result.lines){
-				$scope.logs = result.lines; 
-				$scope.$apply(); 
-				done(); 
-			}
-		}); 
+		if(!log.autoRefresh){
+			done();
+			return;
+		}
+		update().always(function(){
+			done();
+		});;
 	}); 
+
 	$scope.allLogTypes = [
 		{ label: "System", value: "system" }, 
 		//{ label: "WAN", value: "wan" }, 

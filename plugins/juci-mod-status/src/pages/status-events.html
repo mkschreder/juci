@@ -3,40 +3,31 @@
 		<juci-config-section>
 			<juci-config-heading>{{ 'Event Log' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'status.eventlog.info' | translate }}</juci-config-info>
-			<!--
-			<juci-config-lines>
-				<juci-config-line title="Categories to Show">
-					<div class="row" ng-class="{'field-error': schedule.days.error}" >
-							<div class="col-xs-4" ng-repeat="type in allLogTypes">
-								<div class="checkbox checkbox-info">
-									<input type="checkbox" checklist-model="selectedLogTypes" checklist-value="type.value"> 
-									<label>{{type.label}}</label>
-								</div>
-							</div>
-						</div>
-				</juci-config-line>
-				<juci-config-line title="Events to Show">
-					<juci-select ng-model="selectedShowType" ng-items="allEventTypes" placeholder="{{'Select events to show'|translate}}" on-change="onTypeChanged($value)"></juci-select>
-				</juci-config-line>
-			</juci-config-lines>
-			-->
-		</juci-config-section>
+			</juci-config-section>
 		<juci-config-section>
 			<juci-config-heading>{{'Log' | translate}}</juci-config-heading>
-			<table class="table">
-				<thead>
-					<th translate>Date</th>
-					<th translate>Type</th>
-					<th translate>Source</th>
-					<th translate>Message</th>
-				</thead>
-				<tr ng-repeat="line in logs track by $index" class="{{lineClass(line)}}">
-					<td nowrap>{{line.date}}</td>
-					<td>{{line.type}}</td>
-					<td>{{line.source}}</td>
-					<td>{{line.message}}</td>
-				</tr>
-			</table>
+			<juci-config-line title="Filter:">
+			  <input type="text" class="form-control" ng-model="data.filter" ng-change="applyFilter()">
+			</juci-config-line>
+			<div ng-show="inprogress">
+				<i class="fa fa-spinner fa-spin"></i>
+			</div>
+			<div ng-hide="inprogress">
+				<table class="table">
+					<thead>
+						<th translate>Date</th>
+						<th translate>Type</th>
+						<th translate>Source</th>
+						<th translate>Message</th>
+					</thead>
+					<tr ng-repeat="line in logs track by $index" class="{{lineClass(line)}}">
+						<td nowrap>{{line.date}}</td>
+						<td>{{line.type}}</td>
+						<td>{{line.source}}</td>
+						<td>{{line.message}}</td>
+					</tr>
+				</table>
+			</div>
 		</juci-config-section>
 	</div>
 </juci-layout-with-sidebar>

@@ -35,7 +35,10 @@
 					<button class="btn btn-default pull-right" ng-click="onAddFolder()"><i class="fa fa-plus"></i></button>
 				</juci-config-line>
 				<juci-config-line title="{{'Album-Art Names'|translate}}">
-					<input type="text" class="form-control" ng-model="config.album_art_names.value"/>
+					<tags-input ng-model="album_art" display-property="text" min-length="5"
+						add-on-space="true" add-on-blur="false" on-tag-added="onChangeAAName($tag)"
+						on-tag-removed="onChangeAAName($tag)" placeholder="{{'write list of album-art names' | translate}}">
+					</tags-input>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
