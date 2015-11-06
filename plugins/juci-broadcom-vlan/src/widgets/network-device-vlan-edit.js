@@ -11,7 +11,7 @@ JUCI.app
 		replace: true
 	};  
 })
-.controller("networkDeviceVlanEdit", function($scope, $network){
+.controller("networkDeviceVlanEdit", function($scope, $network, $uci){
 	$scope.data = {
 		device_id: "", 
 		base_device: ""
@@ -33,13 +33,11 @@ JUCI.app
 		$scope.conf.ifname.value = value+"."+$scope.conf.vlan8021q.value; 
 		$scope.conf.baseifname.value = value; 
 	}); 
-	$network.getDevices().done(function(devs){
-		$scope.baseDevices = devs
-			//.filter(function(x){ return (x.type == "ethernet" || x.type == "adsl" || x.type == "vdsl") && x.name != "loopback"; })
-			.map(function(x){
-				var devid = x.id.substr(0, x.id.lastIndexOf(".")) || x.id; 
-				return { label: x.name + " ("+devid+")", value: devid }
-			});
-		$scope.$apply();  
-	}); 
+	$uci.$sync(["layer2_interface_vdsl", "layer2_interface_adsl", "layer2_interface_ethernet"]).done(function(){
+		var vdslDevs = $uci.layer2_interface_vdsl["@vdsl_interface"].map(function(x){return {label:x.name.value + " (" + x.baseifname.value + ")", value:x.baseifname.value}});
+		var adslDevs = $uci.layer2_interface_adsl["@atm_bridge"].map(function(x){return {label:x.name.value + " (" + x.baseifname.value + ")", value:x.baseifname.value}});
+		var ethDevs = $uci.layer2_interface_ethernet["@ethernet_interface"].map(function(x){return {label:x.name.value + " (" + x.baseifname.value + ")", value:x.baseifname.value}});
+		$scope.baseDevices = vdslDevs.concat(adslDevs).concat(ethDevs);
+		$scope.$apply();
+	});
 }); 
