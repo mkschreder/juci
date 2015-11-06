@@ -86,7 +86,7 @@ wireless_clients(){
 	for wdev in $WLDEVICES; do
 		CLIENTS=$(wlctl -i $wdev assoclist | cut -d' ' -f2); 
 		BAND=$(wlctl -i $wdev band); 
-		if [ "$BAND" == "b" ]; then BAND="2.4GHz"; else BAND="5.8GHz"; fi
+		if [ "$BAND" == "b" ]; then BAND="2.4GHz"; else BAND="5GHz"; fi
 		for cl in $CLIENTS; do
 			local RSSI=$(wlctl -i "$wdev" rssi "$cl"); 
 			local NOISE=$(wlctl -i "$wdev" noise); 
