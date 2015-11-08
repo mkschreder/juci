@@ -28,7 +28,6 @@ JUCI.app
 
 UCI.$registerConfig("upnpd"); 
 UCI.upnpd.$registerSectionType("upnpd", {
-	"enabled": 			{ dvalue: false, type: Boolean }, 
 	"enable_natpmp":	{ dvalue: false, type: Boolean }, 
 	"enable_upnp":		{ dvalue: false, type: Boolean }, 
 	"secure_mode":		{ dvalue: false, type: Boolean }, 

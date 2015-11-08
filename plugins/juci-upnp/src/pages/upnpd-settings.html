@@ -4,8 +4,17 @@
 		<juci-config-info>{{ 'internet.services.upnp.info' | translate }}</juci-config-info>
 		<juci-config-section>
 			<juci-config-lines>
-				<juci-config-line title="{{'Enable'|translate}}" ng-show="upnp">
-					<switch ng-model="upnp.enabled.value" class="green"/>
+				<juci-config-line title="{{'Automatically Start Service At Bootup'|translate}}" help="{{'Enable upnp daemon at boot time'|translate}}">
+					<switch ng-model="service.enabled" ng-change="onEnableDisableService()" class="green"></switch>
+				</juci-config-line>
+				<juci-config-line title="{{'Start / Stop Service'|translate}}" ng-show="upnp" help="{{'Start/stop upnp daemon (make sure you have WAN connection!)'|translate}}">
+					<button class="btn btn-default" ng-click="onStartStopService()"><i class="fa" ng-class="{'fa-play':!service.running,'fa-stop':service.running}"></i></button>
+				</juci-config-line>
+				<juci-config-line title="{{'Enable UPNP'|translate}}" ng-show="upnp" help="{{'Enable UPNP protocol'|translate}}">
+					<switch ng-model="upnp.enable_upnp.value" class="green"></switch>
+				</juci-config-line>
+				<juci-config-line title="{{'Enable NAT-PMP'|translate}}" ng-show="upnp" help="{{'Enable NAT-PMP protocol'|translate}}">
+					<switch ng-model="upnp.enable_natpmp.value" class="green"></switch>
 				</juci-config-line>
 			</juci-config-lines>
 			<h2 translate>UPnP Open Ports</h2>
