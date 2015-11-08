@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app.requires.push("angularBootstrapNavTree"); 
-JUCI.app.requires.push("isteven-multi-select");
+JUCI.app.requires.push("dropdown-multi-select");
 
 JUCI.app
 .factory("$minidlna", function($uci){

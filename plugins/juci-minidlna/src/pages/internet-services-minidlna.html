@@ -15,7 +15,7 @@
 					<input type="number" class="form-control" min="0" max="65535" ng-model="port.value"/>
 				</juci-config-line>
 				<juci-config-line title="{{'Network'|translate}}">
-					<isteven-multi-select input-model="network.all" output-model="network.selected" button-label="name" item-label="name" tick-property="selected"></isteven-multi-select>	
+					<dropdown-multi-select input-model="network.all" output-model="network.selected" button-label="name" item-label="name" tick-property="selected"></dropdown-multi-select>	
 				</juci-config-line>
 				<juci-config-line title="{{'Friendly Name'|translate}}">
 					<input type="text" class="form-control" ng-model="config.friendly_name.value"/>
