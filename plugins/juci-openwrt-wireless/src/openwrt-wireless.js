@@ -266,28 +266,21 @@ UCI.wireless.$registerSectionType("wifi-iface", {
 	if(section.ssid.value.length >= 32) 
 		return gettext("SSID string can be at most 32 characters long!"); 
 	// validate keys
-	switch(section.encryption.value){
-		case "wep": {
-			for(var id = 1; id <= 4; id++){
-				var key = section["key"+id]; 
-				if(key && key.value != "" && !key.value.match(/[a-f0-9A-F]{10,26}/)) 
-					return gettext("WEP encryption key #"+id+" must be 10-26 hexadecimal characters!"); 
-			}
-		} break;
-		case "psk": 
-		case "psk2": 
-		case "mixed-psk": {
-			if(!section.key.value || !(section.key.value.length >= 8 && section.key.value.length < 64))
-				return gettext("WPA key must be 8-63 characters long!"); 
-		} break; 
-		default: 
-			break; 
+	if(section.encryption.value.indexOf("wep") == 0){
+		for(var id = 1; id <= 4; id++){
+			var key = section["key"+id]; 
+			if(key && key.value != "" && !key.value.match(/[a-f0-9A-F]{10,26}/)) 
+				return gettext("WEP encryption key #"+id+" must be 10-26 hexadecimal characters!"); 
+		}
+	} else if(section.encryption.value.indexOf("psk2") == 0 || section.encryption.value.indexOf("psk") == 0 || section.encryption.value.indexOf("mixed-psk") == 0 ){
+		if(!section.key.value || !(section.key.value.length >= 8 && section.key.value.length < 64))
+			return gettext("WPA key must be 8-63 characters long!"); 
 	}
 	return null; 
 });
 
 UCI.juci.$registerSectionType("wireless", {
-	"cryptochoices": 			{ dvalue: [], type: Array }
+	"cryptochoices": 			{ dvalue: ["none", "psk2", "psk-mixed"], type: Array }
 }); 
 UCI.juci.$insertDefaults("wireless"); 
 

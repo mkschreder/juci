@@ -18,18 +18,52 @@ JUCI.app
 		ev.stopPropagation(); 
 		$scope.errors.push(err); 
 	}); 
-	$scope.cryptoChoices = [
+
+	var allSupportedCryptoChoices = [
 		{ label: $tr(gettext("None")), value: "none" }, 
-		{ label: $tr(gettext("WEP")), value: "wep" }, 
-		{ label: $tr(gettext("WPA2 Personal (PSK)")), value: "psk2" }, 
-		{ label: $tr(gettext("WPA2 Personal (PSK + CCMP)")), value: "psk2+ccmp" }, 
+		{ label: $tr(gettext("WEP Shared Key")), value: "wep+shared" }, 
+		{ label: $tr(gettext("WEP Open System")), value: "wep+open" }, 
 		{ label: $tr(gettext("WPA Personal (PSK)")), value: "psk" }, 
+		{ label: $tr(gettext("WPA Personal (PSK + TKIP)")), value: "psk+tkip" }, 
+		{ label: $tr(gettext("WPA Personal (PSK + CCMP)")), value: "psk+ccmp" }, 
+		{ label: $tr(gettext("WPA Personal (PSK + AES)")), value: "psk+aes" }, 
+		{ label: $tr(gettext("WPA Personal (PSK + TKIP + CCMP)")), value: "psk+tkip+ccmp" }, 
+		{ label: $tr(gettext("WPA Personal (PSK + TKIP + AES)")), value: "psk+tkip+aes" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK)")), value: "psk2" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK + TKIP)")), value: "psk2+tkip" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK + CCMP)")), value: "psk2+ccmp" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK + AES)")), value: "psk2+aes" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK + TKIP + CCMP)")), value: "psk2+tkip+ccmp" }, 
+		{ label: $tr(gettext("WPA2 Personal (PSK + TKIP + AES)")), value: "psk2+tkip+aes" }, 
 		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode")), value: "psk-mixed" }, 
+		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode (TKIP)")), value: "psk-mixed+tkip" }, 
+		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode (CCMP)")), value: "psk-mixed+ccmp" }, 
+		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode (AES)")), value: "psk-mixed+aes" }, 
+		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode (TKIP + CCMP)")), value: "psk-mixed+tkip+ccmp" }, 
+		{ label: $tr(gettext("WPA/WPA2 Personal (PSK) Mixed Mode (TKIP + AES)")), value: "psk-mixed+tkip+aes" }, 
 		{ label: $tr(gettext("WPA2 Enterprise")), value: "wpa2" }, 
+		{ label: $tr(gettext("WPA2 Enterprise (TKIP)")), value: "wpa2+tkip" }, 
+		{ label: $tr(gettext("WPA2 Enterprise (CCMP)")), value: "wpa2+ccmp" }, 
+		{ label: $tr(gettext("WPA2 Enterprise (AES)")), value: "wpa2+aes" }, 
+		{ label: $tr(gettext("WPA2 Enterprise (TKIP + CCMP)")), value: "wpa2+tkip+ccmp" }, 
+		{ label: $tr(gettext("WPA2 Enterprise (TKIP + AES)")), value: "wpa2+tkip+aes" }, 
 		{ label: $tr(gettext("WPA Enterprise")), value: "wpa" }, 
-		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode")), value: "wpa-mixed" } 
+		{ label: $tr(gettext("WPA Enterprise (TKIP)")), value: "wpa+tkip" }, 
+		{ label: $tr(gettext("WPA Enterprise (CCMP)")), value: "wpa+ccmp" }, 
+		{ label: $tr(gettext("WPA Enterprise (AES)")), value: "wpa+aes" }, 
+		{ label: $tr(gettext("WPA Enterprise (TKIP + CCMP)")), value: "wpa+tkip+ccmp" }, 
+		{ label: $tr(gettext("WPA Enterprise (TKIP + AES)")), value: "wpa+tkip+aes" }, 
+		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode")), value: "wpa-mixed" },
+		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode (TKIP)")), value: "wpa-mixed+tkip" },
+		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode (CCMP)")), value: "wpa-mixed+ccmp" },
+		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode (AES)")), value: "wpa-mixed+aes" },
+		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode (TKIP + CCMP)")), value: "wpa-mixed+tkip+ccmp" },
+		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode (TKIP + AES)")), value: "wpa-mixed+tkip+aes" }
 	]; 
-	
+	$scope.cryptoChoices = allSupportedCryptoChoices.filter(function(x){
+		return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
+	}); 
+
 	if($config.settings.wireless.cryptochoices.value.length){
 		$scope.cryptoChoices = $scope.cryptoChoices.filter(function(x){
 			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 

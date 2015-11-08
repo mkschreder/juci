@@ -70,7 +70,7 @@ JUCI.app
 	}
 
 	$scope.onEditSSID = function(iface){
-		$juciDialog.show("uci-wireless-interface", {
+		$juciDialog.show("wireless-interface-edit", {
 			title: $tr(gettext("Edit wireless interface")),  
 			on_apply: function(btn, dlg){
 				$uci.$save(); 
