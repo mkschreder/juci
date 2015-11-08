@@ -15,6 +15,11 @@ JUCI.app
 	$scope.allSwitchPorts = []; 
 	$scope.selectedSwitchPorts = []; 
 	
+	$scope.onSelectionChanged = function(){
+		if(!$scope.vlan) return; 
+		$scope.vlan.ports.value = $scope.selectedSwitchPorts.filter(function(x){ return x.selected; }).map(function(x){ return x.value; }).join(" ");  
+	}
+
 	// will load uci value into local variables
 	function loadConfig(){
 		var vlan = $scope.vlan; 
@@ -23,7 +28,7 @@ JUCI.app
 		var list = vlan.ports.value.split(" ").filter(function(x){ return x != "5t"; });  
 		$scope.selectedSwitchPorts = list.map(function(x){ 
 			return $scope.allSwitchPorts.find(function(y){ return y.value == parseInt(x); }); 
-		}).filter(function(x){ return x != null; }); 
+		}).filter(function(x){ if(x) x.selected = true; return x != null; }); 
 	}
 
 	// load config
@@ -37,18 +42,6 @@ JUCI.app
 		loadConfig(); 
 		$scope.$apply(); 
 	}); 
-
-	$scope.onAutoComplete = function(query){
-		// return ports that are not already in the list of selected ports
-		return $scope.allSwitchPorts.filter(function(x){
-			return $scope.selectedSwitchPorts.find(function(p){ return p.value == x.value; }) == null; 
-		}); 
-	}
-
-	$scope.updateConfig = function(){
-		if(!$scope.vlan) return; 
-		$scope.vlan.ports.value = $scope.selectedSwitchPorts.map(function(x){ return x.value; }).join(" ") + " 5t"; 
-	}
 
 	// when model changes, reload the values
 	$scope.$watch("vlan", function(vlan){

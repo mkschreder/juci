@@ -12,12 +12,15 @@
 		<!--<juci-config-line title="{{'Ports'|translate}}">
 			<input type="text" class="form-control" ng-model="vlan.ports.value"/>
 		</juci-config-line>-->
-		<juci-config-line title="{{'Ports'|translate}}" no-pull>
-			<tags-input ng-model="selectedSwitchPorts" display-property="label"
-						on-tag-added="updateConfig()" on-tag-removed="updateConfig()"
-						add-from-autocomplete-only="true">
-						<auto-complete source="onAutoComplete($query)" min-length="0"></auto-complete>
-			</tags-input>
+		<juci-config-line title="{{'Ports'|translate}}">
+			<dropdown-multi-select 
+				input-model="allSwitchPorts" 
+				output-model="selectedSwitchPorts" 
+				button-label="label" 
+				item-label="label" 
+				on-item-click="onSelectionChanged()"
+				tick-property="selected">
+			</dropdown-multi-select>	
 		</juci-config-line>
 	</juci-config-lines>
 </div>
