@@ -641,6 +641,10 @@ JUCI.app.factory('$languages', function($config, gettextCatalog, $localStorage) 
 			"name":"Spanish; Castilian",
 			"nativeName":"español, castellano"
 		},
+		"es-SV":{
+			"name":"Spanish; El Salvador",
+			"nativeName":"Español"
+		},
 		"su":{
 			"name":"Sundanese",
 			"nativeName":"Basa Sunda"
