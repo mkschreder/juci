@@ -8,7 +8,8 @@ JUCI.app.run(function($network, $uci, $wireless){
 				$wireless.getConnectedClients().done(function(wclients){
 					clients.map(function(cl){
 						var wcl = wclients.find(function(wc){ return String(wc.macaddr).toLowerCase() == String(cl.macaddr).toLowerCase(); }); 
-						if(wcl) { 
+						if(wcl) { 	
+							wcl.snr = (wcl.rssi / wcl.noise); 
 							cl._display_widget = "wireless-client-lan-display-widget"; 
 							cl._wireless = wcl; 
 						}; 
