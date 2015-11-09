@@ -1,0 +1,2666 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: se\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Full auto-negotiation"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 100Mb auto-negotiation, full duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 100Mb auto-negotiation, half duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 10Mb auto-negotiation, full duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Max 10Mb auto-negotiation, half duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 100Mb, full duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 100Mb, half duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 10Mb, full duplex"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.js
+msgid "Only 10Mb, half duplex"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Inaktiverad"
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
+msgid "Port speed"
+msgstr "Porthastighet"
+
+# /home/martin/juci/plugins/juci-broadcom-ethernet/src/widgets/network-device-ethernet-port-edit.html
+msgid "Pause frames"
+msgstr "Paus-frames"
+
+msgid "internet.ethernet.phy.info"
+msgstr "Ethernetportar "
+
+msgid ""
+"This will be the port that will be used to configure the physical ethernet "
+"port as upling port for routing out to the internet."
+msgstr ""
+"Denna port kommer att användas för att sätta upp fysisk uppkoppling till "
+"internet. "
+
+msgid "Ethernet Ports"
+msgstr "Ethernet portar"
+
+msgid "Pick uplink port"
+msgstr "Välj port för upplänk"
+
+msgid " socket will be used for passing packets to the internet."
+msgstr ""
+"uppkopplingen kommer att användas för att skicka ut data till internet. "
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-adsl.html
+msgid "page-broadcom-ethernet-phy-title"
+msgstr "Ethernet"
+
+msgid "menu-page-broadcom-ethernet-phy-title"
+msgstr "Ethernet"
+
+#~ msgid "New device"
+#~ msgstr "Nytt enhet"
+
+#~ msgid "Please select a device in the list!"
+#~ msgstr "Välj en uppkoppling från listan!"
+
+#~ msgid "Are you sure you want to delete this device?"
+#~ msgstr "Är du säker på att du vill ta bort denna enhet? "
+
+#~ msgid "DSL Status Information"
+#~ msgstr "DSL Status"
+
+#~ msgid "Line Status"
+#~ msgstr "Linjestatus"
+
+#~ msgid "DSL Mode"
+#~ msgstr "DSL Mode"
+
+#~ msgid "Bit Rate"
+#~ msgstr "Bithastighet"
+
+#~ msgid "Operating Data"
+#~ msgstr "Operationsdata"
+
+#~ msgid "Error Counter"
+#~ msgstr "Fel"
+
+#~ msgid "Cell Statistics"
+#~ msgstr "Samtals-statistik"
+
+#~ msgid "You need to select a device!"
+#~ msgstr "Du måste välja en enhet! "
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
+#~ msgid "EoA"
+#~ msgstr "EoA"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
+#~ msgid "PPPoA"
+#~ msgstr "PPPoA"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
+#~ msgid "IPoA"
+#~ msgstr "IPoA"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-adsl-edit.js
+#~ msgid "LLC/SNAP-Bridging"
+#~ msgstr "LLC/SNAP-Bryggning"
+
+#~ msgid "UBR Without PCR"
+#~ msgstr "UBR utan PCR"
+
+#~ msgid "UBR With PCR"
+#~ msgstr "UBR med PCR"
+
+#~ msgid "CBR"
+#~ msgstr "CBR"
+
+#~ msgid "Non-Realtime VBR"
+#~ msgstr "Icke-realtids VBR"
+
+#~ msgid "Realtime VBR"
+#~ msgstr "Realtids-VBR"
+
+#~ msgid "Latency Path 1"
+#~ msgstr "Latency Path 1"
+
+#~ msgid "Latency Path 2"
+#~ msgstr "Latency Path 2"
+
+#~ msgid "Latency Path 1 & 2"
+#~ msgstr "Latency Path 1 & 2"
+
+#~ msgid "Normal Priority"
+#~ msgstr "Normal Prioritet"
+
+#~ msgid "High Priority"
+#~ msgstr "Hög Prioritet"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.js
+#~ msgid "Strict Priority Precedence"
+#~ msgstr "Sträng Prioritet"
+
+#~ msgid "Pick Device"
+#~ msgstr "Välj enhet"
+
+#~ msgid "Select base DSL device"
+#~ msgstr "Välj DSL enhet"
+
+#~ msgid "Device"
+#~ msgstr "Enhet"
+
+#~ msgid "Name"
+#~ msgstr "Namn"
+
+#~ msgid "VPI"
+#~ msgstr "VPI"
+
+#~ msgid "VCI"
+#~ msgstr "VCI"
+
+#~ msgid "Service Type"
+#~ msgstr "Tjänstetyp"
+
+#~ msgid "PCR"
+#~ msgstr "PCR"
+
+#~ msgid "SCR"
+#~ msgstr "SCR"
+
+#~ msgid "MBS"
+#~ msgstr "MBS"
+
+#~ msgid "Select DSL Link Type"
+#~ msgstr "Välj DSL-länktyp"
+
+#~ msgid "Encapsulation Mode"
+#~ msgstr "Enkapsuleringstyp"
+
+#~ msgid "Device Name"
+#~ msgstr "Enhetsnamn"
+
+#~ msgid "DSL Latency Path"
+#~ msgstr "DSL Latency Path"
+
+#~ msgid "PTM Priority"
+#~ msgstr "PTM Prioritet"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/widgets/network-device-vdsl-edit.html
+#~ msgid "IP QoS Scheduler Algorithm"
+#~ msgstr "IP QoS Schemaläggning"
+
+#~ msgid "internet.ethernet.adsl.info"
+#~ msgstr "Här kan du ställa in ADSL enheter"
+
+#~ msgid "ADSL Devices"
+#~ msgstr "ADSL Enheter"
+
+#~ msgid "DSL Status"
+#~ msgstr "DSL Status"
+
+#~ msgid "dsl.status.info"
+#~ msgstr "DNS status"
+
+#~ msgid "No DSL info available."
+#~ msgstr "DSL information är inte tillgänglig."
+
+#~ msgid "internet.ethernet.vdsl.info"
+#~ msgstr "Här kan du ställa in VDSL enheter"
+
+#~ msgid "VDSL Devices"
+#~ msgstr "VDSL-enheter"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-dsl-status.html
+#~ msgid "page-broadcom-dsl-status-title"
+#~ msgstr "Status"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-vdsl.html
+#~ msgid "page-broadcom-vdsl-title"
+#~ msgstr "VDSL"
+
+# /home/martin/juci/plugins/juci-broadcom-dsl/src/pages/page-broadcom-dsl-status.html
+#~ msgid "menu-page-broadcom-dsl-status-title"
+#~ msgstr "Status"
+
+#~ msgid "menu-page-broadcom-vdsl-title"
+#~ msgstr "VDSL"
+
+#~ msgid "Today"
+#~ msgstr "Idag"
+
+#~ msgid "N/A"
+#~ msgstr "N/A"
+
+#~ msgid "Enabled"
+#~ msgstr "Aktiv"
+
+#~ msgid "off"
+#~ msgstr "av"
+
+#~ msgid "on"
+#~ msgstr "på"
+
+#~ msgid "Phone"
+#~ msgstr "Telefoni"
+
+#~ msgid "Schedule"
+#~ msgstr "Schemaläggning"
+
+#~ msgid "OFFLINE"
+#~ msgstr "OFFLINE"
+
+# phone
+#~ msgid "Call Log"
+#~ msgstr "Samtalslogg"
+
+#~ msgid "phone.call_log.info"
+#~ msgstr "Inställningar för samtalslogg"
+
+#~ msgid "Show calls for"
+#~ msgstr "Visa samtal för"
+
+#~ msgid "Pick phone"
+#~ msgstr "Välj telefon"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Time"
+#~ msgstr "Tid"
+
+#~ msgid "External Number"
+#~ msgstr "Extern nummer"
+
+#~ msgid "Your number"
+#~ msgstr "Ditt nummer"
+
+#~ msgid "Duration"
+#~ msgstr "Varaktighet"
+
+#~ msgid "Phone Lines"
+#~ msgstr "Telefonlinjer"
+
+#~ msgid "phone.lines.info"
+#~ msgstr "Inställningar för telefonianslutningar"
+
+#~ msgid "Internal Number"
+#~ msgstr "Intern nummer"
+
+#~ msgid "Outgoing Calls Number"
+#~ msgstr "Utgående nummer"
+
+#~ msgid "Pick Outgoing Number"
+#~ msgstr "Välj utgående tel. nummer"
+
+# phone
+#~ msgid "Call Waiting"
+#~ msgstr "Samtal väntar"
+
+#~ msgid "Call ID Restriction"
+#~ msgstr "Call-id restriktion"
+
+#~ msgid "Number Blocking"
+#~ msgstr "Nummerblockering"
+
+#~ msgid "phone.number_blocking.info"
+#~ msgstr ""
+#~ "Behåll kontrollen över dina räkningar och blockera utgående samtal till "
+#~ "oönskade nummer."
+
+#~ msgid "Outgoing Number Blocking"
+#~ msgstr "Utgående samtalsblockering"
+
+#~ msgid "Phone Extension"
+#~ msgstr "Telefontillägg"
+
+#~ msgid "Block connections to all foreign numbers"
+#~ msgstr "Blockera samtal till alla nummer i utlandet"
+
+#~ msgid "Block connections to all special rate numbers"
+#~ msgstr "Blockera samtal till specialnummer"
+
+#~ msgid "Incoming Number Blocking"
+#~ msgstr "Inkommande nummberblockering"
+
+#~ msgid "Do not allow connections from these numbers"
+#~ msgstr "Blockera samtal från dessa nummer."
+
+#~ msgid "Outgoing Calls"
+#~ msgstr "Utgående Samtal"
+
+#~ msgid ""
+#~ "You can also block ranges of numbers.For example: '0160#' blocks all "
+#~ "numbers starting with '0160'."
+#~ msgstr ""
+#~ "Du kan också blockera ett intervall. Till exempel: \"0160#\" blockerar "
+#~ "alla nummer som börjar med \"0160\"."
+
+#~ msgid "Incoming Calls"
+#~ msgstr "Inkommande samtal"
+
+#~ msgid "SIP Accounts"
+#~ msgstr "SIP Konton"
+
+#~ msgid "phone.sip.accounts.info"
+#~ msgstr "Inställningar för telefonianslutningar"
+
+# /home/martin/juci/plugins/juci-asterisk/src/pages/phone-numbers.html
+#~ msgid "Account Name"
+#~ msgstr "Kontonamn"
+
+#~ msgid "SIP Host"
+#~ msgstr "SIP Server"
+
+#~ msgid "SIP Server"
+#~ msgstr "SIP Server"
+
+# /home/martin/juci/plugins/juci-asterisk/src/pages/phone-numbers.html
+#~ msgid "SIP Proxy"
+#~ msgstr "SIP proxy"
+
+# /home/martin/juci/plugins/juci-asterisk/src/pages/phone-numbers.html
+#~ msgid "SIP Auth User"
+#~ msgstr "SIP Användarnamn"
+
+# /home/martin/juci/plugins/juci-asterisk/src/pages/phone-numbers.html
+#~ msgid "Auth User"
+#~ msgstr "Användarnamn"
+
+#~ msgid "SIP User"
+#~ msgstr "SIP Användare"
+
+#~ msgid "User"
+#~ msgstr "Användare"
+
+#~ msgid "SIP Password"
+#~ msgstr "SIP Lösenord"
+
+#~ msgid "Incoming Phone Lines"
+#~ msgstr "Inkommande telefonlinor"
+
+#~ msgid "Ringing Schedule"
+#~ msgstr "Telefonischema"
+
+#~ msgid "phone.schedule.info"
+#~ msgstr "Definiera scheman när dina telefoner bör eller inte bör ringa."
+
+#~ msgid "During this time ringing is"
+#~ msgstr "Denna tid är telefonsamtal"
+
+#~ msgid "Select Schedule Mode"
+#~ msgstr "Välj schemaläggningstyp"
+
+#~ msgid "Add a new Ringing Schedule"
+#~ msgstr "Lägg till nytt schema"
+
+#~ msgid "Phone Number"
+#~ msgstr "Telefonnummer"
+
+#~ msgid "Pick Phone Number"
+#~ msgstr "Välj telefonnummer"
+
+#~ msgid "Day"
+#~ msgstr "Dag"
+
+#~ msgid "Number"
+#~ msgstr "Nummer"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "Speed Dialing"
+#~ msgstr "Snabbuppringning"
+
+#~ msgid "phone.speed_dialing.info"
+#~ msgstr "Inställningar för snabbuppringning"
+
+#~ msgid "Remove all entries from speed dial list"
+#~ msgstr "Ta bort alla nummer från snabbuppringningslistan"
+
+#~ msgid "Clear"
+#~ msgstr "Rensa"
+
+#~ msgid "Voice Status"
+#~ msgstr "Telefonstatus"
+
+#~ msgid "status.voice.info"
+#~ msgstr "Information om telefoni. "
+
+#~ msgid "Your Phone Numbers"
+#~ msgstr "Dina telefonnummer"
+
+#~ msgid "Voice Lines"
+#~ msgstr "Voiceportar"
+
+#~ msgid "status.voice_lines.info"
+#~ msgstr "Status för telefoniuppkopplingar. "
+
+#~ msgid "Your Phone Lines"
+#~ msgstr "Dina telefonlinjer"
+
+#~ msgid "Domain"
+#~ msgstr "Domän"
+
+#~ msgid "State"
+#~ msgstr "Tillstånd"
+
+# share/menu.d/status.json
+#~ msgid "status-phone-title"
+#~ msgstr "Status"
+
+#~ msgid "phone-lines-title"
+#~ msgstr "Samtalslinor"
+
+#~ msgid "phone-ringing-schedule-title"
+#~ msgstr "Schemaläggning"
+
+# menu.d/juci-mod-voice.json
+#~ msgid "phone-title"
+#~ msgstr "Telefoni"
+
+#~ msgid "phone-speed-dialing-title"
+#~ msgstr "Snabbuppringning"
+
+#~ msgid "phone-number-blocking-title"
+#~ msgstr "Nummerblockering"
+
+#~ msgid "phone-call-log-title"
+#~ msgstr "Samtalslogg"
+
+#~ msgid "phone-numbers-title"
+#~ msgstr "Telefonnummer"
+
+# /home/martin/juci/juci//src/pages/bootstrap.html
+#~ msgid "menu-status-phone-title"
+#~ msgstr "Status"
+
+#~ msgid "menu-phone-lines-title"
+#~ msgstr "Telefonikonton"
+
+#~ msgid "menu-phone-ringing-schedule-title"
+#~ msgstr "Schemaläggning"
+
+# share/menu.d/wifi.json
+#~ msgid "menu-phone-title"
+#~ msgstr "Telefoni"
+
+#~ msgid "menu-phone-speed-dialing-title"
+#~ msgstr "Snabbuppringning"
+
+#~ msgid "menu-phone-number-blocking-title"
+#~ msgstr "Nummerblockering"
+
+#~ msgid "menu-phone-call-log-title"
+#~ msgstr "Samtalslogg"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "OK"
+#~ msgstr "OK"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "Invalid command"
+#~ msgstr "Ogiltigt kommando"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "Invalid parameters"
+#~ msgstr "Ogiltiga parametrar"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "Method not found"
+#~ msgstr "Metoden kunde inte hittas"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "Object not found"
+#~ msgstr "Objektet kunde inte hittas"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "No data"
+#~ msgstr "Tomt data"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "Access denied"
+#~ msgstr "Behörighet saknas"
+
+#~ msgid "Timed out"
+#~ msgstr "Tiden har gått ut"
+
+#~ msgid "Not supported"
+#~ msgstr "Stöds ej"
+
+#~ msgid "Unknown error"
+#~ msgstr "Okänt fel"
+
+#~ msgid "Connection failed"
+#~ msgstr "Uppkopplingen avbröts"
+
+#~ msgid "RPC error #"
+#~ msgstr "RPC fel #"
+
+# /home/martin/juci/juci//src/js/rpc.js
+#~ msgid "You have been logged out due to inactivity"
+#~ msgstr "Du har loggats ut pga inaktivitet"
+
+# /home/martin/juci/juci//src/js/uci.js
+#~ msgid "please specify both hour and minute value for time separated by ':'"
+#~ msgstr "Vänligen ange både timmar och minuter i formen tt:mm"
+
+# /home/martin/juci/juci//src/js/uci.js
+#~ msgid "please enter valid time in form hh:mm"
+#~ msgstr "Ange giltigt tid i formen tt:mm"
+
+# /home/martin/juci/juci//src/js/uci.js
+#~ msgid "Please specify both start time and end time for schedule!"
+#~ msgstr "Vänligen ange start och stopp tid för schemaläggning. "
+
+# /home/martin/juci/juci//src/js/uci.js
+#~ msgid "Schedule start time must be lower than schedule end time!"
+#~ msgstr "Starttid måste vara före sluttid!"
+
+# /home/martin/juci/juci//src/js/uci.js
+#~ msgid "Please pick days between mon-sun"
+#~ msgstr "Välj veckodagar (mån - sön) "
+
+# /home/martin/juci/juci//src/js/uci.js
+#~ msgid ""
+#~ "Port value must be a valid port number or port range between 1 and 65536"
+#~ msgstr "Portvärdet måste vara mellan 1 och 65535. "
+
+# /home/martin/juci/juci//src/js/uci.js
+#~ msgid "Number value is not within valid range"
+#~ msgstr "Värdet är felaktigt"
+
+#~ msgid "application.name"
+#~ msgstr "juci-Express"
+
+# /home/martin/juci/juci//src/widgets/juci-config.js
+#~ msgid "Settings have been applied successfully!"
+#~ msgstr "Inställningarna har sparats!"
+
+#~ msgid "Apply"
+#~ msgstr "Verkställ"
+
+#~ msgid "Cancel"
+#~ msgstr "Avbryt"
+
+#~ msgid "Please enter correct username and password!"
+#~ msgstr "Knappa in rätt användarnamn och lösenord! "
+
+#~ msgid "Basic Mode"
+#~ msgstr "Simpelt"
+
+#~ msgid "Expert Mode"
+#~ msgstr "Expert"
+
+#~ msgid "Individual Days"
+#~ msgstr "Enskilda dagar"
+
+#~ msgid "Every Day"
+#~ msgstr "Varje dag"
+
+#~ msgid "Every Workday"
+#~ msgstr "Varje arbetsdag"
+
+#~ msgid "All Weekend"
+#~ msgstr "Helg"
+
+#~ msgid "Monday"
+#~ msgstr "måndag"
+
+#~ msgid "Tuesday"
+#~ msgstr "tisdag"
+
+#~ msgid "Wednesday"
+#~ msgstr "onsdag"
+
+#~ msgid "Thursday"
+#~ msgstr "torsdag"
+
+#~ msgid "Friday"
+#~ msgstr "fredag"
+
+#~ msgid "Saturday"
+#~ msgstr "lördag"
+
+#~ msgid "Sunday"
+#~ msgstr "söndag"
+
+# /home/martin/juci/juci//src/widgets/juci-select.js
+#~ msgid "-- Select One --"
+#~ msgstr "-- Välj ett --"
+
+#~ msgid "Start port"
+#~ msgstr "Startport"
+
+#~ msgid "End port"
+#~ msgstr "Slutport"
+
+#~ msgid "Port (1-65535)"
+#~ msgstr "Port (1-65535)"
+
+#~ msgid "from"
+#~ msgstr "från"
+
+#~ msgid "to"
+#~ msgstr "till"
+
+# /home/martin/juci/juci//src/widgets/juci-list-editor.html
+#~ msgid "Add"
+#~ msgstr "Lägg till"
+
+# /home/martin/juci/juci//src/widgets/juci-list-editor.html
+#~ msgid "Delete"
+#~ msgstr "Ta bort"
+
+#~ msgid "You are logged in!"
+#~ msgstr "Du är inloggad!"
+
+#~ msgid "Log out"
+#~ msgstr "Logga ut"
+
+#~ msgid "Please sign in"
+#~ msgstr "Logga in"
+
+#~ msgid "You do not have an RPC connection to the router!"
+#~ msgstr "Du är inte uppkopplad mot din router!"
+
+#~ msgid "Connecting..."
+#~ msgstr "Kopplar upp.. "
+
+#~ msgid "Sign in"
+#~ msgstr "Logga in"
+
+#~ msgid "Signing in..."
+#~ msgstr "Loggar in..."
+
+#~ msgid "Select Mode"
+#~ msgstr "Välj"
+
+#~ msgid "Toggle navigation"
+#~ msgstr "Toggla navigation"
+
+#~ msgid "Time Frame"
+#~ msgstr "Tidsram"
+
+# /home/martin/juci/juci//src/widgets/juci-schedule-edit.html
+#~ msgid "Preselected Days"
+#~ msgstr "Förvalda dagar"
+
+#~ msgid "Days"
+#~ msgstr "Dagar"
+
+#~ msgid "Select Theme"
+#~ msgstr "Välj tema"
+
+# /home/martin/juci/juci//src/pages/404.html
+#~ msgid "The page you were trying to access was not found!"
+#~ msgstr "Sidan som du har angett kunde inte hittas"
+
+# /home/martin/juci/juci//src/pages/404.html
+#~ msgid "404-title"
+#~ msgstr "Sidan kunde inte hittas"
+
+#~ msgid "default-title"
+#~ msgstr "Default "
+
+# /home/martin/juci/juci//src/pages/bootstrap.html
+#~ msgid "bootstrap-title"
+#~ msgstr "Bootstrap"
+
+# share/menu.d/wifi.json
+#~ msgid "login-title"
+#~ msgstr "Logga In"
+
+#~ msgid "overview-title"
+#~ msgstr "Översikt"
+
+# /home/martin/juci/juci//src/pages/404.html
+#~ msgid "menu-404-title"
+#~ msgstr "404"
+
+# /home/martin/juci/juci//src/pages/default.html
+#~ msgid "menu-default-title"
+#~ msgstr "Default"
+
+#~ msgid "menu-overview-title"
+#~ msgstr "Översikt"
+
+#~ msgid "11a"
+#~ msgstr "802.11a"
+
+#~ msgid "11ac"
+#~ msgstr "802.11ac"
+
+#~ msgid "11b"
+#~ msgstr "802.11b"
+
+#~ msgid "11bg"
+#~ msgstr "802.11bg"
+
+#~ msgid "11g"
+#~ msgstr "802.11g"
+
+#~ msgid "11n"
+#~ msgstr "802.11n"
+
+#~ msgid "2.4GHz"
+#~ msgstr "2.4GHz"
+
+#~ msgid "5GHz"
+#~ msgstr "5GHz"
+
+#~ msgid ""
+#~ "<strong>{{data.wan_network['.name'] | uppercase}}</strong> connection "
+#~ "will be used as default outgoing route for packets."
+#~ msgstr ""
+#~ "<strong>{{data.wan_network['.name'] | uppercase}}</strong> kommer att "
+#~ "användas som uppkoppling för utgående paket. "
+
+#~ msgid "ACCEPT"
+#~ msgstr "TA EMOT"
+
+#~ msgid "ADSL"
+#~ msgstr "ADSL"
+
+#~ msgid "About"
+#~ msgstr "Om"
+
+#~ msgid "Access Point (AP)"
+#~ msgstr "Access Punkt (AP)"
+
+#~ msgid "Access for listed devices"
+#~ msgstr "Åtkomst för listade enheter"
+
+#~ msgid "Active Connections"
+#~ msgstr "Aktiva uppkopplingar"
+
+#~ msgid "Active Stations"
+#~ msgstr "Aktiva klienter"
+
+#~ msgid "Actual Data Rate"
+#~ msgstr "Nuvarande hastighet"
+
+#~ msgid "Adapter"
+#~ msgstr "Adapter"
+
+#~ msgid "Add Connected Host"
+#~ msgstr "Lägg till enhet"
+
+#~ msgid "Add URL's to URL blocking list"
+#~ msgstr "Lägg till URL till blockeringslistan"
+
+#~ msgid "Add clients to MAC filtering list"
+#~ msgstr "Lägg till klienter till filter-listan"
+
+#~ msgid "Add currently connected hosts to the list"
+#~ msgstr "Lägg till anslutna enheter"
+
+#~ msgid "Add domain name"
+#~ msgstr "Lägg till domännamn"
+
+#~ msgid "Add password"
+#~ msgstr "Lägg till lösenord"
+
+#~ msgid "Add username"
+#~ msgstr "Lägg till användarnamn"
+
+#~ msgid "Address Pool End IP"
+#~ msgstr "Slut-IP"
+
+#~ msgid "Address Pool Start IP"
+#~ msgstr "Start-IP"
+
+#~ msgid "Advanced"
+#~ msgstr "Avancerat"
+
+#~ msgid "Album-Art Names"
+#~ msgstr "Album-Art Namn"
+
+#~ msgid "Allow Guest Access"
+#~ msgstr "Tillåt guest-åtkomst"
+
+#~ msgid "Any"
+#~ msgstr "Vilken som helst"
+
+#~ msgid ""
+#~ "Are you sure you want to create a new SSID with the same name and on the "
+#~ "same radio? This may result in undefined behaviour!"
+#~ msgstr ""
+#~ "Är du säker på att du vill skapa en ny SSID med samma namn som en "
+#~ "befintlig SSID? "
+
+#~ msgid "Are you sure you want to delete this device from bridge?"
+#~ msgstr "Är du säker på att du vill ta bort denna enhet från bryggan? "
+
+#~ msgid "Are you sure you want to delete this zone?"
+#~ msgstr "Är du säker på att du vill ta bort denna zon? "
+
+#~ msgid ""
+#~ "Are you sure you want to remove device  from network  and use it in this "
+#~ "bridge?"
+#~ msgstr ""
+#~ "Är du säker på att du vill ta bort denna enhet från nätverket och använda "
+#~ "den i en brygga? "
+
+#~ msgid "Are you sure you want to remove this network from this zone?"
+#~ msgstr "Är du säker på att du vill ta bort denna nätverkszon? "
+
+#~ msgid "Attempting to Pair"
+#~ msgstr "Ihopkopplar"
+
+#~ msgid "Auto"
+#~ msgstr "Auto"
+
+#~ msgid "Automated Diagnostics"
+#~ msgstr "Automatiserad diagnostik"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatisk"
+
+#~ msgid "Automatic DNS Configuration"
+#~ msgstr "Automatisk konfigurering"
+
+#~ msgid "Backup file password"
+#~ msgstr "Lösenord för backupfil"
+
+#~ msgid "Bandwidth"
+#~ msgstr "Bandbredd"
+
+#~ msgid "Banner File"
+#~ msgstr "Banner-fil"
+
+#~ msgid "Base Device"
+#~ msgstr "Grundenhet"
+
+#~ msgid "Basic Config"
+#~ msgstr "Grundinställningar"
+
+#~ msgid "Buffered"
+#~ msgstr "Buffrad"
+
+#~ msgid "CCMP (AES)"
+#~ msgstr "CCMP (AES)"
+
+#~ msgid "Cell Counter"
+#~ msgstr "Cell räknare"
+
+#~ msgid "Change Password"
+#~ msgstr "Ändra lösenord"
+
+#~ msgid "Channel"
+#~ msgstr "Kanal"
+
+#~ msgid "Check for Upgrade"
+#~ msgstr "Sök efter uppdatering"
+
+#~ msgid "Choose Configuration Option"
+#~ msgstr "Välj konfigurationsväg"
+
+#~ msgid "Choose DNS Provider"
+#~ msgstr "Välj DNS server"
+
+#~ msgid "Choose Network"
+#~ msgstr "Välj nätverk"
+
+#~ msgid ""
+#~ "Choose the local IP address that should be exposed to Internet. "
+#~ "Additionally you should configure this IP address as static DHCP address "
+#~ "for your device (see Settings/Network)."
+#~ msgstr ""
+#~ "Välj vilken lokal IP-adress som ska exponeras mot Internet. Du bör "
+#~ "konfigurera den enheten med statisk DHCP-adress (inställningen finns i "
+#~ "Inställningar/Nätverk). "
+
+#~ msgid "Click here to restart your device"
+#~ msgstr "Klicka här för att starta om din gateway."
+
+#~ msgid "Client (STA)"
+#~ msgstr "Klient (STA)"
+
+#~ msgid "Client IP"
+#~ msgstr "Klient-IP"
+
+#~ msgid "Clients"
+#~ msgstr "Klienter"
+
+#~ msgid "Close"
+#~ msgstr "Stäng"
+
+#~ msgid "Command"
+#~ msgstr "Kommando"
+
+#~ msgid "Comments"
+#~ msgstr "Kommentarer"
+
+#~ msgid "Configuration"
+#~ msgstr "Konfiguration"
+
+#~ msgid "Connected Wireless Clients"
+#~ msgstr "Uppkopplade WiFi-klienter"
+
+#~ msgid "Connection Keep Alive"
+#~ msgstr "Keep-Alive funktion"
+
+#~ msgid "Connection Status"
+#~ msgstr "Uppkopplingsstatus"
+
+#~ msgid "Connections"
+#~ msgstr "Anslutningar"
+
+#~ msgid "Connections for each Device"
+#~ msgstr "Uppkopplingar för varje enhet"
+
+#~ msgid "Create New Network Interface"
+#~ msgstr "Skapa en ny nätverksinterface"
+
+#~ msgid "Current Firmware Version"
+#~ msgstr "Nuvarande mjukvaruversion"
+
+#~ msgid "Currently added devices"
+#~ msgstr "Tilllagda enheter"
+
+#~ msgid "DDNS"
+#~ msgstr "DDNS"
+
+#~ msgid "DDNS (Dynamic DNS)"
+#~ msgstr "DDNS (Dynamisk DNS)"
+
+#~ msgid "DHCP Lease Time"
+#~ msgstr "DHCP-lease tid"
+
+#~ msgid "DHCP Leases"
+#~ msgstr "DHCP Leasar"
+
+#~ msgid "DHCP Server"
+#~ msgstr "DHCP server"
+
+#~ msgid "DHCP Server Settings"
+#~ msgstr "Inställningar för DHCP server"
+
+#~ msgid "DMZ"
+#~ msgstr "DMZ"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "DNS & DDNS"
+#~ msgstr "DNS & DDNS"
+
+#~ msgid "DNS Servers"
+#~ msgstr "DNS-servrar"
+
+#~ msgid "DNS Settings"
+#~ msgstr "DNS-inställningar"
+
+#~ msgid "DNS configuration"
+#~ msgstr "DNS konfiguration"
+
+# status
+#~ msgid "DSL"
+#~ msgstr "DSL"
+
+#~ msgid "DSN"
+#~ msgstr "DSN"
+
+#~ msgid "DSS Key File"
+#~ msgstr "DNS nyckelfil"
+
+#~ msgid "Default Gateway"
+#~ msgstr "Gateway"
+
+#~ msgid "Default Policy"
+#~ msgstr "Default Policy"
+
+#~ msgid "Description"
+#~ msgstr "Beskrivning"
+
+#~ msgid "Destination"
+#~ msgstr "Destination"
+
+#~ msgid "Device ID"
+#~ msgstr "Enhets-ID"
+
+#~ msgid "Device:"
+#~ msgstr "Enhet:"
+
+#~ msgid "Devices"
+#~ msgstr "Enheter"
+
+#~ msgid "Diagnose"
+#~ msgstr "Diagnostisera"
+
+#~ msgid "Diagnostic Utility"
+#~ msgstr "Diagnostikverktyg"
+
+#~ msgid "Diagnostics"
+#~ msgstr "Diagnostik"
+
+#~ msgid "Domain name"
+#~ msgstr "Domännamn"
+
+#~ msgid "Dropbear"
+#~ msgstr "Dropbeat"
+
+#~ msgid "During this time the WiFi is"
+#~ msgstr "Under denna tid är WiFi"
+
+#~ msgid "Dynamic DNS"
+#~ msgstr "Dynamisk DNS"
+
+# settings
+#~ msgid "EasyBox Password"
+#~ msgstr "EasyBox Lösenord"
+
+#~ msgid "Enable"
+#~ msgstr "Aktivera"
+
+#~ msgid "Enable DDNS Client"
+#~ msgstr "Aktivera DDNS klient"
+
+#~ msgid "Enable NAT"
+#~ msgstr "Aktivera NAT"
+
+#~ msgid "Enable This Network"
+#~ msgstr "Aktivera denna nätverk"
+
+#~ msgid "Enable UPnP"
+#~ msgstr "Aktivera UPnP"
+
+#~ msgid "Enable WAN"
+#~ msgstr "Aktivera WAN"
+
+#~ msgid "Enable WPS button on router"
+#~ msgstr "Aktivera WPS-knapp på router"
+
+#~ msgid "Enable WPS on"
+#~ msgstr "Aktivera WPS på"
+
+#~ msgid "Enable WiFi On/Off button"
+#~ msgstr "Aktivera WiFI On/Off knapp"
+
+#~ msgid "Enable WiFi On/Off button on EasyBox"
+#~ msgstr "On/Off knappen på din EasyBox"
+
+# internet
+#~ msgid "Enable firewall"
+#~ msgstr "Aktivera brandvägg"
+
+#~ msgid "Energy Settings"
+#~ msgstr "Energi-inställningar"
+
+#~ msgid "Enter DDNS Provider"
+#~ msgstr "Ange DDNS Provider"
+
+#~ msgid "Enter your PIN here"
+#~ msgstr "Skriv din PIN här"
+
+#~ msgid "Enter your device PIN"
+#~ msgstr "Ange PIN för din gateway"
+
+#~ msgid "Error"
+#~ msgstr "Fel"
+
+#~ msgid "Ethernet"
+#~ msgstr "Ethernet"
+
+#~ msgid "Event Log"
+#~ msgstr "Händelselogg"
+
+#~ msgid "Events"
+#~ msgstr "Händelser"
+
+#~ msgid "Exposed Host"
+#~ msgstr "Öppet klient"
+
+#~ msgid "Exposed Host Function"
+#~ msgstr "Aktivera öppen klient"
+
+#~ msgid "FEC Corrections"
+#~ msgstr "FEC rättelser"
+
+#~ msgid "FORWARD"
+#~ msgstr "SKICKA VIDARE"
+
+#~ msgid "Factory Settings"
+#~ msgstr "Fabriksinställningar"
+
+#~ msgid "Family"
+#~ msgstr "Familj"
+
+# internet
+#~ msgid "Firewall"
+#~ msgstr "Brandvägg"
+
+# internet
+#~ msgid "Firewall Action"
+#~ msgstr "Åtgärd"
+
+# internet
+#~ msgid "Firewall Forwarding"
+#~ msgstr "Vidarebefordring"
+
+# internet
+#~ msgid "Firewall Zones"
+#~ msgstr "Zoner"
+
+# internet
+#~ msgid "Firewall settings"
+#~ msgstr "Brandväggsinställningar"
+
+#~ msgid "Firmware Upgrade"
+#~ msgstr "Uppgradering"
+
+#~ msgid "Firmware Version"
+#~ msgstr "Firmware version"
+
+#~ msgid "Forever"
+#~ msgstr "För Alltid"
+
+#~ msgid "Forward"
+#~ msgstr "Skicka vidare"
+
+#~ msgid "Forwarding"
+#~ msgstr "Vidarebefordring"
+
+#~ msgid "Friendly Name"
+#~ msgstr "Friendly Namn"
+
+#~ msgid "Gateway"
+#~ msgstr "Gateway"
+
+#~ msgid "Gateway Password"
+#~ msgstr "Gateway lösenord"
+
+#~ msgid "Gateway Ports"
+#~ msgstr "Gatewayportar"
+
+#~ msgid "General"
+#~ msgstr "Inställningar"
+
+#~ msgid "General Settings"
+#~ msgstr "Generella Inställningar"
+
+#~ msgid "General WiFi Settings"
+#~ msgstr "Generella Inställningar"
+
+#~ msgid "Generate"
+#~ msgstr "Generera"
+
+#~ msgid "Generate New PIN"
+#~ msgstr "Generera ny PIN"
+
+#~ msgid "Generated PIN"
+#~ msgstr "Genererad PIN-kod"
+
+#~ msgid "Group IP"
+#~ msgstr "Grupp-IP"
+
+#~ msgid "Host to ping"
+#~ msgstr "Adress att pinga"
+
+#~ msgid "Host to trace"
+#~ msgstr "Adress för traceroute"
+
+#~ msgid "Hostname"
+#~ msgstr "Datornamn"
+
+#~ msgid "Hour"
+#~ msgstr "Timme"
+
+#~ msgid "Hours"
+#~ msgstr "Timmar"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#~ msgid "IP Address"
+#~ msgstr "IP-adress"
+
+#~ msgid "IP Address must be a valid ipv4 address!"
+#~ msgstr "IP-Adressen måste vara giltig"
+
+#~ msgid "IP Subnet Mask"
+#~ msgstr "Nätmask för subnät"
+
+#~ msgid "IPTV"
+#~ msgstr "IPTV"
+
+#~ msgid "IPv4 Address"
+#~ msgstr "IPv4-adress"
+
+#~ msgid "IPv4 Default Gateway"
+#~ msgstr "IPv4 gateway"
+
+#~ msgid "IPv4 Subnet Mask"
+#~ msgstr "IPv4-nätmask"
+
+#~ msgid "IPv4-Address"
+#~ msgstr "IPv4-Adress"
+
+#~ msgid "IPv4-Address ({{$index}}):"
+#~ msgstr "IPv4-adress ({{$index}}):"
+
+#~ msgid "IPv6 Address"
+#~ msgstr "IPv6-adress"
+
+#~ msgid "IPv6 Prefix"
+#~ msgstr "IPv6 Prefix"
+
+#~ msgid "IPv6-Address ({{$index}}):"
+#~ msgstr "IPv6-Adress ({{$index}}):"
+
+#~ msgid "Idle Timeout"
+#~ msgstr "Timeout inaktivitet"
+
+#~ msgid ""
+#~ "If you answer yes then your confiruation will be saved before the upgrade "
+#~ "and restored after the upgrade has completed. If you choose 'no' then all "
+#~ "your current confiration will be reset to defaults."
+#~ msgstr ""
+#~ "Om du svarar ja så kommer dina inställningar att bevaras under "
+#~ "uppgraderingen. "
+
+#~ msgid ""
+#~ "If you disable SSID broadcasting, WPS function will be disabled as well. "
+#~ "You will need to enable it manually later. Are you sure you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Om du avaktiverar SSID-broadcasting så kommer WPS funktionen att "
+#~ "deaktiveras också. "
+
+#~ msgid "Input"
+#~ msgstr "In"
+
+#~ msgid "Install Upgrade"
+#~ msgstr "Installera uppgradering"
+
+#~ msgid "Interface"
+#~ msgstr "Interface"
+
+#~ msgid "Interface Name"
+#~ msgstr "Interface-namn"
+
+#~ msgid "Interface Type"
+#~ msgstr "Uppkopplingstyp"
+
+#~ msgid "Interface UP:"
+#~ msgstr "Aktiverad"
+
+#~ msgid "Interfaces"
+#~ msgstr "Uppkopplingar"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Internet Access Scheduling"
+#~ msgstr "Schemaläggning"
+
+#~ msgid "Internet IPv6"
+#~ msgstr "IPv6"
+
+#~ msgid "Kernel Version"
+#~ msgstr "Kärnans version"
+
+#~ msgid "Key"
+#~ msgstr "Nyckel"
+
+#~ msgid "Keyword Filter"
+#~ msgstr "Ordfilter"
+
+#~ msgid "LAN"
+#~ msgstr "LAN"
+
+#~ msgid "LAN Port"
+#~ msgstr "Lan-port"
+
+#~ msgid "LAN Settings"
+#~ msgstr "LAN-inställningar"
+
+#~ msgid "Layer-2 Ethernet Devices"
+#~ msgstr "Layer-2 enheter"
+
+#~ msgid "Lease Time"
+#~ msgstr "Leasetid"
+
+#~ msgid "Leasetime remaining"
+#~ msgstr "Återstående lease-tid"
+
+#~ msgid "Load"
+#~ msgstr "Ladda upp"
+
+#~ msgid "Loading"
+#~ msgstr "Laddar"
+
+#~ msgid "Local IP"
+#~ msgstr "Lokalt IP"
+
+#~ msgid "Local IP Address"
+#~ msgstr "Lokal IP-adress"
+
+#~ msgid "Local Time"
+#~ msgstr "Lokal tid"
+
+#~ msgid "Local port"
+#~ msgstr "Lokal port"
+
+#~ msgid "Log"
+#~ msgstr "Logg"
+
+#~ msgid "Loop Attenuation"
+#~ msgstr "Loop attenuation"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "MAC Address"
+#~ msgstr "MAC-adress"
+
+#~ msgid "MAC Addresses"
+#~ msgstr "MAC-adresser"
+
+#~ msgid "MAC Filter"
+#~ msgstr "MAC Filter"
+
+#~ msgid "MAC Filtering"
+#~ msgstr "MAC-filtrering "
+
+#~ msgid "MAC address"
+#~ msgstr "MAC-Adress"
+
+#~ msgid "MAC filter"
+#~ msgstr "MAC Filter"
+
+#~ msgid "MAC-Address"
+#~ msgstr "MAC-Adress"
+
+#~ msgid "MTU"
+#~ msgstr "MTU"
+
+#~ msgid "Manual"
+#~ msgstr "Manual"
+
+#~ msgid "Manual Firmware Upgrade"
+#~ msgstr "Manuell uppgradering"
+
+#~ msgid "Media Directories"
+#~ msgstr "Mediamappar"
+
+#~ msgid "Memory"
+#~ msgstr "Minne"
+
+#~ msgid "Message"
+#~ msgstr "Meddelande"
+
+#~ msgid "Method"
+#~ msgstr "Metod"
+
+#~ msgid "MiniDLNA"
+#~ msgstr "MiniDLNA"
+
+#~ msgid "MiniDLNA Settings"
+#~ msgstr "MiniDLNA inställnignar"
+
+#~ msgid "Missing uci config boardpanel."
+#~ msgstr "Saknar uci config-panel"
+
+#~ msgid "Mode"
+#~ msgstr "Inställning"
+
+#~ msgid "Model"
+#~ msgstr "Modell"
+
+#~ msgid "Modify"
+#~ msgstr "Änra"
+
+#~ msgid "NAT"
+#~ msgstr "NAT"
+
+#~ msgid "Netmask"
+#~ msgstr "Nätmask"
+
+#~ msgid "Network"
+#~ msgstr "Nätverk"
+
+#~ msgid "Network Settings"
+#~ msgstr "Nätverksinställningar"
+
+#~ msgid "New Password"
+#~ msgstr "Nytt lösenord"
+
+#~ msgid "New SSID"
+#~ msgstr "Ny SSID"
+
+#~ msgid "New Wireless Interface"
+#~ msgstr "Ny WiFi interface"
+
+#~ msgid "No IP address"
+#~ msgstr "Ingen IP adress"
+
+#~ msgid "No active leases"
+#~ msgstr "Inga aktiva leasar"
+
+#~ msgid "No active stations"
+#~ msgstr "Inga aktiva klienter"
+
+#~ msgid "No upgrade has been found!"
+#~ msgstr "Ingen uppdatering hittades!"
+
+#~ msgid "Noise"
+#~ msgstr "Brus"
+
+#~ msgid "Numbers"
+#~ msgstr "Nummer"
+
+#~ msgid "ONLINE"
+#~ msgstr "ONLINE"
+
+#~ msgid "Online Update"
+#~ msgstr "Online-uppgradering"
+
+#~ msgid "Output"
+#~ msgstr "Ut"
+
+#~ msgid "Overview"
+#~ msgstr "Översikt"
+
+#~ msgid "Pair"
+#~ msgstr "Ihopkoppa"
+
+#~ msgid "Pair (within 2 minutes)"
+#~ msgstr "Ihopkoppla (inom 2 minuter)"
+
+#~ msgid "Parental Control"
+#~ msgstr "Föräldrakontroll"
+
+#~ msgid "Password (if encrypted)"
+#~ msgstr "Lösenord (om du vill kryptera)"
+
+#~ msgid "Password Authentication"
+#~ msgstr "Lösenordsautentisering"
+
+#~ msgid "Passwords do not match!"
+#~ msgstr "Lösenorden stämmer inte överens!"
+
+#~ msgid "Path"
+#~ msgstr "Sökväg"
+
+#~ msgid "Phone Numbers"
+#~ msgstr "Telefonnummer"
+
+#~ msgid "Pick Bandwidth"
+#~ msgstr "Välj bandbredd"
+
+#~ msgid "Pick Channel"
+#~ msgstr "Välj kanal"
+
+#~ msgid "Pick Hardware Mode"
+#~ msgstr "Välj hårdvaruläge"
+
+#~ msgid "Pick Network"
+#~ msgstr "Välj nätverk"
+
+#~ msgid "Pick SSID"
+#~ msgstr "Välj SSID"
+
+#~ msgid "Pick Wireless Radio"
+#~ msgstr "Välj WiFi radio"
+
+#~ msgid "Pick a host"
+#~ msgstr "Välj enhet"
+
+#~ msgid "Pick base device"
+#~ msgstr "Välj grundenhet"
+
+#~ msgid "Pick configuration backup to upload"
+#~ msgstr "Välj konfigurationsbackup för uppladdning"
+
+#~ msgid "Pick firmware file to upload"
+#~ msgstr "Välj firmware för uppladdning"
+
+#~ msgid "Pick network device"
+#~ msgstr "Välj nätverksenhet"
+
+#~ msgid "Ping"
+#~ msgstr "Ping"
+
+#~ msgid "Ping Test"
+#~ msgstr "Ping Test"
+
+#~ msgid "Ping results"
+#~ msgstr "Pingresultat"
+
+#~ msgid "Please add a comment describing this configuration"
+#~ msgstr "Kommentar som beskriver konfigurationen"
+
+#~ msgid "Please select a rule to delete!"
+#~ msgstr "Välj regel du vill ta bort"
+
+#~ msgid "Please select a zone to delete!"
+#~ msgstr "Välj zon som du vill ta bort"
+
+#~ msgid "Port"
+#~ msgstr "Port"
+
+#~ msgid "Port Mapping"
+#~ msgstr "Portmappning"
+
+#~ msgid ""
+#~ "Port mapping allows remote computers to connect to a specific device "
+#~ "within your private network."
+#~ msgstr ""
+#~ "Portmappning tillåter andra datorer på internet att koppla upp sig till "
+#~ "datorer på ditt lokala nätverk"
+
+#~ msgid "Power-LED"
+#~ msgstr "Power-LED"
+
+#~ msgid "Power-LED Brightness"
+#~ msgstr "Power-LED Ljusstyrka"
+
+#~ msgid ""
+#~ "Pressing WiFi on/off button on your router for long time activates pairing"
+#~ msgstr "Håll in på/av-knappen för WiFi för att aktivera ihopkoppling"
+
+#~ msgid "Primary DNS"
+#~ msgstr "Primär DNS"
+
+#~ msgid "Primary DNS IP"
+#~ msgstr "Primär DNS adress"
+
+#~ msgid "Private port"
+#~ msgstr "Privat port"
+
+#~ msgid "Private port range"
+#~ msgstr "Privat port-spann"
+
+#~ msgid "Protocol"
+#~ msgstr "Protokol"
+
+#~ msgid "Protocol:"
+#~ msgstr "Protokol"
+
+#~ msgid "Provider"
+#~ msgstr "Leverantör"
+
+#~ msgid "Public IP Address"
+#~ msgstr "Publikt IP"
+
+#~ msgid "Public Port"
+#~ msgstr "Publikt port"
+
+#~ msgid "Public port"
+#~ msgstr "Publik port"
+
+#~ msgid "Public port range"
+#~ msgstr "Publik portintervall"
+
+#~ msgid "REJECT"
+#~ msgstr "AVVISA"
+
+#~ msgid "RSA Key File"
+#~ msgstr "RSA nyckelfil"
+
+#~ msgid "RX Rate"
+#~ msgstr "RX"
+
+#~ msgid "Radios"
+#~ msgstr "Radiorna"
+
+#~ msgid "Radius Port"
+#~ msgstr "RADIUS-port"
+
+#~ msgid "Radius Secret"
+#~ msgstr "RADIUS-nyckel"
+
+#~ msgid "Radius Server"
+#~ msgstr "RADIUS-server"
+
+#~ msgid "Re-type password"
+#~ msgstr "Skriv lösenord igen"
+
+#~ msgid "Read only?"
+#~ msgstr "Endast läsbart?"
+
+#~ msgid "Reset"
+#~ msgstr "Reset"
+
+#~ msgid "Reset restores the factory default settings of your gateway"
+#~ msgstr "Reset återställer fabriksinställningarna på din gateway"
+
+#~ msgid "Reset to default password"
+#~ msgstr "Återställ till ursprunglig lösenord"
+
+#~ msgid "Restart"
+#~ msgstr "Starta om"
+
+#~ msgid ""
+#~ "Restart takes about 3 minutes. When restart is completed the page will "
+#~ "reload automatically."
+#~ msgstr ""
+#~ "Omstart tar cirka 3 minuter. När omstarted är klar så laddas sidan om "
+#~ "automatiskt."
+
+#~ msgid "Restore settings from a configuration saved on a computer"
+#~ msgstr "Återställ konfigurationsinställnignar från fil på din dator"
+
+#~ msgid "Root Container"
+#~ msgstr "Root-behållare"
+
+#~ msgid "Root Login"
+#~ msgstr "Inloggning som root"
+
+#~ msgid "Root Password Auth"
+#~ msgstr "Root-lösenordsautentisering"
+
+#~ msgid "Router Password"
+#~ msgstr "Lösenord"
+
+#~ msgid "Rules"
+#~ msgstr "Regler"
+
+#~ msgid "SNR Margin"
+#~ msgstr "SNR tolerans"
+
+#~ msgid "SSID string can be at most 32 characters long!"
+#~ msgstr "SSID måste vara maximalt 32 tecken"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Shares"
+#~ msgstr "Samba delning"
+
+#~ msgid "Save"
+#~ msgstr "Spara"
+
+#~ msgid "Save Configuration to Computer"
+#~ msgstr "Ladda ner inställningar"
+
+#~ msgid "Save settings to computer with password protection"
+#~ msgstr "Spara konfigurationen till fil"
+
+#~ msgid "Schedule Function"
+#~ msgstr "Schemaläggningsfunktion"
+
+#~ msgid "Scheduled"
+#~ msgstr "Schemalagd"
+
+#~ msgid "Secondary DNS"
+#~ msgstr "Sekundär DNS"
+
+#~ msgid "Select Connected Host"
+#~ msgstr "Välj uppkopplad enhet"
+
+#~ msgid "Select Existing Host"
+#~ msgstr "Välj befintlig enhet"
+
+#~ msgid "Select events to show"
+#~ msgstr "Välj händelser du vill visa"
+
+#~ msgid "Service"
+#~ msgstr "Tjänst"
+
+#~ msgid "Service Filter"
+#~ msgstr "Filtrera Tjänster"
+
+#~ msgid "Service Filtering"
+#~ msgstr "Tjänstefiltrering"
+
+#~ msgid "Services"
+#~ msgstr "Tjänster"
+
+#~ msgid "Set to Existing Host"
+#~ msgstr "Använd befintlig enhet"
+
+#~ msgid "Settings"
+#~ msgstr "Inställningar"
+
+# wifi
+#~ msgid "Setup"
+#~ msgstr "Inställningar"
+
+#~ msgid "Setup Scheduling"
+#~ msgstr "Ställ in schemaläggning"
+
+#~ msgid "Share User Home Directory"
+#~ msgstr "Dela användarnas hemmamappar"
+
+#~ msgid "Shared"
+#~ msgstr "Delad"
+
+#~ msgid "Signal"
+#~ msgstr "Signal"
+
+#~ msgid "Source"
+#~ msgstr "Källa"
+
+#~ msgid "Start Time"
+#~ msgstr "Start-tid"
+
+#~ msgid "Start upgrade"
+#~ msgstr "Påbörja uppgradering"
+
+#~ msgid "Static DHCP"
+#~ msgstr "Statisk DHCP"
+
+#~ msgid "Static IP Address"
+#~ msgstr "Statisk IP-adress"
+
+#~ msgid "Static Routes"
+#~ msgstr "Statisk rutter"
+
+#~ msgid "Status-LED"
+#~ msgstr "Status-LED"
+
+#~ msgid "Stop Time"
+#~ msgstr "Stopp tid"
+
+#~ msgid "Storage"
+#~ msgstr "Utrymme"
+
+#~ msgid "Swap"
+#~ msgstr "Swap"
+
+#~ msgid "System"
+#~ msgstr "System"
+
+#~ msgid "System Status"
+#~ msgstr "Systemstatus"
+
+#~ msgid "TKIP/CCMP (AES)"
+#~ msgstr "TKIP/CCMP (AES)"
+
+#~ msgid "TV Status"
+#~ msgstr "TV-status"
+
+#~ msgid "TX Rate"
+#~ msgstr "TX"
+
+#~ msgid "Target"
+#~ msgstr "Mål"
+
+#~ msgid "Target IP Address"
+#~ msgstr "IP-adress"
+
+#~ msgid "Theme"
+#~ msgstr "Utseende"
+
+#~ msgid ""
+#~ "This will reset your configuration to factory defaults. Do you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Detta kommer att återställa dina inställningar till tillverkarens "
+#~ "konfiguration"
+
+#~ msgid "Trace"
+#~ msgstr "Trace"
+
+#~ msgid "Trace results"
+#~ msgstr "Resultat trace"
+
+#~ msgid "Tracing Tool"
+#~ msgstr "Spårningsverktyg"
+
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "URL Blocking"
+#~ msgstr "URL-blockering"
+
+#~ msgid "URL Blocking Function"
+#~ msgstr "URL blockering"
+
+#~ msgid "URL Filter"
+#~ msgstr "URL-filter"
+
+#~ msgid "URL Filtering"
+#~ msgstr "URL-filtrering"
+
+#~ msgid "USB"
+#~ msgstr "USB"
+
+#~ msgid "USB Devices"
+#~ msgstr "USB-enheter"
+
+#~ msgid "USB Firmware Upgrade"
+#~ msgstr "USB Uppgradering"
+
+#~ msgid "USB Port"
+#~ msgstr "USB Port"
+
+#~ msgid "Unable to retreive igmptable from device!"
+#~ msgstr "Kan inte hämta IGMP-tabell från enheten!"
+
+#~ msgid "Upgrade"
+#~ msgstr "Uppgradera"
+
+#~ msgid ""
+#~ "Upgrade process has started. The web gui will not be available until the "
+#~ "upgrade process has completed!"
+#~ msgstr ""
+#~ "Uppgraderingen påbörjad. Webbgränssnittet otillgängligt tills dess att "
+#~ "uppgraderingen är genomförd!"
+
+#~ msgid "Uptime"
+#~ msgstr "Upptid"
+
+#~ msgid "Usage"
+#~ msgstr "Användning"
+
+#~ msgid "VDSL"
+#~ msgstr "VDSL"
+
+#~ msgid "VLAN"
+#~ msgstr "VLAN"
+
+#~ msgid "VLAN Devices"
+#~ msgstr "VLAN-enheter"
+
+#~ msgid "Value must be a valid MAC-48 address"
+#~ msgstr "Värdet måste vara en giltig MAC-adress"
+
+#~ msgid "Vendor ID"
+#~ msgstr "Tillverkarens ID"
+
+#~ msgid "Vendor Name"
+#~ msgstr "Tillverkare"
+
+#~ msgid "Verbose logging"
+#~ msgstr "Utförlig loggning"
+
+#~ msgid "Verifying firmware image"
+#~ msgstr "Verifierar firmwarefil"
+
+#~ msgid "Vodafone TV"
+#~ msgstr "Vodafone TV"
+
+#~ msgid "Vodafone TV Channels"
+#~ msgstr "Vodafone TV-kanaler"
+
+#~ msgid "Vodafone TV Status"
+#~ msgstr "TV-status"
+
+#~ msgid "Voice"
+#~ msgstr "Telefoni"
+
+#~ msgid "WAN"
+#~ msgstr "WAN"
+
+#~ msgid "WAN Connection Type"
+#~ msgstr "WAN-uppkopplingar"
+
+#~ msgid "WAN IP"
+#~ msgstr "WAN-ip "
+
+#~ msgid "WAN Port"
+#~ msgstr "WAN-port"
+
+#~ msgid "WAN Settings"
+#~ msgstr "WAN-inställningar"
+
+#~ msgid "WEP encryption key # must be 10-26 hexadecimal characters!"
+#~ msgstr "WEP krypteringsnyckel # måste vara 10-26 tecken lång."
+
+#~ msgid "WPA key must be 8-63 characters long!"
+#~ msgstr "WPA nyckeln måste vara 8-63 tecken. "
+
+#~ msgid "WPS"
+#~ msgstr "WPS"
+
+#~ msgid "WPS Function"
+#~ msgstr "WPS Funktion"
+
+#~ msgid "WPS Using Generated PIN"
+#~ msgstr "WPS med gerererad PIN"
+
+#~ msgid "WPS pin:"
+#~ msgstr "WPS-PIN"
+
+#~ msgid ""
+#~ "WPS will be disabled when using WEP encryption. Are you sure you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "WPS kommer att deaktiveras när du använder WEP funktionen. Är du säker "
+#~ "att du vill fortsätta? "
+
+#~ msgid "WPS-PBC: Push Button on Device"
+#~ msgstr "WPS-PBC: Tryck på knappen på din gateway"
+
+#~ msgid "WPS-PIN: Another Device provides PIN"
+#~ msgstr "WPS-PIN: En annan enhet tillhandahåller PIN"
+
+#~ msgid "WPS-REG: Router provides PIN"
+#~ msgstr "WPS-REG: Routern tillhandahåller PIN"
+
+#~ msgid ""
+#~ "Warning: By using the exposed host function you bypass the firewall of "
+#~ "your {{config.friendly_name}}. Please make sure that your computer is "
+#~ "protected against attacks from Internet. The following ports will not be "
+#~ "forwarded: {{ nonforwardedPorts || 'None'}}."
+#~ msgstr ""
+#~ "Varning: När du använder DMZ så är DMZ enheten helt oskyddad och "
+#~ "tillgänglig för internet. "
+
+#~ msgid ""
+#~ "Was unable to set password. Please make sure you have entered correct "
+#~ "current password!"
+#~ msgstr ""
+#~ "Kunde inte ställa in lösenordet. Kontrollera att nuvarande lösenord är "
+#~ "rätt!"
+
+#~ msgid "Weekdays"
+#~ msgstr "Veckodagar"
+
+#~ msgid "WiFi"
+#~ msgstr "WiFi"
+
+#~ msgid "WiFi Client"
+#~ msgstr "WiFi-klient"
+
+#~ msgid "WiFi Client Mode"
+#~ msgstr "WiFi-klient"
+
+#~ msgid "Wifi Mode"
+#~ msgstr "WiFi typ"
+
+#~ msgid "Wifi Network"
+#~ msgstr "Wifi Nätverk"
+
+#~ msgid "Wireless"
+#~ msgstr "Trådlösa nätverk"
+
+#~ msgid "Wireless Interfaces"
+#~ msgstr "WiFi uppkopplingar"
+
+#~ msgid "Wireless Radios"
+#~ msgstr "Trådlösa enheter"
+
+#~ msgid "Workgroup"
+#~ msgstr "Workgroup"
+
+#~ msgid ""
+#~ "You have wifi-scheduling enabled. This means that your wifi will be "
+#~ "automatically turned on and off based on your schedule settings"
+#~ msgstr ""
+#~ "WiFi-schemaläggning aktiverad. Det innebär att din wifi automatiskt sätts "
+#~ "på och av beroende på schema"
+
+#~ msgid "You need to select a device to add!"
+#~ msgstr "Du måste välja en enhet du vill lägga till!"
+
+#~ msgid "You need to select a host!"
+#~ msgstr "Du måste välja en enhet!"
+
+#~ msgid "You need to select a network!"
+#~ msgstr "Du måste välja ett nätverk!"
+
+#~ msgid "You need to specify both name and type!"
+#~ msgstr "Du måste ange både namn och typ!"
+
+#~ msgid ""
+#~ "Your EasyBox provides extensive firewall functionality which protects "
+#~ "against common attacks. Vodafone recommends not to turn off firewall."
+#~ msgstr ""
+#~ "Din EasyBox ger omfattande brandväggsfunktionalitet som skyddar mot de "
+#~ "vanligaste attackerna. Vodafone rekommenderar dig att inte inaktivera "
+#~ "brandväggen."
+
+#~ msgid "Your account"
+#~ msgstr "Ditt konto"
+
+#~ msgid "Zone members:"
+#~ msgstr "Zonnummer"
+
+#~ msgid "Zones"
+#~ msgstr "Zoner"
+
+#~ msgid "auto"
+#~ msgstr "automatisk"
+
+#~ msgid "ddns.config.info"
+#~ msgstr "Konfigurera dymanisk DNS"
+
+#~ msgid "dns.config.info"
+#~ msgstr "Konfigurera dns"
+
+#~ msgid "encryption.none"
+#~ msgstr "Ingen"
+
+#~ msgid "interface.macmode.allow"
+#~ msgstr "Tillåt"
+
+#~ msgid "interface.macmode.deny"
+#~ msgstr "Neka"
+
+#~ msgid "internet.dns.title"
+#~ msgstr "DNS"
+
+#~ msgid "internet.ethernet.adsl.title"
+#~ msgstr "ADSL"
+
+#~ msgid "internet.ethernet.info"
+#~ msgstr "Här kan du ställa in ethernet enheter"
+
+#~ msgid "internet.ethernet.phy.title"
+#~ msgstr "Ethernet portar"
+
+#~ msgid "internet.ethernet.title"
+#~ msgstr "Ethernet"
+
+#~ msgid "internet.ethernet.vdsl.title"
+#~ msgstr "VDSL"
+
+#~ msgid "internet.ethernet.vlan.info"
+#~ msgstr "VLAN inställningar"
+
+#~ msgid "internet.ethernet.vlan.title"
+#~ msgstr "VLAN"
+
+#~ msgid "internet.ethernet.wifi.title"
+#~ msgstr "WiFi"
+
+#~ msgid "internet.exposed_host.info"
+#~ msgstr "DMZ inställnignar"
+
+#~ msgid "internet.firewall.forwarding.info"
+#~ msgstr "Skicka vidare paket"
+
+#~ msgid "internet.firewall.forwarding.title"
+#~ msgstr "Vidarekoppling"
+
+#~ msgid "internet.firewall.info"
+#~ msgstr "Brandväggsinställningar"
+
+#~ msgid "internet.firewall.port.mapping.title"
+#~ msgstr "Port-mappning"
+
+#~ msgid "internet.firewall.rules.info"
+#~ msgstr "Ställ in regler för brandväggen"
+
+#~ msgid "internet.firewall.rules.title"
+#~ msgstr "Brandväggsregler"
+
+#~ msgid "internet.firewall.svcfilter.info"
+#~ msgstr "Tjänstefilter"
+
+#~ msgid "internet.firewall.svcfilter.title"
+#~ msgstr "Tjänstefilter"
+
+#~ msgid "internet.firewall.title"
+#~ msgstr "Brandvägg"
+
+#~ msgid "internet.firewall.urlblock.title"
+#~ msgstr "Addressblockering"
+
+#~ msgid "internet.firewall.urlfilter.info"
+#~ msgstr "Här kan du ställa in addressfilter"
+
+#~ msgid "internet.firewall.wordfilter.title"
+#~ msgstr "Ordfilter"
+
+#~ msgid "internet.firewall.zones.info"
+#~ msgstr ""
+#~ "Här kan du skapa och ändra inställningar på olika zoner på brandväggen"
+
+#~ msgid "internet.firewall.zones.title"
+#~ msgstr "Brandväggszoner"
+
+#~ msgid "internet.lan.dhcp.title"
+#~ msgstr "DHCP på lokala nätverket"
+
+#~ msgid "internet.lan.info"
+#~ msgstr "Lokala nätverket"
+
+#~ msgid "internet.lan.iptv.title"
+#~ msgstr "IPTV"
+
+#~ msgid "internet.lan.routes.info"
+#~ msgstr "Inställningar för routing på LAN-sidan"
+
+#~ msgid "internet.lan.title"
+#~ msgstr "LAN"
+
+#~ msgid "internet.network.title"
+#~ msgstr "Nätverk"
+
+#~ msgid "internet.parental.control.info"
+#~ msgstr "Här kan du ställa in routerns barnvänlighet"
+
+#~ msgid "internet.parental.control.title"
+#~ msgstr "Föräldrakontroll"
+
+#~ msgid "internet.services.info"
+#~ msgstr "Tjänster och program"
+
+#~ msgid "internet.services.minidlna.title"
+#~ msgstr "MiniDLNA"
+
+#~ msgid "internet.services.samba.title"
+#~ msgstr "Samba"
+
+#~ msgid "internet.services.title"
+#~ msgstr "Tjänster"
+
+#~ msgid "internet.title"
+#~ msgstr "Internet"
+
+#~ msgid "internet.wan.ddns.title"
+#~ msgstr "DDNS"
+
+#~ msgid "internet.wan.exposed.host.title"
+#~ msgstr "DMZ Inställningar"
+
+#~ msgid "internet.wan.info"
+#~ msgstr "Inställningar för WAN"
+
+#~ msgid "internet.wan.title"
+#~ msgstr "WAN"
+
+#~ msgid "ip.address.label"
+#~ msgstr "IP-adress"
+
+#~ msgid "language.de"
+#~ msgstr "Tyska"
+
+#~ msgid "language.en"
+#~ msgstr "English"
+
+#~ msgid "language.fi"
+#~ msgstr "Finska"
+
+#~ msgid "language.se"
+#~ msgstr "Svenska"
+
+#~ msgid "minidlna.settings.info"
+#~ msgstr "Inställningar för MiniDLNA"
+
+#~ msgid "phone.numbers.info"
+#~ msgstr "Inställningar för telefonnummer"
+
+#~ msgid "please pick at least one day to schedule on"
+#~ msgstr "vänligen välj minst en dag att schemalägga på "
+
+#~ msgid "services.samba.info"
+#~ msgstr "Samba tillåter dig att dela din hårddisk med andra på nätverket. "
+
+#~ msgid "settings.config.info"
+#~ msgstr ""
+#~ "Spara dina inställningar, återställa tidigare sparade inställningar och "
+#~ "återställ EasyBox till fabrikstillstånd.Din EasyBox kan spara din "
+#~ "konfiguration till en dator. Vi rekommenderar att alltid spara dina "
+#~ "senaste ändrade inställningar till en dator."
+
+#~ msgid "settings.configuration.title"
+#~ msgstr "Konfiguration"
+
+#~ msgid "settings.dhcp.info"
+#~ msgstr "DHCP inställningar"
+
+#~ msgid "settings.dropbear.info"
+#~ msgstr "Inställningar för SSH-åtkomst till din router"
+
+#~ msgid "settings.energy.info"
+#~ msgstr "Minska energiförbrukningen genom att stänga av oanvända funktioner."
+
+#~ msgid "settings.energy.title"
+#~ msgstr "Energiförbrukning"
+
+#~ msgid "settings.network.default.route.info"
+#~ msgstr "Default-väg"
+
+#~ msgid "settings.network.info"
+#~ msgstr "Grundläggande nätverskinställningar"
+
+#~ msgid "settings.network.title"
+#~ msgstr "Nätverk"
+
+#~ msgid "settings.password.info"
+#~ msgstr ""
+#~ "Ställ en ny Easybox lösenord för att begränsa hanteringsåtkomst till "
+#~ "routern."
+
+#~ msgid "settings.password.title"
+#~ msgstr "Lösenord"
+
+#~ msgid "settings.system.title"
+#~ msgstr "Systeminställningar"
+
+#~ msgid "settings.title"
+#~ msgstr "Inställningar"
+
+#~ msgid "settings.upgrade.info"
+#~ msgstr ""
+#~ "Här kan du uppdatera programvaran på din EasyBox. Om det behövs, är det "
+#~ "möjligt att uppdatera Easybox inbyggda programvaran manuellt. Dina "
+#~ "nuvarande inställningar kommer inte att påverkas av programvara "
+#~ "uppgradering förfarande."
+
+#~ msgid "settings.upgrade.manual.info"
+#~ msgstr ""
+#~ "Det är möjligt att uppdatera firmware från fil en sparad uppdatering. Den "
+#~ "senaste versionen kan hittas på www.dsl-easybox.de."
+
+#~ msgid "settings.upgrade.online.info"
+#~ msgstr ""
+#~ "Klicka på \"Sök efter uppdatering\" för att starta en online-"
+#~ "programvaruuppgradering. Om en ny firmware finns, kommer det att "
+#~ "installeras automatiskt på din EasyBox (Internet-anslutning krävs)."
+
+#~ msgid "settings.upgrade.title"
+#~ msgstr "Uppgradera"
+
+#~ msgid "settings.upgrade.usb.info"
+#~ msgstr ""
+#~ "Det är möjligt att uppdatera firmware från en fil som sparats på ett USB-"
+#~ "minne ansluten till USB-porten på din EasyBox. Klicka på \"Install Update"
+#~ "\" för att starta uppgraderingen av automatiska firmware. Observera att "
+#~ "det bör finnas en enda firmware-fil att den bör vara placerad under "
+#~ "huvudkatalogen (ingen sökning i undermappar)."
+
+#~ msgid "status.about.title"
+#~ msgstr "Om"
+
+#~ msgid "status.diagnostics.auto.info"
+#~ msgstr ""
+#~ "Denna diagnos bör ta upp till 2 minuter och kan inte avbrytas när den väl "
+#~ "har startats."
+
+#~ msgid "status.diagnostics.info"
+#~ msgstr ""
+#~ "I det här avsnittet visas en lista över verktyg som kan användas för att "
+#~ "kontrollera status för din nätverksanslutning."
+
+#~ msgid "status.diagnostics.ping.info"
+#~ msgstr "Ange ett giltigt värdnamn eller IP-adress för att utföra Ping-test."
+
+#~ msgid "status.diagnostics.title"
+#~ msgstr "Diagnostik"
+
+#~ msgid "status.diagnostics.trace.info"
+#~ msgstr ""
+#~ "Välj anslutningstypen och platsen där du vill spara spårning. Spårning "
+#~ "kommer då att börja automatiskt i en separat popup-fönster."
+
+#~ msgid "status.eventlog.info"
+#~ msgstr "Händelseflöde"
+
+#~ msgid "status.events.title"
+#~ msgstr "Händelser"
+
+#~ msgid "status.nat.connections.info"
+#~ msgstr "Aktiva NAT-uppkopplingar. "
+
+#~ msgid "status.nat.info"
+#~ msgstr "NAT-information"
+
+#~ msgid "status.nat.title"
+#~ msgstr "NAT"
+
+#~ msgid "status.restart.info"
+#~ msgstr "Starta om din router"
+
+#~ msgid "status.restart.title"
+#~ msgstr "Starta om"
+
+#~ msgid "status.status.dsl.title"
+#~ msgstr "DSL"
+
+#~ msgid "status.status.info"
+#~ msgstr "Statusinformation om routerns uppkopplingar."
+
+# share/menu.d/status.vodafone.json
+#~ msgid "status.status.services.title"
+#~ msgstr "Tjänster"
+
+#~ msgid "status.status.system.title"
+#~ msgstr "System"
+
+#~ msgid "status.status.title"
+#~ msgstr "Status"
+
+#~ msgid "status.status.tv.title"
+#~ msgstr "TV"
+
+#~ msgid "status.tv.info"
+#~ msgstr "Information om TV anslutningar. "
+
+# share/menu.d/status.json
+#~ msgid "status.usb.title"
+#~ msgstr "USB-enheter"
+
+#~ msgid "usb.devices.info"
+#~ msgstr ""
+#~ "Information om USB-enheter som för närvarande är uppkopplade till "
+#~ "routern. "
+
+#~ msgid "value must be a valid MAC-48 address"
+#~ msgstr "värdet måste vara en giltig MAC-adress"
+
+#~ msgid "wifi-iface.bss_max"
+#~ msgstr "Max BSS"
+
+#~ msgid "wifi-iface.cipher"
+#~ msgstr "Kryptering"
+
+#~ msgid "wifi-iface.closed"
+#~ msgstr "Öppet nätverk"
+
+#~ msgid "wifi-iface.device"
+#~ msgstr "Frekvens"
+
+#~ msgid "wifi-iface.disabled"
+#~ msgstr "Avaktiverad"
+
+#~ msgid "wifi-iface.encryption"
+#~ msgstr "Säkerhet"
+
+#~ msgid "wifi-iface.gtk_rekey"
+#~ msgstr "Rekey"
+
+#~ msgid "wifi-iface.key"
+#~ msgstr "Krypteringsnyckel"
+
+#~ msgid "wifi-iface.key1"
+#~ msgstr "Lösenord #1"
+
+#~ msgid "wifi-iface.key2"
+#~ msgstr "Lösenord #2"
+
+#~ msgid "wifi-iface.key3"
+#~ msgstr "Lösenord #3"
+
+#~ msgid "wifi-iface.key4"
+#~ msgstr "Lösenord #4"
+
+#~ msgid "wifi-iface.macfilter"
+#~ msgstr "MAC Filter"
+
+#~ msgid "wifi-iface.macmode"
+#~ msgstr "Filtreringstyp"
+
+#~ msgid "wifi-iface.mode"
+#~ msgstr "WiFi inställning"
+
+#~ msgid "wifi-iface.network"
+#~ msgstr "Nätverk"
+
+#~ msgid "wifi-iface.radius_port"
+#~ msgstr "RADIUS-port"
+
+#~ msgid "wifi-iface.radius_secret"
+#~ msgstr "RADIUS-nyckel"
+
+#~ msgid "wifi-iface.radius_server"
+#~ msgstr "RADIUS-server"
+
+#~ msgid "wifi-iface.show_password"
+#~ msgstr "Visa Lösenord"
+
+#~ msgid "wifi-iface.ssid"
+#~ msgstr "WiFi Namn (SSID)"
+
+#~ msgid "wifi-iface.up"
+#~ msgstr "På"
+
+#~ msgid "wifi-iface.wps_pbc"
+#~ msgstr "WPS-push button"
+
+#~ msgid "wifi.client.info"
+#~ msgstr ""
+#~ "Konfigurera din router som WiFi-klient och koppla upp dig till en annan "
+#~ "access-punkt. "
+
+#~ msgid "wifi.client.title"
+#~ msgstr "Klienter"
+
+#~ msgid "wifi.clients.info"
+#~ msgstr ""
+#~ "Här kan du se datorer som för närvarande är uppkopplade till denna "
+#~ "router. "
+
+#~ msgid "wifi.enc.mixed-psk"
+#~ msgstr "Mixed PSK"
+
+#~ msgid "wifi.enc.mixed-wpa"
+#~ msgstr "MIXED WPA"
+
+#~ msgid "wifi.enc.none"
+#~ msgstr "INGEN"
+
+#~ msgid "wifi.enc.psk"
+#~ msgstr "PSK"
+
+#~ msgid "wifi.enc.psk2"
+#~ msgstr "PSK2"
+
+#~ msgid "wifi.enc.wep"
+#~ msgstr "WEP"
+
+#~ msgid "wifi.enc.wep-shared"
+#~ msgstr "WEP-DELAD"
+
+#~ msgid "wifi.enc.wpa2"
+#~ msgstr "WPA2"
+
+#~ msgid "wifi.general.clients.title"
+#~ msgstr "WiFi klienter"
+
+#~ msgid "wifi.general.devices.title"
+#~ msgstr "WiFi-kort"
+
+#~ msgid "wifi.general.info"
+#~ msgstr "Generell information "
+
+#~ msgid "wifi.general.interfaces.title"
+#~ msgstr "WiFi Uppkopplingar"
+
+#~ msgid "wifi.general.setup.info"
+#~ msgstr "Konfigurera din trådlösa gränssnitt."
+
+#~ msgid "wifi.general.title"
+#~ msgstr "Wifi Inställningar"
+
+#~ msgid "wifi.interfaces.info"
+#~ msgstr "Här kan du ändra inställningar på routerns wifi uppkopplingar. "
+
+#~ msgid "wifi.mac.filter.title"
+#~ msgstr "MAC-filter"
+
+#~ msgid "wifi.macfilter.info"
+#~ msgstr ""
+#~ "Med hjälp av MAC filter kan du begränsa åtkomst till nätverket på "
+#~ "hårdvarunivå. "
+
+#~ msgid "wifi.radios.info"
+#~ msgstr "Här kan du ändra inställningar på routerns wifi kort. "
+
+#~ msgid "wifi.schedule.info"
+#~ msgstr ""
+#~ "Med schemaläggninga kan du enkelt schemalägga när din wifi är "
+#~ "tillgänglig. "
+
+#~ msgid "wifi.schedule.title"
+#~ msgstr "Wifi Schemaläggning"
+
+#~ msgid "wifi.settings.info"
+#~ msgstr "Här kan du ställa in generella inställningar för wifi kort"
+
+#~ msgid "wifi.settings.title"
+#~ msgstr "Wifi Inställningar"
+
+# share/menu.d/wifi.json
+#~ msgid "wifi.title"
+#~ msgstr "WiFi"
+
+#~ msgid "wifi.wps.in.progress"
+#~ msgstr "WPS kopplas upp..."
+
+#~ msgid "wifi.wps.info"
+#~ msgstr "Med hjälp av WPS kan du enkelt autentisera med ditt wifi nätverk. "
+
+#~ msgid "wifi.wps.otherpin.info"
+#~ msgstr ""
+#~ "Här kan du mata in en redan genererad pin från en annan enhet för att "
+#~ "para den med denna router. "
+
+#~ msgid "wifi.wps.pbc.info"
+#~ msgstr ""
+#~ "Med push-button-WPS kan du enkelt koppla upp dig till routern genom att "
+#~ "aktivera trycka på WPS knappen på routern."
+
+#~ msgid "wifi.wps.pin.info"
+#~ msgstr ""
+#~ "Här kan du generera en ny PIN-kod för att koppla upp dig till denna "
+#~ "router via WPS. "
+
+#~ msgid "wifi.wps.title"
+#~ msgstr "Wifi WPS"
+
+#~ msgid "Display Characters"
+#~ msgstr "Visa tecken"
+
+#~ msgid "Root Usage (/)"
+#~ msgstr "Root disk (/)"
+
+#~ msgid "Temporary Usage (/tmp)"
+#~ msgstr "Temporärt utrymme (/tmp)"
+
+#~ msgid "error.port.range.end.invalid"
+#~ msgstr "Felaktigt portintervall"
+
+#~ msgid "error.port.range.end.required"
+#~ msgstr "Slut på portintervall behövs"
+
+#~ msgid "error.port.range.start.invalid"
+#~ msgstr "Felaktig start på portintervall"
+
+#~ msgid "error.port.range.start.required"
+#~ msgstr "Start av portintervall krävs"
+
+#~ msgid "error.port.range.startgreaterthanend"
+#~ msgstr "Start av portintervall större än slut"
+
+# share/menu.d/status.json
+#, fuzzy
+#~ msgid "wps.status.fail"
+#~ msgstr "Status"
+
+# share/menu.d/status.json
+#, fuzzy
+#~ msgid "wps.status.init"
+#~ msgstr "Status"
+
+#, fuzzy
+#~ msgid "wps.status.msgdone"
+#~ msgstr "DSL är offline"
+
+#, fuzzy
+#~ msgid "wps.status.processing"
+#~ msgstr ""
+#~ "I det här avsnittet visas en lista över verktyg som kan användas för att "
+#~ "kontrollera status för din nätverksanslutning."
+
+# share/menu.d/status.json
+#, fuzzy
+#~ msgid "wps.status.timeout"
+#~ msgstr "Status"
+
+#~ msgid "wifi-iface.wifi-iface.ssid"
+#~ msgstr "SSID"
+
+#~ msgid "Add existing host"
+#~ msgstr "Lägg till befintlig enhet"
+
+#~ msgid "wifi.mac_filter.title"
+#~ msgstr "Wifi MAC-filter"
+
+#~ msgid "Choose Bandwidth"
+#~ msgstr "Välj bandbredd"
+
+#~ msgid "Choose Channel"
+#~ msgstr "Välj kanal"
+
+#~ msgid "Choose Mode"
+#~ msgstr "Välj inställning"
+
+#~ msgid "Choose Protection"
+#~ msgstr "Välj säkerhet"
+
+#~ msgid "DSL Connection"
+#~ msgstr "DSL uppkoppling"
+
+#~ msgid "Firmware File:"
+#~ msgstr "Mjukvarufil"
+
+#~ msgid ""
+#~ "If you have a local network device that cannot run an Internet "
+#~ "application properly behind the firewall, you can allow unrestricted "
+#~ "Internet access to the network device (Exposed Host)."
+#~ msgstr ""
+#~ "Om du har en maskin som du vill göra tillgänglig från internet så kan du "
+#~ "använda denna funktion för att vidarekoppla samtliga uppkopplingar till "
+#~ "denna maskin (DMZ)"
+
+#~ msgid "Load Average"
+#~ msgstr "Genomsnittsbelastning"
+
+#~ msgid "Upload file"
+#~ msgstr "Ladda upp fil"
+
+#~ msgid "Wifi"
+#~ msgstr "WiFi"
+
+#~ msgid "no"
+#~ msgstr "Nej"
+
+#, fuzzy
+#~ msgid "seconds remaining"
+#~ msgstr "Återstående lease-tid"
+
+#, fuzzy
+#~ msgid "wifi.wpspairmodal.failinfo"
+#~ msgstr "Med hjälp av WPS kan du enkelt autentisera med ditt wifi nätverk. "
+
+#, fuzzy
+#~ msgid "wifi.wpspairmodal.progressinfo"
+#~ msgstr "Med hjälp av WPS kan du enkelt autentisera med ditt wifi nätverk. "
+
+#, fuzzy
+#~ msgid "wifi.wpspairmodal.successinfo"
+#~ msgstr "Med hjälp av WPS kan du enkelt autentisera med ditt wifi nätverk. "
+
+#~ msgid "yes"
+#~ msgstr "Ja"
