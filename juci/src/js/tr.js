@@ -657,6 +657,10 @@ JUCI.app.factory('$languages', function($config, gettextCatalog, $localStorage) 
 			"name":"Swedish",
 			"nativeName":"svenska"
 		},
+		"sv-SE":{
+			"name":"Swedish",
+			"nativeName":"Svenska"
+		},
 		"ta":{
 			"name":"Tamil",
 			"nativeName":"தமிழ்"
