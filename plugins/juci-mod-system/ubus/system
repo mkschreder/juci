@@ -94,6 +94,10 @@ function system_info()
 		elseif(typ == "si") then cpuload.software_irq = tonumber(val) * 100; 
 		elseif(typ == "st") then cpuload.stolen_time = tonumber(val) * 100; end 
 	end
+	
+	local numcpus = tonumber(juci.shell("grep -i model /proc/cpuinfo | wc -l"):match("(%S+).*")); 
+	local load1, load5, load15 = juci.readfile("/proc/loadavg"):match("(%S+)%s+(%S+)%s+(%S+).+"); 
+	cpuload.avg = { tonumber(load1) / numcpus * 1000, tonumber(load5) / numcpus * 1000, tonumber(load15) / numcpus * 1000};  
 	local version = tostring(juci.readfile("/proc/version") or ""); 
 	local systype,_,sysversion = version:match("(%S+)%s+(%S+)%s+(%S+)"); 	
 	system["name"] = juci.readfile("/proc/sys/kernel/hostname"); 

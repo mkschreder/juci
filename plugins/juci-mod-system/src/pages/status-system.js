@@ -59,8 +59,7 @@ JUCI.app
 				[$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))], 
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
-				[$tr(gettext("CPU")), ""+((info.load.user)?((info.load.user / 100) + "%"):"N/A")], 
-				[$tr(gettext("Load Average")), sys.load[0] + " " + sys.load[1] + " " + sys.load[2]]
+				[$tr(gettext("CPU Load Avg.")), ""+(info.load.avg[0] / 10.0) + "%"], 
 			]; 
 			$scope.systemMemoryTbl.rows = [
 				[$tr(gettext("Usage")), '<juci-progress value="'+Math.round((sys.memory.total - sys.memory.free) / 1000)+'" total="'+ Math.round(sys.memory.total / 1000) +'" units="kB"></juci-progress>'],
