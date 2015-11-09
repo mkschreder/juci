@@ -26,9 +26,9 @@ JUCI.app
 	},true); 
 	
 	// reassemble model when parts change 
-	$scope.$watch("data.parts", function() {
-		if(!$scope.data.parts) return; 
+	$scope.updateModel = function() {
+		console.log("Assemble parts: "+$scope.data.parts); 
 		var ipaddr = Object.keys($scope.data.parts).map(function(x){ return $scope.data.parts[x] }).join("."); 
-		if($scope.ngModel != ipaddr) ngModel.assign($scope, ipaddr); 
-	}, true);
+		if($scope.ngModel != ipaddr) ngModel.assign($scope.$parent, ipaddr); 
+	};
 }); 
