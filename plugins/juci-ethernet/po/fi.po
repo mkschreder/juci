@@ -17,7 +17,7 @@ msgstr "Layer-2 Ethernet-laitteet"
 
 # /home/martin/juci/plugins/juci-ethernet/src/pages/internet-ethernet.html
 msgid "internet.ethernet.info"
-msgstr ""
+msgstr " Ethernet"
 
 msgid "Name"
 msgstr "Nimi"
@@ -33,17 +33,14 @@ msgstr "MAC"
 msgid "MTU"
 msgstr "MTU"
 
-#, fuzzy
 msgid "Status"
-msgstr "Tila"
+msgstr "Status"
 
-#, fuzzy
 msgid "internet-ethernet-title"
-msgstr "Linjat"
+msgstr "Ethernet"
 
-#, fuzzy
 msgid "menu-internet-ethernet-title"
-msgstr "Linjat"
+msgstr "Ethernet"
 
 #~ msgid "Enabled"
 #~ msgstr "Käytössä"

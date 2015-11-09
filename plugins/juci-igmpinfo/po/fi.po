@@ -15,20 +15,17 @@ msgstr ""
 msgid "Unable to retreive igmptable from device!"
 msgstr "Ei voitu hakea igmptaulua laitteesta!"
 
-#, fuzzy
 msgid "IGPM TV Status"
-msgstr "Tila"
+msgstr "IPTV Tila"
 
-#, fuzzy
 msgid "status.tv.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Tällä sivulla voit tarkistaa IPTV-palvelun tilan."
 
 msgid "Connection Status"
 msgstr "Yhteyden tila"
 
-#, fuzzy
 msgid "IGMP TV Channels"
-msgstr "Kanava"
+msgstr "IGMP-TV-kanavat"
 
 # /home/martin/juci/plugins/juci-igmpinfo/src/pages/status-tv.html
 msgid "Group IP"
@@ -49,13 +46,11 @@ msgstr "WAN portti"
 msgid "Timeout"
 msgstr "Aikakatkaisu"
 
-#, fuzzy
 msgid "status-tv-title"
-msgstr "Puhelin"
+msgstr "IPTV Tila"
 
-#, fuzzy
 msgid "menu-status-tv-title"
-msgstr "Linjat"
+msgstr "IPTV"
 
 #, fuzzy
 #~ msgid "Are you sure you want to delete this rule?"

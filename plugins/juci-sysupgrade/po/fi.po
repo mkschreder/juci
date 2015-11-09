@@ -42,7 +42,7 @@ msgstr ".y (UBIFS Image)"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.js
 msgid "fs_image (RAW Rootfs Image)"
-msgstr ""
+msgstr "fs_image (RAW Rootfs Image)"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/widgets/upgrade.popup.js
 msgid "You need to select a network!"
@@ -56,15 +56,16 @@ msgstr "Valitse päivitystiedosto"
 msgid "New software is available"
 msgstr "Uusi ohjelmisto on saatavilla"
 
-#, fuzzy
 msgid "Firmware Upgrade"
-msgstr "Nykyinen ohjelmistoversio"
+msgstr "Ohjelmistopäivitys"
 
-#, fuzzy
 msgid "settings.upgrade.info"
-msgstr "Puhelinlinjojen tila."
+msgstr ""
+"Modeemi päivittää automaattisesti viimeisimmän saatavilla olevan "
+"ohjelmiston. On myös mahdollista päivittää modeemin ohjelmisto "
+"manuaalisesti mikäli se on välttämätöntä. Päivittäminen ei vaikuta "
+"nykyisiin asetuksiin."
 
-#, fuzzy
 msgid "Current Firmware Version"
 msgstr "Nykyinen ohjelmistoversio"
 
@@ -72,44 +73,37 @@ msgstr "Nykyinen ohjelmistoversio"
 msgid "Online Update"
 msgstr "Verkkopäivitys"
 
-#, fuzzy
 msgid "settings.upgrade.online.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Online päivitys"
 
 msgid "Check for Upgrade"
 msgstr "Tarkista päivitykset"
 
-#, fuzzy
 msgid "Install Upgrade"
-msgstr "DHCP-varauksen aika"
+msgstr "Asenna päivitys"
 
-#, fuzzy
 msgid "USB Firmware Upgrade"
-msgstr "DHCP-varauksen aika"
+msgstr "USB päivitys"
 
-#, fuzzy
 msgid "settings.upgrade.usb.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "USB päivitys"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Manual Firmware Upgrade"
 msgstr "Manuaalinen ohjelmistopäivitys"
 
-#, fuzzy
 msgid "settings.upgrade.manual.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Manuaalinen päivitys"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Pick firmware file to upload"
 msgstr "Valitse ladattava ohjelmisto"
 
-#, fuzzy
 msgid "Start upgrade"
-msgstr "DHCP-varauksen aika"
+msgstr "Aloita päivitys"
 
-#, fuzzy
 msgid "Upgrade"
-msgstr "DHCP-varauksen aika"
+msgstr "Päivitä"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Online upgrade is disabled"
@@ -135,9 +129,8 @@ msgstr "Sulje"
 msgid "Upgrade Options"
 msgstr "Tarkista päivitykset"
 
-#, fuzzy
 msgid "settings.upgrade.options.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Valinnat"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html
 msgid "URL for file with latest image filename"
@@ -151,37 +144,30 @@ msgstr "URL"
 msgid "Upgrade URL base path"
 msgstr "Päivitysosoitteen polku"
 
-#, fuzzy
 msgid "HTTP Directory"
-msgstr "Kesto"
+msgstr "HTTP kansio"
 
-#, fuzzy
 msgid "Firmware image extension"
-msgstr "Nykyinen ohjelmistoversio"
+msgstr "Firmware image extension"
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade-options.html
 msgid "Online Upgrade"
 msgstr "Online päivitys"
 
-#, fuzzy
 msgid "USB Upgrade"
-msgstr "DHCP-varauksen aika"
+msgstr "USB päivitys"
 
-#, fuzzy
 msgid "settings-upgrade-options-title"
-msgstr "Puhelin"
+msgstr "Valinnat"
 
-#, fuzzy
 msgid "settings-upgrade-title"
-msgstr "Puhelin"
+msgstr "Päivitä"
 
-#, fuzzy
 msgid "menu-settings-upgrade-options-title"
-msgstr "Linjat"
+msgstr "Valinnat"
 
-#, fuzzy
 msgid "menu-settings-upgrade-title"
-msgstr "Linjat"
+msgstr "Päivitä"
 
 #~ msgid "Name"
 #~ msgstr "Nimi"

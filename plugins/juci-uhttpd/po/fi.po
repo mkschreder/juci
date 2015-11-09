@@ -15,9 +15,8 @@ msgstr ""
 msgid "uHTTPD Settings"
 msgstr "uHTTPD asetukset"
 
-#, fuzzy
 msgid "uhttpd.settings.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "UHTTPd"
 
 # /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
 msgid "WWW-root"
@@ -31,13 +30,11 @@ msgstr "WWW-root polku"
 msgid "Max Requests"
 msgstr "Max pyynnöt"
 
-#, fuzzy
 msgid "Max Connections"
-msgstr "Yhteys"
+msgstr "Yhteyksien enimmäismäärä"
 
-#, fuzzy
 msgid "UBUS Prefix"
-msgstr "Lisä-IPv6 Prefix"
+msgstr "UBUS etuliite"
 
 # /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
 msgid "ex. /ubus"
@@ -47,13 +44,11 @@ msgstr "ex. /ubus"
 msgid "Object.Method"
 msgstr "Object.Method"
 
-#, fuzzy
 msgid "page-uhttpd-settings-title"
-msgstr "Linjat"
+msgstr "uHTTPD Asetukset"
 
-#, fuzzy
 msgid "menu-page-uhttpd-settings-title"
-msgstr "Linjat"
+msgstr "uhttpd"
 
 #~ msgid "A new system software upgrade is available. Do you want to visit upgrade page and upgrade now?"
 #~ msgstr "Ohjelmistopäivitys on saatavilla. Haluatko päivittää avata päivityssivun ja päivittää nyt?"

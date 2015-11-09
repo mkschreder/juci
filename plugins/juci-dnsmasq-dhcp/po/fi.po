@@ -32,11 +32,9 @@ msgstr "Viimeinen osoite"
 msgid "DHCP Lease Time"
 msgstr "DHCP-varauksen aika"
 
-#, fuzzy
 msgid "Lease Time"
-msgstr "DHCP-varauksen aika"
+msgstr "Vuokra-aika"
 
-#, fuzzy
 msgid "Connection"
 msgstr "Yhteys"
 
@@ -44,21 +42,22 @@ msgstr "Yhteys"
 msgid "Network"
 msgstr "Verkko"
 
-#, fuzzy
 msgid "Hostname"
-msgstr "Käyttäjä"
+msgstr "Isäntäkoneen nimi"
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
 msgid "MAC"
 msgstr "MAC"
 
-#, fuzzy
 msgid "IPv4 Address"
-msgstr "Osoite"
+msgstr "IPv4-osoite"
 
-#, fuzzy
+# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+msgid "IPv6 Unique ID"
+msgstr "IPv6 Unique ID"
+
 msgid "IPv6 Address ID"
-msgstr "Osoite"
+msgstr "IPv6-osoite ID"
 
 msgid "Add Connected Host"
 msgstr "Lisää isäntäkone"
@@ -67,24 +66,30 @@ msgstr "Lisää isäntäkone"
 msgid "Static DHCP"
 msgstr "Kiinteä DHCP"
 
-#, fuzzy
 msgid "Device Name"
-msgstr "DNS Nimi"
+msgstr "Laitteen nimi"
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
 msgid "MAC Address"
 msgstr "MAC-osoite"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Osoite"
+msgstr "IP-osoite"
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
-msgid "Modify"
-msgstr "Muokkaa"
+msgid "DUID (IPv6)"
+msgstr "DUID (IPv6)"
+
+# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+msgid "Host ID (IPv6)"
+msgstr "Host ID (IPv6)"
 
 msgid "DHCP Server"
 msgstr "DHCP-palvelin"
+
+# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+#~ msgid "Modify"
+#~ msgstr "Muokkaa"
 
 #, fuzzy
 #~ msgid "status.diagnostics.info"

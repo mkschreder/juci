@@ -27,13 +27,11 @@ msgstr ""
 msgid "Pick Preset"
 msgstr "Esiasetukset"
 
-#, fuzzy
 msgid "Reset Configuration"
-msgstr "Konfiguraatiomenetelmä"
+msgstr "Oletusasetukset"
 
-#, fuzzy
 msgid "modal.netmode.select.info"
-msgstr "Puheluloki"
+msgstr "Alasvetovalikosta valitaan eri profiili"
 
 msgid "Apply"
 msgstr "Ota käyttöön"

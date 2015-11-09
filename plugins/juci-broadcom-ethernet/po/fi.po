@@ -60,7 +60,7 @@ msgstr "Pause frames"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid "internet.ethernet.phy.info"
-msgstr ""
+msgstr " "
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid ""
@@ -78,15 +78,13 @@ msgstr "Valitse Internetportti"
 
 # /home/martin/juci/plugins/juci-broadcom-ethernet/src/pages/page-broadcom-ethernet-phy.html
 msgid " socket will be used for passing packets to the internet."
-msgstr ""
+msgstr "käytetään internetyhteytenä"
 
-#, fuzzy
 msgid "page-broadcom-ethernet-phy-title"
-msgstr "Numerot"
+msgstr "Ethernet"
 
-#, fuzzy
 msgid "menu-page-broadcom-ethernet-phy-title"
-msgstr "Numerot"
+msgstr "Ethernet"
 
 #, fuzzy
 #~ msgid "New device"

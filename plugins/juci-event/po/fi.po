@@ -40,9 +40,8 @@ msgstr ""
 msgid "Log level 1-8"
 msgstr "Lokitaso 1-8"
 
-#, fuzzy
 msgid "Enable remote logging"
-msgstr "Käytössä"
+msgstr "Ota käyttöön etäloki"
 
 # /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
 msgid "Logging server IP"
@@ -68,11 +67,10 @@ msgstr "Palvelimen portti"
 
 # /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
 msgid "event-log-config-title"
-msgstr ""
+msgstr "Loki"
 
-#, fuzzy
 msgid "menu-event-log-config-title"
-msgstr "Puheluloki"
+msgstr "Tapahtumaloki"
 
 #~ msgid "Name"
 #~ msgstr "Nimi"

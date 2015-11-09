@@ -29,25 +29,21 @@ msgstr "Salli vierasverkkopääsy"
 msgid "Read only?"
 msgstr "Vain luku?"
 
-#, fuzzy
 msgid "Username"
-msgstr "Käyttäjä"
+msgstr "Käyttäjänimi"
 
-#, fuzzy
 msgid "Password"
-msgstr "SIP salasana"
+msgstr "Salasana"
 
-#, fuzzy
 msgid "Description"
-msgstr "Kesto"
+msgstr "Kuvaus"
 
 # /home/martin/juci/plugins/juci-samba/src/pages/internet-services-samba.html
 msgid "General Settings"
 msgstr "Yleiset asetukset"
 
-#, fuzzy
 msgid "services.samba.info"
-msgstr "Linjat"
+msgstr "Samba"
 
 # /home/martin/juci/plugins/juci-samba/src/pages/internet-services-samba.html
 msgid "Workgroup"
@@ -61,25 +57,21 @@ msgstr "Jaa käyttäjän kotihakemisto"
 msgid "Samba Shares"
 msgstr "Samba verkkojaot"
 
-#, fuzzy
 msgid "samba.shares.info"
-msgstr "Puhelinlinjojen tila."
+msgstr " "
 
-#, fuzzy
 msgid "Samba Users"
-msgstr "SIP-käyttäjä"
+msgstr "Samba Käyttäjät"
 
 # /home/martin/juci/plugins/juci-samba/src/pages/internet-services-samba.html
 msgid "samba.users.info"
-msgstr ""
+msgstr "Samba käyttäjät"
 
-#, fuzzy
 msgid "internet-services-samba-title"
-msgstr "Linjat"
+msgstr "Samba"
 
-#, fuzzy
 msgid "menu-internet-services-samba-title"
-msgstr "Linjat"
+msgstr "Samba"
 
 #~ msgid "A new ethernet device has been connected to your router. Do you want to add it to a network?"
 #~ msgstr "Uusi ethernet-laite on kytketty reitittimeen. Haluatko lisätä sen verkkoon?"

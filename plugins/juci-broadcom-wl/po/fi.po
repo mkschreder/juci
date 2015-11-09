@@ -43,13 +43,11 @@ msgstr "WPA-avaimen on oltava 8-63 merkkiä pitkä!"
 msgid "Please select a connection in the list!"
 msgstr "Valitse yhteys luettelosta!"
 
-#, fuzzy
 msgid "Are you sure you want to delete this wireless interface?"
 msgstr "Haluatko varmasti poistaa tämän säännön?"
 
-#, fuzzy
 msgid "Wireless Interfaces"
-msgstr "Fyysinen liitäntä"
+msgstr "Langattomat liitännät"
 
 msgid "Enabled"
 msgstr "Käytössä"
@@ -59,68 +57,41 @@ msgstr "Pois käytöstä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.js
 msgid "wps.status.disabled"
-msgstr ""
+msgstr "WPS pois päältä"
 
-#, fuzzy
 msgid "wps.status.init"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr "WPS status"
 
-#, fuzzy
 msgid "wps.status.processing"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr "WPS käynnissä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.js
 msgid "wps.status.success"
-msgstr ""
+msgstr "WPS onnistui"
 
-#, fuzzy
 msgid "wps.status.fail"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr "WPS ei onnitustunut"
 
-#, fuzzy
 msgid "wps.status.timeout"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr "WPS aikakatkaisu"
 
-#, fuzzy
 msgid "wps.status.msgdone"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr "WPS valmis"
 
-#, fuzzy
 msgid "wps.status.overlap"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr "Overlap"
 
-#, fuzzy
 msgid "wps.status.unknown"
-msgstr ""
-"Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia "
-"muutoksia varten navigoi kohtaan \"Puhelin\"."
+msgstr "WPS tuntematon"
 
 msgid "on"
 msgstr "Päällä"
 
-#, fuzzy
 msgid "Edit wireless interface"
-msgstr "Fyysinen liitäntä"
+msgstr "Muokkaa langatonta liitäntää"
 
-#, fuzzy
 msgid "No IP address"
-msgstr "Osoite"
-
-# /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js
-msgid "auto"
-msgstr "Automaattinen"
+msgstr "Ei IP osoitetta"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "Key"
@@ -132,9 +103,8 @@ msgstr "Automaattinen"
 msgid "CCMP (AES)"
 msgstr "CCMP (AES)"
 
-#, fuzzy
 msgid "TKIP/CCMP (AES)"
-msgstr "CCMP (AES)"
+msgstr "TKIP/CCMP (AES)"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "None"
@@ -189,36 +159,36 @@ msgstr ""
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.device"
-msgstr ""
+msgstr "Taajuus"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.network"
-msgstr ""
+msgstr "Langaton verkko"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.mode"
-msgstr ""
+msgstr "Tila"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.ssid"
-msgstr ""
+msgstr "WiFi verkon nimi (SSID)"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.encryption"
-msgstr ""
+msgstr "Suojaustila"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.cipher"
-msgstr ""
+msgstr "Salaus"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
@@ -229,110 +199,110 @@ msgstr ""
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.key"
-msgstr ""
+msgstr "Wifi salsana"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.key1"
-msgstr ""
+msgstr "WiFi avain #1"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.key2"
-msgstr ""
+msgstr "WiFi avain #2"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.key3"
-msgstr ""
+msgstr "WiFi avain #3"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.key4"
-msgstr ""
+msgstr "WiFi avain #4"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.gtk_rekey"
-msgstr ""
+msgstr "Avainparien uusimisen aikaväli"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.wps_pbc"
-msgstr ""
+msgstr "WPS"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.wmf_bss_enable"
-msgstr ""
+msgstr "BSS"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.bss_max"
-msgstr ""
+msgstr "BSS Max"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.instance"
-msgstr ""
+msgstr "Laite"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.up"
-msgstr ""
+msgstr "Ylös"
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.closed"
-msgstr ""
+msgstr "Lähetä SSID"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.disabled"
-msgstr ""
+msgstr "Pois käytöstä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.macmode"
-msgstr ""
+msgstr "MAC tila"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.macfilter"
-msgstr ""
+msgstr "MAC suodatin"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi-iface.maclist"
-msgstr ""
+msgstr "MAC lista"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "interface.macmode.allow"
-msgstr ""
+msgstr "Salli"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "interface.macmode.deny"
-msgstr ""
+msgstr "Evää"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.none"
-msgstr ""
+msgstr "Ei salausta (Ei tietoturvaa!)"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.wep"
-msgstr ""
+msgstr "WEP Open System"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.wep-shared"
-msgstr ""
+msgstr "WEP jaettu avain"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.wpa2"
-msgstr ""
+msgstr "WPA2radius"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.mixed-wpa"
-msgstr ""
+msgstr "WPA2 Mixed"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.psk"
-msgstr ""
+msgstr "WPA jaettu avain"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.psk2"
-msgstr ""
+msgstr "WPA2 jaettu avain"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.js
 msgid "wifi.enc.mixed-psk"
-msgstr ""
+msgstr "WPA/WPA2 PSK mixed"
 
 msgid "11b"
 msgstr "802.11b"
@@ -376,9 +346,8 @@ msgstr "Ajastus"
 msgid "Wireless"
 msgstr "Wifi"
 
-#, fuzzy
 msgid "Wifi Mode"
-msgstr "Perusasetukset"
+msgstr "WiFi tila"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "Pick Hardware Mode"
@@ -387,14 +356,12 @@ msgstr "Valitse laitteistotila"
 msgid "Bandwidth"
 msgstr "Kaistanleveys"
 
-#, fuzzy
 msgid "Pick Bandwidth"
 msgstr "Kaistanleveys"
 
 msgid "Channel"
 msgstr "Kanava"
 
-#, fuzzy
 msgid "Pick Channel"
 msgstr "Kanava"
 
@@ -415,6 +382,10 @@ msgid "Beamforming"
 msgstr "Beamforming"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
+msgid "DFS Channels"
+msgstr "DFS kanavat"
+
+# /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "OBSS Co-Existence"
 msgstr "OBSS Co-Existence"
 
@@ -428,27 +399,26 @@ msgstr "RX Chain PowerSave PPS"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "Max. Assoc Clients"
-msgstr ""
+msgstr "Yhdistettävien laitteiden enimmäismäärä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "Maximum Assoc Clients"
-msgstr ""
+msgstr "Yhdistettävien laitteiden enimmäismäärä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "Scan Timer"
-msgstr ""
+msgstr "Kartoituksen ajastin"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "Timer Interval"
-msgstr ""
+msgstr "Intervalli"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "Enable WMM Multimedia Extensions"
 msgstr "Ota käyttöön WMM multimedia laajennukset"
 
-#, fuzzy
 msgid "Disable WMM Ack"
-msgstr "Pois käytöstä"
+msgstr "Poista WMM Ack käytöstä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.html
 msgid "Enable WMM UAPSD Power Saving"
@@ -461,37 +431,36 @@ msgstr "Palauta oletussalasana"
 msgid "Choose Key"
 msgstr "Valitse avain"
 
-#, fuzzy
 msgid "Radius Server"
-msgstr "SIP-palvelin"
+msgstr "Radius palvelin"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.radius_server"
-msgstr ""
+msgstr "Radiuspalvelin"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "Radius Port"
-msgstr ""
+msgstr "Radius portti"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.radius_port"
-msgstr ""
+msgstr "Radiuspalvelimen portti"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "Radius Secret"
-msgstr ""
+msgstr "Radius salasana"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.radius_secret"
-msgstr ""
+msgstr "Radiuspalvelimen salasana"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.html
 msgid "wifi-iface.show_password"
-msgstr ""
+msgstr "Näytä salasana"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.interface.macfilter.edit.html
 msgid "MAC Filtering"
-msgstr ""
+msgstr "MAC suodatin"
 
 msgid "Access for listed devices"
 msgstr "Pääsy sallittu listatuille laitteille"
@@ -540,9 +509,8 @@ msgstr "Uusi SSID"
 msgid "Mode"
 msgstr "Toimintatila"
 
-#, fuzzy
 msgid "New Wireless Interface"
-msgstr "Fyysinen liitäntä"
+msgstr "Uusi langaton liitäntä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-client-mode.html
 msgid "WiFi Client Mode"
@@ -550,29 +518,26 @@ msgstr "Wifi-tila"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-client-mode.html
 msgid "wifi.client.info"
-msgstr ""
+msgstr "Lähellä olevat langattomat laitteet"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-client-mode.html
 msgid "SSID"
 msgstr "SSID"
 
-#, fuzzy
 msgid "SNR"
-msgstr "CBR"
+msgstr "SNR"
 
 msgid "Cipher"
 msgstr "Salausavain"
 
-#, fuzzy
 msgid "Connect"
-msgstr "Yhteys"
+msgstr "Yhdistä"
 
 msgid "Connected Wireless Clients"
 msgstr "Yhdistetyt Langattomat Laitteet"
 
-#, fuzzy
 msgid "wifi.clients.info"
-msgstr "Puhelinlinjojen konfigurointi"
+msgstr " "
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-devices.html
 msgid "Wireless Radios"
@@ -581,6 +546,9 @@ msgstr "Wifi radiot"
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-devices.html
 msgid "wifi.radios.info"
 msgstr ""
+"Tällä sivulla voidaan konfiguroida laitteeseen asennettuja fyysisiä "
+"radioita. Fyysinen radio ei ole sama asia kuin tukiasema. Tukiasemat ovat "
+"liitäntöjä ja kullakin radiolla voi olla useita liitäntöjä."
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-filtering.html
 msgid "MAC Filter"
@@ -589,6 +557,9 @@ msgstr "MAC Filter"
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-filtering.html
 msgid "wifi.macfilter.info"
 msgstr ""
+"Voit lisätä langattoman verkon tietoturvaa valitsemalla mitkä laitteet "
+"saavat yhdistää verkkoon. Laitteet tunnistetaan MAC-osoitteen perusteella. "
+"Voit hallinoida jopa 32:a langatonta laitetta."
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-general.html
 msgid "General WiFi Settings"
@@ -597,18 +568,18 @@ msgstr "Yleiset Wifi asetukset"
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-general.html
 msgid "wifi.general.info"
 msgstr ""
+"Laitteesi tukee koko alan WiFi standardeja mahdollistaen helpon yhteyden "
+"langattomille laitteillesi."
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-general.html
 msgid "Wifi Network"
 msgstr "Wifi Verkko"
 
-#, fuzzy
 msgid "Scheduled"
-msgstr "Ajastus"
+msgstr "Ajastettu"
 
-#, fuzzy
 msgid "Enable WiFi"
-msgstr "Käytössä"
+msgstr "Ota WiFi käyttöön"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-general.html
 msgid "Enable WiFi On/Off button"
@@ -622,31 +593,30 @@ msgstr ""
 "WiFi ajastus on käytössä. Tämä tarkoittaa, että langaton verkko poistetaan "
 "käytöstä ja otetaan käyttöön automaattisesti asetetun aikataulun mukaan."
 
-#, fuzzy
 msgid "wifi.interfaces.info"
-msgstr "Fyysinen liitäntä"
+msgstr ""
+"Tällä sivulla voit muuttaa langattoman verkon asetuksia.\n"
+"Kummallakin taajuusalueella voi olla useampi langaton verkko ja kukin "
+"langaton verkko voidaan asettaa eri verkkoon ja palomuuriryhmään."
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-link-to-interfaces.html
 msgid " page"
 msgstr "sivu"
 
-#, fuzzy
 msgid "wifi.schedule.info"
 msgstr ""
-"Aseta puhelinaikataulut milloin puhelimen tulisi hälyttää tai ei tulisi "
-"hälyttää."
+"Ajasta langaton verkko päälle tai pois automaattisesti.\n"
+"Huom: Mikäli langaton verkko on pois päältä sekä pää-, että vieras- "
+"langattomat verkot ovat pois päältä."
 
-#, fuzzy
 msgid "Schedule Function"
 msgstr "Ajastus"
 
-#, fuzzy
 msgid "Setup Scheduling"
-msgstr "Valitse Aikataulutila"
+msgstr "Aseta ajastus"
 
-#, fuzzy
 msgid "During this time the WiFi is"
-msgstr "Tänä aika soittaminen on "
+msgstr "Tänä aika WiFi on"
 
 msgid "Choose Schedule Mode"
 msgstr "Valitse ajoitustila"
@@ -657,17 +627,14 @@ msgstr "Päivä"
 msgid "Time"
 msgstr "Aika"
 
-#, fuzzy
 msgid "Status"
 msgstr "Tila"
 
-#, fuzzy
 msgid "WiFi Status"
-msgstr "Puheen tila"
+msgstr "WiFi tila"
 
-#, fuzzy
 msgid "status.wifi.info"
-msgstr "Puhelinlinjojen tila."
+msgstr " WiFi"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-status.html
 msgid "Scan neighboring APs"
@@ -692,14 +659,15 @@ msgstr "WPS"
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "wifi.wps.info"
 msgstr ""
+"WPS mahdollistaa laitteiden yhdistämisen langattomaan verkkoon nappia "
+"painamalla"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "WPS Function"
 msgstr "WPS"
 
-#, fuzzy
 msgid "Enable WPS on"
-msgstr "Käytössä"
+msgstr "Aktivoi WPS"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "Enable WPS button on router"
@@ -741,15 +709,18 @@ msgstr "Yritetään parittaa laitetta"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "wifi.wps.in.progress"
-msgstr ""
+msgstr "WPS käynnissä"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "WPS-PBC: Push Button on Device"
-msgstr ""
+msgstr "WPS-PBC: Paina laitteessa olevaa WPS-painiketta"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "wifi.wps.pbc.info"
 msgstr ""
+"Parittaaksesi laitteesi paina \"Parita\". Tämän jälkeen paina vastaavaa "
+"painiketta yhdistettävässä laitteessa. WPS paritus on aktiivinen kahden "
+"minuutin ajan parituspainikkeen painamisen jälkeen."
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "Pair"
@@ -761,7 +732,7 @@ msgstr "WPS-REG: reititin tarjoaa PIN-koodin"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "wifi.wps.pin.info"
-msgstr ""
+msgstr "Syötä alle paritettavan laitteen WPS-PIN-koodi"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "Generate"
@@ -773,99 +744,88 @@ msgstr "WPS-PIN: Toinen laite tarjoaa PIN-koodin"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "wifi.wps.otherpin.info"
-msgstr ""
+msgstr "Syötä paritettavan laitteen PIN-koodi tähän kohtaan."
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "{{text_status}}"
 msgstr ""
 
-#, fuzzy
 msgid "wireless-status-title"
-msgstr "Puhelin"
+msgstr "WiFi tila"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-filtering.html
 msgid "wireless-filtering-title"
-msgstr ""
+msgstr "Suodatin"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-interfaces.html
 msgid "wireless-interfaces-title"
-msgstr ""
+msgstr "WiFi"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-general.html
 msgid "wireless-general-title"
-msgstr ""
+msgstr "WiFi"
 
-#, fuzzy
 msgid "wireless-schedule-title"
 msgstr "Ajastus"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-wps.html
 msgid "wireless-wps-title"
-msgstr ""
+msgstr "WPS"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-client-mode.html
 msgid "wireless-client-mode-title"
-msgstr ""
+msgstr "Client"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-devices.html
 msgid "wireless-devices-title"
-msgstr ""
+msgstr "Radiot"
 
-#, fuzzy
 msgid "wireless-title"
-msgstr "Linjat"
+msgstr "WiFi"
 
-#, fuzzy
 msgid "wireless-clients-title"
-msgstr "Linjat"
+msgstr "WiFi clientit"
 
 # /home/martin/juci/plugins/juci-broadcom-wl/src/pages/wireless-link-to-interfaces.html
 msgid "wireless-link-to-interfaces-title"
-msgstr ""
+msgstr "Link"
 
-#, fuzzy
 msgid "menu-wireless-status-title"
-msgstr "Puhelin"
+msgstr "WiFi"
 
-#, fuzzy
 msgid "menu-wireless-filtering-title"
-msgstr "Pikavalinta"
+msgstr "Filtteröinti"
 
-#, fuzzy
 msgid "menu-wireless-interfaces-title"
-msgstr "Linjat"
+msgstr "Liitännät"
 
-#, fuzzy
 msgid "menu-wireless-general-title"
-msgstr "Puhelin"
+msgstr "WiFi"
 
-#, fuzzy
 msgid "menu-wireless-schedule-title"
 msgstr "Ajastus"
 
-#, fuzzy
 msgid "menu-wireless-wps-title"
-msgstr "Linjat"
+msgstr "WPS"
 
-#, fuzzy
 msgid "menu-wireless-client-mode-title"
-msgstr "Linjat"
+msgstr "Client Mode"
 
-#, fuzzy
 msgid "menu-wireless-devices-title"
-msgstr "Linjat"
+msgstr "Laitteet"
 
-#, fuzzy
 msgid "menu-wireless-title"
-msgstr "Linjat"
+msgstr "WiFi"
 
-#, fuzzy
 msgid "menu-wireless-clients-title"
-msgstr "Linjat"
+msgstr "Clients"
 
-#, fuzzy
 msgid "menu-wireless-link-to-interfaces-title"
-msgstr "Linjat"
+msgstr "Link"
+
+# /home/martin/juci/plugins/juci-broadcom-wl/src/widgets/uci.wireless.device.edit.js
+#~ msgid "auto"
+#~ msgstr "Automaattinen"
 
 #~ msgid "Name"
 #~ msgstr "Nimi"

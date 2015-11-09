@@ -1,5 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 !function(){
+	// add control dependency 
+	JUCI.app.requires.push("dropdown-multi-select");
 
 	JUCI.app.factory("$network", function($rpc, $uci){
 		var sync_hosts = $uci.$sync("hosts"); 

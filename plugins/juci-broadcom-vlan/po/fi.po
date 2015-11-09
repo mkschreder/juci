@@ -11,44 +11,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.6\n"
 
-#, fuzzy
 msgid "New interface"
-msgstr "Fyysinen liitäntä"
+msgstr "Uusi liitäntä"
 
 # /home/martin/juci/plugins/juci-broadcom-vlan/src/pages/page-broadcom-ethernet-vlan.js
 msgid "Please select a device in the list!"
 msgstr "Valitse laite luettelosta!"
 
-#, fuzzy
 msgid "Are you sure you want to delete this device?"
-msgstr "Haluatko varmasti poistaa tämän säännön?"
+msgstr "Haluatko varmasti poistaa tämän laitteen?"
 
 msgid "Name"
 msgstr "Nimi"
 
-#, fuzzy
 msgid "Base Device"
 msgstr "Fyysinen liitäntä"
 
-#, fuzzy
 msgid "Pick base device"
-msgstr "Fyysinen liitäntä"
+msgstr "Valitse fyysinen liitäntä"
 
 # /home/martin/juci/plugins/juci-broadcom-vlan/src/pages/page-broadcom-ethernet-vlan.html
 msgid "internet.ethernet.vlan.info"
-msgstr ""
+msgstr "Tässä voit konfiguroida VLAN liitännät"
 
-#, fuzzy
 msgid "VLAN Devices"
-msgstr "ADSL-laitteet"
+msgstr "VLAN-laitteet"
 
-#, fuzzy
 msgid "page-broadcom-ethernet-vlan-title"
-msgstr "Numerot"
+msgstr "VLAN"
 
-#, fuzzy
 msgid "menu-page-broadcom-ethernet-vlan-title"
-msgstr "Numerot"
+msgstr "NumerotVLAN"
 
 #~ msgid "Disabled"
 #~ msgstr "Pois käytöstä"

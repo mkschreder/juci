@@ -14,17 +14,15 @@ msgstr ""
 msgid "Address and port needed"
 msgstr "Osoite ja portti tarvitaan"
 
-#, fuzzy
 msgid "Direction"
-msgstr "Kesto"
+msgstr "Suunta"
 
 # /home/martin/juci/plugins/juci-utils/src/widgets/diagnostics-widget-speedtest.html
 msgid "Package Size"
 msgstr "Pakettikoko"
 
-#, fuzzy
 msgid "Speedtest Server"
-msgstr "Lisää Testipalvelin"
+msgstr "Speedtest Server"
 
 # /home/martin/juci/plugins/juci-utils/src/widgets/diagnostics-widget-speedtest.html
 msgid "Run test"
@@ -34,13 +32,11 @@ msgstr "Suorita testi..."
 msgid "Trace results"
 msgstr "Jäljityksen tulokset"
 
-#, fuzzy
 msgid "Error"
-msgstr "CRC virheitä"
+msgstr "Virhe"
 
-#, fuzzy
 msgid "Server"
-msgstr "Fyysinen liitäntä"
+msgstr "Palvelin"
 
 # /home/martin/juci/plugins/juci-utils/src/widgets/utils-add-testserver-picker.html
 msgid "Port"

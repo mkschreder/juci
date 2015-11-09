@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 msgid "Today"
 msgstr "Tänään"
@@ -121,7 +121,6 @@ msgstr "Estä soitot näistä numeroista"
 msgid "Outgoing Calls"
 msgstr "Lähtevät puhelut"
 
-#, fuzzy
 msgid ""
 "You can also block ranges of numbers.For example: '0160#' blocks all numbers "
 "starting with '0160'."
@@ -244,15 +243,12 @@ msgstr "Kunto"
 msgid "Voice service is not available!"
 msgstr "Puhepalvelu ei ole saatavilla!"
 
-#, fuzzy
 msgid "status-phone-title"
 msgstr "Puhelin"
 
-#, fuzzy
 msgid "phone-lines-title"
 msgstr "Linjat"
 
-#, fuzzy
 msgid "phone-ringing-schedule-title"
 msgstr "Ajastus"
 
@@ -260,19 +256,15 @@ msgstr "Ajastus"
 # menu.d/juci-mod-voice.json
 # #-#-#-#-#  titles.pot  #-#-#-#-#
 # bin/usr/share/rpcd/menu.d/juci-asterisk.json
-#, fuzzy
 msgid "phone-title"
-msgstr "Puheluloki"
+msgstr "Puhelin"
 
-#, fuzzy
 msgid "phone-speed-dialing-title"
 msgstr "Pikavalinta"
 
-#, fuzzy
 msgid "phone-number-blocking-title"
-msgstr "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+msgstr "Puheluesto"
 
-#, fuzzy
 msgid "phone-call-log-title"
 msgstr "Puheluloki"
 

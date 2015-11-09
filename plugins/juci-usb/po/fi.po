@@ -22,37 +22,30 @@ msgstr "USB"
 msgid "No usb devices connected!"
 msgstr "Ei usb-laitteita!"
 
-#, fuzzy
 msgid "USB Devices"
-msgstr "ADSL-laitteet"
+msgstr "USB-laitteet"
 
-#, fuzzy
 msgid "usb.devices.info"
-msgstr "Linjat"
+msgstr "USB"
 
-#, fuzzy
 msgid "Device ID"
-msgstr "DNS Nimi"
+msgstr "Laite ID"
 
 # /home/martin/juci/plugins/juci-usb/src/pages/status-usb.html
 msgid "Vendor ID"
 msgstr "Toimittajatunnus"
 
-#, fuzzy
 msgid "Vendor Name"
-msgstr "Nimi"
+msgstr "Toimittajan Nimi"
 
-#, fuzzy
 msgid "Device Name"
-msgstr "Fyysinen liitäntä"
+msgstr "Laitteen nimi"
 
-#, fuzzy
 msgid "status-usb-title"
-msgstr "Puhelin"
+msgstr "Status"
 
-#, fuzzy
 msgid "menu-status-usb-title"
-msgstr "Linjat"
+msgstr "USB"
 
 #, fuzzy
 #~ msgid "internet.services.upnp.info"

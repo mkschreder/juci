@@ -11,9 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.6\n"
 
-#, fuzzy
 msgid "phone.dect.info"
-msgstr "Puheluloki"
+msgstr "DECT"
 
 msgid "DECT Radio"
 msgstr "DECT Radio"
@@ -22,13 +21,11 @@ msgstr "DECT Radio"
 msgid "ID"
 msgstr "Tunnus/ID"
 
-#, fuzzy
 msgid "Address"
 msgstr "Osoite"
 
-#, fuzzy
 msgid "Status"
-msgstr "Kunto"
+msgstr "Tila"
 
 msgid "Action"
 msgstr "Toiminto"
@@ -37,17 +34,15 @@ msgstr "Toiminto"
 # menu.d/juci-mod-voice.json
 # #-#-#-#-#  titles.pot  #-#-#-#-#
 # bin/usr/share/rpcd/menu.d/juci-asterisk.json
-#, fuzzy
 msgid "phone-dect-title"
-msgstr "Puheluloki"
+msgstr "DECT"
 
 # #-#-#-#-#  all.pot  #-#-#-#-#
 # menu.d/juci-mod-voice.json
 # #-#-#-#-#  titles.pot  #-#-#-#-#
 # bin/usr/share/rpcd/menu.d/juci-asterisk.json
-#, fuzzy
 msgid "menu-phone-dect-title"
-msgstr "Puheluloki"
+msgstr "DECT"
 
 #, fuzzy
 #~ msgid "Hostname"

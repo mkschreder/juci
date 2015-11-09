@@ -17,7 +17,7 @@ JUCI.app
 })
 .controller("overviewWidget40USB", function($scope, $uci, $usb){
 	$usb.getDevices().done(function(devices){
-		$scope.devices = devices.filter(function(dev){ return dev.product && !dev.product.match(/Host Controller/); }); 
+		$scope.devices = devices.filter(function(dev){ return dev.product && !dev.product.match(/Platform/) && !dev.product.match(/Host Controller/); }); 
 		$scope.loaded = true; 
 		$scope.$apply(); 
 	}); 

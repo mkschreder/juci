@@ -12,11 +12,6 @@ JUCI.app
 	$scope.selectedShowType = allLogTypes; 
 	$scope.selectedLogTypes = ["system", "network", "other"]; 
 	
-	var groups = {
-		"system": ["dropbear", "peripheral_manager"], 
-		"network": ["netifd", "brcmnetlink", "dnsmasq-dhcp", "dnsmasq"]
-	}; 
-
 	function update(){
 		if(request === null){
 			request = $rpc.juci.system.log({"filter":$scope.data.filter}).done(function(result){

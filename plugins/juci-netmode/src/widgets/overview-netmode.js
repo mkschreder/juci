@@ -17,7 +17,7 @@ JUCI.app
 })
 .controller("overviewWidgetNetmode", function($scope, $tr, gettext, $uci, $rpc, $netmode, $netmodePicker){
 	$scope.done = 1;  
-	
+		
 	$netmode.getCurrentMode().done(function(current_mode){
 		$scope.currentNetmode = current_mode; 
 		$netmode.list().done(function(modes){

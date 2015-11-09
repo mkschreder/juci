@@ -81,8 +81,8 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		$rootScope.errors.splice(0, $rootScope.errors.length); 
 	}); 
 	// set current language
-	gettextCatalog.setCurrentLanguage("en"); 
-	gettextCatalog.debug = true;
+	gettextCatalog.setCurrentLanguage($config.settings.juci.default_language.value); 
+	gettextCatalog.debug = $config.settings.juci.language_debug.value;
 	
 	var path = $location.path().replace(/\//g, ""); 
 	// load the right page from the start

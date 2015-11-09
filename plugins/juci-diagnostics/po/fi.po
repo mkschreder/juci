@@ -15,16 +15,14 @@ msgstr ""
 msgid "Diagnostic Utility"
 msgstr "Diagnostiikkatyökalu"
 
-#, fuzzy
 msgid "status.diagnostics.info"
-msgstr "Puhelinlinjojen tila."
+msgstr " "
 
 msgid "Automated Diagnostics"
 msgstr "Automatisoitu vianmääritys"
 
-#, fuzzy
 msgid "status.diagnostics.auto.info"
-msgstr "Puhelinlinjojen tila."
+msgstr "Automaattinen diagnostiikka"
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Diagnose"
@@ -34,9 +32,9 @@ msgstr "Diagnostiikka"
 msgid "Ping Test"
 msgstr "Ping-testi"
 
-#, fuzzy
 msgid "status.diagnostics.ping.info"
-msgstr "Puhelinlinjojen tila."
+msgstr ""
+"Syötä oikea kohteen verkkonimi tai IP-osoite suorittaaksesi Ping testi."
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Host to ping"
@@ -50,17 +48,17 @@ msgstr "Ping"
 msgid "Ping results"
 msgstr "Ping-tulokset"
 
-#, fuzzy
 msgid "Error"
-msgstr "CRC virheitä"
+msgstr "Virhe"
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Tracing Tool"
 msgstr "Jäljitystyökalu"
 
-#, fuzzy
 msgid "status.diagnostics.trace.info"
-msgstr "Puhelinlinjojen tila."
+msgstr ""
+"Valitse yhteystyyppi ja sijainti mihin haluat tallentaa jäljityksen. "
+"Jäljitys alkaa automaattisesti erillisessä selainikkunassa."
 
 # /home/martin/juci/plugins/juci-diagnostics/src/pages/status-diagnostics.html
 msgid "Host to trace"
@@ -74,13 +72,11 @@ msgstr "Jäljitä"
 msgid "Trace results"
 msgstr "Jäljityksen tulokset"
 
-#, fuzzy
 msgid "status-diagnostics-title"
-msgstr "Puhelin"
+msgstr "Diagnostiikka"
 
-#, fuzzy
 msgid "menu-status-diagnostics-title"
-msgstr "Linjat"
+msgstr "Diagnostiikka"
 
 #, fuzzy
 #~ msgid "Interface"
@@ -141,31 +137,45 @@ msgstr "Linjat"
 
 #, fuzzy
 #~ msgid "wps.status.init"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #, fuzzy
 #~ msgid "wps.status.processing"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #, fuzzy
 #~ msgid "wps.status.fail"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #, fuzzy
 #~ msgid "wps.status.timeout"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #, fuzzy
 #~ msgid "wps.status.msgdone"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #, fuzzy
 #~ msgid "wps.status.overlap"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #, fuzzy
 #~ msgid "wps.status.unknown"
-#~ msgstr "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
+#~ msgstr ""
+#~ "Tällä sivulla on yleisnäkymä aktiivisista puhelinnumeroistasi. "
+#~ "Mahdollisia muutoksia varten navigoi kohtaan \"Puhelin\"."
 
 #~ msgid "on"
 #~ msgstr "Päällä"
@@ -212,8 +222,12 @@ msgstr "Linjat"
 #~ msgid "Client (STA)"
 #~ msgstr "Client (STA)"
 
-#~ msgid "Are you sure you want to create a new SSID with the same name and on the same radio? This may result in undefined behaviour!"
-#~ msgstr "Haluatko varmasti luoda uuden SSID:n, jolla on sama nimi samassa radiossa? Tämä voi aiheuttaa määrittelemätöntä käyttäytymistä!"
+#~ msgid ""
+#~ "Are you sure you want to create a new SSID with the same name and on the "
+#~ "same radio? This may result in undefined behaviour!"
+#~ msgstr ""
+#~ "Haluatko varmasti luoda uuden SSID:n, jolla on sama nimi samassa "
+#~ "radiossa? Tämä voi aiheuttaa määrittelemätöntä käyttäytymistä!"
 
 #~ msgid "Schedule"
 #~ msgstr "Ajastus"
@@ -298,7 +312,9 @@ msgstr "Linjat"
 
 #, fuzzy
 #~ msgid "wifi.schedule.info"
-#~ msgstr "Aseta puhelinaikataulut milloin puhelimen tulisi hälyttää tai ei tulisi hälyttää."
+#~ msgstr ""
+#~ "Aseta puhelinaikataulut milloin puhelimen tulisi hälyttää tai ei tulisi "
+#~ "hälyttää."
 
 #, fuzzy
 #~ msgid "Schedule Function"
@@ -514,7 +530,8 @@ msgstr "Linjat"
 #~ msgstr "Numeron esto"
 
 #~ msgid "phone.number_blocking.info"
-#~ msgstr "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+#~ msgstr ""
+#~ "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
 
 #~ msgid "Outgoing Number Blocking"
 #~ msgstr "Lähtevän Soitonesto"
@@ -538,8 +555,12 @@ msgstr "Linjat"
 #~ msgstr "Lähtevät puhelut"
 
 #, fuzzy
-#~ msgid "You can also block ranges of numbers.For example: '0160#' blocks all numbers starting with '0160'."
-#~ msgstr "Voit myös estää numeroalueen. Esimerkiksi \"0160#\" estää kaikki numerot jotka ovat \"0160\"-alkuisia"
+#~ msgid ""
+#~ "You can also block ranges of numbers.For example: '0160#' blocks all "
+#~ "numbers starting with '0160'."
+#~ msgstr ""
+#~ "Voit myös estää numeroalueen. Esimerkiksi \"0160#\" estää kaikki numerot "
+#~ "jotka ovat \"0160\"-alkuisia"
 
 #~ msgid "Incoming Calls"
 #~ msgstr "Saapuvat puhelut"
@@ -627,7 +648,8 @@ msgstr "Linjat"
 
 #, fuzzy
 #~ msgid "phone-number-blocking-title"
-#~ msgstr "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+#~ msgstr ""
+#~ "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
 
 #, fuzzy
 #~ msgid "phone-call-log-title"
@@ -647,7 +669,8 @@ msgstr "Linjat"
 
 #, fuzzy
 #~ msgid "menu-phone-number-blocking-title"
-#~ msgstr "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
+#~ msgstr ""
+#~ "Kontrolloi puhelinlaskuasi ja estä puhelut ei-haluttuihin numeroihin."
 
 #, fuzzy
 #~ msgid "menu-phone-call-log-title"
@@ -665,11 +688,19 @@ msgstr "Linjat"
 #~ msgid "3G (ppp over GPRS/EvDO/CDMA or UTMS)"
 #~ msgstr "3G (GPRS/EvDO/CDMA/UMTS)"
 
-#~ msgid "A new ethernet device has been connected to your router. Do you want to add it to a network?"
-#~ msgstr "Uusi ethernet-laite on kytketty reitittimeen. Haluatko lisätä sen verkkoon?"
+#~ msgid ""
+#~ "A new ethernet device has been connected to your router. Do you want to "
+#~ "add it to a network?"
+#~ msgstr ""
+#~ "Uusi ethernet-laite on kytketty reitittimeen. Haluatko lisätä sen "
+#~ "verkkoon?"
 
-#~ msgid "A new system software upgrade is available. Do you want to visit upgrade page and upgrade now?"
-#~ msgstr "Ohjelmistopäivitys on saatavilla. Haluatko päivittää avata päivityssivun ja päivittää nyt?"
+#~ msgid ""
+#~ "A new system software upgrade is available. Do you want to visit upgrade "
+#~ "page and upgrade now?"
+#~ msgstr ""
+#~ "Ohjelmistopäivitys on saatavilla. Haluatko päivittää avata päivityssivun "
+#~ "ja päivittää nyt?"
 
 #~ msgid "ACCEPT"
 #~ msgstr "HYVÄKSY"
@@ -761,8 +792,12 @@ msgstr "Linjat"
 #~ msgid "Are you sure you want to delete this zone?"
 #~ msgstr "Haluatko varmasti poistaa tämän vyöhykkeen?"
 
-#~ msgid "Are you sure you want to remove device  from network  and use it in this bridge?"
-#~ msgstr "Haluatko varmasti poistaa tämän laitteen verkosta ja käyttää sitä tässä sillassa?"
+#~ msgid ""
+#~ "Are you sure you want to remove device  from network  and use it in this "
+#~ "bridge?"
+#~ msgstr ""
+#~ "Haluatko varmasti poistaa tämän laitteen verkosta ja käyttää sitä tässä "
+#~ "sillassa?"
 
 #~ msgid "Are you sure you want to remove this network from this zone?"
 #~ msgstr "Haluatko varmasti poistaa tämän verkon tältä vyöhykkeeltä?"
@@ -800,8 +835,14 @@ msgstr "Linjat"
 #~ msgid "Choose Configuration Option"
 #~ msgstr "Valitse Konfiguraatiovaihtoehto"
 
-#~ msgid "Choose the local IP address that should be exposed to Internet. Additionally you should configure this IP address as static DHCP address for your device (see Settings/Network)."
-#~ msgstr "Valitse paikallinen IP-osoite, jonka tulisi olla avoin Internettiin. Lisäksi kannattaa määrittää tälle IP-osoitteelle staattinen IP-osoite DHCP poolista (katso Asetukset/Verkko)."
+#~ msgid ""
+#~ "Choose the local IP address that should be exposed to Internet. "
+#~ "Additionally you should configure this IP address as static DHCP address "
+#~ "for your device (see Settings/Network)."
+#~ msgstr ""
+#~ "Valitse paikallinen IP-osoite, jonka tulisi olla avoin Internettiin. "
+#~ "Lisäksi kannattaa määrittää tälle IP-osoitteelle staattinen IP-osoite "
+#~ "DHCP poolista (katso Asetukset/Verkko)."
 
 #~ msgid "Click here to restart your device"
 #~ msgstr "Paina tästä käynnistääksesi laitteesi uudelleen"

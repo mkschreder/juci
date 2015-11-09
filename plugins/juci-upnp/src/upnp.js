@@ -28,15 +28,15 @@ JUCI.app
 
 UCI.$registerConfig("upnpd"); 
 UCI.upnpd.$registerSectionType("upnpd", {
-	"enable_natpmp":				{ dvalue: false, type: Boolean }, 
-	"enable_upnp":					{ dvalue: false, type: Boolean }, 
-	"secure_mode":					{ dvalue: false, type: Boolean }, 
-	"log_output":						{ dvalue: true, type: Boolean }, 
-	"download":							{ dvalue: 1024, type: Number }, 
-	"upload":								{ dvalue: 512, type: Number }, 
-	"internal_iface":				{ dvalue: '', type: String }, 
-	"port":									{ dvalue: 5000, type: Number }, 
-	"upnp_lease_file":			{ dvalue: '/var/upnp.leases', type: String }
+	"enable_natpmp":	{ dvalue: false, type: Boolean }, 
+	"enable_upnp":		{ dvalue: false, type: Boolean }, 
+	"secure_mode":		{ dvalue: false, type: Boolean }, 
+	"log_output":		{ dvalue: true, type: Boolean }, 
+	"download":			{ dvalue: 1024, type: Number }, 
+	"upload":			{ dvalue: 512, type: Number }, 
+	"internal_iface":	{ dvalue: '', type: String }, 
+	"port":				{ dvalue: 5000, type: Number }, 
+	"upnp_lease_file":	{ dvalue: '/var/upnp.leases', type: String }
 }); 
 /*
 config perm_rule

@@ -17,7 +17,7 @@ msgstr "Dropbear SSH"
 
 # /home/martin/juci/plugins/juci-dropbear/src/pages/settings-management-dropbear.html
 msgid "settings.dropbear.info"
-msgstr ""
+msgstr "Konfiguroi SSH-pääsy modeemiin."
 
 # /home/martin/juci/plugins/juci-dropbear/src/pages/settings-management-dropbear.html
 msgid "Start/Stop Service"
@@ -68,15 +68,13 @@ msgstr "Kuuntelu portti"
 msgid "Enable Root Password Auth"
 msgstr "Salli root salasana todennus"
 
-#, fuzzy
 msgid "Enable Root Login"
-msgstr "Käytössä"
+msgstr "Salli Root-käyttäjän Kirjautuminen"
 
 # /home/martin/juci/plugins/juci-dropbear/src/pages/settings-management-dropbear.html
 msgid "Enable Forwarded Ports"
 msgstr "Enable Forwarded Ports"
 
-#, fuzzy
 msgid "Interface"
 msgstr "Fyysinen liitäntä"
 
@@ -97,11 +95,11 @@ msgstr "Aikakatkaisu"
 
 # /home/martin/juci/plugins/juci-dropbear/src/pages/settings-management-dropbear.html
 msgid "settings-management-dropbear-title"
-msgstr ""
+msgstr "SSH"
 
 # /home/martin/juci/plugins/juci-dropbear/src/pages/settings-management-dropbear.html
 msgid "menu-settings-management-dropbear-title"
-msgstr ""
+msgstr "SSH"
 
 #~ msgid "Address Pool Start IP"
 #~ msgstr "Ensimmäinen osoite"

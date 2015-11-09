@@ -11,9 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.6\n"
 
-#, fuzzy
 msgid "WAN IP Address"
-msgstr "Osoite"
+msgstr "WAN IP-osoite"
 
 # /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-footer.html
 msgid "Logout"
@@ -30,25 +29,22 @@ msgstr "Ei tapahtumia."
 msgid "About"
 msgstr "Tietoja"
 
-#, fuzzy
 msgid "status-about-title"
-msgstr "Puhelin"
+msgstr "Tietoja"
 
 # /home/martin/juci/themes/juci-theme-inteno/src/pages/overview.html
 msgid "overview-title"
 msgstr "Puheluloki"
 
-#, fuzzy
 msgid "menu-status-about-title"
-msgstr "Linjat"
+msgstr "Tietoja"
 
 # #-#-#-#-#  all.pot  #-#-#-#-#
 # menu.d/juci-mod-voice.json
 # #-#-#-#-#  titles.pot  #-#-#-#-#
 # bin/usr/share/rpcd/menu.d/juci-asterisk.json
-#, fuzzy
 msgid "menu-overview-title"
-msgstr "Puheluloki"
+msgstr "Yleisnäkymä"
 
 #~ msgid "Address and port needed"
 #~ msgstr "Osoite ja portti tarvitaan"
