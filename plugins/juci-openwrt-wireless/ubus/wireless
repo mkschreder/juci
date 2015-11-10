@@ -105,7 +105,7 @@ end
 local function wireless_get_extended_stainfo(wldev, macaddr)
 	-- run the iw station get and parse output. It's output is basically a ":" separated key value list, but the keys contain spaces. 
 	-- so what we do is we strip the spaces and convert the list to a proper key value list using awk
-	local stdout = juci.shell("iw dev %s station get %s | tail -n +2 | awk 'BEGIN{FS=\":\"}{gsub(/^[ \\t]+/, \"\", $2); gsub(/^[ \\t]+/,\"\", $1); gsub(/\\//, \"_\", $1); gsub(/ /, \"_\", $1);  gsub(/ .*/, \"\", $2); print tolower($1) \" \" $2}'", wldev, macaddr); 
+	local stdout = juci.shell("iw dev %s station get %s 2> /dev/null | tail -n +2 | awk 'BEGIN{FS=\":\"}{gsub(/^[ \\t]+/, \"\", $2); gsub(/^[ \\t]+/,\"\", $1); gsub(/\\//, \"_\", $1); gsub(/ /, \"_\", $1);  gsub(/ .*/, \"\", $2); print tolower($1) \" \" $2}'", wldev, macaddr); 
 	local info = {}; 
 	-- then we parse one line at a time
 	for line in stdout:gmatch("[^\r\n]+") do 
