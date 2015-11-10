@@ -16,7 +16,7 @@ JUCI.app
 	$scope.custom = {dns:"custom"};
 	$scope.input_focus = false;
 	$scope.LBD = [
-		{ label: 'disable', value: 'disable' },
+		{ label: $tr(gettext('Disable')), value: 'disable' },
 		{ label: '1', 		value: '1' },
 		{ label: '2',		value: '2' },
 		{ label: '3', 		value: '3' },
@@ -29,30 +29,30 @@ JUCI.app
 		{ label: '10',		value: '10' }
 	];
 	$scope.HMI = [
-		{ label: 'Disable',	value: 'disable' },
-		{ label: '5 sec', 	value: '5' },
-		{ label: '10 sec', 	value: '10' },
-		{ label: '20 sec', 	value: '20' },
-		{ label: '30 sec', 	value: '30' },
-		{ label: '60 sec', 	value: '60' },
-		{ label: '120 sec',	value: '12' }
+		{ label: $tr(gettext('Disable')),		value: 'disable' },
+		{ label: '5 ' + $tr(gettext('sec')),	value: '5' },
+		{ label: '10 ' + $tr(gettext('sec')),	value: '10' },
+		{ label: '20 ' + $tr(gettext('sec')),	value: '20' },
+		{ label: '30 ' + $tr(gettext('sec')),	value: '30' },
+		{ label: '60 ' + $tr(gettext('sec')),	value: '60' },
+		{ label: '120 ' + $tr(gettext('sec')),	value: '120' }
 	];
 	$scope.ICMPH = [
-		{ label: 'Disable',			value: 'disable' },
-		{ label: 'DNS server',		value: 'dns' },
-		{ label: 'Default gateway',	value: 'gateway' },
-		{ label: 'Custom',			value: 'custom' }
+		{ label: $tr(gettext('Disable')),			value: 'disable' },
+		{ label: $tr(gettext('DNS server')),		value: 'dns' },
+		{ label: $tr(gettext('Default gateway')),	value: 'gateway' },
+		{ label: $tr(gettext('Custom')),			value: 'custom' }
 	];
 	$scope.timeout = [
 		{ label: 'Disable',	value: 'disable' },
-		{ label: '1 sek',	value: '1' },
-		{ label: '2 sek',	value: '2' },
-		{ label: '3 sek',	value: '3' },
-		{ label: '4 sek',	value: '4' },
-		{ label: '5 sek',	value: '5' },
-		{ label: '10 sek',	value: '10' }
+		{ label: '1 ' + $tr(gettext('sec')),	value: '1' },
+		{ label: '2 ' + $tr(gettext('sec')),	value: '2' },
+		{ label: '3 ' + $tr(gettext('sec')),	value: '3' },
+		{ label: '4 ' + $tr(gettext('sec')),	value: '4' },
+		{ label: '5 ' + $tr(gettext('sec')),	value: '5' },
+		{ label: '10 ' + $tr(gettext('sec')),	value: '10' }
 	];
-	$scope.health_method = [{label: 'Ping', value: 'ping'}, {label: 'Statistics', value: 'stats'}];
+	$scope.health_method = [{label: $tr(gettext('Ping')), value: 'ping'}, {label: $tr(gettext('Statistics')), value: 'stats'}];
 	$scope.HFR = [
 		{ label: '1',	value: '1'},
 		{ label: '3',	value: '3'},
@@ -61,7 +61,7 @@ JUCI.app
 		{ label: '15',	value: '15'},
 		{ label: '20',	value: '20'}
 	];
-	$scope.dns = [{label: 'auto', value: 'auto'},{label: 'Custom', value: 'custom'}];
+	$scope.dns = [{label: $tr(gettext('Auto')), value: 'auto'},{label: $tr(gettext('Custom')), value: 'custom'}];
 	$scope.failover_to = [];
 	$scope.$watch('interface', function(){
 		if(!$scope.interface) return;
@@ -73,9 +73,9 @@ JUCI.app
 		}
 		console.log($scope.dns);
 		$scope.failover_to = [
-			{ label: 'disable',						value:'disable' },
-			{ label: 'Load Balancer(Performance)',	value:'fastbalancer' },
-			{ label: 'Load Balancer(Compability)',	value:'balancer' }
+			{ label: $tr(gettext('Disable')),						value:'disable' },
+			{ label: $tr(gettext('Load Balancer(Performance)')),	value:'fastbalancer' },
+			{ label: $tr(gettext('Load Balancer(Compability)')),	value:'balancer' }
 		];
 		$uci.$sync("multiwan").done(function(){
 			$scope.failover_to = $scope.failover_to.concat($uci.multiwan["@interface"].map(function(x){
