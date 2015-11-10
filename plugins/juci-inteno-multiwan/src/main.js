@@ -16,6 +16,7 @@ UCI.multiwan.$registerSectionType("interface", { // config
 	"health_fail_retries":	{ dvalue: 3, type: Number },
 	"health_recovery_retries":{ dvalue: 5, type: Number },
 	"failover_to":					{ dvalue: "", type: String },
+	"health_method":			{ dvalue: "", type: String },
 	"dns":									{ dvalue: "auto", type: String }
 }); 
 

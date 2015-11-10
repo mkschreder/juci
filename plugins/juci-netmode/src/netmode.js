@@ -57,7 +57,7 @@ JUCI.app
 JUCI.app.run(function($uci){
 	// automatically create the setup section because without it we can not get current netmode (it should actually be there by default, but just in case);
 	$uci.$sync("netmode").done(function(){
-		$uci.netmode.create({".type": "mode", ".name": "setup" }).done(function(){
+		$uci.netmode.$create({".type": "mode", ".name": "setup" }).done(function(){
 			$uci.$save(); 
 		}); 
 	}); 

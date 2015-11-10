@@ -1,28 +1,39 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'Weight'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.weight.value"/>
+		<juci-config-line title="{{'Load Balancer Distribution'|translate}}">
+			<juci-select ng-items="LBD" ng-model="interface.weight.value"></juci-select>
 		</juci-config-line>
-		<juci-config-line title="{{'Health'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.health_interval.value"/>
+		<juci-config-line title="{{'Health Monitor Method' | translate }}">
+			<juci-select ng-items="health_method" ng-model="interface.health_method.value"></juci-select>
 		</juci-config-line>
-		<juci-config-line title="{{'ICMP Hosts'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.icmp_hosts.value"/>
+		<juci-config-line title="{{'Health Monitor Interval'|translate}}">
+			<juci-select ng-items="HMI" ng-model="interface.health_interval.value"></juci-select>
 		</juci-config-line>
-		<juci-config-line title="{{'Timeout'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.timeout.value"/>
+		<juci-config-line ng-show="interface.health_method.value == 'ping'" title="{{'Health Monitor ICMP Host(s)'|translate}}">
+			<juci-select ng-hide="interface.icmp_hosts.value == 'custom'" ng-items="ICMPH" ng-model="interface.icmp_hosts.value"></juci-select>
+			<form ng-submit="update_icmp()">
+				<input type="text" ng-model="icmp.hosts" ng-blur="update_icmp()" 
+				ng-show="interface.icmp_hosts.value == 'custom'" class="form-control" />
+			</form>
 		</juci-config-line>
-		<juci-config-line title="{{'Health Fail Retries'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.health_fail_retries.value"/>
+		<juci-config-line ng-show="interface.health_method.value == 'ping'" title="{{'Health Monitor ICMP Timeout'|translate}}">
+			<juci-select ng-items="timeout" ng-model="interface.timeout.value"></juci-select>
 		</juci-config-line>
-		<juci-config-line title="{{'Health Recovery Retries'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.health_recovery_retries.value"/>
+		<juci-config-line title="{{'Attempts Before WAN Failover'|translate}}">
+			<juci-select ng-items="HFR" ng-model="interface.health_fail_retries.value"></juci-select>
 		</juci-config-line>
-		<juci-config-line title="{{'Failover To'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.failover_to.value"/>
+		<juci-config-line title="{{'Attempts Before WAN Recovery'|translate}}">
+			<juci-select ng-items="HFR" ng-model="interface.health_recovery_retries.value"></juci-select>
 		</juci-config-line>
-		<juci-config-line title="{{'DNS'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.dns.value"/>
+		<juci-config-line title="{{'Failover Traffic Destination'|translate}}">
+			<juci-select ng-items="failover_to" ng-model="interface.failover_to.value"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{'DNS Server(s)'|translate}}">
+			<juci-select ng-items="dns" ng-hide="interface.dns.value == 'custom'" ng-model="interface.dns.value"></juci-select>
+			<form ng-submit="update_dns()">
+				<input type="text" ng-model="custom.dns" ng-blur="update_dns()" 
+					ng-show="interface.dns.value == 'custom'" class="form-control" />
+			</form>
 		</juci-config-line>
 	</juci-config-lines>
 </div>
