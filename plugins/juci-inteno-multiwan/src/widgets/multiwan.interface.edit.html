@@ -1,13 +1,17 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Weight'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.weight.value"/>
+			<juci-select ng-items="LBD" ng-model="interface.weight.value"></juci-select>
 		</juci-config-line>
 		<juci-config-line title="{{'Health'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.health_interval.value"/>
+			<juci-select ng-items="HMI" ng-model="interface.health_interval.value"></juci-select>
 		</juci-config-line>
 		<juci-config-line title="{{'ICMP Hosts'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.icmp_hosts.value"/>
+			<juci-select ng-hide="interface.icmp_hosts.value == 'custom'" ng-items="ICMPH" ng-model="interface.icmp_hosts.value"></juci-select>
+			<form ng-submit="update_icmp()">
+				<input type="text" ng-model="icmp.hosts" ng-blur="update_icmp()" ng-show="interface.icmp_hosts.value == 'custom'" 
+				class="form-control" />
+			</form>
 		</juci-config-line>
 		<juci-config-line title="{{'Timeout'|translate}}">
 			<input type="text" class="form-control" ng-model="interface.timeout.value"/>
