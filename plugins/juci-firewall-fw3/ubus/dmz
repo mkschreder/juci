@@ -1,0 +1,14 @@
+#!/usr/bin/lua
+
+local juci = require("juci.core");
+local json = require("juci.json");
+
+local function excluded_ports() 
+	local result = juci.shell("cat /tmp/dmz_excluded_ports");
+	print(json.encode(result));
+end
+
+juci.ubus({
+	["excluded_ports"] = excluded_ports
+}, arg);
+
