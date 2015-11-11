@@ -5,7 +5,7 @@ local json = require("juci.json");
 
 local function excluded_ports() 
 	local result = juci.shell("cat /tmp/dmz_excluded_ports");
-	print(json.encode(result));
+	print(json.encode(result = result));
 end
 
 juci.ubus({

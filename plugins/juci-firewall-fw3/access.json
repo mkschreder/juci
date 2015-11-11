@@ -5,6 +5,9 @@
 			"ubus": {
 				"network.interface": [
 					"status"
+				],
+				"/juci/dmz": [
+					"excluded_hosts"
 				]
 			}, 
 			"uci": [

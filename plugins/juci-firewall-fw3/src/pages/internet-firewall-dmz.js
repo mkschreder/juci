@@ -12,6 +12,9 @@ JUCI.app
 		$uci.firewall.dmz.host.value = value.ipaddr; 
 		$uci.firewall.dmz.ip6addr.value = value.ip6addr; 
 	}); 
+	$rpc.juci.dmz.excluded_ports().done(function(data){
+		$scope.nonforwardedPorts = data.result;
+	});
 	/* IPv6 dmz rule (from openwrt)
 	config rule
         option src       wan
