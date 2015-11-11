@@ -76,25 +76,30 @@ function system_info()
 			cpuinfo[trim(name)] = trim(value); 
 		end
 	end
-	-- top needs to gather info for at least 1s to give good results. We can not pause 1s in a ubus call. 
-	-- so we assume that the only time when load info is relevant is when gui frequently reads system status
-	-- in that case the gui will get load values. Otherwise gui will get an empty list or values that are old.  
-	-- we are reading PREVIOUS top output here so we don't have to wait 1s!
-	local top_output = juci.readfile("/tmp/juci-top-output"); 
-	-- this needs to come after because if we run this and try to read, we will fail because file is in use
-	juci.shell("top -b -n 1 | grep \"^Cpu(s)\" > /tmp/juci-top-output &"); 
-	for cent in (top_output or ""):gmatch("%S+") do
-		local val,typ = cent:match("([^%%]+)%%([^,]+)[,]*"); 
-		if(typ == "us") then cpuload.user = tonumber(val) * 100; 
-		elseif(typ == "sy") then cpuload.system = tonumber(val) * 100; 
-		elseif(typ == "ni") then cpuload.user_nice = tonumber(val) * 100; 
-		elseif(typ == "id") then cpuload.idle = tonumber(val) * 100; 
-		elseif(typ == "wa") then cpuload.wait = tonumber(val) * 100;
-		elseif(typ == "hi") then cpuload.hardware_irq = tonumber(val) * 100; 
-		elseif(typ == "si") then cpuload.software_irq = tonumber(val) * 100; 
-		elseif(typ == "st") then cpuload.stolen_time = tonumber(val) * 100; end 
+
+	-- replace the old ugly cpu usage code with new load reporting code (will report load in jiffies)
+	-- to get cpu usage, use the counters and sample them over a time interval
+	local stat = juci.readfile("/proc/stat"); 
+	for line in stat:gmatch("[^\r\n]+") do
+		if(line:sub(1,4) == "cpu ") then
+			local usr,nic,sys,idle,iowait,irq,softirq,steal = line:match("cpu%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+(%S+)%s+.*"); 
+			local cpu = {
+				timestamp = os.time(), 
+				usr = tonumber(usr), 
+				nic = tonumber(nic), 
+				sys = tonumber(sys), 
+				idle = tonumber(idle), 
+				iowait = tonumber(iowait), 
+				irq = tonumber(irq), 
+				softirq = tonumber(softirq), 
+				steal = tonumber(steal)
+			}; 
+			cpu.total = cpu.usr + cpu.nic + cpu.sys + cpu.idle + cpu.iowait + cpu.irq + cpu.softirq + cpu.steal; 
+			cpu.busy = cpu.total - cpu.idle - cpu.iowait; 
+			system.cpu = cpu; 
+		end
 	end
-	
+
 	local numcpus = tonumber(juci.shell("grep -i model /proc/cpuinfo | wc -l"):match("(%S+).*")); 
 	local load1, load5, load15 = juci.readfile("/proc/loadavg"):match("(%S+)%s+(%S+)%s+(%S+).+"); 
 	cpuload.avg = { tonumber(load1) / numcpus * 1000, tonumber(load5) / numcpus * 1000, tonumber(load15) / numcpus * 1000};  

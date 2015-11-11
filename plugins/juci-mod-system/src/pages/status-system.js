@@ -21,7 +21,9 @@ JUCI.app
 	var sys = {};  
 	var board = { release: {} }; 
 	var filesystems = []; 
-	
+
+	var prev_cpu = {}; 
+
 	JUCI.interval.repeat("status.system.refresh", 1000, function(resume){
 		async.parallel([
 			function (cb){$rpc.juci.system.info().done(function(res){info = res; cb();}).fail(function(res){cb();});},
@@ -50,6 +52,13 @@ JUCI.app
 				
 				return ((days > 0)?""+days+"d ":"")+pad(hours,2)+":"+pad(minutes,2)+":"+pad(seconds,2);
 			}
+			
+			var cpu_load = 0; 
+			try {
+				cpu_load = Math.round(100 * (prev_cpu.usr - info.system.cpu.usr) / (prev_cpu.total - info.system.cpu.total)); 
+			} catch(e){ }
+			prev_cpu = info.system.cpu; 
+
 			$scope.systemStatusTbl.rows = [
 				[$tr(gettext("Hostname")), board.hostname || info.system.name],
 				[$tr(gettext("Model")), board.model || info.system.hardware || $tr(gettext("N/A"))],
@@ -59,7 +68,8 @@ JUCI.app
 				[$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))], 
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
-				[$tr(gettext("CPU Load Avg.")), ""+(info.load.avg[0] / 10.0) + "%"], 
+				[$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"], 
+				[$tr(gettext("CPU")), ""+(cpu_load || 0)+"%"]
 			]; 
 			$scope.systemMemoryTbl.rows = [
 				[$tr(gettext("Usage")), '<juci-progress value="'+Math.round((sys.memory.total - sys.memory.free) / 1000)+'" total="'+ Math.round(sys.memory.total / 1000) +'" units="kB"></juci-progress>'],
