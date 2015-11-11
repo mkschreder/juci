@@ -6,8 +6,8 @@
 				"network.interface": [
 					"status"
 				],
-				"/juci/dmz": [
-					"excluded_hosts"
+				"/juci/firewall.dmz": [
+					"excluded_ports"
 				]
 			}, 
 			"uci": [
