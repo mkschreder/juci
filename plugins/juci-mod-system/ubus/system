@@ -47,11 +47,13 @@ function system_logread(opts)
 end
 
 function system_reboot()
-	juci.shell("/sbin/reboot"); 
+	juci.shell("/sbin/reboot 2>/dev/null"); 
+	print(json.encode({})); 
 end
 
 function system_defaultreset()
-	juci.shell("/sbin/defaultreset"); 
+	juci.shell("/sbin/defaultreset 2> /dev/null"); 
+	print(json.encode({})); 
 end
 
 function trim(s)
