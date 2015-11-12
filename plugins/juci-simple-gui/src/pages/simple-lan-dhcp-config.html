@@ -1,0 +1,8 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="simpleDhcpConfigPage">
+		<h1 translate>DHCP Configuration</h1>
+		<juci-config-info>{{'dhcp.config.info'|translate}}</juci-config-info>
+		<network-connection-dhcp-server-settings ng-connection="lan"></network-connection-dhcp-server-settings>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

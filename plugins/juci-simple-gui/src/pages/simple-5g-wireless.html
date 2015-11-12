@@ -1,0 +1,19 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="simple5GWirelessPage">
+		<h1 translate>5Ghz Wireless</h1>
+		<juci-config-info>{{'wireless.5g.info'|translate}}</juci-config-info>
+		<juci-config-section>
+			<h1 translate>Radio Configuration</h1>
+			<div class="alert alert-danger" ng-show="loaded && !radio">Don't know which radio to show as 5G radio.</div>
+			<uci-wireless-device-edit ng-show="radio" ng-model="radio"></uci-wireless-device-edit>
+		</juci-config-section>
+		<juci-config-section>
+			<h1 translate>SSID Configuration</h1>
+			<div class="alert alert-danger" ng-show="loaded && !wifi_main"></div>
+			<wireless-interface-edit ng-show="wifi_main" ng-model="wifi_main"></wireless-interface-edit>
+			<div class="alert alert-danger" ng-show="loaded && !wifi_guest"></div>
+			<wireless-interface-edit ng-show="wifi_guest" ng-model="wifi_guest"></wireless-interface-edit>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>
