@@ -26,7 +26,7 @@ JUCI.app
 			}); 
 
 			$scope.$watch("ngModel", function(value){
-				if(!value || !$scope.ngItems) return; 
+				if(value == undefined || !$scope.ngItems) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
 			});
 		}
