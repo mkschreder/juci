@@ -107,6 +107,7 @@ JUCI.app
 				}); 
 			}, 
 			function(next){
+				if(!$rpc.juci.wireless || !$rpc.juci.wireless.wps) { next(); return; }
 				$rpc.juci.wireless.wps.showpin().done(function(result){
 					$scope.wps.pin = result.pin; 
 				}).always(function(){ next(); }); 
