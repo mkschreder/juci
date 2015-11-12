@@ -135,6 +135,7 @@ UCI.firewall.$registerSectionType("redirect", {
 	"enabled":			{ dvalue: true, type: Boolean }, 
 	"src":				{ dvalue: "", type: String }, 
 	"dest":				{ dvalue: "", type: String }, 
+	"target": 			{ dvalue: "", type: String },
 	"src_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  },
 	"src_dport":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
 	"proto":			{ dvalue: "tcp", type: String }, 
