@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("simpleWANPage", function($scope, $uci, $tr, gettext){
+.controller("simpleWANConfigPage", function($scope, $uci, $tr, gettext){
 	$scope.wan = {}; 
 
 	$uci.$sync("network").done(function(){
