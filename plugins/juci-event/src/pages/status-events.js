@@ -2,19 +2,24 @@
 
 JUCI.app
 .controller("StatusEventsPageCtrl", function($scope, $rpc){
-	var allLogTypes = ["error", "warning", "info"]; 
 	var log = {
 		autoRefresh : true
 	};
 	var timeoutID = undefined;
 	var request = null;
-	$scope.data = { filter: "" };
-	$scope.selectedShowType = allLogTypes; 
-	$scope.selectedLogTypes = ["system", "network", "other"]; 
-	
+	$scope.data = { limit: 20, filter: "" };
+	$scope.allLimits = [
+		{ label: 20, value: 20 }, 
+		{ label: 50, value: 50 }, 
+		{ label: 100, value: 100 }, 
+		{ label: 200, value: 200 }
+	]; 
 	function update(){
 		if(request === null){
-			request = $rpc.juci.system.log({"filter":$scope.data.filter}).done(function(result){
+			request = $rpc.juci.system.log({
+				limit: $scope.data.limit, 
+				filter: $scope.data.filter
+			}).done(function(result){
 				console.log("test "+$scope.data.filter+" "+result.lines);
 				if(result && result.lines){
 					$scope.logs = result.lines; 
@@ -50,35 +55,10 @@ JUCI.app
 		});;
 	}); 
 
-	$scope.allLogTypes = [
-		{ label: "System", value: "system" }, 
-		//{ label: "WAN", value: "wan" }, 
-		{ label: "Network", value: "network" }, 
-		{ label: "Other", value: "other" }
-		//{ label: "LAN", value: "lan" }, 
-		//{ label: "Voice", value: "voice" }, 
-		//{ label: "Data", value: "data" }, 
-		//{ label: "IPTV", value: "iptv" }, 
-		//{ label: "USB", value: "usb" }, 
-		//{ label: "Firewall", value: "firewall" }
-	]; 
-	$scope.allEventTypes = [
-		{ label: "Only Errors & Warnings", value: ["error", "warning"] }, 
-		{ label: "All Events", value: ["error", "warning", "info"] }
-	];
 	$scope.lineClass = function(line){
 		if(line.type.indexOf("error") >= 0) return "label-danger"; 
 		if(line.type.indexOf("warn") >= 0) return "label-warning";  
 		if(line.type.indexOf("notice") >= 0) return "label-info"; 
 		return ""; 
 	}
-	
-	function onChange(){
-		console.log(JSON.stringify($scope.selectedLogTypes) + $scope.selectedShowType); 
-	}
-	$scope.onTypeChanged = function(type){
-		$scope.selectedShowType = type; 
-		onChange(); 
-	}
-	$scope.$watchCollection("selectedLogTypes", function(){ onChange(); }); 
 }); 
