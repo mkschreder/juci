@@ -1,0 +1,21 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="PageBroadcomIptv">
+		<juci-config-heading translate>IP-tv configuration</juci-config-heading>
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="{{ 'IP TV proxy interface' | translate}}">
+					<dropdown-multi-select input-model="networks.all" output-model="networks.selected" button-label="name" item-label="name" tick-property="ticked"></dropdown-mult-select>
+				</juci-config-line>
+				<juci-config-line title="{{ 'Query interval' | translate }}">
+					<input class="form-control" type="number" ng-model="mcpd.igmp_query_interval.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{ 'Query response interval' | translate }}">
+					<input class="form-control" type="number" ng-model="mcpd.igmp_query_response_interval.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{ 'Last member query interval' | translate }}">
+					<input class="form-control" type="number" ng-model="mcpd.igmp_last_member_query_interval.value"/>
+				</juci-config-line>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>
