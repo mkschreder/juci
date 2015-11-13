@@ -87,12 +87,18 @@ msgstr ""
 msgid "simple-lan-config-title"
 msgstr "LAN"
 
+msgid "simple-services-title"
+msgstr "Services"
+
 msgid "simple-wan-config-title"
 msgstr "WAN"
 
 # /home/martin/juci/plugins/juci-simple-gui/src/pages/simple-lan-dhcp-config.html
 msgid "simple-lan-dhcp-config-title"
 msgstr "DHCP "
+
+msgid "simple-admin-title"
+msgstr "Admin"
 
 msgid "simple-5g-wireless-title"
 msgstr "5Ghz Wireless"
@@ -103,12 +109,18 @@ msgstr "2Ghz Wireless"
 msgid "menu-simple-lan-config-title"
 msgstr "LAN"
 
+msgid "menu-simple-services-title"
+msgstr "Services"
+
 msgid "menu-simple-wan-config-title"
 msgstr "WAN"
 
 # /home/martin/juci/plugins/juci-simple-gui/src/pages/simple-lan-dhcp-config.html
 msgid "menu-simple-lan-dhcp-config-title"
 msgstr "DHCP"
+
+msgid "menu-simple-admin-title"
+msgstr "Admin"
 
 msgid "menu-simple-5g-wireless-title"
 msgstr "5Ghz Wireless"
@@ -385,9 +397,6 @@ msgstr "2Ghz Wireless"
 #~ msgid "wireless-client-mode-title"
 #~ msgstr "Client Mode Wifi"
 
-#~ msgid "wireless-devices-title"
-#~ msgstr "Wireless Devices"
-
 #~ msgid "wireless-title"
 #~ msgstr "WiFi"
 
@@ -411,9 +420,6 @@ msgstr "2Ghz Wireless"
 
 #~ msgid "menu-wireless-wps-title"
 #~ msgstr "WPS"
-
-#~ msgid "menu-wireless-devices-title"
-#~ msgstr "Devices"
 
 #~ msgid "menu-wireless-clients-title"
 #~ msgstr "Clients"

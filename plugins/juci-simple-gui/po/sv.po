@@ -69,6 +69,9 @@ msgstr "WAN konfiguration"
 msgid "simple-lan-config-title"
 msgstr "LAN"
 
+msgid "simple-services-title"
+msgstr "Tjänster"
+
 # share/menu.d/wifi.json
 msgid "simple-wan-config-title"
 msgstr "WAN"
@@ -76,6 +79,10 @@ msgstr "WAN"
 # /home/martin/juci/plugins/juci-simple-gui/src/pages/simple-lan-dhcp-config.html
 msgid "simple-lan-dhcp-config-title"
 msgstr "DHCP"
+
+# share/menu.d/wifi.json
+msgid "simple-admin-title"
+msgstr "Admin"
 
 msgid "simple-5g-wireless-title"
 msgstr "5Ghz WiFi"
@@ -86,11 +93,17 @@ msgstr "2.4Ghz WiFi"
 msgid "menu-simple-lan-config-title"
 msgstr "LAN"
 
+msgid "menu-simple-services-title"
+msgstr "Tjänster"
+
 msgid "menu-simple-wan-config-title"
 msgstr "WAN"
 
 msgid "menu-simple-lan-dhcp-config-title"
 msgstr "DHCP"
+
+msgid "menu-simple-admin-title"
+msgstr "Admin"
 
 msgid "menu-simple-5g-wireless-title"
 msgstr "5Ghz WiFi"
@@ -670,9 +683,6 @@ msgstr "2.4Ghz WiFi"
 #~ msgid "wireless-client-mode-title"
 #~ msgstr "Använd som klient"
 
-#~ msgid "wireless-devices-title"
-#~ msgstr "WiFi Kort"
-
 #~ msgid "wireless-title"
 #~ msgstr "Wireless"
 
@@ -704,9 +714,6 @@ msgstr "2.4Ghz WiFi"
 
 #~ msgid "menu-wireless-client-mode-title"
 #~ msgstr "Använd som klient"
-
-#~ msgid "menu-wireless-devices-title"
-#~ msgstr "Enheter"
 
 #~ msgid "menu-wireless-clients-title"
 #~ msgstr "Klienter"
