@@ -61,9 +61,7 @@ msgstr ""
 
 msgid "settings.upgrade.info"
 msgstr ""
-"Your router automatically installs the latest firmware release available. If "
-"necessary, it is possible to update the router firmware manually. Your "
-"current settings will not be affected by software upgrading procedure."
+"Here you can upgrade the software on your router."
 
 # /home/martin/juci/plugins/juci-sysupgrade/src/pages/settings-upgrade.html
 msgid "Current Firmware Version"

@@ -794,7 +794,7 @@ msgid "Router"
 msgstr ""
 
 msgid "status-network-routes-title"
-msgstr "Static Routes"
+msgstr "Routing Tables"
 
 msgid "internet-services-title"
 msgstr "Services"
@@ -815,17 +815,17 @@ msgstr "VLAN"
 
 # share/menu.d/status.json
 msgid "status-network-title"
-msgstr "Network"
+msgstr "Network Status"
 
 # share/menu.d/internet.json
 msgid "internet-routes-title"
-msgstr "Routes"
+msgstr "Static Routes"
 
 msgid "network-title"
 msgstr "Network"
 
 msgid "menu-status-network-routes-title"
-msgstr "Routing Table"
+msgstr "Routing Tables"
 
 msgid "menu-internet-services-title"
 msgstr "Services"
@@ -846,11 +846,11 @@ msgstr "VLAN"
 
 # share/menu.d/status.json
 msgid "menu-status-network-title"
-msgstr "Network"
+msgstr "Network Status"
 
 # share/menu.d/internet.json
 msgid "menu-internet-routes-title"
-msgstr "Routes"
+msgstr "Static Routes"
 
 # share/menu.d/status.json
 msgid "menu-network-title"

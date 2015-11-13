@@ -4,15 +4,7 @@
 			<juci-config-heading translate>NTP Settings</juci-config-heading>
 			<juci-config-lines>
 				<juci-config-line title="{{'List of NTP servers'|translate}}">
-					<div class="input-group form-group" ng-repeat="n in ntp track by $index">
-						<input type="text" class="form-control" ng-model="n.server" placeholder="{{'URL'|translate}}"/>
-						<span class="input-group-btn">
-							<button class="btn btn-default" ng-click="onDeleteNTPServer(n)">
-								<i class="fa fa-times"></i>
-							</button>
-						</span>
-					</div>
-					<button class="btn btn-default pull-right" ng-click="onAddNTPServer()"><i class="fa fa-plus"></i></button>
+					<system-ntp-settings-edit></system-ntp-settings-edit>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>

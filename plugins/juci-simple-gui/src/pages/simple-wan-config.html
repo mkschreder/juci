@@ -1,0 +1,13 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="simpleWANConfigPage">
+		<h1 translate>WAN Configuration</h1>
+		<juci-config-info>{{'wan.config.info'|translate}}</juci-config-info>
+		<juci-config-lines>
+			<juci-config-line title="{{'Configuration Method'|translate}}">
+				<juci-select ng-model="wan.proto.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
+			</juci-config-line>
+		</juci-config-lines>
+		<div dynamic="editor"/>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

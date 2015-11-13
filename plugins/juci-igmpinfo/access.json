@@ -1,5 +1,5 @@
 {
-	"juci-igmpsnoop": {
+	"juci-igmpinfo": {
 		"description": "JUCI IPTV/IGMP module",
 		"read": {
 			"ubus": {

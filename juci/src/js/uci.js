@@ -489,8 +489,8 @@
 			// TODO: validate values!
 			var values = {}; 
 			Object.keys(type).map(function(k){ 
-				if(k in item) values[k] = item[k]; 
-				else {
+				if(k in item && item[k] != null && item[k] != undefined) values[k] = item[k]; 
+				else if(type[k].dvalue != null && type[k].dvalue != undefined){
 					//if(type[k].required) throw Error("Missing required field "+k); 
 					values[k] = type[k].dvalue; 
 				}

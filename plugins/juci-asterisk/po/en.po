@@ -241,7 +241,7 @@ msgstr ""
 
 # share/menu.d/status.json
 msgid "status-phone-title"
-msgstr "Status"
+msgstr "Phone Status"
 
 msgid "phone-lines-title"
 msgstr "Lines"
@@ -266,7 +266,7 @@ msgstr "Numbers"
 
 # share/menu.d/status.json
 msgid "menu-status-phone-title"
-msgstr "Status"
+msgstr "Phone"
 
 msgid "menu-phone-lines-title"
 msgstr "Lines"

@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("SettingsUpgradeCtrl", function($scope, $uci, $config, $rpc, gettext){
+.controller("SettingsUpgradeCtrl", function($scope, $uci, $config, $rpc, $tr, gettext){
 	$scope.sessionID = $rpc.$sid();
 	$scope.uploadFilename = "/tmp/firmware.bin";
 	$scope.usbFileName = "()"; 
@@ -105,9 +105,9 @@ JUCI.app
 				$scope.onlineUpgrade = response.online; 
 				$scope.onlineUpgradeAvailable = true;
 			} else {
-				$scope.onlineUpgrade = gettext("No upgrade has been found!"); 
+				$scope.onlineUpgrade = $tr(gettext("No upgrade has been found!")); 
 			}
-			if(response.stderr) $scope.$emit("error", "Online upgrade check failed: "+response.stderr); 
+			if(response.stderr) $scope.$emit("error", $tr(gettext("Online upgrade check failed"))+": "+response.stderr); 
 			$scope.onlineCheckInProgress = 0; 
 			$scope.$apply(); 
 		}); 
@@ -126,9 +126,9 @@ JUCI.app
 				$scope.usbUpgrade = response.usb; 
 				$scope.usbUpgradeAvailable = true;
 			} else {
-				$scope.usbUpgrade = gettext("No upgrade has been found!"); 
+				$scope.usbUpgrade = $tr(gettext("No upgrade has been found!")); 
 			}
-			if(response.stderr) $scope.$emit("error", "USB upgrade check failed: "+response.stderr); 
+			if(response.stderr) $scope.$emit("error", $tr(gettext("USB upgrade check failed"))+": "+response.stderr); 
 			$scope.usbCheckInProgress = 0; 
 			$scope.$apply(); 
 		});
@@ -156,8 +156,8 @@ JUCI.app
 				obj = JSON.parse(json); 
 				upgradeStart($scope.uploadFilename); 
 			} catch(e){
-				$scope.error = "The server returned an error ("+JSON.stringify(json)+")";
-				$scope.message = "Upload completed!"
+				$scope.error = $tr(gettext("The server returned an error"))+" ("+JSON.stringify(json)+")";
+				$scope.message = $tr(gettext("Upload completed!"))
 				$scope.$apply();
 				//return;   
 			}
