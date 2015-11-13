@@ -5,6 +5,9 @@
 			"ubus": {
 				"network.interface": [
 					"status"
+				],
+				"/juci/firewall.dmz": [
+					"excluded_ports"
 				]
 			}, 
 			"uci": [
