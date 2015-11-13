@@ -58,7 +58,7 @@ JUCI.app
 	$scope.lineClass = function(line){
 		if(line.type.indexOf("error") >= 0) return "label-danger"; 
 		if(line.type.indexOf("warn") >= 0) return "label-warning";  
-		if(line.type.indexOf("notice") >= 0) return "label-info"; 
+		if(line.type.indexOf("notice") >= 0 || line.type.indexOf("info") >= 0) return "label-info"; 
 		return ""; 
 	}
 }); 
