@@ -5,17 +5,17 @@ JUCI.app
 	$scope.logopts = {ubus_status: {value: []}};
 	$scope.status = {
 		items: [
-			{label: "status ok",		value: "ok"},
-			{label: "invalid command",	value: "invalid_command"},
-			{label: "invalid argument",	value: "invalid_argument"},
-			{label: "method not found", value: "method_not_found"},
-			{label: "object not found", value: "object_not_found"},
-			{label: "no data",			value: "no_data"},
-			{label: "permission denied",value: "permission_denied"},
-			{label: "timeout",			value: "timeout"},
-			{label: "not supported",	value: "not_supported"},
-			{label: "unknown error", 	value: "unknown_error"},
-			{label: "connection failed",value: "connection_failed"}
+			{label: "OK",		value: "ok"},
+			{label: "Invalid command",	value: "invalid_command"},
+			{label: "Invalid argument",	value: "invalid_argument"},
+			{label: "Method not found", value: "method_not_found"},
+			{label: "Object not found", value: "object_not_found"},
+			{label: "No data",			value: "no_data"},
+			{label: "Permission denied",value: "permission_denied"},
+			{label: "Timeout",			value: "timeout"},
+			{label: "Not supported",	value: "not_supported"},
+			{label: "Unknown error", 	value: "unknown_error"},
+			{label: "Connection failed",value: "connection_failed"}
 		],
 	};
 	$scope.method = {};
