@@ -2,7 +2,8 @@
 	<div ng-controller="simpleWANConfigPage">
 		<h1 translate>WAN Configuration</h1>
 		<juci-config-info>{{'wan.config.info'|translate}}</juci-config-info>
-		<juci-config-lines>
+		<div class="alert alert-danger" ng-show="loaded && !wan" translate>No wan interface found</div>
+		<juci-config-lines ng-show="loaded && wan">
 			<juci-config-line title="{{'Configuration Method'|translate}}">
 				<juci-select ng-model="wan.proto.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
 			</juci-config-line>
