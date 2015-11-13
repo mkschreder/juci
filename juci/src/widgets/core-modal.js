@@ -21,7 +21,6 @@ JUCI.app
 		link: function (scope, element, attrs) {
 			scope.element = element;
 			scope.$watch("ngShow", function(value){
-				console.log("core.modal.show: "+value); 
 				if(value)
 					$(element).modal('show');
 				else

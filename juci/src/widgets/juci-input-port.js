@@ -29,7 +29,6 @@ JUCI.app
 	}); 
 	(function(){
 		function updateModel(value){
-			console.log("Update: "+value+": "+$scope.model); 
 			if($scope.portRange) {
 				$scope.model = $scope.startPort + "-" + $scope.endPort; 
 				$scope.port = $scope.startPort; 
