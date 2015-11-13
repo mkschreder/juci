@@ -12,9 +12,12 @@ JUCI.app
 		$uci.firewall.dmz.host.value = value.ipaddr; 
 		$uci.firewall.dmz.ip6addr.value = value.ip6addr; 
 	}); 
-	$rpc.juci.firewall.dmz.excluded_ports().done(function(data){
-		$scope.nonforwardedPorts = data.result;
-		$scope.$apply();
+	// Excluded ports is read from a tmp file that is not created by default. This is a patch feature added to dmz firewall script. Please update your script if you want to use it. 
+	$rpc.juci.firewall && $rpc.juci.firewall.dmz.excluded_ports().done(function(data){
+		if(data.result && data.result.length){
+			$scope.nonforwardedPorts = data.result;
+			$scope.$apply();
+		}
 	});
 	/* IPv6 dmz rule (from openwrt)
 	config rule
