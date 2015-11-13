@@ -1,0 +1,5 @@
+{
+	"juci-dynamic-translator": {
+		"description": "Provides a translation overrides for any translatable string."
+	}
+}
