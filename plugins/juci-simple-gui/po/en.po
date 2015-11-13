@@ -95,7 +95,7 @@ msgstr "WAN"
 
 # /home/martin/juci/plugins/juci-simple-gui/src/pages/simple-lan-dhcp-config.html
 msgid "simple-lan-dhcp-config-title"
-msgstr "DHCP "
+msgstr "DHCP Server"
 
 msgid "simple-admin-title"
 msgstr "Admin"
@@ -117,7 +117,7 @@ msgstr "WAN"
 
 # /home/martin/juci/plugins/juci-simple-gui/src/pages/simple-lan-dhcp-config.html
 msgid "menu-simple-lan-dhcp-config-title"
-msgstr "DHCP"
+msgstr "DHCP Server"
 
 msgid "menu-simple-admin-title"
 msgstr "Admin"

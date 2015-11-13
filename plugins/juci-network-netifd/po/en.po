@@ -811,7 +811,7 @@ msgstr "Clients"
 
 # /home/martin/juci/plugins/juci-network-netifd/src/pages/netifd-vlan-config.html
 msgid "netifd-vlan-config-title"
-msgstr "VLAN"
+msgstr "VLAN / Switch"
 
 # share/menu.d/status.json
 msgid "status-network-title"
@@ -842,7 +842,7 @@ msgstr "Clients"
 
 # /home/martin/juci/plugins/juci-network-netifd/src/pages/netifd-vlan-config.html
 msgid "menu-netifd-vlan-config-title"
-msgstr "VLAN"
+msgstr "VLAN / Switch"
 
 # share/menu.d/status.json
 msgid "menu-status-network-title"

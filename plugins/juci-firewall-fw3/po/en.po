@@ -322,7 +322,7 @@ msgid "to"
 msgstr "To"
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
-msgid "Add / Edit Port Mapping"
+msgid "Add / Edit Port Forward"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
@@ -334,12 +334,12 @@ msgid "Save"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
-msgid "Port Mapping"
+msgid "Port Forwarding"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
 msgid ""
-"Port mapping allows remote computers to connect to a specific device within "
+"Port forwarding allows remote computers to connect to a specific device within "
 "your private network."
 msgstr ""
 
@@ -444,7 +444,7 @@ msgid "internet-firewall-zones-title"
 msgstr "Firewall Zones"
 
 msgid "internet-firewall-port-mapping-title"
-msgstr "Port Mapping"
+msgstr "Port Forwarding"
 
 msgid "internet-firewall-wordfilter-title"
 msgstr "Word Filter"
@@ -477,7 +477,7 @@ msgid "menu-internet-firewall-zones-title"
 msgstr "Zones"
 
 msgid "menu-internet-firewall-port-mapping-title"
-msgstr "Port Mapping"
+msgstr "Port Forwarding"
 
 msgid "menu-internet-firewall-wordfilter-title"
 msgstr "Word Filter"
