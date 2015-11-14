@@ -10,6 +10,7 @@ endif
 BACKEND_BIN_DIR:=$(BIN)/usr/lib/ubus/juci/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
+TMP_DIR:=tmp
 TARGETS:=
 PHONY:=debug release clean prepare node_modules 
 CP:=cp -Rp 
@@ -36,6 +37,7 @@ define BuildDir-y
 	$(eval JAVASCRIPT-y:=src/*.js src/pages/*.js src/widgets/*.js)
 	$(eval TEMPLATES-y:=src/widgets/*.html src/pages/*.html)
 	$(eval STYLES-y:=src/css/*.css)
+	$(eval STYLES_LESS-y:=src/css/*.less)
 	$(eval PLUGIN_DIR:=$(2))
 	$(eval -include $(2)/Makefile)
 	$(eval $(Plugin/$(1)))
@@ -43,6 +45,7 @@ define BuildDir-y
 	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/,$(JAVASCRIPT-y))))
 	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/,$(TEMPLATES-y))))
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES-y))))
+	$(eval STYLES_LESS_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES_LESS-y))))
 	$(eval PO_$(1):=$(wildcard $(addprefix $(2)/,$(PO-y))))
 	PHONY += $(1)-install
 $(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) $(PO_$(1))
@@ -51,11 +54,15 @@ $(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) $(PO_$(1))
 	@echo "" > $$@
 	$(Q)if [ "" != "$(JAVASCRIPT_$(1))" ]; then for file in $(JAVASCRIPT_$(1)); do cat $$$$file >> $$@; echo "" >> $$@; done; fi
 	$(Q)if [ "" != "$(PO_$(1))" ]; then ./scripts/po2js $(PO_$(1)) >> $$@; echo "" >> $$@; fi
-$(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1))
+$(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1)) $(TMP_DIR)/$(1)-compiled-styles.css
 	@echo -e "\033[0;33m[CSS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$(STYLES_$(1))"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
+$(TMP_DIR)/$(1)-compiled-styles.css: $(STYLES_LESS_$(1)) 
+	@echo -e "\033[0,33m[LESS]\t$(1) -> $$@\033[m"
+	@echo "" > $$@
+	$(Q)if [ "" != "$$^" ]; then for file in $$^; do lessc $$$$file >> $$@; echo "" >> $$@; done; fi
 $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[HTML]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
@@ -116,6 +123,7 @@ prepare: .cleaned
 	@echo "DIRS: $(DIRS-y)"
 	@echo "MODULE: $(MODULE)"
 	@./scripts/bootstrap.sh
+	@mkdir -p $(TMP_DIR)
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
 	@mkdir -p $(BIN)/usr/share/juci/
@@ -181,5 +189,4 @@ $(UBUS_MODS):
 	@cp -Rp $@/build/* $(BIN)/
 	
 clean: 
-	rm -rf ./bin
-
+	rm -rf ./bin ./tmp
