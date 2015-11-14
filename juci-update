@@ -87,8 +87,6 @@ echo "<!doctype html>
 </head>
 <body role='document' ng-cloak >
 	<div ui-view='content' style='min-height: 1000px;'></div>
-	
-	<div style='margin-bottom: 40px'></div>
 	${SCRIPTS_HTML}
 </body>
 </html>" > ${INDEX}
