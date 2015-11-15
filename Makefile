@@ -137,7 +137,7 @@ prepare: .cleaned
 node_modules: package.json
 	npm install --production
 
-release: prepare $(TARGETS) node_modules $(UBUS_MODS)
+release: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo "======= JUCI BUILD =========="
 	@./scripts/juci-compile $(BIN) 
 	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
