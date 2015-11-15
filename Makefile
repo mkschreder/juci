@@ -41,7 +41,7 @@ define BuildDir-y
 	$(eval PLUGIN_DIR:=$(2))
 	$(eval -include $(2)/Makefile)
 	$(eval $(Plugin/$(1)))
-	$(eval TARGETS+=$(1)-install $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
+	$(eval TARGETS+=$(1)-install)
 	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/,$(JAVASCRIPT-y))))
 	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/,$(TEMPLATES-y))))
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES-y))))
@@ -76,7 +76,7 @@ $(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
 	@echo "" >> $$@
 	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
 	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"menu-$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
-$(1)-install: 
+$(1)-install: $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
 	$(Q)if [ -d $(2)/service ]; then $(CP) $(2)/service/* $(BIN)/usr/lib/ubus-services/; fi
@@ -142,7 +142,7 @@ release: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@./scripts/juci-compile $(BIN) 
 	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
 
-debug: prepare $(TARGETS) $(UBUS_MODS)
+debug: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo -e "\033[0;33m [GRUNT] $@ \033[m"
 	#@grunt 
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
