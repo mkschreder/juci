@@ -10,7 +10,10 @@ UCI.mcpd.$registerSectionType("mcpd", {
 	"igmp_max_sources":					{ type: Number },
 	"igmp_max_members":					{ type: Number },
 	"igmp_fast_leave":					{ type: Boolean },
-	"igmp_proxy_enable":				{ type: Boolean },
+	"igmp_proxy_enable":				{ type: Number },
 	"igmp_snooping_enable":				{ type: Number },
-	"igmp_snooping_interfaces":			{ dvalue: "", type: String }
+	"igmp_snooping_interfaces":			{ dvalue: "", type: String },
+	"igmp_dscp_mark":					{ dvalue: "", type: String },
+	"igmp_lan_to_lan_multicast":		{ type: Boolean },
+	"igmp_join_immediate":				{ type: Boolean }
 });
