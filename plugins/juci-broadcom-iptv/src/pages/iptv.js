@@ -11,7 +11,6 @@ JUCI.app
 		var proxy_interfaces = $scope.mcpd.igmp_proxy_interfaces.value.split(" ");
 		var snooping_interfaces = $scope.mcpd.igmp_snooping_interfaces.value.split(" ");
 		$ethernet.getAdapters().done(function(devs){
-			console.log(devs);
 			$scope.networks.lan = devs.map(function(dev){
 				return {
 					name:dev.device,
