@@ -2,6 +2,7 @@
 
 local juci = require("juci.core");
 local json = require("juci.json");
+local curl = require("luacurl");
 
 local function dir_tree(src, obj)
 	local list = juci.shell("find %s -type d | sort 2>/dev/null", src);
@@ -40,7 +41,19 @@ local function autocomplete(opts)
 	print(json.encode(result));
 end
 
+local function get_info(opts)
+	c = curl.new();
+	c:setopt(curl.OPT_URL, "127.0.0.1:8200");
+	local t = {};
+	c:setopt(curl.OPT_WRITEFUNCTION, function (param, buf)
+        	table.insert(t, buf) -- store a chunk of data received
+        	return #buf
+    	end)
+	c:perform();
+	print(t);
+end
 juci.ubus({
 	["folder_tree"] = folder_tree,
-	["autocomplete"] = autocomplete
+	["autocomplete"] = autocomplete,
+	["info"] = get_info
 }, arg);
