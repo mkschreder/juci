@@ -11,6 +11,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
+msgid "Log Settings"
+msgstr "Log Settings"
+
 # /home/martin/juci/plugins/juci-event/src/pages/event-log-config.html
 msgid "Log size"
 msgstr ""
@@ -63,11 +66,48 @@ msgstr ""
 msgid "Server port"
 msgstr "Server port"
 
+# /home/martin/juci/plugins/juci-event/src/pages/status-events.html
+msgid "Event Log"
+msgstr ""
+
+msgid "status.eventlog.info"
+msgstr "Select the categories for which you would like to view the event log."
+
+# /home/martin/juci/plugins/juci-event/src/pages/status-events.html
+msgid "Log"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-event/src/pages/status-events.html
+msgid "Enter search string"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-event/src/pages/status-events.html
+msgid "Date"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-event/src/pages/status-events.html
+msgid "Type"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-event/src/pages/status-events.html
+msgid "Source"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-event/src/pages/status-events.html
+msgid "Message"
+msgstr ""
+
 msgid "event-log-config-title"
 msgstr "Log Settings"
 
+msgid "status-events-title"
+msgstr "Event Log"
+
 msgid "menu-event-log-config-title"
-msgstr "Settings"
+msgstr "Log Settings"
+
+msgid "menu-status-events-title"
+msgstr "Event Log"
 
 #~ msgid "internet.ethernet.info"
 #~ msgstr ""
@@ -534,10 +574,6 @@ msgstr "Settings"
 #~ "only one firmware file on the storage and that one shall be located under "
 #~ "the main directory (no search under subfolders)."
 
-#~ msgid "status.eventlog.info"
-#~ msgstr ""
-#~ "Select the categories for which you would like to view the event log."
-
 #~ msgid "status.nat.connections.info"
 #~ msgstr "This page shows the active connection for each device."
 
@@ -798,9 +834,6 @@ msgstr "Settings"
 #~ msgid "Internet IPv6"
 #~ msgstr "Internet IPv6"
 
-#~ msgid "LAN Settings"
-#~ msgstr "LAN Settings"
-
 #, fuzzy
 #~ msgid "MiniDLNA"
 #~ msgstr "MiniDLNA Settings"
@@ -981,9 +1014,6 @@ msgstr "Settings"
 
 #~ msgid "status.diagnostics.title"
 #~ msgstr "Diagnostic Utility"
-
-#~ msgid "status.events.title"
-#~ msgstr "Event Log"
 
 #~ msgid "status.nat.title"
 #~ msgstr "NAT Mapping Table"
