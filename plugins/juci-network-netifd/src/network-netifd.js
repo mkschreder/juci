@@ -3,7 +3,7 @@
 	// add control dependency 
 	JUCI.app.requires.push("dropdown-multi-select");
 
-	JUCI.app.factory("$network", function($rpc, $uci){
+	JUCI.app.factory("$network", function($rpc, $uci, $ethernet){
 		var sync_hosts = $uci.$sync("hosts"); 
 		function _refreshClients(self){
 			var deferred = $.Deferred(); 
@@ -64,7 +64,7 @@
 			var devmap = {}; 
 			async.series([
 				function(next){
-					self.getDevices().done(function(devs){
+					$ethernet.getAdapters().done(function(devs){
 						devs.map(function(x){ devmap[x.name] = x; }); 
 					}).always(function(){ next(); }); 
 				}, function(next){

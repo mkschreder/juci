@@ -4,9 +4,10 @@ JUCI.app
 .controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $ethernet, $tr, gettext, networkConnectionCreate){
 	$scope.data = {}; 
 	
-	$ethernet.getDevices().done(function(devices){
+	$ethernet.getAdapters().done(function(devices){
 		$scope.devices = devices; 
 		
+		console.log(devices); 
 		$network.getNetworks().done(function(nets){
 			$scope.networks = nets.filter(function(x){ 
 				if(x.defaultroute.value) $scope.data.wan_network = x; 
@@ -35,6 +36,7 @@ JUCI.app
 			}); 
 			$scope.$apply(); 
 		}); 
+		$scope.$apply(); 
 	}); 
 	
 	$scope.onGetItemTitle = function(i){
