@@ -11,9 +11,9 @@ JUCI.app
 		replace: true
 	};  
 })
-.controller("networkDeviceVdslEdit", function($scope, $network, gettext, $tr){
-	$network.getDevices().done(function(devices){
-		var baseDevices = devices.filter(function(x){ return x.type == "vdsl_baseif"; }).map(function(x){
+.controller("networkDeviceVdslEdit", function($scope, $broadcomDsl, gettext, $tr){
+	$broadcomDsl.getDevices().done(function(devices){
+		var baseDevices = devices.filter(function(x){ return x.type == "vdsl"; }).map(function(x){
 			return {
 				label: x.name, 
 				value: x.id
