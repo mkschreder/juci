@@ -48,52 +48,17 @@
 		}
 		
 		NetworkBackend.prototype.getDevice = function(opts){
-			var deferred = $.Deferred(); 
-			var self = this; 
-			if(self._devices){
-				var dev = self._devices.find(function(x){ return x.name == opts.name; }); 
-				if(dev){
-					setTimeout(function(){deferred.resolve(dev); },0); 
-				} else {
-					setTimeout(function(){deferred.reject(); },0); 
-				}
-			} else {
-				self.getDevices().done(function(devices){
-					var dev = devices.find(function(x){ return x.name == opts.name; }); 
-					if(dev){
-						deferred.resolve(dev); 
-					} else {
-						deferred.reject(); 
-					}
-				}).fail(function(){
-					deferred.reject(); 
-				}); 
-			}
-			return deferred.promise(); 
+			alert("$network.getDevice has been removed. No alternative. "); 
 		}; 
 		
-		// getEthernetDevices
 		NetworkBackend.prototype.getDevices = function(){
-			var deferred = $.Deferred();  
-			var devices = []; 
-			var self = this; 
-			// go through each registered subsystem and get all devices from it. 
-			async.eachSeries(this._subsystems, function(subsys, next){
-				subsys.getDevices().done(function(devs){
-					devices = devices.concat(devs); 
-					//devs.map(function(d){ devices[d.name] = d; }); 
-				}).always(function(){ next(); }); 
-			}, function(){
-				self._devices = devices; 
-				// use timeout because we will be not be deferred yet if no subsystems are present 
-				setTimeout(function(){ deferred.resolve(devices); },0); 
-			}); 
-			return deferred.promise(); 
+			alert("$network.getDevices has been removed. Use $ethernet.getDevices instead!"); 
 		}
 		
-		// getVirtualDevices
+		// should be renamed to getInterfaces for NETWORK (!) interfaces. 
 		NetworkBackend.prototype.getNetworks = function(){
 			var deferred = $.Deferred(); 
+			var filter = filter || {}; 
 			var networks = []; 
 			var self = this; 
 			var devmap = {}; 
