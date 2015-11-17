@@ -173,6 +173,12 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
+msgid "network.interface.type.anywan.tab.title"
+msgstr "AnyWAN"
+
+msgid "network.interface.type.bridge.tab.title"
+msgstr "Bridge"
+
 # /home/martin/juci/plugins/juci-network-netifd/src/widgets/network-connection-type-bridge-edit.js
 msgid ""
 "Are you sure you want to remove device '+dev+' from network '+net['.name']+' "
@@ -1196,12 +1202,6 @@ msgstr "Network"
 
 #~ msgid "network.firewall.zones.title"
 #~ msgstr "Firewall Zones"
-
-#~ msgid "network.interface.type.anywan.tab.title"
-#~ msgstr "AnyWAN"
-
-#~ msgid "network.interface.type.bridge.tab.title"
-#~ msgstr "Bridge"
 
 #~ msgid "network.lan.dhcp.title"
 #~ msgstr "LAN DHCP "
