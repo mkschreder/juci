@@ -2,7 +2,6 @@
 
 local juci = require("juci.core");
 local json = require("juci.json");
-local curl = require("luacurl");
 
 local function dir_tree(src, obj)
 	local list = juci.shell("find %s -type d | sort 2>/dev/null", src);
@@ -41,19 +40,20 @@ local function autocomplete(opts)
 	print(json.encode(result));
 end
 
-local function get_info(opts)
-	c = curl.new();
-	c:setopt(curl.OPT_URL, "127.0.0.1:8200");
-	local t = {};
-	c:setopt(curl.OPT_WRITEFUNCTION, function (param, buf)
-        	table.insert(t, buf) -- store a chunk of data received
-        	return #buf
-    	end)
-	c:perform();
-	print(t);
+local function get_status(opts)
+	local info = juci.shell("wget -q -O - http://127.0.0.1:8200 | sed 's/<tr[^>]*>/\\n/g' | sed 's/<[^>]*>/\\t/g'"); 
+	local result = { count = {} }; 
+	for line in info:gmatch("[^\r\n]+") do 
+		local field,value = line:match("%s+([^\t]+)%s+(%S+)%s+");  
+		if(field == "Audio files") then result.count.audio = tonumber(value); end 
+		if(field == "Video files") then result.count.video = tonumber(value); end 
+		if(field == "Image files") then result.count.image = tonumber(value); end 
+	end
+	print(json.encode(result)); 
 end
+
 juci.ubus({
 	["folder_tree"] = folder_tree,
 	["autocomplete"] = autocomplete,
-	["info"] = get_info
+	["status"] = get_status
 }, arg);
