@@ -32,6 +32,18 @@ JUCI.app
 			$scope.$apply();
 		});
 	});
+
+	$rpc.juci.minidlna.status().done(function(data){
+		console.log(data.count.image);
+		$scope.count = data.count;
+		$scope.$apply();
+	});
+	
+	$rpc.juci.system.service.status({name:"minidlna"}).done(function(result){
+		$scope.is_running = result.running ? "active" : "inactive";
+		$scope.$apply();
+	});
+
 	$scope.root_dir = [
 		{ label: $tr(gettext("Standard Container")),	value: "." },
 		{ label: $tr(gettext("Browse directory")), 		value: "B" },

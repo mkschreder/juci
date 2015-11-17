@@ -99,7 +99,8 @@ local function service_reload(service)
 end
 
 local function service_status(service)
-	print(json.encode({}));
+	local svcs = conn:call("service", "list", {});	
+	print(json.encode({ running = (svcs[service.name] ~= nil) }));
 end
 
 juci.ubus({

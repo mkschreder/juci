@@ -3,7 +3,9 @@
 		<h2 translate>MiniDLNA</h2>
 		<p translate>MiniDLNA is server software with the aim of being fully compliant with DLNA/UPnP-AV clients.</p>
 		<h2 translate>MiniDLNA Status</h2>
-		<p translate>The miniDLNA service is active, serving {{ serving.audio || '0' }} audio, {{ serving.video || '0' }} video and {{ serving.image || '0' }} image files.</p>
+		<p translate>The miniDLNA service is {{ is_running || 'unknown' }}, serving {{ (count.audio != undefined) ? count.audio :  'unknown' }} audio, 
+					{{ (count.video != undefined) ? count.video : 'unknown' }} video and 
+					{{ (count.image != undefined) ?  count.image : 'unknown' }} image files.</p>
 		<h2 translate>MiniDLNA Settings</h2>
 		<p translate>minidlna.settings.info</p>
 		<juci-config-section>
