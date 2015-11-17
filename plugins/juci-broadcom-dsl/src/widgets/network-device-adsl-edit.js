@@ -11,9 +11,9 @@ JUCI.app
 		replace: true
 	};  
 })
-.controller("networkDeviceAdslEdit", function($scope, $network, gettext, $tr){
-	$network.getDevices().done(function(devices){
-		var baseDevices = devices.filter(function(x){ return x.type == "adsl_baseif"; }).map(function(x){
+.controller("networkDeviceAdslEdit", function($scope, $network, gettext, $tr, $broadcomDsl){
+	$broadcomDsl.getDevices().done(function(devices){
+		var baseDevices = devices.filter(function(x){ return x.type == "adsl"; }).map(function(x){
 			return {
 				label: x.name, 
 				value: x.id

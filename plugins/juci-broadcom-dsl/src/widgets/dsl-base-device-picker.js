@@ -1,13 +1,13 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.factory("dslBaseDevicePicker", function($modal, $network){
+.factory("dslBaseDevicePicker", function($modal, $broadcomDsl){
 	return {
 		show: function(opts){
 			var def = $.Deferred(); 
 			if(!opts) opts = {}; 
 			
-			$network.getDevices().done(function(items){
+			$broadcomDsl.getDevices().done(function(items){
 				var modalInstance = $modal.open({
 					animation: true,
 					templateUrl: 'widgets/dsl-base-device-picker.html',
