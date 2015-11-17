@@ -32,6 +32,13 @@ JUCI.app
 			$scope.$apply();
 		});
 	});
+	$scope.root_dir = [
+		{ label: $tr(gettext("Standard Container")),	value: "." },
+		{ label: $tr(gettext("Browse directory")), 		value: "B" },
+		{ label: $tr(gettext("Music")),					value: "M" },
+		{ label: $tr(gettext("Video")),					value: "V" },
+		{ label: $tr(gettext("Pictures")),				value: "P" }
+	];
 	$scope.$watch('port', function(){
 		console.log("test");
 		if(!$scope.port.value)return;
