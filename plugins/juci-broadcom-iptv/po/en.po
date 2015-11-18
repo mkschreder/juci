@@ -16,10 +16,10 @@ msgid "IP-tv configuration"
 msgstr ""
 
 # /home/reidar/juci/plugins/juci-broadcom-iptv/src/pages/iptv.html 
-msgid "iptv-title"
-msgstr ""
+msgid "broadcom-iptv-title"
+msgstr "IPTV"
 
 # /home/reidar/juci/plugins/juci-broadcom-iptv/src/pages/iptv.html 
-msgid "menu-iptv-title"
-msgstr "IP-TV"
+msgid "menu-broadcom-iptv-title"
+msgstr "IPTV"
 
