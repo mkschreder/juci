@@ -6,6 +6,9 @@ JUCI.app
 		$scope.service = service; 
 		$scope.$apply(); 
 	}); 
+	$scope.networks = [];
+		
+	
 
 	$scope.onStartStopService = function(){
 		if(!$scope.service) return; 
@@ -35,6 +38,14 @@ JUCI.app
 
 	$upnp.getConfig().done(function(config){
 		$scope.upnp = config;
-		$scope.$apply();  
+		$network.getNetworks().done(function(data){
+			$scope.networks = data.map(function(x){
+				return {
+					label: x[".name"],
+					value: x[".name"]
+				}
+			});
+			$scope.$apply();  
+		});
 	}); 
 }); 
