@@ -7,7 +7,6 @@ JUCI.app
 			replace: true,
 			link: function (scope, element, attrs) {
 				scope.$watch(attrs.dynamic, function(html) {
-					//console.log("Recompile html"); 
 					try {
 						element.html(html);
 						$compile(element.contents())(scope);
