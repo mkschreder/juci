@@ -5,14 +5,6 @@
 		<juci-config-section>
 			<juci-list-editor ng-items="networks" item-editor="network-connection-edit" get-item-title="onGetItemTitle($item)" on-create="onAddConnection($item)" on-delete="onDeleteConnection($item)" on-edit-start="onEditConnection($item)"/>
 		</juci-config-section>
-		<!--<juci-config-section>
-			<juci-config-heading>{{'Default Route'|translate}}</juci-config-heading>
-			<juci-config-info>{{ 'settings.network.default.route.info' | translate}}</juci-config-info>
-			<div class="btn-group">
-        		<label ng-repeat="net in networks" class="btn btn-success" ng-model="data.wan_network" btn-radio="net" uncheckable>{{net['.name'] | uppercase}}</label>
-			</div>
-			<p ng-show="data.wan_network" translate><strong>{{data.wan_network['.name'] | uppercase}}</strong> connection will be used as default outgoing route for packets.</p>
-		</juci-config-section>-->
 		<juci-errors></juci-errors>
 		<juci-config-apply></juci-config-apply>
 	</div>

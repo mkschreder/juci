@@ -15,7 +15,7 @@ JUCI.app
 .controller("networkConnectionTypeBridgeEdit", function($scope, $network, $ethernet, $modal, $tr, gettext){
 	// expose tab title 
 	gettext("network.interface.type.bridge.tab.title"); 
-
+	
 	$scope.getItemTitle = function(dev){
 		return dev.name + " ("+dev.device+")"; 
 	}
@@ -39,7 +39,7 @@ JUCI.app
 	
 	$scope.$watch("connection", function(value){
 		if(!value) return; 
-		updateDevices(value); 	
+		//updateDevices(value); 	
 	});
 	
 	
@@ -105,5 +105,4 @@ JUCI.app
 			updateDevices($scope.connection); 
 		}
 	}
-	
 }); 

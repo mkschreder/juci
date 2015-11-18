@@ -43,7 +43,7 @@
 		NetworkBackend.prototype.subsystem = function(proc){
 			if(!proc || !(proc instanceof Function)) throw new Error("Subsystem argument must be a function returning a subsystem object!"); 
 			var subsys = proc(); 
-			if(!subsys.getDevices) throw new Error("Subsystem must implement getDevices()"); 
+			if(!subsys.annotateClients) throw new Error("Subsystem must implement annotateClients()"); 
 			this._subsystems.push(subsys); 
 		}
 		
@@ -213,12 +213,6 @@
 	
 	// register basic vlan support 
 	JUCI.app.run(function($network, $uci, $rpc, $events, gettext, $tr, $ethernet, networkConnectionPicker){
-		/*$events.subscribe("dongle-up", function(ev){
-			alert($tr(gettext("Your dongle ({0}) has been configured as wan port internet device.".format(ev.data.device)))); 
-		}); 
-		$events.subscribe("dongle-down", function(ev){
-			alert($tr(gettext("Dongle has been disconnected!"))); 
-		}); */
 		$events.subscribe("hotplug.net", function(ev){
 			if(ev.data.action == "add"){
 				// we need to make sure that the new device is not already added to a network. 
@@ -238,50 +232,6 @@
 				}); 
 			}
 		}); 
-		/*$network.subsystem(function(){
-			return {
-				getDevices: function(){
-					var deferred = $.Deferred(); 
-					var devices = []; 
-					$rpc.network.interface.dump().done(function(res){
-						var infos = res.interface; 
-						$rpc.juci.system.info().done(function(sysinfo){
-							$uci.$sync("layer2_interface_ethernet").done(function(){
-								// match adapters with device names in configuration (quite ugly right now!)
-								// TODO: unuglify
-								$ethernet.getAdapters().done(function(devs){
-									devs.map(function(dev){
-										var info = infos.find(function(i){ return i.device == dev.device }); 
-										var wanport = $uci.layer2_interface_ethernet["@ethernet_interface"].find(function(i){ return i.ifname.value == dev.device; }); 
-										var ethport = sysinfo.eth_ports.find(function(i){ return i.device == dev.device; }); 
-										var name = dev.device; 
-										if(wanport) name = "VLAN-"+wanport.name.value; 
-										else if(ethport) name = "PORT-"+ethport.name;
-										else if(info) name = "VIF-"+info.interface.toUpperCase();  
-										devices.push({
-											get name(){ return name; },
-											get id(){ return dev.device; },
-											get type(){ return "baseif"; },
-											get up() { return dev.state == "UP" }, 
-											set bridged(value){ if(wanport) wanport.bridge.value = true }, 
-											get is_wan_port() { return (wanport)?true:false; }, 
-											get loopback() { return (dev.flags && dev.flags.match(/LOOPBACK/)); },
-											base: dev
-										}); 
-									}); 
-									deferred.resolve(devices); 
-								}); 
-							}); 
-						}).fail(function(){
-							deferred.reject(); 
-						});
-					}).fail(function(){
-						deferred.reject(); 
-					});
-					return deferred.promise(); 
-				}
-			}
-		});*/ 
 	}); 
 }(); 
 
