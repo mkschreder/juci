@@ -2,6 +2,7 @@
 @theme-heading-color: #66989C; 
 @theme-link-color: #E62f39; 
 @theme-footer-base-color: #ddd; 
+@theme-border-color: #eee; 
 
 .gradient (@startColor: #eee, @endColor: white) {
 	background-color: @startColor;
@@ -10,6 +11,12 @@
 	background: -moz-linear-gradient(top, @startColor, @endColor);
 	background: -ms-linear-gradient(top, @startColor, @endColor);
 	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+	-webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+	box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha);
 }
 
 @font-face {
@@ -43,6 +50,7 @@ body {
 ul.left-menu li a.open, .nav-tabs &>li &>a {
 	color: @theme-heading-color !important;
 }
+
 .btn-primary, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open &>.dropdown-toggle.btn-primary, .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
 	color: #FFF;
 	background-color: @theme-success-color;
@@ -52,6 +60,29 @@ ul.left-menu li a.open, .nav-tabs &>li &>a {
 	background-color: lighten(@theme-success-color, 10%);
 	border-color: lighten(@theme-success-color, 10%);
 }
+
+.juci-nav {
+	a {
+		color: #444;
+	}
+}
+
+.juci-container {
+	min-height: 1000px;
+	margin-top: 80px;
+	.juci-sidebar {
+		ul.left-menu {
+			padding: 10px; 
+			a {
+				padding-left: 0px; 
+			}
+		}
+	}
+	.juci-content {
+
+	}
+}
+
 .juci-footer {
 	.gradient(@theme-footer-base-color, darken(@theme-footer-base-color, 10%)); 
 	color: white !important; 
@@ -94,7 +125,7 @@ a, a:focus, a:hover {
 	color: @theme-link-color;
 }
 .nav-tabs &>li.active &>a, .nav-tabs &>li.active &>a:focus, .nav-tabs &>li.active &>a:hover {
-	background-color: @theme-link-color;
+	background-color: @theme-success-color;
 	border-color: @theme-success-color !important;
 	color: white !important;
 	font-weight: bold;
@@ -116,15 +147,7 @@ div.logo {
 	width: 189px;
 	height: 40px;
 }
-.juci-nav {
-	a {
-		color: #444;
-	}
-}
-.juci-content {
-	min-height: 1000px;
-	margin-top: 80px;
-}
+
 .overview-banner {
 	background: url("../img/bg-main.png") repeat scroll top center !important;
 	background-color: "#fafffa";
