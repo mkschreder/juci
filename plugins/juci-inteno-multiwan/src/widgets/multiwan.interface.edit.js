@@ -71,7 +71,6 @@ JUCI.app
 		if($scope.ICMPH.filter(function(x){return x.value == $scope.interface.icmp_hosts.value}).length == 0){
 			$scope.ICMPH.unshift({label:$scope.interface.icmp_hosts.value, value:$scope.interface.icmp_hosts.value});
 		}
-		console.log($scope.dns);
 		$scope.failover_to = [
 			{ label: $tr(gettext('Disable')),						value:'disable' },
 			{ label: $tr(gettext('Load Balancer(Performance)')),	value:'fastbalancer' },
