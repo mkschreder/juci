@@ -7,7 +7,6 @@
 	<div class="panel-body ">
 		<tabset>
 			<tab heading="{{'General'|translate}}">
-				<h3 translate>Status</h3>
 				<div class="alert alert-danger" ng-show="conn.$info.errors.length">
 					<ul>
 						<li ng-repeat="err in conn.$info.errors">Error ({{err.subsystem}}): {{err.code}}</li>
@@ -24,6 +23,7 @@
 						<switch ng-model="conn.defaultroute.value" class="green"/>
 					</juci-config-line>
 				</juci-config-lines>
+				<h4 translate>Status</h3>
 				<table class="table table-condensed">
 					<tr><td translate>Interface UP:</td><td>{{(conn.$info.up)?"YES":"NO"}}</td></tr>
 					<tr><td translate>Device:</td><td>{{conn.$info.l3_device}}</td></tr>

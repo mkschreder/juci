@@ -47,7 +47,7 @@ JUCI.app
 	
 	$scope.$watch("conn.proto.value", function(value){
 		if(!$scope.conn) return; 
-		//$scope.conn.$proto_editor = "<network-connection-proto-"+$scope.conn.proto.value+"-edit ng-model='conn'/>"; 
+		$scope.conn.$proto_editor = "<network-connection-proto-"+$scope.conn.proto.value+"-edit ng-model='conn'/>"; 
 	}); 
 	$scope.$watch("conn.type.value", function(value){
 		if(!$scope.conn) return; 
@@ -55,13 +55,12 @@ JUCI.app
 	}); 
 	$scope.$watch("conn", function(iface){
 		if(!iface) return; 
-		return; 
-		iface.$type_editor = "<network-connection-type-"+(iface.type.value||'none')+"-edit ng-model='conn'/>"; 
-		iface.$proto_editor = "<network-connection-proto-"+iface.proto.value+"-edit ng-model='conn'/>"; 
+		//iface.$type_editor = "<network-connection-type-"+(iface.type.value||'none')+"-edit ng-model='conn'/>"; 
+		//iface.$proto_editor = "<network-connection-proto-"+iface.proto.value+"-edit ng-model='conn'/>"; 
 		$rpc.network.interface.dump().done(function(ifaces){
 			var info = ifaces.interface.find(function(x){ return x.interface == iface[".name"]; }); 
 			iface.$info = info; 
-			$scope.$apply(); 
+			//$scope.$apply(); was causing digest in progress error TODO: figure out what the real problem is 
 		}); 
 	}); 
 }); 
