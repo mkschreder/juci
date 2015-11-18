@@ -41,7 +41,7 @@ JUCI.app
 		$network.getNetworks().done(function(data){
 			$scope.networks = data.map(function(x){
 				return {
-					label: x[".name"],
+					label: String.toUpperCase(x[".name"]),
 					value: x[".name"]
 				}
 			});

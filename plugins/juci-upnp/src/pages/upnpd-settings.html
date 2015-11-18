@@ -2,6 +2,30 @@
 	<div ng-controller="UPNPMainPage">
 		<juci-config-heading>{{ 'UPNP Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.services.upnp.info' | translate }}</juci-config-info>
+		<h2 translate>UPnP Open Ports</h2>
+		<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
+		<table class="table" ng-show="upnpOpenPorts.length">
+			<thead>
+				<th>#</th>
+				<th translate>Packets cnt.</th>
+				<th translate>Bytes</th>
+				<th translate>Target</th>
+				<th translate>Proto</th>
+				<th translate>Opt</th>
+				<th translate>Source</th>
+				<th translate>Dest.</th>
+			</thead>
+			<tr ng-repeat="port in upnpOpenPorts">
+				<td>{{port.num}}</td>
+				<td>{{port.packets}}</td>
+				<td>{{port.bytes}}</td>
+				<td>{{port.target}}</td>
+				<td>{{port.proto}}</td>
+				<td>{{port.opt}}</td>
+				<td>{{port.src}}</td>
+				<td>{{port.dst}}</td>
+			</tr>
+		</table>
 		<accordion close-others="true">
 				<accordion-group heading="{{ 'General Settings' | translate }}" is-open=true >
 				<juci-config-section>
@@ -44,13 +68,13 @@
 				<accordion-group heading="{{ 'Advanced Settings' | translate }}" is-open="false">
 					<juci-config-lines>
 						<juci-config-line title="{{ 'Device UUID' | translate }}">
-							<input type="text" class="form-control" ng-model="upnp.uuid.value"/>
+							<input type="text" class="form-control" ng-model="upnp.uuid.value" placeholder="UUID"/>
 						</juci-config-line>
 						<juci-config-line title="{{ 'Announced serial number' | translate }}">
-							<input type="text" class="form-control" ng-model="upnp.serial_number.value"/>
+							<input type="text" class="form-control" ng-model="upnp.serial_number.value" placeholder="{{'Serial Number'|translate}}"/>
 						</juci-config-line>
 						<juci-config-line title="{{ 'Announced model number' | translate }}">
-							<input type="text" class="form-control" ng-model="upnp.model.value"/>
+							<input type="text" class="form-control" ng-model="upnp.model.value" placeholder="{{'Model Number'|translate}}"/>
 						</juci-config-line>
 						<juci-config-line title="{{ 'Notify interval' | translate }}">
 							<input type="number" class="form-control" ng-model="upnp.notify_interval.value"/>
@@ -70,30 +94,7 @@
 					</juci-config-lines>
 				</accordion-group>
 			</accordion>
-			<h2 translate>UPnP Open Ports</h2>
-			<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
-			<table class="table" ng-show="upnpOpenPorts.length">
-				<thead>
-					<th>#</th>
-					<th translate>Packets cnt.</th>
-					<th translate>Bytes</th>
-					<th translate>Target</th>
-					<th translate>Proto</th>
-					<th translate>Opt</th>
-					<th translate>Source</th>
-					<th translate>Dest.</th>
-				</thead>
-				<tr ng-repeat="port in upnpOpenPorts">
-					<td>{{port.num}}</td>
-					<td>{{port.packets}}</td>
-					<td>{{port.bytes}}</td>
-					<td>{{port.target}}</td>
-					<td>{{port.proto}}</td>
-					<td>{{port.opt}}</td>
-					<td>{{port.src}}</td>
-					<td>{{port.dst}}</td>
-				</tr>
-			</table>
+			
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>
