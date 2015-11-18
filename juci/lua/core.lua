@@ -57,6 +57,24 @@ local function exec(cmd, args)
 	return ret, str, strerr; 
 end
 
+local QUERY_STRING = nil; 
+local function query(name)
+	if(QUERY_STRING == nil) then
+		QUERY_STRING = {}; 
+		local qstr = os.getenv("QUERY_STRING"); 
+		if(qstr) then
+			for line in qstr:gmatch("[^&]+") do 
+					local k,v = line:match("([^=]+)=(.*)"); 
+					QUERY_STRING[k] = v; 
+			end
+		end
+	end
+	if(name) then
+		return QUERY_STRING[name]; 
+	end
+	return QUERY_STRING; 
+end
+
 local function shell(fmt, ...)
 	for k,v in base.ipairs(arg) do
 		-- TODO: this is inherently dangerous way to do shell commands. 
@@ -74,7 +92,7 @@ local function shell(fmt, ...)
 	return s,r; 
 end
 
-local function ubus(_calls, arg) 
+local function jubus(_calls, arg) 
 	local call_list = ""; 
 	for k,v in base.pairs(_calls) do 
 		if call_list ~= "" then call_list = call_list..","; end
@@ -91,11 +109,29 @@ local function ubus(_calls, arg)
 	end
 end
 
+require("ubus"); 
+local session = {
+	access = function(sid, group, acl, rights) 
+		local conn = base.ubus.connect(); 
+		local result = conn:call("session", "access", { ubus_rpc_session = sid }); 
+		if(result.acls and result.acls[group] and result.acls[group][acl]) then
+			for _,v in ipairs(result.acls[group][acl]) do
+				for _,j in ipairs(rights) do
+					if(j == v) then return true; end 
+				end
+			end
+		end
+		return false; 
+	end
+}
+
 return {
+	session = session, 
 	readfile = readfile, 
 	log = log, 
-	shell = shell, 
+	shell = shell,
+	query = query, 
 	exec = exec, 
-	ubus = ubus
+	ubus = jubus
 }; 
 

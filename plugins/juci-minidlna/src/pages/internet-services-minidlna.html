@@ -2,111 +2,85 @@
 	<div ng-controller="MiniDLNAConfigPage">
 		<h2 translate>MiniDLNA</h2>
 		<p translate>MiniDLNA is server software with the aim of being fully compliant with DLNA/UPnP-AV clients.</p>
-		<h2 translate>MiniDLNA Status</h2>
-		<p translate>The miniDLNA service is {{ is_running || 'unknown' }}, serving {{ (count.audio != undefined) ? count.audio :  'unknown' }} audio, 
+		<juci-config-lines>
+			<juci-config-line title="{{'Enable'|translate}}">
+				<switch ng-model="config.enabled.value" class="green"/>
+			</juci-config-line>
+		</juci-config-lines>
+		<div class="alert alert-info" translate>The miniDLNA service is {{ is_running || 'unknown' }}, serving {{ (count.audio != undefined) ? count.audio :  'unknown' }} audio, 
 					{{ (count.video != undefined) ? count.video : 'unknown' }} video and 
-					{{ (count.image != undefined) ?  count.image : 'unknown' }} image files.</p>
-		<h2 translate>MiniDLNA Settings</h2>
-		<p translate>minidlna.settings.info</p>
-		<juci-config-section>
-			<juci-config-lines>
-				<juci-config-line title="{{'Enable'|translate}}">
-					<switch ng-model="config.enabled.value" class="green"/>
-				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>
+					{{ (count.image != undefined) ?  count.image : 'unknown' }} image files.</div>
 		<accordion close-others="true" ng-show="config.enabled.value">
 			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=true >
-				<juci-config-section ng-show="config.enabled.value">
-					<juci-config-lines>
-						<juci-config-line title="{{'Port'|translate}}">
-							<input type="number" class="form-control" min="0" max="65535" ng-model="port.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Port for HTTP (descriptions, SOAP, media transfer) traffic.' | translate }}</juci-config-info>
-						<juci-config-line title="{{'Network'|translate}}">
-							<dropdown-multi-select input-model="network.all" output-model="network.selected" 
-								button-label="name" item-label="name" tick-property="selected"></dropdown-multi-select>	
-						</juci-config-line>
-						<juci-config-info>{{ 'Network interfaces to serve.' | translate }}</juci-config-info>
-						<juci-config-line title="{{'Friendly Name'|translate}}">
-							<input type="text" class="form-control" ng-model="config.friendly_name.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Set this if you want to customize the name that shows up on your clients.' | translate }}</juci-config-info>
-						<juci-config-line title="{{'Root Container'|translate}}">
-							<juci-select ng-items="root_dir" ng-model="config.root_container.value"></juci-select>
-						</juci-config-line>
-						<juci-config-line title="{{'Media Directories'|translate}}" no-pull>
-							<div class="input-group">
-								<span class="input-group-addon">/mnt</span>
-								<tags-input ng-model="tagslistData" display-property="text"
-											on-tag-added="onTagAdded($tag)" on-tag-removed="updateConfig()"
-											add-from-autocomplete-only="true" min-length="0">
-											<auto-complete source="loadTags($query)" min-length="0"></auto-complete>
-								</tags-input>
-							</div><br/>
-							<button class="btn btn-default pull-right" ng-click="onAddFolder()"><i class="fa fa-plus"></i></button>
-						</juci-config-line>
-						<juci-config-info>{{ 'Set this to the directory you want scanned. 
-										If you want to restrict the directory to a specific content type, you can prepend the type (
-										\'A\' for audio, \'V\' for video, \'P\' for images), followed by a comma, to the directory (eg. A,/mnt/media/Music). 
-										Multiple directories can be specified.' | translate }}</juci-config-info>
-						<juci-config-line title="{{'Album-Art Names'|translate}}">
-							<tags-input ng-model="album_art" display-property="text" min-length="5"
-								add-on-space="true" add-on-blur="false" on-tag-added="onChangeAAName($tag)"
-								on-tag-removed="onChangeAAName($tag)" placeholder="{{'write list of album-art names' | translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{'Port'|translate}}" help="{{ 'Port for HTTP (descriptions, SOAP, media transfer) traffic.' | translate }}">
+						<input type="number" class="form-control" min="0" max="65535" ng-model="port.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Network'|translate}}" help="{{ 'Network interfaces to serve.' | translate }}">
+						<dropdown-multi-select input-model="network.all" output-model="network.selected" 
+							button-label="name" item-label="name" tick-property="selected"></dropdown-multi-select>	
+					</juci-config-line>
+					<juci-config-line title="{{'Friendly Name'|translate}}" help="{{ 'Set this if you want to customize the name that shows up on your clients.' | translate }}">
+						<input type="text" class="form-control" ng-model="config.friendly_name.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Root Container'|translate}}">
+						<juci-select ng-items="root_dir" ng-model="config.root_container.value"></juci-select>
+					</juci-config-line>
+					<juci-config-line title="{{'Media Directories'|translate}}" no-pull>
+						<div class="input-group">
+							<span class="input-group-addon">/mnt</span>
+							<tags-input ng-model="tagslistData" display-property="text"
+										on-tag-added="onTagAdded($tag)" on-tag-removed="updateConfig()"
+										add-from-autocomplete-only="true" min-length="0">
+										<auto-complete source="loadTags($query)" min-length="0"></auto-complete>
 							</tags-input>
-						</juci-config-line>
-						<juci-config-info>{{ 'This is a list of file names to check for when searching for album art.' | translate }}</juci-config-info>
-					</juci-config-lines>
-				</juci-config-section>
+						</div><br/>
+						<button class="btn btn-default pull-right" ng-click="onAddFolder()"><i class="fa fa-plus"></i></button>
+					</juci-config-line>
+					<juci-config-line title="{{'Album-Art Names'|translate}}" help="{{ 'This is a list of file names to check for when searching for album art.' | translate }}">
+						<tags-input ng-model="album_art" display-property="text" min-length="5"
+							add-on-space="true" add-on-blur="false" on-tag-added="onChangeAAName($tag)"
+							on-tag-removed="onChangeAAName($tag)" placeholder="{{'write list of album-art names' | translate}}">
+						</tags-input>
+					</juci-config-line>
+				</juci-config-lines>
 			</accordion-group>
 			<accordion-group heading="{{ 'Advanced settings' | translate }}">
-				<juci-config-section>
-					<juci-config-lines>
-						<juci-config-line title="{{ 'Database directory' | translate }}">
-							<input type="text" class="form-control" ng-model="config.db_dir.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Set this if you would like to specify the directory where you want MiniDLNA to store 
-									its database and album art cache.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'Log directory' | translate }}">
-							<input type="text" class="form-control" ng-model="config.log_dir.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Set this if you would like to specify the directory where you want MiniDLNA 
-										to store its log file.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'Enable inotify' | translate }}">
-							<switch class="green" ng-model="config.inotify.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Set this to enable inotify monitoring to automatically discover new files.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'Enable TIVO' | translate }}">
-							<switch class="green" ng-model="config.enable_tivo.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Set this to enable support for streaming .jpg and .mp3 files to a TiVo supporting HMO.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'Strict to DLNA standard' | translate }}">
-							<switch class="green" ng-model="config.strict_dlna.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ '	Set this to strictly adhere to DLNA standards. This will allow server-side downscaling of very large JPEG images, 
-									which may hurt JPEG serving performance on (at least) Sony DLNA products.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'Presentation URL' | translate }}">
-							<input type="text" class="form-control" placeholder="http://192.168.1.1/" ng-model="config.presentation_url.value"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Notify interval' | translate }}">
-							<input type="number" class="form-control" ng-model="config.notify_interval.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Notify interval in seconds.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'Announced serial number' | translate }}">
-							<input type="text" class="form-control" ng-model="config.serial.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Serial number the miniDLNA daemon will report to clients in its XML description.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'Announced model number' | translate }}">
-							<input type="text" class="form-control" ng-model="config.model_number.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Model number the miniDLNA daemon will report to clients in its XML description.' | translate }}</juci-config-info>
-						<juci-config-line title="{{ 'miniSSDP socket' | translate }}">
-							<input type="text" class="form-control" placeholder="/var/run/minissdpd.sock" ng-model="config.minissdpsocket.value"/>
-						</juci-config-line>
-						<juci-config-info>{{ 'Specify the path to the MiniSSDPd socket.' | translate }}</juci-config-info>
-					</juci-config-lines>
-				</juci-config-section>
+				<juci-config-lines>
+					<juci-config-line title="{{ 'Database directory' | translate }}" help="{{ 'Set this if you would like to specify the directory where you want 
+							MiniDLNA to store	its database and album art cache.' | translate }}">
+						<input type="text" class="form-control" ng-model="config.db_dir.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Log directory' | translate }}" help="{{ 'Set this if you would like to specify the directory where you want MiniDLNA 
+									to store its log file.' | translate }}">
+						<input type="text" class="form-control" ng-model="config.log_dir.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Enable inotify' | translate }}"help="{{ 'Set this to enable inotify monitoring to automatically discover new files.' | translate }}">
+						<switch class="green" ng-model="config.inotify.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Enable TIVO' | translate }}" help="{{ 'Set this to enable support for streaming .jpg and .mp3 files to a TiVo supporting HMO.' | translate }}">
+						<switch class="green" ng-model="config.enable_tivo.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Strict to DLNA standard' | translate }}" help="{{ '	Set this to strictly adhere to DLNA standards. This will allow 
+									server-side downscaling of very large JPEG images, which may hurt JPEG serving performance on (at least) Sony DLNA products.' | translate }}">
+						<switch class="green" ng-model="config.strict_dlna.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Presentation URL' | translate }}">
+						<input type="text" class="form-control" placeholder="http://192.168.1.1/" ng-model="config.presentation_url.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Notify interval' | translate }}" help="{{ 'Notify interval in seconds.' | translate }}">
+						<input type="number" class="form-control" ng-model="config.notify_interval.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Announced serial number' | translate }}" info="{{ 'Serial number the miniDLNA daemon will report to clients in its XML description.' | translate }}">
+						<input type="text" class="form-control" ng-model="config.serial.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Announced model number' | translate }}" help="{{ 'Model number the miniDLNA daemon will report to clients in its XML description.' | translate }}">
+						<input type="text" class="form-control" ng-model="config.model_number.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'miniSSDP socket' | translate }}" help="{{ 'Specify the path to the MiniSSDPd socket.' | translate }}">
+						<input type="text" class="form-control" placeholder="/var/run/minissdpd.sock" ng-model="config.minissdpsocket.value"/>
+					</juci-config-line>
+				</juci-config-lines>
 			</accordion-group>
 		</accordion>
 

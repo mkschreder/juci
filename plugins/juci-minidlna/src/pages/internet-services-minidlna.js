@@ -14,10 +14,34 @@ JUCI.app
 		$scope.port.value = Number($scope.config.port.value);
 		$scope.album_art = $scope.config.album_art_names.value.split("/");
 		$scope.tagslistData = $scope.config.media_dir.value.filter(function(dir){
-			return (dir.substring(0, 4) == "/mnt");
+			var pre = dir.substr(0, 2);
+			var dirr;
+			if(pre == "A," || pre == "V," || pre == "P,"){
+				dirr = dir.substr(2);
+			}else{
+				dirr = dir;
+			}
+			return (dirr.substring(0, 4) == "/mnt");
 		}).map(function(dir){
+			if(dir == "/mnt/"){
+				return {
+					text: "/",
+					path: dir
+				}
+			}else if(dir.substr(2) == "/mnt/"){
+				return {
+					text: dir.substr(0, 2) + "/",
+					path: dir
+				}
+			}
+			if(dir.substr(1, 1) == ","){
+				return {
+					text: "/" + dir.substr(0,2) + dir.substring(4),
+					path: dir
+				}
+			}
 			return {
-				text: "/" + dir.substring(4),
+				text: "/" + dir.substr(4),
 				path: dir
 			}
 		
@@ -34,7 +58,6 @@ JUCI.app
 	});
 
 	$rpc.juci.minidlna.status().done(function(data){
-		console.log(data.count.image);
 		$scope.count = data.count;
 		$scope.$apply();
 	});
@@ -52,7 +75,6 @@ JUCI.app
 		{ label: $tr(gettext("Pictures")),				value: "P" }
 	];
 	$scope.$watch('port', function(){
-		console.log("test");
 		if(!$scope.port.value)return;
 		$scope.config.port.value = $scope.port.value;
 	}, true);
@@ -79,12 +101,22 @@ JUCI.app
 			on_apply: function(btn, dlg){
 				if(!model.selected || !model.selected.path)return false;
 				for(var i=0; i < $scope.tagslistData.length; i++){
+					var prefix = $scope.tagslistData[i].path.substr(0,2);
+					if(prefix  == "V," || prefix == "A," || prefix == "P,")
+						if($scope.tagslistData[i].path.substr(2) == model.selected.path) return false;
 					if($scope.tagslistData[i].path == model.selected.path) return false;
 				}
-				$scope.tagslistData.push({
-					path: model.selected.path,
-					text: model.selected.path.substring(4)
-				});
+				if(model.selected_dirtype != ""){
+					$scope.tagslistData.push({
+						path: model.selected_dirtype + "," + model.selected.path,
+						text: model.selected_dirtype + "," + model.selected.path.substr(4)
+					});
+				}else{
+					$scope.tagslistData.push({
+						path: model.selected.path,
+						text: model.selected.path.substr(4)
+					});
+				}
 				$scope.updateConfig();
 				return true;
 			}	
