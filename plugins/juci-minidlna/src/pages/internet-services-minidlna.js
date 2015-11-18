@@ -58,7 +58,6 @@ JUCI.app
 	});
 
 	$rpc.juci.minidlna.status().done(function(data){
-		console.log(data.count.image);
 		$scope.count = data.count;
 		$scope.$apply();
 	});
@@ -76,7 +75,6 @@ JUCI.app
 		{ label: $tr(gettext("Pictures")),				value: "P" }
 	];
 	$scope.$watch('port', function(){
-		console.log("test");
 		if(!$scope.port.value)return;
 		$scope.config.port.value = $scope.port.value;
 	}, true);
@@ -102,14 +100,13 @@ JUCI.app
 			model: model,
 			on_apply: function(btn, dlg){
 				if(!model.selected || !model.selected.path)return false;
-				console.log(model.selected_dirtype);
 				for(var i=0; i < $scope.tagslistData.length; i++){
 					var prefix = $scope.tagslistData[i].path.substr(0,2);
 					if(prefix  == "V," || prefix == "A," || prefix == "P,")
 						if($scope.tagslistData[i].path.substr(2) == model.selected.path) return false;
 					if($scope.tagslistData[i].path == model.selected.path) return false;
 				}
-				if(model.selecte_dirtype != ""){
+				if(model.selected_dirtype != ""){
 					$scope.tagslistData.push({
 						path: model.selected_dirtype + "," + model.selected.path,
 						text: model.selected_dirtype + "," + model.selected.path.substr(4)
