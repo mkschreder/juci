@@ -8,6 +8,8 @@ JUCI.app
 	var timeoutID = undefined;
 	var request = null;
 	$scope.data = { limit: 20, filter: "" };
+	$scope.sid = $rpc.$sid; 
+
 	$scope.allLimits = [
 		{ label: 20, value: 20 }, 
 		{ label: 50, value: 50 }, 
