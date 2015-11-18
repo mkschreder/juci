@@ -1,12 +1,13 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="PageBroadcomIptv">
 		<juci-config-heading>{{"IPTV Configuration"|translate}}</juci-config-heading>
-		<juci-config-section>
+		<div class="alert alert-info" ng-show="loaded && !mcpd" translate>No mcpd configuration found!</div>
+		<juci-config-section ng-show="loaded && mcpd">
 			<juci-config-lines>
 				<juci-config-line title="{{ 'Differentiated Services Code Point (DSCP)' | translate }}" help="{{ 'Will be used to mark all outgoing IGMP packets' | translate}}">
 					<juci-select ng-items="DSCP" ng-model="mcpd.igmp_dscp_mark.value"></juci-select>
 				</juci-config-line>
-				<juci-config-line title="{{ 'Proxy vnterface' | translate}}">
+				<juci-config-line title="{{ 'Proxy interface' | translate}}">
 					<dropdown-multi-select input-model="networks.wan" output-model="networks.selected_wan" 
 						button-label="name" item-label="name" tick-property="ticked"></dropdown-mult-select>
 				</juci-config-line>

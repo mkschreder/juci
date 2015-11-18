@@ -7,6 +7,11 @@ JUCI.app
 		selected_lan: []
 	};
 	$uci.$sync("mcpd").done(function(){
+		$scope.loaded = true; 
+		if(!$uci.mcpd.mcpd) {
+			$scope.$apply(); 
+			return; 
+		}
 		$scope.mcpd = $uci.mcpd.mcpd;
 		var proxy_interfaces = $scope.mcpd.igmp_proxy_interfaces.value.split(" ");
 		var snooping_interfaces = $scope.mcpd.igmp_snooping_interfaces.value.split(" ");
