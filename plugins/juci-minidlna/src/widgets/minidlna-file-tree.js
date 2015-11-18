@@ -16,7 +16,7 @@ JUCI.app
 			label: $tr(gettext("Loading.."))
 		}], 
 		dirtypes: [ 
-			{ label: $tr(gettext("All types")), value:"-" }, 
+			{ label: $tr(gettext("All types")), value:"" }, 
 			{ label: $tr(gettext("Video only")), value:"V" },
 			{ label: $tr(gettext("Audio only")), value:"A" },
 			{ label: $tr(gettext("Pictures only")), value:"P" }
