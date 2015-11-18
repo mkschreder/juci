@@ -3,14 +3,14 @@
 		<juci-config-heading translate>IP-TV configuration</juci-config-heading>
 		<juci-config-section>
 			<juci-config-lines>
-				<juci-config-line title="{{ 'Differentiated Services Code Point (DSCP)' | translate }}">
+				<juci-config-line title="{{ 'Differentiated Services Code Point (DSCP)' | translate }}" help="{{ 'will be used to mark all outgoing IGMP packets' | translate}}">
 					<juci-select ng-items="DSCP" ng-model="mcpd.igmp_dscp_mark.value"></juci-select>
 				</juci-config-line>
 				<juci-config-line title="{{ 'IP TV proxy interface' | translate}}">
 					<dropdown-multi-select input-model="networks.wan" output-model="networks.selected_wan" 
 						button-label="name" item-label="name" tick-property="ticked"></dropdown-mult-select>
 				</juci-config-line>
-				<juci-config-line title="{{ 'Default version' | translate }}">
+				<juci-config-line title="{{ 'Default version' | translate }}" help="{{ 'Choose default version from list' | translate}}">
 					<juci-select ng-items="default_version" ng-model="mcpd.igmp_default_version.value"></juci-select>
 				</juci-config-line>
 				<juci-config-line title="{{ 'Query interval' | translate }}">
@@ -25,7 +25,7 @@
 				<juci-config-line title="{{ 'Robustness value' | translate }}">
 					<input type="number" class="form-control" ng-model="mcpd.igmp_robustness_value.value"/>
 				</juci-config-line>
-				<juci-config-line title="{{ 'LAN to LAN multicast' | translate }}">
+				<juci-config-line title="{{ 'LAN to LAN multicast' | translate }}" help="{{ 'switch to enable LAN to LAN multicast' | translate}}">
 					<switch class="green" ng-model="mcpd.igmp_lan_to_lan_multicast.value"/>
 				</juci-config-line>
 				<juci-config-line title="{{ 'Max groups' | translate }}">
@@ -37,16 +37,16 @@
 				<juci-config-line title="{{ 'Max members' | translate }}">
 					<input type="number" class="form-control" ng-model="mcpd.igmp_max_members.value"/>
 				</juci-config-line>
-				<juci-config-line title="{{ 'Fast leave' | translate }}">
+				<juci-config-line title="{{ 'Fast leave' | translate }}" help="{{ 'Switch to enable fast leave' | translate}}">
 					<switch class="green" ng-model="mcpd.igmp_fast_leave.value"/>
 				</juci-config-line>
-				<juci-config-line title="{{ 'Join immediate' | translate }}">
+				<juci-config-line title="{{ 'Join immediate' | translate }}" help="{{ 'Switch to enable immediate join' | translate}}">
 					<switch class="green" ng-model="mcpd.igmp_join_immediate.value"/>
 				</juci-config-line>
-				<juci-config-line title="{{ 'Enable IGMP proxy' | translate }}">
+				<juci-config-line title="{{ 'Enable IGMP proxy' | translate }}" help="{{ 'Switch to enable IGMP proxy' | translate}}">
 					<switch class="green" ng-model="mcpd.igmp_proxy_enable.value"/>
 				</juci-config-line>
-				<juci-config-line title="{{ 'IGMP snooping mode' | translate }}">
+				<juci-config-line title="{{ 'IGMP snooping mode' | translate }}" help="{{ 'Choose snooping mode' | translate}}">
 					<juci-select ng-items="snooping_mode" ng-model="mcpd.igmp_snooping_enable.value"></juci-select>
 				</juci-config-line>
 				<juci-config-line title="{{ 'IGMP snooping interfaces' | translate }}">
