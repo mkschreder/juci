@@ -19,24 +19,6 @@ JUCI.app.run(function($network, $uci, $wireless){
 				}); 
 				return def.promise(); 
 			}, 
-			getDevices: function() {
-				var deferred = $.Deferred(); 
-				var devices = []; 
-				$uci.$sync("wireless").done(function(result){
-					// in wireless, wifi-iface is actually the layer2 device. Pretty huh? :-) 
-					// oh, and network is what network the device belongs to. Even prettier. 
-					$uci.wireless["@wifi-iface"].map(function(device){
-						devices.push({
-							get name() { return device.ssid.value; },
-							get id() { return device.ifname.value; },
-							get type() { return "wireless"; }, 
-							base: device
-						}); 
-					}); 
-					deferred.resolve(devices); 
-				}); 
-				return deferred.promise(); 
-			}
 		}
 	}); 
 }); 
@@ -109,11 +91,12 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		var deferred = $.Deferred(); 
 		$uci.$sync("wireless").done(function(){
 			var ifs = $uci.wireless["@wifi-iface"]; 
-			var counters = {}; 
 			// TODO: this is an ugly hack to automatically calculate wifi device name
 			// it is not guaranteed to be exact and should be replaced by a change to 
 			// how openwrt handles wireless device by adding an ifname field to wireless 
 			// interface configuration which will be used to create the ethernet device.  
+			/*
+			var counters = {}; 
 			ifs.map(function(i){
 				if(i.ifname.value == ""){
 					if(!counters[i.device.value]) counters[i.device.value] = 0; 
@@ -123,7 +106,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 						i.ifname.value = i.device.value + "." + counters[i.device.value]; 
 					counters[i.device.value]++; 
 				}
-			}); 
+			});*/ 
 			deferred.resolve(ifs); 
 		}); 
 		return deferred.promise(); 
