@@ -19,7 +19,7 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 				// pipe all adapters though all subsystems and annotate them
 				async.each(self._subsystems, function(sys, next){
 					if(sys.annotateAdapters && sys.annotateAdapters instanceof Function){
-						sys.annotateAdapters(result.adapters).done(function(){
+						sys.annotateAdapters(result.adapters).always(function(){
 							next(); 
 						});
 					} else {
@@ -29,7 +29,7 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 					def.resolve(result.adapters);
 				}); 
 			} else def.reject(); 
-		}); 	
+		}).fail(function(){ def.reject(); }); 	
 		return def.promise(); 
 	}
 

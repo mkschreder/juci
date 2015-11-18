@@ -1,7 +1,7 @@
 <div class="col-md-12" style="white-space: nowrap;">
 	<div ng-repeat="part in [0, 1, 2, 3]" style="float: left;">
-		<div style="width: 4em; float:left;">
-			<input type="text" class="form-control no-padding text-center" ng-change="updateModel()" ng-model="data.parts[part]" ng-model-options='{ getterSetter: true }' placeholder="..." maxlength="3" />
+		<div style="width: 4em; float:left;" class="juci-input-ipv4">
+			<input type="text" style="min-width: 4em !important;" class="form-control no-padding text-center" ng-change="updateModel()" ng-model="data.parts[part]" ng-model-options='{ getterSetter: true }' placeholder="..." maxlength="3" />
 		</div>
 		<div style="float:left;" ng-show="part != 3">
 			<span style="line-height: 3em; padding-left: 0.5em; padding-right: 0.5em;">.</span>

@@ -23,21 +23,22 @@ JUCI.app
 UCI.$registerConfig("minidlna");
 UCI.minidlna.$registerSectionType("minidlna", {
 	"enabled":          { dvalue: 0, type: Number },
-	"port":         		{ dvalue: "", type: String },
+	"port":         	{ dvalue: "", type: String },
 	"interface":        { dvalue: "", type: String },
 	"friendly_name":    { dvalue: "", type: String },
-	"db_dir":         	{ dvalue: "", type: String },
-	"log_dir":         	{ dvalue: "", type: String },
+	"db_dir":         	{ dvalue: "/var/run/minidlna", type: String },
+	"log_dir":         	{ dvalue: "/var/log", type: String },
 	"inotify":         	{ dvalue: false, type: Boolean },
 	"enable_tivo":      { dvalue: true, type: Boolean },
 	"strict_dlna":      { dvalue: false, type: Boolean },
 	"presentation_url": { dvalue: "", type: String },
 	"notify_interval":  { dvalue: 900, type: Number },
-	"serial":         	{ dvalue: "", type: String },
-	"model_number":			{ dvalue: "", type: String },
-	"root_container":		{ dvalue: "", type: String },
-	"media_dir":				{ dvalue: [], type: Array },
+	"serial":         	{ dvalue: "12345678", type: String },
+	"model_number":		{ dvalue: "1", type: String },
+	"root_container":	{ dvalue: "", type: String },
+	"media_dir":		{ dvalue: [], type: Array },
 	"album_art_names":	{ dvalue: "", type: String },
-	"network":			{ dvalue: "lan", type: String }
+	"network":			{ dvalue: "lan", type: String },
+	"minissdpsocket":	{ dvalue: "", type: String }
 });
 			

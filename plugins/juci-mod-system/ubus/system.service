@@ -1,26 +1,33 @@
 #!/usr/bin/lua 
 
 local juci = require("juci/core"); 
-local fs = require("luv.fs"); 
-require("ubus"); 
+local dirent = require("posix.dirent")
 local json = require("juci/json"); 
+require("ubus"); 
 
 local conn = ubus.connect(); 
 
-function is_service(service)
-	local files = fs.readdirSync("/etc/init.d/");
+local function list_dir(dir) 
+	local files, ok = dirent.dir(dir); 
+	if not ok then
+		return {}; 
+	end
+	return files; 
+end
+
+local function is_service(service)
+	local files = list_dir("/etc/init.d/");
 	for _,file in ipairs(files) do
-		if(file == service)
-		then
+		if(file == service) then
 			return true
 		end	
 	end		
 	return false
 end
 
-function service_list()
-	local files = fs.readdirSync("/etc/init.d/");
-	local rcdfiles = fs.readdirSync("/etc/rc.d/"); 
+local function service_list()
+	local files = list_dir("/etc/init.d/");
+	local rcdfiles = list_dir("/etc/rc.d/"); 
 	local svcs = conn:call("service", "list", {});
 	local services = {}; 
 	local enabled = {}; 
@@ -47,40 +54,43 @@ function service_list()
 	print(json.encode({services = services})); 
 end
 
-function service_start(service)
-	if(is_service(service.name))
-	then
+local function service_start(service)
+	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s start", service.name);
+		print('{}');
+	else 
+		print(json.encode({ error = "Invalid service!"})); 
 	end
-	print('{}');
 end 
 
-function service_stop(service)
-	if(is_service(service.name))
-	then
+local function service_stop(service)
+	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s stop", service.name);
+		print('{}');
+	else
+		print(json.encode({ error = "Invalid service!"})); 
 	end
-	print('{}');
 end 
 
-function service_enable(service)
-	if(is_service(service.name))
-	then
+local function service_enable(service)
+	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s enable", service.name);
+		print('{}');
+	else
+		print(json.encode({ error = "Invalid service!"})); 
 	end
-	print('{}');
 end
 
-function service_disable(service)
-	if(is_service(service.name))
-	then
+local function service_disable(service)
+	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s disable", service.name);
+		print('{}');
+	else 
+		print(json.encode({ error = "Invalid service!"})); 
 	end
-	print('{}');
-
 end
 
-function service_reload(service)
+local function service_reload(service)
 	if(is_service(service.name))
 	then
 		juci.shell("/etc/init.d/%s reload", service.name);
@@ -88,9 +98,9 @@ function service_reload(service)
 	print('{}');
 end
 
-function service_status(service)
-	--TODO fix this
-	print({});
+local function service_status(service)
+	local svcs = conn:call("service", "list", {});	
+	print(json.encode({ running = (svcs[service.name] ~= nil) }));
 end
 
 juci.ubus({

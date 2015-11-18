@@ -8,7 +8,11 @@
 			"ubus": {
 				"/juci/minidlna": [
 					"folder_tree",
-					"autocomplete"
+					"autocomplete",
+					"status"
+				],
+				"/juci/system.service": [
+					"status"
 				]
 			}
 		},

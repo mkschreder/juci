@@ -196,7 +196,9 @@
 			"checklist-model",
 			"ngTagsInput"
 		]); 
-		app.config(function($stateProvider){
+		app.config(function($stateProvider, $animateProvider){
+			// turn off angular animations on spinners (they have their own animation) 
+			$animateProvider.classNameFilter(/^((?!(fa-spinner)).)*$/); 	
 			Object.keys(scope.JUCI.pages).map(function(name){
 				var page = scope.JUCI.pages[name];
 				var state = {

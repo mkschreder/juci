@@ -1,0 +1,30 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="MiniSNMPDConfigPage">
+		<juci-config-section>
+			<juci-config-lines>
+				<juci-config-line title="{{'Enabled'|translate}}">
+					<switch ng-model="config.enabled.value" class="green"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Read Community'|translate}}">
+					<input type="text" ng-model="config.read_community.value" class="form-control" placeholder="{{'Community'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Set Community'|translate}}">
+					<input type="text" ng-model="config.set_community.value" class="form-control" placeholder="{{'Community'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'System Name'|translate}}">
+					<input type="text" ng-model="config.sysName.value" class="form-control" placeholder="{{'Name'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'System Location'|translate}}">
+					<input type="text" ng-model="config.sysLocation.value" class="form-control" placeholder="{{'Location'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'System Contact'|translate}}">
+					<input type="text" ng-model="config.contact.value" class="form-control" placeholder="{{'E-Mail'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Trap Manager IP'|translate}}">
+					<juci-input-ipv4-address ng-model="config.manager_ip.value"></juci-input-ipv4-address>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

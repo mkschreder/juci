@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+# /home/reidar/juci/plugins/juci-broadcom-iptv/src/pages/iptv.html 
+msgid "IP-tv configuration"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-broadcom-iptv/src/pages/iptv.html 
+msgid "broadcom-iptv-title"
+msgstr "IPTV"
+
+# /home/reidar/juci/plugins/juci-broadcom-iptv/src/pages/iptv.html 
+msgid "menu-broadcom-iptv-title"
+msgstr "IPTV"
+

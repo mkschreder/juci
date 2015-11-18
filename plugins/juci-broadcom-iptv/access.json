@@ -1,0 +1,15 @@
+{
+	"juci-broadcom-iptv": {
+		"description": "Broadcom iptv plugin",
+		"read": {
+			"uci": [
+				"mcpd"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"mcpd"
+			]
+		}
+	}
+}

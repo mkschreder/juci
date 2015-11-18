@@ -10,7 +10,7 @@
 			</juci-config-lines>
 		</juci-config-section>
 		<juci-config-section ng-show="firewall.dmz.enabled.value">
-			<div class="alert alert-danger">
+			<div class="alert alert-danger" ng-show="nonforwardedPorts">
 				<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span translate>Warning: By using the exposed host function you bypass the firewall of your {{config.board.system}}. Please make sure that your computer is protected against attacks from Internet. The following ports will not be forwarded: {{ nonforwardedPorts || 'None'}}.</span></p>
 			</div>
 			<p translate>Choose the local IP address that should be exposed to Internet. Additionally you should configure this IP address as static DHCP address for your device (see Settings/Network).</p>

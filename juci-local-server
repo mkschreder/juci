@@ -6,23 +6,32 @@ var JSON = require("JSON");
 var fs = require("fs"); 
 var request = require("request"); 
 var http = require("http"); 
-
 var bodyParser = require('body-parser')
+var config = { port: 3000 };
 
-var config = {
-}; 
+//check if file exists and is a file
+if (fs.existsSync("juci-local-server.config")){
+	try { 
+		config = JSON.parse(fs.readFileSync("juci-local-server.config"));
+	} catch(e){
+	
+	}
+}
 
 for(var i = 0; i < process.argv.length; i++){
 	switch(process.argv[i]){
 		case "--host": config.ubus_uri = "http://"+process.argv[++i]+"/ubus"; break; 
+		case "--port": config.port = parseInt(process.argv[++i]); break; 
 		case "--ubus": config.ubus_uri = process.argv[++i]; break; 
 	}; 
 } 
 
-if(!config.ubus_uri){
+if(!config.ubus_uri || !config.port){
 	console.log("juci-local-server: ");
 	console.log("	--host <host>"); 
 	console.log("		specify host to connect to"); 
+	console.log("	--port <port>"); 
+	console.log("		specify port to use for local server"); 
 	console.log("	--ubus <ubus url>"); 
 	console.log("		specify ubus url directly (https://192.168.1.1/ubus)"); 
 	process.exit(); 
@@ -303,9 +312,9 @@ app.post('/ubus', function(req, res) {
   */
 });
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+var server = app.listen(config.port, function () {
+	var host = server.address().address;
+	var port = server.address().port;
 
 	for(var i = 0; i < process.argv.length; i++){
 		switch(process.argv[i]){
@@ -327,6 +336,6 @@ var server = app.listen(3000, function () {
 			} break; 
 		}
 	}
-  console.log('Local server listening on http://%s:%s', host, port);
+	console.log('Local server listening on http://%s:%s', host, port);
 });
 

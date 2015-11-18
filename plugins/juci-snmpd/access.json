@@ -1,6 +1,6 @@
 {
 	"juci-snmp": {
-		"description": "JUCI SNMP module",
+		"description": "JUCI SNMPD module",
 		"read": {
 			"uci": [
 				"snmpd"

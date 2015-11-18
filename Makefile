@@ -10,6 +10,7 @@ endif
 BACKEND_BIN_DIR:=$(BIN)/usr/lib/ubus/juci/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
+TMP_DIR:=tmp
 TARGETS:=
 PHONY:=debug release clean prepare node_modules 
 CP:=cp -Rp 
@@ -36,13 +37,15 @@ define BuildDir-y
 	$(eval JAVASCRIPT-y:=src/*.js src/pages/*.js src/widgets/*.js)
 	$(eval TEMPLATES-y:=src/widgets/*.html src/pages/*.html)
 	$(eval STYLES-y:=src/css/*.css)
+	$(eval STYLES_LESS-y:=src/css/*.less)
 	$(eval PLUGIN_DIR:=$(2))
 	$(eval -include $(2)/Makefile)
 	$(eval $(Plugin/$(1)))
-	$(eval TARGETS+=$(1)-install $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css)
+	$(eval TARGETS+=$(1)-install)
 	$(eval JAVASCRIPT_$(1):=$(wildcard $(addprefix $(2)/,$(JAVASCRIPT-y))))
 	$(eval TEMPLATES_$(1):=$(wildcard $(addprefix $(2)/,$(TEMPLATES-y))))
 	$(eval STYLES_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES-y))))
+	$(eval STYLES_LESS_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES_LESS-y))))
 	$(eval PO_$(1):=$(wildcard $(addprefix $(2)/,$(PO-y))))
 	PHONY += $(1)-install
 $(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) $(PO_$(1))
@@ -51,11 +54,15 @@ $(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) $(PO_$(1))
 	@echo "" > $$@
 	$(Q)if [ "" != "$(JAVASCRIPT_$(1))" ]; then for file in $(JAVASCRIPT_$(1)); do cat $$$$file >> $$@; echo "" >> $$@; done; fi
 	$(Q)if [ "" != "$(PO_$(1))" ]; then ./scripts/po2js $(PO_$(1)) >> $$@; echo "" >> $$@; fi
-$(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1))
+$(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1)) $(TMP_DIR)/$(1)-compiled-styles.css
 	@echo -e "\033[0;33m[CSS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$(STYLES_$(1))"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
+$(TMP_DIR)/$(1)-compiled-styles.css: $(STYLES_LESS_$(1)) 
+	@echo -e "\033[0,33m[LESS]\t$(1) -> $$@\033[m"
+	@echo "" > $$@
+	$(Q)if [ "" != "$$^" ]; then for file in $$^; do lessc $$$$file >> $$@; echo "" >> $$@; done; fi
 $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[HTML]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
@@ -69,7 +76,7 @@ $(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
 	@echo "" >> $$@
 	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
 	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"menu-$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
-$(1)-install: 
+$(1)-install: $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
 	$(Q)if [ -d $(2)/service ]; then $(CP) $(2)/service/* $(BIN)/usr/lib/ubus-services/; fi
@@ -109,13 +116,19 @@ endif
 
 Makefile.local: ;
 
+JSLINT_FILES:=$(wildcard plugins/**/src/widgets/*.js plugins/**/src/pages/*.js)
+
 prepare: .cleaned	
 	@echo "======= JUCI CONFIG ========="
 	@echo "TARGETS: $(TARGETS)"
 	@echo "BACKEND: $(UBUS_MODS)"
 	@echo "DIRS: $(DIRS-y)"
 	@echo "MODULE: $(MODULE)"
+	#fixjsstyle --disable 5,110,131 $(JSLINT_FILES)
+	#fixjsstyle --disable 5,110,131 $(JSLINT_FILES)
+	#gjslint --disable 5,110,131 $(JSLINT_FILES)	
 	@./scripts/bootstrap.sh
+	@mkdir -p $(TMP_DIR)
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
 	@mkdir -p $(BIN)/usr/share/juci/
@@ -129,12 +142,12 @@ prepare: .cleaned
 node_modules: package.json
 	npm install --production
 
-release: prepare $(TARGETS) node_modules $(UBUS_MODS)
+release: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo "======= JUCI BUILD =========="
 	@./scripts/juci-compile $(BIN) 
 	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
 
-debug: prepare $(TARGETS) $(UBUS_MODS)
+debug: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo -e "\033[0;33m [GRUNT] $@ \033[m"
 	#@grunt 
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
@@ -181,5 +194,4 @@ $(UBUS_MODS):
 	@cp -Rp $@/build/* $(BIN)/
 	
 clean: 
-	rm -rf ./bin
-
+	rm -rf ./bin ./tmp

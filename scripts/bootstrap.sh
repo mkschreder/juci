@@ -29,6 +29,11 @@ if [ "$(which uglifyjs)" == "" ]; then
 	ERR=1
 fi 
 
+if [ "$(which lessc)" == "" ]; then 
+	perr "!!! lessc (less css compiler) is missing on your system. Please install it!"
+	ERR=1
+fi
+
 if [ "$ERR" == "1" ]; then 
 	if [ "$(whoami)" != "root" ]; then 
 		perr "JUCI build dependencies are missing!."

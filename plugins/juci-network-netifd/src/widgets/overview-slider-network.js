@@ -192,10 +192,10 @@ JUCI.app
 						$scope.$apply(); 
 					} else {
 						console.log("Looking for device "+node.id()); 
-						$network.getDevice({ name: node.id() }).done(function(device){
+						/*$ethernet.getDevice({ name: node.id() }).done(function(device){
 							$scope.selected_device = device; 
 							$scope.$apply(); 
-						}); 
+						}); */
 					}
 					console.log( 'tapped ' + node.id() );
 				});

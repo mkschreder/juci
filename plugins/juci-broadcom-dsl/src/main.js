@@ -58,13 +58,6 @@ JUCI.app
 	}; 
 }).run(function($ethernet, $network, $uci, $broadcomDsl){
 	$ethernet.addSubsystem($broadcomDsl); 
-	$network.subsystem(function(){
-		return {
-			getDevices: function(){
-				return $broadcomDsl.getDevices(); 
-			}
-		}
-	}); 
 }); 
 
 

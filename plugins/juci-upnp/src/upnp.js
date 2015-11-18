@@ -35,8 +35,16 @@ UCI.upnpd.$registerSectionType("upnpd", {
 	"download":			{ dvalue: 1024, type: Number }, 
 	"upload":			{ dvalue: 512, type: Number }, 
 	"internal_iface":	{ dvalue: '', type: String }, 
+	"external_iface":	{ dvalue: '', type: String },
 	"port":				{ dvalue: 5000, type: Number }, 
-	"upnp_lease_file":	{ dvalue: '/var/upnp.leases', type: String }
+	"uuid":				{ dvalue: '', type: String },
+	"serial_number":	{ dvalue: '', type: String },
+	"model":			{ dvalue: '', type: String },
+	"notify_interval":	{ dvalue: 30, type: Number },
+	"clean_ruleset_threshold": { dvalue: 20, type: Number },
+	"clean_ruleset_interval": { dvalue: 600, type: Number },
+	"presentation_url":	{ dvalue: '', type: String },
+	"upnp_lease_file":	{ dvalue: '', type: String }
 }); 
 /*
 config perm_rule

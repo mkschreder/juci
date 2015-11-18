@@ -1,10 +1,10 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, gettext, networkConnectionCreate){
+.controller("InternetNetworkPage", function($scope, $uci, $rpc, $network, $ethernet, $tr, gettext, networkConnectionCreate){
 	$scope.data = {}; 
 	
-	$network.getDevices().done(function(devices){
+	$ethernet.getAdapters().done(function(devices){
 		$scope.devices = devices; 
 		
 		$network.getNetworks().done(function(nets){
@@ -12,36 +12,28 @@ JUCI.app
 				if(x.defaultroute.value) $scope.data.wan_network = x; 
 				return x.ifname.value != "lo" 
 			}); 
-			/*$scope.$watch("data.wan_network", function(value){
-				if(!value) return; 
-				$scope.networks.map(function(x){ x.defaultroute.value = false; }); 
-				if(value.defaultroute) value.defaultroute.value = true; 
-			}); */
-			$scope.$apply(); 
-			$network.getDevices().done(function(devs){
-				$scope.networks = $scope.networks.map(function(net){ 
-					net.addedDevices = []; 
-					var addedDevices = net.ifname.value.split(" "); 
-					//net.$type_editor = "<network-connection-proto-"+net.type.value+"-edit/>";
-					net.addableDevices = devs
-						.filter(function(dev){ 
-							var already_added = addedDevices.find(function(x){ 
-								return x == dev.id; 
-							}); 
-							if(!already_added){
-								return true; 
-							} else {
-								net.addedDevices.push( { label: dev.name, value: dev.id }); 
-								return false; 
-							}
-						})
-						.map(function(dev){ 
-							return { label: dev.name, value: dev.id }; 
+			$scope.networks = $scope.networks.map(function(net){ 
+				net.addedDevices = []; 
+				var addedDevices = net.ifname.value.split(" "); 
+				//net.$type_editor = "<network-connection-proto-"+net.type.value+"-edit/>";
+				net.addableDevices = devices
+					.filter(function(dev){ 
+						var already_added = addedDevices.find(function(x){ 
+							return x == dev.id; 
 						}); 
-					return net; 
-				}); 
-				$scope.$apply(); 
-			});
+						if(!already_added){
+							return true; 
+						} else {
+							net.addedDevices.push( { label: dev.name, value: dev.id }); 
+							return false; 
+						}
+					})
+					.map(function(dev){ 
+						return { label: dev.name, value: dev.id }; 
+					}); 
+				return net; 
+			}); 
+			$scope.$apply(); 
 		}); 
 	}); 
 	
