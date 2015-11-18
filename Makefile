@@ -116,12 +116,17 @@ endif
 
 Makefile.local: ;
 
+JSLINT_FILES:=$(wildcard plugins/**/src/widgets/*.js plugins/**/src/pages/*.js)
+
 prepare: .cleaned	
 	@echo "======= JUCI CONFIG ========="
 	@echo "TARGETS: $(TARGETS)"
 	@echo "BACKEND: $(UBUS_MODS)"
 	@echo "DIRS: $(DIRS-y)"
 	@echo "MODULE: $(MODULE)"
+	#fixjsstyle --disable 5,110,131 $(JSLINT_FILES)
+	#fixjsstyle --disable 5,110,131 $(JSLINT_FILES)
+	#gjslint --disable 5,110,131 $(JSLINT_FILES)	
 	@./scripts/bootstrap.sh
 	@mkdir -p $(TMP_DIR)
 	@mkdir -p $(BIN)/www/js/
