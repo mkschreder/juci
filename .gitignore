@@ -25,3 +25,6 @@ manual
 *.mo
 translations.tar.gz
 tmp/
+/*.config
+*.patch
+/Makefile.local
