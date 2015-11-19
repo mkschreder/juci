@@ -1,0 +1,17 @@
+{
+	"juci-broadcom-pwrmgmt": {
+		"description": "Broadcom power management plugin",
+		"read": {
+			"uci": [
+				"power_mgmt"
+			]
+		}
+	}, 
+	"juci-broadcom-vlan-admin": {
+		"write": {
+			"uci": [
+				"power_mgmt"
+			]
+		}
+	}
+}
