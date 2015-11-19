@@ -5,7 +5,7 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1; 
 fi 
 
-apt-get install npm nodejs yui-compressor 
+apt-get install npm nodejs yui-compressor node-less
 npm install
 npm install -g grunt-cli
 npm install -g mocha 
