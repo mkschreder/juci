@@ -5,13 +5,15 @@
 		<juci-config-section ng-show="adapters">
 			<table class="table">
 				<thead>
-					<th translate>Name</th>
-					<th ng-show="config.local.mode == 'expert'" translate>Adapter</th>
-					<th translate>MAC</th>
-					<th translate>MTU</th>
-					<th width="1px" translate>Status</th>
+					<th><a href="" ng-click="order('type')" translate>Type</a></th>
+					<th><a href="" ng-click="order('name')" translate>Name</a></th>
+					<th><a href="" ng-click="order('device')" translate>Adapter</a></th>
+					<th><a href="" ng-click="order('macaddr')" translate>MAC</a></th>
+					<th><a href="" ng-click="order('mtu')" translate>MTU</a></th>
+					<th width="1px"><a href="" ng-click="order('state')" translate>Status</th>
 				</thead>
-				<tr ng-repeat="dev in adapters">
+				<tr ng-repeat="dev in adapters | orderBy:predicate:reverse">
+					<td><img ng-src="/img/juci-ethernet/icons/{{dev._icon}}.png" style="width: 20px; height: 20px;"/></td>
 					<td>{{dev.name}}</td>
 					<td>{{dev.device}}</td>
 					<td>{{dev.macaddr}}</td>

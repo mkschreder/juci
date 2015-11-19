@@ -4,7 +4,7 @@ JUCI.app
 .controller("wirelessStatusPage", function($scope, $uci, $wireless, gettext){
 	$scope.order = function(pred){
 		$scope.predicate = pred; 
-		$scope.reverse = ($scope.predicate === pred) ? !$scope.reverse : false;
+		$scope.reverse = !$scope.reverse;
 	}
 	$uci.$sync("wireless").done(function(){
 		$scope.dfs_enabled = $uci.wireless["@wifi-device"].find(function(x){ return x.dfsc.value != 0; }) != null; 

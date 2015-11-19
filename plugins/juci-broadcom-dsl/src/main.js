@@ -6,19 +6,23 @@ JUCI.app
 			var def = $.Deferred(); 
 			var self = this; 
 			self.getDevices().done(function(list, devices){
-				adapters.map(function(adapter){
+				var to_remove = []; 
+				adapters.forEach(function(adapter, idx){
+					if(adapter.device == "dsl0") to_remove.unshift(idx); 
 					if(adapter.device in devices){
 						var dev = devices[adapter.device]; 
 						adapter.name = dev.name; 
+						adapter.type = dev.type; 
 						delete devices[adapter.device]; 
 					}
 				}); 
+				to_remove.forEach(function(i){ adapters.splice(i, 1) }); 
 				Object.keys(devices).map(function(devid){
 					var dev = devices[devid]; 
 					adapters.push({
 						name: dev.name,
 						device: dev.id, 
-						link_type: dev.type, 
+						type: dev.type, 
 						state: "DOWN"
 					}); 
 				}); 
