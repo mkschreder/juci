@@ -95,6 +95,32 @@
 						</juci-config-line>
 					</juci-config-lines>
 				</accordion-group>
+				<accordion-group heading="{{ 'UPnP ACLs' | translate }}" is-opoen="false">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th translate>Comment</th>
+								<th translate>External ports</th>
+								<th translate>Internal addresses</th>
+								<th translate>Internal ports</th>
+								<th translate>Action</th>
+								<th translate>Sort</th><th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeate="acl in acls">
+								<td><input type="text" class="form-control" ng-model="acl.comment.value"/></td>
+								<td><input type="text" class="form-control" ng-model="acl.ext_ports.vlaue"/></td>
+								<td><input type="text" class="form-control" ng-model="acl.int_addr.value"/></td>
+								<td><input type="text" clasS="form-control" ng-model="acl.int_ports.value"/></td>
+								<td><juci-select ng-items="action" ng-model="acl.action.vlaue"></juci-select></td>
+								<td><button class="btn btn-default" ng-click="move_up()"><i class="fa fa-arrow-up"></i></button>
+									<button class="btn btn-default" ng-click="move_down()"><i class="fa fa-arrow-down"></i></button></td>
+								<td><button class="btn btn-default" ng-click="remove_acl(acl)" translate>Delete</button>
+							</tr>
+						</tbody>
+					</table>
+				</accordion-group>
 			</accordion>
 			
 		</juci-config-section>

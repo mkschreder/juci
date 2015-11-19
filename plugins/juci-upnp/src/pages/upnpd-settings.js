@@ -8,7 +8,11 @@ JUCI.app
 	}); 
 	$scope.networks = [];
 		
-	
+	$scope.acls = [{comment:{value:"comment"}, ext_ports:{value:"öasldkjf"}, int_addr:{value:"öaslk"}, int_ports:{value:"lasjfd"}, action:{value:"allow"}}];
+	$scope.action = [
+		{ label: $tr(gettext("Allow")),	value:"allow" },
+		{ label: $tr(gettext("Deny")),	value:"deny" }
+	];
 
 	$scope.onStartStopService = function(){
 		if(!$scope.service) return; 
