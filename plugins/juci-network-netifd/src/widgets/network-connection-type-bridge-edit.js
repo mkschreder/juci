@@ -19,30 +19,66 @@ JUCI.app
 	$scope.getItemTitle = function(dev){
 		return dev.name + " ("+dev.device+")"; 
 	}
-	function updateDevices(net){
-		if(!net) return;
-		$ethernet.getAdapters().done(function(adapters){
+
+	var sync = $ethernet.getAdapters(); 
+	
+	function updateDevices(){
+		if(!$scope.connection) return; 
+		var net = $scope.connection; 
+		sync.done(function(adapters){
 			var aptmap = {}; 
 			adapters.map(function(x){ aptmap[x.device] = x; }); 
-			net.$addedDevices = ((net.ifname.value != "")?net.ifname.value.split(" "):[])
+			$scope.addedDevices = ((net.ifname.value != "")?net.ifname.value.split(" "):[])
 				.filter(function(x){return x && x != "" && aptmap[x]; })
 				.map(function(x){ 
 					// return device and delete it from map so the only ones left are the ones that can be added
 					var a = aptmap[x];
 					delete aptmap[x]; 
-					return { name: a.name, device: a.device, adapter: a }; 
+					return a; 
 				}); 
-			net.$addableDevices = Object.keys(aptmap).map(function(k){ return aptmap[k]; }); 
-			$scope.$apply(); 
+			$scope.addableDevices = Object.keys(aptmap).map(function(k){ return aptmap[k]; }); 
+			setTimeout(function(){ $scope.$apply(); }, 0);  
 		}); 
-	}; updateDevices($scope.connection); 
+	}; updateDevices(); 
 	
 	$scope.$watch("connection", function(value){
 		if(!value) return; 
-		//updateDevices(value); 	
+		updateDevices(value); 	
 	});
-	
-	
+
+	$scope.$watch("addedDevices", function(value){
+		if(!value) return; 
+		$scope.connection.ifname.value = value.map(function(x){
+			return x.device; 
+		}).join(" "); 
+		// get networks
+		/*$network.getNetworks().done(function(nets){
+			// get adapters
+			sync.done(function(adapters){
+				// for each newly added device, check if it is already added somewhere else 
+				value.forEach(function(addedDev){
+					// only use bridge or anywan nets
+					nets.filter(function(net){ return net.type.value == "bridge" || net.type.value == "anywan"; }).map(function(net){
+						net.ifname.value = net.ifname.value.split(" ").filter(function(dev){ 
+							if(dev == addedDev.device && !confirm($tr(gettext("Are you sure you want to remove device "+dev+" from network "+net['.name']+" and use it in this bridge?")))) {
+								keep_device = true; 
+								return true; 
+							}
+							else if(dev == device) return false; 
+							return true; 
+						}).join(" ");
+					}); 
+					
+					if(keep_device) return; 
+					
+					$scope.connection.ifname.value += " " + device; 
+					$scope.connection.ifname.value.split(" ")
+						.filter(function(x){ return x != ""; }); 
+				}); 
+			}); 
+		});*/ 
+	}, true); 
+
 	$scope.onAddBridgeDevice = function(){
 		var modalInstance = $modal.open({
 			animation: true,
@@ -61,37 +97,7 @@ JUCI.app
 			console.log("Added device: "+JSON.stringify(device)); 
 			var keep_device = false; 
 			// remove the device from any other interface that may be using it right now (important!); 
-			$network.getNetworks().done(function(nets){
-				$ethernet.getAdapters().done(function(adapters){
-					nets.filter(function(net){ return net.type.value == "bridge" || net.type.value == "anywan"; }).map(function(net){
-						net.ifname.value = net.ifname.value.split(" ").filter(function(dev){ 
-							if(dev == device && !confirm($tr(gettext("Are you sure you want to remove device "+dev+" from network "+net['.name']+" and use it in this bridge?")))) {
-								keep_device = true; 
-								return true; 
-							}
-							else if(dev == device) return false; 
-							return true; 
-						}).join(" ");
-					}); 
-					
-					if(keep_device) return; 
-					
-					$scope.connection.ifname.value += " " + device; 
-					$scope.connection.ifname.value.split(" ")
-						.filter(function(x){ return x != ""; })
-						.map(function(dev_name){
-							var dev = adapters.find(function(d){ return d.device == dev_name; }); 
-							
-							if(!$scope.doNotMarkBridgedDevices){
-								// mark devies that are part of the bridge as bridged
-								//if(dev) dev.bridged = true; 
-								// TODO: this is removed for now. 
-							}
-						}); 
-					updateDevices($scope.connection);
-				}); 
-			}); 
-		}, function () {
+				}, function () {
 			console.log('Modal dismissed at: ' + new Date());
 		});
 	}
