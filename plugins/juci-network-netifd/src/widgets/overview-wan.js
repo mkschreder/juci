@@ -14,6 +14,18 @@ JUCI.app
 		replace: true
 	 };  
 })
+.filter('formatTimer', function() {
+    return function(seconds) {
+		var numdays = Math.floor(seconds / 86400);
+		var numhours = Math.floor((seconds % 86400) / 3600);
+		var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+		var numseconds = ((seconds % 86400) % 3600) % 60;
+		if (numdays > 0) { return (numdays + 'd ' + numhours + 'h ' + numminutes + 'm ' + numseconds + 's');}
+		if (numhours > 0) { return (numhours + 'h ' + numminutes + 'm ' + numseconds + 's');}
+		if (numminutes > 0) { return (numminutes + 'm ' + numseconds + 's');}
+		return (numseconds+ 's');
+    };
+})
 .controller("overviewWidgetWAN", function($scope, $uci, $rpc, $firewall){
 	$scope.statusClass = "text-success"; 
 	JUCI.interval.repeat("overview-wan", 2000, function(done){

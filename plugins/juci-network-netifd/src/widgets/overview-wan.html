@@ -22,6 +22,12 @@
 			<tr ng-show="default_route_ifs.length"><td ><strong translate>Connection</strong></td>
 				<td><span ng-repeat="i in connection_types track by $index">{{i}}<br/></span></td>
 			</tr>
+			<tr ng-show="default_route_ifs.length"><td > <strong translate>DNS-Server</strong></td>
+				<td> <span ng-repeat="i in default_route_ifs track by $index">{{i['dns-server'].toString()}} <br/></span></td>
+			</tr>
+			<tr ng-show="default_route_ifs.length"><td > <strong translate>Uptime</strong></td>
+				<td> <span ng-repeat="i in default_route_ifs track by $index">{{i['uptime']|formatTimer}}<br/></span></td>
+			</tr>
 		</table>
 	</div>
 </div>
