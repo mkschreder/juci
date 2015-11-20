@@ -5,12 +5,13 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1; 
 fi 
 
-apt-get install npm nodejs yui-compressor node-less
+apt-get install npm nodejs yui-compressor
 npm install
 npm install -g grunt-cli
 npm install -g mocha 
 npm install -g bower 
 npm install -g uglify-js
+npm install -g less
 
 if [ "$(which node)" == "" ]; then 
 	NODEJS=$(which nodejs)
