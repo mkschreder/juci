@@ -53,6 +53,7 @@
 		},
 		"write": {
 			"juci-io": [ "upload" ], 
+			"passwd": [ "self" ],
 			"ubus": {
 				"/juci/system.service": [
 					"start",
