@@ -2,14 +2,84 @@
 
 local juci = require("juci/core"); 
 
-function user_password(opts)
+local function shadow_table()
+	local result = {}; 
+	local shadow = juci.readfile("/etc/shadow"); 
+	for line in shadow:gmatch("[^\r\n]+") do 
+		local fields = {}; 
+		for field in line:gmatch("[^:]+") do
+			table.insert(fields, field); 
+		end
+		table.insert(result, fields); 
+	end
+	return result; 
+end
+
+local function checkpassword(user, pass)
+	local shadow = juci.readfile("/etc/shadow"); 
+	local shpass = nil; 
+	for line in shadow:gmatch("[^\r\n]+") do 
+		local fields = {}; 
+		for field in line:gmatch("[^:]+") do
+			table.insert(fields, field); 
+		end
+		if(fields[1] == user) then shpass = fields[2]; end
+	end
+	if shpass == nil then return false; end
+	local typ, salt, hash = shpass:match("\$([^$]+)$([^$]+)$([^$]+).*"); 
+	local epass = juci.shell("echo %s | openssl passwd -1 -salt "..salt.." -stdin", pass);
+	epass = epass:match("[^\r\n]+"); 
+	if shpass == epass then 
+		return true; 
+	end
+	return false; 
+end
+
+local function user_set_password(opts)
 	if not opts["password"] then return 5; end
+	local session = juci.session.get(opts.sid); 
+	if not session then 
+		print(json.encode({ error = "Could not find session!" })); 
+		return 1; 
+	end
+	if session.data.username ~= opts.username and not juci.session.access(opts.sid, "passwd", "otheruser", { "write" }) then 
+		print(json.encode({ error = "Can not change password for another user!" })); 
+		return 1; 
+	end
+	if not juci.session.access(opts.sid, "passwd", "self", { "write" }) then 
+		print(json.encode({ error = "Permission denied!" }));
+		return 1; 
+	end
+	if not checkpassword(opts.username, opts.oldpassword) then 
+		print(json.encode({ error = "Invalid username/password!"})); 
+		return 1; 
+	end
 	local stdout = juci.shell("echo -e \"%s\" | passwd admin", opts["password"].."\\n"..opts["password"]); 
 	print(json.encode({
 		["stdout"] = stdout
 	})); 
 end
 
+local function user_list(opts)
+	local shadow = shadow_table(); 
+	local users = {};
+	local listothers = juci.session.access(opts.sid, "passwd", "otheruser", { "write" }); 
+	local session = juci.session.get(opts.sid); 
+	if(not session) then
+		print(json.encode({ users = {}, error = "Session not found! ("..(opts.sid or "")..")"}));
+		return 1; 
+	end
+	for _,entry in ipairs(shadow) do
+		if(not listothers) then 
+			if(session.data.username == entry[1]) then table.insert(users, entry[1]); end
+		else
+			table.insert(users, entry[1]); 
+		end
+	end
+	print(json.encode({ users = users }));  
+end
+
 juci.ubus({
-	["password"] = user_password
+	["setpassword"] = user_set_password,
+	["listusers"] = user_list
 }, arg); 

@@ -17,7 +17,8 @@
 					"clean"
 				], 
 				"/juci/system.user": [
-					"password"
+					"setpassword",
+					"listusers"
 				], 
 				"/juci/system.time": [
 					"zonelist", 
