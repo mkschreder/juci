@@ -1,7 +1,7 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="dnsDhcpSettingsCtrl">
 		<accordion close-others="true">
-			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=false>
+			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=true>
 				<juci-config-lines>
 					<juci-config-line title="{{ 'Local domain' | translate }}" 
 						help="{{ 'Local domain suffix appended to DHCP names and hosts file entries' | translate }}">
@@ -27,7 +27,7 @@
 					</juci-config-line>
 				</juci-config-lines>
 			</accordion-group>
-			<accordion-group heading="{{ 'Advanced Settings' | translate }}" is-open=true>
+			<accordion-group heading="{{ 'Advanced Settings' | translate }}" is-open=false>
 				<juci-config-lines>
 					<juci-config-line title="{{ 'Domain required' | translate }}" help="{{ 'Do not forward DNS-Requests without DNS-Name' | translate }}">
 						<switch class="green" ng-model="dnsmasq.domainneeded.value" />
@@ -45,7 +45,7 @@
 						<switch class="green" ng-model="dnsmasq.localise_queries.value" />
 					</juci-config-line>
 					<juci-config-line title="{{ 'Local server' | translate  }}" help="{{ 'Local domain specification. Names matching this domain are never forwared and resolved from DHCP or hosts files only' | translate }}">
-						<input type="text" class="form-control" ng-model="dnsmasq.local.value" />
+						<input type="text" class="form-control" placeholder="/lan/" ng-model="dnsmasq.local.value" />
 					</juci-config-line>
 					<juci-config-line title="{{ 'Expand hosts' | translate }}" help="{{ 'Add local domain suffix to names served from hosts files' | translate }}">
 						<switch class="green" ng-model="dnsmasq.expandhosts.value" />
