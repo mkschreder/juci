@@ -21,6 +21,12 @@ function dropbear_getpublickeys(opts)
 	print(json.encode({keys=res}));
 end
 
+function dropbear_addpublickey(opts)
+       if(not opts["key"]) then return; end;
+       --[ TODO: add check of ]--
+	   juci.shell('echo "'.. opts["key"] .. "\" >> " .. FILEPATH);
+end
+
 function dropbear_removepublickey(opts)
 	if(not opts["type"]) then print(json.encode({res="noType"})); return; end;
 	if(not opts["key"])  then print(json.encode({res="noKey"})); return; end;
@@ -36,6 +42,7 @@ end
 
 juci.ubus({
 	["get_public_keys"] = dropbear_getpublickeys,
+	["add_public_key"] = dropbear_addpublickey,
 	["remove_public_key"] = dropbear_removepublickey
 
 }, arg); 
