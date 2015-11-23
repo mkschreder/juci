@@ -31,4 +31,13 @@ JUCI.app
 		var ipaddr = Object.keys($scope.data.parts).map(function(x){ return $scope.data.parts[x] }).join("."); 
 		if($scope.ngModel != ipaddr) ngModel.assign($scope.$parent, ipaddr); 
 	};
+
+	$scope.onPaste = function(ev){
+		var ip = ev.originalEvent.clipboardData.getData('text/plain'); 
+		if(!ip) return; 
+		var parts = ip.split("."); 
+		if(parts.length != 4) return; 
+		parts.forEach(function(v, i){ $scope.data.parts[i] = v; }); 
+		$scope.updateModel(); 
+	}
 }); 
