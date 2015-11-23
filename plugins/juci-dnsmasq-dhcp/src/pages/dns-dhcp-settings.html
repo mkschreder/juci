@@ -1,0 +1,94 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="dnsDhcpSettingsCtrl">
+		<accordion close-others="true">
+			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=false>
+				<juci-config-lines>
+					<juci-config-line title="{{ 'Local domain' | translate }}" 
+						help="{{ 'Local domain suffix appended to DHCP names and hosts file entries' | translate }}">
+						<input type="text" class="form-control" ng-model="dnsmasq.domain.value" placeholder="lan"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Log queries' | translate }}" help="{{ 'Write received DNS requests to syslog' | translate }}">
+						<switch class="green" ng-model="dnsmasq.logqueries.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Leasefile' | translate }}" help="{{ 'file where given DHCP-leases will be stored' | translate }}">
+						<input type="text" class="form-control" ng-model="dnsmasq.leasefile.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Ignore resolve file' | translate }}">
+						<switch class="green" ng-model="dnsmasq.noresolv.value" />
+					</juci-config-line>
+					<juci-config-line ng-hide="dnsmasq.noresolv.value" title="{{ 'Resolve file' | translate }}" help="{{ 'local DNS file' | translate }}">
+						<input type="text" class="form-control" ng-model="dnsmasq.resolvfile.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Ignore Hosts file' | translate }}">
+						<switch class="green" ng-model="dnsmasq.nohosts.value" />
+					</juci-config-line>
+					<juci-config-line ng-hide="dnsmasq.nohosts.value" title="{{ 'Resolve file' | translate }}" help="{{ 'local DNS file' | translate }}">
+						<tags-input ng-model="hostfiles" display-property="label" add-on-space="true"></tags-input>
+					</juci-config-line>
+				</juci-config-lines>
+			</accordion-group>
+			<accordion-group heading="{{ 'Advanced Settings' | translate }}" is-open=true>
+				<juci-config-lines>
+					<juci-config-line title="{{ 'Domain required' | translate }}" help="{{ 'Do not forward DNS-Requests without DNS-Name' | translate }}">
+						<switch class="green" ng-model="dnsmasq.domainneeded.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Authoritative' | translate }}" help="{{ 'This is the only DHCP in the local network' | translate }}">
+						<switch class="green" ng-model="dnsmasq.authoritative.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Filter private' | translate }}" help="{{ 'Do not forward reverse lookups for local networks' | translate }}">
+						<switch class="green" ng-model="dnsmasq.boguspriv.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Filter usless' | translate }}" help="{{ 'Do not forward requests that cannot be answered by public name servers' | translate }}">
+						<switch class="green" ng-model="dnsmasq.filterwin2k.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Localise queries' | translate }}" help="{{ 'Localise hostname depending on the requesting subnet if multiple IPs are available' | translate }}">
+						<switch class="green" ng-model="dnsmasq.localise_queries.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Local server' | translate  }}" help="{{ 'Local domain specification. Names matching this domain are never forwared and resolved from DHCP or hosts files only' | translate }}">
+						<input type="text" class="form-control" ng-model="dnsmasq.local.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Expand hosts' | translate }}" help="{{ 'Add local domain suffix to names served from hosts files' | translate }}">
+						<switch class="green" ng-model="dnsmasq.expandhosts.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'No negative cache' | translate }}" help="{{ 'Do not cache negative replies, e.g. for not existing domains' | translate }}">
+						<switch class="green" ng-model="dnsmasq.nonegcache.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Strict order' | translate }}" help="{{ 'DNS servers will be queried in the order of the resolvfile' | translate }}">
+						<switch class="green" ng-model="dnsmasq.strictorder.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Bogus NX Domain Override' | translate }}" help="{{ 'List of hosts that supply bogus NX domain results' | translate }}">
+						<tags-input ng-model="bogusnxdomain" placeholder="{{ 'ex. 67.215.65.132' | translate }}" display-property="label" add-on-space="true"></tags-input>
+					</juci-config-line>
+					<juci-config-line title="{{ 'DNS forwarding' | translate }}" help="{{ 'List of DNS servers to forward requests to' | translate }}">
+						<tags-input ng-model="server" placeholder="{{ 'ex. /example.org/10.1.2.3' | translate }}" display-property="label" add-on-space="true"></tags-input>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Rebind protection' | translate }}" help="{{ 'Discard upstream RFC1918 responses' | translate }}">
+						<switch class="green" ng-model="dnsmasq.rebind_protection.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Allow localhost' | translate }}" help="{{ 'Allow upstream responses in the 127.0.0.0/8 range, e.g. for RBL services' | translate }}">
+						<switch class="green" ng-model="dnsmasq.rebind_localhost.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Domain whitelist' | translate }}" help="{{ 'List of domains to allow RFC1918 responses for' | translate }}">
+						<tags-input ng-model="rebind_domain" placeholder="{{ 'ex. ihost.netflix.com' | translate }}" display-property="label" add-on-space="true"></tags-input>
+					</juci-config-line>
+					<juci-config-line title="{{ 'DNS server port' | translate }}" help="{{ 'Listening port for inbound DNS queries'  | translate }}">
+						<input type="number" class="form-control" ng-model="dnsmasq.port.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'DNS query port' | translate }}" help="{{ 'Fixed source port for outbound DNS queries' | translate }}">
+						<input type="text" class="form-control" placeholder="any" ng-model="dnsmasq.queryport.value" ng-change="on_port_change('queryport')" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Max DHCP leases' | translate }}" help="{{ 'Maximum allowed number of active DHCP leases' | translate }}">
+						<input type="text" class="form-control" placeholder="unlimited" ng-model="dnsmasq.dhcpleasemax.value" ng-change="on_port_change('dhcpleasemax')" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Max. EDNS0 packet size' | translate }}" help="{{ 'Maximum allowed size of EDNS.0 UDP packets' | translate }}">
+						<input type="text" class="form-control" placeholder="1280" ng-model="dnsmasq.ednspacket_max.value" ng-change="on_port_change('ednspacket_max')" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Max. concurrent queries' | translate }}" help="{{ 'Maximum allowed number of concurrent DNS queries' | translate }}">
+						<input type="text" class="form-control" placeholder="150" ng-model="dnsmasq.dnsforwardmax.value" ng-change="on_port_change('dnsforwardmax')" />
+					</juci-config-line>
+				</juci-config-lines>
+			</accorion-group>
+		</accordion>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>

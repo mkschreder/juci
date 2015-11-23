@@ -7,7 +7,8 @@
 			],
 			"ubus": {
 				"/juci/dhcp": [
-					"ipv4leases"
+					"ipv4leases",
+					"ipv6leases"
 				]
 			}
 		},
