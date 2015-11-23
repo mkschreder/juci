@@ -62,6 +62,7 @@
 			var networks = []; 
 			var self = this; 
 			var devmap = {}; 
+			if(!opts) opts = {}; 
 			var filter = opts.filter || {};
 			async.series([
 				function(next){
