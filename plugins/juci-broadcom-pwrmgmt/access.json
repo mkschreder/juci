@@ -7,7 +7,7 @@
 			]
 		}
 	}, 
-	"juci-broadcom-vlan-admin": {
+	"juci-broadcom-pwrmgmt": {
 		"write": {
 			"uci": [
 				"power_mgmt"
