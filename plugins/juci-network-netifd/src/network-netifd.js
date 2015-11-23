@@ -56,12 +56,13 @@
 		}
 		
 		// should be renamed to getInterfaces for NETWORK (!) interfaces. 
-		NetworkBackend.prototype.getNetworks = function(){
+		NetworkBackend.prototype.getNetworks = function(opts){
 			var deferred = $.Deferred(); 
 			var filter = filter || {}; 
 			var networks = []; 
 			var self = this; 
 			var devmap = {}; 
+			var filter = opts.filter || {};
 			async.series([
 				function(next){
 					$ethernet.getAdapters().done(function(devs){
@@ -79,6 +80,7 @@
 							}).join(" "); 
 							i.ifname.value = fixed;
 							if(i[".name"] == "loopback") return; 
+							if(filter.no_aliases && i[".name"].indexOf("@") == 0 || i.type.value == "alias") return; 
 							networks.push(i); 
 						}); 
 					}).always(function(){

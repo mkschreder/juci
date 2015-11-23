@@ -17,7 +17,8 @@
 					"clean"
 				], 
 				"/juci/system.user": [
-					"password"
+					"setpassword",
+					"listusers"
 				], 
 				"/juci/system.time": [
 					"zonelist", 
@@ -52,6 +53,7 @@
 		},
 		"write": {
 			"juci-io": [ "upload" ], 
+			"passwd": [ "self" ],
 			"ubus": {
 				"/juci/system.service": [
 					"start",

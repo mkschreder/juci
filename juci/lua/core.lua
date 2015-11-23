@@ -114,7 +114,8 @@ local session = {
 	access = function(sid, group, acl, rights) 
 		local conn = base.ubus.connect(); 
 		local result = conn:call("session", "access", { ubus_rpc_session = sid }); 
-		if(result.acls and result.acls[group] and result.acls[group][acl]) then
+		conn:close(); 
+		if(result and result.acls and result.acls[group] and result.acls[group][acl]) then
 			for _,v in ipairs(result.acls[group][acl]) do
 				for _,j in ipairs(rights) do
 					if(j == v) then return true; end 
@@ -122,6 +123,12 @@ local session = {
 			end
 		end
 		return false; 
+	end,
+	get = function(sid)
+		local conn = base.ubus.connect(); 
+		local result = conn:call("session", "access", { ubus_rpc_session = sid }); 
+		conn:close(); 
+		return result; 
 	end
 }
 

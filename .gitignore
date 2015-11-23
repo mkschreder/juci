@@ -18,10 +18,12 @@ plugins/**/files
 plugins/**/build
 services/**/build
 *~
-Makefile.local
+/Makefile.local
 .cleaned
 manual
 *.pot
 *.mo
 translations.tar.gz
 tmp/
+./juci-local-server.config
+*.patch

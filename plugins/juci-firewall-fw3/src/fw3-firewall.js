@@ -40,8 +40,28 @@ JUCI.app
 				}
 			}); 
 			return deferred.promise(); 
+		},
+
+		//! Returns uci network objects that are members of a zone. 
+		//! opts argument is passed to the getNetworks method of $network so it can be used to specify additional filtering. 
+		getZoneNetworks: function(zone, opts){
+			if(!opts) opts = {}; 
+			var def = $.Deferred();  
+			sync().done(function(){
+				$network.getNetworks({ filter: opts.filter }).done(function(nets){
+					var zone = $uci.firewall["@zone"].find(function(x){ return x[".name"] == zone; }); 
+					if(!zone) {
+						def.reject({error: "Zone does not exist!"}); 
+						return; 
+					}
+					var zone_nets = nets.filter(function(x){
+						return zone.network.value.indexOf(x[".name"]) != -1; 
+					}); 
+					def.resolve(zone_nets); 
+				}); 
+			}); 
+			return def.promise(); 
 		}, 
-		
 		// we determine what networks are wan/lan/guest based on zones. This is currently hardcoded,
 		// but probably should not be in the future. This will break if the user has different zone names!
 		getLanZone: function(){ 
