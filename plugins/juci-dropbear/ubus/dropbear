@@ -21,9 +21,21 @@ function dropbear_getpublickeys(opts)
 	print(json.encode({keys=res}));
 end
 
+function dropbear_removepublickey(opts)
+	if(not opts["type"]) then print(json.encode({res="noType"})); return; end;
+	if(not opts["key"])  then print(json.encode({res="noKey"})); return; end;
+	if(not opts["id"])   then print(json.encode({res="noId"})); return; end;
+	local keyToRemove=  opts["type"] .. " " .. opts["key"] .. " " .. opts["id"]
+	local command= 'cat ' .. FILEPATH .. ' |grep -v "' .. keyToRemove .. '" > /tmp/auth';
+	juci.shell(command);
+	juci.shell('mv /tmp/auth '.. FILEPATH);
+	print(json.encode({res="ok"}));
+end
+
 
 
 juci.ubus({
-	["get_public_keys"] = dropbear_getpublickeys
+	["get_public_keys"] = dropbear_getpublickeys,
+	["remove_public_key"] = dropbear_removepublickey
 
 }, arg); 
