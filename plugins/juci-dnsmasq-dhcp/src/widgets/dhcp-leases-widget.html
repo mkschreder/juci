@@ -1,11 +1,49 @@
-<div ng-controller="dhcpLeasesWidget">
-	<h2 translate>Active DHCP Leases</h2>
-	<juci-config-section>
-		<juci-config-line title="{{ 'DHCPv4 leases' | translate }}"></juci-config-line>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th translate>
-		</table>
-	</juci-config-section>
-</div>
+<h2 translate>Active DHCP Leases</h2>
+<juci-config-section>
+	<juci-config-line title="{{ 'DHCPv4 leases' | translate }}"></juci-config-line>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th translate>Hostname</th>
+				<th translate>IPv4-Address</th>
+				<th translate>MAC-Address</th>
+				<th translate>Leasetime remaining</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="v4lease in ipv4leases">
+				<td>{{ v4lease.hostname }}</td>
+				<td>{{ v4lease.ipaddr }}</td>
+				<td>{{ v4lease.macaddr }}</td>
+				<td>{{ to_time_remaining(v4lease.leasetime) }}</td>
+			</tr>
+			<tr ng-show="ipv4leases.length === 0">
+				<td colspan="4" translate>There are no active leases</td>
+			</tr>
+		</tbody>
+	</table>
+	<juci-config-line title="{{ 'DHCPv6 leases' | translate }}"></juci-config-line>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th translate>Hostname</th>
+				<th translate>IPv6-Address</th>
+				<th translate>DUID</th>
+				<th translate>Leasetime remaining</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="v6lease in ipv6leases">
+				<td>{{ v6lease.hostname }}</td>
+				<td>{{ v6lease.ip6addr }}</td>
+				<td>{{ v6lease.duid }}</td>
+				<td>{{ to_time_remaining(v6lease.leasetime) }}</td>
+			</tr>
+			<tr ng-show=true>
+				<td colspan="4" translate>There are no active leases</td>
+			</tr>
+		</tbody>
+	</table>
+	<juci-config-line title="{{ 'Static DHCP leases' | 
+</juci-config-section>
+

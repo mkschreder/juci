@@ -106,7 +106,7 @@ local function read_ip6_dhcp_info()
 				duid = duid, 
 				iaid = iaid, 
 				hostname = hostname, 
-				ts = ts, 
+				leasetime = ts, 
 				id = id, 
 				length = length, 
 				ip6addr = ip6addr
@@ -172,5 +172,6 @@ end
 return {
 	clients = network_list_connected_clients,
 	ipv6neigh = read_ip6_clients,
-	ipv4leases = read_dhcp_info
+	ipv4leases = read_dhcp_info,
+	ipv6leases = read_ip6_dhcp_info
 }; 
