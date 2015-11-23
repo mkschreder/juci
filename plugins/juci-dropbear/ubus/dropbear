@@ -1,0 +1,29 @@
+#!/usr/bin/lua
+
+local juci = require("juci/core"); 
+local FILEPATH="/etc/dropbear/authorized_keys"
+function dropbear_getpublickeys(opts)
+	local res = {};
+	local file = io.open(FILEPATH, "r");
+	for line in file:lines() do
+		local parts= {};
+		local i =0
+		for w in line:gmatch("%S+") do
+		  	table.insert(parts,w);
+		end
+		table.insert ( res,{
+			type = parts[1], 
+			key = parts[2],
+			id = parts[3] 
+		});
+	end
+	file:close();
+	print(json.encode({keys=res}));
+end
+
+
+
+juci.ubus({
+	["get_public_keys"] = dropbear_getpublickeys
+
+}, arg); 
