@@ -1,4 +1,5 @@
 //! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com
+	<th translate>
 JUCI.app
 .directive("juciDhcpLeasesWidget", function(){
 	return {
