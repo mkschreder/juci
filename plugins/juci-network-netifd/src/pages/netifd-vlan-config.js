@@ -9,8 +9,7 @@ JUCI.app
 	
 	$scope.onAddVlan = function(){
 		$uci.network.create({
-			".type": "switch_vlan",
-			".name": "new vlan"
+			".type": "switch_vlan"
 		}).done(function(interface){
 			$scope.$apply(); 
 		}); 
