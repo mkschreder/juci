@@ -1,0 +1,15 @@
+{
+	"juci-inteno-qos": {
+		"description": "JUCI Quality-of-service Configuration",
+		"read": {
+			"uci": [
+				"qos"
+			]
+		},
+		"write": {
+			"uci": [
+				"qos"
+			]
+		}
+	}
+}

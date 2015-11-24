@@ -1,0 +1,20 @@
+<div>
+	<juci-config-line title="{{ 'Target' | translate }}">
+		<juci-select ng-items="targets" ng-model="rule.target.value" />
+	</juci-config-line>
+	<juci-config-line title="{{ 'Precedence' | translate }}">
+		<juci-select ng-items="precedence" ng-model="rule.dscp.value" />
+	</juci-config-line>
+	<juci-config-line ng-show="rule.srchost.value != 'custom'" title="{{ 'Source host' | translate }}">
+		<juci-select ng-items="clients" ng-model="rule.srchost.value" />
+	</juci-config-line>
+	<juci-config-line ng-show="rule.srchost.value == 'custom'" title="{{ 'Source host' | translate }}">
+		<input type="text" class="form-control" placehoder="custom ip"ng-model="data.new_srchost" ng-blur="set_srchost()"/>
+	</juci-config-line>
+	<juci-config-line ng-show="rule.dsthost.value != 'custom'" title="{{ 'Destination host' | translate }}">
+		<juci-select ng-items="clients" ng-model="rule.dsthost.value" />
+	</juci-config-line>
+	<juci-config-line ng-show="rule.dsthost.value == 'custom'" title="{{ 'Destination host' | translate }}">
+		<input type="text" class="form-control" placeholder="custom ip" ng-model="data.new_dsthost" ng-blur="set_dsthost()"/>
+	</juci-config-line>
+</div>
