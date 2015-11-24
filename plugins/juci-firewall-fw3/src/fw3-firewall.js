@@ -87,7 +87,8 @@ JUCI.app
 			}); 
 			return deferred.promise(); 
 		}, 
-		
+	
+		// TODO: this is meaningless stuff that was added earlier. Remove or replace with something that actually works. 
 		nat: {
 			enable: function(value){
 				$uci.$sync("firewall").done(function(){
