@@ -2,11 +2,25 @@
 	"juci-dropbear": {
 		"description": "JUCI dropbear module",
 		"read": {
+            "ubus": {
+				"/juci/dropbear": [
+					"add_public_key",
+					"get_public_keys",
+					"remove_public_key"
+                ]
+            },
 			"uci": [
 				"dropbear"
 			]
 		},
 		"write": {
+            "ubus": {
+				"/juci/dropbear": [
+					"add_public_key",
+					"get_public_keys",
+					"remove_public_key"
+                ]
+            },
 			"uci": [
 				"dropbear"
 			]
