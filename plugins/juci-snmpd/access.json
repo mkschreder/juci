@@ -1,5 +1,5 @@
 {
-	"juci-snmp": {
+	"juci-snmpd": {
 		"description": "JUCI SNMPD module",
 		"read": {
 			"uci": [
