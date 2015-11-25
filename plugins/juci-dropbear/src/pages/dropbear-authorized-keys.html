@@ -1,0 +1,7 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="dropbearAuthorizedKeysPage">
+		<h2 translate>Accepted SSH keys</h2>
+		<juci-list-editor ng-items="keyList.keys" get-item-title="$item.id" on-delete="onDeleteKey($item)" on-create="onAddKey()"></juci-list-editor>
+	</div>
+</juci-layout-with-sidebar>
+
