@@ -25,17 +25,17 @@ JUCI.app
 		}
 	}; 
 })
-.controller("dropbearAddKeyModel", function($scope, $modalInstance, gettext){
+.controller("dropbearAddKeyModel", function($scope, $modalInstance, $tr, gettext){
 	$scope.data = {}; 
 	$scope.ok = function () {
 		if(!$scope.data.key) {
-			alert(gettext("You need to insert the public key data!")); 
+			alert($tr(gettext("You need to insert the public key data!"))); 
 			return; 
 		}
 		$modalInstance.close($scope.data);
 	};
 
 	$scope.cancel = function () {
-    	$modalInstance.dismiss('cancel');
+		$modalInstance.dismiss('cancel');
 	};
 })

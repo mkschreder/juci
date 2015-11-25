@@ -1,18 +1,15 @@
 <div>
-    <div class="modal-header">
-        <h3 class="modal-title" translate>Add new SSH key</h3>
-    </div>
-    <div class="modal-body">
-        <juci-config-lines>
-            <juci-config-line title="{{'Key data'|translate}}">
-<textarea rows="12" cols="50" ng-model="data.key">
-</textarea>
-			</juci-config-line>
-        </juci-config-lines>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-    </div>
+	<div class="modal-header">
+		<h3 class="modal-title" translate>Add new SSH key</h3>
+	</div>
+	<div class="modal-body">
+		<label>{{'Paste your key here:'|translate}}</label>
+		<textarea rows="12" cols="50" ng-model="data.key">
+		</textarea>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">OK</button>
+		<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+	</div>
 </div>
 
