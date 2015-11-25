@@ -15,51 +15,53 @@ JUCI.app
 }).controller("rtgraphEthernetInterface", function($scope, $rpc, $element){	
 	$scope.$watch("ifname", function(value){
 		if(!value) return; 
-		$rpc.juci.rtgraphs.get({ethdevice: $scope.ifname}).done(function(result){
-			var container = $element.find(".rtgraph").get(0); 
-			var items = []; 
+		var container = $element.find(".rtgraph").get(0); 
+		var items = []; 
 
-			var dataset = new vis.DataSet(items);
-			var options = {
-				start: result.graph[0][0],
-				end: result.graph[result.graph.length-1][0],
-				style: 'line',
-				interpolation: false, 
-				drawPoints: false
-			};
-			
-			var groups = new vis.DataSet(); 	
-			groups.add({
-				id: 1,
-				options: {
-					style:'line',
-					drawPoints: false //{ style: 'none', size: 10 }
-				}
-			});
-			groups.add({
-				id: 2,
-				options: {
-					style:'line',
-					drawPoints: false //{ style: 'none', size: 10 }
-				}
-			});
+		var dataset = new vis.DataSet(items);
+		var options = {
+			start: 0,
+			end: 1,
+			style: 'line',
+			interpolation: false, 
+			drawPoints: false
+		};
+		
+		var groups = new vis.DataSet(); 	
+		groups.add({
+			id: 1,
+		});
+		groups.add({
+			id: 2,
+		});
 
-			var graph2d = new vis.Graph2d(container, dataset, groups, options);
+		var graph2d = new vis.Graph2d(container, dataset, groups, options);
 
-			dataset.remove(dataset.getIds()); 
-			
-			var prev = []; 
-			result.graph.forEach(function(line, i){
-				if(i > 0){
-					var dt = line[0] - prev[0]; 
-					line[1] = (line[1] - prev[1]) / dt; 
-					line[3] = (line[3] - prev[3]) / dt; 
-				}
-				line.forEach(function(x, i){ prev[i] = x; }); 
-			}); 
-			result.graph.map(function(line){
-				dataset.add({group: 1, x: line[0], y: line[1]}); 
-				dataset.add({group: 2, x: line[0], y: line[3]}); 
+		var prev_time = 0; 
+		var start_time = 0; 
+		JUCI.interval.repeat("graph-update-"+Math.random(), 1000, function(done){
+			$rpc.juci.rtgraphs.get({ethdevice: $scope.ifname}).done(function(result){
+				if(!result.graph || !result.graph.length) return; 
+				if(!start_time) start_time = result.graph[0][0]; 
+				//dataset.remove(dataset.getIds()); 
+				result.graph.forEach(function(line, i){
+					if(line[0] <= prev_time) return; 
+
+					if(i > 0){
+						var prev_line = result.graph[i-1]; 
+						var dt = line[0] - prev_line[0]; 
+						var rxs = (line[1] - prev_line[1]) / dt; 
+						var txs = (line[3] - prev_line[3]) / dt; 
+						for(var c = prev_line[0]; c < line[0]; c++){
+							dataset.add({group: 1, x: c, y: rxs}); 
+							dataset.add({group: 2, x: c, y: txs}); 
+						}
+					}
+				
+					prev_time = line[0]; 
+				}); 
+				graph2d.setWindow(prev_time - 60, prev_time); 
+				done(); 
 			}); 
 		}); 
 	}); 
