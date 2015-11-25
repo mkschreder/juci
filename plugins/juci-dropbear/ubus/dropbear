@@ -1,20 +1,25 @@
 #!/usr/bin/lua
 
-local juci = require("juci/core"); 
+local juci = require("juci/core");
 local FILEPATH="/etc/dropbear/authorized_keys"
+
+function tokenize(str)
+	local parts= {};
+	for w in str:gmatch("%S+") do
+		table.insert(parts,w);
+	end
+	return parts
+end
+
 function dropbear_getpublickeys(opts)
 	local res = {};
 	local file = io.open(FILEPATH, "r");
 	for line in file:lines() do
-		local parts= {};
-		local i =0
-		for w in line:gmatch("%S+") do
-		  	table.insert(parts,w);
-		end
+		local keyParts= tokenize(line);
 		table.insert ( res,{
-			type = parts[1], 
-			key = parts[2],
-			id = parts[3] 
+			type = keyParts[1],
+			key  = keyParts[2],
+			id   = keyParts[3]
 		});
 	end
 	file:close();
@@ -22,22 +27,19 @@ function dropbear_getpublickeys(opts)
 end
 
 function dropbear_addpublickey(opts)
-       if(not opts["key"]) then return; end;
-       --[ TODO: add check of ]--
-	   juci.shell('echo "'.. opts["key"] .. "\" >> " .. FILEPATH);
+	if(not opts["key"]) then print(json.encode({status="fail-noKeyFile"})); return; end;
+		local keyPart=tokenize(opts["key"]);
+		if keyPart[3] == ("" or " ") then print(json.encode({status="fail-MissingID"})); return; end
+		--[ TODO: add better check of key ]--
+		juci.shell('echo "'.. opts["key"] .. "\" >> " .. FILEPATH);
+	print(json.encode({status="ok"}));
 end
 
 function dropbear_removepublickey(opts)
 	if(not opts["type"]) then print(json.encode({status="drop-eNoType"})); return; end;
 	if(not opts["id"]) then print(json.encode({status="drop-eNoId"})); return; end;
 	if(not opts["key"]) then print(json.encode({status="drop-eNoKey"})); return; end;
-	local keyToRemove=  opts.type .. " " .. opts.key .. " " .. opts.id
-	local command= 'cat ' .. FILEPATH .. ' |grep -v "' .. keyToRemove .. '" > /tmp/auth;echo $?';
-	juci.shell(command);
-	juci.shell('mv /tmp/auth '.. FILEPATH .. ';echo $?');
-	local file = io.open("/tmp/lastCall", "w");
-	file:write(keyToRemove);
-	file:close();
+	juci.shell('cat ' .. FILEPATH .. ' |grep -v "' .. opts.type .. " " .. opts.key .. " " .. opts.id .. '" > /tmp/auth;mv /tmp/auth '.. FILEPATH);
 	print(json.encode({status="drop-ok"}));
 end
 
@@ -48,4 +50,4 @@ juci.ubus({
 	["add_public_key"] = dropbear_addpublickey,
 	["remove_public_key"] = dropbear_removepublickey
 
-}, arg); 
+}, arg);
