@@ -1,0 +1,10 @@
+{
+	"juci-realtime-graphs": {
+		"description": "JUCI Realtime Graphs Module",
+		"read": {
+			"ubus": {
+				"/juci/rtgraphs": [ "get" ]
+			}
+		} 
+	}
+}
