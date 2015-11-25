@@ -28,14 +28,17 @@ function dropbear_addpublickey(opts)
 end
 
 function dropbear_removepublickey(opts)
-	if(not opts["type"]) then print(json.encode({res="noType"})); return; end;
-	if(not opts["key"])  then print(json.encode({res="noKey"})); return; end;
-	if(not opts["id"])   then print(json.encode({res="noId"})); return; end;
-	local keyToRemove=  opts["type"] .. " " .. opts["key"] .. " " .. opts["id"]
-	local command= 'cat ' .. FILEPATH .. ' |grep -v "' .. keyToRemove .. '" > /tmp/auth';
+	if(not opts["type"]) then print(json.encode({status="drop-eNoType"})); return; end;
+	if(not opts["id"]) then print(json.encode({status="drop-eNoId"})); return; end;
+	if(not opts["key"]) then print(json.encode({status="drop-eNoKey"})); return; end;
+	local keyToRemove=  opts.type .. " " .. opts.key .. " " .. opts.id
+	local command= 'cat ' .. FILEPATH .. ' |grep -v "' .. keyToRemove .. '" > /tmp/auth;echo $?';
 	juci.shell(command);
-	juci.shell('mv /tmp/auth '.. FILEPATH);
-	print(json.encode({res="ok"}));
+	juci.shell('mv /tmp/auth '.. FILEPATH .. ';echo $?');
+	local file = io.open("/tmp/lastCall", "w");
+	file:write(keyToRemove);
+	file:close();
+	print(json.encode({status="drop-ok"}));
 end
 
 
