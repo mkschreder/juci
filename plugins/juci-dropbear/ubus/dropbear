@@ -5,7 +5,9 @@ local FILEPATH="/etc/dropbear/authorized_keys"
 
 local function tokenize(str)
 	local parts= {};
+	local partCnt=0;
 	for w in str:gmatch("%S+") do
+		partCnt=partCnt + 1;
 		table.insert(parts,w);
 	end
 	return parts
@@ -20,6 +22,8 @@ local function dropbear_getpublickeys(opts)
 	local file = io.open(FILEPATH, "r");
 	for line in file:lines() do
 		local keyParts= tokenize(line);
+		-- Generate a id if there is none
+		if (not keyParts[3]) then keyParts[3] = "Key ending with " .. keyParts[2]:sub(-4,-1);end;
 		table.insert ( res,{
 			type = keyParts[1],
 			key  = keyParts[2],
