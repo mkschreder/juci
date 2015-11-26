@@ -241,6 +241,8 @@ License Notice
 
 	Copyright (C) 2015 JUCI Project. All rights reserved.
 
+	All contributions to JUCI are Copyright of their respective authors. 
+
 	Contributors: 
 		- Martin K. Schröder <mkschreder.uk@gmail.com>
 		- Reidar Cederqvist <reidar.cederqvist@gmail.com>
