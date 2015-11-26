@@ -1,7 +1,7 @@
 //! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
-.controller("dnsDhcpSettingsCtrl", function($scope, $uci){
+.controller("dhcpSettingsPage", function($scope, $uci){
 	$uci.$sync(["dhcp"]).done(function(){
 		$scope.dnsmasq = $uci.dhcp["@dnsmasq"][0];
 		$scope.hostfiles = $scope.dnsmasq.addnhosts.value.map(function(x){

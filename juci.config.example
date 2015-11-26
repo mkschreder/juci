@@ -187,6 +187,11 @@ config menu
 	option page "internet-services-ddns"
 	option acls "juci-ddns"
 
+config menu 
+	option path "internet/services/dhcp"
+	option page "dhcp-settings"
+	option acls "juci-dnsmasq-dhcp"
+
 config menu
 	option path "internet/services/samba"
 	option page "internet-services-samba"
@@ -340,6 +345,11 @@ config menu
 	option path "status/network/upnpd"
 	option page "upnpd-status"
 	option acls "juci-upnp"
+
+config menu 
+	option path "status/network/dhcp"
+	option page "dhcp-status"
+	option acls "juci-dhcp"
 
 config menu
 	option path "status/network/nat"
