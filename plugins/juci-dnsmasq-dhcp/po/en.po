@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Reidar Cederqvist <reidar.cederqvist@gmail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -11,16 +11,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js
+msgid "Minutes"
+msgstr ""
+
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js
 msgid "Hour"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js
 msgid "Hours"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.js
-msgid "Forever"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-basic-settings-edit.html
@@ -58,6 +58,10 @@ msgstr ""
 msgid "IPv4 Address"
 msgstr ""
 
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+msgid "IPv6 Unique ID"
+msgstr ""
+
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
 msgid "IPv6 Address ID"
 msgstr ""
@@ -81,13 +85,24 @@ msgstr ""
 msgid "IP Address"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
-msgid "Modify"
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+msgid "DUID (IPv6)"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
+msgid "Host ID (IPv6)"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/network-connection-dhcp-server-settings.html
 msgid "DHCP Server"
 msgstr ""
+
+msgid "status-dhcp-leases-title"
+msgstr "DHCP Leases"
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/status-dhcp-leases.html
+msgid "menu-status-dhcp-leases-title"
+msgstr "DHCP Leases"
 
 #~ msgid "status.diagnostics.info"
 #~ msgstr ""
@@ -1001,9 +1016,6 @@ msgstr ""
 
 #~ msgid "status.diagnostics.title"
 #~ msgstr "Diagnostic Utility"
-
-#~ msgid "status.events.title"
-#~ msgstr "Event Log"
 
 #~ msgid "status.nat.title"
 #~ msgstr "NAT Mapping Table"

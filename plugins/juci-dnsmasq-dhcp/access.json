@@ -4,7 +4,13 @@
 		"read": {
 			"uci": [
 				"dhcp"
-			]
+			],
+			"ubus": {
+				"/juci/dhcp": [
+					"ipv4leases",
+					"ipv6leases"
+				]
+			}
 		},
 		"write": {
 			"uci": [

@@ -1,9 +1,15 @@
 local juci = require("juci/core"); 
+local uci = require("uci");
 
 -- parse out dhcp information 
 local function read_dhcp_info()
+	local cur = uci.cursor();
+	local leasefile_path = cur:get("dhcp", "dnsmasq", "leasefile");
 	local dhcp = {}; 
-	local dhcp_leases = io.open("/var/dhcp.leases", "r"); 
+	local dhcp_leases = io.open(leasefile_path, "r");
+	if(not dhcp_leases) then
+		dhcp_leases = io.open("/var/dhcp.leases", "r"); 
+	end
 	if not dhcp_leases then return {}; end
 	local line = dhcp_leases:read("*l"); 
 	while line do
@@ -97,7 +103,7 @@ local function read_ip6_dhcp_info()
 				duid = duid, 
 				iaid = iaid, 
 				hostname = hostname, 
-				ts = ts, 
+				leasetime = ts, 
 				id = id, 
 				length = length, 
 				ip6addr = ip6addr
@@ -162,5 +168,7 @@ end
 
 return {
 	clients = network_list_connected_clients,
-	ipv6neigh = read_ip6_clients
+	ipv6neigh = read_ip6_clients,
+	ipv4leases = read_dhcp_info,
+	ipv6leases = read_ip6_dhcp_info
 }; 
