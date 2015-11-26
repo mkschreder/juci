@@ -28,6 +28,7 @@
 					<strong>{{sec.interface["dns-server"][1]}}</strong>
 				</juci-config-line>
 			</juci-config-lines>
+			<rtgraph-ethernet-interface ng-model="sec.interface.l3_device"></rtgraph-ethernet-interface>
 		</juci-expandable>
 		<juci-expandable title="DSL" status="dsl_status" ng-show="dsl_status == 'ok' || dsl_status == 'progress'">
 			<juci-config-lines >
