@@ -1,0 +1,24 @@
+#!/usr/bin/lua
+
+local juci = require("juci/core"); 
+local dirent = require("posix.dirent"); 
+local json = require("juci/json"); 
+
+local function acls_list()
+	local files = dirent.dir("/usr/share/rpcd/acl.d"); 
+	local result = { acls = {} }; 
+	for _,v in ipairs(files) do 
+		if(v:sub(-4) == "json") then 
+			local content = juci.readfile("/usr/share/rpcd/acl.d/"..v); 
+			if(content) then
+				local obj = json.decode(content); 
+				table.insert(result.acls, obj); 
+			end
+		end
+	end
+	print(json.encode(result)); 
+end
+
+juci.ubus({
+	["list"] = acls_list
+}, arg); 

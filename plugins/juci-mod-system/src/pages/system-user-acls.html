@@ -1,0 +1,10 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="systemUserAclsPage">
+		<h2 translate>User Access Settings</h2>
+		<juci-config-info>{{'settings.user.acls'|translate}}</juci-config-info>
+		<juci-config-section>
+			<system-user-edit ng-model="users[0]"></system-user-edit>
+		</juci-config-section>
+		<juci-apply></juci-apply>
+	</div>
+</juci-layout-with-sidebar>
