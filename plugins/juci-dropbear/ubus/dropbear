@@ -34,7 +34,12 @@ local function dropbear_addpublickey(opts)
 	if(not opts["key"]) then print(json.encode({error="err-no-key"})); return; end;
 
 	local keyPart=tokenize(opts["key"]);
-	if(not keyPart[1] or not keyPart[2] or not keyPart[3]) then print(json.encode({error="Invalid Key!"})); return; end
+	if(not keyPart[1] or not keyPart[2] or not keyPart[3]) then print(json.encode({error="Invalid Key: Missing part"})); return; end
+
+	--check if key is right format
+	local keyBaseId=keyPart[2]:sub(1, 16);
+	if( not ((keyPart[1] == "ssh-rsa" and  keyBaseId == "AAAAB3NzaC1yc2EA") or (keyPart[1] == "ssh-dss" and keyBaseId == "AAAAB3NzaC1kc3MA"))) then
+		 print(json.encode({error="Invalid Key:Malformed format"})); return; end
 
 	local file = io.open(FILEPATH, "r");
 	-- check if key already exists
