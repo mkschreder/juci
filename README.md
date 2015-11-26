@@ -18,20 +18,69 @@ You can now try JUCI on openwrt.
 
 Here is how to install it:
 
-- Add juci feed to your feeds.conf.default
-src-git juci https://github.com/mkschreder/juci-openwrt-feed.git
+- Add my feed to your feeds.conf.default
+src-git juci https://github.com/mkschreder/mks-openwrt-feed.git
 
 - Update and install the feed
 ./scripts/feeds update juci
-./scripts/feeds install -p juci -a
+./scripts/feeds install -f -p juci -a
 
-- select juci core, inteno theme and plugins under JUCI menu in menuconfig
+- select juci core, inteno theme and plugins under JUCI menu in menuconfig (NOTE: some plugins conflict with eachother so you can not select juci-broadcom-wl and juci-openwrt-wireless at the same time). 
+
+For example, you could append this to your .config and then do make defconfig: 
+
+	CONFIG_PACKAGE_juci-ubus-core=y
+	# CONFIG_PACKAGE_juci-asterisk is not set
+	# CONFIG_PACKAGE_juci-broadcom-dsl is not set
+	# CONFIG_PACKAGE_juci-broadcom-ethernet is not set
+	# CONFIG_PACKAGE_juci-broadcom-vlan is not set
+	# CONFIG_PACKAGE_juci-broadcom-wl is not set
+	CONFIG_PACKAGE_juci-ddns=y
+	CONFIG_PACKAGE_juci-diagnostics=y
+	CONFIG_PACKAGE_juci-dnsmasq-dhcp=y
+	CONFIG_PACKAGE_juci-dropbear=y
+	CONFIG_PACKAGE_juci-ethernet=y
+	CONFIG_PACKAGE_juci-event=y
+	CONFIG_PACKAGE_juci-firewall-fw3=y
+	# CONFIG_PACKAGE_juci-freecwmp is not set
+	# CONFIG_PACKAGE_juci-igmpinfo is not set
+	# CONFIG_PACKAGE_juci-inteno-multiwan is not set
+	# CONFIG_PACKAGE_juci-inteno-router is not set
+	# CONFIG_PACKAGE_juci-jquery-console=y
+	# CONFIG_PACKAGE_juci-macdb is not set
+	CONFIG_PACKAGE_juci-minidlna=y
+	CONFIG_PACKAGE_juci-mod-status=y
+	CONFIG_PACKAGE_juci-mod-system=y
+	# CONFIG_PACKAGE_juci-natalie-dect is not set
+	# CONFIG_PACKAGE_juci-netmode is not set
+	CONFIG_PACKAGE_juci-network-netifd=y
+	CONFIG_PACKAGE_juci-openwrt-wireless=y
+	# CONFIG_PACKAGE_juci-router-openwrt is not set
+	CONFIG_PACKAGE_juci-samba=y
+	CONFIG_PACKAGE_juci-simple-gui=y
+	CONFIG_PACKAGE_juci-snmp=y
+	CONFIG_PACKAGE_juci-sysupgrade=y
+	CONFIG_PACKAGE_juci-uhttpd=y
+	CONFIG_PACKAGE_juci-upnp=y
+	CONFIG_PACKAGE_juci-usb=y
+	# CONFIG_PACKAGE_juci-utils is not set
+	CONFIG_PACKAGE_juci-theme-inteno=y
+	CONFIG_PACKAGE_juci=y
 
 - BUILD! 
+
+Lastly, at first you will not see any menus because menus are set in /etc/config/juci. As a start you can use juci.config.example and copy it to your router /etc/config/juci. Then you can modify it to get the menus you want. A better menu system is on the todo list.. 
 
 And it should work. If you then go to your router ip you should see the login screen. By default admin user is used to login but if you don't have password set for admin user you will not be able to login. So then go to the console and set password for admin user or change the user used for logging in by editing /etc/config/rpcd and then do /etc/init.d/rpcd restart. 
 
 JUCI also includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
+
+Contribution
+------------
+
+If you want to work on juci or if you are using juci yourself and make modifications to it, it is usually a good idea if you submit your modifications as patches. This can be done by using "git format-patch --stdout" and then submitting the patch to me. 
+
+(Note: if you make many modifications and never submit your modifications for review then chances are that your codebase is slowly becoming a "pile of crap". When this happens, eventually you will have to start with a fresh clone of juci repo and readd your things because they have not been properly integrated in the first place. So it is actually quite benefitial to submit patches when you are doing continuous development). 
 
 What is JUCI? 
 -------------
@@ -44,6 +93,17 @@ If offers you the following:
 * Full control and flexibility - yet many ready-made components: allowing you to pick yourself which level you want to develop on. There are no restrictions to the look and feel of your gui. 
 * Dynamic theming - you can switch color themes at runtime. 
 * Full language support - allowing for complete localization of your gui. Language file generation is even partially automatic (for html text). Also supporting dynamically changing language on page without having to reload the application. Also featuring quick debug mode for translations where you can see which strings are missing in currently used language pack. 
+
+The Story 
+---------
+
+In April 2015 I came in as a consultant at Inteno in the middle of release cycle for next generation of Iopsys Open Source SDK for Inteno broadband routers. One of the things that fell on me is quickly adding new functionality to the existing webgui. I quickly realized that it was not feasible. The existing gui was written in lua and adding new pages was a bizarre journey of knocking out html code by calling lua functions. It was bizarre at best and it was not even Inteno's fault - they used a ready made solution and had on their todo list for years the task of improving it. It just never came to completion.
+
+So I took on me the task of creating the new gui. In two months I made a working prototype to what was at the time called luci-express. It got that name from the fact that originally I was exploring the idea of using nodejs and express to build it - but then I instead settled for using angular.js. It was actually even based on Luci2 initially (with most of the code from luci2 now removed, but backend such as rpcd was in fact created specifically for luci2 on openwrt).
+
+The name luci-express was however not descriptive enough - especially since the L in luci stands for Lua and luci-express was basically writen in javascript. So I came up with a better name for it instead which came to be the acronym for Javascript Universal Configuration Interface - and that's how JUCI was born. Besides, everyone seemed to like it so JUCI became the name.
+
+It took another six months to make juci a worthy contestant for being used in a production environment. Over time more people joined development and now we are a few people adding new things to JUCI. It proved to be quite useful and actually quite nice to work with. It was all made possible with initial support from Inteno and Iopsys and the examples of already working systems. 
 
 Simple Summary
 ------
@@ -180,6 +240,8 @@ License Notice
 --------------
 
 	Copyright (C) 2015 JUCI Project. All rights reserved.
+
+	All contributions to JUCI are Copyright of their respective authors. 
 
 	Contributors: 
 		- Martin K. Schröder <mkschreder.uk@gmail.com>

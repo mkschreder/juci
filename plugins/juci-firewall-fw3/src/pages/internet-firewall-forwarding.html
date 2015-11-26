@@ -5,7 +5,7 @@
 		<juci-config-section>
 			<juci-config-lines>
 				<juci-config-line ng-repeat="fwd in forwards" title="{{fwd.title}}">
-					<switch ng-model="fwd.enabled" class="green" ng-change="onToggleForward()"></switch>
+					<switch ng-model="fwd.enabled" class="green" ng-change="onToggleForward(fwd)"></switch>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>

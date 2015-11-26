@@ -12,6 +12,14 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+# /data/intranet/software/juci/plugins/juci-snmpd/src/pages/snmpd-config.html
+msgid "SNMPD Configuration"
+msgstr ""
+
+# /data/intranet/software/juci/plugins/juci-snmpd/src/pages/snmpd-config.html
+msgid "snmpd.config.info"
+msgstr "Configuration for Simple Network Management Protocol service (snmpd)"
+
 # /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
 msgid "Enabled"
 msgstr ""
@@ -56,13 +64,21 @@ msgstr ""
 msgid "Trap Manager IP"
 msgstr ""
 
-# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
-msgid "snmp-config-title"
+# /data/intranet/software/juci/plugins/juci-snmpd/src/pages/snmpd-config.html
+msgid "snmpd-config-title"
+msgstr "SNMP Configuration"
+
+# /data/intranet/software/juci/plugins/juci-snmpd/src/pages/snmpd-config.html
+msgid "menu-snmpd-config-title"
 msgstr "SNMP"
 
 # /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
-msgid "menu-snmp-config-title"
-msgstr "SNMP"
+#~ msgid "snmp-config-title"
+#~ msgstr "SNMP"
+
+# /data/intranet/software/juci/plugins/juci-snmp/src/pages/snmp-config.html
+#~ msgid "menu-snmp-config-title"
+#~ msgstr "SNMP"
 
 # /data/intranet/software/juci/themes/juci-theme-smartrg/src/pages/smartrg-5g-wireless.html
 #~ msgid "wireless.5g.info"

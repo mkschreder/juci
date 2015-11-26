@@ -11,7 +11,7 @@ JUCI.app
 					if(src.name.value == dst.name.value) return; 
 					var fwd = $uci.firewall["@forwarding"].find(function(x){ return x.src.value == src.name.value && x.dest.value == dst.name.value; }); 
 					forwards.push({
-						title: src.name.value + " -- > "+dst.name.value, 
+						title: src.name.value + " - > "+dst.name.value, 
 						enabled: fwd != null, 
 						src: src.name.value, 
 						dst: dst.name.value, 
@@ -23,23 +23,23 @@ JUCI.app
 			$scope.$apply(); 
 		}); 
 	}); 
-	$scope.onToggleForward = function(){
-		$scope.forwards.map(function(fwd){
-			if(fwd.enabled && !fwd.base){
-				$uci.firewall.create({
-					".type": "forwarding", 
-					"src": fwd.src, 
-					"dest": fwd.dst
-				}).done(function(section){
-					fwd.base = section; 
-					$scope.$apply(); 
-				}); 
-			} else if(!fwd.enabled && fwd.base){
-				fwd.base.$delete().done(function(){
-					fwd.base = null; 
-					$scope.$apply(); 
-				}); 
-			}
-		}); 
+	$scope.onToggleForward = function(fwd){
+		console.log("forward: "+fwd); 
+		if(!fwd.enabled && !fwd.base){
+			$uci.firewall.create({
+				".type": "forwarding", 
+				"src": fwd.src, 
+				"dest": fwd.dst
+			}).done(function(section){
+				fwd.base = section; 
+				fwd.enabled = true; 
+				$scope.$apply(); 
+			}); 
+		} else if(fwd.base){
+			fwd.base.$delete().done(function(){
+				fwd.base = null; 
+				$scope.$apply(); 
+			}); 
+		}
 	}
 }); 
