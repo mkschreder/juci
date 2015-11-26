@@ -272,6 +272,11 @@ config menu
 	option acls "juci-dropbear"
 
 config menu
+	option path "settings/management/dropbear-keys"
+	option page "dropbear-authorized-keys"
+	option acls "juci-dropbear"
+
+config menu
 	option path "settings/management/uhttpd"
 	option page "page-uhttpd-settings"
 	option acls "juci-uhttpd"
