@@ -6,8 +6,8 @@ UCI.qos.$registerSectionType("classify", {
 	"ports":	{ dvalue: '', type: String },
 	"comment":	{ dvalue: '', type: String },
 	"dscp":		{ dvalue: '', type: String },
-	"srchost":	{ dvalue: '', type: String },
-	"dsthost":	{ dvalue: '', type: String },
+	"srchost":	{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator },
+	"dsthost":	{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator },
 	"proto":	{ dvalue: '', type: String }
 });
 UCI.qos.$registerSectionType("classgroup", {

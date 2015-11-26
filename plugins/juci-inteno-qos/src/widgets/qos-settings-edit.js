@@ -14,9 +14,14 @@ JUCI.app
 })
 .controller("qosSettingsEdit", function($scope, $uci, $tr, gettext, $network){
 	$scope.data = {
-		new_srchost: "",
-		new_dsthost: ""
+		srchost: "",
+		dsthost: ""
 	}
+	$scope.update_data = function(value, obj){
+		console.log(obj);
+		if(obj == 'srchost') $scope.data.srchost = value;
+		if(obj == 'dsthost') $scope.data.dsthost = value;
+	};
 	$network.getConnectedClients().done(function(data){
 		$scope.clients = data.map(function(x){
 			return {label: x.ipaddr, value: x.ipaddr }
@@ -30,6 +35,7 @@ JUCI.app
 			if(x == "Bulk") return { label: $tr(gettext("Low")), value: x };
 			return { label: x, value: x };
 		});
+		$scope.$apply();
 	});
 	$scope.precedence = [
 		{ label: $tr(gettext("all")),	value: '' },
@@ -43,21 +49,28 @@ JUCI.app
 		{ label: '7',					value: '56' }
 	];
 	$scope.set_dsthost = function(){
-		if($scope.data.new_dsthost == "custom"){
+		if(!$scope.rule.dsthost.valid || contains($scope.rule.dsthost.value) != -1){
 			$scope.rule.dsthost.value = $scope.rule.dsthost.ovalue;
+			$scope.data.dsthost = $scope.rule.dsthost.value;
 			return;
 		}
-		$scope.clients.push({ label: $scope.data.new_dsthost, value: $scope.data.new_dsthost });
-		$scope.rule.dsthost.value = $scope.data.new_dsthost;
-		$scope.data.new_dsthost = "";
+		$scope.clients.push({ label: $scope.rule.dsthost.value, value: $scope.rule.dsthost.value });
+		$scope.data.dsthost = $scope.rule.dsthost.value;
 	};
 	$scope.set_srchost = function(){
-		if($scope.data.new_srchost == "" || $scope.clients[$scope.data.new_srchost]){
-			$scope.rule.srchost.value = $scope.rule.srchost.ovalue;
+		if(!$scope.rule.srchost.valid || contains($scope.rule.srchost.value) != -1){
+			$scope.rule.srchost.value = $scope.rule.dsthost.ovalue;
+			$scope.data.srchost = $scope.rule.srchost.value;
 			return;
 		}
-		$scope.clients.push({ label: $scope.data.new_srchost, value: $scope.data.new_srchost });
-		$scope.rule.srchost.value = $scope.data.new_srchost;
-		$scope.data.new_srchost = "";
+		$scope.clients.push({ label: $scope.rule.srchost.value, value: $scope.rule.srchost.value });
+		$scope.data.srchost = $scope.rule.srchost.value;
+	};
+	var contains = function(value){
+		var c = false;
+		$scope.clients.forEach(function(item){
+			if(item.value == value) c = true;
+		});
+		return c;
 	};
 });

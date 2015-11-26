@@ -5,16 +5,13 @@
 	<juci-config-line title="{{ 'Precedence' | translate }}">
 		<juci-select ng-items="precedence" ng-model="rule.dscp.value" />
 	</juci-config-line>
-	<juci-config-line ng-show="rule.srchost.value != 'custom'" title="{{ 'Source host' | translate }}">
-		<juci-select ng-items="clients" ng-model="rule.srchost.value" />
+	<juci-config-line title="{{ 'Source host' | translate }}">
+		<juci-select ng-show="data.srchost != 'custom'" ng-items="clients" ng-model="rule.srchost.value" on-change="update_data($value, 'srchost')"></juci-select>
+		<input type="text" ng-show="data.srchost == 'custom'" class="form-control" placehoder="custom ip"ng-model="rule.srchost.value" ng-blur="set_srchost()" />
 	</juci-config-line>
-	<juci-config-line ng-show="rule.srchost.value == 'custom'" title="{{ 'Source host' | translate }}">
-		<input type="text" class="form-control" placehoder="custom ip"ng-model="data.new_srchost" ng-blur="set_srchost()"/>
+	<juci-config-line title="{{ 'Destination host' | translate }}">
+		<juci-select ng-show="data.dsthost != 'custom'" ng-items="clients" ng-model="rule.dsthost.value" on-change="update_data($value, 'dsthost')"></juci-select>
+		<input ng-show="data.dsthost == 'custom'" type="text" class="form-control" placeholder="custom ip" ng-model="rule.dsthost.value" ng-blur="set_dsthost()"/>
 	</juci-config-line>
-	<juci-config-line ng-show="rule.dsthost.value != 'custom'" title="{{ 'Destination host' | translate }}">
-		<juci-select ng-items="clients" ng-model="rule.dsthost.value" />
-	</juci-config-line>
-	<juci-config-line ng-show="rule.dsthost.value == 'custom'" title="{{ 'Destination host' | translate }}">
-		<input type="text" class="form-control" placeholder="custom ip" ng-model="data.new_dsthost" ng-blur="set_dsthost()"/>
-	</juci-config-line>
+	<p>{{rule.srchost.valid}} srchost:"{{rule.srchost.value}} data.srchost:{{data.srchost}}"</p>
 </div>
