@@ -15,12 +15,15 @@ JUCI.app
 .controller("qosSettingsEdit", function($scope, $uci, $tr, gettext, $network){
 	$scope.data = {
 		srchost: "",
-		dsthost: ""
+		dsthost: "",
+		proto: ""
 	}
 	$scope.update_data = function(value, obj){
 		console.log(obj);
-		if(obj == 'srchost') $scope.data.srchost = value;
-		if(obj == 'dsthost') $scope.data.dsthost = value;
+		if($scope.data[obj] == undefined) {
+			return;
+		}
+		$scope.data[obj] = value;
 	};
 	$network.getConnectedClients().done(function(data){
 		$scope.clients = data.map(function(x){
@@ -37,6 +40,10 @@ JUCI.app
 		});
 		$scope.$apply();
 	});
+	$scope.$watch("rule", function(){
+		if(!$scope.rule) return;
+		$scope.ports = $scope.rule.ports.value.split(",").map(function(port){return {value: port }});
+	}, false);
 	$scope.precedence = [
 		{ label: $tr(gettext("all")),	value: '' },
 		{ label: '0',					value: '0' },
@@ -48,23 +55,23 @@ JUCI.app
 		{ label: '6',					value: '48' },
 		{ label: '7',					value: '56' }
 	];
-	$scope.set_dsthost = function(){
-		if(!$scope.rule.dsthost.valid || contains($scope.rule.dsthost.value) != -1){
-			$scope.rule.dsthost.value = $scope.rule.dsthost.ovalue;
-			$scope.data.dsthost = $scope.rule.dsthost.value;
+	$scope.protocols = [
+		{ label: $tr(gettext("All")),		value: '' },
+		{ label: $tr(gettext("TCP")),		value: 'tcp' },
+		{ label: $tr(gettext("UDP")),		value: 'udp' },
+		{ label: $tr(gettext("ICMP")),		value: 'icmp' },
+		{ label: $tr(gettext("custom")),	value: 'custom' },
+	];
+	$scope.set_new_value = function(option){
+		if(!$scope.rule[option] || !$scope.data[option]) return;
+		if(!$scope.rule[option].valid || contains($scope.rule[option].value)){
+			$scope.rule[option].value = $scope.rule[option].ovalue;
+			$scope.data[option] = $scope.rule[option].value;
 			return;
 		}
-		$scope.clients.push({ label: $scope.rule.dsthost.value, value: $scope.rule.dsthost.value });
-		$scope.data.dsthost = $scope.rule.dsthost.value;
-	};
-	$scope.set_srchost = function(){
-		if(!$scope.rule.srchost.valid || contains($scope.rule.srchost.value) != -1){
-			$scope.rule.srchost.value = $scope.rule.dsthost.ovalue;
-			$scope.data.srchost = $scope.rule.srchost.value;
-			return;
-		}
-		$scope.clients.push({ label: $scope.rule.srchost.value, value: $scope.rule.srchost.value });
-		$scope.data.srchost = $scope.rule.srchost.value;
+		if(option == 'proto') $scope.protocols.unshift({ label:$scope.rule[option].value, value: $scope.rule[option].value });
+		else $scope.clients.unshift({ label: $scope.rule[option].value, value: $scope.rule[option].value });
+		$scope.data[option] = $scope.rule[option].value;
 	};
 	var contains = function(value){
 		var c = false;

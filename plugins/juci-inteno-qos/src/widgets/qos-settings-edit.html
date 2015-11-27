@@ -7,11 +7,15 @@
 	</juci-config-line>
 	<juci-config-line title="{{ 'Source host' | translate }}">
 		<juci-select ng-show="data.srchost != 'custom'" ng-items="clients" ng-model="rule.srchost.value" on-change="update_data($value, 'srchost')"></juci-select>
-		<input type="text" ng-show="data.srchost == 'custom'" class="form-control" placehoder="custom ip"ng-model="rule.srchost.value" ng-blur="set_srchost()" />
+		<input type="text" ng-show="data.srchost == 'custom'" class="form-control" placehoder="custom ip"ng-model="rule.srchost.value" ng-blur="set_new_value('srchost')" />
 	</juci-config-line>
 	<juci-config-line title="{{ 'Destination host' | translate }}">
 		<juci-select ng-show="data.dsthost != 'custom'" ng-items="clients" ng-model="rule.dsthost.value" on-change="update_data($value, 'dsthost')"></juci-select>
-		<input ng-show="data.dsthost == 'custom'" type="text" class="form-control" placeholder="custom ip" ng-model="rule.dsthost.value" ng-blur="set_dsthost()"/>
+		<input ng-show="data.dsthost == 'custom'" type="text" class="form-control" placeholder="custom ip" ng-model="rule.dsthost.value" ng-blur="set_new_value('dsthost')"/>
 	</juci-config-line>
-	<p>{{rule.srchost.valid}} srchost:"{{rule.srchost.value}} data.srchost:{{data.srchost}}"</p>
+	<juci-config-line title="{{ 'Protocol' | translate }}">
+		<juci-select ng-show="data.proto != 'custom'" ng-items="protocols" ng-model="rule.proto.value" on-change="update_data($value, 'proto')"></juci-select>
+		<input ng-show="data.proto == 'custom'" type="text" class="form-control" placeholder="custom protocol" ng-model="rule.proto.value" ng-blur="set_new_value('proto')"/>
+	</juci-config-line>
+	<p>{{data.srchost}} {{data.dsthost}} {{proto}} </p>
 </div>
