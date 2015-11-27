@@ -14,5 +14,7 @@
 	<juci-config-line title="{{ 'Protocol' | translate }}">
 		<juci-select ng-items="protocols" ng-model="rule.proto.value" editable="true" placeholder="{{'All'|translate}}"></juci-select>
 	</juci-config-line>
-	<p>{{data.srchost}} {{data.dsthost}} {{proto}} </p>
+	<juci-config-line title="{{ 'Port' | translate }}" help="{{ 'Filter by port, when there are no ports no filter will be applied' | translate }}">
+		<tags-input ng-model="ports" display-property="value" placeholder="Add a tag"></tags-input>
+	</juci-config-line>
 </div>

@@ -19,7 +19,6 @@ JUCI.app
 		});
 		$scope.$apply();
 	});
-	
 	$uci.$sync(["qos"]).done(function(){
 		$scope.targets = $uci.qos.Default.classes.value.split(" ").map(function(x){
 			if(x == "Bulk") return { label: $tr(gettext("Low")), value: x };
@@ -27,9 +26,10 @@ JUCI.app
 		});
 		$scope.$apply();
 	});
-
+	var done = false;
 	$scope.$watch("rule", function(){
-		if(!$scope.rule) return;
+		if(!$scope.rule || done) return;
+		done = true;
 		$scope.ports = $scope.rule.ports.value.split(",").map(function(port){return {value: port }});
 	}, false);
 
