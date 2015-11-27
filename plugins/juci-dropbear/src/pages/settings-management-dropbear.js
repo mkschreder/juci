@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("DropbearSettings", function($scope, $uci, $systemService, $network){
+.controller("dropbearSettings", function($scope, $uci, $systemService, $network,$tr,gettext){
 	$scope.data = {
 
 	};
@@ -19,13 +19,20 @@ JUCI.app
 	});
 	$uci.$sync("dropbear").done(function(){
 		if($uci.dropbear && $uci.dropbear["@dropbear"].length){
-			$scope.dropbear = $uci.dropbear["@dropbear"][0];
+			$scope.dropbear = $uci.dropbear["@dropbear"];
 			$scope.$apply();
 		}
 	});
 	$scope.onSave = function() {
 		$uci.save();
 	}
+	$scope.getTitle = function(cfg){
+		return $tr(gettext("Dropbear Instance ")) + cfg[".name"];
+    }
+
+
+	
+
 	$scope.onServiceEnableDisable = function(enabled){
 		if(!$scope.service) return;
 		if($scope.service.enabled){
