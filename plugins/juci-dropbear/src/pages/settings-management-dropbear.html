@@ -31,9 +31,9 @@
 				<juci-config-line title="{{'Enable Forwarded Ports'|translate}}" help="Set to 1 to allow remote hosts to connect to forwarded ports.">
 					<switch ng-model="dropbear.GatewayPorts.value" ></switch>
 				</juci-config-line>
-				<!--<juci-config-line title="{{'Interface'|translate}}" help="Tells dropbear to listen only on the specified interface.">
-					<input class="form-control" ng-model="dropbear.Interface.value" ng-blur="onApply()"></switch>
-				</juci-config-line>-->
+				<juci-config-line title="{{'Interface'|translate}}" help="Tells dropbear to listen only on the specified interface.">
+					<juci-select ng-items="interfaces" ng-model="dropbear.Interface.value" placeholder="{{'ANY'|translate}}"></juci-select>
+				</juci-config-line>
 				<!--<juci-config-line title="{{'RSA Key File'|translate}}" help="Path to RSA file">
 					<input class="form-control" ng-model="dropbear.rsakeyfile.value" ng-blur="onApply()"></switch>
 				</juci-config-line>
