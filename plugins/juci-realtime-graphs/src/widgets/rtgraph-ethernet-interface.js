@@ -37,13 +37,15 @@ JUCI.app
 
 		var graph2d = new vis.Graph2d(container, dataset, groups, options);
 
-		var prev_time = 0; 
-		var start_time = 0; 
-		JUCI.interval.repeat("graph-update-"+Math.random(), 1000, function(done){
+		
+		JUCI.interval.repeat("graph-update-"+Math.random(), 2000, function(done){
+			var start_time = 0; 
 			$rpc.juci.rtgraphs.get({ethdevice: $scope.ifname}).done(function(result){
 				if(!result.graph || !result.graph.length) return; 
 				if(!start_time) start_time = result.graph[0][0]; 
 				//dataset.remove(dataset.getIds()); 
+
+				var prev_time = 0; 
 				result.graph.forEach(function(line, i){
 					if(line[0] <= prev_time) return; 
 
@@ -52,9 +54,11 @@ JUCI.app
 						var dt = line[0] - prev_line[0]; 
 						var rxs = (line[1] - prev_line[1]) / dt; 
 						var txs = (line[3] - prev_line[3]) / dt; 
-						for(var c = prev_line[0]; c < line[0]; c++){
-							dataset.add({group: 1, x: c, y: rxs}); 
-							dataset.add({group: 2, x: c, y: txs}); 
+						if(prev_line[0] > 0 && line[0] > 0 && prev_line[0] < line[0]){
+							//for(var c = prev_line[0]; c < line[0]; c++){
+								dataset.add({group: 1, x: line[0], y: rxs}); 
+								dataset.add({group: 2, x: line[0], y: txs}); 
+							//}
 						}
 					}
 				
@@ -63,6 +67,6 @@ JUCI.app
 				graph2d.setWindow(prev_time - 60, prev_time); 
 				done(); 
 			}); 
-		}); 
+		});
 	}); 
 }); 
