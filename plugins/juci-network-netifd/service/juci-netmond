@@ -48,7 +48,7 @@ end
 
 function Netmon:update_clients()
 	-- check which clients have connected and which ones have disconnected
-	local result = conn:call("juci.network", "clients", {}); 
+	local result = conn:call("/juci/network", "clients", {}); 
 	if not result or not result.clients then return; end
 	local clients = {}; 
 	-- insert all clients into a map 
