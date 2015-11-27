@@ -1,41 +1,10 @@
 <!-- Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>-->
 <juci-layout-with-sidebar>
 	<div ng-controller="intenoQosCtrl">
+		<h2 translate>Quality of service settings</h2>
 		<juci-config-section>
-			<h2 translate>Quality of service settings</h2>
 			<juci-list-editor ng-items="qos" item-editor="qos-settings-edit" get-item-title="onGetItemTitle($item)" on-create="onAddRule($item)" on-delete="onDeleteRule($item)" />
-			<!--<juci-config-lines>
-				<juci-config-line title="{{ 'Classification Rules' |  translate }}">
-					<table class="table table-responsive">
-						<thead>
-							<tr>
-								<th translate>Target</th>
-								<th translate>Precedence</th>
-								<th translate>Source host</th>
-								<th translate>Destination host</th>
-								<th translate>Protocol</th>
-								<th translate>Ports</th>
-								<th translate>Sort</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="rule in qos">
-								<td><juci-select ng-items="targets" ng-model="rule.target.value"></juci-select></td>
-								<td><juci-select ng-items="precedence" ng-model="rule.dscp.value"></juci-select></td>
-								<td><span>{{ rule.srchost.value }}</span></td>
-								<td><span>{{ rule.dsthost.value }}</span></td>
-								<td><span>{{ rule.proto.value }}</span></td>
-								<td><span>{{ rule.ports.value }}</span></td>
-								<td><button class="btn btn-default" ng-click="sort()">up</button></td>
-								<td><button class="btn btn-default" ng-click"">delete</button></td>
-							</tr>
-						</tbody>
-					</table>
-				</juci-config-line>
-			</juci-config-lines>
-			<juci-config-apply></juci-config-apply> -->
-			</juci-config-line>
 		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

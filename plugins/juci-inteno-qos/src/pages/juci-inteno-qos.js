@@ -3,10 +3,12 @@
 JUCI.app.controller("intenoQosCtrl", function($scope, $uci, $tr, gettext){
 	$uci.$sync(["qos"]).done(function(){
 		$scope.qos = $uci.qos["@classify"];
-		$scope.targets = $uci.qos.Default.classes.value.split(" ").map(function(x){
-			if(x == "Bulk") return { label: "Low", value: x };
-			return {label: x, value: x }; 
-		});
+		if($uci.qos.Default){
+			$scope.targets = $uci.qos.Default.classes.value.split(" ").map(function(x){
+				if(x == "Bulk") return { label: "Low", value: x };
+				return {label: x, value: x }; 
+			});
+		}
 		$scope.$apply();
 	});
 	$scope.sort = function(){
