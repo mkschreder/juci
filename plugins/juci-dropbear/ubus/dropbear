@@ -19,6 +19,8 @@ end
 
 local function dropbear_getpublickeys(opts)
 	local res = {};
+	local tmpfile= io.open(FILEPATH, "a");
+	tmpfile:close();
 	local file = io.open(FILEPATH, "r");
 	for line in file:lines() do
 		local keyParts= tokenize(line);
