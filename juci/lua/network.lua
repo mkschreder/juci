@@ -6,6 +6,7 @@ local function read_dhcp_info()
 	local cur = uci.cursor();
 	local leasefile_path = cur:get("dhcp", "dnsmasq", "leasefile");
 	local dhcp = {}; 
+	if(not leasefile_path) then leasefile_path = "/var/dhcp.leases"; end
 	local dhcp_leases = io.open(leasefile_path, "r");
 	if(not dhcp_leases) then
 		dhcp_leases = io.open("/var/dhcp.leases", "r"); 
