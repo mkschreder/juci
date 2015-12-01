@@ -11,19 +11,19 @@ JUCI.app.controller("intenoQosCtrl", function($scope, $uci, $tr, gettext){
 		}
 		$scope.$apply();
 	});
-	$scope.sort = function(){
-		var tmp = $scope.qos[0];
-		$scope.qos[0] = $scope.qos[1];
-		$scope.qos[1] = tmp;
-		$scope.qos[0].comment.value = "test";
-	};
-	$scope.onGetItemTitle = function(item){
-		 return item.target.value;
-	};
+
 	$scope.onAddRule = function(item){
-		console.log("Add item");
+		$uci.qos.$create({
+			".type": "classify"
+		}).done(function(section){
+			$scope.$apply(); 
+		}); 
 	};
+
 	$scope.onDeleteRule = function(item){
-		console.log("del item");
+		if(!item) return; 
+		item.$delete().done(function(){
+			$scope.$apply(); 
+		}); 
 	};
 });
