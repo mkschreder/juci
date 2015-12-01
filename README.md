@@ -1,7 +1,8 @@
 JUCI Webgui for Embedded Routers
 --------------------------------
 
-JUCI is a JavaScript-based web interface for broadband routers running Iopsys / OpenWRT.
+JUCI is a JavaScript-based web interface for broadband routers running Iopsys /
+OpenWRT.
 
 JUCI is built with html5, angularjs and bootstrap: 
 
@@ -11,6 +12,18 @@ JUCI is theme-able and fully mobile-ready (responsive):
 
 ![Mobile](/media/mobile.jpg)
 
+What is JUCI? 
+-------------
+
+If offers you the following: 
+
+* Extremely resource-efficient for your device - your router only needs to run the core functions (which can be written in C!) and the gui itself is running entirely inside the client's browser). You router only computes and sends the minimum information necessary. 
+* Full mobile support
+* Easy to work with - the code uses angular.js and html5, making it extremely easy to add new gui elements to the gui. 
+* Full control and flexibility - yet many ready-made components: allowing you to pick yourself which level you want to develop on. There are no restrictions to the look and feel of your gui. 
+* Dynamic theming - you can switch color themes at runtime. 
+* Full language support - allowing for complete localization of your gui. Language file generation is even partially automatic (for html text). Also supporting dynamically changing language on page without having to reload the application. Also featuring quick debug mode for translations where you can see which strings are missing in currently used language pack. 
+
 Usage on OpenWRT
 ----------------
 
@@ -19,13 +32,15 @@ You can now try JUCI on openwrt.
 Here is how to install it:
 
 - Add my feed to your feeds.conf.default
-src-git juci https://github.com/mkschreder/mks-openwrt-feed.git
+src-git-full juci https://github.com/mkschreder/mks-openwrt-feed.git
 
-- Update and install the feed
+- Update and install the feed (with -f to force overrides)
 ./scripts/feeds update juci
 ./scripts/feeds install -f -p juci -a
 
-- select juci core, inteno theme and plugins under JUCI menu in menuconfig (NOTE: some plugins conflict with eachother so you can not select juci-broadcom-wl and juci-openwrt-wireless at the same time). 
+- select juci core, inteno theme and plugins under JUCI menu in menuconfig
+  (NOTE: some plugins conflict with eachother so you can not select
+  juci-broadcom-wl and juci-openwrt-wireless at the same time). 
 
 For example, you could append this to your .config and then do make defconfig: 
 
@@ -69,69 +84,81 @@ For example, you could append this to your .config and then do make defconfig:
 
 - BUILD! 
 
-Lastly, at first you will not see any menus because menus are set in /etc/config/juci. As a start you can use juci.config.example and copy it to your router /etc/config/juci. Then you can modify it to get the menus you want. A better menu system is on the todo list.. 
+Menus can be configured in /etc/config/juci. As a start you can use
+juci.config.example and copy it to your router /etc/config/juci. Then you can
+modify it to get the menus you want.  A better menu system is on the todo
+list.. 
 
-And it should work. If you then go to your router ip you should see the login screen. By default admin user is used to login but if you don't have password set for admin user you will not be able to login. So then go to the console and set password for admin user or change the user used for logging in by editing /etc/config/rpcd and then do /etc/init.d/rpcd restart. 
+If you go to your router ip you should see the login screen. By default admin
+user is used to login but if you don't have password set for admin user you
+will not be able to login. So then go to the console and set password for admin
+user or change the user used for logging in by editing /etc/config/rpcd and
+then do /etc/init.d/rpcd restart. 
 
-JUCI also includes a nodejs server which you can do for local testing and for forwarding jsonrpc calls to your router during testing (server.js). 
+JUCI also includes a nodejs server which you can do for local testing and for
+forwarding jsonrpc calls to your router during testing (juci-local-server). 
 
 Contribution
 ------------
 
-If you want to work on juci or if you are using juci yourself and make modifications to it, it is usually a good idea if you submit your modifications as patches. This can be done by using "git format-patch --stdout" and then submitting the patch to me. 
+If you want to work on juci or if you are using juci yourself and make
+modifications to it, it is usually a good idea if you submit your modifications
+as patches. This can be done by using "git format-patch --stdout" and then
+submitting the patch to me. 
 
-(Note: if you make many modifications and never submit your modifications for review then chances are that your codebase is slowly becoming a "pile of crap". When this happens, eventually you will have to start with a fresh clone of juci repo and readd your things because they have not been properly integrated in the first place. So it is actually quite benefitial to submit patches when you are doing continuous development). 
+For detailed instructions on how to submit patches see: 
+[Submitting Patches](https://github.com/mkschreder/juci/blob/master/docs/submitting-patches.md)
 
-What is JUCI? 
--------------
+(Note: if you make many modifications and never submit your modifications for
+review then chances are that your codebase is slowly becoming a "pile of crap".
+When this happens, eventually you will have to start with a fresh clone of juci
+repo and readd your things because they have not been properly integrated in
+the first place. So it is actually quite benefitial to submit patches when you
+are doing continuous development). 
 
-If offers you the following: 
+Good to know
+------------
 
-* Extremely resource-efficient for your device - your router only needs to run the core functions (which can be written in C!) and the gui itself is running entirely inside the client's browser). You router only computes and sends the minimum information necessary. 
-* Full mobile support
-* Easy to work with - the code uses angular.js and html5, making it extremely easy to add new gui elements to the gui. 
-* Full control and flexibility - yet many ready-made components: allowing you to pick yourself which level you want to develop on. There are no restrictions to the look and feel of your gui. 
-* Dynamic theming - you can switch color themes at runtime. 
-* Full language support - allowing for complete localization of your gui. Language file generation is even partially automatic (for html text). Also supporting dynamically changing language on page without having to reload the application. Also featuring quick debug mode for translations where you can see which strings are missing in currently used language pack. 
+Addons can be developed on top of juci by creating package that installs js and
+css files into the router /www folder and then runs juci-update at postinstall
+(index.html is actually generated automatically). 
 
-The Story 
----------
+In most cases you will never need to modify core juci code. If you need to
+change behavior of some function, you can always override the public function
+in javascript without having to modify the original implementation. 
 
-In April 2015 I came in as a consultant at Inteno in the middle of release cycle for next generation of Iopsys Open Source SDK for Inteno broadband routers. One of the things that fell on me is quickly adding new functionality to the existing webgui. I quickly realized that it was not feasible. The existing gui was written in lua and adding new pages was a bizarre journey of knocking out html code by calling lua functions. It was bizarre at best and it was not even Inteno's fault - they used a ready made solution and had on their todo list for years the task of improving it. It just never came to completion.
+Juci uses modified version of uhttpd that can serve gz files with proper
+content type based on actual gzipped content. 
 
-So I took on me the task of creating the new gui. In two months I made a working prototype to what was at the time called luci-express. It got that name from the fact that originally I was exploring the idea of using nodejs and express to build it - but then I instead settled for using angular.js. It was actually even based on Luci2 initially (with most of the code from luci2 now removed, but backend such as rpcd was in fact created specifically for luci2 on openwrt).
-
-The name luci-express was however not descriptive enough - especially since the L in luci stands for Lua and luci-express was basically writen in javascript. So I came up with a better name for it instead which came to be the acronym for Javascript Universal Configuration Interface - and that's how JUCI was born. Besides, everyone seemed to like it so JUCI became the name.
-
-It took another six months to make juci a worthy contestant for being used in a production environment. Over time more people joined development and now we are a few people adding new things to JUCI. It proved to be quite useful and actually quite nice to work with. It was all made possible with initial support from Inteno and Iopsys and the examples of already working systems. 
-
-Simple Summary
-------
-
-Addons can be developed on top of juci by creating package that installs js and css files into the router /www folder and then runs juci-update at postinstall (index.html is actually generated automatically). 
-
-Juci uses modified version of uhttpd that can serve gz files with proper content type based on actual gzipped content. 
-
-Juci also uses several newly added rpc calls that are only implemented on iopsys firmware from Inteno Broadband Technology. These packages are open source so you can get all off them from inteno sdk (see below). 
-
-Juci also uses modified version of rpcd, which too is available from iopsys sdk. 
+JUCI also uses modified versions of ubus and rpcd on openwrt which you can also
+install from the feed (using -f option). 
 
 Getting started
 ---------------
 
-New: you can now find compiled juci manuals here: [http://mkschreder.github.io/juci/](http://mkschreder.github.io/juci/)
+New: you can now find compiled juci manuals here:
+[http://mkschreder.github.io/juci/](http://mkschreder.github.io/juci/)
 
-Ideally you should get iopsys (OpenWRT based) sdk and build juci from there. This updated version is heavily based on updated versions of openwrt packages found in iopsys sdk and so you should use that primarily. (kinda-sorta-like-this: git clone http://ihgsp.inteno.se/git/iopsysAA.git iop && cd iop && git checkout BB && ./iop_get_feeds.sh && make)..  
+JUCI is designed to work primarily on OpenWRT based systems. Even if you surely
+can use this code on other systems as well, a lot of functionality is
+implemented in the backend using OpenWRT tools and packages. So you will
+naturally need to build your firmware using openwrt to get the most of juci. 
 
-Building compiled and gzipped htdocs: 
-	
-	make 
+To install necessary tools to compile JUCI you can use the file
+./scripts/ubuntu-bootstrap.sh. Run it using sudo.  
 
-Note: the make process will try to install missing dependencies and automatically link /usr/bin/node to /usr/bin/nodejs for compatibility. For this, you may be prompted for your sudo password. This will only be done once. 
+JUCI is a collection of many files including individual javascript files, html
+templates, translations and styles (written in LESS). All of these files need
+to be built into a set of modules which can then be included as scripts into an
+index.html page. This is done using make. 
 
-Building uncompressed htdocs (for use with local server - the local server script runs this automatically at intervals): 
-	
-	make debug
+	make - without any arguments builds production files (minified and gzipped). 
+	make debug - builds uncompressed files for use with juci-local-server. 
+
+When developing, it can be very good to use local server because it allows you
+to continuously test your changes locally. Local server is a small program
+written using node.js that starts a local http server while forwarding ubus
+calls to a real box.
 
 To run local server for testing new gui elements during development: 
 
@@ -150,91 +177,160 @@ Common Issues
 
 * Juci fails to start. Says juci.ui.menu ubus call is missing. 
 
-	Solution: make sure ubus-scriptd is running on the router. And make sure it loads all scripts without errors. To check, do /etc/init.d/ubus-scriptd stop and then just run ubus-scriptd. It will print a trace. Now cancel it with ctrl+c and once you fix the errors restart it using /etc/init.d/ubus-scriptd start. Then make sure the necessary call is present in output of "ubus list"
+	Solution: make sure ubus-scriptd is running on the router. And make sure it
+	loads all scripts without errors. To check, do /etc/init.d/ubus-scriptd
+	stop and then just run ubus-scriptd. It will print a trace. Now cancel it
+	with ctrl+c and once you fix the errors restart it using
+	/etc/init.d/ubus-scriptd start. Then make sure the necessary call is
+	present in output of "ubus list"
 
 * I get to login page but can not login. What is the password? 
 
-	Solution: the login user is set in /etc/config/rpcd. Password is the unix password for that user - which you can change using passwd <username>. 
+	Solution: the login user is set in /etc/config/rpcd. Password is the unix
+	password for that user - which you can change using passwd <username>. 
 
 * I can login but get a big fat error box with a lot of text mentioning angular. 
 
-	Solution: this means that some module completely failed to initialize or that you have syntax error somewhere or that you have duplicate controller names or anything else that will cause an exception in angular. Usually the first thing to do is check browser console for any messages before the error. Then check the cryptic anuglar message mentioned in the error to get a clue on what to do next.
+	Solution: this means that some module completely failed to initialize or
+	that you have syntax error somewhere or that you have duplicate controller
+	names or anything else that will cause an exception in angular. Usually the
+	first thing to do is check browser console for any messages before the
+	error. Then check the cryptic anuglar message mentioned in the error to get
+	a clue on what to do next.
 
 * My page xyz can not access ubus. I get "Access Denied" in browser console. 
 
-	Solution: check that you have proper acl permissions configured in your access.json file in your plugin (if it is not there then create it - use existing plugins to see how). Then copy this file to your router and restart rpcd (/etc/init.d/rpcd restart). Then it should work. 
+	Solution: check that you have proper acl permissions configured in your
+	access.json file in your plugin (if it is not there then create it - use
+	existing plugins to see how). Then copy this file to your router and
+	restart rpcd (/etc/init.d/rpcd restart). Then it should work. 
 
 * My build process just hangs at line that contains "npm"
 
-	Solution: build process needs connection to the internet to download necessary dependencies for some build scripts. If it is not possible then programs like "npm" may block indefinetely. 
+	Solution: build process needs connection to the internet to download
+	necessary dependencies for some build scripts. If it is not possible then
+	programs like "npm" may block indefinetely. 
 
 * Compilation fails at "Compiling css/..juci.css.."
 
-	Solution: this happens when yui-compressor (css minifier (which is written in java)) runs out of memory. This file tends to get large, and minifier needs more memory. Make sure your java VM is configured to use larger stack size. 
+	Solution: this happens when yui-compressor (css minifier (which is written
+	in java)) runs out of memory. This file tends to get large, and minifier
+	needs more memory. Make sure your java VM is configured to use larger stack
+	size (I find it amazing how easily java always wastes memory). 
 
 Unit testing
 ------------
 
 NOTE: unit testing is no longer supported for now since sep 2015! But old files are still there. 
 
-Unit testing is done using grunt task "test". You can invoke this task using command: 
+Previously it was possible to run juci core in node js and make ubus calls
+directly from command line. This functionality is still there and is
+implemented in lib-juci in tests directory, but it has not been used for a
+while so probably things have become outdated there. It would be nice in the
+future to actually make most of the angular factories standalone modules
+available through nodejs. This is not a difficult task because the code itself
+is very easy to make into a standalone library not dependent on angular. 
 
-	grunt test --host=<router ip> --user=<rpc user> --pass=<rpc user pass>
-	
-This will typically search htdocs folder for all files located in "tests" directory and begining with "test-" (and ending with ".js"). Running tests will ensure that the router is working as the gui expects it to work. If any tests fail then you will know ahead of time that some key functionality is broken, bofore interacting with the gui in browser. 
-
-In all of your unit tests you should include the lib-juci file that is located in tests directory. This file will setup the test environment so that you can use the core functions just like you would use them in angular. Note that angular is currently not available in test environment. 
+This is on the list of things to be done. 
 
 Using UCI from the web console
----------------------
+-------------------------------
 
-It is now possible to use UCI directly from your browser console. When you open your console you will have a global uci object defined in the application.
+It is possible to use UCI directly from your browser console. When you open
+your console you will have a global uci object defined in the application.
 
-	uci.sync("wireless") // will sync the wireless table
-	uci.sync(["wireless", "hosts"]) // will sync both wireless and hosts configs. 
+	$uci.$sync("wireless") // will sync the wireless table
+	$uci.$sync(["wireless", "hosts"]) // will sync both wireless and hosts configs. 
 	
-	uci.wireless.wl0.channel.value = 1 // will set channel value to 1 
+	$uci.wireless.wl0.channel.value = 1 // will set channel value to 1 
 	
-	uci.save() // will save the uci config
+	$uci.$save() // will save the uci config
 	
-Note however that both uci.sync() and uci.save() are async methods so they return a promise. So if you need to do several operations in series then you need to do it like this: 
+All of the above methods return a promise. So if you need to run code AFTER the
+operation completes, you have to set the done (or fail/always) callback for the returned
+promise. You do it like this:  
 
-	uci.sync("wireless").done(function(){
-		console.log("Channel: "+uci.wireless.wl0.channel.value); 
+	$uci.$sync("wireless").done(function(){
+		console.log("Channel: "+$uci.wireless.wl0.channel.value); 
 	}).fail(function(){
 		console.log("Failed to sync tables!"); 
 	}).always(function(){
 		console.log("Done!"); 
 	}); 
 	
-When you invoke sync() the uci code will load the specified configs into memory. The config types must be defined in uci.js file so that fields that are not present in the configs can be created with their default values. Please look in js/uci.js for details. This configuration may be moved somewhere else later. 
+When you invoke $sync() the uci code will load the specified configs into
+memory. The config types must be defined in your plugin first, so that fields
+that are not present in the configs can be created with their default values.
 
-There are several ways to access config elements: 
+For more details on how this is done, check the .js files in the plugins under
+src/ folder (not pages and widgets, but the main plugin file which is usually
+called plugin-name.js or just main.js). 
 
-	uci.wireless["@all"] // list of all sections in the wireless config
-	uci.wireless["@wifi-device"] // list of only the wifi device sections
-	uci.wireless.wl0 // access wl0 section by name (all sections that have a name can be accessed like this)
-	uci.wireless.cfg012345 // access a section with an automatically created uci name. 
+Just like in command line uci, JUCI gives you several ways to access config
+elements: 
+
+	$uci.wireless["@all"] // list of all sections in the wireless config
+	$uci.wireless["@wifi-device"] // list of only the wifi device sections
+	$uci.wireless.wl0 // access wl0 section by name (all sections that have a name can be accessed like this)
+	$uci.wireless.cfg012345 // access a section with an automatically created uci name. 
 	
-I have tried to mimic the command line uci tool here as much as possible. 
+Each field in uci section has a "value" member which is current value of that
+field. So if you use uci sections in your gui elements you have to use .value
+in order to set their values. 
 
-When you need to set a field value you need to use "value" member of the field. This is because we want to retain default and original value inside the field object so this is the only way to do this. This value field is defined with a setter and a getter so when you set a value that is different from the value retreived from your router then a field will be marked as dirty and will be sent to the router next time you call save(). 
+JUCI also retains the default and original values of each field so that you can
+revert the value to what it was when you loaded the config. 
 
-	uci.wireless.wl0.channel.value = 1
+It is also possible to attach validators to each field. Examples are in uci.js
+file. 
 
-JSONRPC service
----------------
+Backend Code 
+------------
 
-Included in the source code is also a plugin for rpcd daemon on your OpenWRT router. It is designed to be the backend service that will handle your custom jsonrpc calls. You can hower run the application entirely on your local computer with no other dependencies but nodejs. All you have to do is implement the jsonrpc calls in your local service instead (see server.js). 
+Juci backend mostly consists of scripts that implement ubus functions which become available to the gui code through json rpc. These scripts are simple glue that juci uses to interact with the rest of the system. You can place these scripts in ubus/ folder of your plugin. Each script should have a globally unique name (preferably a name that identifies it as being part of a specific plugin) and it will be placed into /usr/lib/ubus/juci folder on the router. 
 
-Getting to know the source code
--------------------------------
+All of these scripts are then managed by ubus-scriptd service on the router which makes then available on ubus.
 
-JuCi is a javascript application that gets loaded inside index.html file in htdocs directory. This file will be served as index page when you run the local server. The main application is found in js/app.js. This module in turn reads configuration and loads plugins found in the plugin folder. Each plugin contains a plugin.json file which tells the gui which javascript modules to load. 
+ubus-scriptd supports both batch scripts and services. Most of juci backend tasks are usually batch scripts that become ubus objects.  
 
-There is one main javascript file and one html file for every page/widget/directive. In plugins you will usually not access angular directly but instead use $juci global variable to register controllers, directives and routes. This is because plugins are loaded dynamically when the application is already running and therefore we can not instantiate controllers in the usual way by using angular.module(..).controller(..) - use $juci.controller(..) instead. 
+Further information
+-------------------
 
-The menu system in the gui is actually created on the router side and retreived using juci.ui.menu rpc call. This is based on the juci way of doing this task. It allows us to have dynamic menus that are automatically generated to match the functions of the router. 
+JUCI documentation can definitely be improved. You can speed up this process by
+posting your questions on the issues board on juci github page
+(https://github.com/mkschreder/juci/issues). 
+
+The JUCI Story 
+--------------
+
+In April 2015 I came in as a consultant at Inteno in the middle of release
+cycle for next generation of Iopsys Open Source SDK for Inteno broadband
+routers. One of the things that fell on me is quickly adding new functionality
+to the existing webgui. I quickly realized that it was not feasible. The
+existing gui was written in lua and adding new pages was a bizarre journey of
+knocking out html code by calling lua functions. It was bizarre at best and it
+was not even Inteno's fault - they used a ready made solution and had on their
+todo list for years the task of improving it. It just never came to completion.
+
+So I took on me the task of creating the new gui. In two months I made a
+working prototype to what was at the time called luci-express. It got that name
+from the fact that originally I was exploring the idea of using nodejs and
+express to build it - but then I instead settled for using angular.js and parts
+of luci2 (with most of the code from luci2 now removed, but backend such as
+rpcd was in fact created specifically for luci2 on openwrt and is still in use
+today).
+
+The name luci-express was however not descriptive enough - especially since the
+"L" in luci stands for Lua and luci-express was basically writen in javascript.
+So I came up with a better name for it instead which came to be the acronym for
+Javascript Universal Configuration Interface - and that's how JUCI was born.
+Besides, everyone seemed to like it so JUCI became the name.
+
+It took another six months to make juci a worthy contestant for being used in a
+production environment. Over time more people joined development and now we are
+a few people adding new things to JUCI. It proved to be quite useful and
+actually quite nice to work with. It was all made possible with initial support
+from Inteno and Iopsys and the examples of already working systems. 
 
 License Notice
 --------------
@@ -243,11 +339,15 @@ License Notice
 
 	All contributions to JUCI are Copyright of their respective authors. 
 
-	Contributors: 
-		- Martin K. Schröder <mkschreder.uk@gmail.com>
-		- Reidar Cederqvist <reidar.cederqvist@gmail.com>
-		- Noel Wuyts <skype: noel.wuyts>: angular, widgets, development
-		- Feten Besbes <skype: feten_besbes>: css
+	JUCI Contains code from: 
+	
+		Reidar Cederqvist <reidar.cederqvist@gmail.com>
+		Stefan Nygren <stefan.nygren@hiq.se>
+		[Charlie Robbins](http://nodejitsu.com)
+		Craig Mason-Jones
+		Kord Campbell <kord@loggly.com>
+		Mihai Bazon
+		Philippe Rathé <prathe@gmail.com>
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License

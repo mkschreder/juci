@@ -31,31 +31,8 @@ JUCI.app
 })
 .controller("overviewWidgetNetwork", function($scope, $rpc, $uci, $network, $firewall, $tr, gettext){
 	$scope.defaultHostName = $tr(gettext("Unknown")); 
-	async.series([
-	function(next){
-		// TODO: move this to factory
-		$rpc.network.interface.dump().done(function(interfaces){
-			var conn = ""; 
-			if(interfaces && interfaces.interface){
-				var wan4_interface = "wan"; 
-				if($uci.juci.network) wan4_interface = $uci.juci.network.wan4_interface.value; 
-				var i = interfaces.interface.find(function(x){
-					return x.interface == wan4_interface; 
-				})
-				if(i){
-					var dev = i.l3_device||i.device||""; 
-					if(dev.indexOf("atm") == 0) conn = "ADSL"; 
-					else if(dev.indexOf("ptm") == 0) conn = "VDSL"; 
-					else if(dev.indexOf("eth") == 0) conn = "FTTH"; 
-					else if(dev.indexOf("wwan") == 0) conn = "LTE"; 
-					else if(dev.indexOf("wl") == 0) conn = "Wi-Fi"; 
-					else conn = $tr(gettext("Network")); 
-				}
-			} 
-			$scope.wan_type = conn; 
-		}).always(function(){ next(); }); 
-	}, 
-	function(next){
+	
+	JUCI.interval.repeat("overview-netowrk-widget", 2000, function(done){
 		$network.getConnectedClients().done(function(clients){
 			$scope.clients = []; 
 			// TODO: this is not static. Need to find a way to more reliably separate lan and wan so we can list lan clients from all lans without including wans. 
@@ -75,11 +52,32 @@ JUCI.app
 							$scope.clients.push(cl);  
 						}); 
 					});
-					next(); 
+					$scope.$apply(); 
+					done(); 
 				}); 
 			}); 
-		});  
-	}], function(){
-		$scope.$apply(); 
+		}); 
+	}); 
+
+	// TODO: move this to factory
+	$rpc.network.interface.dump().done(function(interfaces){
+		var conn = ""; 
+		if(interfaces && interfaces.interface){
+			var wan4_interface = "wan"; 
+			if($uci.juci.network) wan4_interface = $uci.juci.network.wan4_interface.value; 
+			var i = interfaces.interface.find(function(x){
+				return x.interface == wan4_interface; 
+			})
+			if(i){
+				var dev = i.l3_device||i.device||""; 
+				if(dev.indexOf("atm") == 0) conn = "ADSL"; 
+				else if(dev.indexOf("ptm") == 0) conn = "VDSL"; 
+				else if(dev.indexOf("eth") == 0) conn = "FTTH"; 
+				else if(dev.indexOf("wwan") == 0) conn = "LTE"; 
+				else if(dev.indexOf("wl") == 0) conn = "Wi-Fi"; 
+				else conn = $tr(gettext("Network")); 
+			}
+		} 
+		$scope.wan_type = conn; 
 	}); 
 }); 

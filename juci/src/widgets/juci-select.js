@@ -7,6 +7,9 @@ JUCI.app
 		scope: {
 			ngModel: "=", 
 			ngItems: "=", 
+			editable: "@",
+			checkbox: "@",
+			enabled: "=",
 			onChange: "&", 
 			placeholder: "@"
 		}, 
@@ -20,6 +23,7 @@ JUCI.app
 				ngModel.assign($scope.$parent, item.value); 
 				$scope.selected = item; 
 			}
+
 			$scope.$watch("ngItems", function(){
 				if(!$scope.ngItems || !$scope.ngModel) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
