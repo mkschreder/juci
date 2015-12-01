@@ -1,37 +1,48 @@
-//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+//!Author Stefan Nygren <Stefan.nygren@hiq.se>
 
 JUCI.app
 .controller("dropbearSettings", function($scope, $uci, $systemService, $network,$tr,gettext){
 	$scope.data = {
 
 	};
-	$network.getNetworks().done(function(res) {
-		$scope.interfaces=res.map(function(x) { return {label:x[".name"].toUpperCase(),value:x[".name"]};});
-		$scope.interfaces.push({label:"LOOPBACK",value:"loopback"});
-		$scope.interfaces.push({label:"ANY",value:""});
-		$scope.$apply();
-
-	});
-
+	
 	$systemService.find("dropbear").done(function(service){
 		$scope.service = service;
 		$scope.$apply();
 	});
 	$uci.$sync("dropbear").done(function(){
-		if($uci.dropbear && $uci.dropbear["@dropbear"].length){
+		if($uci.dropbear){
 			$scope.dropbear = $uci.dropbear["@dropbear"];
 			$scope.$apply();
 		}
+
 	});
-	$scope.onSave = function() {
-		$uci.save();
-	}
+	
 	$scope.getTitle = function(cfg){
 		return $tr(gettext("Dropbear Instance ")) + cfg[".name"];
-    }
+	}
 
-
-	
+	$scope.onAddInstance = function(){
+		$uci.dropbear.create({
+			".type":"dropbear",
+			
+		}).done(function() {
+			$scope.$apply();
+			$uci.save();
+		});
+	}
+	$scope.onDeleteInstance = function(ins){
+		if(!ins) alert($tr(gettext("Please select a instance in the list to remove")));
+		if($scope.dropbear.length <= 0) {
+			alert($tr(gettext("Unable to remove last instance")));
+		} else {
+		 	 if(confirm($tr(gettext("Are you sure you want to remove this instance?")))){
+				ins.$delete().done(function(){
+					$scope.$apply();
+				});
+		 	}
+		}
+	}
 
 	$scope.onServiceEnableDisable = function(enabled){
 		if(!$scope.service) return;
