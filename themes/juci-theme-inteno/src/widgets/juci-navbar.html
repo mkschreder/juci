@@ -21,7 +21,7 @@
 				<div class="col-xs-12" ng-show="log_events.length == 0">
 					<div class="" translate>No new events to show</div>
 				</div>
-				<div class="col-xs-12" ng-repeat="ev in log_events">
+				<div class="col-xs-12" ng-repeat="ev in log_events track by $index">
 					<div style="font-size: 10px; padding: 2px; background-color: #eee; margin-bottom: 2px;">
 						{{ev.data.message}}	
 					</div>
