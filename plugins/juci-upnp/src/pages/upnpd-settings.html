@@ -30,7 +30,7 @@
 			</table>
 		</juci-config-section>
 		<accordion close-others="true">
-			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=false >
+			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=true >
 				<juci-config-section>
 					<juci-config-lines>
 						<juci-config-line title="{{'Automatically Start Service At Bootup'|translate}}" help="{{'Enable upnp daemon at boot time'|translate}}">
@@ -96,7 +96,7 @@
 						</juci-config-line>
 					</juci-config-lines>
 				</accordion-group>
-				<accordion-group heading="{{ 'UPnP ACLs' | translate }}" is-open=true>
+				<accordion-group heading="{{ 'UPnP ACLs' | translate }}" is-open=false>
 					<table class="table table-hover">
 						<thead>
 							<tr>
