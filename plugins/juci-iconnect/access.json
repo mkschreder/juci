@@ -1,0 +1,24 @@
+{
+	"juci-iconnect": {
+		"description": "JUCI UBUS interconnect frontend",
+		"read": {
+			"ubus": {
+				"iconnect": [
+					"login", 
+					"logout", 
+					"call", 
+					"list", 
+					"clients"
+				],
+			}, 
+			"uci": [
+				"iconnect"
+			]
+		},
+		"write": {
+			"uci": [
+				"iconnect"
+			]
+		}
+	}
+}

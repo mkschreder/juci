@@ -1,0 +1,9 @@
+<juci-layout-naked>
+	<div ng-controller="iconnectOverviewPage">
+		<div class="container">
+			<div class="row iconnect-row" ng-repeat="cl in clients track by $index">
+				<div class="col-md-6 iconnect-box">{{cl.id}}</div>
+			</div>
+		</div>
+	</div>
+</juci-layout-naked>
