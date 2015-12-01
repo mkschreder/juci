@@ -10,12 +10,13 @@ JUCI.app
 		$scope.service = service;
 		$scope.$apply();
 	});
+
 	$uci.$sync("dropbear").done(function(){
+		$scope.dropbear = []; 
 		if($uci.dropbear){
 			$scope.dropbear = $uci.dropbear["@dropbear"];
 			$scope.$apply();
 		}
-
 	});
 	
 	$scope.getTitle = function(cfg){
@@ -23,12 +24,10 @@ JUCI.app
 	}
 
 	$scope.onAddInstance = function(){
-		$uci.dropbear.create({
+		$uci.dropbear.$create({
 			".type":"dropbear",
-			
 		}).done(function() {
 			$scope.$apply();
-			$uci.save();
 		});
 	}
 	$scope.onDeleteInstance = function(ins){

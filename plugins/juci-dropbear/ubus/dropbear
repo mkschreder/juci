@@ -19,20 +19,20 @@ end
 
 local function dropbear_getpublickeys(opts)
 	local res = {};
-	local tmpfile= io.open(FILEPATH, "a");
-	tmpfile:close();
 	local file = io.open(FILEPATH, "r");
-	for line in file:lines() do
-		local keyParts= tokenize(line);
-		-- Generate a id if there is none
-		if (not keyParts[3]) then keyParts[3] = "Key ending with " .. keyParts[2]:sub(-4,-1);end;
-		table.insert ( res,{
-			type = keyParts[1],
-			key  = keyParts[2],
-			id   = keyParts[3]
-		});
+	if file then 
+		for line in file:lines() do
+			local keyParts= tokenize(line);
+			-- Generate a id if there is none
+			--if (not keyParts[3]) then keyParts[3] = "Key ending with " .. keyParts[2]:sub(-4,-1);end;
+			table.insert ( res,{
+				type = keyParts[1],
+				key  = keyParts[2],
+				id   = keyParts[3]
+			});
+		end
+		file:close();
 	end
-	file:close();
 	print(json.encode({keys=res}));
 end
 
@@ -47,7 +47,7 @@ local function dropbear_addpublickey(opts)
 	if( not ((keyPart[1] == "ssh-rsa" and  keyBaseId == "AAAAB3NzaC1yc2EA") or (keyPart[1] == "ssh-dss" and keyBaseId == "AAAAB3NzaC1kc3MA"))) then
 		 print(json.encode({error="Invalid Key:Malformed format"})); return; end
 
-	local file = io.open(FILEPATH, "r");
+	local file = io.open(FILEPATH, "a+");
 	-- check if key already exists
 	local exists = false;
 	for line in file:lines() do
@@ -79,24 +79,26 @@ local function dropbear_removepublickey(opts)
 
 	-- read in keys and then remove the one that matches the line
 	local file = io.open(FILEPATH, "r");
-	local keys = {};
-	local found = false;
-	for line in file:lines() do
-		local parts = tokenize(line);
-		if(parts[2] ~= trim(opts.key)) then
-			table.insert(keys, line);
-		else
-			found = true;
+	if(file) then 
+		local keys = {};
+		local found = false;
+		for line in file:lines() do
+			local parts = tokenize(line);
+			if(parts[2] ~= trim(opts.key)) then
+				table.insert(keys, line);
+			else
+				found = true;
+			end
 		end
+		file:close();
+		if(not found) then print(json.encode({ error = "Key not found!" })); return; end
+		-- TODO: can this be a race condition? What if someone else opens the file right after we have closed it? Any way to avoid it?
+		file = io.open(FILEPATH, "w");
+		for _,line in ipairs(keys) do
+			file:write(line.."\n");
+		end
+		file:close();
 	end
-	file:close();
-	if(not found) then print(json.encode({ error = "Key not found!" })); return; end
-	-- TODO: can this be a race condition? What if someone else opens the file right after we have closed it? Any way to avoid it?
-	file = io.open(FILEPATH, "w");
-	for _,line in ipairs(keys) do
-		file:write(line.."\n");
-	end
-	file:close();
 	print("{}");
 end
 

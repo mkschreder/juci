@@ -13,7 +13,7 @@
 			<switch ng-model="dropbear.verbose.value" class="green" ></switch>
 		</juci-config-line>
 	</juci-config-section>
-	<juci-config-heading>{{ 'Instance specific settings' |translate }}</juci-config-heading>
+	<juci-config-heading>{{ 'Dropbear Instances' |translate }}</juci-config-heading>
 	<juci-config-info>{{ 'settings.dropbear.instance' |translate}} </juci-config-info>
 	<juci-config-section>
 		<juci-list-editor ng-items="dropbear" get-item-title="getTitle($item)" item-editor="dropbear-settings-edit" on-create="onAddInstance()" on-delete="onDeleteInstance($item)" ></juci-list-editor>

@@ -5,7 +5,6 @@ JUCI.app
 		templateUrl: "/widgets/dropbear-settings-edit.html",
 		scope: {
 			dropbear: "=ngModel"
-		
 		},
 		replace: true,
 		controller: "dropbearSettingsEdit",
