@@ -46,6 +46,14 @@ UCI.upnpd.$registerSectionType("upnpd", {
 	"presentation_url":	{ dvalue: '', type: String },
 	"upnp_lease_file":	{ dvalue: '', type: String }
 }); 
+
+UCI.upnpd.$registerSectionType("perm_rule", {
+	"action":		{ dvalue: '', type: String },
+	"ext_ports":	{ dvalue: '', type: String },
+	"int_addr":		{ dvalue: '', type: String },
+	"int_ports":	{ dvalue: '', type: String },
+	"comment":		{ dvalue: '', type: String }
+});
 /*
 config perm_rule
 	option action		allow
