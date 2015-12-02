@@ -20,7 +20,7 @@
 				result.list.map(function(event){
 					if(event.time > last_handled_time){
 						if(new_time < event.time) new_time = event.time;
-						console.log("Event: "+JSON.stringify(event)); 
+						//console.log("Event: "+JSON.stringify(event)); 
 						var cb = self.callbacks[event.type]; 
 						if(cb){
 							cb.map(function(c){
