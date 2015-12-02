@@ -1,0 +1,21 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="icwmpProvisioningPage">
+		<h2 translate>IUP Provisioning</h2>
+		<p translate>Setup your IUP Provisioning parameterrs</p>
+		<juci-config-section>
+			<h3 translate>General</h3>
+			<juci-config-lines>
+				<juci-config-line title="{{ 'Enabled' | translate }}">
+					<switch class="green" ng-model="settings.general_enabled" />	
+				</juci-config-line>
+				<juci-config-line title="{{ 'Update interval start time' | translate }}">
+					<juci-select ng-items="times" ng-model="general.starttime.value"></juci-select>
+				</juci-config-line>
+				<juci-config-line title="{{ 'Update interval' | translate }}">
+					<juci-select ng-items="update_interval" ng-model="general.interval.value"></juci-select>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+		<juci-config-apply></juci-config-apply>
+	</div>
+</juci-layout-with-sidebar>
