@@ -60,7 +60,6 @@ JUCI.app.controller("iconnectOverviewPage", function($scope, $rpc, $events){
 						{ id: "DECTL" }
 					]; 
 					cl.buttons = $scope.buttons[cl.id]; 
-					console.log("Synced client: "+cl.id); 
 					clients.push(cl); 
 				}).always(function(){
 					next(); 
