@@ -32,7 +32,8 @@ local objects = {
 			function(req, params)
 				prune_events()
 				conn:reply(req, { list = events }); 
-				if(params and params["clear"]) then events = {}; collectgarbage(); end
+				-- remove this pruning. We now prune events older than 10s..
+				--if(params and params["clear"]) then events = {}; collectgarbage(); end
 			end, { clear = ubus.INT32 }
 		}
 	}
