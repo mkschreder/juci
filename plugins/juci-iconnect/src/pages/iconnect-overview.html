@@ -1,9 +1,33 @@
-<juci-layout-naked>
-	<div ng-controller="iconnectOverviewPage">
-		<div class="container">
-			<div class="row iconnect-row" ng-repeat="cl in clients track by $index">
-				<div class="col-md-6 iconnect-box">{{cl.id}}</div>
+<div class="iconnect-overview">
+	<juci-layout-naked>
+		<div ng-controller="iconnectOverviewPage">
+			<div class="container">
+				<br/>
+				<center><h1 class="main-heading">{{'JUCI UBUS Interconnect'|translate}}</h1></center>
+				<div class="row iconnect-row">
+					<div class="col-md-6" ng-repeat="cl in clients track by $index">
+						<div class="iconnect-dummy-box" ng-show="cl.dummy">
+							<center>
+								<h1>{{'No host connected'|translate}}</h1>
+							</center>
+						</div>
+						<div class="iconnect-box" ng-hide="cl.dummy">
+							<button class="btn btn-default" ng-click="onDoLedTest(cl)" ng-disabled="settingmode" style="float: right;">
+								<i class="fa fa-tree" ng-class="{'text-success':ledmode == 'test'}" ng-hide="settingmode"></i>
+								<i class="fa fa-spinner fa-spin" ng-show="settingmode"></i>
+							</button>
+							<dl>
+								<dt>{{'ID'|translate}}</dt><dd>{{cl.id}}</dd>
+								<dt>{{'Hostname'|translate}}</dt><dd>{{cl.hostname}}</dd>
+								<dt>{{'Firmware'|translate}}</dt><dd>{{cl.firmware}}</dd>
+							</dl>
+							<div class="buttons">
+								<span class="button" ng-class="{pressed: btn.pressed}" ng-repeat="btn in cl.buttons track by $index">{{btn.id}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</juci-layout-naked>
+	</juci-layout-naked>
+</div>

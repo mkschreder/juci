@@ -1,8 +1,45 @@
-@box-bg: #f00; 
 
-.iconnect-box {
-	padding: 10px; 
-	background-color: @box-bg; 
-	border-radius: 5px; 
-	margin: 5px; 
+.iconnect-overview {
+	@box-bg: #ff4800; 
+	background: url("/img/iconnect-bg.jpg"); 
+
+	h1 {
+		color: #BCBCBC !important; 
+	}
+	h1.main-heading {
+		margin-top: 0px; 
+		color: white !important; 
+		text-shadow: 2px 2px 4px black; 
+		font-weight: bold; 
+	}
+	
+	.buttons {
+		color: white !important; 
+		font-weight: bold; 
+		float: right; 
+		
+		.button {
+			margin-left: 10px; 
+		}
+
+		.pressed {
+			color: green !important; 
+		}
+	}
+
+	.iconnect-box {
+		padding: 10px; 
+		background-color: @box-bg; 
+		border-radius: 5px; 
+		margin-bottom: 15px;
+		margin-top: 15px; 
+		min-height: 200px; 
+		color: white;
+		box-shadow: 2px 2px 5px black;
+	}
+
+	.iconnect-dummy-box {
+		.iconnect-box; 
+		background-color: #aaa; 
+	}
 }
