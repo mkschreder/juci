@@ -1,16 +1,15 @@
 //! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
-JUCI.app.controller("intenoQosCtrl", function($scope, $uci, $tr, gettext){
+JUCI.app.controller("intenoQosCtrl", function($scope, $uci, $tr, gettext, intenoQos){
 	$uci.$sync(["qos"]).done(function(){
 		$scope.qos = $uci.qos["@classify"];
-		if($uci.qos.Default){
-			$scope.targets = $uci.qos.Default.classes.value.split(" ").map(function(x){
-				if(x == "Bulk") return { label: "Low", value: x };
-				return {label: x, value: x }; 
-			});
-		}
 		$scope.$apply();
 	});
+
+	intenoQos.getDefaultTargets().done(function(targets){
+		$scope.targets = targets.map(function(x){ return { label: x, value: x }; }); 
+		$scope.$apply(); 
+	}); 
 
 	$scope.onAddRule = function(item){
 		$uci.qos.$create({
@@ -26,4 +25,8 @@ JUCI.app.controller("intenoQosCtrl", function($scope, $uci, $tr, gettext){
 			$scope.$apply(); 
 		}); 
 	};
+
+	$scope.onItemMoved = function(){
+		$uci.qos.$save_order("classify"); 
+	}
 });
