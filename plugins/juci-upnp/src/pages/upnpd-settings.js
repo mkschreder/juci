@@ -42,6 +42,7 @@ JUCI.app
 
 	$upnp.getConfig().done(function(config){
 		$scope.upnp = config;
+		$scope.acls = $uci.upnpd["@perm_rule"];
 		$network.getNetworks().done(function(data){
 			$scope.networks = data.map(function(x){
 				return {
@@ -52,8 +53,39 @@ JUCI.app
 			$scope.$apply();
 		});
 	});
-	$uci.$sync(["upnpd"]).done(function(){
-	$scope.acls = $uci.upnpd["@perm_rule"];
-		$scope.$apply();
-	});
+
+	$scope.onAclMoveUp = function(acl){
+		var arr = $uci.upnpd["@perm_rule"]; 
+		var idx = arr.indexOf(acl); 
+		// return if either not found or already at the top
+		if(idx == -1 || idx == 0) return; 
+		arr.splice(idx, 1); 
+		arr.splice(idx - 1, 0, acl); 
+		$uci.upnpd.$save_order("perm_rule"); 
+	}
+
+	$scope.onAclMoveDown = function(acl){
+		var arr = $uci.upnpd["@perm_rule"]; 
+		var idx = arr.indexOf(acl); 
+		// return if either not found or already at the bottom
+		if(idx == -1 || idx == arr.length - 1) return;
+		arr.splice(idx, 1); 
+		arr.splice(idx + 1, 0, acl); 
+		$uci.upnpd.$save_order("perm_rule"); 
+	}
+
+	$scope.onAclAdd = function(){
+		$uci.upnpd.$create({
+			".type": "perm_rule"
+		}).done(function(){
+			$scope.$apply(); 
+		}); 
+	}
+
+	$scope.onAclRemove = function(acl){
+		if(!acl) return; 
+		acl.$delete().done(function(){
+			$scope.$apply(); 
+		}); 
+	}
 });

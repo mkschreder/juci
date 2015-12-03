@@ -29,7 +29,7 @@
 				</tr>
 			</table>
 		</juci-config-section>
-		<accordion close-others="true">
+		<accordion close-others="false">
 			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=true >
 				<juci-config-section>
 					<juci-config-lines>
@@ -115,11 +115,11 @@
 								<td><input type="text" class="form-control" ng-model="acl.int_addr.value"/></td>
 								<td><input type="text" clasS="form-control" ng-model="acl.int_ports.value"/></td>
 								<td><juci-select ng-items="action" ng-model="acl.action.value"></juci-select></td>
-								<td><button class="btn btn-default" ng-click="move_up()"><i class="fa fa-arrow-up"></i></button>
-									<button class="btn btn-default" ng-click="move_down()"><i class="fa fa-arrow-down"></i></button></td>
-								<td><button class="btn btn-default" ng-click="remove_acl(acl)" translate>Delete</button>
+								<td><button class="btn btn-default" ng-click="onAclMoveUp(acl)"><i class="fa fa-arrow-up"></i></button>
+									<button class="btn btn-default" ng-click="onAclMoveDown(acl)"><i class="fa fa-arrow-down"></i></button></td>
+								<td><button class="btn btn-default" ng-click="onAclRemove(acl)" translate>Delete</button>
 							</tr>
-							<tr><td/><td/><td/><td/><td/><td/><td><button class="btn btn-default" ng-click="add_acl()" translate>Add ACL</button></td></tr>
+							<tr><td/><td/><td/><td/><td/><td/><td><button class="btn btn-default" ng-click="onAclAdd()" translate>Add ACL</button></td></tr>
 						</tbody>
 					</table>
 				</accordion-group>
