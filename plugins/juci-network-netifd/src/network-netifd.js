@@ -335,7 +335,17 @@ UCI.network.$registerSectionType("route", {
 	"interface": 			{ dvalue: "", type: String }, 
 	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
 	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
-	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }
+	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
+	"metric": 				{ dvalue: 0, type: Number },
+	"mtu": 					{ dvalue: 1500, type: Number }
+}); 
+
+UCI.network.$registerSectionType("route6", {
+	"interface": 			{ dvalue: "", type: String }, 
+	"target": 				{ dvalue: "", type: String }, 
+	"gateway": 				{ dvalue: "", type: String },
+	"metric": 				{ dvalue: 0, type: Number },
+	"mtu": 					{ dvalue: 1500, type: Number }
 }); 
 
 UCI.network.$registerSectionType("switch", {
