@@ -114,7 +114,11 @@ local function wireless_get_extended_stainfo(wldev, macaddr)
 		-- next we convert all numbers from string to digits and convert yes/no to true/false
 		local num = tonumber(val); 
 		-- discard float part (TODO: this will basically chop of all decimals on numbers so we can use it on ubus (ubus does not support floats). We may want to multiply by a factor. But this will require checking for sideeffects in the frontend!).
-		if num ~= nil then val = math.floor(num); end 
+		if num ~= nil then 
+			-- multiply by 1000000 to get value in bps (data is in mbs) Note: remember to divide in frontend if mbs is required!
+			if key == "tx_bitrate" or key == "rx_bitrate" then num = num * 1000000; end
+			val = math.floor(num); 
+		end 
 		if val == "yes" then val = true; elseif val == "no" then val = false; end
 		info[key] = val; 
 	end
