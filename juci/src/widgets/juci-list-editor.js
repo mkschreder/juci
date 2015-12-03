@@ -6,7 +6,7 @@ JUCI.app
 			items: "=ngItems", 
 			editor: "@itemEditor", 
 			editable: "@allowEdit", 
-			sortable: "=sortable",
+			sortable: "@sortable",
 			getItemTitle: "&getItemTitle", 
 			onCreate: "&onCreate", 
 			onDelete: "&onDelete", 
@@ -18,13 +18,14 @@ JUCI.app
 		controller: "juciListEditor", 
 		templateUrl: "/widgets/juci-list-editor.html", 
 		compile: function(element, attrs){
-       if (!attrs.allowEdit) { attrs.allowEdit = true; }
-       if (attrs.allowEdit == "false") { attrs.allowEdit = false; }
-    }
+		   if (!attrs.allowEdit) { attrs.allowEdit = true; }
+		   if (attrs.allowEdit == "false") { attrs.allowEdit = false; }
+		}
 	}; 
 })
 .controller("juciListEditor", function($scope){
 	$scope.dynamicHtml = "<"+$scope.editor+" ng-model='item'/>"; 
+	
 	$scope.onListAddItem = function(){
 		$scope.item = null; 
 		$scope.onCreate();
