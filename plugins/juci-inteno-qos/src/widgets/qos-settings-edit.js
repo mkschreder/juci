@@ -12,16 +12,15 @@ JUCI.app
 		require: "^ngModel"
 	};
 })
-.controller("qosSettingsEdit", function($scope, $uci, $tr, gettext, $network){
+.controller("qosSettingsEdit", function($scope, $uci, $tr, gettext, $network, intenoQos){
 	$network.getConnectedClients().done(function(data){
 		$scope.clients = data.map(function(x){
 			return {label: x.ipaddr, value: x.ipaddr }
 		});
 		$scope.$apply();
 	});
-	$uci.$sync(["qos"]).done(function(){
-		$scope.targets = $uci.qos.Default.classes.value.split(" ").map(function(x){
-			if(x == "Bulk") return { label: $tr(gettext("Low")), value: x };
+	intenoQos.getDefaultTargets().done(function(targets){
+		$scope.targets = targets.map(function(x){ 
 			return { label: x, value: x };
 		});
 		$scope.$apply();
