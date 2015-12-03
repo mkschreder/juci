@@ -44,7 +44,7 @@ JUCI.app
 		if(idx == -1 || idx == 0) return; 
 		arr.splice(idx, 1); 
 		arr.splice(idx - 1, 0, i); 
-		$scope.onItemMoved({ $item: i, $prev_index: idx, $new_index: idx - 1}); 
+		$scope.onItemMoved({ $item: i, $prev_index: idx, $index: idx - 1}); 
 	}
 
 	$scope.onMoveDown = function(i){
@@ -54,6 +54,6 @@ JUCI.app
 		if(idx == -1 || idx == arr.length - 1) return;
 		arr.splice(idx, 1); 
 		arr.splice(idx + 1, 0, i); 
-		$scope.onItemMoved({ $item: i, $prev_index: idx, $new_index: idx + 1}); 
+		$scope.onItemMoved({ $item: i, $prev_index: idx, $index: idx + 1}); 
 	}
 }); 
