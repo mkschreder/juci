@@ -14,6 +14,9 @@
 				<juci-config-line title="{{ 'Update interval' | translate }}">
 					<juci-select ng-items="update_interval" ng-model="general.interval.value"></juci-select>
 				</juci-config-line>
+				<juci-config-line title="{{ 'Export file' | translate }}">
+					<button class="btn btn-default" ng-click="onExportFile()" translate>Export file</button>
+				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
