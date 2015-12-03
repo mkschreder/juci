@@ -43,16 +43,18 @@ JUCI.app.controller("iconnectOverviewPage", function($scope, $rpc, $events){
 	}; 
 
 	$scope.onUpgrade = function(cl){
-		$rpc.iconnect.call({
-			host: cl.id,
-			object: "sysupgrade.example", 
-			method: "upgrade", 
-			data: {  }
-		}).done(function(){
-			// none
-		}).always(function(){
-			$scope.$apply(); 
-		}); 
+		if(confirm("Are you sure you want to do online system upgrade from upgrade server?")){
+			$rpc.iconnect.call({
+				host: cl.id,
+				object: "sysupgrade.example", 
+				method: "upgrade", 
+				data: {  }
+			}).done(function(){
+				// none
+			}).always(function(){
+				$scope.$apply(); 
+			}); 
+		}
 	}
 
 	JUCI.interval.repeat("iconnect-refresh", 2000, function(done){
