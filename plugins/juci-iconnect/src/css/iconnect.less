@@ -2,6 +2,7 @@
 .iconnect-overview {
 	@box-bg: #ff4800; 
 	background: url("/img/iconnect-bg.jpg"); 
+	min-height: 2000px; 
 
 	h1 {
 		color: #BCBCBC !important; 
@@ -13,20 +14,7 @@
 		font-weight: bold; 
 	}
 	
-	.buttons {
-		color: white !important; 
-		font-weight: bold; 
-		float: right; 
-		
-		.button {
-			margin-left: 10px; 
-		}
-
-		.pressed {
-			color: green !important; 
-		}
-	}
-
+	
 	.iconnect-box {
 		padding: 10px; 
 		background-color: @box-bg; 
@@ -36,8 +24,26 @@
 		min-height: 200px; 
 		color: white;
 		box-shadow: 2px 2px 5px black;
-	}
 
+		dl {
+			font-size: 12px; 
+		}
+
+		.buttons {
+			color: white !important; 
+			font-weight: bold; 
+			float: right; 
+			
+			.button {
+				margin-left: 10px; 
+			}
+
+			.pressed {
+				color: green !important; 
+			}
+		}
+	}
+	
 	.iconnect-dummy-box {
 		.iconnect-box; 
 		background-color: #aaa; 

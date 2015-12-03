@@ -12,19 +12,26 @@
 							</center>
 						</div>
 						<div class="iconnect-box" ng-hide="cl.dummy">
-							<button class="btn btn-default" ng-click="onDoLedTest(cl)" ng-disabled="settingmode" style="float: right;">
-								<i class="fa fa-tree" ng-class="{'text-success':ledmode == 'test'}" ng-hide="settingmode"></i>
-								<i class="fa fa-spinner fa-spin" ng-show="settingmode"></i>
-							</button>
+							<div class="btn-group" style="float: right;">
+								<button class="btn btn-default" ng-click="onDoLedTest(cl)" ng-disabled="cl.data.settingmode">
+									<i class="fa fa-tree" ng-class="{'text-success':cl.data.ledmode == 'test'}" ng-hide="cl.data.settingmode"></i>
+									<i class="fa fa-spinner fa-spin" ng-show="cl.data.settingmode"></i>
+								</button>
+								<button class="btn btn-default" ng-click="onUpgrade(cl)"><i class="fa fa-upload"></i></button>
+							</div>
 							<dl>
-								<dt>{{'ID'|translate}}</dt><dd>{{cl.id}}</dd>
+								<dt>{{'Hardware'|translate}}</dt><dd>{{cl.hardware}}</dd>
 								<dt>{{'Hostname'|translate}}</dt><dd>{{cl.hostname}}</dd>
 								<dt>{{'Firmware'|translate}}</dt><dd>{{cl.firmware}}</dd>
+								<dt>{{'ID'|translate}}</dt><dd>{{cl.id}}</dd>
 							</dl>
 							<div class="buttons">
 								<span class="button" ng-class="{pressed: btn.pressed}" ng-repeat="btn in cl.buttons track by $index">{{btn.id}}</span>
 							</div>
 						</div>
+					</div>
+					<div class="col-xs-12">
+						<div class="alert alert-danger"><i class="fa fa-exclamation"></i>  This is a proof of concept demo only!</div>
 					</div>
 				</div>
 			</div>

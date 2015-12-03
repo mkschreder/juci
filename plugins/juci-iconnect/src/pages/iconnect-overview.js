@@ -19,25 +19,41 @@ JUCI.app.controller("iconnectOverviewPage", function($scope, $rpc, $events){
 		}
 		setTimeout(function(){ $scope.$apply(); }, 0);  
 	}); 
-
-	$scope.ledmode = "normal"; 
+	
+	var cldata = {}; 
 	$scope.onDoLedTest = function(cl){
-		var ledmode = $scope.ledmode; 
+		if(!cldata[cl.id]) cldata[cl.id] = { ledmode: "nromal" }; 
+		var data = cldata[cl.id]; 
+		var ledmode = data.ledmode; 
 		if(ledmode == "test") ledmode = "normal"; 
 		else ledmode = "test"; 
-		$scope.settingmode = true; 
+		data.settingmode = true; 
 		$rpc.iconnect.call({
 			host: cl.id,
 			object: "leds", 
 			method: "set", 
 			data: { state: ledmode }
 		}).done(function(){
-			$scope.ledmode = ledmode; 
+			data.ledmode = ledmode; 
 		}).always(function(){
-			$scope.settingmode = false; 
+			data.settingmode = false; 
 			$scope.$apply(); 
 		}); 
+		cl.data = data; 
 	}; 
+
+	$scope.onUpgrade = function(cl){
+		$rpc.iconnect.call({
+			host: cl.id,
+			object: "sysupgrade.example", 
+			method: "upgrade", 
+			data: {  }
+		}).done(function(){
+			// none
+		}).always(function(){
+			$scope.$apply(); 
+		}); 
+	}
 
 	JUCI.interval.repeat("iconnect-refresh", 2000, function(done){
 		$rpc.iconnect.clients().done(function(result){
@@ -50,7 +66,7 @@ JUCI.app.controller("iconnectOverviewPage", function($scope, $rpc, $events){
 				}).done(function(info){
 					if(!info || !info.release) { next(); return; } 
 					cl.hostname = info.hostname; 
-					cl.boardname = info.system; 
+					cl.hardware = info.system; 
 					cl.firmware = info.release.version; 
 					if(!$scope.buttons[cl.id]) $scope.buttons[cl.id] = [
 						{ id: "ECO"}, 
@@ -60,13 +76,14 @@ JUCI.app.controller("iconnectOverviewPage", function($scope, $rpc, $events){
 						{ id: "DECTL" }
 					]; 
 					cl.buttons = $scope.buttons[cl.id]; 
+					cl.data = cldata[cl.id]; 
 					clients.push(cl); 
 				}).always(function(){
 					next(); 
 				}); 
 			}, function(){
 				$scope.clients = clients; 
-				while($scope.clients.length < 12) $scope.clients.push({dummy: true}); 
+				while($scope.clients.length < 6) $scope.clients.push({dummy: true}); 
 				$scope.$apply(); 
 				done(); 
 			}); 
