@@ -521,7 +521,25 @@
 			});
 			return deferred.promise(); 
 		}
-		
+	
+		//! Tells uci to reorder sections based on current order in the section types table
+		UCIConfig.prototype.$save_order = function(type){
+			var def = $.Deferred(); 
+			var arr = this["@"+type]; 
+			var self = this; 
+			if(!arr){
+				console.error("UCI."+self[".name"]+".$reorder: not such section types, got "+type); 
+				setTimeout(function(){ def.reject(); }, 0); 
+				return def.promise(); 
+			}
+			// get section order and send it to uci. This will be applied when user does $save(); 
+			var order = arr.map(function(x){ return x[".name"]; }).filter(function(x){ return x; }); 
+			$rpc.uci.order({ 
+				config: self[".name"], 
+				sections: order
+			}).done(function(){ def.resolve(); }).fail(function(){ def.reject(); });
+			return def.promise(); 
+		}
 		
 		UCIConfig.prototype.$getWriteRequests = function(){
 			var self = this; 
