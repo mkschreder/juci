@@ -131,6 +131,7 @@ prepare: .cleaned
 	@mkdir -p $(TMP_DIR)
 	@mkdir -p $(BIN)/www/js/
 	@mkdir -p $(BIN)/www/css/
+	@mkdir -p $(BIN)/usr/bin/
 	@mkdir -p $(BIN)/usr/share/juci/
 	@mkdir -p $(BIN)/usr/share/lua/
 	@mkdir -p $(BIN)/usr/share/rpcd/menu.d/
@@ -143,15 +144,18 @@ node_modules: package.json
 	npm install --production
 
 release: prepare node_modules $(TARGETS) $(UBUS_MODS)
-	@echo "======= JUCI BUILD =========="
+	@echo "======= JUCI RELEASE =========="
 	@./scripts/juci-compile $(BIN) 
 	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
+	@cp juci-update $(BIN)/usr/bin/
 
 debug: prepare node_modules $(TARGETS) $(UBUS_MODS)
+	@echo "======= JUCI DEBUG =========="
 	@echo -e "\033[0;33m [GRUNT] $@ \033[m"
 	#@grunt 
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
 	@./juci-update $(BIN)/www DEBUG
+	@cp juci-update $(BIN)/usr/bin/
 
 DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) docs/juci.md
 DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD)) docs/juci.html
