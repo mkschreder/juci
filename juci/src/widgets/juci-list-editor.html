@@ -2,8 +2,17 @@
 	<div class="row"> 
 		<div ng-class="{ 'col-xs-9': !hideButtons, 'col-xs-12': hideButtons }">
 			<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"></i>
-			<div class="list-group" ng-show="items" >
-				<a href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}</a>
+			<div ng-show="!sortable" class="list-group">
+				<a ng-show="items" href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}</a>
+			</div>
+			<div ng-show="sortable" class="list-group">
+				<div ng-show="items" class="list-group-item" ng-repeat="i in items track by $index" ng-class="{active: item == i}">
+					<div class="btn-group pull-right">
+						<button class="btn btn-default btn-xs" ng-click="onMoveUp(i)"><i class="fa fa-caret-up"></i></button>
+						<button class="btn btn-default btn-xs" ng-click="onMoveDown(i)"><i class="fa fa-caret-down"></i></button>
+					</div>
+					<a href=""  ng-click="onListEditItem(i)" style="text-decoration: none !important; outline: 0; color: inherit; display: block; width: 100%;" >{{getItemTitle({"$item": i})}}</a>
+				</div>
 			</div>
 		</div>
 		<div ng-class="{ 'col-xs-3': !hideButtons }" ng-hide="hideButtons" >

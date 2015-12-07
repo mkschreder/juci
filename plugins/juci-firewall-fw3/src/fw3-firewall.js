@@ -161,7 +161,8 @@ UCI.firewall.$registerSectionType("redirect", {
 	"src_dport":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
 	"proto":			{ dvalue: "tcp", type: String }, 
 	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
-	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }
+	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
+	"reflection": 		{ dvalue: false, type: Boolean }
 }); 
 
 UCI.firewall.$registerSectionType("include", {

@@ -1,4 +1,5 @@
 <juci-layout-with-sidebar>
+
 	<div ng-controller="UPNPMainPage">
 		<juci-config-heading>{{ 'UPNP Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.services.upnp.info' | translate }}</juci-config-info>
@@ -67,7 +68,7 @@
 						</juci-config-line>
 					</juci-config-lines>
 				</accordion-group>
-				<accordion-group heading="{{ 'Advanced Settings' | translate }}" is-open="false">
+				<accordion-group heading="{{ 'Advanced Settings' | translate }}" is-open=false>
 					<juci-config-lines>
 						<juci-config-line title="{{ 'Device UUID' | translate }}">
 							<input type="text" class="form-control" ng-model="upnp.uuid.value" placeholder="UUID"/>
@@ -95,8 +96,34 @@
 						</juci-config-line>
 					</juci-config-lines>
 				</accordion-group>
+				<accordion-group heading="{{ 'UPnP ACLs' | translate }}" is-open=false>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th translate>Comment</th>
+								<th translate>External ports</th>
+								<th translate>Internal addresses</th>
+								<th translate>Internal ports</th>
+								<th translate>Action</th>
+								<th translate>Sort</th><th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="acl in acls">
+								<td><input type="text" class="form-control" ng-model="acl.comment.value"/></td>
+								<td><input type="text" class="form-control" ng-model="acl.ext_ports.value"/></td>
+								<td><input type="text" class="form-control" ng-model="acl.int_addr.value"/></td>
+								<td><input type="text" clasS="form-control" ng-model="acl.int_ports.value"/></td>
+								<td><juci-select ng-items="action" ng-model="acl.action.value"></juci-select></td>
+								<td><button class="btn btn-default" ng-click="onAclMoveUp(acl)"><i class="fa fa-arrow-up"></i></button>
+									<button class="btn btn-default" ng-click="onAclMoveDown(acl)"><i class="fa fa-arrow-down"></i></button></td>
+								<td><button class="btn btn-default" ng-click="onAclRemove(acl)" translate>Delete</button>
+							</tr>
+							<tr><td/><td/><td/><td/><td/><td/><td><button class="btn btn-default" ng-click="onAclAdd()" translate>Add ACL</button></td></tr>
+						</tbody>
+					</table>
+				</accordion-group>
 			</accordion>
-			
 		</juci-config-section>
 		<juci-config-apply></juci-config-apply>
 	</div>

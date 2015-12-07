@@ -26,5 +26,11 @@ JUCI.app.controller("dropbearAuthorizedKeysPage", function($scope, $rpc, $uci, $
 			});
 		});
 	}
+
+	$scope.getItemTitle = function(item){
+		if(!item.id || item.id == "") return $tr(gettext("Key ending with"))+" "+item.key.substr(-4); 
+		return item.id; 
+	}
+
 });
 

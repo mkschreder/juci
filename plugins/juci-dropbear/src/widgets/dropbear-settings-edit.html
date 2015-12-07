@@ -1,0 +1,37 @@
+<div>
+	<juci-config-lines>
+		<!--<juci-config-line title="{{'Banner File'|translate}}" help="{{'Name of a file to be printed before the user has authenticated successfully'|translate}}">
+			<input placeholder="{{'Banner File Path'|translate}}" class="form-control" ng-model="dropbear.BannerFile.value" ng-blur="onApply()"></input>
+		</juci-config-line>-->
+		<juci-config-line title="{{'Password Authentication'|translate}}" help="Set to 0 to disable authenticating with passwords.">
+			<switch ng-model="dropbear.PasswordAuth.value" ></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Port'|translate}}" help="Port number to listen on.">
+			<input placeholder="{{'Listen Port'|translate}}" class="form-control" ng-model="dropbear.Port.value" ng-blur="onApply()"></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Enable Root Password Auth'|translate}}" help="Set to 0 to disable authenticating as root with passwords.">
+			<switch ng-model="dropbear.RootPasswordAuth.value" ></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Enable Root Login'|translate}}" help="Set to 0 to disable SSH logins as root.">
+			<switch ng-model="dropbear.RootLogin.value" ></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Enable Forwarded Ports'|translate}}" help="Set to 1 to allow remote hosts to connect to forwarded ports.">
+			<switch ng-model="dropbear.GatewayPorts.value" ></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Interface'|translate}}" help="Tells dropbear to listen only on the specified interface.">
+			<juci-select ng-items="interfaces" ng-model="dropbear.Interface.value" placeholder="{{'ANY'|translate}}"></juci-select>
+		</juci-config-line>
+		<!--<juci-config-line title="{{'RSA Key File'|translate}}" help="Path to RSA file">
+			<input class="form-control" ng-model="dropbear.rsakeyfile.value" ng-blur="onApply()"></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'DSS Key File'|translate}}" help="Path to DSS/DSA file">
+			<input class="form-control" ng-model="dropbear.dsskeyfile.value" ng-blur="onApply()"></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Connection Keep Alive'|translate}}" help="Keep Alive timout">
+			<input class="form-control" ng-model="dropbear.SSHKeepAlive.value" ng-blur="onApply()"></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Idle Timeout'|translate}}" help="Idle timeout">
+			<input class="form-control" ng-model="dropbear.IdleTimeout.value" ng-blur="onApply()"></switch>
+		</juci-config-line>-->
+	</juci-config-lines>
+</div>

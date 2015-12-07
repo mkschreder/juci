@@ -14,13 +14,13 @@
 		var self = JUCI.events;
 		setInterval(function(){
 			if($rpc.juci == undefined || !$rpc.juci.event || !$rpc.juci.event.poll) return;  
-			$rpc.juci.event.poll({clear: 1}).done(function(result){
+			$rpc.juci.event.poll().done(function(result){
 				var new_time = 0; 
 				if(!result || !result.list) return; 
 				result.list.map(function(event){
 					if(event.time > last_handled_time){
 						if(new_time < event.time) new_time = event.time;
-						console.log("Event: "+JSON.stringify(event)); 
+						//console.log("Event: "+JSON.stringify(event)); 
 						var cb = self.callbacks[event.type]; 
 						if(cb){
 							cb.map(function(c){

@@ -469,7 +469,7 @@ JUCI.app
 								controller: function($scope, $modalInstance, $wireless, dialogOptions, gettext){
 									$scope.opts = dialogOptions; 
 									$scope.data = {};
-									$scope.on_button = function(btn){ 
+									$scope.on_button_click = function(btn){ 
 										if(btn && btn.value == "cancel") $modalInstance.dismiss("cancel"); 
 									}, 
 									$scope.model = {
