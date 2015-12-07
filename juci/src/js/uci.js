@@ -108,6 +108,11 @@
 				this.is_dirty = false; 
 			}, 
 			get value(){
+				if(this.schema.type == Boolean){
+					var uvalue = (this.uvalue == undefined)?this.ovalue:this.uvalue; 
+					if(uvalue === "true" || uvalue === "1" || uvalue === "on") return true; 
+					else if(uvalue === "false" || uvalue === "0" || uvalue === "off") return false; 
+				}
 				if(this.uvalue == undefined) return this.ovalue;
 				else return this.uvalue; 
 			},
@@ -116,7 +121,7 @@
 				if(val == this.uvalue) return; 
 				// properly handle booleans
 				if(this.schema.type == Boolean){
-					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off; }
+					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off"; }
 					else if(this.ovalue == "true" || this.ovalue == "false") { this.uvalue = (val)?"true":"false"; } 
 				} else {
 					if(val instanceof Array) {
@@ -189,10 +194,10 @@
 							else value = data[k];  
 							if(!value) value = []; 
 							break; 
-						case Boolean: 
-							if(data[k] === "true" || data[k] === "1" || data[k] === "on") value = true; 
-							else if(data[k] === "false" || data[k] === "0" || data[k] == "off") value = false; 
-							break; 
+						//case Boolean: 
+							//if(data[k] === "true" || data[k] === "1" || data[k] === "on") value = true; 
+							//else if(data[k] === "false" || data[k] === "0" || data[k] == "off") value = false; 
+						//	break; 
 						default: 
 							value = data[k]; 
 					}
@@ -294,7 +299,7 @@
 			Object.keys(type).map(function(k){
 				if(self[k] && self[k].dirty){ 
 					//console.log("Adding dirty field: "+k); 
-					changed[k] = self[k].value; 
+					changed[k] = self[k].uvalue; 
 				}
 			}); 
 			return changed; 
