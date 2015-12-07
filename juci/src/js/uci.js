@@ -114,13 +114,20 @@
 			set value(val){
 				// do not update if value has not changed
 				if(val == this.uvalue) return; 
+				// properly handle booleans
+				if(this.schema.type == Boolean){
+					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off; }
+					else if(this.ovalue == "true" || this.ovalue == "false") { this.uvalue = (val)?"true":"false"; } 
+				} else {
+					if(val instanceof Array) {
+						this.uvalue = []; 
+						Object.assign(this.uvalue, val); 
+					} else {
+						this.uvalue = val; 
+					}
+				}
 				// always set dirty when changed 
 				this.is_dirty = true; 
-				if(val instanceof Array) {
-					this.uvalue = []; 
-					Object.assign(this.uvalue, val); 
-				}
-				this.uvalue = val; 
 			},
 			get error(){
 				// make sure we ignore errors if value is default and was not changed by user
@@ -183,8 +190,8 @@
 							if(!value) value = []; 
 							break; 
 						case Boolean: 
-							if(data[k] === "true" || data[k] === "1") value = true; 
-							else if(data[k] === "false" || data[k] === "0") value = false; 
+							if(data[k] === "true" || data[k] === "1" || data[k] === "on") value = true; 
+							else if(data[k] === "false" || data[k] === "0" || data[k] == "off") value = false; 
 							break; 
 						default: 
 							value = data[k]; 
