@@ -1,12 +1,20 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="StatusSystemProcesses">
-		<h2 translate>Running Processes</h2>
-		<juci-config-info>{{'status.system.processes.info'|translate}}</juci-config-info>
-		<table class="table">
-			<thead><th ng-repeat="column in columns">{{column}}</th></thead>
-			<tr ng-repeat="proc in processes">
-				<td ng-repeat="column in columns">{{proc[column]}}</td>
-			</tr>
-		</table>
+		<accordion close-others="false">
+			<accordion-group is-open=true>
+				<h2 translate>Total number of processes: {{processes.length}}</h2>
+				<h2 translate>Total CPU Usage: {{getCpuUsage() }}</h2>
+			</accordion-group>
+			<accordion-group is-open="isopen" heading="Click here to view details {{isopen ? 'v' : '>'}}">
+				<h2 translate>Running Processes</h2>
+				<juci-config-info>{{'status.system.processes.info'|translate}}</juci-config-info>
+				<table class="table">
+					<thead><th ng-repeat="column in columns">{{column}}</th></thead>
+					<tr ng-repeat="proc in processes">
+						<td ng-repeat="column in columns">{{proc[column]}}</td>
+					</tr>
+				</table>
+			</accordion-group>
+		</accordion>
 	</div>
 </juci-layout-with-sidebar>
