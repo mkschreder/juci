@@ -1,0 +1,18 @@
+{
+	"juci-inteno-provisioning": {
+		"description": "JUCI inteno provisioning module",
+		"read": {
+			"uci": [
+				"provisioning"
+			],
+			"juci-backup-iup": [
+				"download"
+			]
+		},
+		"write": {
+			"uci": [
+				"provisioning"
+			]
+		}
+	}
+}
