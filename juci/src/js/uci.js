@@ -123,6 +123,7 @@
 				if(this.schema.type == Boolean){
 					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off"; }
 					else if(this.ovalue == "true" || this.ovalue == "false") { this.uvalue = (val)?"true":"false"; } 
+					else this.uvalue = val;
 				} else {
 					if(val instanceof Array) {
 						this.uvalue = []; 
