@@ -5,9 +5,7 @@
 			"uci": [
 				"power_mgmt"
 			]
-		}
-	}, 
-	"juci-broadcom-pwrmgmt": {
+		},
 		"write": {
 			"uci": [
 				"power_mgmt"
