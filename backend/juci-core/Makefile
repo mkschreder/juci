@@ -27,7 +27,7 @@ $(CGI_SCRIPT): $(IO_OBJECT_FILES)
 	$(INSTALL_DIR) $(BUILD_DIR)/www/cgi-bin/
 	$(CC) $(LDFLAGS) -Wl,-z,defs -o $(CGI_SCRIPT) $(IO_OBJECT_FILES) -lubox -lubus -luci -lblobmsg_json
 	ln -sf /usr/libexec/rpcd/$(MODULE_NAME)-cgi $(CGI_BIN)/juci-upload 
-	ln -sf /usr/libexec/rpcd/$(MODULE_NAME)-cgi $(CGI_BIN)/juci-backup 
+	#ln -sf /usr/libexec/rpcd/$(MODULE_NAME)-cgi $(CGI_BIN)/juci-backup 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
