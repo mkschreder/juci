@@ -19,10 +19,10 @@ local date = os.date("%Y-%m-%d");
 io.write("Content-Type: application/x-targz\r\n");
 io.write(string.format("Content-Disposition: attachment; filename=\"backup-%s.tar.gz\"\r\n\r\n", date));
 
-local password = juci.query("password"); 
+local pass = juci.query("pass"); 
 local output = nil; 
-if(password) then 
-	output = juci.shell("sysupgrade --create-backup - | openssl des3 -pass pass:\"%s\"", password); 
+if(pass and pass ~= "" and string.len(pass)) then 
+	output = juci.shell(string.format("sysupgrade --create-backup - | openssl des3 -pass pass:\"%s\"", pass)); 
 else
 	output = juci.shell("sysupgrade --create-backup -"); 
 end

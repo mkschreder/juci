@@ -19,15 +19,15 @@ JUCI.app
 	}
 	$scope.onSaveConfig = function(){
 		$scope.showModal = 1; 
-		
 	}
+
 	$scope.onRestoreConfig = function(){
 		$scope.showUploadModal = 1; 
 	}
 	$scope.onCancelRestore = function(){
 		$scope.showUploadModal = 0; 
 	}
-	$scope.restore = {}; 
+	$scope.data = {}; 
 	/*setInterval(function checkUpload(){
 		var iframe = $("#postiframe").load(function(){; 
 		var json = iframe.contents().text();
@@ -50,12 +50,12 @@ JUCI.app
 		$("form[name='restoreForm']").submit();
 	}
 	$scope.onUploadComplete = function(result){
-		console.log("Uploaded: "+JSON.stringify(result)+": "+$scope.restore.password); 
+		console.log("Uploaded: "+JSON.stringify(result)); 
 		$rpc.juci.system.conf.restore({
-			password: $scope.restore.password
+			pass: $scope.data.pass
 		}).done(function(result){
-			if(result.code){
-				alert(result.stderr); 
+			if(result.error){
+				alert(result.error); 
 			} else {
 				$scope.showUploadModal = 0; 
 				$scope.$apply(); 
@@ -65,10 +65,21 @@ JUCI.app
 			}
 		}).fail(function(err){
 			console.error("Filed: "+JSON.stringify(err)); 
+		}).always(function(){
+			$scope.data = {}; 
+			$scope.$apply(); 
 		}); 
 	}
 	$scope.onAcceptModal = function(){
+		if($scope.data.pass != $scope.data.pass_repeat) {
+			alert($tr(gettext("Passwords do not match!"))); 
+			return; 
+		}
+		if($scope.data.pass == undefined || $scope.data.pass_repeat == undefined){
+			if(!confirm($tr(gettext("Are you sure you want to save backup without password?")))) return; 
+		}
 		$("form[name='backupForm']").submit();
+		$scope.data = {}; 
 		$scope.showModal = 0; 
 	}
 	$scope.onDismissModal = function(){
