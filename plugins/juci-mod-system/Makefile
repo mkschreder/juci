@@ -1,0 +1,4 @@
+define Plugin/juci-mod-system/install 
+	@$(INSTALL_DIR) $(1)/www/cgi-bin/
+	@$(INSTALL_BIN) $(PLUGIN_DIR)/juci-backup $(1)/usr/lib/rpcd/cgi/
+endef

@@ -1,0 +1,64 @@
+#!/usr/bin/lua
+
+local juci = require("juci.core"); 
+local json = require("juci.json"); 
+require("ubus"); 
+
+local conn = ubus.connect(); 
+local acl = conn:call("session", "access", { ubus_rpc_session = juci.query("sid") }); 
+
+
+if(not juci.session.access(juci.query("sid"), "juci-io", "backup", { "read" })) then 
+	print("Content-Type: text/plain\n"); 
+	print("Access Denied!"); 
+	os.exit(1); 
+end 
+
+--io.write("Status: 200 OK\r\n"); 
+local date = os.date("%Y-%m-%d"); 
+io.write("Content-Type: application/x-targz\r\n");
+io.write(string.format("Content-Disposition: attachment; filename=\"backup-%s.tar.gz\"\r\n\r\n", date));
+
+local password = juci.query("password"); 
+local output = nil; 
+if(password) then 
+	output = juci.shell("sysupgrade --create-backup - | openssl des3 -pass pass:\"%s\"", password); 
+else
+	output = juci.shell("sysupgrade --create-backup -"); 
+end
+io.write(output); 
+
+--[[
+printf("Status: 200 OK\r\n");
+	
+	char cmd[256]; 
+	const char *enctype = ""; 
+	if(fields[3] && strlen(fields[3]) > 0){
+		snprintf(cmd, sizeof(cmd), "sysupgrade --create-backup - --password %s", fields[3]);
+		enctype = "encrypted"; 
+	} else {
+		snprintf(cmd, sizeof(cmd), "sysupgrade --create-backup -");
+	} 
+	
+	printf("Content-Type: application/x-targz\r\n");
+	printf("Content-Disposition: attachment; "
+		   "filename=\"backup-%s-%s-%s.tar.gz\"\r\n\r\n", enctype, hostname, datestr);
+		
+
+ # do special case for stdout target
+    if [ "$conf_tar" = "-" ]; then 
+        if [ -n "$CONF_PASSWORD" ]; then 
+            (tar c${TAR_V}zf "$conf_tar" -T "$CONFFILES" | openssl des3 -pass pass:"$CONF_PASSWORD") 2>/dev/null
+        else 
+            tar c${TAR_V}zf "$conf_tar" -T "$CONFFILES" 2>/dev/null
+        fi
+    else # output is a file
+        tar c${TAR_V}zf "$conf_tar" -T "$CONFFILES" 2>/dev/null
+        
+        if [ -n "$CONF_PASSWORD" ]; then 
+            openssl des3 -in "$conf_tar" -out "$conf_tar.enc" -pass pass:"$CONF_PASSWORD" 2>/dev/null
+            mv "$conf_tar.enc" "$conf_tar"
+        fi
+    fi
+    handle_etc 0
+--]]

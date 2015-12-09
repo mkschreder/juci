@@ -28,6 +28,7 @@
 				"/juci/system.conf": [
 					"restore", 
 					"defaultreset", 
+					"features",
 					"list"
 				], 
 				"/juci/system.process": [

@@ -1,11 +1,15 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("SettingsConfigurationCtrl", function($scope, $rpc, gettext){
+.controller("SettingsConfigurationCtrl", function($scope, $rpc, $tr, gettext){
 	$scope.sessionID = $rpc.$sid(); 
 	$scope.resetPossible = 0; 
 	$scope.resetPossible = 1; 
-	
+
+	$rpc.juci.system.conf.features().done(function(features){
+		$scope.features = features; 
+	}); 
+
 	$scope.onReset = function(){
 		if(confirm(gettext("This will reset your configuration to factory defaults. Do you want to continue?"))){
 			$rpc.juci.system.defaultreset().done(function(result){
@@ -55,6 +59,9 @@ JUCI.app
 			} else {
 				$scope.showUploadModal = 0; 
 				$scope.$apply(); 
+				if(confirm($tr(gettext("Configuration has been restored. You need to reboot the device for settings to take effect! Do you want to reboot now?")))){
+					$rpc.juci.system.reboot(); 
+				}
 			}
 		}).fail(function(err){
 			console.error("Filed: "+JSON.stringify(err)); 
