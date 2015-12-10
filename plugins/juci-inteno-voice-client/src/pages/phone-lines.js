@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
  
 JUCI.app
-.controller("PagePhoneLines", function($scope, $uci){
+.controller("PagePhoneCtrl", function($scope, $uci){
 	$uci.$sync("voice_client").done(function(){
 		$scope.phone_lines = $uci.voice_client["@brcm_line"]; 
 		$scope.phone_numbers = $uci.voice_client["@sip_service_provider"]; 

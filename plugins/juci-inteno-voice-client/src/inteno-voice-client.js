@@ -34,15 +34,15 @@ JUCI.app.config(function($stateProvider) {
 UCI.$registerConfig("voice_client"); 
 UCI.voice_client.$registerSectionType("brcm_line", {
 	"extension": 			{ dvalue: '', type: String }, 
-	"sip_account": 		{ dvalue: '', type: String }, 
-	"noise":					{ dvalue: false, type: Boolean }, 
-	"vad":						{ dvalue: false, type: Boolean }, 
-	"txgain":					{ dvalue: false, type: Boolean }, 
-	"rxgain":					{ dvalue: false, type: Boolean }, 
-	"echo_cancel":		{ dvalue: true, type: Boolean }, 
-	"callwaiting":		{ dvalue: false, type: Boolean }, 
-	"clir":						{ dvalue: false, type: Boolean }, 
-	"name":						{ dvalue: '', type: String }, 
+	"sip_account": 			{ dvalue: '', type: String }, 
+	"noise":				{ dvalue: 0, type: Number }, 
+	"vad":					{ dvalue: 0, type: Number }, 
+	"txgain":				{ dvalue: 0, type: Number }, 
+	"rxgain":				{ dvalue: 0, type: Number }, 
+	"echo_cancel":			{ dvalue: true, type: Boolean }, 
+	"callwaiting":			{ dvalue: false, type: Boolean }, 
+	"clir":					{ dvalue: false, type: Boolean }, 
+	"name":					{ dvalue: '', type: String }, 
 	"instance":				{ dvalue: '', type: String }
 }); 
 UCI.voice_client.$registerSectionType("sip_service_provider",  {
