@@ -1,20 +1,27 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetMultiWANPage">
-		<juci-config-heading>{{ 'MultiWAN Configuration' | translate }}</juci-config-heading>
-		<juci-config-info>{{ 'internet.multiwan.info' | translate }}</juci-config-info>
-		<juci-config-section>
-			<juci-config-lines>
-				<juci-config-line title="{{'MultiWAN Enabled'|translate}}">
-					<switch ng-model="multiwan.config.enabled.value" class="green"/>
-				</juci-config-line>
-				<juci-config-line title="{{'Default Route'|translate}}">
-					<juci-select ng-items="allInterfaces" ng-model="multiwan.config.default_route.value" />
-				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>
-		<juci-config-section>
-			<juci-list-editor ng-items="multiwan['@interface']" item-editor="multiwan-interface-edit" get-item-title="onGetItemTitle($item)" on-create="onAddInterface()" on-delete="onDeleteInterface($item)"/>
-		</juci-config-section>
+		<accordion close-others=true>
+			<accordion-group heading="{{ 'Basic Settings' | translate }}" is-open=true>
+				<juci-config-info>{{ 'internet.multiwan.info' | translate }}</juci-config-info>
+				<juci-config-section>
+					<juci-config-lines>
+						<juci-config-line title="{{'MultiWAN Enabled'|translate}}">
+							<switch ng-model="multiwan.config.enabled.value" class="green"/>
+						</juci-config-line>
+						<juci-config-line title="{{'Default Route'|translate}}">
+							<juci-select ng-items="allInterfaces" ng-model="multiwan.config.default_route.value" />
+						</juci-config-line>
+					</juci-config-lines>
+				</juci-config-section>
+				<juci-config-section>
+					<juci-list-editor ng-items="multiwan['@interface']" item-editor="multiwan-interface-edit" get-item-title="onGetItemTitle($item)" on-create="onAddInterface()" on-delete="onDeleteInterface($item)"/>
+				</juci-config-section>
+			</accordion-group>
+			<accordion-group heading="{{ 'Multi-WAN Traffic Rules' | translate }}" is-open=false>
+				<juci-list-editor ng-items="trafic_rules" item-editor="multiwan-rules-list-edit"
+				get-item-title="onGetRuleTitle($item)" on-create="onAddRule()" on-delete="onDeleteRule($item)" />
+			</accordion-group>
+		</accordion>
 		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

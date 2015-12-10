@@ -25,6 +25,7 @@ UCI.multiwan.$registerSectionType("mwanfw", { // config
 	"dst": 									{ dvalue: "", type: String }, 
 	"proto": 								{ dvalue: "", type: String }, 
 	"ports": 								{ dvalue: "", type: String }, 
-	"wanrule": 							{ dvalue: "", type: String }
+	"wanrule": 								{ dvalue: "", type: String },
+	"name":									{ dvalue: "", type: String }
 }); 
 

@@ -9,6 +9,7 @@ JUCI.app
 				return { label: x[".name"], value: x[".name"] }; 
 			}); 
 			$scope.allInterfaces.push({ label: "[Balancer]", value: "balancer" }); 
+			$scope.trafic_rules = $uci.multiwan["@mwanfw"];
 			$scope.$apply(); 
 		}); 
 	}
@@ -27,4 +28,8 @@ JUCI.app
 			refresh(); 
 		}); 
 	}
+	$scope.onGetRuleTitle = function(itme){
+		if(item.name !== "") return item.name.value;
+		return $tr(gettext("Source addr:")) + " " + item.src.value + " " + $tr(gettext("Destination addr:")) + " " + item.dst.value;
+	};		
 }); 
