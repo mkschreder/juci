@@ -58,7 +58,7 @@ JUCI.app
 	}); 
 	/*
 	$scope.onAcceptSchedule = function(){
-		//$uci.save().done(function(){
+		//$uci.$save().done(function(){
 		var schedule = $scope.schedule; 
 		var errors = schedule.$getErrors(); 
 		

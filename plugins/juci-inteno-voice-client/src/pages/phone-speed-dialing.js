@@ -80,7 +80,7 @@ JUCI.app
 			dial.$delete().always(function(){ next(); }); 
 		}, function(){
 			console.log("Save!"); 
-			$uci.save().done(function(){
+			$uci.$save().done(function(){
 				console.log("resync"); 
 				resync(); 
 			}); 

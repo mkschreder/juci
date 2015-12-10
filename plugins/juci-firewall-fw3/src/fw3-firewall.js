@@ -180,11 +180,11 @@ JUCI.app
 JUCI.app.run(function($uci){
 	$uci.$sync("firewall").done(function(){
 		if(!$uci.firewall.settings) {
-			$uci.firewall.create({
+			$uci.firewall.$create({
 				".type": "settings", 
 				".name": "settings"
 			}).done(function(settings){
-				$uci.save(); 
+				$uci.$save(); 
 			}); 
 		}
 	}); 

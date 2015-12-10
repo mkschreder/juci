@@ -28,7 +28,7 @@ JUCI.app
 	$scope.onChangeState = function(){ 
 		var service = $scope.service; 
 		if(!service.$rule || !service.$rule[".name"]){
-			$uci.firewall.create({
+			$uci.firewall.$create({
 				".type": "rule", 
 				"name": "Allow connection to "+service.name+" port "+service.listen_port+" from wan interface", 
 				"src": "wan", 

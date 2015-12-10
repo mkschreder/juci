@@ -49,7 +49,7 @@ JUCI.app
 					$uci.voice_client.create({".type": "call_filter_rule_outgoing", ".name": "call_filter_rule_outgoing1"}).always(function(){ next(); }); 
 				},
 				function(next){
-					$uci.save().always(function(){ next(); }); 
+					$uci.$save().always(function(){ next(); }); 
 				}
 			]); 
 		}
@@ -79,7 +79,7 @@ JUCI.app
 	}
 	/*
 	$scope.onSave = function(){
-		$uci.save(); 
+		$uci.$save(); 
 	}
 	*/
 }); 

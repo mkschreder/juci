@@ -71,14 +71,14 @@ JUCI.app
 	$scope.onWPSToggle = function(){
 		$uci.wireless.status.wps.value = !$uci.wireless.status.wps.value; 
 		$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
-		$uci.save().done(function(){
+		$uci.$save().done(function(){
 			refresh(); 
 		}); 
 	}
 	$scope.onWIFISchedToggle = function(){
 		$uci.wireless.status.schedule.value = !$uci.wireless.status.schedule.value; 
 		$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
-		$uci.save().done(function(){
+		$uci.$save().done(function(){
 			refresh(); 
 		}); 
 	}

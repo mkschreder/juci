@@ -22,7 +22,7 @@ JUCI.app.run(function($uci, $rpc, $tr, gettext, upgradePopup){
 			$uci.$sync("system").done(function(){
 				if(!$uci.system.upgrade) {
 					$uci.system.create({ ".type": "upgrade", ".name": "upgrade" }).done(function(section){
-						$uci.save().done(function(){
+						$uci.$save().done(function(){
 							console.log("Created missing section system.upgrade in UCI!"); 
 							next(); 
 						}); 

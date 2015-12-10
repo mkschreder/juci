@@ -36,8 +36,8 @@ JUCI.app
 			$uci.$sync("firewall").done(function(){
 				$scope.firewall = $uci.firewall; 
 				if(!$uci.firewall.urlblock){
-					$uci.firewall.create({".type": "urlblock", ".name": "urlblock"}).done(function(){
-						$uci.save().always(function(){ next(); }); 
+					$uci.firewall.$create({".type": "urlblock", ".name": "urlblock"}).done(function(){
+						$uci.$save().always(function(){ next(); }); 
 					}); 
 				} else {
 					next(); 
@@ -81,7 +81,7 @@ JUCI.app
 			} updateRules(); 
 			
 			$scope.onAddAccessRule = function(){
-				$uci.firewall.create({".type": "rule", "parental": true}).done(function(rule){
+				$uci.firewall.$create({".type": "rule", "parental": true}).done(function(rule){
 					rule[".new"] = true; 
 					$scope.rule = {
 						time_start: rule.start_time.value, 

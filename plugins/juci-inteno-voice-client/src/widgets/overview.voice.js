@@ -34,7 +34,7 @@ JUCI.app
 		if(status){
 			status.enabled.value = !status.enabled.value; 
 			$scope.phoneSchedStatus = ((status.enabled.value)?gettext("on"):gettext("off")); 
-			$uci.save().done(function(){
+			$uci.$save().done(function(){
 				refresh(); 
 			}); 
 		}
