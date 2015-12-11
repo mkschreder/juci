@@ -126,7 +126,8 @@ UCI.voice_client.$registerSectionType("sip_advanced", {
 	"tls_cipher":	{ dvalue: "'DES-CBC3-SHA", type: String},
 	"dnsmgr":	{ dvalue: "no", type: String},
 	"dnsmgr_refresh_interval":	{ dvalue: 300, type: Number },
-	"srvlookup":	{ dvalue: "yes", type: String}
+	"srvlookup":	{ dvalue: "yes", type: String},
+	"sip_proxy":	{ dvalue: [], type: Array }
 });
 UCI.voice_client.$registerSectionType("brcm_advanced", {
 	"country":	{ dvalue: "SWE", type: String},

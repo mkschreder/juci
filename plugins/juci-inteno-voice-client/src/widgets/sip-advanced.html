@@ -1,0 +1,14 @@
+<div>
+	<juci-config-section>
+		<juci-config-heading>{{ 'Custom Dialplan' | translate }}</juci-config-heading>
+		<juci-config-lines>
+			<juci-config-line title="{{'Sip Proxy servers'|translate}}">
+				<tags-input ng-model="proxys" display-property="label" min-length="5" on-tag-added="onProxyAdded()"
+					add-on-space="true" add-on-blur="false" placeholder="{{'write list of album-art names' | translate}}">
+				</tags-input>
+			</juci-config-line>
+		</juci-config-lines>
+	</juci-config-section>
+	<juci-config-apply/>
+</div>
+
