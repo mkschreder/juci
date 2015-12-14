@@ -1,3 +1,11 @@
+config juci_event 'juci_event'
+	list filter firewall.ssh
+	list filter network.netifd
+	list filter network.dnmasq
+	list filter system.kernel
+	list filter system.ntp
+	list filter iptv.mcpd
+
 config juci juci 
 	option homepage overview
 	
@@ -8,6 +16,7 @@ config 'login' 'login'
 config 'localization' 'localization'
 	option default_language 'se'
 	list languages 'en'
+	list languages 'fi'
 	list languages 'se'
 
 config menu
@@ -18,41 +27,41 @@ config menu
 	option path "phone"
 	option page "phone"
 	option redirect "phone-call-log"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 
 config menu
 	option path "phone/calllog"
 	option page "phone-call-log"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 
 config menu
 	option path "phone/number_blocking"
 	option page "phone-number-blocking"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
 	option path "phone/ringing_schedule"
 	option page "phone-ringing-schedule"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
 	option path "phone/numbers"
 	option page "phone-numbers"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
 	option path "phone/lines"
 	option page "phone-lines"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
 	option path "phone/speed_dialing"
 	option page "phone-speed-dialing"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
@@ -162,6 +171,11 @@ config menu
 	option page "internet-multiwan"
 	option acls "juci-inteno-multiwan"
 
+config menu 
+	option path "internet/qos"
+	option page "juci-inteno-qos"
+	option acls "juci-inteno-qos"
+
 config menu
 	option path "internet/services"
 	option page "internet-services"
@@ -187,10 +201,20 @@ config menu
 	option page "internet-services-ddns"
 	option acls "juci-ddns"
 
+config menu
+	option path "internet/services/mcpd"
+	option page "broadcom-iptv"
+	option acls "juci-broadcom-iptv"
+
 config menu 
 	option path "internet/services/dhcp"
 	option page "dhcp-settings"
 	option acls "juci-dnsmasq-dhcp"
+
+config menu 
+	option path "internet/services/snmpd"
+	option page "snmpd-config"
+	option acls "juci-snmpd"
 
 config menu
 	option path "internet/services/samba"
@@ -267,9 +291,29 @@ config menu
 	option acls "juci-mod-system"
 
 config menu
+	option path "settings/configuration/settings"
+	option page "inteno-backup-settings"
+	option acls "juci-inteno-backup"
+
+config menu
+	option path "settings/provisioning"
+	option page "settings-provisioning-iup"
+	option acls "juci-inteno-provisioning"
+
+config menu
+	option path "settings/icwmp"
+	option page "icwmp-config"
+	option acls "juci-icwmp"
+
+config menu
 	option path "settings/management"
 	option page "settings-management"
 	option acls "juci-mod-system"
+
+config menu
+	option path "settings/management/powermgmt"
+	option page "broadcom-pwrmgmt"
+	option acls "juci-broadcom-pwrmgmt"
 
 config menu
 	option path "settings/management/dropbear"
@@ -369,7 +413,7 @@ config menu
 config menu
 	option path "status/phone"
 	option page "status-phone"
-	option acls "juci-asterisk"
+	option acls "juci-inteno-voice-client"
 
 config menu
 	option path "status/events"
