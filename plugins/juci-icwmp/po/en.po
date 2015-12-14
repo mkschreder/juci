@@ -1,0 +1,137 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Enabled"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Disabled"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Emergency"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Alert"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Critical"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Error"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Warning"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Notice"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Info"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.js 
+msgid "Debug"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "ACS User Name"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "ACS Password"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "URL"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Periodic Inform Enable"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Periodic Inform Interval"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Periodic Inform Time"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "DHCP Discovery"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "WAN Interface"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Connection Request User Name"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Connection Request Password"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Port"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Log Severity Level"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Log to console"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Log to file"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Log file max size"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Provisioning Code"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "TR-069"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Configure ACS specific settings"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "Configure CPE specific settings"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "icwmp-config-title"
+msgstr "ICWMP Settings"
+
+# /home/reidar/juci/plugins/juci-icwmp/src/pages/icwmp-config.html 
+msgid "menu-icwmp-config-title"
+msgstr "ICWMP Settings"
+

@@ -221,7 +221,8 @@ Common Issues
 Unit testing
 ------------
 
-NOTE: unit testing is no longer supported for now since sep 2015! But old files are still there. 
+NOTE: unit testing is no longer supported for now since sep 2015! But old files
+are still there. 
 
 Previously it was possible to run juci core in node js and make ubus calls
 directly from command line. This functionality is still there and is
@@ -287,11 +288,19 @@ file.
 Backend Code 
 ------------
 
-Juci backend mostly consists of scripts that implement ubus functions which become available to the gui code through json rpc. These scripts are simple glue that juci uses to interact with the rest of the system. You can place these scripts in ubus/ folder of your plugin. Each script should have a globally unique name (preferably a name that identifies it as being part of a specific plugin) and it will be placed into /usr/lib/ubus/juci folder on the router. 
+Juci backend mostly consists of scripts that implement ubus functions which
+become available to the gui code through json rpc. These scripts are simple
+glue that juci uses to interact with the rest of the system. You can place
+these scripts in ubus/ folder of your plugin. Each script should have a
+globally unique name (preferably a name that identifies it as being part of a
+specific plugin) and it will be placed into /usr/lib/ubus/juci folder on the
+router. 
 
-All of these scripts are then managed by ubus-scriptd service on the router which makes then available on ubus.
+All of these scripts are then managed by ubus-scriptd service on the router
+which makes then available on ubus.
 
-ubus-scriptd supports both batch scripts and services. Most of juci backend tasks are usually batch scripts that become ubus objects.  
+ubus-scriptd supports both batch scripts and services. Most of juci backend
+tasks are usually batch scripts that become ubus objects.  
 
 Further information
 -------------------

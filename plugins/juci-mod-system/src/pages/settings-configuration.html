@@ -21,26 +21,28 @@
 			</juci-config-lines>
 		</juci-config-section>
 		<modal title="{{'Save Configuration to Computer'|translate}}" ng-show="showModal" on-accept="onAcceptModal()" on-dismiss="onDismissModal()" dismiss-label="Cancel" accept-label="Continue">
-			<form name="backupForm" action="/cgi-bin/juci-backup" method="post" >
-				<input type="hidden" name="sessionid" value="{{sessionID}}"/>
+			<form name="backupForm" action="/cgi-bin/juci-backup" method="get" autocomplete="off">
+				<input type="hidden" name="sid" value="{{sessionID}}"/>
 				<!--<input type="hidden" name="password" />-->
-				<div class="form-group">
+				<div class="form-group" ng-show="features.comment">
 					<label translate>Please add a comment describing this configuration</label>
 					<textarea class="form-control" placeholder="{{'Comments'|translate}}..." name="comment"/>
 				</div>
 				<div class="form-group">
 					<label translate>Backup file password</label>
-					<input type="password" class="form-control" placeholder="{{'New Password'|translate}}" name="password"/>
+					<input type="password" ng-disabled="!features.encryption" class="form-control" placeholder="{{'New Password'|translate}}" name="pass" ng-model="data.pass"/>
 				</div>
 				<div class="form-group">
 					<label translate>Re-type password</label>
-					<input type="password" class="form-control" placeholder="{{'Re-type password'|translate}}" name="password_repeat"/>
+					<input type="password" ng-disabled="!features.encryption" class="form-control" placeholder="{{'Re-type password'|translate}}" name="pass_repeat" ng-model="data.pass_repeat"/>
 				</div>
+				<div class="alert alert-danger" ng-show="!features.encryption" 
+					translate>Encryption of backups has been disabled (please make sure you have openssl cli utility installed!)</div>
 			</form>
 		</modal>
 		<modal title="Load New Configuration" ng-show="showUploadModal" on-accept="onUploadConfig()" on-dismiss="onCancelRestore()" dismiss-label="Cancel" accept-label="Continue">
 			<iframe name="postiframe" id="postiframe" style="display: none;" ></iframe>
-			<form target="postiframe" name="restoreForm" id="restoreForm" action="/cgi-bin/juci-upload" method="post" enctype="multipart/form-data">
+			<form target="postiframe" name="restoreForm" id="restoreForm" action="/cgi-bin/juci-upload" method="post" enctype="multipart/form-data" autocomplete="off">
 				<input type="hidden" name="sessionid" value="{{sessionID}}" />
 				<input type="hidden" name="filename" value="/tmp/backup.tar.gz" />
 				<juci-config-lines>
@@ -48,8 +50,10 @@
 						<input type="file" class="btn btn-default btn-file" name="filedata" />
 					</juci-config-line>
 					<juci-config-line title="{{'Backup file password'|translate}}">
-						<input type="password" class="form-control" name="password" ng-model="restore.password" placeholder="{{'Password (if encrypted)'|translate}}"/>
+						<input type="password" class="form-control" name="pass" ng-disabled="!features.encryption" ng-model="data.pass" placeholder="{{'Password (if encrypted)'|translate}}"/>
 					</juci-config-line>
+					<div class="alert alert-danger" ng-show="!features.encryption" 
+						translate>Uploading encrypted backups is not supported (requires openssl cli utility installed on the router!)</div>
 					<!--<juci-config-line title="{{'Start upgrade'|translate}}">
 						<input type="submit" class="btn btn-lg btn-default" value="{{'Upgrade'|translate}}"/>
 					</juci-config-line>-->

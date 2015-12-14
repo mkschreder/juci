@@ -29,11 +29,23 @@ JUCI.app
 					next(); 
 				}
 			}); 
+		}, function(next){
+			// create url blocking section if it does not exist
+			if(!$uci.firewall.urlblock){
+				$uci.firewall.$create({
+					".type": "urlblock", 
+					".name": "urlblock"
+				}).always(function(){
+					next(); 
+				}); 
+			} else {
+				next(); 
+			}
 		}, function(){
-			$scope.urlblock = $uci.firewall.urlblock; 
 			$scope.accessRules = $uci.firewall["@rule"].filter(function(x){
 				return x.parental.value; 
 			}); 
+			$scope.urlblock = $uci.firewall.urlblock; 
 			$scope.urlblock.url.value.map(function(x){ $scope.urlList.push({url: x}); }); 
 			$scope.urlblock.src_mac.value.map(function(x){ $scope.macList.push({mac: x}); }); 
 			

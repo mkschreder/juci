@@ -10,4 +10,11 @@ JUCI.app
 			done(); 
 		});
 	}); 
+	$scope.isopen = false;
+	$scope.getCpuUsage = function(){
+		if(!$scope.processes) return '0%'
+		var sum = 0;
+		$scope.processes.map(function(x){sum += Number(x["%CPU"].slice(0, -1));});
+		return sum + '%'
+	};
 }); 
