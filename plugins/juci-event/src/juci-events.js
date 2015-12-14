@@ -40,3 +40,7 @@
 	}); 
 	
 }();
+UCI.juci.$registerSectionType("juci_event", {
+	"filter":	{ dvalue: [], type: Array }
+});
+UCI.juci.$insertDefaults("juci_event");
