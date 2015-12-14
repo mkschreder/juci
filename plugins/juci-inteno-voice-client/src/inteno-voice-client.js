@@ -142,14 +142,14 @@ UCI.voice_client.$registerSectionType("sip_advanced", {
 	"stun_server":				{ dvalue: "", type: String }
 });
 UCI.voice_client.$registerSectionType("brcm_advanced", {
-	"country":	{ dvalue: "SWE", type: String},
-	"jbenable":	{ dvalue: "yes", type: String},
-	"jbforce":	{ dvalue: "no", type: String},
+	"country":		{ dvalue: "SWE", type: String },
+	"jbenable":		{ dvalue: "yes", type: Boolean },
+	"jbforce":		{ dvalue: "no", type: Boolean },
 	"jbmaxsize":	{ dvalue: 500, type: Number },
-	"jbimpl":	{ dvalue: "adaptive", type: String},
-	"genericplc":	{ dvalue: "yes", type: String},
+	"jbimpl":		{ dvalue: "adaptive", type: String },
+	"genericplc":	{ dvalue: "yes", type: Boolean },
 	"dialoutmsec":	{ dvalue: 4000, type: Number },
-	"cw_enable":	{ dvalue: "yes", type: String}
+	"cw_enable":	{ dvalue: "yes", type: Boolean }
 });
 UCI.voice_client.$registerSectionType("features", {
 	"cbbs_enabled":		{ dvalue: true, type: Boolean },
