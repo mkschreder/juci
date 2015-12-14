@@ -76,6 +76,19 @@
 			<juci-config-line title="{{ 'STUN server' | translate }}" help ="{{ 'Leave empty to disable the STUN monitor' | translate }}">
 				<input type="text" class="form-control" ng-model="sip.stun_server.value" />
 			</juci-config-line>
+			<juci-config-line title="{{ 'TLS/SSL Version' | translate }}">
+				<juci-select ng-items="ssl_versions" ng-model="sip.tls_version.value"></juci-select>
+			</juci-config-line>
+			<juci-config-line title="{{ 'Cipher string' | translate }}">
+				<input tupe="text" class="form-control" ng-model="sip.tls_cipher.value" />
+			</juci-config-line>
+			<h5 translate>Trusted CA</h5>
+			<div class="form-group {{ ssl.value !== ssl.ovalue ? 'has-error': ''}} {{ ssl.saved != undefined ? 'has-success' : ''}}">
+				<textarea rows="8" ng-model="ssl.value" class="form-control"></textarea>
+				<button class="btn btn-default" style="margin:5px;float:right" ng-click="save_ssl()">Save</button>
+				<span ng-hide="ssl.value === ssl.ovalue" class="label label-danger" translate>Don't forget to press save to save your changes</span>
+			</div>
+			<p style="font-size: 12px">Issuer certificates in PEM-format. Paste the full certificate including '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----'.</p>
 		</juci-config-lines>
 	</juci-config-section>
 	<juci-config-apply/>

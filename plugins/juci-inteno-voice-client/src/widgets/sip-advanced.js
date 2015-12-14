@@ -8,13 +8,35 @@ JUCI.app
 		replace: true,
 		controller: "sipAdvancedCtrl"
 	};
-}).controller("sipAdvancedCtrl", function($scope, $uci, $tr, gettext, $network){
+}).controller("sipAdvancedCtrl", function($scope, $uci, $tr, gettext, $network, $rpc){
+	$scope.ssl = {};
+	$rpc.juci.voice_client.get_trusted_ca().done(function(data){
+		$scope.ssl.ovalue = $scope.ssl.value = data.result;
+		$scope.$apply();
+	});
+	$scope.save_ssl = function(){
+		console.log($scope.ssl.value);
+		var test = $scope.ssl.value.split("\n").join("\n\r");
+		$rpc.juci.voice_client.set_trusted_ca({data:test}).done(function(data){
+			if(data.result == "success"){
+				$scope.ssl.ovalue = $scope.ssl.value;
+				$scope.ssl.saved = true;
+				$scope.$apply();
+			}
+			console.log(data);
+		});
+	};
 	$uci.$sync("voice_client").done(function(){
 		$scope.sip = $uci.voice_client.SIP; 
 		$scope.proxys = $scope.sip.sip_proxy.value.map(function(x){return {label: x}});
 		$scope.localnets = $scope.sip.localnet.value.map(function(x){return {label: x}});
 		$scope.$apply();
 	});
+	$scope.ssl_versions = [
+		{ label: $tr(gettext("TLS v1")),	value: "tlsv1" },
+		{ label: $tr(gettext("SSL v2")),	value: "sslv2" },
+		{ label: $tr(gettext("SSL v3")),	value: "sslv3" }
+	];
 	$network.getWanNetworks().done(function(data){
 		$scope.wan_networks = data.map(function(x){return { label: String(x[".name"]).toUpperCase(), value: x[".name"] }; });
 		$scope.wan_networks.push({ label: $tr(gettext("Listen on all interfaces")),	value: "" });
