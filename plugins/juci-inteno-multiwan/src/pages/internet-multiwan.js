@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.controller("InternetMultiWANPage", function($scope, $uci, $rpc, $network){
+.controller("InternetMultiWANPage", function($scope, $uci, $rpc, $network, $tr, gettext){
 	function refresh(){
 		$uci.$sync("multiwan").done(function(){
 			$scope.multiwan = $uci.multiwan; 
@@ -28,8 +28,9 @@ JUCI.app
 			refresh(); 
 		}); 
 	}
-	$scope.onGetRuleTitle = function(itme){
-		if(item.name !== "") return item.name.value;
+	$scope.onGetRuleTitle = function(item){
+		if(!item) return "Undefined"; 	
+		//if(item.name && item.name.value != undefined) return item.name.value;
 		return $tr(gettext("Source addr:")) + " " + item.src.value + " " + $tr(gettext("Destination addr:")) + " " + item.dst.value;
 	};		
 }); 

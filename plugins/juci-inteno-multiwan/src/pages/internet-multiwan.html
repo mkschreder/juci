@@ -18,7 +18,7 @@
 				</juci-config-section>
 			</accordion-group>
 			<accordion-group heading="{{ 'Multi-WAN Traffic Rules' | translate }}" is-open=false>
-				<juci-list-editor ng-items="trafic_rules" item-editor="multiwan-rules-list-edit"
+				<juci-list-editor ng-items="trafic_rules" item-editor="multiwan-rule-edit"
 				get-item-title="onGetRuleTitle($item)" on-create="onAddRule()" on-delete="onDeleteRule($item)" />
 			</accordion-group>
 		</accordion>

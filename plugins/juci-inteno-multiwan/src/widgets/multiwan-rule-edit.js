@@ -1,16 +1,16 @@
 //! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
-JUCI.app.directive("multiwanRulesList", function($compile, $parse){
+JUCI.app.directive("multiwanRuleEdit", function($compile, $parse){
 	return {
 		scope: {
 			model: "=ngModel"
 		},
-		templateUrl: "/widgets/multiwan-rules-list.html",
-		controller: "multiwanRulesListCtrl",
+		templateUrl: "/widgets/multiwan-rule-edit.html",
+		controller: "multiwanRuleEdit",
 		replace: "true",
 		require: "^ngModel"
 	}
-}).controller("multiwanRulesListCtrl", function($scope, $tr, gettext){
+}).controller("multiwanRuleEdit", function($scope, $tr, gettext){
 	$scope.protocols = [
 		{ label: $tr(gettext("UDP")),	value: "udp" },
 		{ label: $tr(gettext("TCP")),	value: "tcp" },
