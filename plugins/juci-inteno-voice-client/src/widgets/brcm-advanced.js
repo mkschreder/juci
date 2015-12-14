@@ -40,9 +40,4 @@ JUCI.app
 		{ label: $tr(gettext("United Arab Emirates")),	value: "ARE" },
 		{ label: $tr(gettext("CFG TR57")),				value: "T57" }
 	];
-	$scope.change_language = function(){
-		if(confirm("Do you want to restart now?")){
-			$uci.$save().done($rpc.juci.system.reboot());
-		}
-	};
 });

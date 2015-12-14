@@ -3,7 +3,7 @@
 		<juci-config-heading>{{ 'Advanced BRCM Settings' | translate }}</juci-config-heading>
 		<juci-config-lines>
 			<juci-config-line title="{{ 'Locale selecton' | translate }}" help="{{ 'A restart is required for country changes to take effect' | translate }}">
-				<juci-select ng-items="languages" on-change="change_language()" ng-model="brcm.country.value"></juci-select>
+				<juci-select ng-items="languages" ng-model="brcm.country.value"></juci-select>
 			</juci-config-line>
 			<juci-config-line title="{{ 'Enable Jitter Buffer' | translate }}">
 				<switch class="green" ng-model="brcm.jbenable.value" />
