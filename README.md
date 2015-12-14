@@ -45,7 +45,6 @@ src-git-full juci https://github.com/mkschreder/mks-openwrt-feed.git
 For example, you could append this to your .config and then do make defconfig: 
 
 	CONFIG_PACKAGE_juci-ubus-core=y
-	# CONFIG_PACKAGE_juci-asterisk is not set
 	# CONFIG_PACKAGE_juci-broadcom-dsl is not set
 	# CONFIG_PACKAGE_juci-broadcom-ethernet is not set
 	# CONFIG_PACKAGE_juci-broadcom-vlan is not set
