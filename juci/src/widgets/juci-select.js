@@ -25,12 +25,12 @@ JUCI.app
 			}
 
 			$scope.$watch("ngItems", function(){
-				if(!$scope.ngItems || !$scope.ngModel) return; 
+				if($scope.ngItems == undefined || $scope.ngModel == undefined) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
 			}); 
 
 			$scope.$watch("ngModel", function(value){
-				if(value == undefined || !$scope.ngItems) return; 
+				if(value == undefined || $scope.ngItems == undefined) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
 			});
 		}
