@@ -8,36 +8,34 @@ JUCI.app
 		replace: true,
 		controller: "brcmAdvancedCtrl"
 	};
-}).controller("brcmAdvancedCtrl", function($scope, $uci, $tr, gettext, $network, $rpc){
+}).controller("brcmAdvancedCtrl", function($scope, $uci, $tr, gettext, $network, $rpc, $juciDialog, languages){
 	$uci.$sync(["voice_client"]).done(function(){
 		$scope.brcm = $uci.voice_client.BRCM;
 	});
-	$scope.languages = [
-		{ label: $tr(gettext("Australia")),				value: "AUS" },
-		{ label: $tr(gettext("Belgium")),				value: "BEL" },
-		{ label: $tr(gettext("Brazil")),				value: "BRA" },
-		{ label: $tr(gettext("Chile")),					value: "CHL" },
-		{ label: $tr(gettext("China")),					value: "CHN" },
-		{ label: $tr(gettext("Czech")),					value: "CZE" },
-		{ label: $tr(gettext("Denmark")),				value: "DNK" },
-		{ label: $tr(gettext("Etsi")),					value: "ETS" },
-		{ label: $tr(gettext("Finland")),				value: "FIN" },
-		{ label: $tr(gettext("France")),				value: "FRA" },
-		{ label: $tr(gettext("Germany")),				value: "DEU" },
-		{ label: $tr(gettext("Hungary")),				value: "HUN" },
-		{ label: $tr(gettext("India")),					value: "IND" },
-		{ label: $tr(gettext("Italy")),					value: "ITA" },
-		{ label: $tr(gettext("Japan")),					value: "JPN" },
-		{ label: $tr(gettext("Netherlands")),			value: "NLD" },
-		{ label: $tr(gettext("New Zealand")),			value: "NZL" },
-		{ label: $tr(gettext("North America")),			value: "USA" },
-		{ label: $tr(gettext("Spain")),					value: "ESP" },
-		{ label: $tr(gettext("Sweden")),				value: "SWE" },
-		{ label: $tr(gettext("Switzerland")),			value: "CHE" },
-		{ label: $tr(gettext("Norway")),				value: "NOR" },
-		{ label: $tr(gettext("Taiwan")),				value: "TWN" },
-		{ label: $tr(gettext("United Kingdoms")),		value: "GRB" },
-		{ label: $tr(gettext("United Arab Emirates")),	value: "ARE" },
-		{ label: $tr(gettext("CFG TR57")),				value: "T57" }
+	$scope.jbimpl = [
+		{ label: $tr(gettext("Fixed")),		value: "fixed" },
+		{ label: $tr(gettext("Adaptive")),	value: "adaptive" }
 	];
+	$scope.languages = languages;
+	$scope.on_language_change = function(){
+		setTimeout(function(){
+			$juciDialog.show("reboot-dialog", {
+				buttons: [
+					{ label: $tr(gettext("Yes")), value: "apply", primary: true },
+					{ label: $tr(gettext("No")), value: "cancel" }
+				],
+				on_apply: function(btn, dlg){
+					$uci.$save().done(function(){
+						//$rpc.juci.system.reboot().done(function(){
+						console.log("rebooting");
+						location = "/reboot.html";
+						//});
+					}).fail(function(){
+						console.log("fail")
+					});
+					return true;
+				}
+			});	 
+		}, 0);
+	};
 });

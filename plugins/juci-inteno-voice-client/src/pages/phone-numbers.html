@@ -3,7 +3,7 @@
 		<juci-config-section>
 			<juci-config-heading>{{ 'SIP Accounts' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'phone.sip.accounts.info' | translate }}</juci-config-info>
-			<juci-expandable title="{{num.name.value}}" ng-repeat="num in phone_numbers track by $index">
+			<juci-expandable title="{{num.name.value}}" ng-repeat="num in phone_numbers track by $index" open=false>
 				<juci-config-lines>
 					<juci-config-line title="{{'Account Name'|translate}}">
 						<input type="text" class="form-control" ng-model="num.name.value"/>

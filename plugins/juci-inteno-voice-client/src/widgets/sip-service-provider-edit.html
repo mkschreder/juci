@@ -1,0 +1,46 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Enabled'|translate}}">
+			<switch ng-model="model.enabled.value" class="green"></switch>
+		</juci-config-line>
+		<juci-config-line title="{{'Account Name'|translate}}">
+			<input type="text" class="form-control" ng-model="model.name.value"/>
+		</juci-config-line>
+		<juci-config-line ng-show="false" title="{{ 'Incoming calls to' | translate }}">
+			<juci-select ng-items="targets" ng-model="model.target.value"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{ 'Mailbox' | translate }}">
+			<juci-select ng-items="mboxes" ng-model="model.mailbox.value"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{ 'SIP domain name' | translate }}">
+			<input type="text" class="form-control" ng-model="model.domain.value" />
+		</juci-config-line>
+		<juci-config-line title="{{'SIP Username'|translate}}">
+			<input type="text" class="form-control" ng-model="model.user.value" placeholder="{{'User'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'SIP Authentication Name'|translate}}">
+			<input type="text" class="form-control" ng-model="model.authuser.value" placeholder="{{'Auth User'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'SIP Password'|translate}}">
+			<input type="password" class="form-control" ng-model="model.secret.value" placeholder="{{'***********'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{ 'Display Name' | translate }}">
+			<input type="text" class="form-control" ng-model="model.displayname.value" placehoder="{{'Display Name' | translate }}" />
+		</juci-config-line>
+		<juci-config-line title="{{'SIP Host'|translate}}">
+			<input type="text" class="form-control" ng-model="model.host.value" placeholder="{{'SIP Server'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'SIP Proxy'|translate}}">
+			<input type="text" class="form-control" ng-model="model.outboundproxy.value" placeholder="{{'SIP Proxy'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Incoming Phone Lines'|translate}}">
+			<div class="form-group col-md-6 " ng-repeat="line in lines track by $index">
+				<div class="checkbox checkbox-info">
+					<input type="checkbox" ng-model="line.checked" ng-change="onLineChange(line)" />
+					<label>{{line.label}}</label>
+				</div>
+			</div>
+		</juci-config-line>
+	</juci-config-lines>
+</div>
+
