@@ -16,4 +16,4 @@ UCI.cwmp.$registerSectionType("cwmp", {
 	"log_max_size":				{ dvalue: 102400, type: Number },
 	"port":						{ dvalue: 7547, type: Number },
 	"provisioning_code":		{ dvalue: '', type: String }
-);
+});
