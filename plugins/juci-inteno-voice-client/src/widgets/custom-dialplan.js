@@ -1,7 +1,7 @@
 //! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
-.directive("juciCustomDialplan", function(){
+.directive("phoneCustomDialplan", function(){
 	return {
 		scope: true,
 		templateUrl: "widgets/custom-dialplan.html",

@@ -1,7 +1,7 @@
 //! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
-.directive("juciSipAdvanced", function(){
+.directive("phoneSipAdvanced", function(){
 	return {
 		scope: true,
 		templateUrl: "widgets/sip-advanced.html",

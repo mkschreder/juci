@@ -1,7 +1,7 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
  
 JUCI.app
-.directive("juciPhoneLines", function(){
+.directive("phoneLines", function(){
 	return {
 		scope: true,
 		templateUrl: "widgets/phone-lines.html",

@@ -1,7 +1,7 @@
 //! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
-.directive("juciBrcmAdvanced", function(){
+.directive("phoneBrcmAdvanced", function(){
 	return {
 		scope: true,
 		templateUrl: "widgets/brcm-advanced.html",
