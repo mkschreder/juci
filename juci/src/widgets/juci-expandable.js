@@ -21,11 +21,15 @@ JUCI.app
 		replace: true, 
 		scope: {
 			title: "@", 
-			status: "="
+			status: "=",
+			open: "="
 		}, 
-		transclude: true, 
-		link: function (scope, element, attrs) {
-			
-		}
+		transclude: true,
+		controller: "juciExpandableCtrl"
 	};  
-})
+}).controller("juciExpandableCtrl", function($scope){
+	if($scope.open == undefined) $scope.open = true;
+	$scope.toggle_open = function(){
+		$scope.open = !$scope.open;
+	};
+});
