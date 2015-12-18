@@ -612,7 +612,6 @@ msgstr ""
 
 # /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
 msgid "Differentiated services/TOS for SIP data. Recommended value: cs3"
-<<<<<<< HEAD
 msgstr ""
 
 # /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
@@ -648,43 +647,6 @@ msgid "Cipher string"
 msgstr ""
 
 # /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-=======
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "Audio DiffServ"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "Differentiated services/TOS for Audio data. Recommended value: ef"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "Congestion tone"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "Tone to play on congestion"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "STUN server"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "Leave empty to disable the STUN monitor"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "TLS/SSL Version"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
-msgid "Cipher string"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-advanced.html
->>>>>>> juci-inteno-voice-client: renamed pages and made the plugin more unified
 msgid "Trusted CA"
 msgstr ""
 
@@ -946,17 +908,6 @@ msgstr ""
 msgid "Voice service is not available!"
 msgstr ""
 
-<<<<<<< HEAD
-=======
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/voice-advanced-settings.html
-msgid "Advanced Line Settings"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/voice-advanced-settings.html
-msgid "Custom Dialplan Settings"
-msgstr ""
-
->>>>>>> juci-inteno-voice-client: renamed pages and made the plugin more unified
 # phone
 msgid "Call Log"
 msgstr ""
@@ -1066,7 +1017,6 @@ msgstr "Phone Status"
 
 msgid "voice-title"
 msgstr "Voice"
-<<<<<<< HEAD
 
 msgid "voice-number-blocking-title"
 msgstr "Number Blocking"
@@ -1096,28 +1046,6 @@ msgstr "Speed Dialing"
 msgid "voice-ringing-schedule-title"
 msgstr "Ringing Schedule"
 
-=======
-
-msgid "voice-number-blocking-title"
-msgstr "Number Blocking"
-
-msgid "voice-call-log-title"
-msgstr "Call Log"
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/voice-sip-accounts.html
-msgid "voice-sip-accounts-title"
-msgstr ""
-
-msgid "voice-lines-title"
-msgstr "Voice Lines"
-
-msgid "voice-speed-dialing-title"
-msgstr "Speed Dialing"
-
-msgid "voice-ringing-schedule-title"
-msgstr "Ringing Schedule"
-
->>>>>>> juci-inteno-voice-client: renamed pages and made the plugin more unified
 msgid "voice-advanced-settings-title"
 msgstr "Advanced Settings"
 
@@ -1127,7 +1055,6 @@ msgstr "Phone"
 
 msgid "menu-voice-title"
 msgstr "Voice"
-<<<<<<< HEAD
 
 msgid "menu-voice-number-blocking-title"
 msgstr "Number Blocking"
@@ -1147,18 +1074,6 @@ msgstr "Line Settings"
 msgid "menu-voice-sip-accounts-title"
 msgstr "SIP Accounts"
 
-=======
-
-msgid "menu-voice-number-blocking-title"
-msgstr "Number Blocking"
-
-msgid "menu-voice-call-log-title"
-msgstr "Call Log"
-
-msgid "menu-voice-sip-accounts-title"
-msgstr "SIP Accounts"
-
->>>>>>> juci-inteno-voice-client: renamed pages and made the plugin more unified
 msgid "menu-voice-lines-title"
 msgstr "Voice Lines"
 
