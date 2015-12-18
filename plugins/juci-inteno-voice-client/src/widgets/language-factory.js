@@ -9,7 +9,7 @@ JUCI.app.factory("languages", function($tr, gettext){
 		{ label: $tr(gettext("China")),					value: "CHN" },
 		{ label: $tr(gettext("Czech")),					value: "CZE" },
 		{ label: $tr(gettext("Denmark")),				value: "DNK" },
-		{ label: $tr(gettext("Etsi")),					value: "ETS" },
+		{ label: $tr(gettext("ETSI")),					value: "ETS" },
 		{ label: $tr(gettext("Finland")),				value: "FIN" },
 		{ label: $tr(gettext("France")),				value: "FRA" },
 		{ label: $tr(gettext("Germany")),				value: "DEU" },
