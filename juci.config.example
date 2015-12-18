@@ -44,7 +44,23 @@ config menu
 	option path "voice/advanced-settings"
 	option page "voice-advanced-settings"
 	option acls "juci-inteno-voice-client"
+	option redirect "voice-advanced-settings-sip"
 	option modes "expert"
+
+config menu
+	option path "voice/advanced-settings/sip"
+	option page "voice-advanced-settings-sip"
+	option acls "juci-inteno-voice-client"
+
+config menu
+	option path "voice/advanced-settings/lines"
+	option page "voice-advanced-settings-lines"
+	option acls "juci-inteno-voice-client"
+
+config menu
+	option path "voice/advanced-settings/dialplan"
+	option page "voice-advanced-settings-dialplan"
+	option acls "juci-inteno-voice-client"
 
 config menu
 	option path "voice/call-log"

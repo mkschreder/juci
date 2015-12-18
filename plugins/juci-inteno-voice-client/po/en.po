@@ -908,14 +908,6 @@ msgstr ""
 msgid "Voice service is not available!"
 msgstr ""
 
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/voice-advanced-settings.html
-msgid "Advanced Line Settings"
-msgstr ""
-
-# /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/voice-advanced-settings.html
-msgid "Custom Dialplan Settings"
-msgstr ""
-
 # phone
 msgid "Call Log"
 msgstr ""
@@ -1029,8 +1021,17 @@ msgstr "Voice"
 msgid "voice-number-blocking-title"
 msgstr "Number Blocking"
 
+msgid "voice-advanced-settings-dialplan-title"
+msgstr "Custom Dialplan"
+
+msgid "voice-advanced-settings-sip-title"
+msgstr "SIP Settings"
+
 msgid "voice-call-log-title"
 msgstr "Call Log"
+
+msgid "voice-advanced-settings-lines-title"
+msgstr "Line Settings"
 
 # /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/voice-sip-accounts.html
 msgid "voice-sip-accounts-title"
@@ -1058,8 +1059,17 @@ msgstr "Voice"
 msgid "menu-voice-number-blocking-title"
 msgstr "Number Blocking"
 
+msgid "menu-voice-advanced-settings-dialplan-title"
+msgstr "Custom Dialplan"
+
+msgid "menu-voice-advanced-settings-sip-title"
+msgstr "SIP Settings"
+
 msgid "menu-voice-call-log-title"
 msgstr "Call Log"
+
+msgid "menu-voice-advanced-settings-lines-title"
+msgstr "Line Settings"
 
 msgid "menu-voice-sip-accounts-title"
 msgstr "SIP Accounts"
