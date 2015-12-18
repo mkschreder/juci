@@ -16,9 +16,11 @@
 
 !function(){
 	function EventManager(){
-			this.callbacks = {}; 
+			this.callbacks = {};
 	}
-	
+	EventManager.prototype.removeAll = function(){
+		this.callbacks = {};
+	}
 	EventManager.prototype.subscribe = function(type, callback){
 		if(!this.callbacks[type]) this.callbacks[type] = []; 
 		this.callbacks[type].push(callback); 
