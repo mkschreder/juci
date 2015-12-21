@@ -1,3 +1,19 @@
 <div>
-	<p>Not implemented</p>
+	<juci-config-lines>
+		<juci-config-line title="{{ 'Source Address' | translate }}" help="{{'Leave empty for all' | translate }}">
+			<juci-select ng-items="addresses" ng-model="model.src.value" editable="true" placeholder="All"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{ 'Destination Address' | translate }}" help="{{'Leave empty for all' | translate }}">
+			<input type="text" class="form-control" ng-model="model.dst.value" placeholder="All" />
+		</juci-config-line>
+		<juci-config-line title="{{ 'Protocol' | translate }}" help="{{'Leave empty for all' | translate }}">
+			<juci-select ng-items="protocols" ng-model="model.proto.value" editable="true" placeholder="All"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{ 'Ports' | translate }}" help="{{'Leave empty for all' | translate }}">
+			<input type="text" class="form-control" ng-model="model.ports.value" placeholder="All" />
+		</juci-config-line>
+		<juci-config-line title="{{ 'WAN Uplink' | translate }}">
+			<juci-select ng-items="wan_uplink" ng-model="model.wanrule.value" placeholder="All"></juci-select>
+		</juci-config-line>
+	</juci-config-lines>
 </div>

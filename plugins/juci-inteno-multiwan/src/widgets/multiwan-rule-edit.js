@@ -24,7 +24,14 @@ JUCI.app.directive("multiwanRuleEdit", function($compile, $parse){
 		replace: "true",
 		require: "^ngModel"
 	}
-}).controller("multiwanRuleEdit", function($scope, $tr, gettext){
+}).controller("multiwanRuleEdit", function($scope, $tr, gettext, $network, $firewall){
+	$firewall.getZoneClients("lan").always(function(clients){
+		$scope.addresses = clients.map(function(client){ 
+			var name = (!client.hostname || client.hostname == "") ? "" : " (" + client.hostname + ")";
+			return { label: client.ipaddr + name, value: client.ipaddr }});
+	});
+	console.log($firewall);
+	$scope.addresses = [];
 	$scope.protocols = [
 		{ label: $tr(gettext("UDP")),	value: "udp" },
 		{ label: $tr(gettext("TCP")),	value: "tcp" },
@@ -37,4 +44,10 @@ JUCI.app.directive("multiwanRuleEdit", function($compile, $parse){
 		{ label: $tr(gettext("Load Balancer (Performance)")),	value: "fastbalncer" },
 		{ label: $tr(gettext("Load Balancer (Compability)")),	value: "balancer" }
 	];
+	var first = true;
+	$scope.$watch("model", function(){
+		if(!$scope.model || !first) return;
+		if($scope.model.src.value != '')$scope.addresses.push({ label: $scope.model.src.value, value: $scope.model.src.value });
+		first = false;
+	}, false);
 });

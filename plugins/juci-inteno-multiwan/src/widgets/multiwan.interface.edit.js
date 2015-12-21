@@ -91,12 +91,9 @@ JUCI.app
 			{ label: $tr(gettext('Load Balancer(Performance)')),	value:'fastbalancer' },
 			{ label: $tr(gettext('Load Balancer(Compability)')),	value:'balancer' }
 		];
-		$uci.$sync("multiwan").done(function(){
-			$scope.failover_to = $scope.failover_to.concat($uci.multiwan["@interface"].map(function(x){
-				return { label: x[".name"], value: x[".name"] }; 
-			}).filter(function(x){return x.value != $scope.interface[".name"]}));
-			$scope.$apply(); 
-		});
+		$scope.failover_to = $scope.failover_to.concat($uci.multiwan["@interface"].map(function(x){
+			return { label: x[".name"], value: x[".name"] }; 
+		}).filter(function(x){return x.value != $scope.interface[".name"]}));
 	});
 	$scope.update_icmp = function(){
 		if($scope.icmp.hosts == 'custom'){ 
