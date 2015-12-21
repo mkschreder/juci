@@ -46,8 +46,44 @@ msgstr ""
 msgid "Network"
 msgstr "Network"
 
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "DHCPv4 leases"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "DHCPv6 leases"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "Active DHCP Leases"
+msgstr ""
+
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
 msgid "Hostname"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "IPv4-Address"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "MAC-Address"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "Leasetime remaining"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "There are no active leases"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "IPv6-Address"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-leases-widget.html
+msgid "DUID"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-dnsmasq-dhcp/src/widgets/dhcp-static-hosts-edit.html
@@ -97,12 +133,239 @@ msgstr ""
 msgid "DHCP Server"
 msgstr ""
 
-msgid "status-dhcp-leases-title"
-msgstr "DHCP Leases"
+msgid "General Settings"
+msgstr "General Settings"
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Local domain"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Local domain suffix appended to DHCP names and hosts file entries"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Log queries"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Write received DNS requests to syslog"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Leasefile"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "file where given DHCP-leases will be stored"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Ignore resolve file"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Resolve file"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "local DNS file"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Ignore Hosts file"
+msgstr ""
+
+msgid "Advanced Settings"
+msgstr "Advanced Settings"
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Domain required"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Do not forward DNS-Requests without DNS-Name"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Authoritative"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "This is the only DHCP in the local network"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Filter private"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Do not forward reverse lookups for local networks"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Filter usless"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Do not forward requests that cannot be answered by public name servers"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Localise queries"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid ""
+"Localise hostname depending on the requesting subnet if multiple IPs are "
+"available"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Local server"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid ""
+"Local domain specification. Names matching this domain are never forwared "
+"and resolved from DHCP or hosts files only"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Expand hosts"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Add local domain suffix to names served from hosts files"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "No negative cache"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Do not cache negative replies, e.g. for not existing domains"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Strict order"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "DNS servers will be queried in the order of the resolvfile"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Bogus NX Domain Override"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "List of hosts that supply bogus NX domain results"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "ex. 67.215.65.132"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "DNS forwarding"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "List of DNS servers to forward requests to"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "ex. /example.org/10.1.2.3"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Rebind protection"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Discard upstream RFC1918 responses"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Allow localhost"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid ""
+"Allow upstream responses in the 127.0.0.0/8 range, e.g. for RBL services"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Domain whitelist"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "List of domains to allow RFC1918 responses for"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "ex. ihost.netflix.com"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "DNS server port"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Listening port for inbound DNS queries"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "DNS query port"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Fixed source port for outbound DNS queries"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Max DHCP leases"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Maximum allowed number of active DHCP leases"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Max. EDNS0 packet size"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Maximum allowed size of EDNS.0 UDP packets"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Max. concurrent queries"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/dhcp-settings.html
+msgid "Maximum allowed number of concurrent DNS queries"
+msgstr ""
+
+# share/menu.d/status.json
+msgid "dhcp-status-title"
+msgstr "DHCP Status"
+
+# share/menu.d/settings.json
+msgid "dhcp-settings-title"
+msgstr "DHCP Settings"
 
 # /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/status-dhcp-leases.html
-msgid "menu-status-dhcp-leases-title"
-msgstr "DHCP Leases"
+msgid "menu-dhcp-status-title"
+msgstr "DHCP Status"
+
+# /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/status-dhcp-leases.html
+msgid "menu-dhcp-settings-title"
+msgstr "DHCP Settings"
+
+#~ msgid "status-dhcp-leases-title"
+#~ msgstr "DHCP Leases"
 
 #~ msgid "status.diagnostics.info"
 #~ msgstr ""
@@ -235,9 +498,6 @@ msgstr "DHCP Leases"
 
 #~ msgid "Services"
 #~ msgstr "Services"
-
-#~ msgid "Settings"
-#~ msgstr "Settings"
 
 #~ msgid "Static Routes"
 #~ msgstr "Static Routes"
@@ -833,9 +1093,6 @@ msgstr "DHCP Leases"
 #~ msgid "Internet IPv6"
 #~ msgstr "Internet IPv6"
 
-#~ msgid "LAN Settings"
-#~ msgstr "LAN Settings"
-
 #, fuzzy
 #~ msgid "MiniDLNA"
 #~ msgstr "MiniDLNA Settings"
@@ -1004,10 +1261,6 @@ msgstr "DHCP Leases"
 #~ msgid "settings.system.title"
 #~ msgstr "System"
 
-# share/menu.d/settings.json
-#~ msgid "settings.title"
-#~ msgstr "Settings"
-
 #~ msgid "settings.upgrade.title"
 #~ msgstr "Firmware Update"
 
@@ -1038,10 +1291,6 @@ msgstr "DHCP Leases"
 
 #~ msgid "status.status.tv.title"
 #~ msgstr "IPTV"
-
-# share/menu.d/status.json
-#~ msgid "status.title"
-#~ msgstr "Status"
 
 # share/menu.d/status.json
 #, fuzzy
