@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.factory("$firewall", function($uci){
+.factory("$firewall", function($uci, $network){
 	var firewall = 0; 
 	function sync(){
 		var deferred = $.Deferred(); 
@@ -64,7 +64,7 @@ JUCI.app
 			var def = $.Deferred();  
 			sync().done(function(){
 				$network.getNetworks({ filter: opts.filter }).done(function(nets){
-					var zone = $uci.firewall["@zone"].find(function(x){ return x[".name"] == zone; }); 
+					var zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone; }); 
 					if(!zone) {
 						def.reject({error: "Zone does not exist!"}); 
 						return; 
@@ -77,6 +77,53 @@ JUCI.app
 			}); 
 			return def.promise(); 
 		}, 
+		getZoneClients: function(zone){
+			var def = $.Deferred();
+			var networks = {};
+			var selected_zone = {};
+			var clients = {};
+			async.series([
+				function(next){
+					sync().always(function(){
+						next();
+					});
+				},
+				function(next){
+					$network.getNetworks().done(function(nets){
+						networks = nets;
+					}).always(function(){ next();});
+				},
+				function(next){
+					$network.getConnectedClients().done(function(con_clients){
+						clients = con_clients;
+					}).always(function(){next();});
+				},
+				function(next){
+					selected_zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone;});
+					next();
+				}
+			], function(){
+				if(!selected_zone){
+					def.reject({ error: "Zone does not exist!" });
+					return;
+				}
+				//filter out networks by the selected zone
+				var zone_networks = networks.filter(function(net){
+					return selected_zone.network.value.find(function(zone_net){ return zone_net == net[".name"]; }) !== undefined;
+				});
+				if(zone_networks.length == 0){
+					def.reject({ error: "Found no networks in zone" });
+					return;
+				}
+				var zone_clients = clients.filter(function(client){
+					return zone_networks.find(function(net){
+						return net.$info.device == client.device;
+					});
+				});
+				def.resolve(zone_clients);
+			});
+			return def.promise();
+		},
 		// we determine what networks are wan/lan/guest based on zones. This is currently hardcoded,
 		// but probably should not be in the future. This will break if the user has different zone names!
 		getLanZone: function(){ 

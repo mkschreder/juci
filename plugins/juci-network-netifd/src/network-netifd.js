@@ -79,6 +79,7 @@
 			var devmap = {}; 
 			if(!opts) opts = {}; 
 			var filter = opts.filter || {};
+			var info = {};
 			async.series([
 				function(next){
 					$ethernet.getAdapters().done(function(devs){
@@ -102,8 +103,23 @@
 					}).always(function(){
 						next(); 
 					}); 
+				}, function(next){
+					$rpc.network.interface.dump().done(function(result){
+						if(result && result.interface) {
+							info = result.interface;
+						}
+					}).always(function(){
+						next();
+					}); 
 				}
 			], function(){
+				if(info){
+					networks = networks.map(function(x){
+						// set $info to the information gathered from network.interface.dump() or undefined
+						x.$info = info.find(function(y){ return x[".name"] == y.interface; });
+						return x;
+					});
+				}
 				deferred.resolve(networks); 
 			}); 
 			
