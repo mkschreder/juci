@@ -97,23 +97,46 @@ then do /etc/init.d/rpcd restart.
 JUCI also includes a nodejs server which you can do for local testing and for
 forwarding jsonrpc calls to your router during testing (juci-local-server). 
 
+The GPL
+-------
+
+Software should be impossible to lock down. 
+
+JUCI uses GPL as primary license for all code, data and documentation. 
+
+You may use juci in any commertial application, firmware or embedded device
+without fearing any consequences other than being ready to make your own
+version of JUCI freely available to your customers to change and redistribute.
+
 Contribution
 ------------
 
 If you want to work on juci or if you are using juci yourself and make
 modifications to it, it is usually a good idea if you submit your modifications
 as patches. This can be done by using "git format-patch --stdout" and then
-submitting the patch to me. 
+submitting the patch to me by email or through the JUCI github page at
+https://github.com/mkschreder/juci.git. 
 
 For detailed instructions on how to submit patches see: 
 [Submitting Patches](https://github.com/mkschreder/juci/blob/master/docs/submitting-patches.md)
 
-(Note: if you make many modifications and never submit your modifications for
-review then chances are that your codebase is slowly becoming a "pile of crap".
-When this happens, eventually you will have to start with a fresh clone of juci
-repo and readd your things because they have not been properly integrated in
-the first place. So it is actually quite benefitial to submit patches when you
-are doing continuous development). 
+If you make any significant patches to JUCI to accomodate your project needs,
+it is very good if you submit them upstream to main juci project because your
+changes are likely to become obsolete within a few months unless they are
+integrated into the main project. 
+
+Copyright Assignment
+--------------------
+
+As a contributor to the JUCI project you remain as the holder of the copyright
+of your own contribution. Even if the copyright, under any circumstances, gets
+reassigned to someone else - you as the original owner of your contribution
+still retain all rights and benefits of a copyright holder to relicense and
+redistribute the code as your own. (note that GPL code that has once been
+released under GPL can not ever be made private in it's already released form.
+Only later versions can be made private - if you are the copyright holder.)
+Such a situation is however very unlikely to occur, unless someone decides to
+breach the GPL and do something stupid. 
 
 Good to know
 ------------
@@ -308,50 +331,17 @@ JUCI documentation can definitely be improved. You can speed up this process by
 posting your questions on the issues board on juci github page
 (https://github.com/mkschreder/juci/issues). 
 
-The JUCI Story 
---------------
-
-In April 2015 I came in as a consultant at Inteno in the middle of release
-cycle for next generation of Iopsys Open Source SDK for Inteno broadband
-routers. One of the things that fell on me is quickly adding new functionality
-to the existing webgui. I quickly realized that it was not feasible. The
-existing gui was written in lua and adding new pages was a bizarre journey of
-knocking out html code by calling lua functions. It was bizarre at best and it
-was not even Inteno's fault - they used a ready made solution and had on their
-todo list for years the task of improving it. It just never came to completion.
-
-So I took on me the task of creating the new gui. In two months I made a
-working prototype to what was at the time called luci-express. It got that name
-from the fact that originally I was exploring the idea of using nodejs and
-express to build it - but then I instead settled for using angular.js and parts
-of luci2 (with most of the code from luci2 now removed, but backend such as
-rpcd was in fact created specifically for luci2 on openwrt and is still in use
-today).
-
-The name luci-express was however not descriptive enough - especially since the
-"L" in luci stands for Lua and luci-express was basically writen in javascript.
-So I came up with a better name for it instead which came to be the acronym for
-Javascript Universal Configuration Interface - and that's how JUCI was born.
-Besides, everyone seemed to like it so JUCI became the name.
-
-It took another six months to make juci a worthy contestant for being used in a
-production environment. Over time more people joined development and now we are
-a few people adding new things to JUCI. It proved to be quite useful and
-actually quite nice to work with. It was all made possible with initial support
-from Inteno and Iopsys and the examples of already working systems. 
-
 License Notice
 --------------
 
-	Copyright (C) 2015 JUCI Project. All rights reserved.
+	All individual parts in JUCI are Copyright of their respective authors. 
 
-	All contributions to JUCI are Copyright of their respective authors. 
+	Current list of contributors: 
 
-	JUCI Contains code from: 
-	
 		Reidar Cederqvist <reidar.cederqvist@gmail.com>
 		Stefan Nygren <stefan.nygren@hiq.se>
-		[Charlie Robbins](http://nodejitsu.com)
+		Martin K. Schröder <mkschreder.uk@gmail.com>
+		Charlie Robbins <http://nodejitsu.com>
 		Craig Mason-Jones
 		Kord Campbell <kord@loggly.com>
 		Mihai Bazon
