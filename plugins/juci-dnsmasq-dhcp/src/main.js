@@ -1,4 +1,18 @@
-//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+/*	
+	This file is part of JUCI (https://github.com/mkschreder/juci.git)
+
+	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
+
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+*/ 
 
 UCI.$registerConfig("dhcp"); 
 UCI.dhcp.$registerSectionType("dnsmasq", {
@@ -38,7 +52,8 @@ UCI.dhcp.$registerSectionType("dhcp", {
 });
 UCI.dhcp.$registerSectionType("domain", {
 	"name":		{ dvalue: "", type: String, required: true},
-	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator }  // TODO: change to ip address
+	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator },  // TODO: change to ip address
+	"family":	{ dvalue: "ipv4", type: String }
 });
 UCI.dhcp.$registerSectionType("host", {
 	"name":		{ dvalue: "", type: String, required: false},

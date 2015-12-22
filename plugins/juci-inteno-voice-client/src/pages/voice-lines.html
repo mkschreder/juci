@@ -1,0 +1,10 @@
+<div ng-controller="voiceLinesPage">
+	<juci-layout-with-sidebar>
+		<juci-config-line title="Switch between views">
+			<switch ng-model="showExpandable.value"></switch>
+		</juci-config-line>
+		<div ng-show="showExpandable.value"><phone-lines></phone-lines></div>
+		<div ng-show="!showExpandable.value"><phone-lines-test></phone-lines-test></div>
+		<juci-config-apply></juci-config-apply>
+	</juci-layout-with-sidebar>
+</div>

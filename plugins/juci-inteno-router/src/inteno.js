@@ -1,3 +1,20 @@
+/*	
+	This file is part of JUCI (https://github.com/mkschreder/juci.git)
+
+	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
+
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+*/ 
+
+
 JUCI.app
 .factory("$router", function($uci){
 	function IntenoRouter () {
@@ -52,7 +69,7 @@ JUCI.app
 		$router.boardpanel = $uci.boardpanel; 
 		if(!$uci.boardpanel.settings){
 			$uci.boardpanel.create({".type": "settings", ".name": "settings"}).done(function(section){
-				$uci.save(); 
+				$uci.$save(); 
 			}).fail(function(){
 				//$scope.$emit("error", "Could not create required section boardpanel.settings in config!"); 
 			}); 

@@ -1,0 +1,12 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{ 'Hostname' | translate }}">
+			<tags-input ng-model="model.name.value" display-property="value" key-property="value" 
+						placeholder="{{'Add a host' | translate }}" type="url" add-on-spce="true"></tags-input>
+		</juci-config-line>
+		<juci-config-line title="{{ 'Family' | translate }}">
+			<label translate><input type="radio" ng-model="model.family.value" value="ipv4" /> IPv4 </label><br />
+			<label translate><input type="radio" ng-model="model.family.value" value="ipv6" /> IPv6 </label>
+		</juci-config-line>
+	</juci-config-lines>
+</div>

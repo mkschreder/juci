@@ -1,4 +1,18 @@
-//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+/*	
+	This file is part of JUCI (https://github.com/mkschreder/juci.git)
+
+	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
+
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+*/ 
 
 (function(scope){
 	//var JUCI = exports.JUCI; 
@@ -76,6 +90,71 @@
 		}
 	}
 	
+	function IP4AddressValidator(){
+		this.validate = function(field){
+			if(field.value && field.value != "" && !field.value.match(/^\b(?:\d{1,3}\.){3}\d{1,3}\b$/)) return gettext("IP Address must be a valid ipv4 address!"); 
+			return null;
+		}
+	}; 
+	
+	function IPAddressValidator(){
+		this.validate = function(field){
+			var ipv4 = new IP4AddressValidator();
+			var ipv6 = new IP6AddressValidator();
+			if(ipv4.validate(field) == null || ipv6.validate(field) == null) return null
+			return gettext("IP Address must be a valid ipv4 or ipv6 address!");
+		}
+	}; 
+
+	function IP6AddressValidator(){
+		this.validate = function(field){
+			if(field.value && field.value != "" && !field.value.match("("+
+				"([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|"+ //          # 1:2:3:4:5:6:7:8
+				"([0-9a-fA-F]{1,4}:){1,7}:|"+ //                         # 1::                              1:2:3:4:5:6:7::
+				"([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|"+ //         # 1::8             1:2:3:4:5:6::8  1:2:3:4:5:6::8
+				"([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|"+ //  # 1::7:8           1:2:3:4:5::7:8  1:2:3:4:5::8
+				"([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|"+ //  # 1::6:7:8         1:2:3:4::6:7:8  1:2:3:4::8
+				"([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|"+ //  # 1::5:6:7:8       1:2:3::5:6:7:8  1:2:3::8
+				"([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|"+ //  # 1::4:5:6:7:8     1:2::4:5:6:7:8  1:2::8
+				"[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|"+ //       # 1::3:4:5:6:7:8   1::3:4:5:6:7:8  1::8  
+				":((:[0-9a-fA-F]{1,4}){1,7}|:)|"+ //                     # ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8 ::8       ::     
+				"fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|"+ //     # fe80::7:8%eth0   fe80::7:8%1     (link-local IPv6 addresses with zone index)
+				"::(ffff(:0{1,4}){0,1}:){0,1}"+ //
+				"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"+ //
+				"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|"+ //          # ::255.255.255.255   ::ffff:255.255.255.255  ::ffff:0:255.255.255.255  (IPv4-mapped IPv6 addresses and IPv4-translated addresses)
+				"([0-9a-fA-F]{1,4}:){1,4}:"+ //
+				"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"+ //
+				"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"+ //           # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33 (IPv4-Embedded IPv6 Address)
+				")")) return gettext("IPv6 Aaddress must be a valid ipv6 address"); 
+			return null; 
+		}
+	} 
+
+	function MACAddressValidator(){
+		this.validate = function(field){
+			if(!(typeof field.value == "string") ||
+				!field.value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/)) 
+				return gettext("Value must be a valid MAC-48 address"); 
+			return null; 
+		}
+	};	 
+
+	function MACListValidator(){
+		this.validate = function(field){
+			if(field.value instanceof Array){
+				var errors = []; 
+				field.value.map(function(value){
+					if(!value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/))
+						errors.push(gettext("value must be a valid MAC-48 address")+": "+value); 
+				}); 
+				if(errors.length) return errors.join(", "); 
+			}
+			return null; 
+		}
+	}; 
+
+
+	
 	var section_types = {};
 	function UCI(){
 		
@@ -110,8 +189,8 @@
 			get value(){
 				if(this.schema.type == Boolean){
 					var uvalue = (this.uvalue == undefined)?this.ovalue:this.uvalue; 
-					if(uvalue === "true" || uvalue === "1" || uvalue === "on") return true; 
-					else if(uvalue === "false" || uvalue === "0" || uvalue === "off") return false; 
+					if(uvalue === "true" || uvalue === "1" || uvalue === "on" || uvalue === "yes") return true; 
+					else if(uvalue === "false" || uvalue === "0" || uvalue === "off" || uvalue === "no") return false; 
 				}
 				if(this.uvalue == undefined) return this.ovalue;
 				else return this.uvalue; 
@@ -122,6 +201,7 @@
 				// properly handle booleans
 				if(this.schema.type == Boolean){
 					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off"; }
+					else if(this.ovalue == "yes" || this.ovalue == "no") { this.uvalue = (val)?"yes":"no"; }
 					else if(this.ovalue == "true" || this.ovalue == "false") { this.uvalue = (val)?"true":"false"; } 
 					else this.uvalue = val; 
 				} else {
@@ -829,7 +909,12 @@
 		TimespanValidator: TimespanValidator, 
 		PortValidator: PortValidator, 
 		NumberLimitValidator: NumberLimitValidator, 
-		TimeValidator: TimeValidator
+		TimeValidator: TimeValidator,
+		MACAddressValidator: MACAddressValidator,
+		MACListValidator: MACListValidator,
+		IPAddressValidator: IPAddressValidator,
+		IP6AddressValidator: IP6AddressValidator,
+		IP4AddressValidator: IP4AddressValidator
 	}; 
 	/*if(exports.JUCI){
 		var JUCI = exports.JUCI; 

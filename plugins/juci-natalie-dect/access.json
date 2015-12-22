@@ -11,7 +11,15 @@
 				"sys.dect.handset.*": [
 					"ping"
 				]
-			}
+			},
+			"uci": [
+				"dect"
+			]
+		},
+		"write": {
+			"uci": [
+				"dect"
+			]
 		}
 	}
 }

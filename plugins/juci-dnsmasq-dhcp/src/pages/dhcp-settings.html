@@ -87,7 +87,10 @@
 						<input type="text" class="form-control" placeholder="150" ng-model="dnsmasq.dnsforwardmax.value" ng-change="on_port_change('dnsforwardmax')" />
 					</juci-config-line>
 				</juci-config-lines>
-			</accorion-group>
+			</accordion-group>
+			<accordion-group heading="{{ 'Host entries' | translate }}" is-open="false">
+				<dhcp-host-entries></dhcp-host-entries>
+			</accordion-group>
 		</accordion>
 		<juci-config-apply></juci-config-apply>
 	</div>

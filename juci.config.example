@@ -6,12 +6,12 @@ config juci_event 'juci_event'
 	list filter system.ntp
 	list filter iptv.mcpd
 
-config juci juci 
+config juci juci
 	option homepage overview
-	
-config 'login' 'login'      
+
+config 'login' 'login'
 	option 'showusername' '1'
-	option 'defaultuser' 'admin' 
+	option 'defaultuser' 'admin'
 
 config 'localization' 'localization'
 	option default_language 'se'
@@ -24,49 +24,70 @@ config menu
 	option page "overview"
 
 config menu
-	option path "phone"
-	option page "phone"
-	option redirect "phone-call-log"
+	option path "voice"
+	option page "voice"
+	option redirect "voice-sip-accounts"
 	option acls "juci-inteno-voice-client"
 
 config menu
-	option path "phone/calllog"
-	option page "phone-call-log"
+	option path "voice/sip-accounts"
+	option page "voice-sip-accounts"
 	option acls "juci-inteno-voice-client"
 
 config menu
-	option path "phone/number_blocking"
-	option page "phone-number-blocking"
-	option acls "juci-inteno-voice-client"
-	option modes "expert"
-
-config menu
-	option path "phone/ringing_schedule"
-	option page "phone-ringing-schedule"
+	option path "voice/lines"
+	option page "voice-lines"
 	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
-	option path "phone/numbers"
-	option page "phone-numbers"
+	option path "voice/advanced-settings"
+	option page "voice-advanced-settings"
+	option acls "juci-inteno-voice-client"
+	option redirect "voice-advanced-settings-sip"
+	option modes "expert"
+
+config menu
+	option path "voice/advanced-settings/sip"
+	option page "voice-advanced-settings-sip"
+	option acls "juci-inteno-voice-client"
+
+config menu
+	option path "voice/advanced-settings/lines"
+	option page "voice-advanced-settings-lines"
+	option acls "juci-inteno-voice-client"
+
+config menu
+	option path "voice/advanced-settings/dialplan"
+	option page "voice-advanced-settings-dialplan"
+	option acls "juci-inteno-voice-client"
+
+config menu
+	option path "voice/call-log"
+	option page "voice-call-log"
+	option acls "juci-inteno-voice-client"
+
+config menu
+	option path "voice/number-blocking"
+	option page "voice-number-blocking"
 	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
-	option path "phone/lines"
-	option page "phone-lines"
+	option path "voice/ringing-schedule"
+	option page "voice-ringing-schedule"
 	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
-	option path "phone/speed_dialing"
-	option page "phone-speed-dialing"
+	option path "voice/speed_dialing"
+	option page "voice-speed-dialing"
 	option acls "juci-inteno-voice-client"
 	option modes "expert"
 
 config menu
-	option path "phone/dect"
-	option page "phone-dect"
+	option path "voice/dect"
+	option page "voice-dect"
 	option acls "juci-natalie-dect"
 
 config menu

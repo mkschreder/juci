@@ -1,0 +1,24 @@
+<div>
+	<juci-config-section>
+		<juci-config-heading>{{ 'Custom Dialplan' | translate }}</juci-config-heading>
+			<juci-config-line title="{{'Enable incomming dialplan'|translate}}">
+				<switch class="green" ng-model="dialplan.custom_incoming_enabled.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'Enable outgoing dialplan'|translate}}">
+				<switch class="green" ng-model="dialplan.custom_outgoing_enabled.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'Enable custom hangup'|translate}}">
+				<switch class="green" ng-model="dialplan.custom_hangup_enabled.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'All ports Extension'|translate}}">
+				<input type="text" class="form-control" ng-model="dialplan.all_ports_extension.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'Test Audio Extension'|translate}}">
+				<input type="text" class="form-control" ng-model="dialplan.test_audio_extension.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'Test Echo Extension'|translate}}">
+				<input type="text" class="form-control" ng-model="dialplan.test_echo_extension.value" />
+			</juci-config-line>
+		</juci-config-lines>
+	</juci-config-section>
+</div>

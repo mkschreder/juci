@@ -1,0 +1,30 @@
+{
+	"juci-inteno-voice-client": {
+		"description": "JUCI asterisk module",
+		"read": {
+			"ubus": {
+				"asterisk": [
+					"status"
+				], 
+				"asterisk.call_log": [
+					"list"
+				],
+				"/juci/voice_client": [
+					"get_trusted_ca",
+					"set_trusted_ca"
+				],
+				"/juci/system": [
+					"reboot"
+				]
+			}, 
+			"uci": [
+				"voice_client"
+			]
+		}, 
+		"write": {
+			"uci": [
+				"voice_client"
+			]
+		}
+	}
+}

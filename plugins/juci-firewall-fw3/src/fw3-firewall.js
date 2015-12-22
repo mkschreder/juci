@@ -1,6 +1,21 @@
-//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+/*	
+	This file is part of JUCI (https://github.com/mkschreder/juci.git)
+
+	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
+
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+*/ 
+
 JUCI.app
-.factory("$firewall", function($uci){
+.factory("$firewall", function($uci, $network){
 	var firewall = 0; 
 	function sync(){
 		var deferred = $.Deferred(); 
@@ -49,19 +64,66 @@ JUCI.app
 			var def = $.Deferred();  
 			sync().done(function(){
 				$network.getNetworks({ filter: opts.filter }).done(function(nets){
-					var zone = $uci.firewall["@zone"].find(function(x){ return x[".name"] == zone; }); 
-					if(!zone) {
+					var selected_zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone; }); 
+					if(!selected_zone) {
 						def.reject({error: "Zone does not exist!"}); 
 						return; 
 					}
 					var zone_nets = nets.filter(function(x){
-						return zone.network.value.indexOf(x[".name"]) != -1; 
+						return selected_zone.network.value.indexOf(x[".name"]) != -1; 
 					}); 
 					def.resolve(zone_nets); 
 				}); 
 			}); 
 			return def.promise(); 
 		}, 
+		getZoneClients: function(zone){
+			var def = $.Deferred();
+			var networks = {};
+			var selected_zone = {};
+			var clients = {};
+			async.series([
+				function(next){
+					sync().always(function(){
+						next();
+					});
+				},
+				function(next){
+					$network.getNetworks().done(function(nets){
+						networks = nets;
+					}).always(function(){ next();});
+				},
+				function(next){
+					$network.getConnectedClients().done(function(con_clients){
+						clients = con_clients;
+					}).always(function(){next();});
+				},
+				function(next){
+					selected_zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone;});
+					next();
+				}
+			], function(){
+				if(!selected_zone){
+					def.reject({ error: "Zone does not exist!" });
+					return;
+				}
+				//filter out networks by the selected zone
+				var zone_networks = networks.filter(function(net){
+					return selected_zone.network.value.find(function(zone_net){ return zone_net == net[".name"]; }) !== undefined;
+				});
+				if(zone_networks.length == 0){
+					def.reject({ error: "Found no networks in zone" });
+					return;
+				}
+				var zone_clients = clients.filter(function(client){
+					return zone_networks.find(function(net){
+						return net.$info.device == client.device;
+					});
+				});
+				def.resolve(zone_clients);
+			});
+			return def.promise();
+		},
 		// we determine what networks are wan/lan/guest based on zones. This is currently hardcoded,
 		// but probably should not be in the future. This will break if the user has different zone names!
 		getLanZone: function(){ 
@@ -118,11 +180,11 @@ JUCI.app
 JUCI.app.run(function($uci){
 	$uci.$sync("firewall").done(function(){
 		if(!$uci.firewall.settings) {
-			$uci.firewall.create({
+			$uci.firewall.$create({
 				".type": "settings", 
 				".name": "settings"
 			}).done(function(settings){
-				$uci.save(); 
+				$uci.$save(); 
 			}); 
 		}
 	}); 
