@@ -59,6 +59,7 @@ JUCI.app
 			$scope.accessRules = $uci.firewall["@rule"].filter(function(x){
 				return x.parental.value; 
 			}); 
+			if(!$scope.urlblock) return; 
 			$scope.urlblock = $uci.firewall.urlblock; 
 			$scope.urlblock.url.value.map(function(x){ $scope.urlList.push({url: x}); }); 
 			$scope.urlblock.src_mac.value.map(function(x){ $scope.macList.push({mac: x}); }); 

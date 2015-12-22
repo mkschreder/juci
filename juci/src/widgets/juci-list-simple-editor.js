@@ -14,7 +14,7 @@
     GNU General Public License for more details.
 */ 
  
-.directive("juciListSimpleEditor", function(){
+JUCI.app.directive("juciListSimpleEditor", function(){
 	return {
 		scope: {
 			items: "=ngModel", 
