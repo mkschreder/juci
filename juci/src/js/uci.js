@@ -90,10 +90,19 @@
 		}
 	}
 	
-	function IPAddressValidator(){
+	function IP4AddressValidator(){
 		this.validate = function(field){
 			if(field.value && field.value != "" && !field.value.match(/^\b(?:\d{1,3}\.){3}\d{1,3}\b$/)) return gettext("IP Address must be a valid ipv4 address!"); 
 			return null;
+		}
+	}; 
+	
+	function IPAddressValidator(){
+		this.validate = function(field){
+			var ipv4 = new IP4AddressValidator();
+			var ipv6 = new IP6AddressValidator();
+			if(ipv4.validate(field) == null || ipv6.validate(field) == null) return null
+			return gettext("IP Address must be a valid ipv4 or ipv6 address!");
 		}
 	}; 
 
@@ -903,7 +912,8 @@
 		MACAddressValidator: MACAddressValidator,
 		MACListValidator: MACListValidator,
 		IPAddressValidator: IPAddressValidator,
-		IP6AddressValidator: IP6AddressValidator
+		IP6AddressValidator: IP6AddressValidator,
+		IP4AddressValidator: IP4AddressValidator
 	}; 
 	/*if(exports.JUCI){
 		var JUCI = exports.JUCI; 
