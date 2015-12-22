@@ -52,7 +52,8 @@ UCI.dhcp.$registerSectionType("dhcp", {
 });
 UCI.dhcp.$registerSectionType("domain", {
 	"name":		{ dvalue: "", type: String, required: true},
-	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator }  // TODO: change to ip address
+	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator },  // TODO: change to ip address
+	"family":	{ dvalue: "ipv4", type: String }
 });
 UCI.dhcp.$registerSectionType("host", {
 	"name":		{ dvalue: "", type: String, required: false},

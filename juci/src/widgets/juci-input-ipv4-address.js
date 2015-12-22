@@ -33,8 +33,9 @@ JUCI.app
 	
 	// extract model into the parts
 	$scope.$watch("ngModel", function(value){
-		if(!value) return; 
+		if(value === undefined) return; 
 		var parts = value.split("."); 
+		$scope.data.parts = []; 
 		parts.forEach(function(v, i){
 			$scope.data.parts[i] = v; 
 		}); 
