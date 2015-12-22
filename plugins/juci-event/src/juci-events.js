@@ -16,9 +16,11 @@
 
 !function(){
 	function EventManager(){
-			this.callbacks = {}; 
+			this.callbacks = {};
 	}
-	
+	EventManager.prototype.removeAll = function(){
+		this.callbacks = {};
+	}
 	EventManager.prototype.subscribe = function(type, callback){
 		if(!this.callbacks[type]) this.callbacks[type] = []; 
 		this.callbacks[type].push(callback); 
@@ -56,3 +58,7 @@
 	}); 
 	
 }();
+UCI.juci.$registerSectionType("juci_event", {
+	"filter":	{ dvalue: [], type: Array }
+});
+UCI.juci.$insertDefaults("juci_event");

@@ -59,7 +59,7 @@ JUCI.app
 	}); 
 	
 	$scope.save = function(){
-		$uci.save(); 
+		$uci.$save(); 
 	}
 	$scope.onPairPBC = function(){
 		$rpc.juci.wireless.wps.pbc();

@@ -50,7 +50,7 @@ JUCI.app
 		}, 
 		function(next){ 
 			if($uci.firewall.dmz == undefined){
-				$uci.firewall.create({".type": "dmz", ".name": "dmz"}).done(function(dmz){
+				$uci.firewall.$create({".type": "dmz", ".name": "dmz"}).done(function(dmz){
 					next(); 
 				}).fail(function(){
 					throw new Error("Could not create required dmz section in config firewall!"); 

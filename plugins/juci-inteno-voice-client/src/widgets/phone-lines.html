@@ -1,0 +1,40 @@
+<div>
+	<juci-config-section>
+		<juci-config-heading>{{ 'Phone Lines' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'phone.lines.info' | translate }}</juci-config-info>
+		<juci-expandable title="{{line.name.value}}" ng-repeat="line in phone_lines track by $index" open=false>
+			<juci-config-lines>
+				<juci-config-line title="{{'Name'|translate}}">
+					<input type="text" class="form-control" ng-model="line.name.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Internal Number'|translate}}">
+					<input type="text" class="form-control" min="0" max="9999" ng-model="line.extension.value" />
+				</juci-config-line>
+				<juci-config-line title="{{'Outgoing Calls Number'|translate}}">
+					<juci-select ng-model="line.sip_account.value" ng-items="allSipAccounts" placeholder="{{'Pick Outgoing Number'|translate}}"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Call Waiting'|translate}}">
+					<switch ng-model="line.callwaiting.value" class="green"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Call ID Restriction'|translate}}">
+					<switch ng-model="line.clir.value" class="green"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Voice Activity Detection'|translate}}">
+					<juci-select ng-items="vads" ng-model="line.vad.value"></juci-select>
+				</juci-config-line>
+				<juci-config-line title="{{'Comfort Noice Generation'|translate}}">
+					<juci-select ng-items="noises" ng-model="line.noise.value"></juci-select>
+				</juci-config-line>
+				<juci-config-line title="{{'Echo cancellation'|translate}}">
+					<switch ng-model="line.echo_cancel.value" class="green"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Transmit gain'|translate}}">
+					<input type="number" min="-96" max="32" class="form-control" ng-model="line.txgain.value" />
+				</juci-config-line>
+				<juci-config-line title="{{'Receive gain'|translate}}">
+					<input type="number" min="-96" max="32" class="form-control" ng-model="line.rxgain.value" />
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-expandable>
+	</juci-config-section>
+</div>

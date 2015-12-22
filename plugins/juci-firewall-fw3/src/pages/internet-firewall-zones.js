@@ -28,7 +28,7 @@ JUCI.app
 	
 	
 	$scope.onCreateZone = function(){
-		$uci.firewall.create({
+		$uci.firewall.$create({
 			".type": "zone", 
 			"name": "new_zone"
 		}).done(function(zone){

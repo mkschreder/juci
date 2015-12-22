@@ -40,7 +40,7 @@ JUCI.app
 	$scope.onToggleForward = function(fwd){
 		console.log("forward: "+fwd); 
 		if(!fwd.enabled && !fwd.base){
-			$uci.firewall.create({
+			$uci.firewall.$create({
 				".type": "forwarding", 
 				"src": fwd.src, 
 				"dest": fwd.dst

@@ -1,0 +1,8 @@
+<div>
+	<juci-config-section>
+		<juci-config-heading>{{ 'SIP Users' | translate }}</juci-config-heading>
+		<juci-list-editor ng-items="users" get-item-title="getUserTitle($item)" show-icon="true" icon-status="$item.enabled.value ? 'success' : 'active'"
+				item-editor="sip-users-edit"	on-create="onAddUser()" on-delete="onDeleteUser($item)"></juci-list-editor>
+	</juci-config-section>
+</div>
+

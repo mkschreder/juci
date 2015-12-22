@@ -259,9 +259,10 @@
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($interval){
+					onExit: function($interval, $events){
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
+						$events.removeAll();
 					}
 				};  
 				

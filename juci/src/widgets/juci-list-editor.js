@@ -19,6 +19,8 @@ JUCI.app
 	return {
 		scope: {
 			items: "=ngItems", 
+			showIcon: "=",
+			iconStatus: "&",
 			editor: "@itemEditor", 
 			editable: "@allowEdit", 
 			sortable: "@sortable",

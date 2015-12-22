@@ -24,7 +24,7 @@ JUCI.app
 	} reload(); 
 	
 	$scope.onAddRule = function(net){
-		$uci.firewall.create({
+		$uci.firewall.$create({
 			".type": "redirect", 
 			"src": "wan", 
 			"dest": "lan", 

@@ -171,7 +171,7 @@ JUCI.app.run(function($ethernet, $wireless, $uci){
 				".type": "wifi-status", 
 				".name": "status"
 			}).done(function(){
-				$uci.save();
+				$uci.$save();
 			});  
 		} 
 		$uci.$save(); 

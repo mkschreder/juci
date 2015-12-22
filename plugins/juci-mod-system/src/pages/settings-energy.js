@@ -22,6 +22,6 @@ JUCI.app
 		$scope.$apply();
 	}); 
 	$scope.onSave = function(){
-		$uci.save(); 
+		$uci.$save(); 
 	}
 }); 

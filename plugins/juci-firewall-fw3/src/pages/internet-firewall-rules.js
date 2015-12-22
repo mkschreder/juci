@@ -30,7 +30,7 @@ JUCI.app
 	
 	
 	$scope.onCreateRule = function(){
-		$uci.firewall.create({
+		$uci.firewall.$create({
 			".type": "rule", 
 			"name": "new_rule"
 		}).done(function(rule){

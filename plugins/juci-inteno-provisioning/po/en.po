@@ -11,8 +11,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.js
+msgid "Hourly"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.js
+msgid "Daily"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.js
+msgid "Weekly"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.js
+msgid "Add password protection"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/widgets/provisioning-export-dialog.html
+msgid "Backup Password:"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/widgets/provisioning-export-dialog.html
+msgid "Retype Password:"
+msgstr ""
+
 # /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/juci-inteno-provisioning-settings.html
 msgid "Enabled"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Update interval start time"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Update interval"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Export file"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "If added will override DHCP Discover Provisioning"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Reboot"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "URL"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Decryption Key"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "If not entered, Default onboard DES Key will be used insted"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Defaultreset"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Software URL"
 msgstr ""
 
 # /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/juci-inteno-provisioning-settings.html
@@ -23,10 +87,38 @@ msgstr ""
 msgid "Setup your IUP Provisioning parameterrs"
 msgstr ""
 
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "General"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Main Provisioning Server"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "DHCP Discover Provisioning Server"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Software Update Config"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Sub Configs"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Package Control"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/settings-provisioning-iup.html
+msgid "Add sub config"
+msgstr ""
+
 # /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/juci-inteno-provisioning-settings.html
-msgid "juci-inteno-provisioning-settings-title"
+msgid "settings-provisioning-iup-title"
 msgstr "Inteno Provisioning"
 
 # /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/juci-inteno-provisioning-settings.html
-msgid "menu-juci-inteno-provisioning-settings-title"
+msgid "menu-settings-provisioning-iup-title"
 msgstr "Inteno Provisioning"
