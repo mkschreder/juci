@@ -51,9 +51,9 @@ UCI.dhcp.$registerSectionType("dhcp", {
 	"ignore":		{ dvalue: false, type: Boolean }
 });
 UCI.dhcp.$registerSectionType("domain", {
-	"name":		{ dvalue: "", type: String, required: true},
-	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator },  // TODO: change to ip address
-	"family":	{ dvalue: "ipv4", type: String }
+	"name":		{ dvalue: [], type: Array, },
+	"ip":		{ dvalue: "", type: String, required: true },  // TODO: change to ip address
+	"family":	{ dvalue: "ipv4", type: String, required: true }
 });
 UCI.dhcp.$registerSectionType("host", {
 	"name":		{ dvalue: "", type: String, required: false},
@@ -64,3 +64,30 @@ UCI.dhcp.$registerSectionType("host", {
 	"duid": 	{ dvalue: "", type: String }, 
 	"hostid": 	{ dvalue: "", type: String }
 }); 
+
+JUCI.app.factory("lanIpFactory", function($firewall, $tr, gettext){
+	return {
+		getIp: function(){
+			var deferred = $.Deferred();
+			var res = { ipv6:"LAN does not have IPv6 configured", ipv4:"LAN does not have IPv4 configured"};
+			$firewall.getZoneNetworks("lan").done(function(networks){
+				if(networks.length == 0 || !networks[0].$info) return;
+				if(networks[0].$info["ipv4-address"].length != 0 && networks[0].$info["ipv4-address"][0].address){
+					res.ipv4 = networks[0].$info["ipv4-address"][0].address;
+				}
+				if(networks[0].$info["ipv6-address"].length == 0 || !networks[0].$info["ipv6-address"][0].address){
+					if(networks[0].$info["ipv6-prefix-assignment"].length != 0 && networks[0].$info["ipv6-prefix-assignment"][0].address){
+						res.ipv6 = networks[0].$info["ipv6-prefix-assignment"][0].address + "1";
+					}else{ 
+						res.ipv6 = $tr(gettext("LAN does not have IPv6 configured"));
+					}
+				}else{
+					res.ipv6 = networks[0].$info["ipv4-address"][0].address;
+				}
+				deferred.resolve(res);
+			});
+			return deferred;
+		}
+	}
+});
+	
