@@ -253,7 +253,7 @@ UCI.wireless.$registerSectionType("wifi-iface", {
 	"bss_max":			{ dvalue: 0, type: Number },
 	"instance":			{ dvalue: 0, type: Number },
 	"up":				{ dvalue: false, type: Boolean },
-	"closed":			{ dvalue: false, type: Boolean },
+	"hidden":			{ dvalue: false, type: Boolean },
 	"disabled":			{ dvalue: false, type: Boolean },
 	"macmode":			{ dvalue: 1, type: Number },
 	"macfilter":		{ dvalue: false, type: Boolean },
