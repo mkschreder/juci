@@ -1,16 +1,16 @@
 //! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 JUCI.app
-.directive("networkConnectionProto3gEdit", function($compile){
+.directive("networkConnectionProto4gEdit", function($compile){
 	return {
 		scope: {
 			interface: "=ngModel"
 		}, 
-		templateUrl: "/widgets/network-connection-proto-3g-edit.html", 
-		controller: "networkConnectionProto3gEdit", 
+		templateUrl: "/widgets/network-connection-proto-4g-edit.html", 
+		controller: "networkConnectionProto4gEdit", 
 		replace: true
 	 };  
 })
-.controller("networkConnectionProto3gEdit", function($scope, $network, $modal, $tr, gettext){
+.controller("networkConnectionProto4gEdit", function($scope, $network, $modal, $tr, gettext){
 	
 }); 
