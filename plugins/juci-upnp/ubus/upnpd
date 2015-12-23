@@ -4,7 +4,7 @@ local juci = require("juci.core");
 
 local function upnp_list_open_ports()
 	local result = { ports = {} }; 
-	local stdout = juci.shell("iptables --line-numbers -t nat -xnvL MINIUPNP | tail -n +3"); 
+	local stdout = juci.shell("iptables --line-numbers -t nat -xnvL MINIUPNPD | tail -n +3"); 
 	for line in stdout:gmatch("[^\r\n]+") do 
 		-- num      pkts      bytes target     prot opt in     out     source               destination
 		-- 1       16867  1155229 postrouting_rule  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* user chain for postrouting */
