@@ -17,7 +17,7 @@
 JUCI.app
 .directive("networkConnectionProtoPppoeEdit", function($compile, $parse){
 	return {
-		templateUrl: "/widgets/network-connection-proto-ppp-edit.html", 
+		templateUrl: "/widgets/network-connection-proto-pppoe-edit.html", 
 		scope: {
 			interface: "=ngModel"
 		}, 
