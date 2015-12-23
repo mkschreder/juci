@@ -11,27 +11,30 @@
 			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value" error="interface.gateway.error">
 				<juci-input-ipv4-address ng-model="interface.gateway.value"></juci-input-ipv4-address>
 			</juci-config-line>	
+			<juci-config-line title="{{'IPv4 Broadcast'|translate}}" error="interface.broadcast.error">
+				<juci-input-ipv4-address ng-model="interface.broadcast.value"></juci-input-ipv4-address>
+			</juci-config-line>	
+			<juci-config-line title="{{'Use custom DNS servers'|translate}}" error="interface.broadcast.error">
+				<tags-input ng-model="dnslist" add-on-space="true" on-tag-adding="evalDns($tag)" on-tag-added="onTagsChange()" on-tag-removed="onTagsChange()">
+			</juci-config-line>	
 		</juci-config-lines>
 	</juci-config-section>
 	<juci-config-section>
 		<juci-config-heading translate>IPv6 Settings</juci-config-heading>
 		<juci-config-lines>
-			<juci-config-line title="{{'IPv6 Address'|translate}}">
+			<juci-config-line title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Leve empty for Disabled' | translate }}" error="assign_error">
+				<juci-select ng-items="assigns" ng-model="interface.ip6assign.value" editable="true" on-change="onAssignmentChange()"></juci-select>
+			</juci-config-line>
+			<juci-config-line title="{{'IPv6 Address'|translate}}" ng-show="interface.ip6assing.value == ''">
 				<input type="text" class="form-control" ng-model="interface.ip6addr.value" placeholder="{{'Static IPv6 Address'|translate}}"></input>
 			</juci-config-line>
-			<juci-config-line title="{{'IPv6 Prefix'|translate}}">
-				<input type="text" class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 Address Mask'|translate}}"></input>
-			</juci-config-line>
-			<!--<juci-config-line title="{{'Configure As Default Route'|translate}}">
-				<switch ng-model="interface.defaultroute.value" class="green"/>
-			</juci-config-line>-->
-			<juci-config-line title="{{'IPv6 Default Gateway'|translate}}">
+			<juci-config-line title="{{'IPv6 Default Gateway'|translate}}" ng-show="interface.ip6assing.value == ''">
 				<input type="text" class="form-control" ng-model="interface.ip6gw.value" placeholder="{{'Default IPv6 Gateway'|translate}}"></input>
 			</juci-config-line>
-			<juci-config-line title="{{'IPv6 Assigned Prefix Length'|translate}}">
-				<input type="text" class="form-control" ng-model="interface.ip6assign.value" placeholder="{{'Assign prefix to downstream hosts'|translate}}"></input>
+			<juci-config-line title="{{'IPv6 Prefix'|translate}}" ng-show="interface.ip6assing.value == ''">
+				<input type="text" class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 Address Mask'|translate}}"></input>
 			</juci-config-line>
-			<juci-config-line title="{{'IPv6 Assigned Prefix Hint'|translate}}">
+			<juci-config-line title="{{'IPv6 Assigned Prefix Hint'|translate}}" ng-show="interface.ip6assign.value != ''">
 				<input type="text" class="form-control" ng-model="interface.ip6hint.value" placeholder="{{'Prefix hint'|translate}}"></input>
 			</juci-config-line>
 		</juci-config-lines>

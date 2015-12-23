@@ -33,7 +33,7 @@ JUCI.app
 			var ngModel = $parse($attrs.ngModel);
 			if(!$scope.placeholder) $scope.placeholder = $tr(gettext("-- Select One --"));
 			$scope.select = function(item){
-				$scope.onChange({$item: item, $value: item.value, $oldvalue: ngModel($scope.$parent)}); 
+				if($scope.onChange({$item: item, $value: item.value, $oldvalue: ngModel($scope.$parent)}) === false) return;
 				ngModel.assign($scope.$parent, item.value); 
 				$scope.selected = item; 
 			}

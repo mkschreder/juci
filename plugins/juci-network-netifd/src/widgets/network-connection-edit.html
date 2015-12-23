@@ -12,48 +12,33 @@
 						<li ng-repeat="err in conn.$info.errors">Error ({{err.subsystem}}): {{err.code}}</li>
 					</ul>
 				</div>
-				<juci-config-lines>
-					<juci-config-line title="{{'Interface Type'|translate}}">
-						<juci-select ng-model="conn.type.value" ng-items="allInterfaceTypes"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Bring-Up on Boot'|translate}}">
-						<switch ng-model="conn.auto.value" class="green"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Automatic Default Route'|translate}}">
-						<switch ng-model="conn.defaultroute.value" class="green"/>
-					</juci-config-line>
-				</juci-config-lines>
 				<h4 translate>Status</h3>
 				<table class="table table-condensed">
-					<tr><td translate>Interface UP:</td><td>{{(conn.$info.up)?"YES":"NO"}}</td></tr>
+					<tr><td translate>Status</td><td>{{ifstatus()}}</td></tr>
 					<tr><td translate>Device:</td><td>{{conn.$info.l3_device}}</td></tr>
 					<tr><td translate>Protocol:</td><td>{{conn.$info.proto}}</td></tr>
 					<tr ng-repeat="addr in conn.$info['ipv4-address']"><td translate>IPv4-Address ({{$index+1}}):</td><td>{{addr.address}}</td></tr>
 					<tr ng-repeat="addr in conn.$info['ipv6-address']"><td translate>IPv6-Address ({{$index+1}}):</td><td>{{addr.address}}</td></tr>
 				</table>
-			</tab>
-			<tab heading="{{'network.interface.type.' + (conn.type.value || 'none') +'.tab.title'|translate}}"><div dynamic="conn.$type_editor"/></tab>
-			<tab heading="{{'Advanced'|translate}}">
 				<juci-config-lines>
-					<juci-config-line title="{{'Override MAC Address'|translate}}">
-						<input type="text" class="form-control" ng-model="conn.macaddr.value" placeholder="{{'MAC Address'|translate}}"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Override MTU'|translate}}">
-						<input type="text" class="form-control" ng-model="conn.mtu.value" placeholder="{{'MTU'|translate}}"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Custom Delegated IPv6 Prefix'|translate}}">
-						<input type="text" class="form-control" ng-model="conn.ip6prefix.value" placeholder="{{'IPv6 Prefix'|translate}}"/>
-					</juci-config-line>
-
-				</juci-config-lines>
-			</tab>
-			<tab heading="Address">
-				<juci-config-lines>
-					<juci-config-line title="{{'Configuration Method'|translate}}">
-						<juci-select ng-model="conn.proto.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
+					<juci-config-line title="{{'Protocol'|translate}}">
+						<juci-select ng-model="conn.proto.value" ng-items="protocolTypes" on-change="onChangeProtocol($value, $oldvalue)" 
+									placeholder="{{'Choose Configuration Option'|translate}}"/>
 					</juci-config-line>
 				</juci-config-lines>
 				<div dynamic="conn.$proto_editor"/>
+			</tab>
+			<tab heading="{{'Physical Settings' |translate}}" ng-show="showPhysical()">
+				<!--<juci-config-lines>
+					<juci-config-line title="{{'Interface Type'|translate}}">
+						<juci-select ng-model="conn.type.value" ng-items="allInterfaceTypes"/>
+					</juci-config-line>
+				</juci-config-lines>
+				<div dynamic="conn.$type_editor"/>-->
+				<div dynamic="conn.$proto_editor_ph" />	
+			</tab>
+			<tab heading="{{'Advanced'|translate}}">
+				<div dynamic="conn.$proto_editor_ad" /> 
 			</tab>
 			<!--<tab heading="IPv6 Settings">
 				<juci-config-lines>
@@ -63,7 +48,7 @@
 				</juci-config-lines>
 				<network-connection-ip6-settings-edit ng-model="conn" ></network-connection-ip6-settings-edit>
 			</tab>-->
-			<tab heading="Services">
+			<tab heading="DHCP" ng-show="conn.proto.value == 'static'">
 				<network-connection-dhcp-server-settings ng-connection="conn"/>
 			</tab>
 		</tabset>

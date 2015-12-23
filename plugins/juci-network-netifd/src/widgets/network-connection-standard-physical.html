@@ -1,0 +1,8 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Interface Type'|translate}}">
+			<juci-select ng-model="conn.type.value" ng-items="protos"/>
+		</juci-config-line>
+	</juci-config-lines>
+	<div dynamic="conn.$type_editor"/>
+</div>
