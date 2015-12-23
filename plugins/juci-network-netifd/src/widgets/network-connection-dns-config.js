@@ -35,11 +35,11 @@ JUCI.app
 		}; 
 	}); 
 	$scope.$watch("data.primaryDNS", function(value){
-		if(!$scope.conn) return; 
+		if(!$scope.interface) return; 
 		$scope.interface.dns.value = [$scope.data.primaryDNS, $scope.data.secondaryDNS]; 
 	}); 
 	$scope.$watch("data.secondaryDNS", function(value){
-		if(!$scope.conn) return; 
+		if(!$scope.interface) return; 
 		$scope.interface.dns.value = [$scope.data.primaryDNS, $scope.data.secondaryDNS]; 
 	}); 
 }); 
