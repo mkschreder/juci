@@ -60,14 +60,19 @@ JUCI.app
 		{ label: $tr(gettext("Ethernet GRE over IPv4")), 				value: "gretap" }, 
 		{ label: $tr(gettext("GRE Tunnel over IPv6")), 					value: "grev6" }, 
 		{ label: $tr(gettext("Ethernet GRE over IPv6")), 				value: "grev6tap" },
-	]; 
-	$rpc.juci.network.lua.protocols().done(function(data){
-		$scope.protocolTypes = $scope.allProtocolTypes.filter(function(x){
-			if(x.value == "static") return true;
-			return data.protocols.find(function(p){ return p == x.value }) != undefined;
+	];
+
+	if($rpc.juci.network.protocols){
+		$rpc.juci.network.protocols().done(function(data){
+			$scope.protocolTypes = $scope.allProtocolTypes.filter(function(x){
+				if(x.value == "static") return true;
+				return data.protocols.find(function(p){ return p == x.value }) != undefined;
+			});
 		});
-	});
-	
+	} else {
+		$scope.protocolTypes = $scope.allProtocolTypes; 
+	}
+
 	$scope.$watch("conn.proto.value", function(value){
 		if(!$scope.conn) return; 
 		$scope.conn.$proto_editor = "<network-connection-proto-"+$scope.conn.proto.value+"-edit ng-model='conn'/>"; 
