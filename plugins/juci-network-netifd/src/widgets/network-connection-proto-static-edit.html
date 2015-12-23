@@ -5,10 +5,10 @@
 			<juci-config-line title="{{'IPv4 Address'|translate}}" error="interface.ipaddr.error">
 				<juci-input-ipv4-address ng-model="interface.ipaddr.value"></juci-input-ipv4-address>
 			</juci-config-line>
-			<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}">
+			<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}" error="interface.netmask.error">
 				<juci-input-ipv4-address ng-model="interface.netmask.value"></juci-input-ipv4-address>
 			</juci-config-line>
-			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value">
+			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value" error="interface.gateway.error">
 				<juci-input-ipv4-address ng-model="interface.gateway.value"></juci-input-ipv4-address>
 			</juci-config-line>	
 		</juci-config-lines>

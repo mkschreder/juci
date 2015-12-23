@@ -9,7 +9,10 @@
 					"nat_table", 
 					"nameservers"
 				], 
-				"/juci/network.lua": [ "services" ], 
+				"/juci/network.lua": [ 
+					"services", 
+					"protocols"
+				],
 				"/juci/network.status": [ 
 					"arp", 
 					"ipv4routes", 

@@ -48,8 +48,19 @@ function network_nat_table()
 	print(json.encode(result)); 
 end
 
+function list_protos()
+	local data = juci.shell("grep -roh 'proto_\\(.\*\\)_init' /lib/netifd/proto/ | sed -e 's|proto_\\(.\*\\)_init|\\1|g'");
+	local protos = {};
+	for line in data:gmatch("[^\r\n]+") do
+		table.insert(protos, line);
+	end
+	print(json.encode({ protocols = protos }));
+end
+
+
 juci.ubus({
 	["services"] = network_list_services,
 	["clients"] = network_list_connected_clients, 
-	["nat_table"] = network_nat_table
+	["nat_table"] = network_nat_table,
+	["protocols"] = list_protos
 }, arg); 
