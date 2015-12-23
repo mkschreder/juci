@@ -73,10 +73,9 @@ JUCI.app
 		arr.splice(idx + 1, 0, i); 
 		$scope.onItemMoved({ $item: i, $prev_index: idx, $index: idx + 1}); 
 	}
-	var first = true;
+	
 	$scope.$watch("items", function(){
-		if(!$scope.items || !first) return;
-		first = false;
-		if($scope.items.length > 0) setTimeout(function(){$scope.item = $scope.items[0];}, 0);
+		if(!$scope.items ) return;
+		if($scope.items.length > 0) $scope.item = $scope.items[0]; 
 	})
 }); 
