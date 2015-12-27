@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find . -name "pages" | xargs ls -l | awk '{print $9;}' | grep -v "^$" | grep -v "\.js" | sed 's/\.html$//g' | sort | uniq
