@@ -1,5 +1,8 @@
 <div>
 	<juci-config-lines ng-show="interface.proto.value == 'static'">
+		<juci-config-line title="{{ 'Network Type'  | translate }}" help="{{ '' | translate }}">
+			<juci-select ng-items="interface_types" ng-model="interface.is_lan.value" on-change="onAssignmentChange($value)"></juci-select>
+		</juci-config-line>
 		<juci-config-heading translate>IPv4 Settings</juci-config-heading>
 		<juci-config-lines>
 			<juci-config-line title="{{'IPv4 Address'|translate}}" error="interface.ipaddr.error">
@@ -22,20 +25,22 @@
 	<juci-config-section>
 		<juci-config-heading translate>IPv6 Settings</juci-config-heading>
 		<juci-config-lines>
-			<juci-config-line title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Leve empty for Disabled' | translate }}" error="assign_error">
-				<juci-select ng-items="assigns" ng-model="interface.ip6assign.value" editable="true" on-change="onAssignmentChange()"></juci-select>
+			<!-- IPv6 Assign -->
+			<juci-config-line ng-show="interface.is_lan.value" title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Leve empty for Disabled' | translate }}">
+				<input type="text" ng-change="onAssignChange()" class="form-control" ng-model="interface.ip6assign.value" placeholder="{{ 'Dissabled' | translate }}" />
 			</juci-config-line>
-			<juci-config-line title="{{'IPv6 Address'|translate}}" ng-show="interface.ip6assing.value == ''">
+			<juci-config-line title="{{'IPv6 Assigned Prefix Hint'|translate}}" ng-show="interface.is_lan.value" error="interface.ip6hint.error">
+				<input type="text" class="form-control" ng-model="interface.ip6hint.value" placeholder="{{'Prefix hint'|translate}}" />
+			</juci-config-line>
+			<!-- IPv6 Alloc -->
+			<juci-config-line title="{{'IPv6 Address'|translate}}" ng-show="!interface.is_lan.value" error="interface.ip6addr.error">
 				<input type="text" class="form-control" ng-model="interface.ip6addr.value" placeholder="{{'Static IPv6 Address'|translate}}"></input>
 			</juci-config-line>
-			<juci-config-line title="{{'IPv6 Default Gateway'|translate}}" ng-show="interface.ip6assing.value == ''">
+			<juci-config-line title="{{'IPv6 Default Gateway'|translate}}" ng-show="!interface.is_lan.value" error="interface.ip6gw.error">
 				<input type="text" class="form-control" ng-model="interface.ip6gw.value" placeholder="{{'Default IPv6 Gateway'|translate}}"></input>
 			</juci-config-line>
-			<juci-config-line title="{{'IPv6 Prefix'|translate}}" ng-show="interface.ip6assing.value == ''">
+			<juci-config-line title="{{'IPv6 Prefix'|translate}}" ng-show="!interface.is_lan.value" error="ip6prefix.error">
 				<input type="text" class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 Address Mask'|translate}}"></input>
-			</juci-config-line>
-			<juci-config-line title="{{'IPv6 Assigned Prefix Hint'|translate}}" ng-show="interface.ip6assign.value != ''">
-				<input type="text" class="form-control" ng-model="interface.ip6hint.value" placeholder="{{'Prefix hint'|translate}}"></input>
 			</juci-config-line>
 		</juci-config-lines>
 	</juci-config-section>

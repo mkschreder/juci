@@ -65,7 +65,7 @@ JUCI.app
 		{ label: $tr(gettext("GRE Tunnel over IPv6")), 					value: "grev6", 	physical: true }, 
 		{ label: $tr(gettext("Ethernet GRE over IPv6")), 				value: "grev6tap", 	physical: true },
 	]; 
-	$rpc.juci.network.lua.protocols().done(function(data){
+	$rpc.juci.network.protocols().done(function(data){
 		$scope.protocolTypes = $scope.allProtocolTypes.filter(function(x){
 			if(x.value == "static") return true;
 			return data.protocols.find(function(p){ return p == x.value }) != undefined;
@@ -77,6 +77,7 @@ JUCI.app
 		return ($scope.conn.$info.pending) ? $tr(gettext("PENDING")) : (($scope.conn.$info.up) ? $tr(gettext("UP")) : $tr(gettext("DOWN")));
 	};
 	$scope.onChangeProtocol = function(value, oldvalue){
+		//TODO change confirm to juciDialog
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
 			var name = $scope.conn[".name"];
 			$scope.conn.$delete().always(function(){

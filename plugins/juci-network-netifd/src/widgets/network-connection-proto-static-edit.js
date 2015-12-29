@@ -1,18 +1,4 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
+//! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
 .directive("networkConnectionProtoStaticEdit", function($compile, $parse){
@@ -27,22 +13,25 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionProtoStaticEdit", function($scope, $uci, $network, $rpc, $log, $tr, gettext){
-	$scope.expanded = true; 
-	$scope.existingHost = { }; 
-	$scope.assign_error = null;
-	
 	$scope.$watch("interface", function(){
 		if(!$scope.interface) return;
-		console.log($scope.interface.dns.value);
-		$scope.dnslist = $scope.interface.dns.value.map(function(x){ return { text:x }});
+		$scope.ip.type = ($scope.interface.ip6assign.value == "" ? "alloc" : "assign");
+		$scope.interface.dns.value = $scope.interface.dns.value.filter(function(x){ if(x == "") return false; return true});;
+		$scope.dnslist = $scope.interface.dns.value.map(function(x){return { text:x }});
+		console.log($scope.dnslist);
 	}); 
+	$scope.interface_types = [
+		{ label: $tr(gettext("Local Area Network")), value: true },
+		{ label: $tr(gettext("Wide Area Network")),	 value: false }
+	];
+	$scope.ip = {};
+	$scope.ip.types = [
+		{ label: $tr(gettext("Address Allocation")),	value: "alloc" },
+		{ label: $tr(gettext("Address Assignment")),	value: "assign" }
+	];
 	$scope.onTagsChange = function(){
 		$scope.interface.dns.value = $scope.dnslist.map(function(x){return x.text;});
 	};
-	$scope.assigns = [
-		{ label: "64", value: "64" },
-		{ label: $tr(gettext("Disabled")), value: "" }
-	];
 	$scope.evalDns = function(tag){
 		var parts = String(tag.text).split(".");
 		if(parts.length != 4) return false;
@@ -54,12 +43,20 @@ JUCI.app
 		}
 		return true;
 	};
-	$scope.onAssignmentChange = function(){
-		if($scope.interface.ip6assign.value != ""){
+	$scope.onAssignChange = function(){
+		var isnum = /^[0-9]+$/.test($scope.interface.ip6assign.value);
+		while($scope.interface.ip6assign.value != "" && !isnum){
+			$scope.interface.ip6assign.value = $scope.interface.ip6assign.value.slice(0, -1);	
+		}
+	};
+	$scope.onAssignmentChange = function(value){
+		if(value == "assign"){
 			$scope.interface.ip6addr.value = "";
 			$scope.interface.ip6gw.value = "";
+			$scope.interface.ip6prefix.value = "";
 		}else{
 			$scope.interface.ip6hint.value = "";
+			$scope.interface.ip6assign.value = "";
 		}
 	};
 	
