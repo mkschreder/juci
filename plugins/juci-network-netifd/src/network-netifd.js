@@ -335,7 +335,8 @@ UCI.network.$registerSectionType("interface", {
 	"mtu":					{ dvalue: null, type: Number },
 	"enabled": 				{ dvalue: true, type: Boolean }, 
 	//dhcp settings
-	//"broadcast": 			{ dvalue: false, type: Boolean }, 
+	"iface6rd":				{ dvalue: "", type: String },
+	"broadcast": 			{ dvalue: false, type: Boolean }, 
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: true, type: Boolean }, 
 	// authentication 

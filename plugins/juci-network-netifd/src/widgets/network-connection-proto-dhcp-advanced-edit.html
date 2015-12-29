@@ -1,7 +1,10 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{ 'Bring up on boot' | translate }}">
-			<switch class="green" ng-model="con.auto.value" />
+			<switch class="green" ng-model="interface.auto.value" />
+		</juci-config-line>
+		<juci-config-line title="{{'Use broadcast flag' | translate }}" help="{{'Required for certain ISPs, e.g. Charter with DOCSIS 3' | translate }}">
+			<switch class="green" ng-model="interface.broadcast.value" />
 		</juci-config-line>
 	</juci-config-lines>
 </div>

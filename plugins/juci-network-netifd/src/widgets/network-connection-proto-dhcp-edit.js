@@ -27,7 +27,6 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionProtoDhcpEdit", function($scope, $uci, $network, $rpc, $log, gettext){
-	
 }).directive("networkConnectionProtoDhcpPhysicalEdit", function(){
 	return {
 		templateUrl: "/widgets/network-connection-standard-physical.html",
@@ -42,7 +41,7 @@ JUCI.app
 	return {
 		templateUrl: "/widgets/network-connection-proto-dhcp-advanced-edit.html",
 		scope: {
-			conn: "=ngModel"
+			interface: "=ngModel"
 		},
 		replace: true,
 		require: "^ngModel"
