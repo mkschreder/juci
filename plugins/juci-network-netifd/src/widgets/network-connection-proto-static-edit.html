@@ -17,7 +17,7 @@
 			<juci-config-line title="{{'IPv4 Broadcast'|translate}}" error="interface.broadcast.error">
 				<juci-input-ipv4-address ng-model="interface.broadcast.value"></juci-input-ipv4-address />
 			</juci-config-line>	
-			<juci-config-line title="{{'Use custom DNS servers'|translate}}" error="interface.broadcast.error">
+			<juci-config-line title="{{'Use custom DNS servers'|translate}}">
 				<tags-input ng-model="dnslist" add-on-space="true" on-tag-adding="evalDns($tag)" on-tag-added="onTagsChange()" on-tag-removed="onTagsChange()"></tags-input>
 			</juci-config-line>	
 		</juci-config-lines>

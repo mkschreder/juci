@@ -78,13 +78,11 @@ JUCI.app
 	};
 	$scope.onChangeProtocol = function(value, oldvalue){
 		//TODO change confirm to juciDialog
+		if(value == oldvalue) return;
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
-			var name = $scope.conn[".name"];
-			//$scope.conn.$delete().always(function(){
-			//	$uci.network.$create({".name": name, ".type":"interface", "proto": value}).always(function(){
-			//		$scope.$apply();
-			//	});
-			//});
+			Object.keys($scope.conn).map(function(x){
+				console.log($scope.conn[x]);
+			});
 			return true;
 		}
 		return false;

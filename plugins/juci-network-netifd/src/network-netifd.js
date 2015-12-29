@@ -326,7 +326,7 @@ UCI.network.$registerSectionType("interface", {
 	"ip6hint": 				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator },
 	"clientid": 			{ dvalue: "", type: String },
 	"type":					{ dvalue: '', type: String }, 
-	"defaultroute":			{ dvalue: false, type: Boolean },	
+	"defaultroute":			{ dvalue: true, type: Boolean },	
 	"bridge_instance": 		{ dvalue: false, type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
 	"ipv6":					{ dvalue: false, type: Boolean },

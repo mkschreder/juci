@@ -44,6 +44,29 @@ JUCI.app
 			interface: "=ngModel"
 		},
 		replace: true,
-		require: "^ngModel"
+		require: "^ngModel",
+		controller: "networkConnectionProtoDhcpAdvancedEditCtrl"
 	};
-}); 
+}).controller("networkConnectionProtoDhcpAdvancedEditCtrl", function($scope){
+	$scope.dnslist = [];
+	$scope.$watch("interface", function(){
+		if(!$scope.interface) return;
+		$scope.interface.dns.value = $scope.interface.dns.value.filter(function(x){ return x != "" });
+		$scope.dnslist = $scope.interface.dns.value.map(function(x){ return { text: x }});
+	}, false);
+	$scope.onTagsChange = function(){
+		$scope.interface.dns.value = $scope.dnslist.map(function(x){return x.text;});
+	};
+	$scope.evalDns = function(tag){
+		var parts = String(tag.text).split(".");
+		if(parts.length != 4) return false;
+		for(var i = 0; i < 4; i++){	
+			var isnum = /^[0-9]+$/.test(parts[i]);
+			if(!isnum) return false;
+			var num = parseInt(parts[i]);
+			if(num < 0 || num > 255) return false;
+		}
+		return true;
+	};
+
+});; 
