@@ -31,7 +31,7 @@ JUCI.app
 	
 	$uci.$sync(["voice_client"]).done(function(){
 		if(!$uci.voice_client.RINGING_STATUS){
-			$uci.voice_client.create({".type": "ringing_status", ".name": "RINGING_STATUS"}).done(function(section){
+			$uci.voice_client.$create({".type": "ringing_status", ".name": "RINGING_STATUS"}).done(function(section){
 				$scope.settings = $uci.voice_client.RINGING_STATUS; 
 				$scope.$apply(); 
 			}); 
@@ -82,7 +82,7 @@ JUCI.app
 	}
 	
 	$scope.onAddSchedule = function(){
-		$uci.voice_client.create({".type": "ringing_schedule"}).done(function(item){
+		$uci.voice_client.$create({".type": "ringing_schedule"}).done(function(item){
 			$scope.schedule = item; 
 			$scope.schedule[".new"] = true; 
 			$scope.showScheduleDialog = 1; 
@@ -128,7 +128,7 @@ JUCI.app
 	}
 	
 	$scope.onAddSchedule = function(){
-		$uci.voice_client.create({".type": "ringing_schedule"}).done(function(item){
+		$uci.voice_client.$create({".type": "ringing_schedule"}).done(function(item){
 			item[".new"] = true; 
 			var time = item.time.value.split("-"); 
 			$scope.schedule = {

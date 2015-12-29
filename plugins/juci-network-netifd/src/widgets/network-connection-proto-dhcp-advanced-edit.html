@@ -6,5 +6,8 @@
 		<juci-config-line title="{{'Use broadcast flag' | translate }}" help="{{'Required for certain ISPs, e.g. Charter with DOCSIS 3' | translate }}">
 			<switch class="green" ng-model="interface.broadcast.value" />
 		</juci-config-line>
+		<juci-config-line title="{{'Use default gateway' | translate }}" help="{{'If uncchecked, no default rout is configured' | translate }}">
+			<switch class="green" ng-model="!interface.defaultroute.value" />
+		</juci-config-line>
 	</juci-config-lines>
 </div>

@@ -80,11 +80,11 @@ JUCI.app
 		//TODO change confirm to juciDialog
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
 			var name = $scope.conn[".name"];
-			$scope.conn.$delete().always(function(){
-				$uci.network.$create({".name": name, ".type":"interface", "proto": value}).always(function(){
-					$scope.$apply();
-				});
-			});
+			//$scope.conn.$delete().always(function(){
+			//	$uci.network.$create({".name": name, ".type":"interface", "proto": value}).always(function(){
+			//		$scope.$apply();
+			//	});
+			//});
 			return true;
 		}
 		return false;

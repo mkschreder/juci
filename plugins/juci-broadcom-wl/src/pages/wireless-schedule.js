@@ -62,7 +62,7 @@ JUCI.app
 	}
 	
 	$scope.onAddSchedule = function(){
-		$uci.wireless.create({".type": "wifi-schedule"}).done(function(item){
+		$uci.wireless.$create({".type": "wifi-schedule"}).done(function(item){
 			item[".new"] = true; 
 			var time = item.time.value.split("-"); 
 			$scope.schedule = {
