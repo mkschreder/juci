@@ -81,31 +81,30 @@ JUCI.app
 		if(value == oldvalue) return;
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
 			Object.keys($scope.conn).map(function(x){
-				console.log($scope.conn[x]);
 			});
+			setProto();
 			return true;
 		}
 		return false;
 	};
 
-	$scope.$watch("conn.proto.value", function(value){
-		if(!$scope.conn) return; 
+	function setProto(){
 		$scope.conn.$proto_editor = "<network-connection-proto-"+$scope.conn.proto.value+"-edit ng-model='conn'/>"; 
 		$scope.conn.$proto_editor_ph = "<network-connection-proto-"+$scope.conn.proto.value+"-physical-edit ng-model='conn' protos='allInterfaceTypes' />"; 
 		$scope.conn.$proto_editor_ad = "<network-connection-proto-"+$scope.conn.proto.value+"-advanced-edit ng-model='conn' />"; 
-	}); 
+	};	
 	$scope.$watch("conn.type.value", function(value){
 		if(!$scope.conn) return; 
 		$scope.conn.$type_editor = "<network-connection-type-"+($scope.conn.type.value||'none')+"-edit ng-model='conn'/>"; 
 	}); 
-	$scope.$watch("conn", function(iface){
-		if(!iface) return; 
-		//iface.$type_editor = "<network-connection-type-"+(iface.type.value||'none')+"-edit ng-model='conn'/>"; 
-		//iface.$proto_editor = "<network-connection-proto-"+iface.proto.value+"-edit ng-model='conn'/>"; 
+	$scope.$watch("conn", function(){
+		if(!$scope.conn) return; 
+		setProto();
+		$scope.conn.$type_editor = "<network-connection-type-"+($scope.conn.type.value||'none')+"-edit ng-model='conn'/>"; 
 		$rpc.network.interface.dump().done(function(ifaces){
-			var info = ifaces.interface.find(function(x){ return x.interface == iface[".name"]; }); 
-			iface.$info = info; 
-			//$scope.$apply(); was causing digest in progress error TODO: figure out what the real problem is 
+			var info = ifaces.interface.find(function(x){ return x.interface == $scope.conn[".name"]; }); 
+			$scope.conn.$info = info; 
+			$scope.$apply();// was causing digest in progress error TODO: figure out what the real problem is 
 		}); 
 	}); 
 }); 

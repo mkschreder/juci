@@ -48,7 +48,7 @@
 				</juci-config-lines>
 				<network-connection-ip6-settings-edit ng-model="conn" ></network-connection-ip6-settings-edit>
 			</tab>-->
-			<tab heading="DHCP" ng-show="conn.proto.value == 'static'">
+			<tab heading="{{ 'DHCP' | translate}}" ng-show="conn.proto.value == 'static'">
 				<network-connection-dhcp-server-settings ng-connection="conn"/>
 			</tab>
 		</tabset>
