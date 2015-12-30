@@ -70,7 +70,7 @@ JUCI.app
 	return {
 		templateUrl: "/widgets/network-connection-standard-physical.html",
 		scope: {
-			conn: "=ngModel",
+			interface: "=ngModel",
 			protos: "="
 		},
 		replace: true,
@@ -81,7 +81,7 @@ JUCI.app
 	return {
 		templateUrl: "/widgets/network-connection-proto-static-advanced-edit.html",
 		scope: {
-			conn: "=ngModel"
+			interface: "=ngModel"
 		},
 		replace: true,
 		require: "^ngModel"

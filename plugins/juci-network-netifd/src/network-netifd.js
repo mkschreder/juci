@@ -308,6 +308,15 @@ UCI.validators.MACListValidator = function(){
 	}
 }; 
 
+UCI.validators.REQPrefixValidator = function(){
+	this.validate = function(field){
+		if(field.value == "auto" || field.value == "no") return null; // ok string values
+		var number = parseInt(field.value);
+		if(number < 65 && number > -1) return null;
+		return gettext("Valid values are: auto, no, 0-64");
+	}
+};
+
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {
 	"is_lan":				{ dvalue: false, type: Boolean }, // please stop relying on this!
@@ -341,6 +350,9 @@ UCI.network.$registerSectionType("interface", {
 	"broadcast": 			{ dvalue: false, type: Boolean }, 
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: true, type: Boolean }, 
+	//dhcpv6 settings
+	"reqprefix":			{ dvalue: "auto", type: String, validator: UCI.validators.REQPrefixValidator },
+	"reqaddress":			{ dvalue: "try", type: String },
 	// authentication 
 	"auth": 				{ dvalue: "", type: String }, 
 	"username": 			{ dvalue: "", type: String }, 

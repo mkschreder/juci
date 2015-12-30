@@ -1,25 +1,11 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
+//! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
 .directive("networkConnectionEdit", function($compile, $parse){
 	return {
 		templateUrl: "/widgets/network-connection-edit.html", 
 		scope: {
-			conn: "=ngModel"
+			interface: "=ngModel"
 		}, 
 		controller: "networkConnectionEdit", 
 		replace: true, 
@@ -36,8 +22,8 @@ JUCI.app
 		{ label: $tr(gettext("Bridge")), value: "bridge" }
 	]; 
 	 $scope.showPhysical = function(){
-	 	if(!$scope.conn) return false;
-	 	return $scope.allProtocolTypes.find(function(x){ if(x.value == $scope.conn.proto.value) return x.physical;}) != undefined;
+	 	if(!$scope.interface) return false;
+	 	return $scope.allProtocolTypes.find(function(x){ if(x.value == $scope.interface.proto.value) return x.physical;}) != undefined;
 	};
 	
 	$scope.allProtocolTypes = [
@@ -73,37 +59,35 @@ JUCI.app
 	});
 
 	$scope.ifstatus = function(){
-		if(!$scope.conn || !$scope.conn.$info || $scope.conn.$info.pending == undefined || $scope.conn.$info.up == undefined) return $tr(gettext("ERROR"));
-		return ($scope.conn.$info.pending) ? $tr(gettext("PENDING")) : (($scope.conn.$info.up) ? $tr(gettext("UP")) : $tr(gettext("DOWN")));
+		if(!$scope.interface || !$scope.interface.$info || $scope.interface.$info.pending == undefined || $scope.interface.$info.up == undefined) return $tr(gettext("ERROR"));
+		return ($scope.interface.$info.pending) ? $tr(gettext("PENDING")) : (($scope.interface.$info.up) ? $tr(gettext("UP")) : $tr(gettext("DOWN")));
 	};
 	$scope.onChangeProtocol = function(value, oldvalue){
 		//TODO change confirm to juciDialog
 		if(value == oldvalue) return;
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
-			Object.keys($scope.conn).map(function(x){
-			});
-			setProto();
+			setProto(value);
 			return true;
 		}
 		return false;
 	};
 
-	function setProto(){
-		$scope.conn.$proto_editor = "<network-connection-proto-"+$scope.conn.proto.value+"-edit ng-model='conn'/>"; 
-		$scope.conn.$proto_editor_ph = "<network-connection-proto-"+$scope.conn.proto.value+"-physical-edit ng-model='conn' protos='allInterfaceTypes' />"; 
-		$scope.conn.$proto_editor_ad = "<network-connection-proto-"+$scope.conn.proto.value+"-advanced-edit ng-model='conn' />"; 
+	function setProto(proto){
+		$scope.interface.$proto_editor = "<network-connection-proto-"+proto+"-edit ng-model='interface'/>"; 
+		$scope.interface.$proto_editor_ph = "<network-connection-proto-"+proto+"-physical-edit ng-model='interface' protos='allInterfaceTypes' />"; 
+		$scope.interface.$proto_editor_ad = "<network-connection-proto-"+proto+"-advanced-edit ng-model='interface' />"; 
 	};	
-	$scope.$watch("conn.type.value", function(value){
-		if(!$scope.conn) return; 
-		$scope.conn.$type_editor = "<network-connection-type-"+($scope.conn.type.value||'none')+"-edit ng-model='conn'/>"; 
+	$scope.$watch("interface.type.value", function(value){
+		if(!$scope.interface) return; 
+		$scope.interface.$type_editor = "<network-connection-type-"+($scope.interface.type.value||'none')+"-edit ng-model='interface'/>"; 
 	}); 
-	$scope.$watch("conn", function(){
-		if(!$scope.conn) return; 
-		setProto();
-		$scope.conn.$type_editor = "<network-connection-type-"+($scope.conn.type.value||'none')+"-edit ng-model='conn'/>"; 
+	$scope.$watch("interface", function(){
+		if(!$scope.interface) return; 
+		setProto($scope.interface.proto.value);
+		$scope.interface.$type_editor = "<network-connection-type-"+($scope.interface.type.value||'none')+"-edit ng-model='interface'/>"; 
 		$rpc.network.interface.dump().done(function(ifaces){
-			var info = ifaces.interface.find(function(x){ return x.interface == $scope.conn[".name"]; }); 
-			$scope.conn.$info = info; 
+			var info = ifaces.interface.find(function(x){ return x.interface == $scope.interface[".name"]; }); 
+			$scope.interface.$info = info; 
 			$scope.$apply();// was causing digest in progress error TODO: figure out what the real problem is 
 		}); 
 	}); 
