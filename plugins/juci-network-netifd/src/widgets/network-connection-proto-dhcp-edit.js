@@ -39,6 +39,7 @@ JUCI.app
 		if(!$scope.interface) return;
 		$scope.interface.dns.value = $scope.interface.dns.value.filter(function(x){ return x != "" });
 		$scope.dnslist = $scope.interface.dns.value.map(function(x){ return { text: x }});
+		$scope.interface.reqopts.$error = null;
 	}, false);
 	$scope.onTagsChange = function(){
 		$scope.interface.dns.value = $scope.dnslist.map(function(x){return x.text;});
@@ -54,5 +55,22 @@ JUCI.app
 		}
 		return true;
 	};
-
-});; 
+	/*$scope.evalReqopts = function(tag){ //Not used in this version of JUCI
+		var opts = $scope.interface.reqopts.value.split(" ").filter(function(x){ return x != ""}).map(function(x){ return parseInt(x)});
+		if(opts.find(function(opt){ 
+			if(opt > 0 && opt < 255  ) return false;
+			return true;
+		}) != undefined){
+			$scope.interface.reqopts.$error="Must be space separated integer between 1 and 254";
+		}else{
+			for(var i = 0; i < opts.length; i ++){
+				if(opts.lastIndexOf(opts[i]) != i) break;
+			}
+			if(i < opts.length){
+				$scope.interface.reqopts.$error="No duplicat values"
+			}else{
+				$scope.interface.reqopts.$error=null;
+			}
+		}
+	};*/ //Not used in this version of JUCI
+}); 

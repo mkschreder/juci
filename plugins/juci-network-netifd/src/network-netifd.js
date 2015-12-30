@@ -331,10 +331,12 @@ UCI.network.$registerSectionType("interface", {
 	"vendorid":				{ dvalue: '', type: String }, 
 	"ipv6":					{ dvalue: false, type: Boolean },
 	"dns": 					{ dvalue: [], type: Array }, 
-	"macaddr":				{ dvalue: "", type: String }, 
+	"macaddr":				{ dvalue: "", type: String, validator: UCI.validators.MACAddressValidator }, 
 	"mtu":					{ dvalue: null, type: Number },
 	"enabled": 				{ dvalue: true, type: Boolean }, 
 	//dhcp settings
+	"reqopts":				{ dvalue: "", type: String },
+	"metric":				{ dvalue: 0, type: Number },
 	"iface6rd":				{ dvalue: "", type: String },
 	"broadcast": 			{ dvalue: false, type: Boolean }, 
 	"hostname": 			{ dvalue: "", type: String }, 
@@ -392,7 +394,6 @@ UCI.network.$registerSectionType("switch_port", {
 UCI.$registerConfig("hosts");
 UCI.hosts.$registerSectionType("host", {
 	"device":            { dvalue: "", type: String },
-	"macaddr":         { dvalue: "", type: String },
 	"ipaddr":               { dvalue: "", type: String },
 	"name":             { dvalue: "", type: String },
 	"manufacturer":             { dvalue: "", type: String },
