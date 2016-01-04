@@ -18,7 +18,7 @@
 				<juci-input-ipv4-address ng-model="interface.broadcast.value"></juci-input-ipv4-address />
 			</juci-config-line>	
 			<juci-config-line title="{{'Use custom DNS servers'|translate}}">
-				<tags-input ng-model="dnslist" add-on-space="true" on-tag-adding="evalDns($tag)" on-tag-added="onTagsChange()" on-tag-removed="onTagsChange()"></tags-input>
+				<!--<tags-input ng-model="dnslist" add-on-space="true" on-tag-adding="evalDns($tag)" on-tag-added="onTagsChange()" on-tag-removed="onTagsChange()"></tags-input>-->
 			</juci-config-line>	
 		</juci-config-lines>
 	</juci-config-section>
@@ -26,8 +26,8 @@
 		<juci-config-heading translate>IPv6 Settings</juci-config-heading>
 		<juci-config-lines>
 			<!-- IPv6 Assign -->
-			<juci-config-line ng-show="interface.is_lan.value" title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Leve empty for Disabled' | translate }}">
-				<input type="text" ng-change="onAssignChange()" class="form-control" ng-model="interface.ip6assign.value" placeholder="{{ 'Dissabled' | translate }}" />
+			<juci-config-line ng-show="interface.is_lan.value" title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Leave empty for Disabled' | translate }}">
+				<input type="text" ng-change="onAssignChange()" class="form-control" ng-model="interface.ip6assign.value" placeholder="{{ 'Disabled' | translate }}" />
 			</juci-config-line>
 			<juci-config-line title="{{'IPv6 Assigned Prefix Hint'|translate}}" ng-show="interface.is_lan.value" error="interface.ip6hint.error">
 				<input type="text" class="form-control" ng-model="interface.ip6hint.value" placeholder="{{'Prefix hint'|translate}}" />

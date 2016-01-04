@@ -38,6 +38,20 @@
 				<div dynamic="interface.$proto_editor_ph" />	
 			</tab>
 			<tab heading="{{'Advanced'|translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{ 'Bring up on boot' | translate}}">
+						<switch class="green"ng-model="interface.auto.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Use gateway metric' | translate }}">
+						<input type="number" class="form-control" min="0" ng-model="interface.metric.value" placeholder="0" />
+					</juci-config-line>
+						<juci-config-line title="{{ 'Override MAC address' | translate }}" error="interface.macaddr.error">
+							<input type="text" class="form-control" ng-model="interface.macaddr.value" placeholder="00:00:00:00:00:00" />
+						</juci-config-line>
+						<juci-config-line title="{{ 'Override MTU' | translate }}">
+							<input type="number" min="0" class="form-control" ng-model="interface.macaddr.value" placeholder="1500" />
+						</juci-config-line>
+				</juci-config-lines>
 				<div dynamic="interface.$proto_editor_ad" /> 
 			</tab>
 			<!--<tab heading="IPv6 Settings">

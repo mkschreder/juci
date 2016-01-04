@@ -11,6 +11,9 @@
 					"services",
 					"protocols"
 				], 
+				"/juci/modems": [
+					"list"
+				],
 				"/juci/network.status": [ 
 					"arp", 
 					"ipv4routes", 

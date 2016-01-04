@@ -33,7 +33,6 @@ JUCI.app
 	}
 	function updateDevices(net){
 		if(!net) return;
-		console.log("öalksjfdöaskdfjöaskldfj");
 		$ethernet.getAdapters().done(function(adapters){
 			var aptmap = {}; 
 			adapters.map(function(x){ aptmap[x.device] = x; }); 

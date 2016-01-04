@@ -357,6 +357,10 @@ UCI.network.$registerSectionType("interface", {
 	"auth": 				{ dvalue: "", type: String }, 
 	"username": 			{ dvalue: "", type: String }, 
 	"password": 			{ dvalue: "", type: String }, 
+	// ppp settings
+	"_keepalive_failure":	{ dvalue: "", type: Number },
+	"_keepalive_interval":	{ dvalue: "", type: Number },
+	"demand":				{ dvalue: "", type: Number },
 	// 3g and dongles
 	"apn": 					{ dvalue: "", type: String }, 
 	"pincode": 				{ dvalue: "", type: String }
