@@ -66,6 +66,7 @@ JUCI.app
 		//TODO change confirm to juciDialog
 		if(value == oldvalue) return;
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
+			$scope.interface.$reset_defaults();
 			setProto(value);
 			return true;
 		}

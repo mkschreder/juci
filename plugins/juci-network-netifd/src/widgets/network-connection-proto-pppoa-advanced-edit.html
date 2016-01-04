@@ -1,0 +1,22 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Enable IPv6 negotiation on the PPP link' | translate }}">
+			<switch class="green" ng-model="interface.ipv6.value" />
+		</juci-config-line>
+		<juci-config-line title="{{'Use default gateway' | translate }}" help="{{'If unchecked, no default route is configured' | translate }}">
+			<switch class="green" ng-model="interface.defaultroute.value" />
+		</juci-config-line>
+		<juci-config-line title="{{'Use DNS servers advertised by peer' | translate }}" help="{{'If unchecked, the advertised DNS server addresses are ignored' | translate }}">
+			<switch class="green" ng-model="interface.peerdns.value" />
+		</juci-config-line>
+		<juci-config-line title="{{'LCP echo failure threshold' | translate }}" help="{{'Presume peer to be dead after given amount of LCP echo failures, use 0 to ignore failures' | translate }}">
+			<input type="number" min="0" class="form-control" ng-model="interface._keepalive_failure.value" placeholder="0" />
+		</juci-config-line>
+		<juci-config-line title="{{'LCP echo interval' | translate }}" help="{{'Send LCP echo requests at the given interval in seconds, only effective in conjunction with failure threshold' | translate }}">
+			<input type="number" min="0" class="form-control" ng-model="interface._keepalive_interval.value" placeholder="5" />
+		</juci-config-line>
+		<juci-config-line title="{{'Inactivity timeout' | translate }}" help="{{'Close inactive connection after the given amount of seconds, use 0 to persist connection' | translate }}">
+			<input type="text" min="0" class="form-control" ng-model="interface.demand.value" placeholder="0" />
+		</juci-config-line>
+	</juci-config-lines>
+</div>

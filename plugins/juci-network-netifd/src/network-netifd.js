@@ -287,6 +287,7 @@ UCI.validators.IP6AddressValidator = function(){
 
 UCI.validators.MACAddressValidator = function(){
 	this.validate = function(field){
+		if(field.value == "") return null;
 		if(!(typeof field.value == "string") ||
 			!field.value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/)) 
 			return gettext("Value must be a valid MAC-48 address"); 
@@ -361,7 +362,11 @@ UCI.network.$registerSectionType("interface", {
 	"_keepalive_failure":	{ dvalue: "", type: Number },
 	"_keepalive_interval":	{ dvalue: "", type: Number },
 	"demand":				{ dvalue: "", type: Number },
+	// pppoe settings
+	"ac":					{ dvalue: "", type: String },
 	// 3g and dongles
+	"service":				{ dvalue: "", type: String },
+	"maxwait":				{ dvalue: "", type: Number },
 	"apn": 					{ dvalue: "", type: String }, 
 	"pincode": 				{ dvalue: "", type: String }
 }); 

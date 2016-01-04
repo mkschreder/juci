@@ -76,14 +76,4 @@ JUCI.app
 		replace: true,
 		require: "^ngModel"
 	};
-})
-.directive("networkConnectionProtoStaticAdvancedEdit", function(){
-	return {
-		templateUrl: "/widgets/network-connection-proto-static-advanced-edit.html",
-		scope: {
-			interface: "=ngModel"
-		},
-		replace: true,
-		require: "^ngModel"
-	};
 });

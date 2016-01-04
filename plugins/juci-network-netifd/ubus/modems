@@ -1,6 +1,7 @@
 #!/usr/bin/lua
 
 local juci = require("juci/core"); 
+local PATH = "/tmp/usbnets"
 
 function list_modems()
 	local data = juci.shell("ls /dev/tty*S*");
@@ -17,7 +18,19 @@ function list_modems()
 	print(json.encode({ modems = modems }));
 end
 
+function list_4g_modems()
+	local file = io.open(PATH, "r");
+	if(file == nil) then
+		print(json.encode({error = "could not open file"}));
+		return;
+	end;
+	local modems = {};
+	for line in io.lines(PATH) do
+		print(line);
+	end
+end
 
 juci.ubus({
-	["list"] = list_modems
+	["list"] = list_modems,
+	["list4g"] = list_4g_modems
 }, arg); 
