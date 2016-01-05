@@ -342,7 +342,7 @@ UCI.network.$registerSectionType("interface", {
 	"ipv6":					{ dvalue: false, type: Boolean },
 	"dns": 					{ dvalue: [], type: Array }, 
 	"macaddr":				{ dvalue: "", type: String, validator: UCI.validators.MACAddressValidator }, 
-	"mtu":					{ dvalue: null, type: Number },
+	"mtu":					{ dvalue: "", type: Number },
 	"enabled": 				{ dvalue: true, type: Boolean }, 
 	//dhcp settings
 	"reqopts":				{ dvalue: "", type: String },
@@ -359,16 +359,23 @@ UCI.network.$registerSectionType("interface", {
 	"username": 			{ dvalue: "", type: String }, 
 	"password": 			{ dvalue: "", type: String }, 
 	// ppp settings
+	"tunnelid":				{ dvalie: "", type: Number },
+	"_update":				{ dvalue: false, type: Boolean },
+	"peeraddr":				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator },
+	"server":				{ dvalue: "", type: String },
 	"_keepalive_failure":	{ dvalue: "", type: Number },
 	"_keepalive_interval":	{ dvalue: "", type: Number },
 	"demand":				{ dvalue: "", type: Number },
 	// pppoe settings
 	"ac":					{ dvalue: "", type: String },
 	// 3g and dongles
+	"modem":				{ dvalue: "", type: String },
 	"service":				{ dvalue: "", type: String },
 	"maxwait":				{ dvalue: "", type: Number },
 	"apn": 					{ dvalue: "", type: String }, 
-	"pincode": 				{ dvalue: "", type: String }
+	"pincode": 				{ dvalue: "", type: String },
+	"comdev":				{ dvalue: "", type: String },
+	"ttl":					{ dvalue: "", type: Number }
 }); 
 
 UCI.network.$registerSectionType("route", {

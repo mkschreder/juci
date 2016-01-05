@@ -1,16 +1,16 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'Server IP'|translate}}">
-			<input type="text" class="form-control" ng-model="interface.server.value" placeholder="{{'IP Address'|translate}}"/>
+		<juci-config-line title="{{'VPN Server'|translate}}">
+			<input type="text" class="form-control" ng-model="interface.server.value" placeholder="{{'VPN Server'|translate}}"/>
 		</juci-config-line>
-		<juci-config-line title="{{'Username'|translate}}">
+		<juci-config-line title="{{'PAP/CHAP Username'|translate}}">
 			<input type="text" class="form-control" ng-model="interface.username.value" placeholder="{{'Username'|translate}}" />
 		</juci-config-line>
-		<juci-config-line title="{{'Password'|translate}}">
-			<input type="password" class="form-control" ng-model="interface.password.value" placeholder="{{'Password'|translate}}"/>
+		<juci-config-line title="{{'PAP/CHAP Password'|translate}}">
+			<div class="input-group">
+				<input type="{{showPass ? 'text': 'password'}}" class="form-control" ng-model="interface.password.value" placeholder="{{'Password'|translate}}"/>
+				<span class="input-group-addon" ng-click="togglePass()"><i class="{{showPass ? 'fa fa-lock': 'fa fa-unlock'}}"></i></span>
+			</div>
 		</juci-config-line>
 	</juci-config-lines>
-	<juci-config-section>
-		<network-connection-dns-config ng-model="interface"/>
-	</juci-config-section>
 </div>

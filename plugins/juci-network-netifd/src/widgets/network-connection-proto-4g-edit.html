@@ -1,7 +1,7 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Device'|translate}}">
-			<juci-select ng-model="interface.device.value" ng-items="allModemDevices"/>
+			<juci-select ng-model="interface.modem.value" ng-items="allModemDevices" on-change="onModemChange($value)" />
 		</juci-config-line>
 		<juci-config-line title="{{'APN'|translate}}">
 			<input class="form-control" ng-model="interface.apn.value" placeholder="{{'APN'|translate}}"></input>
@@ -9,14 +9,14 @@
 		<juci-config-line title="{{'PIN-code'|translate}}">
 			<input class="form-control" ng-model="interface.pincode.value" placeholder="{{'PIN-code'|translate}}"></input>
 		</juci-config-line>
-		<juci-config-line title="{{'Dial Number'|translate}}">
-			<input class="form-control" ng-model="interface.dialnumber.value" placeholder="{{'Dial Number'|translate}}"></input>
-		</juci-config-line>
-		<juci-config-line title="{{'Username'|translate}}">
+		<juci-config-line title="{{'PAP/CHAP Username'|translate}}">
 			<input class="form-control" ng-model="interface.username.value" placeholder="{{'Username'|translate}}"></input>
 		</juci-config-line>
-		<juci-config-line title="{{'Password'|translate}}">
+		<juci-config-line title="{{'PAP/CHAP Password'|translate}}">
 			<input class="form-control" ng-model="interface.password.value" placeholder="{{'Password'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'Hostname to send when requesting DHCP'|translate}}">
+			<input class="form-control" ng-model="interface.hostname.value" placeholder="{{'Hostname'|translate}}"></input>
 		</juci-config-line>
 	</juci-config-lines>
 </div>

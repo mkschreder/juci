@@ -12,7 +12,8 @@
 					"protocols"
 				], 
 				"/juci/modems": [
-					"list"
+					"list",
+					"list4g"
 				],
 				"/juci/network.status": [ 
 					"arp", 

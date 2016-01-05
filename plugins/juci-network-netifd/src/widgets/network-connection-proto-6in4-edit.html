@@ -1,0 +1,33 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Local IPv4 address'|translate}}" help="{{'Leave empty to use the current WAN address'|translate}}" error="interface.ipaddr.error">
+			<juci-input-ipv4-address ng-model="interface.ipaddr.value"></juci-input-ipv4-address>
+		</juci-config-line>
+		<juci-config-line title="{{'Remote IPv4 address'|translate}}" help="{{'This is usually the address of the nearest PoP operated by the tunnel broker'|translate}}" error="interface.peeraddr.error">
+			<juci-input-ipv4-address ng-model="interface.peeraddr.value"></juci-input-ipv4-address>
+		</juci-config-line>
+		<juci-config-line title="{{'Local IPv6 address'|translate}}" help="{{'This is the local endpoint address assigned by the tunnel broker, it usually ends with :2'|translate}}" error="interface.ip6addr.error">
+			<input type="text" class="form-control" ng-model="interface.ip6addr.value" placeholder="{{'Local IPv6 address'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'IPv6 routed prefix'|translate}}" help="{{'This is the prefix routed to you by the tunnel broker for use by clients'|translate}}" error="interface.ip6prefix.error">
+			<input type="text" class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 prefix'|translate}}"></input>
+		</juci-config-line>
+		<juci-config-line title="{{'Dynamic tunnel'|translate}}" help="{{'Enable HE.net dynamic endpoint update'|translate}}">
+			<switch class="green" ng-model="interface._update.value" />
+		</juci-config-line>
+		<div id="tunnelSettings" ng-show="interface._update.value">
+			<juci-config-line title="{{'Tunnel ID'|translate}}">
+				<input type="number" class="form-control" ng-model="interface.tunnelid.value" />
+			</juci-config-line>
+			<juci-config-line title="{{'HE.net username'|translate}}" help="{{'This is the plain username for logging into the account'|translate}}">
+				<input type="text" class="form-control" ng-model="interface.username.value" placeholder="{{'Username'|translate}}" />
+			</juci-config-line>
+			<juci-config-line title="{{'HE.net password'|translate}}" help="{{'This is either the Update Key configured for the tunnel or the account password if no update key has been configured'|translate}}">
+				<div class="input-group">
+					<input type="{{showPass ? 'text':'password'}}" class="form-control" ng-model="interface.password.value" placeholder="{{'Password'|translate}}" />
+					<span class="input-group-addon" ng-click="togglePass()"><i class="{{showPass ? 'fa fa-lock':'fa fa-unlock'}}"></i></span>
+				</div>
+			</juci-config-line>
+		</div>
+	</juci-config-lines>
+</div>
