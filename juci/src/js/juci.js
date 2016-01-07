@@ -292,6 +292,10 @@
 			return scope.UBUS; 
 		});
 
+		app.factory('$rpc2', function(){
+			return scope.UBUS2; 
+		});
+
 		app.factory('$uci', function(){
 			return scope.UCI; 
 		});
