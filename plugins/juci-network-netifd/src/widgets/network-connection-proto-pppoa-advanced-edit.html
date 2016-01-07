@@ -9,6 +9,7 @@
 		<juci-config-line title="{{'Use DNS servers advertised by peer' | translate }}" help="{{'If unchecked, the advertised DNS server addresses are ignored' | translate }}">
 			<switch class="green" ng-model="interface.peerdns.value" />
 		</juci-config-line>
+		<network-connection-dns-config ng-model="interface"></network-connection-dns-config>
 		<juci-config-line title="{{'LCP echo failure threshold' | translate }}" help="{{'Presume peer to be dead after given amount of LCP echo failures, use 0 to ignore failures' | translate }}">
 			<input type="number" min="0" class="form-control" ng-model="interface._keepalive_failure.value" placeholder="0" />
 		</juci-config-line>
