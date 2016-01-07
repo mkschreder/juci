@@ -18,7 +18,6 @@ JUCI.app
 		$scope.ip.type = ($scope.interface.ip6assign.value == "" ? "alloc" : "assign");
 		$scope.interface.dns.value = $scope.interface.dns.value.filter(function(x){ if(x == "") return false; return true});;
 		$scope.dnslist = $scope.interface.dns.value.map(function(x){return { text:x }});
-		console.log($scope.dnslist);
 	}); 
 	$scope.interface_types = [
 		{ label: $tr(gettext("Local Area Network")), value: true },

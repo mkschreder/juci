@@ -24,7 +24,6 @@ JUCI.app
 	var ipv4validator = new $uci.validators.IP4AddressValidator;
 	function dnsValidator(){
 		this.validate = function(data){
-			console.log(data);
 			if(data.value.find(function(dns){
 				if( ipv4validator.validate({value:dns}) != null) return true;
 				return false;
@@ -42,7 +41,6 @@ JUCI.app
 	function duplicatesInData(){
 		var dnslist = $scope.data.map(function(x){ return x.value;});
 		var sorted_list = dnslist.sort();
-		console.log($scope.interface.dns.value);
 		for(var i = 0; i < sorted_list.length -1; i++){
 			if(sorted_list[i+1] == sorted_list[i]) return true;
 		}

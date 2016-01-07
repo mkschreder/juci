@@ -261,6 +261,17 @@ UCI.validators.IPAddressValidator = function(){
 	}
 }; 
 
+UCI.validators.IP6PrefixLengthValidator = function(){
+	this.validate = function(field){
+		var valid_values = ["no"];
+		for(var i = 48; i <= 64; i++){
+			valid_values.push(String(i));
+		}
+		if(field.value == "" || valid_values.find(function(x){ return x == field.value}) != undefined) return null;
+		return "valid values are: 'no' and 48-64";
+	}
+};
+
 UCI.validators.IP6AddressValidator = function(){
 	this.validate = function(field){
 		if(field.value && field.value != "" && !field.value.match("("+
@@ -352,6 +363,8 @@ UCI.network.$registerSectionType("interface", {
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: true, type: Boolean }, 
 	//dhcpv6 settings
+	"ip6prefixlen":		{ dvalue: "", type: String, validator: UCI.validators.IP6PrefixLengthValidator },
+	"ip4prefixlen":			{ dvalue: "", type: Number },
 	"reqprefix":			{ dvalue: "auto", type: String, validator: UCI.validators.REQPrefixValidator },
 	"reqaddress":			{ dvalue: "try", type: String },
 	// authentication 

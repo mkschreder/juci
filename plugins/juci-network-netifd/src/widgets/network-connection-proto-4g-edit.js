@@ -17,7 +17,6 @@ JUCI.app
 		if(data.info) return;
 		$scope.modems = data.modems;
 		$scope.allModemDevices = data.modems.map(function(x){ return { label: x.name, value:x.service+":"+x.dev+":"+x.ifname }});
-		console.log($scope.allModemDevices);
 		$scope.$apply();
 	});
 	$scope.onModemChange = function(value){
@@ -27,7 +26,6 @@ JUCI.app
 		$scope.interface.service.value = opts[0];
 		$scope.interface.comdev.value = "/dev/"+opts[1];
 		$scope.interface.ifname.value = opts[2];
-		console.log($scope.interface);
 	};
 })
 .directive("networkConnectionProto4gAdvancedEdit", function(){
