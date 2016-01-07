@@ -53,6 +53,7 @@ JUCI.app
 	$scope.updateModel = function() {
 		console.log("Assemble parts: "+$scope.data.parts);
 		var ipaddr = Object.keys($scope.data.parts).map(function(x){ return $scope.data.parts[x] }).join(".");
+		if(ipaddr == "..." || ipaddr == ".." || ipaddr == ".") ipaddr = "";
 		if($scope.ngModel != ipaddr) ngModel.assign($scope.$parent, ipaddr);
 	};
 

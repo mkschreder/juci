@@ -1,0 +1,8 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Local IPv4 address'|translate}}" help="{{'Leave empty to use the current WAN address'|translate}}" error="interface.ipaddr.error">
+			<juci-input-ipv4-address ng-model="interface.ipaddr.value"></juci-input-ipv4-address>
+			{{interface.ipaddr.value}}
+		</juci-config-line>
+	</juci-config-lines>
+</div>
