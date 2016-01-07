@@ -9,7 +9,7 @@
 		<juci-config-line title="{{'PAP/CHAP Password'|translate}}">
 			<div class="input-group">
 				<input type="{{showPass ? 'text': 'password'}}" class="form-control" ng-model="interface.password.value" placeholder="{{'Password'|translate}}"/>
-				<span class="input-group-addon" ng-click="togglePass()"><i class="{{showPass ? 'fa fa-lock': 'fa fa-unlock'}}"></i></span>
+				<span class="input-group-addon" ng-click="togglePass()" style="cursor:pointer"><i class="{{showPass ? 'fa fa-eye-slash': 'fa fa-eye'}}"></i></span>
 			</div>
 		</juci-config-line>
 	</juci-config-lines>
