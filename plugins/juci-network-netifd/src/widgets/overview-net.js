@@ -43,7 +43,7 @@ JUCI.app
 		});
 	});
 })
-.controller("overviewWidgetNetwork", function($scope, $firewall, $tr, gettext){
+.controller("overviewWidgetNetwork", function($scope, $firewall, $tr, gettext, $juciDialog, $uci){
 	$scope.defaultHostName = $tr(gettext("Unknown"));
 
 	JUCI.interval.repeat("overview-netowrk-widget", 2000, function(done){
@@ -54,7 +54,24 @@ JUCI.app
 				client._display_html = "<"+client._display_widget + " ng-model='client'/>";
 				$scope.clients.push(client);
 			});
-			done(); 
+			$firewall.getZoneNetworks("lan").done(function(networks){
+				if(networks.length < 1) return;
+				$scope.lan = networks[0];
+				$scope.ipaddr = networks[0].ipaddr.value || networks[0].ip6addr.value;
+				done();
+			});
 		});
 	});
+	$scope.onEditLan = function(){
+		console.log("testing");
+		if(!$scope.lan) return;
+		$juciDialog.show("simple-lan-settings-edit", {
+			title: $tr(gettext("Edit LAN Settings")),
+			on_apply: function(btn, dlg){
+				$uci.$save();
+				return true;
+			},
+			model: $scope.lan
+		});
+	};
 });

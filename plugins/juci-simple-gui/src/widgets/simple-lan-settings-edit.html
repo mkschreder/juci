@@ -1,0 +1,16 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'IPv4 Address'|translate}}" error="lan.ipaddr.error">
+			<juci-input-ipv4-address ng-model="lan.ipaddr.value"></juci-input-ipv4-address>
+		</juci-config-line>
+		<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}" error="lan.netmask.error">
+			<juci-input-ipv4-address ng-model="lan.netmask.value"></juci-input-ipv4-address>
+		</juci-config-line>
+		<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" error="lan.gateway.error">
+			<juci-input-ipv4-address ng-model="lan.gateway.value"></juci-input-ipv4-address>
+		</juci-config-line>
+		<juci-config-line title="{{'IPv4 Broadcast'|translate}}" error="lan.broadcast.error">
+			<juci-input-ipv4-address ng-model="lan.broadcast.value"></juci-input-ipv4-address>
+		</juci-config-line>
+	</juci-config-lines>
+</div>
