@@ -37,6 +37,7 @@ JUCI.app
 
 	$scope.onDeleteRoute = function(route){
 		if(!route) return; 
+		console.log("Deleting route!"); 
 		route.$delete().done(function(){
 			$scope.$apply(); 
 		}); 

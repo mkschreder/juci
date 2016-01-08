@@ -229,73 +229,14 @@ wireless_info(){
 	json_dump
 }
 
-SCANFILE="/var/run/juci.wifi.scanresults"; 
+#SCANFILE="/var/run/juci.wifi.scanresults"; 
 
 wireless_scan(){
-	wlctl scan &> /dev/null
-	sleep 1
-	wlctl scanresults | mawk '
-	/^SSID/{
-		printf "\nssid=" substr($0, index($0, ":")+2) ";"; 
-	}
-	{
-		for(c = 0; c <= NR; c++){
-			if($c == "Mode:") printf "mode=\"" $(c+1) "\";"; 
-			if($c == "RSSI:") printf "rssi=\"" $(c+1) "\";"; 
-			if($c == "SNR:") printf "snr=\"" $(c+1) "\";"; 
-			if($c == "noise:") printf "noise=\"" $(c+1) "\";"; 
-			if($c == "Channel:") printf "channel=\"" $(c+1) "\";"; 
-			if($c == "BSSID:") printf "bssid=\"" $(c+1) "\";"; 
-			if($c == "multicast" && $(c+1) == "cipher:") printf "multicast_cipher=\"" $(c+2) "\";"; 
-			if($c == "AKM") printf "cipher=\"" $(c+2) "\";"; 
-			if($c == "Chanspec:") printf "frequency=\"" $(c+1) "\";";  
-			if($c == "Primary" && $(c+1) == "channel:") printf "primary_channel=\"" $(c+2) "\";"; 
-			if($c == "WPS:") printf "wps_version=\"" $(c+1) "\";"; 
-		} 
-	}' &> "$SCANFILE"; 
+	/usr/lib/ubus/juci/broadcom.wireless.lua scan $1
 }
 
-# SSID: "Inteno-F37E"
-# Mode: Managed	RSSI: -79 dBm	SNR: 0 dB	noise: -88 dBm	Channel: 6
-# BSSID: 00:22:07:4E:F3:7D	Capability: ESS WEP ShortSlot RRM 
-# Supported Rates: [ 6(b) 24 54 ]
-# RSN:
-# 	multicast cipher: AES-CCMP
-# 	unicast ciphers(1): AES-CCMP 
-# 	AKM Suites(1): WPA-PSK 
-# 	Capabilities(0x000c): No Pre-Auth, Pairwise, 16 PTK Replay Ctrs1 GTK Replay Ctr
-# HT Capable:
-# 	Chanspec: 2.4GHz channel 6 20MHz (0x1006)
-# 	Primary channel: 6
-# 	HT Capabilities: SGI20 
-# 	Supported MCS : [ 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ]
-# WPS: V2.0 Configured
-
 wireless_scanresults(){
-	json_init
-	json_add_array "access_points" 
-	IFS=$'\n'; 
-	RESULTS=$(cat $SCANFILE); 
-	for AP in $RESULTS; do
-		eval "$AP"; 
-		
-		json_add_object ""
-		json_add_string "ssid" "$ssid"; 
-		json_add_int "rssi" "$rssi";
-		json_add_int "snr" "$snr"; 
-		json_add_int "noise" "$noise"; 
-		json_add_int "channel" "$channel"; 
-		json_add_string "bssid" "$bssid"; 
-		json_add_string "multicast_cipher" "$multicast_cipher"; 
-		json_add_string "cipher" "$cipher"; 
-		json_add_string "frequency" "$frequency"; 
-		json_add_int "channel" "$channel"; 
-		json_add_int "primary_channel" "$primary_channel"; 
-		json_add_string "wps_version" "$wps_version"; 
-		json_close_object
-	done
-	json_close_array
-	json_dump
+	/usr/lib/ubus/juci/broadcom.wireless.lua scanresults $1
 }
 
 case $1 in 
@@ -322,6 +263,6 @@ case $1 in
 		wireless_scan "$2"
 		;;
 	scanresults)
-		wireless_scanresults
+		wireless_scanresults "$2"
 		;;
 esac

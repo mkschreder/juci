@@ -4,16 +4,8 @@
 		<p translate>System processes and CPU usage.</p>
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<table class="table table-bordered">
-					<tr>
-						<th translate>Total number of processes:</th>
-						<td>{{processes.length}}</td>
-					</tr>
-					<tr>
-						<th translate>Total CPU usage:</th>
-						<td>{{getCpuUsage()}}</td>
-					</tr>
-				</table>
+				<b translate>Total number of processes: {{processes.length}}</b><br/>
+				<b translate>Total CPU usage: {{getCpuUsage()}}</b>
 			</div>
 		</div>
 		<accordion close-others="false">

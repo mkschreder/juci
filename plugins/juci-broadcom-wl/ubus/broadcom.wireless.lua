@@ -1,15 +1,20 @@
 #!/usr/bin/lua
 
 local json = require("juci/json"); 
+local juci = require("juci/core"); 
 
-function wireless_scanresults()
-	local f = assert(io.popen("wlctl -i wl1 scanresults")); 
+function wireless_scan(opts)
+	juci.shell("wlctl scan 2>/dev/null"); 
+	print("{}"); 
+end
+
+function wireless_scanresults(opts)
+	local output = juci.shell("wlctl -i %s scanresults", (opts.device or "wl0")); 
 	local aps = {}; 
 	local obj = {}; 
 	local resp = {}; 
 	resp["access_points"] = aps; 
-	local s = f:read("*l"); 
-	while s do
+	for s in output:gmatch("[^\r\n]+") do
 		local fields = {}
 		for w in s:gmatch("%S+") do table.insert(fields, w) end
 		for i,v in ipairs(fields) do
@@ -30,16 +35,12 @@ function wireless_scanresults()
 			if v == "Primary" and fields[i+1] == "channel:" then obj["primary_channel"] = fields[i+2] end
 			if v == "WPS:" then obj["wps_version"] = fields[i+1] end
 		end
-		s = f:read("*l"); 
 	end
-	f:close(); 
 	print(json.encode(resp)); 
 end
 
-if arg[1] == ".methods" then 
-	print("scanresults");
-elseif arg[1] == "scanresults" then 
-	wireless_scanresults();
-else 
-	io.write("Unknown method!\n"); 
-end
+juci.ubus({
+	scan = wireless_scan, 
+	scanresults = wireless_scanresults
+}, arg); 
+

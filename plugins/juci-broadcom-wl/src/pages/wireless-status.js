@@ -24,7 +24,7 @@ JUCI.app
 		$scope.dfs_enabled = $uci.wireless["@wifi-device"].find(function(x){ return x.dfsc.value != 0; }) != null; 
 		$scope.doScan = function(){
 			$scope.scanning = 1; 
-			async.eachSeries($uci.wireless["@wifi-device"].filter(function(x){ return x.dfsc.value != 0; }), function(dev, next){
+			async.eachSeries($uci.wireless["@wifi-device"].filter(function(x){ return x.dfsc.value == 0; }), function(dev, next){
 				console.log("Scanning on "+dev[".name"]); 
 				$wireless.scan({device: dev[".name"]}).done(function(){
 					setTimeout(function(){
