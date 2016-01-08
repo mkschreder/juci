@@ -1,16 +1,23 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'IPv4 Address'|translate}}" error="lan.ipaddr.error">
-			<juci-input-ipv4-address ng-model="lan.ipaddr.value"></juci-input-ipv4-address>
+		<juci-config-line title="{{'IPv4 Address'|translate}}" error="model.lan.ipaddr.error">
+			<juci-input-ipv4-address ng-model="model.lan.ipaddr.value"></juci-input-ipv4-address>
 		</juci-config-line>
-		<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}" error="lan.netmask.error">
-			<juci-input-ipv4-address ng-model="lan.netmask.value"></juci-input-ipv4-address>
+		<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}" error="model.lan.netmask.error">
+			<juci-input-ipv4-address ng-model="model.lan.netmask.value"></juci-input-ipv4-address>
 		</juci-config-line>
-		<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" error="lan.gateway.error">
-			<juci-input-ipv4-address ng-model="lan.gateway.value"></juci-input-ipv4-address>
+		<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" error="model.lan.gateway.error">
+			<juci-input-ipv4-address ng-model="model.lan.gateway.value"></juci-input-ipv4-address>
 		</juci-config-line>
-		<juci-config-line title="{{'IPv4 Broadcast'|translate}}" error="lan.broadcast.error">
-			<juci-input-ipv4-address ng-model="lan.broadcast.value"></juci-input-ipv4-address>
+		<juci-config-line title="{{'IPv4 Broadcast'|translate}}" error="model.lan.broadcast.error">
+			<juci-input-ipv4-address ng-model="model.lan.broadcast.value"></juci-input-ipv4-address>
 		</juci-config-line>
+		<juci-config-line title="{{'DHCP Server'|translate}}">
+			<switch class="green" ng-model="model.dhcpEnabled" />
+		</juci-config-line>
+		<div ng-show="model.dhcpEnabled">
+			<dhcp-basic-settings-edit ng-model="model.dhcp" ng-connection="model.lan"></dhcp-basic-settings-edit>
+			<dhcp-static-hosts-edit ng-model="model.dhcp"></dhcp-static-hosts-edit>
+		</div>
 	</juci-config-lines>
 </div>

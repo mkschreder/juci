@@ -55,6 +55,7 @@ JUCI.app
 				$scope.wifiClients = clients; 
 				$scope.wifiBands = Object.keys(clients); 
 				$scope.$apply(); 
+				next();
 			}); 
 		}], function(){
 			done(); 
@@ -63,6 +64,7 @@ JUCI.app
 	
 })
 .controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext, $juciDialog){
+	var pauseSync = false;
 	$scope.wireless = {
 		clients: []
 	}; 
@@ -84,16 +86,23 @@ JUCI.app
 	}
 
 	$scope.onEditSSID = function(iface){
+		pauseSync = true;
 		$juciDialog.show("uci-wireless-interface", {
 			title: $tr(gettext("Edit wireless interface")),  
-			on_apply: function(btn, dlg){
-				$uci.$save(); 
-				return true; 
-			}, 
+			on_button: function(btn, inst){
+				pauseSync = false;
+				if(btn.value == "cancel"){
+					inst.dismiss("cancel");
+				}
+				if(btn.value == "apply"){
+					$uci.$save();
+					inst.close();
+				}
+			},
 			model: iface.uci_dev
 		}).done(function(){
-		
-		}); 
+
+		});
 	}
 
 	function refresh() {
@@ -145,6 +154,10 @@ JUCI.app
 		return def.promise(); 
 	}; 
 	JUCI.interval.repeat("wifi-overview", 10000, function(done){
+		if(pauseSync){
+			done();
+			return;
+		}
 		refresh().done(function(){
 			done(); 
 		}); 
