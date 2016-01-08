@@ -19,7 +19,7 @@ JUCI.app
 	$scope.phoneSchedStatus = gettext("off"); 
 	async.series([
 		function(next){
-			$uci.$sync(["wireless", "boardpanel", "voice_client"]).done(function(){
+			$uci.$sync(["boardpanel", "voice_client"]).done(function(){
 				$scope.voice_client = $uci.voice_client; 
 				if($uci.voice_client && $uci.voice_client["@sip_service_provider"]){
 					$scope.sipAccounts = $uci.voice_client["@sip_service_provider"]; 
