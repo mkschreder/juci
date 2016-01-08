@@ -1,5 +1,6 @@
 global.assert = require("assert"); 
-global.JSON = require("juci/json"); 
+global.JSON = require("JSON"); 
+global.WebSocket = require("ws"); 
 global.async = require("async"); 
 global.$ = global.jQuery = require("jquery-deferred"); 
 global.$.ajax = require("./najax"); 
@@ -10,6 +11,7 @@ require("../juci/src/lib/js/jquery-jsonrpc");
 require("../juci/src/js/localStorage"); 
 require("../juci/src/js/rpc"); 
 require("../juci/src/js/uci"); 
+require("../juci/src/js/rpc2"); 
 var $rpc = global.$rpc = global.UBUS; 
 var $uci = global.$uci = global.UCI; 
 Object.prototype.assign = require("object-assign"); 
@@ -152,12 +154,12 @@ for(var i = 0; i < process.argv.length; i++){
 		case "--host": PARAMS.host = process.argv[++i]; break; 
 	}; 
 } 
-
+/*
 if(!PARAMS.username || !PARAMS.password ){
 	console.error("Please specify --host <host> --user <rpcuser> and --pass <rpcpassword> arguments!"); 
 	process.exit(); 
 }
-
+*/
 global.PARAMS = PARAMS; 
 
 function init(){
@@ -191,13 +193,14 @@ function init(){
 	}); 
 	return deferred.promise(); 
 }
-
+/*
 before(function(done){
 	init().done(function(){
 		done(); 
 	}); 
 }); 
-
+*/
+exports.$rpc2 = $rpc2; 
 exports.$uci = $uci; 
 exports.$init = init; 
 exports.$rpc = $rpc; 
