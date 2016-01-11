@@ -33,6 +33,7 @@ JUCI.app
 	$scope.done = 1;  
 		
 	$netmode.getCurrentMode().done(function(current_mode){
+		if(!current_mode) return; 
 		$scope.currentNetmode = current_mode; 
 		$netmode.list().done(function(modes){
 			$scope.allNetmodes = modes.map(function(x){
