@@ -93,7 +93,8 @@ JUCI.app
 				}); 
 			} updateRules(); 
 			
-			$scope.onAddAccessRule = function(){
+			$scope.onCreateAccessRule = function(){
+				console.log("Adding rule.."); 
 				$uci.firewall.$create({
 					".type": "rule", 
 					"parental": true

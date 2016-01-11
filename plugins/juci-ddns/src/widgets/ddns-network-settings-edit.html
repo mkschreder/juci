@@ -13,7 +13,7 @@
 			<juci-select ng-model="ddns.ip_network.value" ng-items="allSourceNetworks"></juci-select>
 		</juci-config-line>
 		<juci-config-line title="{{'Pick Interface'|translate}}" ng-show="ddns.ip_source.value == 'interface'">
-			<juci-select ng-model="ddns.ip_interface.value" ng-items="allSourceDevices"></input>
+			<juci-select ng-model="ddns.interface.value" ng-items="allSourceDevices"></input>
 		</juci-config-line>
 		<juci-config-line title="{{'Enter website to poll for ip address'|translate}}" ng-show="ddns.ip_source.value == 'web'">
 			<input type="text" class="form-control" placeholder="{{'http://checkip.dyndns.com/'}}" ng-model="ddns.ip_url.value"/>

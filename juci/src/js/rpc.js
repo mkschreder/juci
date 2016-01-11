@@ -221,6 +221,9 @@
 			if(object.startsWith("/")) npath = object.substring(1); 
 			_find(npath.split(/[\.\/]/), method, self); 
 		}, 
+		$list: function(){
+			return rpc_request("list", "*", "", {}); 
+		},
 		$isConnected: function(){
 			// we do a simple list request. If it fails then we assume we do not have a proper connection to the router
 			var self = this; 

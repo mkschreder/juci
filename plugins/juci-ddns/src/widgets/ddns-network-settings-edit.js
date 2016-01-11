@@ -47,5 +47,5 @@ JUCI.app
 		if(!result || !result.providers) return; 
 		$scope.allServices = result.providers.map(function(p){ return { label: p, value: p }}); 
 		$scope.$apply(); 
-	}); 
+	});
 }); 

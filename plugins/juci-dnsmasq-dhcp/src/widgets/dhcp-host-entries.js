@@ -21,16 +21,33 @@ JUCI.app.directive("dhcpHostEntries", function(){
 		controller: "dhcpHostEntriesCtrl",
 		replace: true
 	}
-}).controller("dhcpHostEntriesCtrl", function($scope, $uci){
+}).controller("dhcpHostEntriesCtrl", function($scope, $uci, $tr, gettext, lanIpFactory){
 	$uci.$sync("dhcp").done(function(){
 		$scope.hosts = $uci.dhcp["@domain"];
 		console.log($scope.hosts);
 		$scope.$apply();
 	});
+	$scope.ipv4 = "";
+	$scope.ipv6 = "";
+	
+	lanIpFactory.getIp().done(function(res){
+		$scope.ipv4 = res.ipv4;
+		$scope.ipv6 = res.ipv6;
+	});
+	
 	$scope.getItemTitle = function(item){
+		return $tr(gettext("Hostname(s) for ")) + ((item.ip.value == "") ? ((item.family.value == "ipv4") ? $scope.ipv4 : $scope.ipv6) : item.ip.value);
 		return item[".name"];
 	}
+	$scope.onAddDomain = function(){
+		$uci.dhcp.$create({ ".type":"domain", "family":"ipv4"}).done(function(){
+			$scope.$apply();
+		});
+	};
+	$scope.onDeleteDomain = function(domain) {
+		domain.$delete().done(function(){
+			$scope.$apply();
+		});
+	};
 });
 
-/*
-*/

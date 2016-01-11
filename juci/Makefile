@@ -48,6 +48,7 @@ define Plugin/juci
 
 	JAVASCRIPT-y+=src/js/compat.js
 	JAVASCRIPT-y+=src/js/rpc.js
+	JAVASCRIPT-y+=src/js/rpc2.js
 	JAVASCRIPT-y+=src/js/uci.js
 	JAVASCRIPT-y+=src/js/juci.js
 	JAVASCRIPT-y+=src/js/app.js

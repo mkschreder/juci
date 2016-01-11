@@ -32,7 +32,8 @@ local function wireless_get_80211_devices()
 	local result = { devices = {} }; 
 	for _,wldev in ipairs(devices) do 
 		local iw = iwinfo[iwinfo.type(wldev)];
-		if(iw) then 
+		-- prevent devices that are not ready (do not have ssid) from appearing in the list!
+		if(iw and iw.ssid(wldev)) then 
 			table.insert(result.devices, {
 				device = wldev, 
 				ssid = iw.ssid(wldev), 

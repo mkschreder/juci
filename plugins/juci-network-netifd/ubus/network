@@ -47,9 +47,17 @@ network_nameservers(){
 	json_dump
 }
 
+network_protocols() {
+	/usr/lib/ubus/juci/network.lua protocols
+}
+
+network_services() {
+	/usr/lib/ubus/juci/network.lua services
+}
+
 case $1 in 
 	.methods) 
-		echo "clients,load,nameservers,nat_table"; 
+		echo "clients,load,nameservers,nat_table,protocols,services"; 
 		exit 0
 		;;
 	clients) 
@@ -63,5 +71,11 @@ case $1 in
 		;;
 	nameservers)
 		network_nameservers
+		;;
+	protocols)
+		network_protocols
+		;;
+	services)
+		network_services
 		;;
 esac

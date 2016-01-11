@@ -42,7 +42,6 @@ JUCI.app
 })
 .controller("juciListEditor", function($scope){
 	$scope.dynamicHtml = "<"+$scope.editor+" ng-model='item'/>"; 
-	
 	$scope.onListAddItem = function(){
 		$scope.item = null; 
 		$scope.onCreate();
@@ -74,4 +73,9 @@ JUCI.app
 		arr.splice(idx + 1, 0, i); 
 		$scope.onItemMoved({ $item: i, $prev_index: idx, $index: idx + 1}); 
 	}
+	
+	$scope.$watch("items", function(){
+		if(!$scope.items ) return;
+		if($scope.items.length > 0) $scope.item = $scope.items[0]; 
+	})
 }); 

@@ -264,7 +264,6 @@
 					//console.log("Field "+k+" missing in data!"); 
 				} else {
 					switch(type[k].type){
-						case String: value = data[k]; break; 
 						case Number: 
 							var n = Number(data[k]); 
 							if(isNaN(n)) n = type.dvalue;
@@ -518,6 +517,7 @@
 		UCIConfig.prototype.$registerSectionType = function(name, descriptor, validator){
 			var config = this[".name"]; 
 			var conf_type = section_types[config]; 
+			if(name in conf_type) throw new Error("Section "+name+" already defined. Please fix your code!"); 
 			if(typeof conf_type === "undefined") conf_type = section_types[config] = {}; 
 			conf_type[name] = descriptor; 
 			this["@"+name] = []; 
@@ -544,6 +544,7 @@
 			}
 
 			//self[".need_commit"] = true; 
+			console.log("Removing section "+JSON.stringify(section[".name"])); 
 			$rpc.uci.delete({
 				"config": self[".name"], 
 				"section": section[".name"]
@@ -596,14 +597,14 @@
 				return deferred.promise(); 
 			}
 			
-			console.log("Adding: "+item[".type"]+": "+JSON.stringify(values)); 
+			console.log("Adding: "+JSON.stringify(item)+" to "+self[".name"]+": "+JSON.stringify(values)); 
 			$rpc.uci.add({
 				"config": self[".name"], 
 				"type": item[".type"],
 				"name": item[".name"], 
 				"values": values
 			}).done(function(state){
-				console.log("Added new section: "+state.section); 
+				console.log("Added new section: "+JSON.stringify(state)); 
 				item[".name"] = state.section; 
 				self[".need_commit"] = true; 
 				var section = _insertSection(self, item); 

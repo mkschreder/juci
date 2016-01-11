@@ -7,7 +7,7 @@
 	<div class="panel-body">
 		<i ng-show="!clients" class="fa fa-spinner fa-spin"></i>
 		<div class="row" ng-repeat="client in clients" style="margin-bottom: 10px;">
-			<div dynamic="client._display_html"/>
+			<div style="{{((client.online)?'':'color: grey !important')}}" dynamic="client._display_html"/>
 		</div>
 	</div>
 </div>

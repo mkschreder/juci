@@ -235,7 +235,7 @@
 
 		NetworkBackend.prototype.getServices = function(){
 			var def = $.Deferred(); 
-			$rpc.juci.network.lua.services().done(function(result){
+			$rpc.juci.network.services().done(function(result){
 				if(result && result.list) def.resolve(result.list); 
 				else def.reject(); 
 			}); 
@@ -276,8 +276,8 @@ UCI.network.$registerSectionType("interface", {
 	"ifname":				{ dvalue: '', type: String }, 
 	"device":				{ dvalue: '', type: String }, 
 	"proto":				{ dvalue: '', type: String }, 
-	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IPAddressValidator }, 
-	"netmask":				{ dvalue: '', type: String }, 
+	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
+	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValdator }, 
 	"gateway":				{ dvalue: '', type: String }, 
 	"ip6addr":				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator }, 
 	"ip6gw": 				{ dvalue: '', type: String },
@@ -348,17 +348,6 @@ UCI.network.$registerSectionType("switch_port", {
 	"port": 	{ dvalue: 0, type: Number }, 
 	"pvid": 	{ dvalue: 0, type: Number }
 }); 
-
-UCI.$registerConfig("ddns");
-UCI.ddns.$registerSectionType("service", {
-	"enabled":              { dvalue: 0, type: Number },
-	"interface":            { dvalue: "", type: String },
-	"use_syslog":           { dvalue: 0, type: Number },
-	"service_name":         { dvalue: "", type: String },
-	"domain":               { dvalue: "", type: String },
-	"username":             { dvalue: "", type: String },
-	"password":             { dvalue: "", type: String }
-});
 
 UCI.$registerConfig("hosts");
 UCI.hosts.$registerSectionType("host", {

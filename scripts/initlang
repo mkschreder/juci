@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#initializes a new language
+# $1 = language code (ie. fi, se..etc.)
+
+LANG=$1
+
+echo "Initializing language $LANG.."; 
+
+for file in `find . -name "en.po"`; do 
+	TARGET="$(dirname $file)/$LANG.po"	
+	[ -e "$TARGET" ] && {
+		echo "skipping $file.. file exists!"; 
+		continue
+	}
+	cp -p "$file" "$TARGET"
+	sed -i "s/Language: en/Language: $LANG/g" "$TARGET" 
+	echo "create $TARGET"; 
+done
