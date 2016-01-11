@@ -33,11 +33,12 @@ JUCI.app
 					}
 				}
 			}
+			if(opts.size == undefined) opts.size = "lg";
 			opts.widget = "<" + widget + " ng-model='model'/>"; 
 			var modalInstance = $modal.open({
 				animation: false,
 				backdrop: "static", 
-				size: "lg",
+				size: opts.size,
 				templateUrl: opts.templateUrl || 'widgets/juci-dialog.html',
 				controller: opts.controller || 'juciDialog',
 				resolve: {
