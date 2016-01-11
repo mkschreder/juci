@@ -17,7 +17,7 @@ JUCI.app
 	$scope.existingHost = { }; 
 	
 	$scope.allInterfaceTypes = [
-		{ label: $tr(gettext("Standard")), value: "" }, 
+		{ label: $tr(gettext("Standalone")), value: "" }, 
 		{ label: $tr(gettext("AnyWAN")), value: "anywan" }, 
 		{ label: $tr(gettext("Bridge")), value: "bridge" }
 	]; 
