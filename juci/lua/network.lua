@@ -41,8 +41,11 @@ local function read_arp_info()
 	local line = proc_arp:read("*l"); 
 	while line do 
 		local ip, hwtype, flags, macaddr, mask, device = line:match("([^%s]+)%s+([^%s]+)%s+([^%s]+)%s+([^%s]+)%s+([^%s]+)%s+([^%s]+)"); 
+		local online = true; 
+		if(flags == "0x0") then online = false; end
 		if ip and macaddr and device then 
 			arp[macaddr] = {
+				online = online, 
 				ipaddr = ip, 
 				macaddr = macaddr, 
 				device = device
