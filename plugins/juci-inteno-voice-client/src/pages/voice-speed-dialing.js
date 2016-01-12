@@ -79,11 +79,8 @@ JUCI.app
 		async.eachSeries(dials, function(dial, next){
 			dial.$delete().always(function(){ next(); }); 
 		}, function(){
-			console.log("Save!"); 
-			$uci.$save().done(function(){
-				console.log("resync"); 
-				resync(); 
-			}); 
+			console.log("resync"); 
+			resync(); 
 		}); 
 	}
 }); 
