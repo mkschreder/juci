@@ -91,10 +91,8 @@ JUCI.app
 			return;
 		}
 		server.$delete().done(function(){
-			$uci.$save().done(function(){
-				getServers();
-				$scope.$apply();
-			});
+			getServers();
+			$scope.$apply();
 		});
 	};
 
@@ -106,10 +104,8 @@ JUCI.app
 				"server": data.address,
 				"port": data.port
 			}).done(function(){
-				$uci.$save().done(function(){
-					getServers();
-					$scope.$apply();
-				});
+				getServers();
+				$scope.$apply();
 			});
 		});
 	}

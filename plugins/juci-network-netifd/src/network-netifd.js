@@ -244,7 +244,6 @@
 						if(confirm($tr(gettext("A new ethernet device has been connected to your router. Do you want to add it to a network?")))){
 							networkConnectionPicker.show().done(function(picked){
 								picked.ifname.value = picked.ifname.value.split(" ").concat([ev.data.interface]).join(" "); 
-								$uci.save(); 
 							});
 						}
 					}*/ 
