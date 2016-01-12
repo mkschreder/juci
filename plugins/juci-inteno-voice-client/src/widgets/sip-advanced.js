@@ -15,7 +15,6 @@ JUCI.app
 		$scope.$apply();
 	});
 	$scope.save_ssl = function(){
-		console.log($scope.ssl.value);
 		var test = $scope.ssl.value.split("\n").join("\n\r");
 		$rpc.juci.voice_client.set_trusted_ca({data:test}).done(function(data){
 			if(data.result == "success"){
@@ -23,7 +22,6 @@ JUCI.app
 				$scope.ssl.saved = true;
 				$scope.$apply();
 			}
-			console.log(data);
 		});
 	};
 	$uci.$sync("voice_client").done(function(){

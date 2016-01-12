@@ -36,6 +36,5 @@ JUCI.app
 			return { label: dev.device + " ("+dev.name+")", value: dev.device };
 		});
 		$scope.$apply();
-		console.log($scope.baseDevices);
 	});
 });

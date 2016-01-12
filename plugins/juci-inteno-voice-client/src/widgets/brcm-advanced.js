@@ -30,8 +30,6 @@ JUCI.app
 						console.log("rebooting");
 						location = "/reboot.html";
 						//});
-					}).fail(function(){
-						console.log("fail")
 					});
 					return true;
 				}

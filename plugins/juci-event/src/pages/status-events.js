@@ -31,7 +31,6 @@ JUCI.app
 		if(inFilters(filter) == -1) $scope.filters.push({name:filter, filters:[id], checked:false});
 		else $scope.filters[inFilters(filter)].filters.push(id);
 	});
-	console.log($scope.filters);
 
 	function inFilters(filter){
 		for(var i = 0; i < $scope.filters.length; i++){
@@ -56,7 +55,6 @@ JUCI.app
 		});
 		if($scope.data.filter == "") limit = limit.slice(0, -1);
 		else limit += $scope.data.filter;
-		console.log(limit);
 		if(request === null){
 			request = $rpc.juci.system.log({
 				limit: $scope.data.limit, 
@@ -72,13 +70,6 @@ JUCI.app
 		}
 		return request;
 	}
-	//$rpc.juci.system.log({
-	//	limit: "20",
-	//	filter: "masq-\|cron"
-	//}).done(function(res){
-	//	console.log("ö******************************fdj");
-	//	console.log(res)
-	//});
 
 	$scope.applyFilter = function(){
 		$scope.inprogress = true;

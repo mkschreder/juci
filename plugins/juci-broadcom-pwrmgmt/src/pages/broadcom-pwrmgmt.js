@@ -18,7 +18,6 @@ JUCI.app
 .controller("broadcomPowerMgmtConfigPage", function($scope, $tr, gettext, $uci){
 	$uci.$sync(["power_mgmt"]).done(function(){
 		$scope.pwr = $uci.power_mgmt.power_mgmt;		
-		console.log($scope.pwr);
 	});
 	$scope.cpu_speeds = [
 		{ label: $tr(gettext("1/1 Sync")),			value: 0 },
