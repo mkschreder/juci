@@ -177,6 +177,10 @@
 				this.uvalue = this.ovalue; 
 				this.is_dirty = false; 
 			}, 
+			$reset_defaults: function(){
+				this.uvalue = this.schema.dvalue;
+				this.is_dirty = false;
+			},
 			$update: function(value){
 				if(this.dvalue instanceof Array){
 					Object.assign(this.ovalue, value); 
@@ -344,6 +348,15 @@
 				if(self[k].$reset) 
 					self[k].$reset(); 
 			}); 
+		}
+
+		UCISection.prototype.$reset_defaults = function(){
+			var self = this;
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				if(self[k].$reset_defaults)
+					self[k].$reset_defaults();
+			});
 		}
 		
 		UCISection.prototype.$getErrors = function(){

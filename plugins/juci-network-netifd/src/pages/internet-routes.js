@@ -28,7 +28,7 @@ JUCI.app
 	}); 
 	
 	$scope.onAddRoute = function(){
-		$uci.network.create({
+		$uci.network.$create({
 			".type": "route"
 		}).done(function(route){
 			$scope.$apply(); 
@@ -44,7 +44,7 @@ JUCI.app
 	}
 	
 	$scope.onAddRoute6 = function(){
-		$uci.network.create({
+		$uci.network.$create({
 			".type": "route6"
 		}).done(function(route){
 			$scope.$apply(); 

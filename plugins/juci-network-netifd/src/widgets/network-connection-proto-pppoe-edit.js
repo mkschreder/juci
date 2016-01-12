@@ -1,18 +1,4 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
+//! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
 .directive("networkConnectionProtoPppoeEdit", function($compile, $parse){
@@ -27,5 +13,28 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionProtoPppoeEdit", function($scope, $uci, $network, $rpc, $log, gettext){
-	
+	$scope.$watch("interface", function(){
+		if(!$scope.interface) return;
+		$scope.interface.type.value = "";
+	}, false);
+})
+.directive("networkConnectionProtoPppoeAdvancedEdit", function(){
+	return {
+		templateUrl: "/widgets/network-connection-proto-pppoe-advanced-edit.html",
+		scope: {
+			interface: "=ngModel"
+		},
+		replace: true,
+		require: "^ngModel"
+	};
+}).
+directive("networkConnectionProtoPppoePhysicalEdit", function(){
+	return {
+		templateUrl: "/widgets/network-connection-standalone-physical.html",
+		scope: {
+			interface: "=ngModel"
+		},
+		replace: true,
+		require: "^ngModel"
+	};
 }); 

@@ -101,7 +101,7 @@ JUCI.app
 	$scope.onAddAddress = function(){
 		utilsAddTestserverPicker.show().done(function(data){
 			if(!data)return;
-			$uci.speedtest.create({
+			$uci.speedtest.$create({
 				".type": "testserver",
 				"server": data.address,
 				"port": data.port

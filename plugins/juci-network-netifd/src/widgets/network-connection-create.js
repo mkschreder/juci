@@ -42,7 +42,7 @@ JUCI.app
 .controller("networkConnectionCreateModal", function($scope, $modalInstance, gettext){
 	$scope.data = {}; 
 	$scope.interfaceTypes = [
-		{ label: "Standard", value: "" },
+		{ label: "Standalone", value: "" },
 		{ label: "AnyWAN", value: "anywan"}, 
 		{ label: "Bridge", value: "bridge"}
 	]; 

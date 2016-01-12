@@ -1,19 +1,4 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
-
+//! Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 !function(){
 	// add control dependency 
 	JUCI.app.requires.push("dropdown-multi-select");
@@ -259,7 +244,7 @@
 						if(confirm($tr(gettext("A new ethernet device has been connected to your router. Do you want to add it to a network?")))){
 							networkConnectionPicker.show().done(function(picked){
 								picked.ifname.value = picked.ifname.value.split(" ").concat([ev.data.interface]).join(" "); 
-								$uci.$save(); 
+								$uci.save(); 
 							});
 						}
 					}*/ 
@@ -269,6 +254,64 @@
 	}); 
 }(); 
 
+UCI.validators.IPAddressValidator = function(){
+	this.validate = function(field){
+		if(field.value && field.value != "" && !field.value.match(/^\b(?:\d{1,3}\.){3}\d{1,3}\b$/)) return gettext("IP Address must be a valid ipv4 address!"); 
+		return null;
+	}
+}; 
+
+UCI.validators.IP6PrefixLengthValidator = function(){
+	this.validate = function(field){
+		var valid_values = ["no"];
+		for(var i = 48; i <= 64; i++){
+			valid_values.push(String(i));
+		}
+		if(field.value == "" || valid_values.find(function(x){ return x == field.value}) != undefined) return null;
+		return gettext("valid values are: 'no' and 48-64");
+	}
+};
+
+UCI.validators.IP6AddressValidator = function(){
+	this.validate = function(field){
+		if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Aaddress must be a valid IPv6 address"); 
+		return null; 
+	}
+} 
+
+UCI.validators.MACAddressValidator = function(){
+	this.validate = function(field){
+		if(field.value == "") return null;
+		if(!(typeof field.value == "string") ||
+			!field.value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/)) 
+			return gettext("Value must be a valid MAC-48 address"); 
+		return null; 
+	}
+}; 
+
+UCI.validators.MACListValidator = function(){
+	this.validate = function(field){
+		if(field.value instanceof Array){
+			var errors = []; 
+			field.value.map(function(value){
+				if(!value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/))
+					errors.push(gettext("value must be a valid MAC-48 address")+": "+value); 
+			}); 
+			if(errors.length) return errors.join(", "); 
+		}
+		return null; 
+	}
+}; 
+
+UCI.validators.REQPrefixValidator = function(){
+	this.validate = function(field){
+		if(field.value == "auto" || field.value == "no") return null; // ok string values
+		var number = parseInt(field.value);
+		if(number < 65 && number > -1) return null;
+		return gettext("Valid values are: auto, no, 0-64");
+	}
+};
+
 UCI.$registerConfig("network"); 
 UCI.network.$registerSectionType("interface", {
 	"is_lan":				{ dvalue: false, type: Boolean }, // please stop relying on this!
@@ -277,35 +320,59 @@ UCI.network.$registerSectionType("interface", {
 	"device":				{ dvalue: '', type: String }, 
 	"proto":				{ dvalue: '', type: String }, 
 	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
-	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValdator }, 
-	"gateway":				{ dvalue: '', type: String }, 
+	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
+	"gateway":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
 	"ip6addr":				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator }, 
-	"ip6gw": 				{ dvalue: '', type: String },
-	"ip6prefix":			{ dvalue: '', type: String }, 
-	"ip6gateway":			{ dvalue: '', type: String },  
-	"ip6assign":			{ dvalue: null, type: Number }, 
-	"ip6hint": 				{ dvalue: '', type: String },
+	"ip6gw": 				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator },
+	"ip6prefix":			{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator }, 
+	"ip6gateway":			{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator },  
+	"ip6assign":			{ dvalue: '', type: Number }, 
+	"ip6hint": 				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator },
 	"clientid": 			{ dvalue: "", type: String },
 	"type":					{ dvalue: '', type: String }, 
-	"defaultroute":			{ dvalue: false, type: Boolean },	
+	"defaultroute":			{ dvalue: true, type: Boolean },	
 	"bridge_instance": 		{ dvalue: false, type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
 	"ipv6":					{ dvalue: false, type: Boolean },
 	"dns": 					{ dvalue: [], type: Array }, 
-	"macaddr":				{ dvalue: "", type: String }, 
-	"mtu":					{ dvalue: null, type: Number },
+	"macaddr":				{ dvalue: "", type: String, validator: UCI.validators.MACAddressValidator }, 
+	"mtu":					{ dvalue: "", type: Number },
 	"enabled": 				{ dvalue: true, type: Boolean }, 
-	// dhcp settings
-	// "broadcast": 			{ dvalue: false, type: Boolean }, 
+	//dhcp settings
+	"reqopts":				{ dvalue: "", type: String },
+	"metric":				{ dvalue: 0, type: Number },
+	"iface6rd":				{ dvalue: "", type: String },
+	"broadcast": 			{ dvalue: false, type: Boolean }, 
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: true, type: Boolean }, 
+	//ipv6 settings
+	"tunlink":				{ dvalue: "", type: String },
+	"ip6prefixlen":			{ dvalue: "", type: String, validator: UCI.validators.IP6PrefixLengthValidator },
+	"ip4prefixlen":			{ dvalue: "", type: Number },
+	"reqprefix":			{ dvalue: "auto", type: String, validator: UCI.validators.REQPrefixValidator },
+	"reqaddress":			{ dvalue: "try", type: String },
 	// authentication 
 	"auth": 				{ dvalue: "", type: String }, 
 	"username": 			{ dvalue: "", type: String }, 
 	"password": 			{ dvalue: "", type: String }, 
+	// ppp settings
+	"tunnelid":				{ dvalie: "", type: Number },
+	"_update":				{ dvalue: false, type: Boolean },
+	"peeraddr":				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
+	"server":				{ dvalue: "", type: String },
+	"_keepalive_failure":	{ dvalue: "", type: Number },
+	"_keepalive_interval":	{ dvalue: "", type: Number },
+	"demand":				{ dvalue: "", type: Number },
+	// pppoe settings
+	"ac":					{ dvalue: "", type: String },
 	// 3g and dongles
+	"modem":				{ dvalue: "", type: String },
+	"service":				{ dvalue: "", type: String },
+	"maxwait":				{ dvalue: "", type: Number },
 	"apn": 					{ dvalue: "", type: String }, 
-	"pincode": 				{ dvalue: "", type: String }
+	"pincode": 				{ dvalue: "", type: String },
+	"comdev":				{ dvalue: "", type: String },
+	"ttl":					{ dvalue: "", type: Number }
 }); 
 
 UCI.network.$registerSectionType("route", {
@@ -352,7 +419,6 @@ UCI.network.$registerSectionType("switch_port", {
 UCI.$registerConfig("hosts");
 UCI.hosts.$registerSectionType("host", {
 	"device":            { dvalue: "", type: String },
-	"macaddr":         { dvalue: "", type: String },
 	"ipaddr":               { dvalue: "", type: String },
 	"name":             { dvalue: "", type: String },
 	"manufacturer":             { dvalue: "", type: String },

@@ -1,10 +1,7 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'Enable DHCP Broadcast Flag (required for some ISPs)'|translate}}">
-			<switch ng-model="interface.broadcast.value" class="green"/>
+		<juci-config-line title="{{'Hostname'|translate}}" help="{{'Hostname to send when requesting DHCP' | translate }}">
+			<input type="text" class="form-control" ng-model="interface.hostname.value" />
 		</juci-config-line>
 	</juci-config-lines>
-	<juci-config-section>
-		<network-connection-dns-config ng-model="interface"/>
-	</juci-config-section>
 </div>

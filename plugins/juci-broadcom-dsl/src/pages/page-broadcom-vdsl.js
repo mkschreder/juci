@@ -40,7 +40,7 @@ JUCI.app
 				break; 
 			}
 		}
-		$uci.layer2_interface_vdsl.create({
+		$uci.layer2_interface_vdsl.$create({
 			".type": "vdsl_interface",
 			"name": gettext("New device"), 
 			"ifname": baseifname + next_id + ".1", 
