@@ -15,13 +15,13 @@
 */ 
 
 JUCI.app
-.controller("StatusEventsPageCtrl", function($scope, $rpc, $config){
+.controller("StatusEventsPageCtrl", function($scope, $rpc, $config, $tr, gettext){
 	var log = {
 		autoRefresh : true
 	};
 	var timeoutID = undefined;
 	var request = null;
-	$scope.data = { limit: 20, filter: "" };
+	$scope.data = { limit: 20, filter: "", type: "" };
 	$scope.sid = $rpc.$sid(); 
 	$scope.filters = [];
 	
@@ -45,6 +45,17 @@ JUCI.app
 		{ label: 100, value: 100 }, 
 		{ label: 200, value: 200 }
 	]; 
+	$scope.types = [
+		{ label:$tr(gettext("All types")),		value: "" },
+		{ label:$tr(gettext("Emergency")),		value: "emerg" },
+		{ label:$tr(gettext("Alert")),			value: "alert" },
+		{ label:$tr(gettext("Critical")),		value: "crit" },
+		{ label:$tr(gettext("Warning")),		value: "warn" },
+		{ label:$tr(gettext("Notice")),			value: "notice" },
+		{ label:$tr(gettext("Informational")),	value: "info" },
+		{ label:$tr(gettext("Debug")),			value: "debug" }
+	];
+
 	function update(){
 		var limit = "";
 		$scope.filters.map(function(x){
@@ -58,7 +69,8 @@ JUCI.app
 		if(request === null){
 			request = $rpc.juci.system.log({
 				limit: $scope.data.limit, 
-				filter: limit
+				filter: limit,
+				type: $scope.data.type
 			}).done(function(result){
 				if(result && result.lines){
 					$scope.logs = result.lines; 

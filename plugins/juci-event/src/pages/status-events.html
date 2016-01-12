@@ -15,6 +15,9 @@
 			<juci-config-line title="{{'Filter log messages'|translate}}">
 				<input type="text" class="form-control" ng-model="data.filter" ng-change="applyFilter()" placeholder="{{'Enter search string'|translate}}">
 			</juci-config-line>
+			<juci-config-line title="{{'Filter by type:'|translate}}">
+				<juci-select ng-items="types" ng-model="data.type"></juci-select>
+			</juci-config-line>
 			<juci-config-line title="{{'Filter by:'|translate}}" ng-show="filters.length > 0">
 				<div class="checkbox checkbox-info" ng-repeat="filter in filters">
 					<input type="checkbox" ng-model="filter.checked" ng-change="applyFilter()" />
