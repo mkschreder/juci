@@ -40,7 +40,6 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 						next(); 
 					}
 				}, function(){ 
-					console.log(result.adapters);
 					def.resolve(result.adapters);
 				}); 
 			} else def.reject(); 
