@@ -450,11 +450,19 @@
 			}); 
 			return errors; 
 		}
-		
+	
+		UCIConfig.prototype.$mark_for_reload = function(){
+			this.deferred = null; 
+		}
+
 		UCIConfig.prototype.$sync = function(){
 			var deferred = $.Deferred(); 
 			var self = this; 
+		
+			if(self.deferred) return self.deferred.promise(); 
 			
+			self.deferred = deferred; 
+
 			if(!$rpc.uci) {
 				// this will happen if there is no router connection!
 				setTimeout(function(){ deferred.reject(); }, 0); 
