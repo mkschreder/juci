@@ -279,8 +279,16 @@
 			};
 		});
 
-		app.run(function($templateCache, $rootScope){
-			var self = scope.JUCI; 
+		app.run(function($templateCache, $rpc, $rootScope){
+			var self = scope.JUCI;
+			// add capability lookup to root scope so that it can be used inside html ng-show directly 
+			$rootScope.has_capability = function(cap_name){
+				if(!$rpc.$session || !$rpc.$session.acls.juci || !$rpc.$session.acls.juci.capabilities || !($rpc.$session.acls.juci.capabilities instanceof Array)) {
+					console.log("capabilities not enabled!"); 
+					return false; 
+				}
+				return $rpc.$session.acls.juci.capabilities.indexOf(cap_name) != -1; 
+			}
 			Object.keys(self.templates).map(function(k){
 				//console.log("Registering template "+k); 
 				$templateCache.put(k, self.templates[k]); 

@@ -14,8 +14,17 @@
 			}, 
 			"uci": [ "juci" ] 
 		}
-	},
-	
+	},	
+	"user-admin": {
+		"description": "Capabilities assigned to administrator user",
+		"read": {
+			"juci": {
+				"capabilities": [ 
+					"can-pick-uplink-port"
+				]
+			}
+		}
+	}, 
 	"core": {
 		"description": "Core functions for JUCI (TODO: remove)",
 		"read": {
