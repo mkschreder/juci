@@ -29,13 +29,13 @@ JUCI.app
 		replace: true
 	};
 })
-.controller("overviewStatusWidgetNetwork", function($scope, $rpc){
+.controller("overviewStatusWidgetNetwork", function($scope, $rpc, $firewall){
 	$scope.statusClass = "text-success";
 	JUCI.interval.repeat("overview-network", 1000, function(done){
 		async.series([function(next){
 			// TODO: move this to factory
-			$rpc.juci.network.clients().done(function(res){
-				$scope.numClients = res.clients.length;
+			$firewall.getZoneClients("lan").done(function(clients){
+				$scope.numClients = clients.filter(function(x){return x.online}).length;
 				$scope.done = 1;
 			});
 		}], function(){
