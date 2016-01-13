@@ -177,10 +177,6 @@
 				this.uvalue = this.ovalue; 
 				this.is_dirty = false; 
 			}, 
-			$reset_defaults: function(){
-				this.uvalue = this.schema.dvalue;
-				this.is_dirty = false;
-			},
 			$update: function(value){
 				if(this.dvalue instanceof Array){
 					Object.assign(this.ovalue, value); 
@@ -348,15 +344,6 @@
 				if(self[k].$reset) 
 					self[k].$reset(); 
 			}); 
-		}
-
-		UCISection.prototype.$reset_defaults = function(){
-			var self = this;
-			Object.keys(self).map(function(k){
-				if(!(self[k] instanceof UCI.Field)) return;
-				if(self[k].$reset_defaults)
-					self[k].$reset_defaults();
-			});
 		}
 		
 		UCISection.prototype.$getErrors = function(){
@@ -744,17 +731,17 @@
 						console.error("invalid config name "+cf); 
 						next(); 
 						return; 
-					} else if(self[cf].$lastSync){
+					} /*else if(self[cf].$lastSync){
 						var SYNC_TIMEOUT = 10000; // probably make this configurable
 						if(((new Date()).getTime() - self[cf].$lastSync.getTime()) > SYNC_TIMEOUT){
 							console.log("Using cached version of "+cf); 
 							next(); 
 							return; 
 						}
-					}
+					}*/
 					self[cf].$sync().done(function(){
 						console.log("Synched config "+cf); 
-						self[cf].$lastSync = new Date(); 
+						//self[cf].$lastSync = new Date(); 
 						next(); 
 					}).fail(function(){
 						console.error("Could not sync config "+cf); 
