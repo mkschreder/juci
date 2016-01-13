@@ -40,7 +40,6 @@ JUCI.app
 	}
 	$network.getDefaultRouteNetworks().done(function(result){
 		$scope.wanifs = result.map(function(x){ return x.$info; }); 
-		console.log($scope.wanifs);
 		$scope.$apply(); 
 	}); 
 	$rpc.system.board().done(function(res){
