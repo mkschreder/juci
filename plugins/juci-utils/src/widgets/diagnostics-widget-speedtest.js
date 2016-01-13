@@ -1,22 +1,10 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Reidar Cederqvist <reidar.cederqvist@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
+//! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
 .directive("diagnosticsWidget90Speedtest", function($compile, $parse){
 	return {
+		scope: true,
+		replace: true,
 		templateUrl: "/widgets/diagnostics-widget-speedtest.html",
 		controller: "diagnosticsWidget90Speedtest", 
 	 };  
@@ -67,11 +55,15 @@ JUCI.app
 			window.alert("Only one test can be run at a time");
 			return;
 		}
+		var server = $scope.testServers.find(function(x){ return $scope.data.server == x.server.value;});
+		var port = server.port.value;
+		var address = server.server.value;
+		$scope.data.state="running";
 		$rpc.juci.utils.speedtest.run({
 			"testmode": $scope.data.test_type,
-			"port": $scope.data.server.port.value,
+			"port": port,
 			"packagesize": $scope.data.packagesize,
-			"address": $scope.data.server.server.value
+			"address": address
 		}).done(function(response){
 			if(response && response.message=="success"){
 				$scope.data.state="running";
@@ -83,7 +75,7 @@ JUCI.app
 	};
 	
 	$scope.onRemoveAddress = function(){
-		var server = $scope.testServers.filter(function(x){
+		var server = $scope.testServers.find(function(x){
 			return $scope.data.server == x.server.value
 		});
 		if(!server){
@@ -110,6 +102,7 @@ JUCI.app
 		});
 	}
 	$events.subscribe("juci.utils.speedtest", function(res){
+		console.log(res);
 		switch(res.data.status) {
 		case 0:
 			$scope.data.result="Upstream: " + res.data.upstream + "\nDownstream: " + res.data.downstream;
