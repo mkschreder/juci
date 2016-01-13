@@ -1,4 +1,14 @@
 {
+	"user-admin": {
+		"description": "Broadcom ethernet admin functions",
+		"read": {
+			"juci": {
+				"capabilities": [
+					"can-pick-uplink-port"
+				]
+			}
+		}
+	},
 	"juci-broadcom-ethernet": {
 		"description": "Broadcom ethernet plugin",
 		"read": {
