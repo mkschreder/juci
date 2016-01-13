@@ -5,8 +5,10 @@
 				<juci-select ng-model="data.test_type" ng-items="testType"/>
 			</juci-config-line>
 			<juci-config-line title="{{'Package Size'|translate}}">
-				<input type="number" step="1000" class="form-control" ng-model="data.packagesize" />
-				<span class="label label-info">{{min + "-" + max}}</span>
+				<div class="input-group">
+					<input type="number" step="5" class="form-control" ng-model="data.packagesize" />
+					<span class="input-group-addon">Mb</span>
+				</div>
 			</juci-config-line>
 			<juci-config-line title="{{'Speedtest Server' | translate}}">
 				<juci-select ng-model="data.server" ng-items="allTestServers"/>
@@ -25,7 +27,7 @@
 			</juci-config-line>
 		</juci-config-lines>
 		<div class="alert alert-success" ng-show="data.state == 'result'">
-			{{'Trace results'|translate}}: <br/>
+			{{'Test results'|translate}}: <br/>
 			<pre>{{data.result}}</pre>
 		</div>
 		<div class="alert alert-success" ng-show="data.state == 'running'">

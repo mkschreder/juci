@@ -11,17 +11,17 @@ JUCI.app
 })
 .controller("diagnosticsWidget90Speedtest", function($scope, $rpc, $events, $uci, utilsAddTestserverPicker){
 	$scope.data = {
-		packagesize: 50000,
+		packagesize: 50,
 		test_type: "up_down",
 		result: "",
 		state: ""
 	}; 
-	$scope.min = 10000; 
-	$scope.max = 100000; 
+	var min = 1; 
+	var max = 100; 
 	$scope.$watch('data.packagesize', function(new_value){
-		if(new_value < $scope.min)$scope.data.packagesize = $scope.min;
-		if(new_value > $scope.max)$scope.data.packagesize = $scope.max;
-	});
+		if(new_value < min)$scope.data.packagesize = min;
+		if(new_value > max)$scope.data.packagesize = max;
+	}, false);
 
 	function getServers(){
 		$scope.allTestServers = $scope.testServers.map(function(x){
@@ -62,7 +62,7 @@ JUCI.app
 		$rpc.juci.utils.speedtest.run({
 			"testmode": $scope.data.test_type,
 			"port": port,
-			"packagesize": $scope.data.packagesize,
+			"packagesize": $scope.data.packagesize * 1000,
 			"address": address
 		}).done(function(response){
 			if(response && response.message=="success"){
@@ -105,7 +105,27 @@ JUCI.app
 		console.log(res);
 		switch(res.data.status) {
 		case 0:
-			$scope.data.result="Upstream: " + res.data.upstream + "\nDownstream: " + res.data.downstream;
+			var upstream = parseInt(res.data.upstream);
+			if(upstream == "NaN") {
+				upstream = "none"
+			}else{
+				upstream = upstream / 1000 / 1000;
+			}
+			var downstream = parseInt(res.data.downstream);
+			if(downstream == "NAN"){
+				downstream = "none"
+			}else{
+				downstream = downstream / 1000 / 1000;
+			}
+			if(res.data.upstream != "none" && res.data.downstream != "none"){
+				$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s\nDownstream: " + downstream.toFixed(2) + " Mbit/s";
+			}else if(res.data.upstream != "none"){
+				$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s";
+			}else if(res.data.downstream != "none"){
+				$scope.data.result="Downstream: " + downstream.toFixed(2) + " Mbit/s";
+			}else {
+				$scope.data.result="No speeds found";
+			}
 			$scope.data.state="result";
 			break;
 		case -1:
