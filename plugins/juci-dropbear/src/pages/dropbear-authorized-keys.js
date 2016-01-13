@@ -16,8 +16,8 @@
 
 JUCI.app.controller("dropbearAuthorizedKeysPage", function($scope, $rpc, $uci, $tr, gettext, dropbearAddKey){
 	function refresh(){
-		$rpc.juci.dropbear.get_public_keys().done(function(keys){
-			$scope.keyList = keys;
+		$rpc.juci.dropbear.get_public_keys().done(function(result){
+			$scope.keyList = result.keys;
 			$scope.$apply();
 		}).fail(function(){
 			$scope.keyList = [];
