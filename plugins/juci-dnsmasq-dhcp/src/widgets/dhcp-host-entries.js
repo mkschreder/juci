@@ -24,7 +24,6 @@ JUCI.app.directive("dhcpHostEntries", function(){
 }).controller("dhcpHostEntriesCtrl", function($scope, $uci, $tr, gettext, lanIpFactory){
 	$uci.$sync("dhcp").done(function(){
 		$scope.hosts = $uci.dhcp["@domain"];
-		console.log($scope.hosts);
 		$scope.$apply();
 	});
 	$scope.ipv4 = "";

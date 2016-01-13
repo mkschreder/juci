@@ -23,6 +23,7 @@ end
 
 function system_logread(opts)
 	local filter = opts.filter;
+	local type = opts.type;
 	local res = {}; 
 	local lines = {}; 
 	local limit = 20
@@ -31,10 +32,14 @@ function system_logread(opts)
 	if opts.limit then limit = opts.limit; end
 	if limit > 200 then limit = 200; end
 
-	if (not filter or filter == "") then
+	if ((not filter or filter == "") and (not type or type == "")) then
 		stdout = juci.shell("logread | tail -n %d 2>/dev/null", limit); 
+	elseif (not filter or filter == "") then
+		stdout = juci.shell("logread | awk '{if($6~/%s/) print($0)}' | tail -n %d 2>/dev/null", type, limit);
+	elseif(not type or type == "") then
+		stdout = juci.shell("logread | awk '{if($7~/%s/) print($0)}' | tail -n %d 2>/dev/null", filter, limit);
 	else
-		stdout = juci.shell("logread | grep \"%s\" | tail -n %d 2>/dev/null", filter, limit); 
+		stdout = juci.shell("logread | awk '{if($6~/%s/ && $7~/%s/) print($0)}' | tail -n %d 2>/dev/null", type , filter, limit); 
 	end
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local date,type,source,message = line:match("([^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*)%s+([^%s]*)%s+([^%s:]*):%s+(.*)"); 

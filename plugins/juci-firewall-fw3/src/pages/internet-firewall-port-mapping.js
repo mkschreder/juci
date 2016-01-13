@@ -39,8 +39,6 @@ JUCI.app
 	
 	$scope.onEditRule = function(rule){
 		$scope.rule = rule; 
-		//$scope.rule[".edit"] = true; 
-		console.log($scope.rule[".name"]); 
 		console.log(Object.keys($scope.redirects).map(function(k) { return $scope.redirects[k][".name"]; })); 
 	};
 	

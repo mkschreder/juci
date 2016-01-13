@@ -72,7 +72,6 @@ JUCI.app
 
 	$scope.$watch("model.lan", function(){
 		if(!$scope.model.lan) return;
-		console.log("test");
 		$uci.$sync("dhcp").done(function(){
 			$scope.model.dhcp = $uci.dhcp["@dhcp"].find(function(x){
 				return x.interface.value == $scope.model.lan[".name"] || x[".name"] == $scope.model.lan[".name"];
