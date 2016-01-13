@@ -52,7 +52,14 @@
 			}
 		}*/
 	}; 
-	
+
+	JUCIMain.prototype.style = function(style){
+		var css = document.createElement("style");
+		css.type = "text/css";
+		css.innerHTML = style.css;
+		document.body.appendChild(css);
+	}
+
 	JUCIMain.prototype.page = function(name, template, redirect){
 		//console.log("Registering page "+name+": "+template); 
 		var page = {

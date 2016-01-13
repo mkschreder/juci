@@ -59,6 +59,7 @@ $(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1)) $(TMP_DIR)/$(1)-compiled-style
 	@#echo "   * $$(STYLES_$(1))"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
+	./scripts/css-to-js $$@ && cat $$@.js >> $(CODE_DIR)/$(CODE_LOAD)-$(1).js && rm $$@
 $(TMP_DIR)/$(1)-compiled-styles.css: $(STYLES_LESS_$(1)) 
 	@echo -e "\033[0,33m[LESS]\t$(1) -> $$@\033[m"
 	@echo "" > $$@
@@ -68,6 +69,7 @@ $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@#echo "   * $$^"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then ./scripts/juci-build-tpl-cache $$^ $$@; fi
+	cat $$@ >> $(CODE_DIR)/$(CODE_LOAD)-$(1).js && rm -f $$@;
 $(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[POT]\t$(1) -> $$@\033[m"
 	@mkdir -p "$$(dir $$@)"

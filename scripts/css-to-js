@@ -1,0 +1,16 @@
+#!/usr/bin/nodejs
+
+var JSON = require("JSON"); 
+var fs = require("fs"); 
+
+var file = process.argv[2]; 
+if(!file) {
+	console.log("usage: css-to-js <css-file>"); 
+	return -1; 
+}
+
+var style = {}; 
+style.css = String(fs.readFileSync(file)); 
+
+var code = "JUCI.style("+JSON.stringify(style)+");\n"; 
+fs.writeFileSync(file+".js", code); 
