@@ -345,7 +345,7 @@
 					self[k].$reset(); 
 			}); 
 		}
-		
+
 		UCISection.prototype.$getErrors = function(){
 			var errors = []; 
 			var self = this; 
@@ -443,9 +443,13 @@
 			var self = this;  
 			Object.keys(self).map(function(x){
 				if(self[x].constructor == UCI.Section) {
-					errors = errors.concat(self[x].$getErrors().map(function(e){
-						return self[".name"]+"."+x+"."+e; 
-					})); 
+					self[x].$getErrors().map(function(e){
+						if(e instanceof Array){
+							errors = errors.concat(e.map(function(err){ return self[".name"]+"."+x+": "+err;}));
+						}else{
+							errors.push(self[".name"]+"."+x+": "+e);
+						}
+					}); 
 				}
 			}); 
 			return errors; 
