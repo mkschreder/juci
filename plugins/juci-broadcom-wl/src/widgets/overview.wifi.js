@@ -88,6 +88,7 @@ JUCI.app
 			on_button: function(btn, inst){
 				pauseSync = false;
 				if(btn.value == "cancel"){
+					iface.uci_dev.$reset();
 					inst.dismiss("cancel");
 				}
 				if(btn.value == "apply"){

@@ -104,13 +104,14 @@ JUCI.app
 		$juciDialog.show("simple-lan-settings-edit", {
 			title: $tr(gettext("Edit LAN Settings")),
 			on_button: function(btn, inst){
+				pauseSync = false;
 				if(btn.value == "cancel") {
-					pauseSync = false;
+					$scope.model.lan.$reset();
+					$scope.model.dhcp.$reset();
 					inst.dismiss("cancel"); 
 				}
 				if(btn.value == "apply") { 
 					$uci.$save();
-					pauseSync = false;
 					inst.close();
 				}
 			},
