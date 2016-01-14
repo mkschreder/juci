@@ -78,6 +78,13 @@ JUCI.app
 		$scope.interface.$proto_editor_ph = "<network-connection-proto-"+proto+"-physical-edit ng-model='interface' protos='allInterfaceTypes' />"; 
 		$scope.interface.$proto_editor_ad = "<network-connection-proto-"+proto+"-advanced-edit ng-model='interface' />"; 
 	};	
+	JUCI.interval.repeat("load-info", 5000, function(done){
+		if(!$scope.interface || !$rpc.network.interface || !$rpc.network.interface.dump) return;
+		$rpc.network.interface.dump().done(function(ifaces){
+			$scope.interface.$info = ifaces.interface.find(function(x){ return x.interface == $scope.interface[".name"]; });
+			$scope.$apply();
+		});
+	});
 	$scope.$watch("interface.type.value", function(value){
 		if(!$scope.interface) return; 
 		$scope.interface.$type_editor = "<network-connection-type-"+($scope.interface.type.value||'none')+"-edit ng-model='interface'/>"; 
@@ -86,10 +93,5 @@ JUCI.app
 		if(!$scope.interface) return; 
 		setProto($scope.interface.proto.value);
 		$scope.interface.$type_editor = "<network-connection-type-"+($scope.interface.type.value||'none')+"-edit ng-model='interface'/>"; 
-		$rpc.network.interface.dump().done(function(ifaces){
-			var info = ifaces.interface.find(function(x){ return x.interface == $scope.interface[".name"]; }); 
-			$scope.interface.$info = info; 
-			$scope.$apply();// was causing digest in progress error TODO: figure out what the real problem is 
-		}); 
-	}); 
+	}, false); 
 }); 
