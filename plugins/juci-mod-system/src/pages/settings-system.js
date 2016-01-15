@@ -28,7 +28,7 @@ JUCI.app
 		function(next){
 			$rpc.juci.system.time.zonelist().done(function(result){
 				if(result && result.zones){
-					timezones = result.zones; 
+					$scope.timezones = result.zones; 
 					$scope.allTimeZones = Object.keys(result.zones).sort().map(function(k){
 						return { label: k, value: k }; 
 					}); 

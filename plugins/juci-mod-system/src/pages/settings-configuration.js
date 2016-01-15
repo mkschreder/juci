@@ -28,6 +28,7 @@ JUCI.app
 		if(confirm(gettext("This will reset your configuration to factory defaults. Do you want to continue?"))){
 			$rpc.juci.system.defaultreset().done(function(result){
 				console.log("Performing reset: "+JSON.stringify(result)); 
+				window.location = "/reboot.html";  
 			}); 
 		}
 	}
