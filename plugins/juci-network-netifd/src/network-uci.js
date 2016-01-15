@@ -153,7 +153,7 @@ UCI.network.$registerSectionType("interface", {
 		case "3g":
 			if(section.device.value == "")
 				errors.push(gettext("Modem device needed for 3G interface"));
-			if(section.service.value == "")
+			if(section.service.value != "umts" && section.service.value != "umts_only" && section.service.value != "gprs_only" && section.service.value != "evdo")
 				errors.push(gettext("Service type needed for 3G interface"));
 			if(section.apn.value == "")
 				errors.push(gettext("APN needed for 3G interface"));
