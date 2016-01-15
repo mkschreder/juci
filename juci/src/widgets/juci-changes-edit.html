@@ -1,0 +1,11 @@
+<div>
+	<table class="table table-hover">
+		<tr ng-repeat="item in model.changes track by $index">
+			<td>{{'Config: '|translate}}{{item.config}}</td>
+			<td>{{'Section: '|translate}}{{item.section}}</td>
+			<td>{{'Option: '|translate}}{{item.option}}</td>
+			<td>{{'New value: '|translate}}{{item.uvalue || '\'\''}}</td>
+			<td><span ng-click="onRevertOption($index)" style="cursor:pointer;"><i class="fa fa-trash"></i></span></td>
+		</tr>
+	</table>
+</div>
