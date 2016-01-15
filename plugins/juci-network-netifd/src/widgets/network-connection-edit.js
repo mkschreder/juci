@@ -35,21 +35,21 @@ JUCI.app
 		{ label: $tr(gettext("PPP over ATM")), 							value: "pppoa", 	physical: true }, 
 		{ label: $tr(gettext("3G (ppp over GPRS/EvDO/CDMA or UTMS)")), 	value: "3g", 		physical: false }, 
 		{ label: $tr(gettext("4G (LTE/HSPA+)")), 						value: "4g", 		physical: false }, 
-		{ label: $tr(gettext("QMI (USB modem)")), 						value: "qmi", 		physical: true }, 
-		{ label: $tr(gettext("NCM (USB modem)")), 						value: "ncm", 		physical: true }, 
-		{ label: $tr(gettext("HNET (self-managing home network)")), 	value: "hnet", 		physical: true }, 
+		//{ label: $tr(gettext("QMI (USB modem)")), 						value: "qmi", 		physical: true }, 
+		//{ label: $tr(gettext("NCM (USB modem)")), 						value: "ncm", 		physical: true }, 
+		//{ label: $tr(gettext("HNET (self-managing home network)")), 	value: "hnet", 		physical: true }, 
 		{ label: $tr(gettext("Point-to-Point Tunnel")), 				value: "pptp", 		physical: false }, 
 		{ label: $tr(gettext("IPv6 tunnel in IPv4 (6in4)")), 			value: "6in4", 		physical: false }, 
 		{ label: $tr(gettext("IPv6 tunnel in IPv4 (6to4)")), 			value: "6to4", 		physical: false }, 
-		{ label: $tr(gettext("Automatic IPv6 Connectivity Client")),	value: "aiccu", 	physical: false }, 
+		//{ label: $tr(gettext("Automatic IPv6 Connectivity Client")),	value: "aiccu", 	physical: false }, 
 		{ label: $tr(gettext("IPv6 rapid deployment")), 				value: "6rd", 		physical: false }, 
 		{ label: $tr(gettext("Dual-Stack Lite")), 						value: "dslite", 	physical: false }, 
-		{ label: $tr(gettext("PPP over L2TP")), 						value: "l2tp", 		physical: false }, 
-		{ label: $tr(gettext("Relayd Pseudo Bridge")),					value: "relay", 	physical: true }, 
-		{ label: $tr(gettext("GRE Tunnel over IPv4")), 					value: "gre", 		physical: true }, 
-		{ label: $tr(gettext("Ethernet GRE over IPv4")), 				value: "gretap", 	physical: true }, 
-		{ label: $tr(gettext("GRE Tunnel over IPv6")), 					value: "grev6", 	physical: true }, 
-		{ label: $tr(gettext("Ethernet GRE over IPv6")), 				value: "grev6tap", 	physical: true },
+		{ label: $tr(gettext("PPP over L2TP")), 						value: "l2tp", 		physical: false }//, 
+		//{ label: $tr(gettext("Relayd Pseudo Bridge")),					value: "relay", 	physical: true }, 
+		//{ label: $tr(gettext("GRE Tunnel over IPv4")), 					value: "gre", 		physical: true }, 
+		//{ label: $tr(gettext("Ethernet GRE over IPv4")), 				value: "gretap", 	physical: true }, 
+		//{ label: $tr(gettext("GRE Tunnel over IPv6")), 					value: "grev6", 	physical: true }, 
+		//{ label: $tr(gettext("Ethernet GRE over IPv6")), 				value: "grev6tap", 	physical: true },
 	]; 
 	$rpc.juci.network.protocols().done(function(data){
 		$scope.protocolTypes = $scope.allProtocolTypes.filter(function(x){
@@ -57,16 +57,34 @@ JUCI.app
 			return data.protocols.find(function(p){ return p == x.value }) != undefined;
 		});
 	});
+	var standard_exc = ["macaddr","mtu","auto","metric"];
+	var exceptions = {
+		"static":	["ifname","type","ipaddr","netmask","gateway","broadcast","ip6addr","ip6gw","ip6assign","ip6hint","ip6prefix","dns"],
+		"dhcp":		["ifname","type","broadcast","hostname","clientid","vendorid","dns","peerdns","defaultroute"],
+		"dhcpv6":	["ifname","type","reqaddress","reqprefix","clientid","dns","defaultroute","peerdns","ip6prefix"],
+		"ppp":		["device","username","password","_keepalive_interval","_keepalive_failure","demand","defaultrout","peerdns","dns","ipv6"],
+		"pppoe":	["ifname","username","password","ac","service","_keepalive_interval","_keepalive_failure","demand","defaultroute","peerdns","dns","ipv6"],
+		"pppoa":	["ifname","username","password","_keepalive_interval","_keepalive_failure","demand","defaultroute","peerdns","dns","ipv6"],
+		"3g":		["device","service","apn","pincode","username","password","_keepalive_interval","_keepalive_failure","demand","defaultroute","peerdns","dns","ipv6"],
+		"4g":		["device","service","comdev","modem","apn","pincode","username","password","hostname","broadcast","defaultroute","peerdns","dns","clientid","vendorid"],
+		"pptp":		["server","username","password","defaultroute","peerdns","dns","_keepalive_interval","_keepalive_failure","demand"],
+		"6in4":		["ipaddr","peeraddr","ip6addr","ip6prefix","_update","tunelid","username","password","defaultroute","ttl"],
+		"6to4":		["ipaddr","defaultroute","ttl"],
+		"6rd":		["ipaddr","peeraddr","ip6prefix","ip6prefixlen","ip4prefixlen","defaultroute","ttl"],
+		"dslite":	["peeraddr","ip6addr","tunlink","ttl"],
+		"l2tp":		["server","username","password","ipv6","defaultroute","peerdns","dns"]
+	}
 
 	$scope.ifstatus = function(){
 		if(!$scope.interface || !$scope.interface.$info || $scope.interface.$info.pending == undefined || $scope.interface.$info.up == undefined) return $tr(gettext("ERROR"));
 		return ($scope.interface.$info.pending) ? $tr(gettext("PENDING")) : (($scope.interface.$info.up) ? $tr(gettext("UP")) : $tr(gettext("DOWN")));
 	};
 	$scope.onChangeProtocol = function(value, oldvalue){
-		//TODO change confirm to juciDialog
+		//TODO maby change confirm to juciDialog
 		if(value == oldvalue) return;
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
-			$scope.interface.$reset_defaults();
+			var exc = exceptions[value].concat(standard_exc);
+			$scope.interface.$reset_defaults(exc || []);
 			setProto(value);
 			return true;
 		}
