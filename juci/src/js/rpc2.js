@@ -98,6 +98,19 @@
 	}
 
 	RPC.prototype.$list = function(){
+		var self = this; 
+		self.seq++; 
+		var req = self.requests[self.seq] = {
+			id: self.seq,
+			deferred: $.Deferred()
+		}; 
+		self.socket.send(JSON.stringify({
+			jsonrpc: "2.0", 
+			id: req.id, 
+			method: "call", 
+			params: ["/ubus/peer", "ubus.peer.list", {}]
+		})+"\n"); 
+		return req.deferred.promise();  
 
 	}
 	

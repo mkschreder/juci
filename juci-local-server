@@ -7,7 +7,8 @@ var fs = require("fs");
 var request = require("request"); 
 var http = require("http"); 
 var bodyParser = require('body-parser')
-var config = { port: 3000, ubus_uri: "http://192.168.1.1/ubus" };
+var config = { port: 3000 };
+var exec = require("child_process").exec; 
 
 //check if file exists and is a file
 if (fs.existsSync("juci-local-server.config")){
@@ -271,7 +272,22 @@ app.post('/ubus', function(req, res) {
 			timedOut = true; 
 			sendResponse(body);*/ 
 		}, 5000); 
-		
+			
+		var cmd = ""; 
+		data.params[3].ubus_rpc_session = data.params[0]; 
+		if(data.method == "call") cmd = "sudo ubus2 -s /tmp/router-ubus-json.sock "+data.method+" "+data.params[1]+" "+data.params[2]+" '"+JSON.stringify(data.params[3])+"'"; 
+		else if(data.method == "list") cmd = "sudo ubus2 -s /tmp/router-ubus-json.sock list"; 
+		console.log("command: "+cmd); 
+		exec(cmd, function(error, stdout, stderr){
+			console.log("Got stdout: "+stdout+", stderr: "+stderr); 
+			var resp = JSON.parse(stdout); 
+			sendResponse({
+				jsonrpc:"2.0", 
+				id: 1, 
+				result: [0, resp[0]]
+			}); 
+		}); 
+		/*
 		request({ 
 			url: config.ubus_uri,
 			method: "POST",
@@ -301,6 +317,7 @@ app.post('/ubus', function(req, res) {
 				sendResponse(body); 
 			}
 		});
+		*/
 		//console.log("Unknown RPC call "+name); 
 		//res.end(); 
 	}

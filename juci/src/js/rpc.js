@@ -28,7 +28,9 @@
 		"local.features", 
 		"local.set_rpc_host"
 	]; 
-	
+
+	var connect = null; 
+
 	function rpc_request(type, namespace, method, data){
 		var sid = ""; 
 		
@@ -51,9 +53,31 @@
 			if(RPC_CACHE[k].deferred && RPC_CACHE[k].deferred.state() == "pending"){
 				retain[k] = RPC_CACHE[k]; 
 			}
-		}); 
+		});
 		RPC_CACHE = retain; 
-
+		
+		data.ubus_rpc_session = RPC_SESSION_ID; 
+		if(!connect) connect = $rpc2.$connect("ws://localhost:1234");
+		connect.done(function(){
+			if(type == "call"){
+				$rpc2.$call(namespace, method, data).done(function(ret){
+					var def = RPC_CACHE[key].deferred; 
+					if(ret[0] && (ret[0].code != undefined || ret[0].error)){
+						console.log("FAIL request: "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
+						def.reject(ret[0] || {}); 
+					}
+					else {
+						console.log("request: "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
+						def.resolve(ret[0]); 
+					}
+				}); 
+			} else if(type == "list"){
+				$rpc2.$list().done(function(ret){
+					RPC_CACHE[key].deferred.resolve(ret[0] || {}); 
+				}); 
+			}
+		}); 
+/*
 		// setup default rpcs
 		$.jsonRPC.withOptions({
 			namespace: "", 
@@ -108,6 +132,7 @@
 				}
 			})
 		});
+		*/
 		return RPC_CACHE[key].deferred.promise(); 
 	}
 	
