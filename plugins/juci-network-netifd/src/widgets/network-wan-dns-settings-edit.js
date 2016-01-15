@@ -10,4 +10,10 @@ JUCI.app
 		replace: true,
 		require: "^ngModel"
 	};
+})
+.filter("uppercase", function(){
+	return function(input){
+		input = input || '';
+		return String(input).toUpperCase();
+	};
 });
