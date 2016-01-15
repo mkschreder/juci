@@ -81,7 +81,7 @@ UCI.network.$registerSectionType("interface", {
 	"dns": 					{ dvalue: [], type: Array }, 
 	"macaddr":				{ dvalue: "", type: String, validator: UCI.validators.MACAddressValidator }, 
 	"mtu":					{ dvalue: "", type: Number },
-	"enabled": 				{ dvalue: '', type: Boolean }, 
+	"enabled": 				{ dvalue: true, type: Boolean }, 
 	//dhcp settings
 	"reqopts":				{ dvalue: "", type: String },
 	"metric":				{ dvalue: '', type: Number },

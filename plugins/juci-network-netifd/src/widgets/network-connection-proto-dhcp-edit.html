@@ -1,7 +1,10 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'Hostname'|translate}}" help="{{'Hostname to send when requesting DHCP' | translate }}">
-			<input type="text" class="form-control" ng-model="interface.hostname.value" />
+		<juci-config-line title="{{'Hostname'|translate}}" help="{{'Hostname to include in DHCP requests' | translate }}">
+			<input type="text" class="form-control" ng-model="interface.hostname.value" placeholder="{{'Hostname'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Create default route'|translate}}" help="{{'Automatically set up default route for this interface' | translate }}">
+			<switch ng-model="interface.defaultroute.value" class="green"></switch>
 		</juci-config-line>
 	</juci-config-lines>
 </div>

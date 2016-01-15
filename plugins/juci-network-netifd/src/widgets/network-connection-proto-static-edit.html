@@ -11,6 +11,9 @@
 			<juci-config-line title="{{'IPv4 Subnet Mask'|translate}}" error="interface.netmask.error">
 				<juci-input-ipv4-address ng-model="interface.netmask.value"></juci-input-ipv4-address />
 			</juci-config-line>
+			<juci-config-line title="{{'Use this interface as default route'|translate}}">
+				<switch ng-model="interface.defaultroute.value" class="green"></switch>
+			</juci-config-line>
 			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value" error="interface.gateway.error">
 				<juci-input-ipv4-address ng-model="interface.gateway.value"></juci-input-ipv4-address />
 			</juci-config-line>	

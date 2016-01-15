@@ -16,10 +16,16 @@
 		<juci-config-section>
 			<h3 translate>IPv4 Routing Table</h3>
 			<table class="table">
-				<thead><th translate>IPv4 address</th><th translate>Gateway</th><th translate>Device</th></thead>
+				<thead>
+					<th translate>IPv4 address</th>
+					<th translate>Gateway</th>
+					<th translate>Genmask</th>
+					<th translate>Device</th>
+				</thead>
 				<tr ng-repeat="route in ipv4_routes">
 					<td>{{route.destination}}</td>
 					<td>{{route.gateway}}</td>
+					<td>{{route.mask}}</td>
 					<td>{{route.iface}}</td>
 				</tr>
 			</table>
