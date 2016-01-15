@@ -87,7 +87,7 @@ JUCI.app
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
 			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
 			'<div class="btn-toolbar" >'+
-			'<button class="btn btn-lg btn-default col-lg-2 ng-show="changes" ng-click="showChanges()">{{"Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
+			'<button class="btn btn-lg btn-default col-lg-2" ng-show="changes && changes.length" ng-click="showChanges()">{{"Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
 			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()">{{ "Cancel" | translate }}</button>'+
 			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
 			'</div><div style="clear: both;"></div></div>', 
@@ -103,7 +103,7 @@ JUCI.app
 		Object.keys($uci).map(function(x){
 			var tmp = []
 			if($uci[x].$getWriteRequests){
-				tmp = $scope.changes.concat($uci[x].$getWriteRequests());
+				tmp = $uci[x].$getWriteRequests();
 			}
 			tmp.map(function(ch){
 				if(ch.values){

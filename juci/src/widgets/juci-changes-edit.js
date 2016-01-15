@@ -19,6 +19,5 @@ JUCI.app
 			$scope.model.reverted.push($scope.model.changes[item]);
 			$scope.model.changes.splice(item, 1);
 		}
-		console.log($scope.model);
 	};
 });
