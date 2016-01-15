@@ -23,16 +23,33 @@
 		this.requests = {}; 
 		this.events = {}; 
 		this.seq = 0; 
+		this.connected = false; 
 	}
 
 	RPC.prototype.$connect = function(address){
 		var socket = this.socket = new WebSocket(address); 	
 		var self = this; 
 		var def = $.Deferred(); 
+		console.log("Starting websocket.."); 
 		socket.onopen = function(){
 			console.log("Websocket RPC connected!"); 
+			self.connected = true; 
 			def.resolve(); 
 		} 
+		socket.onerror = function(){
+			console.log("Websocket error!"); 
+			/*setTimeout(function(){
+				self.$connect(address); 
+			}, 5000); */
+		}
+		socket.onclose = function(){
+			self.connected = false; 	
+			setTimeout(function(){
+				self.$connect(address).done(function(){
+					def.resolve(); 
+				}); 
+			}, 5000); 
+		}
 		socket.onmessage = function(e){
 			self._onMessage(e.data); 
 		} 
@@ -94,7 +111,7 @@
 		return this.sid; 	
 	}
 	RPC.prototype.$isConnected = function(){
-		return this.sid !== RPC_DEFAULT_SESSION_ID; 
+		return this.connected; 
 	}
 
 	RPC.prototype.$list = function(){

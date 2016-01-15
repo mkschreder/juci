@@ -57,17 +57,20 @@
 		RPC_CACHE = retain; 
 		
 		data.ubus_rpc_session = RPC_SESSION_ID; 
-		if(!connect) connect = $rpc2.$connect("ws://localhost:1234");
+		//if(!connect) connect = $rpc2.$connect("ws://"+window.location.host+"/websocket/");
+		if(!connect) connect = $rpc2.$connect("ws://192.168.2.1:8080/websocket/");
 		connect.done(function(){
 			if(type == "call"){
+				var start_time = Date.now(); 
 				$rpc2.$call(namespace, method, data).done(function(ret){
 					var def = RPC_CACHE[key].deferred; 
+					var time_taken = Date.now() - start_time; 
 					if(ret[0] && (ret[0].code != undefined || ret[0].error)){
-						console.log("FAIL request: "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
+						console.log("FAIL request ("+time_taken+"ms): "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
 						def.reject(ret[0] || {}); 
 					}
 					else {
-						console.log("request: "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
+						console.log("request ("+time_taken+"ms): "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
 						def.resolve(ret[0]); 
 					}
 				}); 
