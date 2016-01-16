@@ -21,19 +21,22 @@ JUCI.app
 		restrict: 'E',
 		replace: true,
 		scope: {
-			model: "=ngModel", 
+			ngModel: "=ngModel", 
 			portRange: "="
 		},
 		require: "ngModel", 
-		controller: "juciInputPortController"
+		controller: "juciInputPort"
 	};
 })
-.controller("juciInputPortController", function($scope, $log) {
+.controller("juciInputPort", function($scope, $log, $parse, $attrs) {
 	$scope.startPort = ""; 
 	$scope.endPort = ""; 
 	$scope.port = ""; 
 	
-	$scope.$watch("model", function(value){
+	var ngModel = $parse($attrs.ngModel); 
+
+	$scope.$watch("ngModel", function(value){
+		if(value == undefined) return; 
 		if($scope.portRange && value && value.split){
 			var parts = value.split("-"); 
 			$scope.startPort = parts[0]||""; 
@@ -44,13 +47,15 @@ JUCI.app
 	}); 
 	(function(){
 		function updateModel(value){
+			// IMPORTANT: in angular, if model is null then doing ngModel.assign($scope.$parent.. ) will corrupt parent model!!!
+			// so always check if model is not null before updating model!
+			if(!$scope.ngModel) return; 
 			if($scope.portRange) {
-				$scope.model = $scope.startPort + "-" + $scope.endPort; 
+				ngModel.assign($scope.$parent, $scope.startPort + "-" + $scope.endPort); 
 				$scope.port = $scope.startPort; 
 			} else {
 				// filter out anything that is not a number
-				//var port = String($scope.port).replace(/[^0-9]*/g, "");
-				$scope.model = $scope.port; 
+				ngModel.assign($scope.$parent, $scope.port); 
 				$scope.endPort = ""; 
 				$scope.startPort = $scope.port; 
 			}
