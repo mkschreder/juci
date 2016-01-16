@@ -71,12 +71,13 @@
 	function PortValidator(){
 		this.validate = function(field){
 			if(field.value == undefined) return null; 
-			var parts = field.value.split("-").map(function(x){
-				return parseInt(x); 
-			}).filter(function(x){ return x >= 1 && x < 65535; });
-			if(parts.length != 1 && parts.length != 2){
-				return gettext("Port value must be a valid port number or port range between 1 and 65536"); 
-			}
+			var is_range = field.value.indexOf("-") != -1; 
+			var parts = field.value.split("-"); 
+			if(is_range && parts.length != 2) return gettext("Port range must have start and end port!"); 
+			if(!is_range && parts.length != 1) return gettext("You must specify port value!"); 
+			var invalid = parts.find(function(x){ return !String(x).match(/^\d+$/) || Number(x) < 1 || Number(x) > 65535; }); 
+			if(invalid != undefined) return gettext("Invalid port number (must be a number between 1 and 65535!)"+" ("+invalid+")"); 
+			if(is_range && Number(parts[0]) > Number(parts[1])) return gettext("Start port must be smaller or equal to end port!"); 
 			return null; 
 		};
 	}
@@ -180,6 +181,12 @@
 			$reset_defaults: function(){
 				this.uvalue = this.schema.dvalue;
 				this.is_dirty = false;
+			},
+			$begin_edit: function(){
+				this.svalue = this.value; 
+			},
+			$cancel_edit: function(){
+				if(this.svalue != undefined) this.value = this.svalue; 
 			},
 			$update: function(value){
 				if(this.dvalue instanceof Array){
@@ -359,6 +366,24 @@
 				if(!(self[k] instanceof UCI.Field) || exceptions[k]) return;
 				if(self[k].$reset_defaults)
 					self[k].$reset_defaults();
+			});
+		}
+		
+		UCISection.prototype.$begin_edit = function(){
+			var self = this; 
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				if(self[k].$begin_edit)
+					self[k].$begin_edit();
+			});
+		}
+	
+		UCISection.prototype.$cancel_edit = function(){
+			var self = this; 
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				if(self[k].$cancel_edit)
+					self[k].$cancel_edit();
 			});
 		}
 
