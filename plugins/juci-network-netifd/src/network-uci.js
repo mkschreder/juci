@@ -123,20 +123,34 @@ UCI.network.$registerSectionType("interface", {
 	var errors = [];
 	switch (section.proto.value){
 		case "static":
+			console.log("ip address: "+section.ipaddr.value); 
+			if(section.ipaddr.value && section.netmask.value){
+				var ip = section.ipaddr.value.split("."); 
+				var np = section.netmask.value.split("."); 
+				if(ip[ip.length - 1] == "0") errors.push("IP address can not be a range address (can not end with 0s)!"); 	
+				/*if(ip.length == np.length == 4){
+					var bad = false; 
+					ip.forEach(function(x, i){
+						if(x == "0" && np[i] == "0") bad = true;
+					}); 
+					if(bad) errors.push("Given IP address and netmask are invalid together!"); 
+				}*/
+			}
+			//if(section.ipaddr.value == "0.0.0.0") errors.push(gettext("IP address can not be 0.0.0.0")); 
 			if(section.ipaddr.value == "" && section.netmask.value == "" && section.ip6addr.value == "")
-				errors.push(gettext("Ether ipv4 or ipv6 address is needed"));
+				errors.push(gettext("Either ipv4 or ipv6 address is needed"));
 			else if(section.ip6addr.value == "" && (section.netmask.value == "" || section.ipaddr.value == ""))
-				errors.push(gettext("Both IP Address and netmask is needed for static IPv4 configuration"));
+				errors.push(gettext("Both IP Address and netmask are needed for static IPv4 configuration"));
 			if(section.ifname.value == "")
-				errors.push(gettext("Static interface need physical interface"));
+				errors.push(gettext("Physical interface unspecified"));
 			break;
 		case "dhcp":
 			if(section.ifname.value == "")
-				errors.push(gettext("DHCP interface need physical interface"));
+				errors.push(gettext("DHCP interface needs physical interface"));
 			break;
 		case "dhcpv6":
 			if(section.ifname.value == "")
-				errors.push(gettext("DHCPv6 interface need physical interface"));
+				errors.push(gettext("DHCPv6 interface needs physical interface"));
 			break;
 		case "ppp":
 			if(section.device.value == "")
@@ -144,11 +158,11 @@ UCI.network.$registerSectionType("interface", {
 			break;
 		case "pppoe":
 			if(section.ifname.value == "")
-				errors.push(gettext("PPPoE interface need physical interface"));
+				errors.push(gettext("PPPoE interface needs physical interface"));
 			break;
 		case "pppoa":
 			if(section.ifname.value == "")
-				errors.push(gettext("PPPoE interface need physical interface"));
+				errors.push(gettext("PPPoE interface needs physical interface"));
 			break;
 		case "3g":
 			if(section.device.value == "")
