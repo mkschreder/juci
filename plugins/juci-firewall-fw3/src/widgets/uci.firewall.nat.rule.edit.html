@@ -2,19 +2,19 @@
 	<div class="form-group">
 		<label class="control-label col-xs-4" translate>Rule Name</label>
 		<div class="col-xs-8">
-			<input type="text" class="form-control" ng-model="ngModel.name.value" placeholder="{{'Rule Name'|translate}}"/>
+			<input type="text" class="form-control" ng-model="rule.name.value" placeholder="{{'Rule Name'|translate}}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-xs-4" translate>Source Zone</label>
 		<div class="col-xs-8">
-			<juci-select ng-model="ngModel.src.value" ng-items="allZones" placeholder="{{'Select Zone'|translate}}"/>
+			<juci-select ng-model="rule.src.value" ng-items="allZones" placeholder="{{'Select Zone'|translate}}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-xs-4" translate>Destination Zone</label>
 		<div class="col-xs-8">
-			<juci-select ng-model="ngModel.dest.value" ng-items="allZones" placeholder="{{'Destination Zone'|translate}}"/>
+			<juci-select ng-model="rule.dest.value" ng-items="allZones" placeholder="{{'Destination Zone'|translate}}"/>
 		</div>
 	</div>
 	<div class="form-group">
@@ -24,26 +24,26 @@
 				<span class="input-group-addon">
 					<input type="checkbox" ng-model="data.src_ip_enabled"/>
 				</span>
-				<input type="text" class="form-control" ng-model="ngModel.src_ip.value" placeholder="{{'Source IP Address'|translate}}" ng-disabled="!data.src_ip_enabled"/>
+				<input type="text" class="form-control" ng-model="rule.src_ip.value" placeholder="{{'Source IP Address'|translate}}" ng-disabled="!data.src_ip_enabled"/>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="device" class="control-label col-xs-4" translate>Dst. Device</label>
 		<div class="col-xs-8" id="device">
-			<juci-select ng-model="ngModel.dest_ip.value" ng-items="deviceChoices" placeholder="{{'Select connected device'|translate}}"></juci-select>
+			<juci-select ng-model="rule.dest_ip.value" ng-items="deviceChoices" placeholder="{{'Select connected device'|translate}}"></juci-select>
 		</div>
 	</div>
 	<div class="form-group">
 			<label for="ipAddress" class="control-label col-xs-4" translate>Dst. IP Address</label>
 			<div class="col-xs-8">
-				<input id="ipAddress" type="text" class="form-control" ng-model="ngModel.dest_ip.value" />
+				<input id="ipAddress" type="text" class="form-control" ng-model="rule.dest_ip.value" />
 			</div>
 	</div>
 	<div class="form-group">
 		<label for="protocol" class="control-label col-xs-4" translate>Protocol</label>
 		<div class="col-xs-8" id="protocol">
-			<juci-select ng-model="ngModel.proto.value" ng-items="protocolChoices" placeholder="Select protocol"></juci-select>
+			<juci-select ng-model="rule.proto.value" ng-items="protocolChoices" placeholder="Select protocol"></juci-select>
 		</div>
 	</div>
 	<div class="form-group">
@@ -57,15 +57,15 @@
 	<div class="form-group" >
 		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Public port</label>
 		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Public port range</label>
-		<div class="col-xs-8" ng-class="{'field-error': ngModel.src_dport.error}" >
-			<juci-input-port ng-model="ngModel.src_dport.value" port-range="portIsRange"/>
+		<div class="col-xs-8" ng-class="{'field-error': rule.src_dport.error}" >
+			<juci-input-port ng-model="rule.src_dport.value" port-range="portIsRange"/>
 		</div>
 	</div>
 	<div class="form-group" >
 		<label for="range" class="control-label col-xs-4" ng-show="!portIsRange" translate>Private port</label>
 		<label for="range" class="control-label col-xs-4" ng-show="portIsRange" translate>Private port range</label>
-		<div class="col-xs-8" ng-class="{'field-error': ngModel.dest_port.error}" >
-			<juci-input-port ng-model="ngModel.dest_port.value" port-range="portIsRange"/>
+		<div class="col-xs-8" ng-class="{'field-error': rule.dest_port.error}" >
+			<juci-input-port ng-model="rule.dest_port.value" port-range="portIsRange"/>
 		</div>
 	</div>
 </div>

@@ -19,7 +19,7 @@ JUCI.app
 	return {
 		templateUrl: "/widgets/uci.firewall.nat.rule.edit.html", 
 		scope: {
-			ngModel: "=ngModel"
+			rule: "=ngModel"
 		}, 
 		controller: "uciFirewallNatRuleEdit", 
 		replace: true
@@ -27,14 +27,23 @@ JUCI.app
 }).controller("uciFirewallNatRuleEdit", function($scope, $uci, $rpc, $firewall, $network, $log){
 	$scope.portIsRange = 0;
 	$scope.data = {}; 
-	$scope.$watch("ngModel", function(value){
+	$scope.$watch("rule", function(value){
 		if(!value) return;
+		// TODO: why does rule all of a sudden gets value that is not a uci sectioN??
+		if(!value[".config"]) { 
+			console.error("nat-rule-edit: invalid ngModel! must be config section! "+Object.keys(value)); 
+			return; 
+		}
 		$scope.data.src_ip_enabled = (value.src_ip.value)?true:false; 
-		var ngModel = value; 
-		if(ngModel && ngModel.src_dport && ngModel.dest_port && ngModel.src_dport.value && ngModel.dest_port.value){	
-			$scope.portIsRange = (ngModel.src_dport.value.indexOf("-") != -1) || (ngModel.dest_port.value.indexOf("-") != -1); 
+		if(value.src_dport.value && value.dest_port.value){	
+			$scope.portIsRange = (value.src_dport.value.indexOf("-") != -1) || (value.dest_port.value.indexOf("-") != -1); 
 		}
 	}); 
+	$scope.$watch("data.src_ip_enabled", function(value){
+		console.log("toggle ip "+value); 
+		if($scope.rule && value == false) $scope.rule.src_ip.value = ""; 
+	}); 
+
 	$scope.protocolChoices = [
 		{ label: "UDP", value: "udp"}, 
 		{ label: "TCP", value: "tcp"}, 
