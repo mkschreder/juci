@@ -26,6 +26,11 @@ JUCI.app
 			}); 
 		}, 
 		function(next){
+			$rpc.system.board().done(function(values){
+				$scope.boardinfo = values; 
+			}).always(function(){next();}); 
+		}, 
+		function(next){
 			$rpc.juci.system.time.zonelist().done(function(result){
 				if(result && result.zones){
 					$scope.timezones = result.zones; 
@@ -44,6 +49,11 @@ JUCI.app
 	$scope.$watch("system.zonename.value", function(value){
 		if(!value) return; 
 		$scope.system.timezone.value = $scope.timezones[value]; 
+	}); 
+	
+	$scope.$watch("system.hostname.value", function(value){
+		if(value == undefined) return; 
+		if(!value) $scope.system.hostname.value = $scope.boardinfo.model.replace(" ", "_"); 
 	}); 
 
 	JUCI.interval.repeat("system.time", 1000, function(done){
