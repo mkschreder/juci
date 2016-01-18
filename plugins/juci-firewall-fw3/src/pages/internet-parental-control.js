@@ -42,7 +42,7 @@ JUCI.app
 				} else {
 					next(); 
 				}
-			}); 
+			}).always(function(){next();}); 
 		}, function(next){
 			// create url blocking section if it does not exist
 			if(!$uci.firewall.urlblock){
@@ -59,11 +59,10 @@ JUCI.app
 			$scope.accessRules = $uci.firewall["@rule"].filter(function(x){
 				return x.parental.value; 
 			}); 
-			if(!$scope.urlblock) return; 
 			$scope.urlblock = $uci.firewall.urlblock; 
 			$scope.urlblock.url.value.map(function(x){ $scope.urlList.push({url: x}); }); 
 			$scope.urlblock.src_mac.value.map(function(x){ $scope.macList.push({mac: x}); }); 
-			
+
 			$scope.validateMAC = function(mac) { return (new UCI.validators.MACAddressValidator()).validate({value: mac}); }
 			$scope.validateTimeSpan = function(range) { return (new UCI.validators.TimespanValidator()).validate({value: range})}; 
 			
@@ -92,7 +91,8 @@ JUCI.app
 					return rule.parental.value; 
 				}); 
 			} updateRules(); 
-			
+
+			console.log("************************************************************");
 			$scope.onCreateAccessRule = function(){
 				console.log("Adding rule.."); 
 				$uci.firewall.$create({
