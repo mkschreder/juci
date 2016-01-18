@@ -71,8 +71,8 @@
 	function PortValidator(){
 		this.validate = function(field){
 			if(field.value == undefined) return null; 
-			var is_range = field.value.indexOf("-") != -1; 
-			var parts = field.value.split("-"); 
+			var is_range = String(field.value).indexOf("-") != -1; 
+			var parts = String(field.value).split("-"); 
 			if(is_range && parts.length != 2) return gettext("Port range must have start and end port!"); 
 			if(!is_range && parts.length != 1) return gettext("You must specify port value!"); 
 			var invalid = parts.find(function(x){ return !String(x).match(/^\d+$/) || Number(x) < 1 || Number(x) > 65535; }); 
