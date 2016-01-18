@@ -1,0 +1,25 @@
+{
+	"juci-generate-page": {
+		"description": "JUCI MiniDLNA module",
+		"read": {
+			"uci": [
+				"minidlna"
+			],
+			"ubus": {
+				"/juci/minidlna": [
+					"folder_tree",
+					"autocomplete",
+					"status"
+				],
+				"/juci/system.service": [
+					"status"
+				]
+			}
+		},
+		"write": {
+			"uci": [
+				"minidlna"
+			]
+		}
+	}
+}

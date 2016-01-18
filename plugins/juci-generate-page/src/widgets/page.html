@@ -1,0 +1,13 @@
+<div>
+	<juci-config-section ng-repeat="section in model.sections">
+		<h2 translate ng-show="section.title">{{section.title}}</h2>
+		<juci-config-lines>
+			<div ng-repeat="line in section.lines">
+				<juci-config-line ng-show="line.title" title="{{line.title}}">
+					<div dynamic=line._widget></div>
+				</juci-config-line>
+			</div>
+		</juci-config-lines>
+	</juci-config-section>
+	<juci-config-apply></juci-config-apply>
+</div>
