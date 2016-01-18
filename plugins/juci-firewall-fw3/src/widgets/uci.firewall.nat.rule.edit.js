@@ -40,7 +40,6 @@ JUCI.app
 		}
 	}); 
 	$scope.$watch("data.src_ip_enabled", function(value){
-		console.log("toggle ip "+value); 
 		if($scope.rule && value == false) $scope.rule.src_ip.value = ""; 
 	}); 
 

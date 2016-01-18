@@ -49,7 +49,7 @@ JUCI.app
 		function updateModel(value){
 			// IMPORTANT: in angular, if model is null then doing ngModel.assign($scope.$parent.. ) will corrupt parent model!!!
 			// so always check if model is not null before updating model!
-			if(!$scope.ngModel) return; 
+			if($scope.ngModel == undefined) return; 
 			if($scope.portRange) {
 				ngModel.assign($scope.$parent, $scope.startPort + "-" + $scope.endPort); 
 				$scope.port = $scope.startPort; 
