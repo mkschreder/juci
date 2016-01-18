@@ -68,5 +68,10 @@
 				"system"
 			]
 		}
+	},
+	"juci-mod-system-admin": {
+		"write": {
+			"passwd": [ "otheruser" ]
+		}
 	}
 }
