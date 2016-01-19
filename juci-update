@@ -38,7 +38,7 @@ fi
 if [ "$MODE" = "RELEASE" ]; then
 	for file in `find ${WWW} -type f | grep -v "\.gz" | grep -v cgi-bin`; do
 		echo "Compressing ${file}..."; 
-		gzip -f ${file}
+		#gzip -f ${file}
 	done
 fi
 
