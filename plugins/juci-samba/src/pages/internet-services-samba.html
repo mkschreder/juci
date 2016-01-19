@@ -13,8 +13,11 @@
 				<juci-config-line title="{{'Description'|translate}}">
 					<input type="text" ng-model="config.description.value" class="form-control" placeholder="{{'Description'|translate}}"/>
 				</juci-config-line>
-				<juci-config-line title="{{'Share User Home Directory'|translate}}">
+				<!--<juci-config-line title="{{'Share User Home Directory'|translate}}">
 					<switch ng-model="config.homes.value" class="green"></switch>
+				</juci-config-line>-->
+				<juci-config-line title="{{'Interface'|translate}}" help="{{'the interface(s) samba will listen on. Samba will not start if no interface is selected'|translate}}">
+					<dropdown-multi-select input-model="data.networks" output-model="data.output" button-label="label" item-label="label" tick-property="selected"></dropdown-multi-select>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>

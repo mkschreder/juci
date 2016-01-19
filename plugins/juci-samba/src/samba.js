@@ -56,7 +56,8 @@ UCI.samba.$registerSectionType("samba", {
 	"workgroup":	{ dvalue: "", type: String },
 	"description":	{ dvalue: "", type: String },
 	"charset": 		{ dvalue: "", type: String },
-	"homes":		{ dvalue: false, type: Boolean }
+	"homes":		{ dvalue: false, type: Boolean },
+	"interface":	{ dvalue: "", type: String }
 }); 
 
 UCI.samba.$registerSectionType("sambashare", {
