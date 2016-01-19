@@ -123,11 +123,11 @@ UCI.network.$registerSectionType("interface", {
 	var errors = [];
 	switch (section.proto.value){
 		case "static":
-			console.log("ip address: "+section.ipaddr.value); 
 			if(section.ipaddr.value && section.netmask.value){
 				var ip = section.ipaddr.value.split("."); 
 				var np = section.netmask.value.split("."); 
 				if(ip[ip.length - 1] == "0") errors.push("IP address can not be a range address (can not end with 0s)!"); 	
+				if(ip[0] == "0") errors.push("IP address can not start with a '0'!"); 	
 				/*if(ip.length == np.length == 4){
 					var bad = false; 
 					ip.forEach(function(x, i){
@@ -136,8 +136,7 @@ UCI.network.$registerSectionType("interface", {
 					if(bad) errors.push("Given IP address and netmask are invalid together!"); 
 				}*/
 			}
-			//if(section.ipaddr.value == "0.0.0.0") errors.push(gettext("IP address can not be 0.0.0.0")); 
-			if(section.ipaddr.value == "" && section.netmask.value == "" && section.ip6addr.value == "")
+			if((section.ipaddr.value == "" && section.netmask.value == "") || section.ip6addr.value == "")
 				errors.push(gettext("Either ipv4 or ipv6 address is needed"));
 			else if(section.ip6addr.value == "" && (section.netmask.value == "" || section.ipaddr.value == ""))
 				errors.push(gettext("Both IP Address and netmask are needed for static IPv4 configuration"));
