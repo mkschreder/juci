@@ -83,10 +83,11 @@ JUCI.app
 				[$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"], 
 				[$tr(gettext("CPU")), ""+(cpu_load || 0)+"%"]
 			]; 
-			if($config.mode == "expert"){
+			if($config.local.mode == "expert"){
 				var arr = $scope.systemStatusTbl.rows; 
 				arr.push([$tr(gettext("Kernel Version")), board.kernel || info.system.kernel || $tr(gettext("N/A"))]); 
 				arr.push([$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))]);  
+				arr.push([$tr(gettext("Filesystem")), String(info.system.filesystem).toUpperCase()]); 
 			}
 			
 			$scope.systemMemoryTbl.rows = [

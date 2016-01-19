@@ -128,7 +128,8 @@ function system_info()
 	system["kernel"] = systype.." "..sysversion; --db["hw.board.kernelVersion"]; 
 	system["basemac"] = db["hw.board.BaseMacAddr"]; 
 	system["serialno"] = cpuinfo["Serial"]; --db["hw.board.serialNumber"]; 
-	
+	system["filesystem"] = juci.shell("awk '$2 ~ /rom/{print $3}' /proc/mounts"):match("%S+"); 	
+
 	local keys = {
 		auth = db["hw.board.authKey"], 
 		des = db["hw.board.desKey"], 
