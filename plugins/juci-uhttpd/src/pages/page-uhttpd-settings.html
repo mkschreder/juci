@@ -4,17 +4,17 @@
 			<juci-config-heading>{{ 'uHTTPD Settings' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'uhttpd.settings.info' | translate }}</juci-config-info>
 			<juci-config-lines>
-				<juci-config-line title="{{'WWW-root'|translate}}">
+				<!--<juci-config-line title="{{'WWW-root'|translate}}">
 					<input type="text" ng-model="config.home.value" class="form-control" placeholder="{{'WWW-root path'|translate}}"/>
 				</juci-config-line>
+				<juci-config-line title="{{'UBUS Prefix'|translate}}">
+					<input type="text" ng-model="config.ubus_prefix.value" class="form-control" placeholder="{{'ex. /ubus'|translate}}"/>
+				</juci-config-line>-->
 				<juci-config-line title="{{'Max Requests'|translate}}">
 					<input type="number" ng-model="config.max_requests.value" class="form-control" placeholder="{{'Max Requests'|translate}}"/>
 				</juci-config-line>
 				<juci-config-line title="{{'Max Connections'|translate}}">
 					<input type="number" ng-model="config.max_connections.value" class="form-control" placeholder="{{'Max Connections'|translate}}"/>
-				</juci-config-line>
-				<juci-config-line title="{{'UBUS Prefix'|translate}}">
-					<input type="text" ng-model="config.ubus_prefix.value" class="form-control" placeholder="{{'ex. /ubus'|translate}}"/>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>

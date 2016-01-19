@@ -1,0 +1,10 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Tunnel Link'|translate}}">
+			<juci-select ng-items="allInterfaces" ng-model="interface.tunlink.value"></juci-select>
+		</juci-config-line>
+		<juci-config-line title="{{'Use TTL on tunnel interface'|translate}}">
+			<input type="number" class="form-control" ng-model="interface.ttl.value" placeholder="64" />
+		</juci-config-line>
+	</juci-config-lines>
+</div>

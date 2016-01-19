@@ -57,7 +57,7 @@ JUCI.app
 	
 	$scope.onAddConnection = function(){
 		networkConnectionCreate.show().done(function(data){
-			$uci.network.create({
+			$uci.network.$create({
 				".type": "interface",
 				".name": data.name, 
 				"type": data.type

@@ -21,7 +21,6 @@ JUCI.app
 		$scope.cpe = $uci.cwmp.cpe;
 	});
 	$network.getWanNetworks().done(function(networks){
-		console.log(networks);
 		$scope.wan_interfaces = networks.map(function(n){
 			return { label: String(n[".name"]).toUpperCase(), value: n[".name"] };
 		});

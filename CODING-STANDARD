@@ -1,0 +1,156 @@
+In order to keep juci project in a consistent shape it is a good idea to follow
+a few coding guidelines when committing your code. These are not to be
+interpreted as some kind of dictator-do-this-or-die laws. These are here to
+make sure nobody has to later dig through a pile of code where things look the
+same but behave unpredictably. 
+
+The purpose of a coding standard is to enable programmer to infer behaviour
+from the looks of code. I use such standards all the time even in other
+projects where for example in C all functions are prefixed with struct name
+that they accept as their main object (self) and function such as foo_new()
+infers a memory allocation and the necessity to use foo_delete(ptr) later. In
+many cases things like this greatly simplify working with a codebase without
+having to know it inside out. 
+
+So what guidelines are there for JUCI then? 
+
+Keep in mind that not even I myself always manage to follow all of these. But
+it helps to look at them now and then and follow as many as possible. Some of
+these guidelines have been added after a lot of code has already been written
+and such code is changed whenever the opportunity arises. Changing old code is
+always better done incrementally while making sure things continue to work
+after making the change.. 
+
+Controllers and widgets
+-----------------------
+
+- All widgets should be named after their module + what object they operate on
+  + optional "edit" at the end if the widget is used for editing and object. 
+
+	Example: 
+	network-connection-proto-edit: makes it clear that this widget belongs to
+	network module, is used to edit a network connection and focuses on field
+	proto (along maybe with modifying other fields inside a connection, but
+	mainly proto) and is used for editing. Such a widget should take a network
+	connection object as it's ng-model. Using ng-model is also important
+	because some components create widgets dynamically and assume ng-model as
+	the parameter to be used to pass object "self" reference to the widget.
+	Making a widget use something else would therefore break such usage
+	scenarios. 
+
+- All html and js should be separated into a js and html files. Writing inline
+  html in the definition of a widget directive almost always means moving it
+  out into it's own file later when it becomes necessary to extend it further.
+  Why do the same work twice? 
+
+- Html file and js file should have the same name (different extension) and
+  should always be the same as the name of the widget. Furthermore also
+  controller name and directive name should be the same.  
+
+	Example: 
+	Widget directive name: network-connection-proto-edit
+	Html template: network-connection-proto-edit.html
+	JS code: network-connection-proto-edit.js
+	Directive definition: networkConnectionProtoEdit
+	Controller: networkConnectionProtoEdit
+
+- Pages follow the same rules as directives. Since pages are themselves
+  directives, they largely work and behave the same as directives. With sole
+  exception that controller is specified in html instead of being specified in
+  directive definition and that you do not actually define directives for pages
+  (it is handled automatically). 
+
+Translations
+------------
+
+- All strings that you use should be either fully static (written out in code)
+  or use string formatting functions to insert various variables into the
+  string. 
+
+	Example: 
+	alert($tr(gettext("This is a static string that is also both tagged for
+	translation and translated at runtime"))); 
+	
+	var string = String.format("This is a static string with {count} items!", {
+	count: 12 }); 
+	
+	Note: juci implements String.format according to this specification so you
+	can assume this is supported!
+
+- Always tag all static strings to be included into translation files. This is
+  done automatically for html tags tagged with "translate" directive (which are
+  translated as well). In code you tag strings using the dummy gettext(..)
+  function. It does nothing but return the same string, but enclosing strings
+  into this function makes them easy to parse out when generating translation
+  files. 
+
+	Example: 
+	var mystring = "Foo string" <- wrong
+	var mystring = gettext("Foo string") <- right
+
+- The actual translation should always be done as close to user as possible
+  (preferably in the html and second best in the controller). 
+	
+	Example: 
+	alert($tr(gettext("Foo string"))) <- tag and translate the string before
+	showing it to the user. 
+
+- Try not to use dynamic data and never attemt to pass variables to gettext()
+
+	Example: 
+	alert($tr(gettext(variable))) <- wrong (will not be parsed but still wrong!)
+	alert($tr(variable_string)) <- correct. But make sure your original string
+	has been included for translation by being tagged somewhere else. 
+
+	Including completely dynamic data for translation is problematic so
+	whenever possible avoid trying to translate messages sent from server. 
+
+- Always translate strings that you write directly in html.
+
+	Example: 
+	<my-tag translate>This string will be localized!</my-tag>
+	<my-tag title="{{'This string will also be localized!'|translate}}"/>
+	<my-tag title="Some String"/> <- wrong! Will not localize correctly. 
+
+Library and backend functions
+-----------------------------
+
+Note: Some of these can be questionable and some may not be consistently applied.  
+
+- When adding new "private" fields to uci objects, always prefix them with an
+  underscore to avoid name clashes with fields added by the owner of the
+  object. Normally it makes sense to avoid adding extra fields completely but
+  sometimes it can make sense and simplify code.  
+
+	Example: 
+	$uci.get_some_config().done(function(result){
+		$scope.myinternalstuff = result.values.map(function(x){
+			x._private_value = <some calculated value>
+		}); 
+	}); 
+	
+	You can probably use something like this as well: 
+	$uci.get_some_config().done(function(result){
+		$scope.myinternalstuff = result.values.map(function(x){
+			return {
+				value: x,
+				private_value: <some calculated value>
+			}; 
+		}); 
+	});
+
+	This would avoid modifying original returned object. 
+
+- All juci core object methods begin with $, while properties are named without the $.  
+	
+	Example: 
+	$uci.config.$create()
+	section.$delete()
+	section.field.value
+
+	This mainly makes sure that methods and fields can coexist without ever
+	creating name clashes. Fields are for example dynamically created based on
+	which fields have been defined for the object. We want to have fields named
+	"create" for example, so we use prefix for all methods to avoid a clash. 
+
+TODO: list more conventions later 

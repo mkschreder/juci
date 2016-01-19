@@ -52,7 +52,14 @@
 			}
 		}*/
 	}; 
-	
+
+	JUCIMain.prototype.style = function(style){
+		var css = document.createElement("style");
+		css.type = "text/css";
+		css.innerHTML = style.css;
+		document.body.appendChild(css);
+	}
+
 	JUCIMain.prototype.page = function(name, template, redirect){
 		//console.log("Registering page "+name+": "+template); 
 		var page = {
@@ -120,9 +127,9 @@
 				console.log("juci: loading menu from server.."); 
 				$uci.juci["@menu"].map(function(menu){
 					// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
-					if(menu.acls.value.length && menu.acls.value.filter(function(x){
-						return acls[x]; 
-					}).length == 0) return; 
+					if(menu.acls.value.length && menu.acls.value.find(function(x){
+						return !acls[x]; 
+					})) return; 
 
 					var redirect = menu.redirect.value; 
 					var page = menu.page.value; 
@@ -279,8 +286,16 @@
 			};
 		});
 
-		app.run(function($templateCache, $rootScope){
-			var self = scope.JUCI; 
+		app.run(function($templateCache, $rpc, $rootScope){
+			var self = scope.JUCI;
+			// add capability lookup to root scope so that it can be used inside html ng-show directly 
+			$rootScope.has_capability = function(cap_name){
+				if(!$rpc.$session || !$rpc.$session.acls.juci || !$rpc.$session.acls.juci.capabilities || !($rpc.$session.acls.juci.capabilities instanceof Array)) {
+					console.log("capabilities not enabled!"); 
+					return false; 
+				}
+				return $rpc.$session.acls.juci.capabilities.indexOf(cap_name) != -1; 
+			}
 			Object.keys(self.templates).map(function(k){
 				//console.log("Registering template "+k); 
 				$templateCache.put(k, self.templates[k]); 

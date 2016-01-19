@@ -26,8 +26,8 @@ JUCI.app
 			codec0: "alaw",
 			ptime_alaw: 20,
 			transport: "udp"
-			}).done(function(){$scope.$apply()})
-		.fail(function(data){console.log(data)});
+			}).done(function(){$scope.$apply()
+		});
 	};
 	$scope.onDeleteProvider = function(item){
 		if(!item) return;

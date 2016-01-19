@@ -51,7 +51,7 @@ JUCI.app
 	$scope.onAddStaticDHCP = function(){
 		if(!$scope.dhcp) return; 
 		var host = $scope.existingHost || { };
-		$uci.dhcp.create({
+		$uci.dhcp.$create({
 			".type": "host", 
 			dhcp: $scope.dhcp[".name"], 
 			network: $scope.dhcp.interface.value, 

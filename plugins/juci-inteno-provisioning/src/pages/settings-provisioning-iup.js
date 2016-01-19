@@ -20,7 +20,6 @@ JUCI.app
 	$scope.togglepw = function(){$scope.showPasswd = !$scope.showPasswd;};
 	$uci.$sync(["provisioning"]).done(function(){
 		$scope.general = $uci.provisioning.polling;
-		console.log($scope.general.enabled.value);
 		$scope.prov_server = $uci.provisioning.configserver;
 		$scope.dhcp_server = $uci.provisioning.iup;
 		$scope.uppgrade_server = $uci.provisioning.uppgradeserver;

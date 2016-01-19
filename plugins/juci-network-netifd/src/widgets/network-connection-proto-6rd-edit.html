@@ -1,0 +1,19 @@
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'Local IPv4 address'|translate}}" help="{{'Leave empty to use the current WAN address'|translate}}" error="interface.ipaddr.error">
+			<juci-input-ipv4-address ng-model="interface.ipaddr.value"></juci-input-ipv4-address>
+		</juci-config-line>
+		<juci-config-line title="{{'Remote IPv4 address'|translate}}" help="{{'The IPv4 address of the relay'|translate}}" error="interface.peeraddr.error">
+			<juci-input-ipv4-address ng-model="interface.peeraddr.value"></juci-input-ipv4-address>
+		</juci-config-line>
+		<juci-config-line title="{{'IPv6 prefix'|translate}}" help="{{'The IPv6 prefix assigned to the provider, usually ends with ::'|translate}}" error="interface.ip6prefix.error">
+			<input type="text" class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 prefix'|translate}}" />
+		</juci-config-line>
+		<juci-config-line title="{{'IPv6 prefix length'|translate}}" help="{{'The length of the IPv6 prefix in bits'|translate}}" error="interface.ip6prefixlen.error">
+			<input type="text" class="form-control" ng-model="interface.ip6prefixlen.value" placeholder="no" />
+		</juci-config-line>
+		<juci-config-line title="{{'IPv4 prefix length'|translate}}" help="{{'The length of the IPv6 prefix in bits'|translate}}" error="interface.ip4prefixlen.error">
+			<input type="number" min="0" max="32" class="form-control" ng-model="interface.ip4prefixlen.value" placeholder="0" />
+		</juci-config-line>
+	</juci-config-lines>
+</div>

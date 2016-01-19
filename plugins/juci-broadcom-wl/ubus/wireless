@@ -168,69 +168,6 @@ wireless_defaults(){
 	json_dump
 }
 
-wireless_info(){
-	WLDEVICES=`get_wireless_devices`
-	json_init
-
-	json_add_array "devices"; 
-	for wdev in $WLDEVICES; do 
-		DATA=$(wlctl -i $wdev assoc | awk 'BEGIN { 
-			FS="[ \t]"; 
-		} 
-		{
-			for(c = 0; c < NF; c++){
-				if($c == "SSID:") {
-					gsub(/"/, "", $(c+1)); 
-					print "string|ssid=" $(c+1);
-				}
-				if($c == "Mode:") print "string|mode=" $(c+1); 
-				if($c == "RSSI:") print "int|rssi=" $(c+1);
-				if($c == "SNR:") print "int|snr=" $(c+1);
-				if($c == "noise:") print "int|noise=" $(c+1);
-				if($c == "Channel:") print "int|channel=" $(c+1);
-				if($c == "BSSID:") print "string|bssid=" $(c+1);  
-				if($c == "Rates:") {
-					printf "string|rates="; 
-					c+=2; 
-					while($c != "]") {
-						printf $(c); 
-						c++; 
-						if($c != "]") printf ","
-					} 
-					printf "\n"; 
-				}
-				if($c == "Chanspec:") print "string|frequency=" $(c+1);  
-				if($c == "channel") print "int|channel=" $(c+1); 
-				if($c == "channel:") print "int|primary_channel=" $(c+1) ;   
-				if($c == "MCS") {
-					printf "string|supported_channels="; 
-					c+=3; 
-					while($c != "]") {
-						printf $(c); 
-						if($c != "[" && $(c+1) != "]") printf ","
-						c++; 
-					} 
-					printf "\n"; 
-				}
-			}
-		}');
-		
-		json_add_object
-			json_add_string "device" $wdev; 
-		for field in $DATA; do 
-			type=${field%%|*}
-			nv=${field##*|}
-			if [ "$type" == "string" ]; then json_add_string ${nv%=*} ${nv#*=}; fi
-			if [ "$type" == "int" ]; then json_add_int ${nv%=*} ${nv#*=}; fi
-		done
-		json_close_object
-	done; 
-	json_close_array
-	json_dump
-}
-
-#SCANFILE="/var/run/juci.wifi.scanresults"; 
-
 wireless_scan(){
 	/usr/lib/ubus/juci/broadcom.wireless.lua scan $1
 }
@@ -241,7 +178,7 @@ wireless_scanresults(){
 
 case $1 in 
 	.methods) 
-		echo "devices,clients,radios,defaults,info,scan,scanresults"; 
+		echo "devices,clients,radios,defaults,scan,scanresults"; 
 		exit 0
 		;;
 	info) 

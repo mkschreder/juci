@@ -13,9 +13,7 @@
 						<button class="btn btn-default btn-xs" ng-click="onMoveUp(i)"><i class="fa fa-caret-up"></i></button>
 						<button class="btn btn-default btn-xs" ng-click="onMoveDown(i)"><i class="fa fa-caret-down"></i></button>
 					</div>
-					<a ng-show="items" href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}
-						<i ng-show="showIcon" class="fa fa-circle {{ iconSuccess({$item:i}) ? 'text-success' : 'text-danger'}}" style="float:right; margin-top:3px"></i>
-					</a>
+					<a href=""  ng-click="onListEditItem(i)" style="text-decoration: none !important; outline: 0; color: inherit; display: block; width: 100%;" >{{getItemTitle({"$item": i})}}</a>
 				</div>
 			</div>
 		</div>

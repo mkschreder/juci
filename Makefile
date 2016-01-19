@@ -48,22 +48,24 @@ define BuildDir-y
 	$(eval STYLES_LESS_$(1):=$(wildcard $(addprefix $(2)/,$(STYLES_LESS-y))))
 	$(eval PO_$(1):=$(wildcard $(addprefix $(2)/,$(PO-y))))
 	PHONY += $(1)-install
-$(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) $(PO_$(1))
+$(TMP_DIR)/$(CODE_LOAD)-$(1).js: $(JAVASCRIPT_$(1)) $(PO_$(1))
 	@echo -e "\033[0;33m[JS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
 	@echo "" > $$@
 	$(Q)if [ "" != "$(JAVASCRIPT_$(1))" ]; then for file in $(JAVASCRIPT_$(1)); do cat $$$$file >> $$@; echo "" >> $$@; done; fi
 	$(Q)if [ "" != "$(PO_$(1))" ]; then ./scripts/po2js $(PO_$(1)) >> $$@; echo "" >> $$@; fi
-$(CSS_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1)) $(TMP_DIR)/$(1)-compiled-styles.css
+$(TMP_DIR)/$(STYLE_LOAD)-$(1).css: $(STYLES_$(1)) $(TMP_DIR)/$(1)-compiled-styles.css
 	@echo -e "\033[0;33m[CSS]\t$(1) -> $$@\033[m"
 	@#echo "   * $$(STYLES_$(1))"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then for file in $$^; do cat $$$$file >> $$@; echo "" >> $$@; done; fi
+$(TMP_DIR)/$(STYLE_LOAD)-$(1).css.js: $(TMP_DIR)/$(STYLE_LOAD)-$(1).css
+	$(Q)./scripts/css-to-js $$^
 $(TMP_DIR)/$(1)-compiled-styles.css: $(STYLES_LESS_$(1)) 
 	@echo -e "\033[0,33m[LESS]\t$(1) -> $$@\033[m"
 	@echo "" > $$@
 	$(Q)if [ "" != "$$^" ]; then for file in $$^; do lessc $$$$file >> $$@; echo "" >> $$@; done; fi
-$(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
+$(TMP_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[HTML]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
 	@echo "" > $$@
@@ -76,7 +78,9 @@ $(2)/po/template.pot: $(JAVASCRIPT_$(1)) $(TEMPLATES_$(1))
 	@echo "" >> $$@
 	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
 	@for file in `find $(2)/src/pages/ -name "*.html"`; do PAGE=$$$${file%%.*}; echo -e "# $$$$file \nmsgid \"menu-$$$$(basename $$$$PAGE)-title\"\nmsgstr \"\"\n" >> $$@; done
-$(1)-install: $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js $(CODE_DIR)/$(TPL_LOAD)-$(1).tpl.js $(CSS_DIR)/$(STYLE_LOAD)-$(1).css
+$(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(TMP_DIR)/$(CODE_LOAD)-$(1).js $(TMP_DIR)/$(STYLE_LOAD)-$(1).css.js $(TMP_DIR)/$(TPL_LOAD)-$(1).tpl.js  
+	cat $$^ > $$@
+$(1)-install: $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
 	$(Q)if [ -d $(2)/service ]; then $(CP) $(2)/service/* $(BIN)/usr/lib/ubus-services/; fi

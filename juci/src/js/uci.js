@@ -71,12 +71,13 @@
 	function PortValidator(){
 		this.validate = function(field){
 			if(field.value == undefined) return null; 
-			var parts = field.value.split("-").map(function(x){
-				return parseInt(x); 
-			}).filter(function(x){ return x >= 1 && x < 65535; });
-			if(parts.length != 1 && parts.length != 2){
-				return gettext("Port value must be a valid port number or port range between 1 and 65536"); 
-			}
+			var is_range = String(field.value).indexOf("-") != -1; 
+			var parts = String(field.value).split("-"); 
+			if(is_range && parts.length != 2) return gettext("Port range must have start and end port!"); 
+			if(!is_range && parts.length != 1) return gettext("You must specify port value!"); 
+			var invalid = parts.find(function(x){ return !String(x).match(/^\d+$/) || Number(x) < 1 || Number(x) > 65535; }); 
+			if(invalid != undefined) return gettext("Invalid port number (must be a number between 1 and 65535!)"+" ("+invalid+")"); 
+			if(is_range && Number(parts[0]) > Number(parts[1])) return gettext("Start port must be smaller or equal to end port!"); 
 			return null; 
 		};
 	}
@@ -177,6 +178,16 @@
 				this.uvalue = this.ovalue; 
 				this.is_dirty = false; 
 			}, 
+			$reset_defaults: function(){
+				this.uvalue = this.schema.dvalue;
+				this.is_dirty = false;
+			},
+			$begin_edit: function(){
+				this.svalue = this.value; 
+			},
+			$cancel_edit: function(){
+				if(this.svalue != undefined) this.value = this.svalue; 
+			},
 			$update: function(value){
 				if(this.dvalue instanceof Array){
 					Object.assign(this.ovalue, value); 
@@ -345,7 +356,37 @@
 					self[k].$reset(); 
 			}); 
 		}
+
+		UCISection.prototype.$reset_defaults = function(exc){
+			var self = this;
+			var exceptions = {}
+			if(exc && exc instanceof Array)
+				exc.map(function(e){ exceptions[e] = true;});
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field) || exceptions[k]) return;
+				if(self[k].$reset_defaults)
+					self[k].$reset_defaults();
+			});
+		}
 		
+		UCISection.prototype.$begin_edit = function(){
+			var self = this; 
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				if(self[k].$begin_edit)
+					self[k].$begin_edit();
+			});
+		}
+	
+		UCISection.prototype.$cancel_edit = function(){
+			var self = this; 
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				if(self[k].$cancel_edit)
+					self[k].$cancel_edit();
+			});
+		}
+
 		UCISection.prototype.$getErrors = function(){
 			var errors = []; 
 			var self = this; 
@@ -443,18 +484,30 @@
 			var self = this;  
 			Object.keys(self).map(function(x){
 				if(self[x].constructor == UCI.Section) {
-					errors = errors.concat(self[x].$getErrors().map(function(e){
-						return self[".name"]+"."+x+"."+e; 
-					})); 
+					self[x].$getErrors().map(function(e){
+						if(e instanceof Array){
+							errors = errors.concat(e.map(function(err){ return self[".name"]+"."+x+": "+err;}));
+						}else{
+							errors.push(self[".name"]+"."+x+": "+e);
+						}
+					}); 
 				}
 			}); 
 			return errors; 
 		}
-		
+	
+		UCIConfig.prototype.$mark_for_reload = function(){
+			this.deferred = null; 
+		}
+
 		UCIConfig.prototype.$sync = function(){
 			var deferred = $.Deferred(); 
 			var self = this; 
+		
+			if(self.deferred) return self.deferred.promise(); 
 			
+			self.deferred = deferred; 
+
 			if(!$rpc.uci) {
 				// this will happen if there is no router connection!
 				setTimeout(function(){ deferred.reject(); }, 0); 
@@ -723,17 +776,17 @@
 						console.error("invalid config name "+cf); 
 						next(); 
 						return; 
-					} else if(self[cf].$lastSync){
+					} /*else if(self[cf].$lastSync){
 						var SYNC_TIMEOUT = 10000; // probably make this configurable
 						if(((new Date()).getTime() - self[cf].$lastSync.getTime()) > SYNC_TIMEOUT){
 							console.log("Using cached version of "+cf); 
 							next(); 
 							return; 
 						}
-					}
+					}*/
 					self[cf].$sync().done(function(){
 						console.log("Synched config "+cf); 
-						self[cf].$lastSync = new Date(); 
+						//self[cf].$lastSync = new Date(); 
 						next(); 
 					}).fail(function(){
 						console.error("Could not sync config "+cf); 

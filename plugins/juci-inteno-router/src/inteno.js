@@ -68,7 +68,7 @@ JUCI.app
 	$router.sync.done(function(){
 		$router.boardpanel = $uci.boardpanel; 
 		if(!$uci.boardpanel.settings){
-			$uci.boardpanel.create({".type": "settings", ".name": "settings"}).done(function(section){
+			$uci.boardpanel.$create({".type": "settings", ".name": "settings"}).done(function(section){
 				$uci.$save(); 
 			}).fail(function(){
 				//$scope.$emit("error", "Could not create required section boardpanel.settings in config!"); 

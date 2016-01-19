@@ -11,7 +11,6 @@ JUCI.app
 }).controller("sipUsersCtrl", function($scope, $uci, $tr, gettext){
 	$uci.$sync(["voice_client"]).done(function(){
 		$scope.users = $uci.voice_client["@sip_user"];
-		console.log($scope.users);
 		$scope.$apply();
 	});
 	$scope.onAddUser = function(){
@@ -25,8 +24,8 @@ JUCI.app
 			".name":"sip_user" + number, 
 			name:"New SIP user",
 			codec0: "alaw"
-			}).done(function(){$scope.$apply()})
-		.fail(function(data){console.log(data)});
+			}).done(function(){$scope.$apply()
+		});
 	};
 	$scope.onDeleteUser = function(user){
 		if(!user) return;

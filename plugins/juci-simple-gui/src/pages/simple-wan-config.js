@@ -21,6 +21,9 @@ JUCI.app
 
 	$uci.$sync("network").done(function(){
 		$scope.wan = $uci.network.wan; 
+		$scope.wan6 = $uci.network.wan6; 
+		$scope.editor = "<network-connection-proto-"+$scope.wan.proto.value+"-edit ng-model='wan'/>"; 
+		$scope.editor6 = "<network-connection-proto-"+$scope.wan6.proto.value+"-edit ng-model='wan6'/>"; 
 		$scope.loaded = true; 
 		$scope.$apply(); 
 	}); 
@@ -31,10 +34,20 @@ JUCI.app
 		{ label: $tr(gettext("DHCP v6")), value: "dhcpv6" }, 
 		{ label: $tr(gettext("PPP over Ethernet")), value: "pppoe" } 
 	]; 
-	
+		
+	$scope.protocolTypes6 = [
+		{ label: $tr(gettext("Static Address")), value: "static" }, 
+		{ label: $tr(gettext("DHCP v6")), value: "dhcpv6" }, 
+	]; 
+
 	$scope.$watch("wan.proto.value", function(value){
 		if(!$scope.wan.proto) return; 
 		$scope.editor = "<network-connection-proto-"+$scope.wan.proto.value+"-edit ng-model='wan'/>"; 
+	}); 
+
+	$scope.$watch("wan6.proto.value", function(value){
+		if(!value) return; 
+		$scope.editor6 = "<network-connection-proto-"+value+"-edit ng-model='wan6'/>"; 
 	}); 
 
 }); 

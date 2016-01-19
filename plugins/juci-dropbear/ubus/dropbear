@@ -25,11 +25,13 @@ local function dropbear_getpublickeys(opts)
 			local keyParts= tokenize(line);
 			-- Generate a id if there is none
 			--if (not keyParts[3]) then keyParts[3] = "Key ending with " .. keyParts[2]:sub(-4,-1);end;
-			table.insert ( res,{
-				type = keyParts[1],
-				key  = keyParts[2],
-				id   = keyParts[3]
-			});
+			if(keyParts and keyParts[1] and keyParts[2] and keyParts[3]) then
+				table.insert ( res,{
+					type = keyParts[1],
+					key  = keyParts[2],
+					id   = keyParts[3]
+				});
+			end
 		end
 		file:close();
 	end

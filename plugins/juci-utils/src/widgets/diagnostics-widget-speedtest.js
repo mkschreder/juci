@@ -91,25 +91,21 @@ JUCI.app
 			return;
 		}
 		server.$delete().done(function(){
-			$uci.$save().done(function(){
-				getServers();
-				$scope.$apply();
-			});
+			getServers();
+			$scope.$apply();
 		});
 	};
 
 	$scope.onAddAddress = function(){
 		utilsAddTestserverPicker.show().done(function(data){
 			if(!data)return;
-			$uci.speedtest.create({
+			$uci.speedtest.$create({
 				".type": "testserver",
 				"server": data.address,
 				"port": data.port
 			}).done(function(){
-				$uci.$save().done(function(){
-					getServers();
-					$scope.$apply();
-				});
+				getServers();
+				$scope.$apply();
 			});
 		});
 	}

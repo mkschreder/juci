@@ -26,22 +26,21 @@ JUCI.app
 	$scope.onAddRule = function(net){
 		$uci.firewall.$create({
 			".type": "redirect", 
+			"name": "new_rule",
 			"src": "wan", 
 			"dest": "lan", 
 			"target": "DNAT"
 		}).done(function(section){
 			$scope.rule = section; 
 			$scope.rule[".new"] = true; 
-			//$scope.rule[".edit"] = true; 
 			$scope.$apply(); 
 		}); 
 	};
 	
 	$scope.onEditRule = function(rule){
+		if(!rule) return; 
+		rule.$begin_edit(); 
 		$scope.rule = rule; 
-		//$scope.rule[".edit"] = true; 
-		console.log($scope.rule[".name"]); 
-		console.log(Object.keys($scope.redirects).map(function(k) { return $scope.redirects[k][".name"]; })); 
 	};
 	
 	$scope.onDeleteRule = function(rule){
@@ -53,10 +52,13 @@ JUCI.app
 	$scope.onAcceptEdit = function(){
 		$scope.errors = $scope.rule.$getErrors(); 
 		if($scope.errors.length) return; 
+		$scope.rule[".new"] = false; 
 		$scope.rule = null;  
 	};
 	
 	$scope.onCancelEdit = function(){
+		if(!$scope.rule) return; 
+		$scope.rule.$cancel_edit(); 
 		if($scope.rule[".new"]){
 			$scope.rule.$delete().done(function(){
 				$scope.rule = null; 

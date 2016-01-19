@@ -225,6 +225,11 @@ UCI.firewall.$registerSectionType("redirect", {
 	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator  }, 
 	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
 	"reflection": 		{ dvalue: false, type: Boolean }
+}, function(section){
+	if(!section.name.value) return gettext("Rule name can not be empty!"); 
+	if(!section.src_dport.value) return gettext("Source port can not be empty!"); 
+	if(!section.dest_port.value) return gettext("Dest. port can not be empty!"); 
+	return null; 
 }); 
 
 UCI.firewall.$registerSectionType("include", {

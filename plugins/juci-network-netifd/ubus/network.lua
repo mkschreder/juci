@@ -49,7 +49,7 @@ function network_nat_table()
 end
 
 function list_protos()
-	local data = juci.shell("grep -roh 'proto_\\(.\*\\)_init' /lib/netifd/proto/ | sed -e 's|proto_\\(.\*\\)_init|\\1|g'");
+	local data = juci.shell("grep -roh 'proto_\\(.*\\)_init' /lib/netifd/proto/ | sed -e 's|proto_\\(.*\\)_init|\\1|g'");
 	local protos = {};
 	for line in data:gmatch("[^\r\n]+") do
 		table.insert(protos, line);

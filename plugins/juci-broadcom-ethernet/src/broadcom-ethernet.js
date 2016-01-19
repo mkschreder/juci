@@ -16,7 +16,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 			wan.baseifname.value = devname;  
 		}
 		if(!$uci.layer2_interface_ethernet.Wan){
-			$uci.layer2_interface_ethernet.create({
+			$uci.layer2_interface_ethernet.$create({
 				".type": "ethernet_interface", 
 				".name": "Wan"
 			}).done(function(){

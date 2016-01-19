@@ -59,6 +59,7 @@ JUCI.app
 	}); 
 	
 	$scope.save = function(){
+		//TODO: Change to ubus call
 		$uci.$save(); 
 	}
 	$scope.onPairPBC = function(){

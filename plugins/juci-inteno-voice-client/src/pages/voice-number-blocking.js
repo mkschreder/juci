@@ -37,16 +37,16 @@ JUCI.app
 		if(!$uci.voice_client.call_filter0){
 			async.series([
 				function(next){
-					$uci.voice_client.create({".type": "call_filter", ".name": "call_filter0"}).always(function(){ next(); }); 
+					$uci.voice_client.$create({".type": "call_filter", ".name": "call_filter0"}).always(function(){ next(); }); 
 				}, 
 				function(next){
-					$uci.voice_client.create({".type": "call_filter_rule_incoming", ".name": "call_filter_rule_incoming0"}).always(function(){ next(); }); 
+					$uci.voice_client.$create({".type": "call_filter_rule_incoming", ".name": "call_filter_rule_incoming0"}).always(function(){ next(); }); 
 				},
 				function(next){
-					$uci.voice_client.create({".type": "call_filter_rule_outgoing", ".name": "call_filter_rule_outgoing0"}).always(function(){ next(); }); 
+					$uci.voice_client.$create({".type": "call_filter_rule_outgoing", ".name": "call_filter_rule_outgoing0"}).always(function(){ next(); }); 
 				},
 				function(next){
-					$uci.voice_client.create({".type": "call_filter_rule_outgoing", ".name": "call_filter_rule_outgoing1"}).always(function(){ next(); }); 
+					$uci.voice_client.$create({".type": "call_filter_rule_outgoing", ".name": "call_filter_rule_outgoing1"}).always(function(){ next(); }); 
 				},
 				function(next){
 					$uci.$save().always(function(){ next(); }); 
@@ -58,12 +58,12 @@ JUCI.app
 	}); 
 	
 	$scope.onAddOutgoingRule = function(){
-		$uci.voice_client.create({".type": "call_filter_rule_outgoing", "owner": "call_filter0"}).always(function(){ 
+		$uci.voice_client.$create({".type": "call_filter_rule_outgoing", "owner": "call_filter0"}).always(function(){ 
 			updateRuleLists(); 
 		}); 
 	}
 	$scope.onAddIncomingRule = function(){
-		$uci.voice_client.create({".type": "call_filter_rule_incoming", "owner": "call_filter0"}).always(function(){ 
+		$uci.voice_client.$create({".type": "call_filter_rule_incoming", "owner": "call_filter0"}).always(function(){ 
 			updateRuleLists(); 
 		}); 
 	}

@@ -42,7 +42,7 @@ JUCI.app
 	$scope.$watch("data.dhcpEnabled", function(value){
 		if(!$scope.dhcp) {
 			if($scope.connection){
-				$uci.dhcp.create({
+				$uci.dhcp.$create({
 					".type": "dhcp", 
 					".name": $scope.connection[".name"],
 					"interface": $scope.connection[".name"],

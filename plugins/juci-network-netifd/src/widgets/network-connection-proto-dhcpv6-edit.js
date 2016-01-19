@@ -1,18 +1,4 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
+//! Author Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
 .directive("networkConnectionProtoDhcpv6Edit", function($compile, $parse){
@@ -29,8 +15,8 @@ JUCI.app
 .controller("networkConnectionProtoDhcpv6Edit", function($scope, $uci, $network, $rpc, $log, $tr, gettext){
 	$scope.allReqAddrTypes = [
 		{ label: $tr(gettext("Try")), value: "try" }, 
-		{ label: $tr(gettext("Force")), value: "try" }, 
-		{ label: $tr(gettext("None")), value: "try" }
+		{ label: $tr(gettext("Force")), value: "force" }, 
+		{ label: $tr(gettext("None")), value: "none" }
 	]; 
 	$scope.allPrefixReqTypes = [
 		{ label: "48", value: "48" }, 
@@ -41,4 +27,29 @@ JUCI.app
 		{ label: $tr(gettext("Auto")), value: "auto" }, 
 		{ label: $tr(gettext("Disabled")), value: "no" }
 	]; 
-}); 
+})
+.directive("networkConnectionProtoDhcpv6PhysicalEdit", function(){
+	return {
+		templateUrl: "/widgets/network-connection-standard-physical.html",
+		scope: {
+			interface: "=ngModel",
+			protos: "="
+		},
+		replace: true,
+		require: "^ngModel"
+	};
+})
+.directive("networkConnectionProtoDhcpv6AdvancedEdit", function(){
+	return {
+		templateUrl: "/widgets/network-connection-proto-dhcpv6-advanced-edit.html",
+		scope:	{
+			interface: "=ngModel"
+		},
+		controller: "networkConnectionProtoDhcpv6AdvancedEdit",
+		replace: true,
+		require: "^ngModel"
+	};
+})
+.controller("networkConnectionProtoDhcpv6AdvancedEdit", function($scope){
+	
+});

@@ -20,7 +20,7 @@ UCI.dropbear.$registerSectionType("dropbear", {
 	"verbose": 				{ dvalue: false, type: Boolean }, //Set to 1 to enable verbose output by the start script.
 	"BannerFile": 			{ dvalue: "", type: String} , //Name of a file to be printed before the user has authenticated successfully.
 	"PasswordAuth": 		{ dvalue: true, type: Boolean }, //Set to 0 to disable authenticating with passwords.
-	"Port": 				{ dvalue: 22, type: Number }, //Port number to listen on.
+	"Port": 				{ dvalue: 22, type: Number, validator: UCI.validators.PortValidator }, //Port number to listen on.
 	"RootPasswordAuth": 	{ dvalue: true, type: Boolean }, //Set to 0 to disable authenticating as root with passwords.
 	"RootLogin": 			{ dvalue: true, type: Boolean }, //Set to 0 to disable SSH logins as root.
 	"GatewayPorts": 		{ dvalue: false, type: Boolean }, //Set to 1 to allow remote hosts to connect to forwarded ports.

@@ -1,18 +1,4 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
+//! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com> 
 
 JUCI.app
 .directive("networkConnectionProtoDhcpEdit", function($compile, $parse){
@@ -27,5 +13,64 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionProtoDhcpEdit", function($scope, $uci, $network, $rpc, $log, gettext){
-	
+}).directive("networkConnectionProtoDhcpPhysicalEdit", function(){
+	return {
+		templateUrl: "/widgets/network-connection-standard-physical.html",
+		scope: {
+			interface: "=ngModel",
+			protos: "="
+		},
+		replace: true,
+		require: "^ngModel"
+	};
+}).directive("networkConnectionProtoDhcpAdvancedEdit", function(){
+	return {
+		templateUrl: "/widgets/network-connection-proto-dhcp-advanced-edit.html",
+		scope: {
+			interface: "=ngModel"
+		},
+		replace: true,
+		require: "^ngModel",
+		controller: "networkConnectionProtoDhcpAdvancedEditCtrl"
+	};
+}).controller("networkConnectionProtoDhcpAdvancedEditCtrl", function($scope){
+	$scope.dnslist = [];
+	$scope.$watch("interface", function(){
+		if(!$scope.interface) return;
+		$scope.interface.dns.value = $scope.interface.dns.value.filter(function(x){ return x != "" });
+		$scope.dnslist = $scope.interface.dns.value.map(function(x){ return { text: x }});
+		$scope.interface.reqopts.$error = null;
+	}, false);
+	$scope.onTagsChange = function(){
+		$scope.interface.dns.value = $scope.dnslist.map(function(x){return x.text;});
+	};
+	$scope.evalDns = function(tag){
+		var parts = String(tag.text).split(".");
+		if(parts.length != 4) return false;
+		for(var i = 0; i < 4; i++){	
+			var isnum = /^[0-9]+$/.test(parts[i]);
+			if(!isnum) return false;
+			var num = parseInt(parts[i]);
+			if(num < 0 || num > 255) return false;
+		}
+		return true;
+	};
+	/*$scope.evalReqopts = function(tag){ //Not used in this version of JUCI
+		var opts = $scope.interface.reqopts.value.split(" ").filter(function(x){ return x != ""}).map(function(x){ return parseInt(x)});
+		if(opts.find(function(opt){ 
+			if(opt > 0 && opt < 255  ) return false;
+			return true;
+		}) != undefined){
+			$scope.interface.reqopts.$error="Must be space separated integer between 1 and 254";
+		}else{
+			for(var i = 0; i < opts.length; i ++){
+				if(opts.lastIndexOf(opts[i]) != i) break;
+			}
+			if(i < opts.length){
+				$scope.interface.reqopts.$error="No duplicat values"
+			}else{
+				$scope.interface.reqopts.$error=null;
+			}
+		}
+	};*/ //Not used in this version of JUCI
 }); 

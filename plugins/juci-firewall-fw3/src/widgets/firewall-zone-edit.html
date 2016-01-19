@@ -5,11 +5,17 @@
 		</juci-config-line>
 		<juci-config-line title="{{'Default Policy'|translate}}">
 			<table class="table">
-				<thead><th translate>Input</th><th translate>Output</th><th translate>Forward</th></thead>
 				<tbody>
 					<tr>
+						<th translate>Input</th>
 						<td><juci-select ng-model="zone.input.value" ng-items="policys"></juci-select></td>
+					</tr>
+					<tr>
+						<th translate>Output</th>
 						<td><juci-select ng-model="zone.output.value" ng-items="policys"></juci-select></td>
+					</tr>
+					<tr>
+						<th translate>Forward</th>
 						<td><juci-select ng-model="zone.forward.value" ng-items="policys"></juci-select></td>
 					</tr>
 				</tbody>
