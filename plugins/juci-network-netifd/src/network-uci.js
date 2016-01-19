@@ -18,7 +18,7 @@ UCI.validators.IP6PrefixLengthValidator = function(){
 
 UCI.validators.IP6AddressValidator = function(){
 	this.validate = function(field){
-		if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Aaddress must be a valid IPv6 address"); 
+		if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
 		return null; 
 	}
 } 
@@ -138,8 +138,6 @@ UCI.network.$registerSectionType("interface", {
 			}
 			if((section.ipaddr.value == "" && section.netmask.value == "") || section.ip6addr.value == "")
 				errors.push(gettext("Either ipv4 or ipv6 address is needed"));
-			else if(section.ip6addr.value == "" && (section.netmask.value == "" || section.ipaddr.value == ""))
-				errors.push(gettext("Both IP Address and netmask are needed for static IPv4 configuration"));
 			if(section.ifname.value == "")
 				errors.push(gettext("Physical interface unspecified"));
 			break;
