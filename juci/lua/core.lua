@@ -132,6 +132,43 @@ local session = {
 	end
 }
 
+local function dir_tree(src, obj)
+	local list = shell("find %s -type d | sort 2>/dev/null", src);
+	if(list == "") then return nil; end
+	local root = { }; 
+	for line in list:gmatch("[^\n\r]+") do
+		local parent = root; 
+		local path = "/";
+		for node in line:gmatch("[^/]+") do
+			path = path .. node .. "/"; 
+			if not parent[node] then 
+				parent[node] = { path = path, children = {} }; 
+			end
+			parent = parent[node].children; 
+		end
+	end
+	return root; 
+end
+
+local file = {
+	folder_tree = function()
+		local tree = dir_tree("/mnt/");
+		return tree;
+	end,
+	autocomplete = function(opts)
+		if(type(opts.path) ~= "string") then
+			return 1;
+		end
+		opts.path = "/mnt/"..opts.path.."*";
+		local stdout = shell("find \"$(dirname %s)\" -name \"$(basename %s)\" -maxdepth 1 -type d | sed 's/^\\/mnt//g' 2>/dev/null | sed 's|$|/|g'", opts.path, opts.path);
+		local result = { folders = {} }
+		for line in stdout:gmatch("[^\r\n]+") do 
+			table.insert(result.folders, line); 
+		end 
+		return result
+	end
+}
+
 return {
 	session = session, 
 	readfile = readfile, 
@@ -139,6 +176,7 @@ return {
 	shell = shell,
 	query = query, 
 	exec = exec, 
-	ubus = jubus
+	ubus = jubus,
+	file = file
 }; 
 
