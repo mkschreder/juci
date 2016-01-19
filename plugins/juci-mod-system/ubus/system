@@ -31,15 +31,15 @@ function system_logread(opts)
 	local stdout;
 	if opts.limit then limit = opts.limit; end
 	if limit > 200 then limit = 200; end
-
+	-- TODO: change so that filter and limit is sent in insted of concatenated does not work with | now
 	if ((not filter or filter == "") and (not type or type == "")) then
 		stdout = juci.shell("logread | tail -n %d 2>/dev/null", limit); 
 	elseif (not filter or filter == "") then
-		stdout = juci.shell("logread | awk '{if($6~/%s/) print($0)}' | tail -n %d 2>/dev/null", type, limit);
+		stdout = juci.shell("logread | awk '{if($6~/"..type.."/) print($0)}' | tail -n %d 2>/dev/null", limit);
 	elseif(not type or type == "") then
-		stdout = juci.shell("logread | awk '{if($7~/%s/) print($0)}' | tail -n %d 2>/dev/null", filter, limit);
+		stdout = juci.shell("logread | awk '{if($7~/"..filter.."/) print($0)}' | tail -n %d 2>/dev/null", limit);
 	else
-		stdout = juci.shell("logread | awk '{if($6~/%s/ && $7~/%s/) print($0)}' | tail -n %d 2>/dev/null", type , filter, limit); 
+		stdout = juci.shell("logread | awk '{if($6~/"..type.."/ && $7~/"..filter.."/) print($0)}' | tail -n %d 2>/dev/null", limit); 
 	end
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local date,type,source,message = line:match("([^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*)%s+([^%s]*)%s+([^%s:]*):%s+(.*)"); 

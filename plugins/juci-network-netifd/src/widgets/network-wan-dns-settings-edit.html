@@ -1,0 +1,14 @@
+<div>
+	<juci-config-section ng-show="wan_ifs.aquired">
+		<juci-config-lines>
+			<juci-config-line ng-repeat="int in wan_ifs.aquired track by $index" title="{{'Aquired DNS servers'|translate}}" help="{{'Aquired from'|translate}} {{int.interface || 'Unknown interface'|translate | uppercase}}">
+				<div ng-repeat="dns in int['dns-server']">{{dns}}</div>
+			</juci-config-line>
+		</juci-config-lines>
+	</juci-config-section>
+	<juci-config-section ng-repeat="interface in wan_ifs.settings track by $index">
+		<juci-config-lines>
+			<network-connection-dns-config ng-model="interface"></network-connection-dns-config>
+		</juci-config-line>
+	</juci-config-section>
+</div>

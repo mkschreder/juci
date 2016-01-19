@@ -4,12 +4,24 @@
 		"read": {
 			"uci": [
 				"samba"
-			]
+			],
+			"ubus": {
+				"/juci/samba": [
+					"folder_tree",
+					"autocomplete"
+				]
+			}
 		}, 
 		"write": {
 			"uci": [
 				"samba"
-			]
+			],
+			"ubus": {
+				"/juci/samba": [
+					"folder_tree",
+					"autocomplete"
+				]
+			}
 		}
 	}
 }

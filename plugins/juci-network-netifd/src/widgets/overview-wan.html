@@ -7,30 +7,41 @@
 	<div class="panel-body">
 		<table class="table table-condensed">
 			<tr>
-				<td ><strong translate>Internet</strong></td>
-				<td>
+				<td class="col-xs-5"><strong translate>Internet</strong></td>
+				<td class="col-xs-5">
 					<strong ng-show="default_route_ifs.length" class="text-success" translate>ONLINE</strong>
 					<strong ng-show="!default_route_ifs.length" class="text-danger" translate>OFFLINE</strong>
 				</td>
+				<td></td><!--for icons-->
 			</tr>
-			<tr ng-show="default_route_ifs.length"><td ><strong translate>WAN IP(s)</strong></td>
+			<tr ng-show="default_route_ifs.length">
+				<td ><strong translate>WAN IP(s)</strong></td>
 				<td><span ng-repeat="i in default_route_ifs track by $index">{{i['ipv4-address'][0].address}} {{i['ipv6-address'][0].address}}<br/></span></td>
+				<td></td><!--for icons-->
 			</tr>
-			<tr ng-show="default_route_ifs.length"><td ><strong translate>Gateway(s)</strong></td>
+			<tr ng-show="default_route_ifs.length">
+				<td ><strong translate>Gateway(s)</strong></td>
 				<td><span ng-repeat="g in all_gateways track by $index">{{g}}<br/></span></td>
+				<td></td><!--for icons-->
 			</tr>
-			<tr ng-show="default_route_ifs.length"><td ><strong translate>Connection</strong></td>
+			<tr ng-show="default_route_ifs.length">
+				<td ><strong translate>Connection</strong></td>
 				<td><span ng-repeat="i in connection_types track by $index">{{i}}<br/></span></td>
+				<td></td><!--for icons-->
 			</tr>
-			<tr ng-show="default_route_ifs.length"><td ><strong translate>DNS-Servers</strong></td>
+			<tr ng-show="default_route_ifs.length">
+				<td ><strong translate>DNS-Servers</strong></td>
 				<td>
 					<div ng-repeat="i in default_route_ifs track by $index">
 						<div ng-repeat="dns in i['dns-server']">{{dns}}<br/></div>
 					</div>
 				</td>
+				<td><span ng-click="showDnsSettings()" style="cursor:pointer;"><i class="fa fa-edit"></i></span></td>
 			</tr>
-			<tr ng-show="default_route_ifs.length"><td ><strong translate>WAN Uptime</strong></td>
+			<tr ng-show="default_route_ifs.length">
+				<td ><strong translate>WAN Uptime</strong></td>
 				<td><div ng-repeat="i in default_route_ifs track by $index">{{i['uptime']|formatTimer}}<br/></div></td>
+				<td></td><!--for icons-->
 			</tr>
 		</table>
 	</div>

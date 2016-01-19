@@ -70,7 +70,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 			}); 
 			// set type for devices whose names start with wl
 			adapters.forEach(function(dev){
-				if(dev.device.indexOf("wl") == 0) dev.type = "wireless"; 
+				if(dev.device && dev.device.indexOf("wl") == 0) dev.type = "wireless"; 
 			}); 
 			def.resolve(); 
 		}).fail(function(){

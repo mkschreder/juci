@@ -4,15 +4,18 @@
 			<input type="text" class="form-control" ng-model="share.name.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Path'|translate}}">
-			<input type="text" class="form-control" ng-model="share.path.value" 
-				typeahead="address for address in onAutocomplete($viewValue)" 
-				typeahead-loading="loadingLocations" 
-				typeahead-no-results="noResults" 
-			/>
-			<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-			<div ng-show="noResults">
-			  <i class="glyphicon glyphicon-remove"></i> No Results Found
+			<div class="input-group">
+				<span class="input-group-addon">/mnt</span>
+				<input type="text" class="form-control" ng-model="data.model" 
+					typeahead="address for address in onAutocomplete($viewValue)" 
+					typeahead-loading="loadingLocations" 
+					typeahead-no-results="noResults" />
+				<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+				<div ng-show="noResults">
+				  <i class="glyphicon glyphicon-remove"></i> No Results Found
+				</div>
 			</div>
+			<button class="btn btn-default pull-right" style="margin:5px;" ng-click="onAddFolder()"><i class="fa fa-plus"></i></button>
 		</juci-config-line>
 		<juci-config-line title="{{'Allow Guest Access'|translate}}">
 			<switch ng-model="data.guest_ok" class="green"/>
