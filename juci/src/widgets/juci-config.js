@@ -108,7 +108,18 @@ JUCI.app
 			tmp.map(function(ch){
 				if(ch.values){
 					Object.keys(ch.values).map(function(opt){
-						$scope.changes.push({ config:ch.config, section: ch.section, option: opt, uvalue:ch.values[opt] })
+						var uciField = $uci[ch.config][ch.section][opt];
+						if(uciField.ovalue instanceof Array){
+							if(uciField.ovalue.length == uciField.uvalue.length){
+								var eq = true;
+								for(var i = 0; i < uciField.ovalue.length; i++){
+									if(uciField.ovalue[i] != uciField.uvalue[i]) eq = false;
+								}
+								if(eq) return;
+							}
+						}		
+						if(uciField.ovalue == uciField.uvalue) return;
+						$scope.changes.push({ config:ch.config, section: ch.section, option: opt, uvalue:ch.values[opt], ovalue: uciField.ovalue })
 					});
 				}
 			});

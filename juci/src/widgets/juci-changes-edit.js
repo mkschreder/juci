@@ -20,4 +20,15 @@ JUCI.app
 			$scope.model.changes.splice(item, 1);
 		}
 	};
+}).filter("maxlength", function(){
+	return function(input, length){
+		length = (typeof length != "number") ? 50 : length;
+		input = input || "";
+		console.log(length);
+		console.log(String(input).length);
+		if(String(input).length < length) return input;
+		var output = "";
+		output = String(input).slice(0, length) + "...";
+		return output;
+	};
 });

@@ -1,11 +1,27 @@
 <div>
 	<table class="table table-hover">
-		<tr ng-repeat="item in model.changes track by $index">
-			<td>{{'Config: '|translate}}{{item.config}}</td>
-			<td>{{'Section: '|translate}}{{item.section}}</td>
-			<td>{{'Option: '|translate}}{{item.option}}</td>
-			<td>{{'New value: '|translate}}{{item.uvalue || '\'\''}}</td>
-			<td><span ng-click="onRevertOption($index)" style="cursor:pointer;"><i class="fa fa-trash"></i></span></td>
-		</tr>
-	</table>
+		<thead>
+			<tr>
+				<th translate>Config</th>
+				<th translate>Section</th>
+				<th translate>Option</th>
+				<th translate>Old value</th>
+				<th translate>New value</th>
+			</tr>
+		</thead>
+	</table>	
+	<div style="max-height:300px;overflow:auto;">
+		<table class="table table-hover">
+			<tbody>
+				<tr ng-repeat="item in model.changes track by $index">
+					<td>{{item.config|maxlength:30}}</td>
+					<td>{{item.section|maxlength:30}}</td>
+					<td>{{item.option|maxlength:30}}</td>
+					<td>{{item.ovalue|maxlength:30}}</td>
+					<td>{{item.uvalue|maxlength:30}}</td>
+					<td><span ng-click="onRevertOption($index)" style="cursor:pointer;"><i class="fa fa-trash"></i></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
