@@ -136,7 +136,7 @@ UCI.network.$registerSectionType("interface", {
 					if(bad) errors.push("Given IP address and netmask are invalid together!"); 
 				}*/
 			}
-			if((section.ipaddr.value == "" && section.netmask.value == "") || section.ip6addr.value == "")
+			if((section.ipaddr.value == "" || section.netmask.value == "") && section.ip6addr.value == "")
 				errors.push(gettext("Either ipv4 or ipv6 address is needed"));
 			if(section.ifname.value == "")
 				errors.push(gettext("Physical interface unspecified"));
