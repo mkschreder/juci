@@ -31,7 +31,7 @@ local function network_status_arp()
 end
 
 local function network_status_ipv4routes()
-	local output = juci.shell("route"); 
+	local output = juci.shell("route -n"); 
 	local routes = {}; 
 	for line in output:gmatch("[^\r\n]+") do 
 		local words = fields(line); 
