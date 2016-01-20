@@ -2,8 +2,16 @@
 	<div ng-controller="wirelessStatusPage">
 		<juci-config-heading>{{ 'WiFi Status' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'status.wifi.info' | translate }}</juci-config-info>
+		<div class="row">
+			<div class="col-md-6"  ng-repeat="radio in wlRadios track by $index">
+				<h2>{{'Radio'|translate}} {{radio.device}}</h2>
+				<table class="table table-condensed">
+					<tr><th translate>Frequency</th><td width="1%">{{radio.frequency}}</td></tr>
+					<tr><th translate>Current Channel</th><td>{{radio.current_channel}}</td></tr>
+				</table>
+			</div>
+		</div>
 		<juci-config-lines>
-			<h3 ng-repeat="radio in wlRadios track by $index" translate>Your {{(radio.band.value == 'a') ? '5GHz' : '2.4GHz'}} radio is on channel {{radio.$channel}}</h3>
 			<juci-config-line title="{{'Scan neighboring APs'|translate}}">
 				<button ng-disabled="scanning" ng-click="doScan()" class="btn btn-default">
 					<span ng-show="!scanning">Scan</span>
