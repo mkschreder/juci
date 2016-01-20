@@ -7,17 +7,22 @@
 			<table class="table">
 				<tr>
 					<th translate>Name</th>
-					<th translate>Phone Number</th>
+					<th translate>User</th>
 					<th translate>Domain</th>
+					<th translate>Registration interval (s)</th>
+					<th translate>Last registration</th>
 					<th style="text-align: center;" translate>Status</th>
 				</tr>
 				<tr ng-repeat="sip in sipAccounts track by $index">
 					<td>{{sip[".config"].name.value}}</td>
 					<td>{{sip[".config"].user.value}}</td>
-					<td>{{sip[".config"].host.value}}</td>
+					<td>{{sip.domain}}</td>
+					<td>{{sip.refresh_interval}}</td>
+					<td>{{sip.last_successful_registration}}</td>
 					<td style="text-align: center;">
-						<i class="fa fa-check-circle fa-2x text-success" ng-show="sip.registered"></i>
-						<i class="fa fa-times-circle fa-2x" ng-hide="sip.registered"></i>
+						<i class="fa fa-check-circle fa-2x text-success" ng-show="reg_status(sip) == 'registered'"></i>
+						<i class="fa fa-times-circle fa-2x" ng-show="reg_status(sip) == 'offline'"></i>
+						<i class="fa fa-spinner fa-2x fa-spin text-warning" ng-show="reg_status(sip) == 'registry_request_sent'"></i>
 					</td>
 				</tr>
 			</table>

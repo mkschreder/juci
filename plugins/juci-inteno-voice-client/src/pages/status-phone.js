@@ -34,5 +34,11 @@ JUCI.app
 				});
 			}); 
 		}); 
+		$scope.reg_status = function(sip){
+			if(!sip) return "";
+			if(sip.registered) return "registered";
+			if(sip.registry_request_sent) return "registry_request_sent";
+			return "offline";
+		};
 	}
 }); 
