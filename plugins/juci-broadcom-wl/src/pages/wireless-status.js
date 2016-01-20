@@ -15,12 +15,23 @@
 */ 
 
 JUCI.app
-.controller("wirelessStatusPage", function($scope, $uci, $wireless, gettext){
+.controller("wirelessStatusPage", function($scope, $uci, $wireless, gettext, $rpc){
 	$scope.order = function(pred){
 		$scope.predicate = pred; 
 		$scope.reverse = !$scope.reverse;
 	}
 	$uci.$sync("wireless").done(function(){
+		$scope.wlRadios = $uci.wireless["@wifi-device"];
+		$rpc.juci.wireless.devices().done(function(data){
+			if(!data.devices) return;
+			$scope.wlRadios.map(function(radio){
+				var match = data.devices.find(function(dev){return dev.device == radio[".name"];});
+				if(match)
+					radio.$channel = match.primary_channel;
+				else
+					radio.$channel = "Unknown";
+			});
+		});
 		$scope.dfs_enabled = $uci.wireless["@wifi-device"].find(function(x){ return x.dfsc.value != 0; }) != null; 
 		$scope.doScan = function(){
 			$scope.scanning = 1; 
