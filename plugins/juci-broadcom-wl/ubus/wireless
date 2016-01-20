@@ -155,7 +155,8 @@ wireless_radios(){
 			json_add_int "" "$chan"
 		done
 		json_close_array
-		CHAN=$(wlctl -i $radio channel|grep "current mac channel"|awk '{print $4}');
+		# the Mode line will contain channel 
+		CHAN=$(wlctl -i $radio assoc|grep "^Mode"|awk '{print $13}');
 		json_add_string "current_channel" $CHAN
 		json_add_string "frequency" "$FREQ"
 		json_close_object
