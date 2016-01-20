@@ -16,7 +16,6 @@
 
 JUCI.app
 .controller("SettingsSystemGeneral", function($scope, $rpc, $uci, $tr, gettext){
-	$scope.timezones = {} ; 
 	async.series([
 		function(next){
 			$uci.$sync("system").done(function(){
@@ -35,8 +34,9 @@ JUCI.app
 				if(result && result.zones){
 					$scope.timezones = result.zones; 
 					$scope.allTimeZones = Object.keys(result.zones).sort().map(function(k){
-						return { label: k, value: k }; 
+						return { label: k, value: k.trim() }; 
 					}); 
+					$scope.$apply();
 				}
 				next(); 
 			}); 
@@ -47,7 +47,7 @@ JUCI.app
 	}); 
 	
 	$scope.$watch("system.zonename.value", function(value){
-		if(!value) return; 
+		if(!value || !$scope.timezones) return; 
 		$scope.system.timezone.value = $scope.timezones[value]; 
 	}); 
 	
