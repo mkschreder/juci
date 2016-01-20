@@ -16,6 +16,7 @@ JUCI.app
 	JUCI.interval.repeat("voice.sip-service-provicers", 4000, function(done){
 		$rpc.asterisk.status().done(function(data){
 			$scope.sipAccStatus = data.sip;
+			$scope.$apply();
 		}).always(function(){done();});
 	});
 	$scope.getIconStatus = function(item){
