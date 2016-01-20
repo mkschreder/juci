@@ -34,7 +34,7 @@ JUCI.app
 	});
 	
 	$scope.getTitle = function(cfg){
-		return $tr(gettext("Dropbear Instance ")) + cfg[".name"];
+		return $tr(gettext("Dropbear Instance on Interface: ")) + ((cfg.Interface.value != "") ? String(cfg.Interface.value).toUpperCase() : $tr(gettext("ANY"))) + " Port: " + cfg.Port.value;
 	}
 
 	$scope.onAddInstance = function(){
