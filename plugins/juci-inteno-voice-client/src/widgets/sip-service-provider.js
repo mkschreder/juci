@@ -13,6 +13,18 @@ JUCI.app
 		$scope.providers = $uci.voice_client["@sip_service_provider"];
 		$scope.$apply();
 	});
+	JUCI.interval.repeat("voice.sip-service-provicers", 4000, function(done){
+		$rpc.asterisk.status().done(function(data){
+			$scope.sipAccStatus = data.sip;
+		}).always(function(){done();});
+	});
+	$scope.getIconStatus = function(item){
+		if(!item || !$scope.sipAccStatus || !item[".name"]) return "";
+		var status = $scope.sipAccStatus[item[".name"]];
+		if(status.registered) return "online";
+		if(status.registry_request_sent) return "pending";
+		return "offline";
+	};
 	$scope.onAddProvider = function(){
 		var number = 0;
 		while(number < 100){
@@ -26,8 +38,7 @@ JUCI.app
 			codec0: "alaw",
 			ptime_alaw: 20,
 			transport: "udp"
-			}).done(function(){$scope.$apply()
-		});
+		}).done(function(item){$scope.$apply()});
 	};
 	$scope.onDeleteProvider = function(item){
 		if(!item) return;
