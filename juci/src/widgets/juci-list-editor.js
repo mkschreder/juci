@@ -63,6 +63,18 @@ JUCI.app
 		arr.splice(idx - 1, 0, i); 
 		$scope.onItemMoved({ $item: i, $prev_index: idx, $index: idx - 1}); 
 	}
+	$scope.getIcon = function(iconStatus){
+		if(iconStatus == "muted") 	return "fa fa-circle fa-2x text-muted";
+		if(iconStatus == "primary") 	return "fa fa-circle fa-2x text-primary";
+		if(iconStatus == "success") 	return "fa fa-circle fa-2x text-success";
+		if(iconStatus == "info") 	return "fa fa-circle fa-2x text-info";
+		if(iconStatus == "warning") 	return "fa fa-circle fa-2x text-warning";
+		if(iconStatus == "danger") 	return "fa fa-circle fa-2x text-danger";
+		if(iconStatus == "offline") 	return "fa fa-times-circle fa-2x";
+		if(iconStatus == "pending") 	return "fa fa-spinner fa-2x fa-spin text-warning";
+		if(iconStatus == "online")	return "fa fa-check-circle fa-2x text-success";
+		return "";
+	};
 
 	$scope.onMoveDown = function(i){
 		var arr = $scope.items; 
