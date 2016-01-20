@@ -16,7 +16,8 @@
 
 UCI.juci.$registerSectionType("pagesystemstatus", {
 	"show_meminfo": 	{ dvalue: true, type: Boolean }, 
-	"show_diskinfo": 	{ dvalue: true, type: Boolean }
+	"show_diskinfo": 	{ dvalue: true, type: Boolean },
+	"show_loadavg":		{ dvalue: false, type: Boolean }
 }); 
 UCI.juci.$insertDefaults("pagesystemstatus"); 
 
@@ -80,9 +81,11 @@ JUCI.app
 				[$tr(gettext("Firmware Version")), board.release.revision || $tr(gettext("N/A"))],
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
-				//[$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"], 
 				[$tr(gettext("CPU")), ""+(cpu_load || 0)+"%"]
 			]; 
+			if($uci.juci["pagesystemstatus"] && $uci.juci["pagesystemstatus"].show_loadavg.value){
+				$scope.systemStatusTbl.rows.push([$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"]); 
+			}
 			if($config.local.mode == "expert"){
 				var arr = $scope.systemStatusTbl.rows; 
 				arr.push([$tr(gettext("Kernel Version")), board.kernel || info.system.kernel || $tr(gettext("N/A"))]); 
