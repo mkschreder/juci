@@ -34,7 +34,6 @@ JUCI.app
 					setTimeout(function(){
 						console.log("Getting scan results for "+dev[".name"]); 
 						$wireless.getScanResults({device: dev[".name"]}).done(function(aps){
-							alert(JSON.stringify(data)); 
 							$scope.access_points = aps;
 							$scope.scanning = 0; 
 							$scope.$apply(); 
