@@ -80,14 +80,14 @@ JUCI.app
 				[$tr(gettext("Firmware Version")), board.release.revision || $tr(gettext("N/A"))],
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
-				[$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"], 
+				//[$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"], 
 				[$tr(gettext("CPU")), ""+(cpu_load || 0)+"%"]
 			]; 
 			if($config.local.mode == "expert"){
 				var arr = $scope.systemStatusTbl.rows; 
 				arr.push([$tr(gettext("Kernel Version")), board.kernel || info.system.kernel || $tr(gettext("N/A"))]); 
+				arr.push([$tr(gettext("Filesystem")), info.system.filesystem || $tr(gettext("N/A"))]);
 				arr.push([$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))]);  
-				arr.push([$tr(gettext("Filesystem")), String(info.system.filesystem).toUpperCase()]); 
 			}
 			
 			$scope.systemMemoryTbl.rows = [
