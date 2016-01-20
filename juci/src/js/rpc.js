@@ -57,8 +57,8 @@
 		RPC_CACHE = retain; 
 		
 		data.ubus_rpc_session = RPC_SESSION_ID; 
-		//if(!connect) connect = $rpc2.$connect("ws://"+window.location.host+"/websocket/");
-		if(!connect) connect = $rpc2.$connect("ws://192.168.2.1:8080/websocket/");
+		if(!connect) connect = $rpc2.$connect("ws://"+window.location.host+"/websocket/");
+	//	if(!connect) connect = $rpc2.$connect("ws://192.168.1.1/websocket/");
 		connect.done(function(){
 			if(type == "call"){
 				var start_time = Date.now(); 
