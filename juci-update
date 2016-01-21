@@ -7,13 +7,13 @@ MODE="$2"
 MODE=${MODE:="RELEASE"}
 
 
-if [ "$MODE" = "RELEASE" ]; then
-	JS_WILDCARD="*.js.gz"
-	CSS_WILDCARD="*.css.gz"
-else
+#if [ "$MODE" = "RELEASE" ]; then
+#	JS_WILDCARD="*.js.gz"
+#	CSS_WILDCARD="*.css.gz"
+#else
 	JS_WILDCARD="*.js"
 	CSS_WILDCARD="*.css"
-fi
+#fi
 
 echo "Using mode: $MODE..."
 
@@ -91,6 +91,6 @@ echo "<!doctype html>
 </body>
 </html>" > ${INDEX}
 
-if [ "$MODE" = "RELEASE" ]; then
-	gzip -f ${INDEX}
-fi
+#if [ "$MODE" = "RELEASE" ]; then
+#	gzip -f ${INDEX}
+#fi
