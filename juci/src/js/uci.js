@@ -228,7 +228,7 @@
 			},
 			get error(){
 				// make sure we ignore errors if value is default and was not changed by user
-				if(this.uvalue == this.schema.dvalue) return null; 
+				if(this.uvalue == this.schema.dvalue || this.uvalue == this.ovalue) return null; 
 				if(this.validator) return this.validator.validate(this); 
 				return null; 
 			},
