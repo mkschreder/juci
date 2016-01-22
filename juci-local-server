@@ -7,7 +7,7 @@ var fs = require("fs");
 var request = require("request"); 
 var http = require("http"); 
 var bodyParser = require('body-parser')
-var config = { port: 3000 };
+var config = { port: 3000, ubus_uri: "192.168.1.1" };
 
 //check if file exists and is a file
 if (fs.existsSync("juci-local-server.config")){
