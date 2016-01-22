@@ -22,7 +22,7 @@
 	function RPC(){
 		this.requests = {}; 
 		this.events = {}; 
-		this.seq = 0; 
+		this.seq = parseInt(Math.random()*65535); 
 		this.connected = false; 
 	}
 
@@ -38,6 +38,7 @@
 		} 
 		socket.onerror = function(){
 			console.log("Websocket error!"); 
+			def.reject(); 
 			/*setTimeout(function(){
 				self.$connect(address); 
 			}, 5000); */
@@ -94,12 +95,14 @@
 			id: self.seq,
 			deferred: $.Deferred()
 		}; 
-		self.socket.send(JSON.stringify({
+		var str = JSON.stringify({
 			jsonrpc: "2.0", 
 			id: req.id, 
 			method: "call", 
 			params: [object, method, data]
-		})+"\n"); 
+		})+"\n";  
+		console.log("websocket > "+str); 
+		self.socket.send(str); 
 		return req.deferred.promise();  
 	}
 	RPC.prototype.$subscribe = function(name, func){
@@ -121,12 +124,14 @@
 			id: self.seq,
 			deferred: $.Deferred()
 		}; 
-		self.socket.send(JSON.stringify({
+		var str = JSON.stringify({
 			jsonrpc: "2.0", 
 			id: req.id, 
-			method: "call", 
-			params: ["/ubus/peer", "ubus.peer.list", {}]
-		})+"\n"); 
+			method: "list", 
+			params: ["*"]
+		})+"\n"; 
+		console.log("websocket > "+str); 
+		self.socket.send(str); 
 		return req.deferred.promise();  
 
 	}

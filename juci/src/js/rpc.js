@@ -62,9 +62,11 @@
 		connect.done(function(){
 			if(type == "call"){
 				var start_time = Date.now(); 
+				console.log("rpc call"); 
 				$rpc2.$call(namespace, method, data).done(function(ret){
 					var def = RPC_CACHE[key].deferred; 
 					var time_taken = Date.now() - start_time; 
+					console.log("ret: "+JSON.stringify(ret)); 
 					if(ret[0] && (ret[0].code != undefined || ret[0].error)){
 						console.log("FAIL request ("+time_taken+"ms): "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
 						def.reject(ret[0] || {}); 
@@ -73,10 +75,15 @@
 						console.log("request ("+time_taken+"ms): "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
 						def.resolve(ret[0]); 
 					}
+				}).fail(function(){
+					console.log("RPC FAIL!"); 
+					def.reject(); 
 				}); 
 			} else if(type == "list"){
 				$rpc2.$list().done(function(ret){
 					RPC_CACHE[key].deferred.resolve(ret[0] || {}); 
+				}).fail(function(){
+					RPC_CACHE[key].deferred.reject(); 
 				}); 
 			}
 		}); 
