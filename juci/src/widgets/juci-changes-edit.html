@@ -1,17 +1,16 @@
 <div>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th translate>Config</th>
-				<th translate>Section</th>
-				<th translate>Option</th>
-				<th translate>Old value</th>
-				<th translate>New value</th>
-			</tr>
-		</thead>
-	</table>	
 	<div style="max-height:300px;overflow:auto;">
 		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate>Config</th>
+					<th translate>Section</th>
+					<th translate>Option</th>
+					<th translate>Old value</th>
+					<th translate>New value</th>
+					<th></th>
+				</tr>
+			</thead>
 			<tbody>
 				<tr ng-repeat="item in model.changes track by $index">
 					<td>{{item.config|maxlength:30}}</td>
