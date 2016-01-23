@@ -88,8 +88,8 @@ JUCI.app
 			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
 			'<div class="btn-toolbar" >'+
 			'<button class="btn btn-lg btn-default col-lg-2" ng-show="changes && changes.length" ng-click="showChanges()">{{"Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
-			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()">{{ "Cancel" | translate }}</button>'+
-			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
+			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" title="{{\'Reload settings from router\'|translate}}">{{ "Reload" | translate }}</button>'+
+			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
 			'</div><div style="clear: both;"></div></div>', 
 		replace: true, 
 		scope: {
@@ -97,7 +97,7 @@ JUCI.app
 		}, 
 		controller: "juciConfigApplyController"
 	 }; 
-}).controller("juciConfigApplyController", function($scope, $uci, $rootScope, gettext, $juciDialog){
+}).controller("juciConfigApplyController", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
 	$scope.numUnsavedChanges = function(){
 		$scope.changes = [];
 		Object.keys($uci).map(function(x){
@@ -168,7 +168,9 @@ JUCI.app
 	}
 	$scope.onCancel = function(){
 		// simple way to reset
-		window.location.reload(); 
+		if(confirm($tr(gettext("Are you sure you want to reload settings from the router? All your current changes will be lost!")))){
+			window.location.reload(); 
+		}
 	}
 }); 
 
