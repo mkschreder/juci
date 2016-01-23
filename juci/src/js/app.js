@@ -152,7 +152,8 @@ angular.element(document).ready(function() {
 	JUCI.$init().done(function(){
 		angular.bootstrap(document, ["juci"]);
 	}).fail(function(){
-		alert("JUCI failed to initialize! look in browser console for more details (this should not happen!)"); 
+		window.location = "/initfail.html"; 
+		//alert("JUCI failed to initialize! look in browser console for more details (this should not happen!)"); 
 	}); 
 });
 

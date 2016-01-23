@@ -75,4 +75,5 @@ define Plugin/juci/install
 	$(CP) $(PLUGIN_DIR)/lualibs/* $(1)/usr/share/lua/
 	$(CP) $(PLUGIN_DIR)/lua/* $(1)/usr/share/lua/juci/
 	$(CP) $(PLUGIN_DIR)/reboot.html $(1)/www/	
+	$(CP) $(PLUGIN_DIR)/initfail.html $(1)/www/	
 endef

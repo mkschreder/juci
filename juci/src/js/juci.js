@@ -79,6 +79,7 @@
 		var scripts = []; 
 		var deferred = $.Deferred(); 
 		var $rpc = scope.UBUS; 
+		// TODO: maybe rewrite the init sequence
 		async.series([
 			function(next){
 				scope.UBUS.$init().done(function(){
@@ -86,22 +87,33 @@
 						// TODO: make this prettier. 
 						//alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
 						//return; 
+						deferred.reject(); 
+						return; 
 					} 
 					next();
 				}).fail(function(){
-					console.warning("UBUS failed to initialize: this means that no rpc calls will be available. You may get errors if other parts of the application assume a valid RPC connection!"); 
-					next(); 
+					console.error("UBUS failed to initialize: this means that no rpc calls will be available. You may get errors if other parts of the application assume a valid RPC connection!"); 
+					deferred.reject(); 
+					//next(); 
 				}); 
 			},  
 			function(next){
-				$uci.$init().fail(function(){
+				$uci.$init().done(function(){
+					next(); 
+				}).fail(function(){
 					console.error("UCI failed to initialize!"); 
-				}).always(function(){ next(); }); 
+					next(); 
+					//deferred.reject(); 
+				}); 
 			}, 
 			function(next){
-				$juci.config.$init().fail(function(){
+				$juci.config.$init().done(function(){
+					next(); 
+				}).fail(function(){
 					console.error("CONFIG failed to initialize!"); 
-				}).always(function(){ next(); }); 
+					next(); 
+					//deferred.reject(); 
+				}); 
 			}, 
 			function(next){
 				$rpc.$authenticate().done(function(){
