@@ -61,7 +61,8 @@ local function user_set_password(opts)
 end
 
 local function user_list(opts)
-	local shadow = shadow_table(); 
+	-- list only users that are configured for rpc logins
+	local all_users = juci.shell("uci show rpcd | grep username | awk -F'=' '{print $2;}'");  
 	local users = {};
 	local listothers = juci.session.access(opts.sid, "passwd", "otheruser", { "write" }); 
 	local session = juci.session.get(opts.sid); 
@@ -69,11 +70,11 @@ local function user_list(opts)
 		print(json.encode({ users = {}, error = "Session not found! ("..(opts.sid or "")..")"}));
 		return 1; 
 	end
-	for _,entry in ipairs(shadow) do
+	for _,user in ipairs(all_users) do
 		if(not listothers) then 
-			if(session.data.username == entry[1]) then table.insert(users, entry[1]); end
+			if(session.data.username == user) then table.insert(users, user); end
 		else
-			table.insert(users, entry[1]); 
+			table.insert(users, user); 
 		end
 	end
 	print(json.encode({ users = users }));  
