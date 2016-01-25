@@ -70,7 +70,7 @@ local function user_list(opts)
 		print(json.encode({ users = {}, error = "Session not found! ("..(opts.sid or "")..")"}));
 		return 1; 
 	end
-	for _,user in ipairs(all_users) do
+	for user in all_users:gmatch("[^\r\n]+") do
 		if(not listothers) then 
 			if(session.data.username == user) then table.insert(users, user); end
 		else
