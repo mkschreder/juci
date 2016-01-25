@@ -6,10 +6,11 @@
 	</div>
 	<div class="panel-body">
 		<div class="col-xs-8" style="white-space: nowrap;">
-			<juci-select ng-model="currentNetmode" ng-items="allNetmodes" ></juci-select>
+			<juci-select ng-show="allNetmodes.length" ng-model="currentNetmode" ng-items="allNetmodes" ></juci-select>
+			<p translate ng-show="!allNetmodes.length">No profiles avalible</p>
 		</div>
 		<div class="col-xs-4">
-			<button class="btn btn-success pull-right" ng-click="onChangeModeConfirm()" translate>Apply</button>
+			<button class="btn btn-success pull-right" ng-click="onChangeModeConfirm()" ng-disabled="!(allNetmodes.length > 0)" translate>Apply</button>
 		</div>
 	</div>
 </div>
