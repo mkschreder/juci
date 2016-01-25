@@ -93,11 +93,52 @@
 	
 	function IP4AddressValidator(){
 		this.validate = function(field){
-			if(field.value && field.value != "" && !field.value.match(/^\b(?:\d{1,3}\.){3}\d{1,3}\b$/)) return gettext("IP Address must be a valid ipv4 address!"); 
+			var error = gettext("IP Address must be a valid IPv4 address!");
+			if(!field.value || field.value == "") return null;
+			if(field.value.match(/^[\.\d]+$/) == null) return error;
+			if(field.value.split(".").length != 4 || field.value.split(".")
+				.filter(function(part){ return (part !="" && (parseInt(part) < 256))}).length != 4) return error;
 			return null;
 		}
-	}; 
-	
+	};
+
+	function IP4MulticastAddressValidator(){
+		this.validate = function(field){
+			if(!field.value || field.value == "") return null;
+			var error = gettext("Address is not a valid  Multicast address");
+			var ipv4 = new IP4AddressValidator();
+			if(ipv4.validate(field) != null) return error;
+			if(parseInt(field.value.split(".")[0]) > 239 || parseInt(field.value.split(".")[0]) < 224) return error;
+			return null;
+		}
+	};
+
+	function IP4UnicastAddressValidator(){
+		this.validate = function(field){
+			var error = gettext("IP Address is not a valid Unicast address!");
+			if(!field.value || field.value == "") return null;
+			if(field.value == "0.0.0.0") return error;
+			var ip4 = new IP4AddressValidator();
+			if(ip4.validate(field) != null) return error;
+			var ip4multi = new IP4MulticastAddressValidator();
+			if(ip4multi.validate(field) == null) return error; // multicast addresses is not valid unicast address;
+			return null;
+		};
+	};
+
+	function IP4CIDRValidator(){
+		this.validate = function(field){
+			if(!field.value || field.value == "") return null;
+			ipv4 = new IP4AddressValidator();
+			if(field.value.split("/").length != 2) return gettext("IP Address must be on the form: IP address/netmask length");
+			var err = ipv4.validate({ value: field.value.split("/")[0] });
+			if(err) return err;
+			var mask = field.value.split("/")[1];
+			if(!mask.match(/^0/) && mask.match(/^[\d\.]+$/) && parseInt(mask) < 25) return null
+			return gettext("Netmask must be a value between 0 and 24");
+		};
+	};
+
 	function IPAddressValidator(){
 		this.validate = function(field){
 			var ipv4 = new IP4AddressValidator();
@@ -106,30 +147,25 @@
 			return gettext("IP Address must be a valid ipv4 or ipv6 address!");
 		}
 	}; 
+	
+	function IP4NetmaskValidator(){
+		this.validate = function(field){
+			var error = gettext("Netmask must be a valid IPv4 netmask");
+			if(!field.value || field.value == "") return null;
+			var ipv4 = new IP4AddressValidator();
+			if(ipv4.validate(field) != null) return error;
+			if(!field.value.split(".").map(function(part){return ("00000000" + (parseInt(part) >>> 0)
+				.toString(2)).slice(-8);}).join("").match(/^1+0+$/)) return error;
+			return null;
+		}
+	};
 
 	function IP6AddressValidator(){
 		this.validate = function(field){
-			if(field.value && field.value != "" && !field.value.match("("+
-				"([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|"+ //          # 1:2:3:4:5:6:7:8
-				"([0-9a-fA-F]{1,4}:){1,7}:|"+ //                         # 1::                              1:2:3:4:5:6:7::
-				"([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|"+ //         # 1::8             1:2:3:4:5:6::8  1:2:3:4:5:6::8
-				"([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|"+ //  # 1::7:8           1:2:3:4:5::7:8  1:2:3:4:5::8
-				"([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|"+ //  # 1::6:7:8         1:2:3:4::6:7:8  1:2:3:4::8
-				"([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|"+ //  # 1::5:6:7:8       1:2:3::5:6:7:8  1:2:3::8
-				"([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|"+ //  # 1::4:5:6:7:8     1:2::4:5:6:7:8  1:2::8
-				"[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|"+ //       # 1::3:4:5:6:7:8   1::3:4:5:6:7:8  1::8  
-				":((:[0-9a-fA-F]{1,4}){1,7}|:)|"+ //                     # ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8 ::8       ::     
-				"fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|"+ //     # fe80::7:8%eth0   fe80::7:8%1     (link-local IPv6 addresses with zone index)
-				"::(ffff(:0{1,4}){0,1}:){0,1}"+ //
-				"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"+ //
-				"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|"+ //          # ::255.255.255.255   ::ffff:255.255.255.255  ::ffff:0:255.255.255.255  (IPv4-mapped IPv6 addresses and IPv4-translated addresses)
-				"([0-9a-fA-F]{1,4}:){1,4}:"+ //
-				"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"+ //
-				"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"+ //           # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33 (IPv4-Embedded IPv6 Address)
-				")")) return gettext("IPv6 Aaddress must be a valid ipv6 address"); 
-			return null; 
+			if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
+			return null;
 		}
-	} 
+	};
 
 	function MACAddressValidator(){
 		this.validate = function(field){
@@ -968,7 +1004,11 @@
 		MACListValidator: MACListValidator,
 		IPAddressValidator: IPAddressValidator,
 		IP6AddressValidator: IP6AddressValidator,
-		IP4AddressValidator: IP4AddressValidator
+		IP4AddressValidator: IP4AddressValidator,
+		IP4NetmaskValidator: IP4NetmaskValidator,
+		IP4MulticastAddressValidator: IP4MulticastAddressValidator,
+		IP4CIDRValidator: IP4CIDRValidator,
+		IP4UnicastAddressValidator: IP4UnicastAddressValidator
 	}; 
 	/*if(exports.JUCI){
 		var JUCI = exports.JUCI; 

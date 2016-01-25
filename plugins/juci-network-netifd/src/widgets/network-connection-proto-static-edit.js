@@ -20,8 +20,8 @@ JUCI.app
 		$scope.dnslist = $scope.interface.dns.value.map(function(x){return { text:x }});
 	}); 
 	$scope.interface_types = [
-		{ label: $tr(gettext("Local Area Network")), value: true },
-		{ label: $tr(gettext("Wide Area Network")),	 value: false }
+		{ label: $tr(gettext("Uplink")),	 value: false },
+		{ label: $tr(gettext("Downlink")), value: true }
 	];
 	$scope.ip = {};
 	$scope.ip.types = [

@@ -15,12 +15,6 @@
 	GNU General Public License for more details.
 */ 
 
-UCI.validators.IPAddressValidator = function(){
-	this.validate = function(field){
-		if(field.value && field.value != "" && !field.value.match(/^\b(?:\d{1,3}\.){3}\d{1,3}\b$/)) return gettext("IP Address must be a valid ipv4 address!"); 
-		return null;
-	}
-}; 
 
 UCI.validators.IP6PrefixLengthValidator = function(){
 	this.validate = function(field){
@@ -32,23 +26,6 @@ UCI.validators.IP6PrefixLengthValidator = function(){
 		return gettext("valid values are: 'no' and 48-64");
 	}
 };
-
-UCI.validators.IP6AddressValidator = function(){
-	this.validate = function(field){
-		if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
-		return null; 
-	}
-} 
-
-UCI.validators.MACAddressValidator = function(){
-	this.validate = function(field){
-		if(field.value == "") return null;
-		if(!(typeof field.value == "string") ||
-			!field.value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/)) 
-			return gettext("Value must be a valid MAC-48 address"); 
-		return null; 
-	}
-}; 
 
 UCI.validators.MACListValidator = function(){
 	this.validate = function(field){
@@ -81,7 +58,7 @@ UCI.network.$registerSectionType("interface", {
 	"device":				{ dvalue: '', type: String }, 
 	"proto":				{ dvalue: '', type: String }, 
 	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
-	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
+	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4NetmaskValidator },
 	"gateway":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
 	"ip6addr":				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator }, 
 	"ip6gw": 				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator },

@@ -1,8 +1,8 @@
 <div>
 	<juci-config-lines>
-		<!--<juci-config-line title="{{ 'Network Type'  | translate }}" help="{{ '' | translate }}">
+		<juci-config-line title="{{ 'Interface Type'  | translate }}" help="{{ '' | translate }}">
 			<juci-select ng-items="interface_types" ng-model="interface.is_lan.value" on-change="onAssignmentChange($value)"></juci-select>
-		</juci-config-line>-->
+		</juci-config-line>
 		<juci-config-heading translate>IPv4 Settings</juci-config-heading>
 		<juci-config-lines>
 			<juci-config-line title="{{'IPv4 Address'|translate}}" error="interface.ipaddr.error">
@@ -14,12 +14,12 @@
 			<juci-config-line title="{{'IPv4 Broadcast'|translate}}" error="interface.broadcast.error">
 				<juci-input-ipv4-address ng-model="interface.broadcast.value"></juci-input-ipv4-address />
 			</juci-config-line>	
-			<juci-config-line title="{{'Create default route'|translate}}">
-				<switch ng-model="interface.defaultroute.value" class="green"></switch>
-			</juci-config-line>
-			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="interface.defaultroute.value" error="interface.gateway.error">
+			<juci-config-line title="{{'IPv4 Default Gateway'|translate}}" ng-show="!interface.is_lan.value" error="interface.gateway.error">
 				<juci-input-ipv4-address ng-model="interface.gateway.value"></juci-input-ipv4-address />
 			</juci-config-line>	
+			<juci-config-line title="{{'Create default route'|translate}}" ng-show="!interface.is_lan.value">
+				<switch ng-model="interface.defaultroute.value" class="green"></switch>
+			</juci-config-line>
 			<network-connection-dns-config ng-model="interface"></network-connection-dns-config>
 		</juci-config-lines>
 	</juci-config-section>
