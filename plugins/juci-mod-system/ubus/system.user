@@ -54,7 +54,7 @@ local function user_set_password(opts)
 		print(json.encode({ error = "Invalid username/password!"})); 
 		return 1; 
 	end
-	local stdout = juci.shell("echo -e \"%s\" | passwd admin", opts["password"].."\\n"..opts["password"]); 
+	local stdout = juci.shell("echo -e \"%s\" | passwd %s", opts["password"].."\\n"..opts["password"], opts["username"]); 
 	print(json.encode({
 		["stdout"] = stdout
 	})); 
