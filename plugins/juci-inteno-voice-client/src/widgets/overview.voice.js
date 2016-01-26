@@ -17,6 +17,7 @@ JUCI.app
 .controller("overviewWidgetVoice", function($scope, $rpc, $uci, $tr, gettext){
 	$scope.sipAccounts = []; 
 	$scope.phoneSchedStatus = gettext("off"); 
+	$scope.str_unknown = $tr(gettext("Unknown"));
 
 	JUCI.interval.repeat("load-phone-small-widget", 5000, function(done){
 		async.series([

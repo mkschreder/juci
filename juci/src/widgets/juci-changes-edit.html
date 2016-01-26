@@ -8,7 +8,7 @@
 					<th translate>Option</th>
 					<th translate>Old value</th>
 					<th translate>New value</th>
-					<th></th>
+					<th ng-hide="hideBtn"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,7 +18,7 @@
 					<td>{{item.option|maxlength:30}}</td>
 					<td>{{item.ovalue|maxlength:30}}</td>
 					<td>{{item.uvalue|maxlength:30}}</td>
-					<td><span ng-click="onRevertOption($index)" style="cursor:pointer;"><i class="fa fa-trash"></i></span></td>
+					<td ng-hide="hideBtn"><span ng-click="onRevertOption($index)" style="cursor:pointer;"><i class="fa fa-trash"></i></span></td>
 				</tr>
 			</tbody>
 		</table>

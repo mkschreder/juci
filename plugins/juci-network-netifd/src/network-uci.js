@@ -116,6 +116,12 @@ UCI.network.$registerSectionType("interface", {
 		return gettext("Network interface ") + (section[".name"] || section.name || gettext("Unnamed interface")) + gettext(" MUST have  a protocol set");
 	var errors = [];
 	switch (section.proto.value){
+		case "none":
+			if(section.type.value != "bridge")
+				errors.push(gettext("Unmanaged networks need to be setup as a bridge"));
+			if(section.ifname.value == "")
+				errors.push(gettext("Unmanaged networks need at least one device in bridge"));
+			break;
 		case "static":
 			if(section.ipaddr.value && section.netmask.value){
 				var ip = section.ipaddr.value.split("."); 
