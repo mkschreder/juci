@@ -27,6 +27,7 @@ JUCI.app
 	};
 	
 	$scope.allProtocolTypes = [
+		{ label: $tr(gettext("Unmanaged")),								value: "none",		physical: true },
 		{ label: $tr(gettext("Static Address")), 						value: "static",	physical: true }, 
 		{ label: $tr(gettext("DHCP v4")), 								value: "dhcp",		physical: true }, 
 		{ label: $tr(gettext("DHCP v6")), 								value: "dhcpv6",	physical: true }, 
@@ -53,12 +54,13 @@ JUCI.app
 	]; 
 	$rpc.juci.network.protocols().done(function(data){
 		$scope.protocolTypes = $scope.allProtocolTypes.filter(function(x){
-			if(x.value == "static") return true;
+			if(x.value == "static" || x.value == "none") return true; //should allways be there
 			return data.protocols.find(function(p){ return p == x.value }) != undefined;
 		});
 	});
 	var standard_exc = ["macaddr","mtu","auto","metric"];
 	var exceptions = {
+		"none":		["ifname","type"],
 		"static":	["ifname","type","ipaddr","netmask","gateway","broadcast","ip6addr","ip6gw","ip6assign","ip6hint","ip6prefix","dns"],
 		"dhcp":		["ifname","type","broadcast","hostname","clientid","vendorid","dns","peerdns","defaultroute"],
 		"dhcpv6":	["ifname","type","reqaddress","reqprefix","clientid","dns","defaultroute","peerdns","ip6prefix"],
@@ -83,7 +85,9 @@ JUCI.app
 		//TODO maby change confirm to juciDialog
 		if(value == oldvalue) return;
 		if(confirm($tr(gettext("Are you sure you want to switch? Your settings will be lost!")))){
-			var exc = exceptions[value].concat(standard_exc);
+			if(exceptions[value]){
+				var exc = exceptions[value].concat(standard_exc);
+			}
 			$scope.interface.$reset_defaults(exc || []);
 			setProto(value);
 			return true;
