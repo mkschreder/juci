@@ -13,6 +13,7 @@
 				</juci-config-line>
 			</juci-config-lines>
 			<div dynamic="editor"/>
+			<network-connection-dns-config ng-model="wan"></network-connection-dns-config>
 		</juci-config-section>
 		<h1 translate>WAN IPv6 Configuration</h1>
 		<div class="alert alert-danger" ng-show="loaded && !wan6" translate>No wan interface found</div>
