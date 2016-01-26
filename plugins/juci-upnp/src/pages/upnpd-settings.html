@@ -7,16 +7,16 @@
 		<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
 		<juci-config-section>
 			<table class="table" ng-show="upnpOpenPorts.length">
-				<thead>
+				<tr>
 					<th>#</th>
-					<th translate>Packets cnt.</th>
+					<th translate>Pkts. cnt.</th>
 					<th translate>Bytes</th>
 					<th translate>Target</th>
-					<th translate>Proto</th>
+					<th translate>Proto.</th>
 					<th translate>Opt</th>
 					<th translate>Source</th>
 					<th translate>Dest.</th>
-				</thead>
+				</tr>
 				<tr ng-repeat="port in upnpOpenPorts">
 					<td>{{port.num}}</td>
 					<td>{{port.packets}}</td>
@@ -24,8 +24,8 @@
 					<td>{{port.target}}</td>
 					<td>{{port.proto}}</td>
 					<td>{{port.opt}}</td>
-					<td>{{port.src}}</td>
-					<td>{{port.dst}}</td>
+					<td>{{port.src}} {{port.src_port}}</td>
+					<td>{{port.dst}} {{port.dst_port}}</td>
 				</tr>
 			</table>
 		</juci-config-section>
