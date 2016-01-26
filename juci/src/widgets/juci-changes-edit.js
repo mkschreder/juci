@@ -5,7 +5,8 @@ JUCI.app
 	return {
 		templateUrl: "/widgets/juci-changes-edit.html",
 		scope: {
-			model: "=ngModel"
+			model: "=ngModel",
+			hideBtn: "="
 		},
 		replace: true,
 		require: "^ngModel",
