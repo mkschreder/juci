@@ -16,7 +16,7 @@
 		</div>
 		<div class="row" style="margin-bottom: 10px"  ng-repeat="sip in sipAccounts track by $index">
 			<div class="col-xs-2"><strong>S{{$index || '0' |uppercase}}: </strong></div>
-			<div class="col-xs-6"><strong>{{sip.name.value || sip.user.value||'Unknown' | translate}}</strong></div>
+			<div class="col-xs-6"><strong>{{sip.name.value || sip.user.value|| str_unknown }}</strong></div>
 			<div class="col-xs-2 pull-right"><i class="{{sip.$icon}}"></i></div>
 		</div>
 	</div>

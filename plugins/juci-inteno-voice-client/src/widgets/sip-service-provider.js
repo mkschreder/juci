@@ -33,9 +33,9 @@ JUCI.app
 			else break;
 		}
 		$uci.voice_client.$create({
-			".type":"sip_service_provider", 
-			".name":"sip" + number, 
-			name:"Account " + (number + 1),
+			".type": "sip_service_provider", 
+			".name": "sip" + number, 
+			name: $tr(gettext("Account ")) + (number + 1),
 			codec0: "alaw",
 			ptime_alaw: 20,
 			transport: "udp"
