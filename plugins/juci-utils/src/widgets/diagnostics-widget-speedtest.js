@@ -102,41 +102,42 @@ JUCI.app
 		});
 	}
 	$events.subscribe("juci.utils.speedtest", function(res){
-		console.log(res);
-		switch(res.data.status) {
-		case 0:
-			var upstream = parseInt(res.data.upstream);
-			if(upstream == "NaN") {
-				upstream = "none"
-			}else{
-				upstream = upstream / 1000 / 1000;
+		if(res.data && res.data.status){
+			switch(res.data.status) {
+			case 0:
+				var upstream = parseInt(res.data.upstream);
+				if(upstream == "NaN") {
+					upstream = "none"
+				}else{
+					upstream = upstream / 1000 / 1000;
+				}
+				var downstream = parseInt(res.data.downstream);
+				if(downstream == "NAN"){
+					downstream = "none"
+				}else{
+					downstream = downstream / 1000 / 1000;
+				}
+				if(res.data.upstream != "none" && res.data.downstream != "none"){
+					$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s\nDownstream: " + downstream.toFixed(2) + " Mbit/s";
+				}else if(res.data.upstream != "none"){
+					$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s";
+				}else if(res.data.downstream != "none"){
+					$scope.data.result="Downstream: " + downstream.toFixed(2) + " Mbit/s";
+				}else {
+					$scope.data.result="No speeds found";
+				}
+				$scope.data.state="result";
+				break;
+			case -1:
+				$scope.data.result="Wrong TP-test address and/or port";
+				$scope.data.state="error";
+				break;
+			case -2:
+				$scope.data.result="Wrong TP-test port but correct address";
+				$scope.data.state="error";
+				break;
 			}
-			var downstream = parseInt(res.data.downstream);
-			if(downstream == "NAN"){
-				downstream = "none"
-			}else{
-				downstream = downstream / 1000 / 1000;
-			}
-			if(res.data.upstream != "none" && res.data.downstream != "none"){
-				$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s\nDownstream: " + downstream.toFixed(2) + " Mbit/s";
-			}else if(res.data.upstream != "none"){
-				$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s";
-			}else if(res.data.downstream != "none"){
-				$scope.data.result="Downstream: " + downstream.toFixed(2) + " Mbit/s";
-			}else {
-				$scope.data.result="No speeds found";
-			}
-			$scope.data.state="result";
-			break;
-		case -1:
-			$scope.data.result="Wrong TP-test address and/or port";
-			$scope.data.state="error";
-			break;
-		case -2:
-			$scope.data.result="Wrong TP-test port but correct address";
-			$scope.data.state="error";
-			break;
+			$scope.$apply();
 		}
-		$scope.$apply();
 	});
 }); 
