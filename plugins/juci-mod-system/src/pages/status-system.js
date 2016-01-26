@@ -23,6 +23,33 @@ UCI.juci.$insertDefaults("pagesystemstatus");
 
 JUCI.app
 .controller("StatusSystemPage", function ($scope, $rootScope, $uci, $rpc, gettext, $tr, $config) {
+	$scope.changes = [];
+	Object.keys($uci).map(function(x){
+		var tmp = []
+		if($uci[x].$getWriteRequests){
+			tmp = $uci[x].$getWriteRequests();
+		}
+		tmp.map(function(ch){
+			if(ch.values){
+				Object.keys(ch.values).map(function(opt){
+					var uciField = $uci[ch.config][ch.section][opt];
+					if(uciField.ovalue instanceof Array){
+						if(uciField.ovalue.length == uciField.uvalue.length){
+							var eq = true;
+							for(var i = 0; i < uciField.ovalue.length; i++){
+								if(uciField.ovalue[i] != uciField.uvalue[i]) eq = false;
+							}
+							if(eq) return;
+						}
+					}		
+					if(uciField.ovalue == uciField.uvalue) return;
+					$scope.changes.push({ config:ch.config, section: ch.section, option: opt, uvalue:ch.values[opt], ovalue: uciField.ovalue })
+				});
+			}
+		});
+	});
+	$scope.data = {changes: $scope.changes}
+
 	$scope.systemStatusTbl = {
 		rows: [["", ""]]
 	}; 
