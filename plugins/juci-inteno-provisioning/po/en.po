@@ -117,8 +117,8 @@ msgstr ""
 
 # /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/juci-inteno-provisioning-settings.html
 msgid "settings-provisioning-iup-title"
-msgstr "Inteno Provisioning"
+msgstr "Provisioning"
 
 # /home/reidar/juci/plugins/juci-inteno-provisioning/src/pages/juci-inteno-provisioning-settings.html
 msgid "menu-settings-provisioning-iup-title"
-msgstr "Inteno Provisioning"
+msgstr "Provisioning"
