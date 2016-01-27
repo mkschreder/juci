@@ -322,7 +322,7 @@
 							if(!value) value = []; 
 							break; 
 						//case Boolean: 
-							//if(data[k] === "true" || data[k] === "1" || data[k] === "on") value = true; 
+							//if(data[k] === 'true" || data[k] === "1" || data[k] === "on") value = true; 
 							//else if(data[k] === "false" || data[k] === "0" || data[k] == "off") value = false; 
 						//	break; 
 						default: 
