@@ -950,7 +950,7 @@
 				//	deferred.resolve(); 
 				//	return; 
 				//} commenting out because we do need to commit if new sections have been added
-				$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
+				//$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
 					async.eachSeries(Object.keys(self), function(config, next){
 						if(self[config].constructor != UCI.Config || !self[config][".need_commit"]) {
 							next(); 
@@ -959,30 +959,35 @@
 						console.log("Committing changes to "+config); 
 						$rpc.uci.commit({config: config}).done(function(){
 							self[config][".need_commit"] = false; 
+							// we need to set deferred to null to make sync work (with new changes to how we handle changed fields)
+							// the sync is necessary to make sure that all data is reloaded and has correct names after a commit
+							// removing this sync will result in weird behaviour such as certain fields not being deleted even 
+							// though you have called uci delete on them. Basically we currently have to resync the state in order
+							// to guarantee more fault tolerant operation. 
+							self[config].deferred = null; 
 							self[config].$sync().done(function(){
 								next(); 
 							}).fail(function(err){
 								console.log("error synching config "+config+": "+err); 
+								next(); 
 							}); 
 						}).fail(function(err){
 							errors.push("could not commit config: "+err); 
 							next(); 
 						}); 
-						next(); 
 					}, function(){
-						console.log("Commit done!"); 
 						// this is to always make sure that we do this outside of this code flow
 						setTimeout(function(){
 							if(errors && errors.length) deferred.reject(errors); 
 							else deferred.resolve(); 
 						},0); 
 					}); 
-				}).fail(function(error){
+			//	}).fail(function(error){
 					// Apply may fail for a number of reasons (for example if there is nothing to apply) 
 					// but it does not matter so we should not fail when it does not succeed. 
-					deferred.resolve(); 
+			//		deferred.resolve(); 
 					//deferred.reject([error]); 
-				}); 
+			//	}); 
 			}
 		]); 
 		return deferred.promise(); 
