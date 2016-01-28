@@ -243,8 +243,16 @@
 				else return this.uvalue; 
 			},
 			set value(val){
-				// do not update if value has not changed
-				if(val == this.uvalue) return; 
+				// set dirty if not same
+				var self = this; 
+				self.is_dirty = val != self.ovalue; 
+				if(self.ovalue instanceof Array && !(val instanceof Array)) return; 
+				if(val instanceof Array && self.ovalue instanceof Array){
+					self.is_dirty = false; 
+					if(val.length != self.ovalue.length) self.is_dirty = true; 
+					val.forEach(function(x, i){ if(self.ovalue[0] != x) self.is_dirty = true; }); 
+				}
+
 				// properly handle booleans
 				if(this.schema.type == Boolean){
 					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off"; }
@@ -259,8 +267,6 @@
 						this.uvalue = val; 
 					}
 				}
-				// always set dirty when changed 
-				this.is_dirty = true; 
 			},
 			get error(){
 				// make sure we ignore errors if value is default and was not changed by user
@@ -814,19 +820,20 @@
 					config: self[x][".name"], 
 					section: section[".name"]
 				}); 
-			});*/ 
+			});*/  
 			self[x].$getWriteRequests().map(function(ch){
 				Object.keys(ch.values).map(function(opt){
 					var o = self[x][ch.section][opt]; 
-					var same = ch.uvalue == ch.ovalue; 
-					changes.push({
-						type: "option", 
-						config: self[x][".name"], 
-						section: self[x][ch.section][".name"],
-						option: opt, 
-						uvalue: o.uvalue, 
-						ovalue: o.ovalue
-					}); 
+					if(o.is_dirty){
+						changes.push({
+							type: "option", 
+							config: self[x][".name"], 
+							section: self[x][ch.section][".name"],
+							option: opt, 
+							uvalue: o.uvalue, 
+							ovalue: o.ovalue
+						}); 
+					}
 				}); 
 			});
 		});

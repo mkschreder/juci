@@ -167,6 +167,9 @@ JUCI.app
 	//$scope.onHide = function(){
 //		$scope.hide = true; 
 //	}
+	// TODO: reloading takes a lot of computing (have to go through all fields)
+	// and this reload may happen several times in a row. 
+	// perhaps do not run it every time? 
 	$scope.reload = function(){
 		var changes = $uci.$getChanges(); 
 		if(changes.length > 0) $scope.hide = false; 
