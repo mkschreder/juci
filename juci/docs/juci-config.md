@@ -42,5 +42,4 @@ Example
 			</juci-config-line>
 		</juci-config-lines>
 	</juci-config-section>
-	<juci-config-apply></juci-config-apply>
 

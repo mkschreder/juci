@@ -89,7 +89,7 @@ JUCI.app
 			'<div class="btn-toolbar" >'+
 			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Unsaved Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
 			'<span ng-hide="changes && changes.length">{{"No unsaved changes" | translate}}</span>'+
-			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" ng-disabled="changes && changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
+			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" ng-disabled="changes && !changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
 			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
 			'</div><div style="clear: both;"></div></div>', 
 		replace: true, 
@@ -150,5 +150,27 @@ JUCI.app
 			window.location.reload(); 
 		}
 	}
+}).directive("juciConfigApplyPane", function(){
+	return {
+		template: '<div ng-hide="hide" class="juci-config-apply-pane">'+
+		//'<button class="btn btn-sm btn-default pull-right" ng-click="onHide()"><i class="fa fa-times-circle"></i></button>'+
+		'<div class="container">{{reload()}}'+
+			'<juci-config-apply></juci-config-apply>'+
+		'</div></div>',
+		scope: {}, 
+		replace: true,
+		controller: "juciConfigApplyPane"
+	}; 
+}).controller("juciConfigApplyPane", function($scope, $uci){
+	$scope.changes = $uci.$getChanges(); 
+	$scope.hide = true; 
+	//$scope.onHide = function(){
+//		$scope.hide = true; 
+//	}
+	$scope.reload = function(){
+		var changes = $uci.$getChanges(); 
+		if(changes.length > 0) $scope.hide = false; 
+		else $scope.hide = true; 
+	};  
 }); 
 
