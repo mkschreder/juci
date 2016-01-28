@@ -54,7 +54,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 				}
 			});
 			to_remove.forEach(function(i){ adapters.splice(i, 1); }); 	
-			Object.keys(ports).map(function(k){
+			/*Object.keys(ports).map(function(k){
 				var port = ports[k]; 
 				adapters.push({
 					name: port.name, 
@@ -62,7 +62,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 					type: port.type, 
 					state: "DOWN"
 				}); 
-			}); 
+			});*/ 
 			def.resolve(); 
 		}).fail(function(){
 			def.reject(); 
@@ -76,12 +76,12 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 		sync.done(function(){
 			var devices = [];
 			if($uci.ports && $uci.ports["@ethport"]){
-				var devices = $uci.ports["@ethport"].map(function(port){
+				devices = $uci.ports["@ethport"].map(function(port){
 					return {
 						get name(){ return port.name.value; },
 						get id(){ return port.ifname.value; },
 						get type(){ return "eth-port" }
-						//base: { name: port.name.value, id: port.ifname.value }
+						base: { name: port.name.value, id: port.ifname.value }
 					};
 				});
 			}
@@ -93,11 +93,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 					get type(){ return "vlan"; }
 				});
 			}
-			if(devices){
-				def.resolve(devices);
-			} else {
-				def.resolve([]); 
-			}
+			def.resolve(devices);
 		}); 
 		return def.promise(); 
 	}
