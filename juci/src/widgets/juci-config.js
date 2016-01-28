@@ -87,8 +87,9 @@ JUCI.app
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
 			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
 			'<div class="btn-toolbar" >'+
-			'<button class="btn btn-lg btn-default col-lg-2" ng-show="changes && changes.length" ng-click="showChanges()">{{"Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
-			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" title="{{\'Reload settings from router\'|translate}}">{{ "Reload" | translate }}</button>'+
+			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Unsaved Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
+			'<span ng-hide="changes && changes.length">{{"No unsaved changes" | translate}}</span>'+
+			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" ng-disabled="changes && changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
 			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
 			'</div><div style="clear: both;"></div></div>', 
 		replace: true, 
@@ -99,33 +100,9 @@ JUCI.app
 	 }; 
 }).controller("juciConfigApplyController", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
 	$scope.numUnsavedChanges = function(){
-		$scope.changes = [];
-		Object.keys($uci).map(function(x){
-			var tmp = []
-			if($uci[x].$getWriteRequests){
-				tmp = $uci[x].$getWriteRequests();
-			}
-			tmp.map(function(ch){
-				if(ch.values){
-					Object.keys(ch.values).map(function(opt){
-						var uciField = $uci[ch.config][ch.section][opt];
-						if(uciField.ovalue instanceof Array){
-							if(uciField.ovalue.length == uciField.uvalue.length){
-								var eq = true;
-								for(var i = 0; i < uciField.ovalue.length; i++){
-									if(uciField.ovalue[i] != uciField.uvalue[i]) eq = false;
-								}
-								if(eq) return;
-							}
-						}		
-						if(uciField.ovalue == uciField.uvalue) return;
-						$scope.changes.push({ config:ch.config, section: ch.section, option: opt, uvalue:ch.values[opt], ovalue: uciField.ovalue })
-					});
-				}
-			});
-		});
+		$scope.changes = $uci.$getChanges();
 		return $scope.changes.length;
-	};
+	}; 
 	$scope.showChanges = function(){
 		var model = {changes: $scope.changes};
 		$juciDialog.show("juci-changes-edit", {
@@ -149,6 +126,7 @@ JUCI.app
 		$scope.errors = []; 
 		try {
 			$uci.$save().done(function(){
+				$scope.numUnsavedChanges(); 
 				console.log("Saved uci configuration!"); 
 			}).fail(function(errors){
 				$scope.errors = errors; 

@@ -519,7 +519,7 @@
 			var errors = [];
 			var self = this;  
 			Object.keys(self).map(function(x){
-				if(self[x].constructor == UCI.Section) {
+				if(self[x] && self[x].constructor == UCI.Section) {
 					self[x].$getErrors().map(function(e){
 						if(e instanceof Array){
 							errors = errors.concat(e.map(function(err){ return self[".name"]+"."+x+": "+err;}));
@@ -531,7 +531,18 @@
 			}); 
 			return errors; 
 		}
-	
+		
+		UCIConfig.prototype.$reset = function(){
+			var self = this; 
+			Object.keys(self).map(function(x){
+				if(self[x] && self[x].constructor == UCI.Section){
+					self[x].$reset(); 
+					if(self[x][".new"]) self[x].$delete(); 
+				}
+			}); 
+			self[".need_commit"] = false; 
+		}
+
 		UCIConfig.prototype.$mark_for_reload = function(){
 			this.deferred = null; 
 		}
@@ -697,7 +708,7 @@
 				item[".name"] = state.section; 
 				self[".need_commit"] = true; 
 				var section = _insertSection(self, item); 
-				//section[".new"] = true; 
+				section[".new"] = true; 
 				deferred.resolve(section); 
 			}).fail(function(){
 				deferred.reject(); 
@@ -711,7 +722,7 @@
 			var arr = this["@"+type]; 
 			var self = this; 
 			if(!arr){
-				console.error("UCI."+self[".name"]+".$reorder: not such section types, got "+type); 
+				console.error("UCI."+self[".name"]+".$reorder: section "+type+" is unknown!"); 
 				setTimeout(function(){ def.reject(); }, 0); 
 				return def.promise(); 
 			}
@@ -774,6 +785,63 @@
 		return deferred.promise(); 
 	}
 	
+	// returns true if there are uci changes
+	UCI.prototype.$hasChanges = function(){
+		var self = this; 
+		return !!Object.keys(self).find(function(x){ 
+			if(self[x].constructor != UCI.Config) return false; 
+			if(self[x][".need_commit"]) return true; 
+			if(self[x].$getWriteRequests().length) return true; 
+			return false; 
+		}); 
+	}
+	
+	UCI.prototype.$getChanges = function(){
+		var changes = []; 
+		var self = this; 
+		Object.keys(self).map(function(x){
+			if(!self[x] || self[x].constructor != UCI.Config) return; 
+			if(self[x][".need_commit"]){
+				changes.push({
+					type: "config", 
+					config: self[x][".name"]
+				}); 
+			}
+			/*Object.keys(self[x]).map(function(k){
+				var section = self[x][k]; 
+				if(section[".new"]) changes.push({ 
+					type: "add",
+					config: self[x][".name"], 
+					section: section[".name"]
+				}); 
+			});*/ 
+			self[x].$getWriteRequests().map(function(ch){
+				Object.keys(ch.values).map(function(opt){
+					var o = self[x][ch.section][opt]; 
+					var same = ch.uvalue == ch.ovalue; 
+					changes.push({
+						type: "option", 
+						config: self[x][".name"], 
+						section: self[x][ch.section][".name"],
+						option: opt, 
+						uvalue: o.uvalue, 
+						ovalue: o.ovalue
+					}); 
+				}); 
+			});
+		});
+		return changes; 
+	}
+
+	// marks all configs for reload on next sync of the config 
+	UCI.prototype.$clearCache = function(){
+		var self = this; 
+		Object.keys(self).map(function(x){ 
+			if(self[x].constructor != UCI.Config) return; 
+			self[x].$reset(); 
+		}); 
+	}
+
 	UCI.prototype.$registerConfig = function(name){
 		if(!(name in section_types)) section_types[name] = {}; 
 		if(!(name in this)) this[name] = new UCI.Config(this, name); 
