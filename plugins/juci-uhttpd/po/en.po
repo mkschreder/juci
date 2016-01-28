@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Reidar Cederqvist <reidar.cederqvist@gmail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-msgid "uHTTPD Settings"
-msgstr "uHTTPD Settings"
+msgid "HTTPD Settings"
+msgstr "HTTPD Settings"
 
 msgid "uhttpd.settings.info"
 msgstr "Configuration for uHTTPd micro web server. "
@@ -26,14 +26,6 @@ msgid "WWW-root path"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
-msgid "Max Requests"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
-msgid "Max Connections"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
 msgid "UBUS Prefix"
 msgstr ""
 
@@ -41,11 +33,31 @@ msgstr ""
 msgid "ex. /ubus"
 msgstr ""
 
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "Max Requests"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "Max Connections"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "Specify UBUS return codes to log into system log"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "Will only log status codes above that are returned by these ubus calls"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-uhttpd/src/pages/page-uhttpd-settings.html
+msgid "Object.Method"
+msgstr ""
+
 msgid "page-uhttpd-settings-title"
 msgstr "uHTTPd Micro Web-Server Settings"
 
 msgid "menu-page-uhttpd-settings-title"
-msgstr "uHTTPd"
+msgstr "HTTPD"
 
 #~ msgid "settings.upgrade.info"
 #~ msgstr ""

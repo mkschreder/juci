@@ -30,35 +30,14 @@ JUCI.app
 	 };  
 })
 .controller("overviewStatusWidgetWifi", function($scope, $uci, $rpc){
+	$scope.wifiRadios = [];
 	JUCI.interval.repeat("overview-wireless", 1000, function(done){
-		async.series([function(next){
-			$uci.$sync(["wireless"]).done(function(){
-				$scope.wireless = $uci.wireless;  
-				if($uci.wireless && $uci.wireless.status) {
-					if($uci.wireless.status.wlan.value){
-						$scope.statusClass = "text-success"; 
-					} else {
-						$scope.statusClass = "text-default"; 
-					}
-				}
-				$scope.$apply(); 
-				next(); 
-			}); 
-		}, function(next){
-			$rpc.juci.wireless.clients().done(function(result){
-				$scope.done = 1; 
-				var clients = {}; 
-				result.clients.map(function(x){ 
-					if(!clients[x.band]) clients[x.band] = []; 
-					clients[x.band].push(x); 
-				}); 
-				$scope.wifiClients = clients; 
-				$scope.wifiBands = Object.keys(clients); 
-				$scope.$apply(); 
-				next();
-			}); 
-		}], function(){
-			done(); 
+		//TODO: change to ubus call router radios when sukru has added status there
+		$uci.$sync(["wireless"]).done(function(){
+			if($uci.wireless && $uci.wireless["@wifi-device"]){
+				$scope.wifiRadios = $uci.wireless["@wifi-device"];
+			}
+			$scope.$apply(); 
 		}); 
 	}); 
 	

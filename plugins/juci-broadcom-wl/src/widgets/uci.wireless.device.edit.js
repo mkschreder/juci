@@ -28,7 +28,7 @@ JUCI.app
 }).controller("WifiDeviceEditController", function($scope, $rpc, $tr, gettext){
 	$scope.$watch("device", function(device){
 		if(!device) return; 
-		
+
 		$rpc.juci.wireless.radios().done(function(result){
 			if(device[".name"] in result){
 				var settings = result[device[".name"]]; 
