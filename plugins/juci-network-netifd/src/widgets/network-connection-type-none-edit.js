@@ -32,9 +32,15 @@ JUCI.app
 	gettext("network.interface.type.none.tab.title");
 
 	$ethernet.getAdapters().done(function(devs){
-		$scope.baseDevices = devs.filter(function(dev){ return !dev.loopback }).map(function(dev){
-			return { label: dev.device + " ("+dev.name+")", value: dev.device };
+		$scope.baseDevices = devs.filter(function(dev){
+			return !dev.flags || !dev.flags.split(",").find(function(f){ return f == "NOARP"; });
+		}).map(function(dev){
+			return { label: dev.name + " (" + dev.device + ")", value: dev.device };
 		});
+		var wan = $scope.baseDevices.find(function(dev){ return dev.value.match(/^eth[\d]+\.[\d]+$/); });
+		if(wan){
+			$scope.baseDevices = $scope.baseDevices.filter(function(dev){return wan.value.split(".")[0] != dev.value; });
+		}
 		$scope.$apply();
 	});
 });
