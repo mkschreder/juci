@@ -159,6 +159,7 @@ wireless_radios(){
 		CHAN=$(wlctl -i $radio assoc|grep "Primary channel"|awk '{print $NF}');
 		json_add_string "current_channel" $CHAN
 		json_add_string "frequency" "$FREQ"
+		json_add_boolean "isup" "$(wlctl -i $radio isup)";
 		json_close_object
 	done
 	json_dump
