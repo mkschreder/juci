@@ -1,13 +1,16 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'Username'|translate}}">
+		<juci-config-line title="{{'PAP/CHAP Username'|translate}}">
 			<input type="text" class="form-control" ng-model="interface.username.value" placeholder="{{'Username'|translate}}"/>
 		</juci-config-line>
-		<juci-config-line title="{{'Password'|translate}}">
+		<juci-config-line title="{{'PAP/CHAP Password'|translate}}">
 			<input type="password" class="form-control" ng-model="interface.password.value" placeholder="{{'Password'|translate}}"/>
 		</juci-config-line>
+		<juci-config-line title="{{'Access Concentrator'|translate}}" help="{{'Leave empty to autodetect' | translate}}">
+			<input type="password" class="form-control" ng-model="interface.ac.value" placeholder="{{'auto'|translate}}"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Service Name'|translate}}" help="{{'Leave empty to autodetect' | translate}}">
+			<input type="password" class="form-control" ng-model="interface.service.value" placeholder="{{'auto'|translate}}"/>
+		</juci-config-line>
 	</juci-config-lines>
-	<juci-config-section>
-		<network-connection-dns-config ng-model="interface"/>
-	</juci-config-section>
 </div>

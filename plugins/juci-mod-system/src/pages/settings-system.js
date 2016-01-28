@@ -16,7 +16,6 @@
 
 JUCI.app
 .controller("SettingsSystemGeneral", function($scope, $rpc, $uci, $tr, gettext){
-	$scope.timezones = {} ; 
 	async.series([
 		function(next){
 			$uci.$sync("system").done(function(){
@@ -26,12 +25,18 @@ JUCI.app
 			}); 
 		}, 
 		function(next){
+			$rpc.system.board().done(function(values){
+				$scope.boardinfo = values; 
+			}).always(function(){next();}); 
+		}, 
+		function(next){
 			$rpc.juci.system.time.zonelist().done(function(result){
 				if(result && result.zones){
-					timezones = result.zones; 
+					$scope.timezones = result.zones; 
 					$scope.allTimeZones = Object.keys(result.zones).sort().map(function(k){
-						return { label: k, value: k }; 
+						return { label: k, value: k.trim() }; 
 					}); 
+					$scope.$apply();
 				}
 				next(); 
 			}); 
@@ -42,8 +47,13 @@ JUCI.app
 	}); 
 	
 	$scope.$watch("system.zonename.value", function(value){
-		if(!value) return; 
+		if(!value || !$scope.timezones) return; 
 		$scope.system.timezone.value = $scope.timezones[value]; 
+	}); 
+	
+	$scope.$watch("system.hostname.value", function(value){
+		if(value == undefined) return; 
+		if(!value) $scope.system.hostname.value = $scope.boardinfo.model.replace(" ", "_"); 
 	}); 
 
 	JUCI.interval.repeat("system.time", 1000, function(done){

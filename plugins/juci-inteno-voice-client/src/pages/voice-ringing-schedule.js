@@ -31,7 +31,7 @@ JUCI.app
 	
 	$uci.$sync(["voice_client"]).done(function(){
 		if(!$uci.voice_client.RINGING_STATUS){
-			$uci.voice_client.create({".type": "ringing_status", ".name": "RINGING_STATUS"}).done(function(section){
+			$uci.voice_client.$create({".type": "ringing_status", ".name": "RINGING_STATUS"}).done(function(section){
 				$scope.settings = $uci.voice_client.RINGING_STATUS; 
 				$scope.$apply(); 
 			}); 
@@ -48,64 +48,15 @@ JUCI.app
 			$scope.allSipAccountsMap[x[".name"]] = x; 
 			return i; 
 		}); 
-		
+
 		$scope.getAccountName = function(item){
 			var provider = $scope.allSipAccountsMap[item.sip_service_provider.value]; 
 			if(provider) return provider.name.value; 
 			return ""; 
 		}
 		$scope.$apply(); 
-	}); 
-	/*
-	$scope.onAcceptSchedule = function(){
-		//$uci.$save().done(function(){
-		var schedule = $scope.schedule; 
-		var errors = schedule.$getErrors(); 
-		
-		if(errors && errors.length){
-			$scope.errors = errors; 
-		} else {
-			$scope.errors = []; 
-			$scope.showScheduleDialog = 0; 
-		}
-	}
-	
-	$scope.onDismissSchedule = function(schedule){
-		if($scope.schedule[".new"]){
-			$scope.schedule.$delete().done(function(){
-				$scope.showScheduleDialog = 0; 
-				$scope.$apply(); 
-			}); 
-		} else {
-			$scope.showScheduleDialog = 0; 
-		}
-	}
-	
-	$scope.onAddSchedule = function(){
-		$uci.voice_client.create({".type": "ringing_schedule"}).done(function(item){
-			$scope.schedule = item; 
-			$scope.schedule[".new"] = true; 
-			$scope.showScheduleDialog = 1; 
-			$scope.$apply(); 
-			console.log("Added new schedule!"); 
-		}).fail(function(err){
-			console.log("Failed to create schedule!"); 
-		}); ; 
-	}
-	
-	$scope.onEditSchedule = function(sched){
-		console.log("Editing: "+sched[".name"]); 
-		$scope.schedule = sched; 
-		$scope.showScheduleDialog = 1; 
-	}
-	$scope.onDeleteSchedule = function(sched){
-		sched.$delete().always(function(){
-			$scope.$apply(); 
-		}); 
-	}
-	*/
-	
-	
+	});
+
 	$scope.onAcceptSchedule = function(){
 		var item = $scope.schedule.uci_item; 
 		var view = $scope.schedule; 
@@ -128,7 +79,7 @@ JUCI.app
 	}
 	
 	$scope.onAddSchedule = function(){
-		$uci.voice_client.create({".type": "ringing_schedule"}).done(function(item){
+		$uci.voice_client.$create({".type": "ringing_schedule"}).done(function(item){
 			item[".new"] = true; 
 			var time = item.time.value.split("-"); 
 			$scope.schedule = {

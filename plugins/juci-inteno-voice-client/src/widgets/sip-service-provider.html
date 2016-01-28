@@ -1,7 +1,7 @@
 <div>
 	<juci-config-section>
-		<juci-config-heading>{{ 'SIP Service Providers' | translate }}</juci-config-heading>
-		<juci-list-editor ng-items="providers" get-item-title="getProviderTitle($item)" show-icon="true" icon-status="$item.enabled.value ? 'success' : 'active'"
+		<juci-config-heading>{{ 'SIP Accounts' | translate }}</juci-config-heading>
+		<juci-list-editor ng-items="providers" get-item-title="getProviderTitle($item)" show-icon="true" icon-status="getIconStatus($item)"
 		item-editor="sip-service-provider-edit"	on-create="onAddProvider()" on-delete="onDeleteProvider($item)"></juci-list-editor>
 	</juci-config-section>
 </div>

@@ -103,7 +103,7 @@ msgid "Idle Timeout"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-dropbear/src/pages/dropbear-authorized-keys.html
-msgid "Accepted SSH keys"
+msgid "Authorized SSH keys"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-dropbear/src/pages/settings-management-dropbear.html

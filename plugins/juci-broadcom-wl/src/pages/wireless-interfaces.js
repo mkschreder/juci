@@ -46,7 +46,7 @@ JUCI.app
 		});
 
 		modalInstance.result.then(function (data) {
-			$uci.wireless.create({
+			$uci.wireless.$create({
 				".type": "wifi-iface",
 				"device": data.radio, 
 				"ssid": data.ssid, 

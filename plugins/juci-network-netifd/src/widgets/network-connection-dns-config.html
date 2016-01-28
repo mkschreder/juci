@@ -1,13 +1,14 @@
 <div>
-	<juci-config-lines>
-		<juci-config-line title="{{'Automatic DNS Configuration'|translate}}">
-			<switch ng-model="interface.peerdns.value" class="green"/>
-		</juci-config-line>
-		<juci-config-line title="{{'Primary DNS'|translate}}" ng-hide="interface.peerdns.value">
-			<input type="text" class="form-control" ng-model="data.primaryDNS" placeholder="{{'Primary DNS IP'|translate}}"/>
-		</juci-config-line>
-		<juci-config-line title="{{'Secondary DNS'|translate}}" ng-hide="interface.peerdns.value">
-			<input type="text" class="form-control" ng-model="data.secondaryDNS" placeholder="{{'Primary DNS IP'|translate}}"/>
-		</juci-config-line>
-	</juci-config-lines>
+	<juci-config-line title="{{'Add/Remove custom DNS Servers'|translate}}" error="interface.dns.error">
+	</juci-config-line>
+	<table class="table table-hover">
+		<tr ng-repeat="dns in data track by $index">
+			<td><juci-input-ipv4-address ng-model="dns.value"></juci-input-ipv4-address></td>
+			<td width="1%"><button class="btn btn-default" ng-click="removeDns($index)"><i class="fa fa-minus"></i></button></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td width="1%"><button class="btn btn-default" ng-click="addDns()"><i class="fa fa-plus"></i></button></td>
+		</tr>
+	</table>
 </div>

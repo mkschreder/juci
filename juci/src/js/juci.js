@@ -52,7 +52,14 @@
 			}
 		}*/
 	}; 
-	
+
+	JUCIMain.prototype.style = function(style){
+		var css = document.createElement("style");
+		css.type = "text/css";
+		css.innerHTML = style.css;
+		document.body.appendChild(css);
+	}
+
 	JUCIMain.prototype.page = function(name, template, redirect){
 		//console.log("Registering page "+name+": "+template); 
 		var page = {
@@ -72,6 +79,7 @@
 		var scripts = []; 
 		var deferred = $.Deferred(); 
 		var $rpc = scope.UBUS; 
+		// TODO: maybe rewrite the init sequence
 		async.series([
 			function(next){
 				scope.UBUS.$init().done(function(){
@@ -79,22 +87,33 @@
 						// TODO: make this prettier. 
 						//alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
 						//return; 
+						deferred.reject(); 
+						return; 
 					} 
 					next();
 				}).fail(function(){
-					console.warning("UBUS failed to initialize: this means that no rpc calls will be available. You may get errors if other parts of the application assume a valid RPC connection!"); 
-					next(); 
+					console.error("UBUS failed to initialize: this means that no rpc calls will be available. You may get errors if other parts of the application assume a valid RPC connection!"); 
+					deferred.reject(); 
+					//next(); 
 				}); 
 			},  
 			function(next){
-				$uci.$init().fail(function(){
+				$uci.$init().done(function(){
+					next(); 
+				}).fail(function(){
 					console.error("UCI failed to initialize!"); 
-				}).always(function(){ next(); }); 
+					next(); 
+					//deferred.reject(); 
+				}); 
 			}, 
 			function(next){
-				$juci.config.$init().fail(function(){
+				$juci.config.$init().done(function(){
+					next(); 
+				}).fail(function(){
 					console.error("CONFIG failed to initialize!"); 
-				}).always(function(){ next(); }); 
+					next(); 
+					//deferred.reject(); 
+				}); 
 			}, 
 			function(next){
 				$rpc.$authenticate().done(function(){
@@ -120,9 +139,9 @@
 				console.log("juci: loading menu from server.."); 
 				$uci.juci["@menu"].map(function(menu){
 					// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
-					if(menu.acls.value.length && menu.acls.value.filter(function(x){
-						return acls[x]; 
-					}).length == 0) return; 
+					if(menu.acls.value.length && menu.acls.value.find(function(x){
+						return !acls[x]; 
+					})) return; 
 
 					var redirect = menu.redirect.value; 
 					var page = menu.page.value; 
@@ -259,7 +278,13 @@
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($interval, $events){
+					onExit: function($uci, $tr, gettext, $interval, $events){
+						/*if($uci.$hasChanges()){
+							if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?"))))
+								$uci.$save(); 
+							else
+								$uci.$clearCache(); 
+						}*/
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$events.removeAll();
@@ -279,8 +304,16 @@
 			};
 		});
 
-		app.run(function($templateCache, $rootScope){
-			var self = scope.JUCI; 
+		app.run(function($templateCache, $rpc, $rootScope){
+			var self = scope.JUCI;
+			// add capability lookup to root scope so that it can be used inside html ng-show directly 
+			$rootScope.has_capability = function(cap_name){
+				if(!$rpc.$session || !$rpc.$session.acls.juci || !$rpc.$session.acls.juci.capabilities || !($rpc.$session.acls.juci.capabilities instanceof Array)) {
+					console.log("capabilities not enabled!"); 
+					return false; 
+				}
+				return $rpc.$session.acls.juci.capabilities.indexOf(cap_name) != -1; 
+			}
 			Object.keys(self.templates).map(function(k){
 				//console.log("Registering template "+k); 
 				$templateCache.put(k, self.templates[k]); 

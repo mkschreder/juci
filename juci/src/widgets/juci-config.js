@@ -87,8 +87,10 @@ JUCI.app
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
 			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
 			'<div class="btn-toolbar" >'+
-			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()">{{ "Cancel" | translate }}</button>'+
-			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
+			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Unsaved Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
+			'<span ng-hide="changes && changes.length">{{"No unsaved changes" | translate}}</span>'+
+			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" ng-disabled="changes && changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
+			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
 			'</div><div style="clear: both;"></div></div>', 
 		replace: true, 
 		scope: {
@@ -96,7 +98,26 @@ JUCI.app
 		}, 
 		controller: "juciConfigApplyController"
 	 }; 
-}).controller("juciConfigApplyController", function($scope, $uci, $rootScope, gettext){
+}).controller("juciConfigApplyController", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
+	$scope.numUnsavedChanges = function(){
+		$scope.changes = $uci.$getChanges();
+		return $scope.changes.length;
+	}; 
+	$scope.showChanges = function(){
+		var model = {changes: $scope.changes};
+		$juciDialog.show("juci-changes-edit", {
+			title: gettext("Unsaved Changes"),
+			on_apply: function(btn, inst){
+				if(!model.reverted) return true;
+				model.reverted.map(function(x){
+					if(!$uci[x.config] || !$uci[x.config][x.section] || !$uci[x.config][x.section][x.option] || !$uci[x.config][x.section][x.option].$reset) return;
+					$uci[x.config][x.section][x.option].$reset();
+				});
+				return true;
+			},
+			model: model
+		});
+	};
 	$scope.onApply = function(){
 		$scope.$emit("errors_begin"); 
 		//if($scope.onPreApply) $scope.onPreApply(); 
@@ -105,6 +126,7 @@ JUCI.app
 		$scope.errors = []; 
 		try {
 			$uci.$save().done(function(){
+				$scope.numUnsavedChanges(); 
 				console.log("Saved uci configuration!"); 
 			}).fail(function(errors){
 				$scope.errors = errors; 
@@ -124,7 +146,9 @@ JUCI.app
 	}
 	$scope.onCancel = function(){
 		// simple way to reset
-		window.location.reload(); 
+		if(confirm($tr(gettext("Are you sure you want to reload settings from the router? All your current changes will be lost!")))){
+			window.location.reload(); 
+		}
 	}
 }); 
 

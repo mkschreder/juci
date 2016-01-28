@@ -34,7 +34,7 @@ JUCI.app
 	});
 	
 	$scope.getTitle = function(cfg){
-		return $tr(gettext("Dropbear Instance ")) + cfg[".name"];
+		return $tr(gettext("Dropbear Instance on Interface: ")) + ((cfg.Interface.value != "") ? String(cfg.Interface.value).toUpperCase() : $tr(gettext("ANY"))) + " Port: " + cfg.Port.value;
 	}
 
 	$scope.onAddInstance = function(){
@@ -72,5 +72,35 @@ JUCI.app
 		} else {
 			$scope.service.start().always(function(){ $scope.$apply(); });
 		}
+	}
+	function refresh(){
+		$rpc.juci.dropbear.get_public_keys().done(function(result){
+			$scope.keyList = result.keys;
+			$scope.$apply();
+		}).fail(function(){
+			$scope.keyList = [];
+		}); 
+	}
+	refresh(); 
+
+	$scope.onDeleteKey = function(item){
+	   $rpc.juci.dropbear.remove_public_key(item).done(function(res){
+	  		if(res.error) alert($tr(res.error)); 	
+			refresh();
+		});
+	}
+
+	$scope.onAddKey = function(){
+		dropbearAddKey.show().done(function(data){
+			$rpc.juci.dropbear.add_public_key(data).done(function(result){
+				if(result.error) alert($tr(result.error)); 
+				refresh();
+			});
+		});
+	}
+
+	$scope.getItemTitle = function(item){
+		if(!item.id || item.id == "") return $tr(gettext("Key ending with"))+" "+item.key.substr(-4); 
+		return item.id; 
 	}
 });

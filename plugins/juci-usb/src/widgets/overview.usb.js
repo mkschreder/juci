@@ -29,10 +29,17 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("overviewWidget40USB", function($scope, $uci, $usb){
-	$usb.getDevices().done(function(devices){
-		$scope.devices = devices.filter(function(dev){ return dev.product && !dev.product.match(/Platform/) && !dev.product.match(/Host Controller/); }); 
-		$scope.loaded = true; 
-		$scope.$apply(); 
-	}); 
+.controller("overviewWidget40USB", function($scope, $uci, $usb, $events){
+	$events.subscribe("hotplug.usb", function(res){
+		if(res.data && res.data.action && (res.data.action == "add" || res.data.action == "remove")){
+			update();
+		}
+	});
+	function update(){
+		$usb.getDevices().done(function(devices){
+			$scope.devices = devices.filter(function(dev){ return dev.product && !dev.product.match(/Platform/) && !dev.product.match(/Host Controller/); }); 
+			$scope.loaded = true; 
+			$scope.$apply(); 
+		}); 
+	}update();
 }); 

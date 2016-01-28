@@ -70,7 +70,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 			}); 
 			// set type for devices whose names start with wl
 			adapters.forEach(function(dev){
-				if(dev.device.indexOf("wl") == 0) dev.type = "wireless"; 
+				if(dev.device && dev.device.indexOf("wl") == 0) dev.type = "wireless"; 
 			}); 
 			def.resolve(); 
 		}).fail(function(){
@@ -175,7 +175,7 @@ JUCI.app.run(function($ethernet, $wireless, $uci){
 	// make sure we create status section if it does not exist. 
 	$uci.$sync("wireless").done(function(){
 		if(!$uci.wireless.status) {
-			$uci.wireless.create({
+			$uci.wireless.$create({
 				".type": "wifi-status", 
 				".name": "status"
 			}).done(function(){

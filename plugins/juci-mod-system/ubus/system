@@ -23,6 +23,7 @@ end
 
 function system_logread(opts)
 	local filter = opts.filter;
+	local type = opts.type;
 	local res = {}; 
 	local lines = {}; 
 	local limit = 20
@@ -30,11 +31,15 @@ function system_logread(opts)
 	local stdout;
 	if opts.limit then limit = opts.limit; end
 	if limit > 200 then limit = 200; end
-
-	if (not filter or filter == "") then
+	-- TODO: change so that filter and limit is sent in insted of concatenated does not work with | now
+	if ((not filter or filter == "") and (not type or type == "")) then
 		stdout = juci.shell("logread | tail -n %d 2>/dev/null", limit); 
+	elseif (not filter or filter == "") then
+		stdout = juci.shell("logread | awk '{if($6~/"..type.."/) print($0)}' | tail -n %d 2>/dev/null", limit);
+	elseif(not type or type == "") then
+		stdout = juci.shell("logread | awk '{if($7~/"..filter.."/) print($0)}' | tail -n %d 2>/dev/null", limit);
 	else
-		stdout = juci.shell("logread | grep \"%s\" | tail -n %d 2>/dev/null", filter, limit); 
+		stdout = juci.shell("logread | awk '{if($6~/"..type.."/ && $7~/"..filter.."/) print($0)}' | tail -n %d 2>/dev/null", limit); 
 	end
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local date,type,source,message = line:match("([^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*)%s+([^%s]*)%s+([^%s:]*):%s+(.*)"); 
@@ -106,14 +111,15 @@ function system_info()
 		end
 	end
 
-	local numcpus = tonumber(juci.shell("grep -i model /proc/cpuinfo | wc -l"):match("(%S+).*")); 
-	local load1, load5, load15 = juci.readfile("/proc/loadavg"):match("(%S+)%s+(%S+)%s+(%S+).+"); 
-	cpuload.avg = { tonumber(load1) / numcpus * 1000, tonumber(load5) / numcpus * 1000, tonumber(load15) / numcpus * 1000};  
+	--local numcpus = tonumber(juci.shell("grep processor /proc/cpuinfo | wc -l"):match("(%S+).*")); 
+	--local load1, load5, load15 = juci.readfile("/proc/loadavg"):match("(%S+)%s+(%S+)%s+(%S+).+"); 
+	--cpuload.avg = { tonumber(load1) / numcpus * 1000, tonumber(load5) / numcpus * 1000, tonumber(load15) / numcpus * 1000};  
 	local version = tostring(juci.readfile("/proc/version") or ""); 
 	local systype,_,sysversion = version:match("(%S+)%s+(%S+)%s+(%S+)"); 	
 	system["name"] = juci.readfile("/proc/sys/kernel/hostname"); 
 	system["hardware"] = db["hw.board.hardwareVersion"]; 
 	system["model"] = db["hw.board.routerModel"]; 
+	system["filesystem"] = db["hw.board.filesystem"];
 	system["boardid"] = db["hw.board.boardId"]; 
 	system["firmware"] = db["hw.board.iopVersion"]; 
 	system["brcmver"] = db["hw.board.brcmVersion"]; 
@@ -123,7 +129,8 @@ function system_info()
 	system["kernel"] = systype.." "..sysversion; --db["hw.board.kernelVersion"]; 
 	system["basemac"] = db["hw.board.BaseMacAddr"]; 
 	system["serialno"] = cpuinfo["Serial"]; --db["hw.board.serialNumber"]; 
-	
+	--system["filesystem"] = juci.shell("awk '$2 ~ /rom/{print $3}' /proc/mounts"):match("%S+"); 	
+
 	local keys = {
 		auth = db["hw.board.authKey"], 
 		des = db["hw.board.desKey"], 

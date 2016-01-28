@@ -1,1 +1,10 @@
-
+<div>
+	<juci-config-lines>
+		<juci-config-line title="{{'DS-Lite AFTR address'|translate}}">
+			<juci-input-ipv6-address ng-model="interface.peeraddr.value" placeholder="{{'DS-Lite AFTR address'|translate}}"></juci-input-ipv6-address>
+		</juci-config-line>
+		<juci-config-line title="{{'Local IPv6 address'|translate}}" help="{{'Leave empty to use the current WAN address'|translate}}" error="interface.ip6addr.error">
+			<input type="text" class="form-control" ng-model="interface.ip6addr.value" placeholder="{{'Local IPv6 address'|translate}}" />
+		</juci-config-line>
+	</juci-config-lines>
+</div>

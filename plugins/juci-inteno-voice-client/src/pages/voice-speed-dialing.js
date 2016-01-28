@@ -31,7 +31,7 @@ JUCI.app
 		$scope.speed_dials.map(function(x){ if(x.number != "") dials[x.tone] = x; }); 
 		async.eachSeries(Object.keys(dials), function(k, next){
 			if(!dials[k].exists){
-				$uci.voice_client.create({".type": "speed_dial"}).done(function(section){
+				$uci.voice_client.$create({".type": "speed_dial"}).done(function(section){
 					section.tone.value = dials[k].tone; 
 					section.number.value = dials[k].number; 
 					dials[k].exists = true;  
@@ -79,11 +79,8 @@ JUCI.app
 		async.eachSeries(dials, function(dial, next){
 			dial.$delete().always(function(){ next(); }); 
 		}, function(){
-			console.log("Save!"); 
-			$uci.$save().done(function(){
-				console.log("resync"); 
-				resync(); 
-			}); 
+			console.log("resync"); 
+			resync(); 
 		}); 
 	}
 }); 

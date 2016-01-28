@@ -8,7 +8,7 @@
 		<div class="row" style="margin-bottom: 10px;">
 			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-calendar fa-2x"></i></div>
 			<div class="col-xs-7" style="padding-left: 0px">
-				<a class="overview-list-item-text" href="#!/wifi-schedule"><strong>{{'Schedule'|translate}}</strong></a>
+				<a class="overview-list-item-text" href="#!/wireless-schedule"><strong>{{'Schedule'|translate}}</strong></a>
 			</div>
 			<div class="col-xs-2">
 				<a class="label label-{{(wifi.status.schedule.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWIFISchedToggle()"><strong>{{wifiSchedStatus| translate}}</strong></a>
@@ -17,7 +17,7 @@
 		<div class="row" style="margin-bottom: 10px;">
 			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-wifi fa-2x"></i></div>
 			<div class="col-xs-7" style="padding-left: 0px">
-				<a class="overview-list-item-text" href="#!/wifi-wps"><strong>WPS</strong></a><br/>
+				<a class="overview-list-item-text" href="#!/wireless-wps"><strong>WPS</strong></a><br/>
 			</div>
 			<div class="col-xs-2">
 				<a class="label label-{{(wifi.status.wps.value)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWPSToggle()"><strong>{{wifiWPSStatus | translate}}</strong></a>

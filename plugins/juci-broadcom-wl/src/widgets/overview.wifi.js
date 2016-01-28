@@ -30,39 +30,20 @@ JUCI.app
 	 };  
 })
 .controller("overviewStatusWidgetWifi", function($scope, $uci, $rpc){
+	$scope.wifiRadios = [];
 	JUCI.interval.repeat("overview-wireless", 1000, function(done){
-		async.series([function(next){
-			$uci.$sync(["wireless"]).done(function(){
-				$scope.wireless = $uci.wireless;  
-				if($uci.wireless && $uci.wireless.status) {
-					if($uci.wireless.status.wlan.value){
-						$scope.statusClass = "text-success"; 
-					} else {
-						$scope.statusClass = "text-default"; 
-					}
-				}
-				$scope.$apply(); 
-				next(); 
-			}); 
-		}, function(next){
-			$rpc.juci.wireless.clients().done(function(result){
-				$scope.done = 1; 
-				var clients = {}; 
-				result.clients.map(function(x){ 
-					if(!clients[x.band]) clients[x.band] = []; 
-					clients[x.band].push(x); 
-				}); 
-				$scope.wifiClients = clients; 
-				$scope.wifiBands = Object.keys(clients); 
-				$scope.$apply(); 
-			}); 
-		}], function(){
-			done(); 
+		//TODO: change to ubus call router radios when sukru has added status there
+		$uci.$sync(["wireless"]).done(function(){
+			if($uci.wireless && $uci.wireless["@wifi-device"]){
+				$scope.wifiRadios = $uci.wireless["@wifi-device"];
+			}
+			$scope.$apply(); 
 		}); 
 	}); 
 	
 })
 .controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext, $juciDialog){
+	var pauseSync = false;
 	$scope.wireless = {
 		clients: []
 	}; 
@@ -71,29 +52,33 @@ JUCI.app
 	$scope.onWPSToggle = function(){
 		$uci.wireless.status.wps.value = !$uci.wireless.status.wps.value; 
 		$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
-		$uci.$save().done(function(){
-			refresh(); 
-		}); 
+		refresh(); 
 	}
 	$scope.onWIFISchedToggle = function(){
 		$uci.wireless.status.schedule.value = !$uci.wireless.status.schedule.value; 
 		$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
-		$uci.$save().done(function(){
-			refresh(); 
-		}); 
+		refresh(); 
 	}
 
 	$scope.onEditSSID = function(iface){
+		pauseSync = true;
 		$juciDialog.show("uci-wireless-interface", {
 			title: $tr(gettext("Edit wireless interface")),  
-			on_apply: function(btn, dlg){
-				$uci.$save(); 
-				return true; 
-			}, 
+			on_button: function(btn, inst){
+				pauseSync = false;
+				if(btn.value == "cancel"){
+					iface.uci_dev.$reset();
+					inst.dismiss("cancel");
+				}
+				if(btn.value == "apply"){
+					$uci.$save();
+					inst.close();
+				}
+			},
 			model: iface.uci_dev
 		}).done(function(){
-		
-		}); 
+
+		});
 	}
 
 	function refresh() {
@@ -145,6 +130,10 @@ JUCI.app
 		return def.promise(); 
 	}; 
 	JUCI.interval.repeat("wifi-overview", 10000, function(done){
+		if(pauseSync){
+			done();
+			return;
+		}
 		refresh().done(function(){
 			done(); 
 		}); 

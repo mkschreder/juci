@@ -50,6 +50,9 @@
 			},
 			"uci": [
 				"system"
+			],
+			"juci-io": [
+				"backup"
 			]
 		},
 		"write": {
@@ -67,6 +70,11 @@
 			"uci": [
 				"system"
 			]
+		}
+	},
+	"juci-mod-system-admin": {
+		"write": {
+			"passwd": [ "otheruser" ]
 		}
 	}
 }

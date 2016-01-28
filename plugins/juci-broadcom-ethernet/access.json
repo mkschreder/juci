@@ -1,4 +1,26 @@
 {
+	"user-admin": {
+		"description": "Broadcom ethernet admin functions",
+		"read": {
+			"juci": {
+				"capabilities": [
+					"can-pick-uplink-port",
+					"can-set-pauseframes"
+				]
+			}
+		}
+	},
+	"user-support": {
+		"description": "Broadcom ethernet support functions",
+		"read": {
+			"juci": {
+				"capabilities": [
+					"can-pick-uplink-port",
+					"can-set-pauseframes"
+				]
+			}
+		}
+	},
 	"juci-broadcom-ethernet": {
 		"description": "Broadcom ethernet plugin",
 		"read": {

@@ -38,22 +38,13 @@ JUCI.app
 			window.location.href="/";
 		});
 	}
-
-	$scope.$init = function(){
-		var deferred = $.Deferred(); 
-		async.series([
-			function(next){
-				$network.getDefaultRouteNetworks().done(function(result){
-					$scope.wanifs = result.map(function(x){ return x.$info; }); 
-					$scope.$apply(); 
-				}); 
-			}
-		], function(){
-			$scope.firmware = $config.board.release.distribution + " " + $config.board.release.version + " " + $config.board.release.revision; 
-			$scope.$apply(); 
-			deferred.resolve(); 
-		}); 
-		return deferred.promise(); 
-	}
-	$scope.$init(); 
+	$network.getDefaultRouteNetworks().done(function(result){
+		$scope.wanifs = result.map(function(x){ return x.$info; }); 
+		$scope.$apply(); 
+	}); 
+	$rpc.system.board().done(function(res){
+		board = res;
+		$scope.firmware = board.release.distribution + " " + board.release.version + " " + board.release.revision; 
+		$scope.$apply(); 
+	})
 }); 

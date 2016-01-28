@@ -6,8 +6,6 @@ set -e
 BIN=$1
 if [ "$1" == "" ]; then BIN=bin; fi
 
-grunt 
-
 for file in `find $BIN/www/js/ -name "*.js"`; do 
 	echo "Compiling JS ${file}.."
 	uglifyjs ${file} > ${file}.out

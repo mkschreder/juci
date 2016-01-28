@@ -4,14 +4,14 @@
 	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
 
 	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 */ 
 
 !function(){
@@ -259,7 +259,6 @@
 						if(confirm($tr(gettext("A new ethernet device has been connected to your router. Do you want to add it to a network?")))){
 							networkConnectionPicker.show().done(function(picked){
 								picked.ifname.value = picked.ifname.value.split(" ").concat([ev.data.interface]).join(" "); 
-								$uci.$save(); 
 							});
 						}
 					}*/ 
@@ -269,100 +268,3 @@
 	}); 
 }(); 
 
-UCI.$registerConfig("network"); 
-UCI.network.$registerSectionType("interface", {
-	"is_lan":				{ dvalue: false, type: Boolean }, // please stop relying on this!
-	"auto": 				{ dvalue: true, type: Boolean }, // bring up on boot
-	"ifname":				{ dvalue: '', type: String }, 
-	"device":				{ dvalue: '', type: String }, 
-	"proto":				{ dvalue: '', type: String }, 
-	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
-	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValdator }, 
-	"gateway":				{ dvalue: '', type: String }, 
-	"ip6addr":				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator }, 
-	"ip6gw": 				{ dvalue: '', type: String },
-	"ip6prefix":			{ dvalue: '', type: String }, 
-	"ip6gateway":			{ dvalue: '', type: String },  
-	"ip6assign":			{ dvalue: null, type: Number }, 
-	"ip6hint": 				{ dvalue: '', type: String },
-	"clientid": 			{ dvalue: "", type: String },
-	"type":					{ dvalue: '', type: String }, 
-	"defaultroute":			{ dvalue: false, type: Boolean },	
-	"bridge_instance": 		{ dvalue: false, type: Boolean }, 
-	"vendorid":				{ dvalue: '', type: String }, 
-	"ipv6":					{ dvalue: false, type: Boolean },
-	"dns": 					{ dvalue: [], type: Array }, 
-	"macaddr":				{ dvalue: "", type: String }, 
-	"mtu":					{ dvalue: null, type: Number },
-	"enabled": 				{ dvalue: true, type: Boolean }, 
-	// dhcp settings
-	// "broadcast": 			{ dvalue: false, type: Boolean }, 
-	"hostname": 			{ dvalue: "", type: String }, 
-	"peerdns": 				{ dvalue: true, type: Boolean }, 
-	// authentication 
-	"auth": 				{ dvalue: "", type: String }, 
-	"username": 			{ dvalue: "", type: String }, 
-	"password": 			{ dvalue: "", type: String }, 
-	// 3g and dongles
-	"apn": 					{ dvalue: "", type: String }, 
-	"pincode": 				{ dvalue: "", type: String }
-}); 
-
-UCI.network.$registerSectionType("route", {
-	"interface": 			{ dvalue: "", type: String }, 
-	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
-	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
-	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
-	"metric": 				{ dvalue: 0, type: Number },
-	"mtu": 					{ dvalue: 1500, type: Number }
-}); 
-
-UCI.network.$registerSectionType("route6", {
-	"interface": 			{ dvalue: "", type: String }, 
-	"target": 				{ dvalue: "", type: String }, 
-	"gateway": 				{ dvalue: "", type: String },
-	"metric": 				{ dvalue: 0, type: Number },
-	"mtu": 					{ dvalue: 1500, type: Number }
-}); 
-
-UCI.network.$registerSectionType("switch", {
-	"name": 	{ dvalue: "", type: String },
-	"reset":	{ dvalue: undefined, type: Boolean }, 
-	"enable_vlan": { dvalue: true, type: Boolean },
-	"enable": 	{ dvalue: false, type: Boolean }
-}); 
-
-UCI.network.$registerSectionType("switch_vlan", {
-	"displayname": { dvalue: "", type: String },
-	"vlan":		{ dvalue: 0, type: Number }, 
-	"device": 	{ dvalue: "", type: String },
-	"ports": 	{ dvalue: "", type: String }
-}); 
-
-UCI.network.$registerSectionType("switch_port_label", {
-	"name": 	{ dvalue: "", type: String }, 
-	"id": 		{ dvalue: undefined, type: Number }
-}); 
-
-UCI.network.$registerSectionType("switch_port", {
-	"port": 	{ dvalue: 0, type: Number }, 
-	"pvid": 	{ dvalue: 0, type: Number }
-}); 
-
-UCI.$registerConfig("hosts");
-UCI.hosts.$registerSectionType("host", {
-	"device":            { dvalue: "", type: String },
-	"macaddr":         { dvalue: "", type: String },
-	"ipaddr":               { dvalue: "", type: String },
-	"name":             { dvalue: "", type: String },
-	"manufacturer":             { dvalue: "", type: String },
-	"hostname":		{ dvalue: "", type: String, required: true}, 
-	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, required: true}
-});
-
-UCI.juci.$registerSectionType("network", {
-	"wan4_interface": 	{ dvalue: "wan", type: String }, // default wan4 interface name 
-	"wan6_interface": 	{ dvalue: "wan6", type: String }, // default wan6 interface name 
-	"voice_interface": 	{ dvalue: "wan", type: String }, 
-	"iptv_interface": 	{ dvalue: "wan", type: String }
-}); 

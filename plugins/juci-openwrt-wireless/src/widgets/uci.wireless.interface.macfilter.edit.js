@@ -62,7 +62,7 @@ JUCI.app
 					}
 				}); 
 				if(!found){
-					$uci.hosts.create({ 
+					$uci.hosts.$create({ 
 						".type": "host", 
 						hostname: x.hostname, 
 						macaddr: x.macaddr

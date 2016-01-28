@@ -1,70 +1,69 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title" style="font-size: 1.5em; padding-top: 0.4em; font-weight: bold; font-family: 'inteno';">
-			{{conn[".name"]|uppercase}} Connection
+			{{interface[".name"]|uppercase}} Connection
 		</h3>
 	</div>
 	<div class="panel-body ">
 		<tabset>
 			<tab heading="{{'General'|translate}}">
-				<div class="alert alert-danger" ng-show="conn.$info.errors.length">
+				<div class="alert alert-danger" ng-show="interface.$info.errors.length">
 					<ul>
-						<li ng-repeat="err in conn.$info.errors">Error ({{err.subsystem}}): {{err.code}}</li>
+						<li ng-repeat="err in interface.$info.errors">Error ({{err.subsystem}}): {{err.code}}</li>
 					</ul>
 				</div>
-				<juci-config-lines>
-					<juci-config-line title="{{'Interface Type'|translate}}">
-						<juci-select ng-model="conn.type.value" ng-items="allInterfaceTypes"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Bring-Up on Boot'|translate}}">
-						<switch ng-model="conn.auto.value" class="green"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Automatic Default Route'|translate}}">
-						<switch ng-model="conn.defaultroute.value" class="green"/>
-					</juci-config-line>
-				</juci-config-lines>
 				<h4 translate>Status</h3>
 				<table class="table table-condensed">
-					<tr><td translate>Interface UP:</td><td>{{(conn.$info.up)?"YES":"NO"}}</td></tr>
-					<tr><td translate>Device:</td><td>{{conn.$info.l3_device}}</td></tr>
-					<tr><td translate>Protocol:</td><td>{{conn.$info.proto}}</td></tr>
-					<tr ng-repeat="addr in conn.$info['ipv4-address']"><td translate>IPv4-Address ({{$index+1}}):</td><td>{{addr.address}}</td></tr>
-					<tr ng-repeat="addr in conn.$info['ipv6-address']"><td translate>IPv6-Address ({{$index+1}}):</td><td>{{addr.address}}</td></tr>
+					<tr><td translate>Status</td><td>{{ifstatus()}}</td></tr>
+					<tr><td translate>Device:</td><td>{{interface.$info.l3_device}}</td></tr>
+					<tr><td translate>Protocol:</td><td>{{interface.$info.proto}}</td></tr>
+					<tr ng-repeat="addr in interface.$info['ipv4-address']"><td translate>IPv4-Address ({{$index+1}}):</td><td>{{addr.address}}</td></tr>
+					<tr ng-repeat="addr in interface.$info['ipv6-address']"><td translate>IPv6-Address ({{$index+1}}):</td><td>{{addr.address}}</td></tr>
 				</table>
+				<juci-config-lines>
+					<juci-config-line title="{{'Protocol'|translate}}">
+						<juci-select ng-model="interface.proto.value" ng-items="protocolTypes" on-change="onChangeProtocol($value, $oldvalue)" 
+									placeholder="{{'Choose Configuration Option'|translate}}"/>
+					</juci-config-line>
+				</juci-config-lines>
+				<div dynamic="interface.$proto_editor"/>
 			</tab>
-			<tab heading="{{'network.interface.type.' + (conn.type.value || 'none') +'.tab.title'|translate}}"><div dynamic="conn.$type_editor"/></tab>
+			<tab heading="{{'Physical Settings' |translate}}" ng-show="showPhysical()">
+				<!--<juci-config-lines>
+					<juci-config-line title="{{'Interface Type'|translate}}">
+						<juci-select ng-model="interface.type.value" ng-items="allInterfaceTypes"/>
+					</juci-config-line>
+				</juci-config-lines>
+				<div dynamic="interface.$type_editor"/>-->
+				<div dynamic="interface.$proto_editor_ph" />	
+			</tab>
 			<tab heading="{{'Advanced'|translate}}">
 				<juci-config-lines>
-					<juci-config-line title="{{'Override MAC Address'|translate}}">
-						<input type="text" class="form-control" ng-model="conn.macaddr.value" placeholder="{{'MAC Address'|translate}}"/>
+					<juci-config-line title="{{ 'Bring up on boot' | translate}}">
+						<switch class="green"ng-model="interface.auto.value" />
 					</juci-config-line>
-					<juci-config-line title="{{'Override MTU'|translate}}">
-						<input type="text" class="form-control" ng-model="conn.mtu.value" placeholder="{{'MTU'|translate}}"/>
+					<juci-config-line title="{{ 'Use gateway metric' | translate }}">
+						<input type="number" class="form-control" min="0" ng-model="interface.metric.value" placeholder="0" />
 					</juci-config-line>
-					<juci-config-line title="{{'Custom Delegated IPv6 Prefix'|translate}}">
-						<input type="text" class="form-control" ng-model="conn.ip6prefix.value" placeholder="{{'IPv6 Prefix'|translate}}"/>
-					</juci-config-line>
-
+						<juci-config-line title="{{ 'Override MAC address' | translate }}" error="interface.macaddr.error">
+							<input type="text" class="form-control" ng-model="interface.macaddr.value" placeholder="00:00:00:00:00:00" />
+						</juci-config-line>
+						<juci-config-line title="{{ 'Override MTU' | translate }}">
+							<input type="number" min="0" class="form-control" ng-model="interface.mtu.value" placeholder="1500" />
+						</juci-config-line>
 				</juci-config-lines>
-			</tab>
-			<tab heading="Address">
-				<juci-config-lines>
-					<juci-config-line title="{{'Configuration Method'|translate}}">
-						<juci-select ng-model="conn.proto.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
-					</juci-config-line>
-				</juci-config-lines>
-				<div dynamic="conn.$proto_editor"/>
+				<div dynamic="interface.$proto_editor_ad" /> 
 			</tab>
 			<!--<tab heading="IPv6 Settings">
 				<juci-config-lines>
 					<juci-config-line title="{{'Method'|translate}}">
-						<juci-select ng-model="conn.proto6.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
+						<juci-select ng-model="interface.proto6.value" ng-items="protocolTypes" placeholder="{{'Choose Configuration Option'|translate}}"/>
 					</juci-config-line>
 				</juci-config-lines>
-				<network-connection-ip6-settings-edit ng-model="conn" ></network-connection-ip6-settings-edit>
+				<network-connection-ip6-settings-edit ng-model="interface" ></network-connection-ip6-settings-edit>
 			</tab>-->
-			<tab heading="Services">
-				<network-connection-dhcp-server-settings ng-connection="conn"/>
+			<tab heading="{{ 'DHCP' | translate}}" ng-show="interface.proto.value == 'static'">
+				<network-connection-dhcp-server-settings ng-connection="interface"/>
 			</tab>
 		</tabset>
 	</div>

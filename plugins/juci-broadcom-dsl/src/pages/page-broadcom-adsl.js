@@ -40,7 +40,7 @@ JUCI.app
 				break; 
 			}
 		}
-		$uci.layer2_interface_adsl.create({
+		$uci.layer2_interface_adsl.$create({
 			".type": "atm_bridge",
 			"name": gettext("New device"), 
 			"ifname": baseifname + next_id + ".1", 

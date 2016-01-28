@@ -30,7 +30,6 @@ JUCI.app.directive("multiwanRuleEdit", function($compile, $parse){
 			var name = (!client.hostname || client.hostname == "") ? "" : " (" + client.hostname + ")";
 			return { label: client.ipaddr + name, value: client.ipaddr }});
 	});
-	console.log($firewall);
 	$scope.addresses = [];
 	$scope.protocols = [
 		{ label: $tr(gettext("UDP")),	value: "udp" },

@@ -28,14 +28,19 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("sambaShareEdit", function($scope, $network, $modal){
+.controller("sambaShareEdit", function($scope, $network, $modal, $juciDialog, $tr, gettext){
 	$scope.data = {}; 
 
 	$scope.$watch("share", function(value){
 		if(!value) return; 
 		$scope.data.guest_ok = (value.guest_ok.value == "yes")?true:false; 
 		$scope.data.read_only = (value.read_only.value == "yes")?true:false; 
+		$scope.data.model = (value.path.value.length > 3) ? value.path.value.slice(4): "";
 	}); 
+	$scope.$watch("data.model", function(value){
+		if(!$scope.share) return;
+		$scope.share.path.value = "/mnt" + value;
+	}, false);
 	$scope.$watch("data.guest_ok", function(value){
 		if(!$scope.share) return; 
 		$scope.share.guest_ok.value = (value)?"yes":"no"; 
@@ -45,17 +50,30 @@ JUCI.app
 		$scope.share.read_only.value = (value)?"yes":"no"; 
 	}); 
 
+	var def = null
 	$scope.onAutocomplete = function(query){
-		var def = $.Deferred(); 
-		if($scope.path){
-			$rpc.juci.samba.autocomplete({ path: $scope.share.path.value }).done(function(result){
-				def.resolve(result.paths); 
+		if(!def){
+			var def = $.Deferred(); 
+			$scope.loadingLocations = true;
+			$rpc.juci.samba.autocomplete({ path: query.slice(1) }).done(function(result){
+				def.resolve(result.folders); 
 			}).fail(function(){
 				def.reject(); 
-			}); 
-		} else {
-			def.resolve([]); 
+			}).always(function(){def = null; $scope.loadingLocations = false;});
 		}
 		return def.promise(); 
 	}
+	$scope.onAddFolder = function(){
+		var model = {}
+		$juciDialog.show("samba-file-tree", {
+			title: $tr(gettext("Add folder to share")),
+			model: model,
+			on_apply: function(btn, dlg){
+				if(!model.path)return true;
+					$scope.data.model = model.path;
+				return true;
+			}	
+		});
+	};
+
 }); 

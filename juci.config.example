@@ -116,11 +116,6 @@ config menu
 	option acls "juci-broadcom-dsl"
 
 config menu
-	option path "internet/ethernet/wifi"
-	option page "wireless-interfaces"
-	option acls "juci-broadcom-wl"
-
-config menu
 	option path "internet/ethernet/vlan"
 	option page "page-broadcom-ethernet-vlan"
 	option acls "juci-broadcom-vlan"
@@ -153,11 +148,6 @@ config menu
 config menu
 	option path "internet/firewall/forwarding"
 	option page "internet-firewall-forwarding"
-	option acls "juci-firewall-fw3"
-
-config menu
-	option path "internet/firewall/urlblock"
-	option page "internet-firewall-urlblock"
 	option acls "juci-firewall-fw3"
 
 config menu
@@ -444,8 +434,4 @@ config menu
 config menu
 	option path "status/restart"
 	option page "status-restart"
-
-config menu
-	option path "status/about"
-	option page "status-about"
 
