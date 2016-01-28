@@ -1,39 +1,3 @@
-body {
-    font: 0.8em Verdana,sans-serif;
-    background-color: black;
-    color: white;
-}
-
-a {
-    color: #DDEEFF;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #FFFFFF;
-    text-decoration: underline;
-}
-
-h2 {
-    font-size: 1.1em;
-    text-align: center;
-}
-
-#stats {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    z-index: 2;
-    pointer-events: none;
-}
-
-#viewport-frame, #webgl-error {
-    position: relative;
-    margin: auto;
-    width: 854px;
-    height: 480px;
-}
-
 canvas {
     width: 854px;
     height: 480px;
@@ -163,11 +127,3 @@ canvas {
     }
 }
 
-@media only screen and (min-width: 960px) {
-    #mobileVrBtn {
-        display: none !important;
-    }
-    #mobileFullscreenBtn {
-        display: none !important;
-    }
-}
