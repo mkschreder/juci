@@ -80,7 +80,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 					return {
 						get name(){ return port.name.value; },
 						get id(){ return port.ifname.value; },
-						get type(){ return "eth-port" }
+						get type(){ return "eth-port" },
 						base: { name: port.name.value, id: port.ifname.value }
 					};
 				});
