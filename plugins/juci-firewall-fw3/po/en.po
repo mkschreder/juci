@@ -3,13 +3,29 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Reidar Cederqvist <reidar.cederqvist@gmail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
+
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/fw3-firewall.js
+msgid "Zone does not exist!"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/fw3-firewall.js
+msgid "Rule name can not be empty!"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/fw3-firewall.js
+msgid "Source port can not be empty!"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/fw3-firewall.js
+msgid "Dest. port can not be empty!"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.js
 msgid "Please select a rule to delete!"
@@ -87,6 +103,18 @@ msgstr ""
 msgid "TCP + UDP"
 msgstr ""
 
+# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
+msgid "MAC Address"
+msgstr ""
+
+# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
+msgid "Select Existing Host"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/widgets/firewall-maclist-edit.html
+msgid "Invalid MAC address"
+msgstr ""
+
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 # #-#-#-#-#  template.pot  #-#-#-#-#
@@ -110,10 +138,6 @@ msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
 msgid "MAC"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
-msgid "MAC Address"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/widgets/firewall-rule-edit.html
@@ -285,18 +309,14 @@ msgid "Pick Existing Host"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
-msgid "Select Existing Host"
-msgstr ""
-
-# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-dmz.html
 msgid ""
 "Choose the local IP address that should be exposed to Internet. Additionally "
 "you should configure this IP address as static DHCP address for your device "
 "(see Settings/Network)."
 msgstr ""
 
-msgid "Firewall Forwarding"
-msgstr "Firewall Forwarding"
+msgid "Packet Forwarding"
+msgstr "Packet Forwarding"
 
 msgid "internet.firewall.forwarding.info"
 msgstr "Configure port forwarding here."
@@ -321,8 +341,8 @@ msgstr ""
 msgid "to"
 msgstr "To"
 
-# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
-msgid "Add / Edit Port Forward"
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Add / Edit Port Mapping"
 msgstr ""
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
@@ -333,13 +353,13 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
-msgid "Port Forwarding"
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+msgid "Port Mapping"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-port-mapping.html
 msgid ""
-"Port forwarding allows remote computers to connect to a specific device within "
+"Port mapping allows remote computers to connect to a specific device within "
 "your private network."
 msgstr ""
 
@@ -359,8 +379,8 @@ msgstr ""
 msgid "Public Port"
 msgstr ""
 
-# /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.html
-msgid "Rules"
+# /home/reidar/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall-rules.html
+msgid "Firewall Rules"
 msgstr ""
 
 msgid "internet.firewall.rules.info"
@@ -440,38 +460,47 @@ msgstr ""
 msgid "MAC Addresses"
 msgstr ""
 
+msgid "internet-firewall-forwarding-title"
+msgstr "Forwarding"
+
+msgid "internet-firewall-wordfilter-title"
+msgstr "Word Filter"
+
+msgid "internet-parental-control-title"
+msgstr "Parental Control"
+
 msgid "internet-firewall-zones-title"
 msgstr "Firewall Zones"
 
 msgid "internet-firewall-port-mapping-title"
 msgstr "Port Forwarding"
 
-msgid "internet-firewall-wordfilter-title"
-msgstr "Word Filter"
-
-msgid "internet-firewall-svcfilter-title"
-msgstr "Service Filter"
+msgid "internet-firewall-services-title"
+msgstr "Services"
 
 msgid "internet-firewall-title"
 msgstr "Firewall"
 
-msgid "internet-firewall-rules-title"
-msgstr "Firewall Rules"
-
 msgid "internet-firewall-dmz-title"
 msgstr "DMZ"
 
-msgid "internet-parental-control-title"
-msgstr "Parental Control"
+msgid "internet-firewall-svcfilter-title"
+msgstr "Service Filter"
 
-msgid "internet-firewall-forwarding-title"
-msgstr "Forwarding"
-
-msgid "internet-firewall-services-title"
-msgstr "Services"
+msgid "internet-firewall-rules-title"
+msgstr "Firewall Rules"
 
 msgid "internet-firewall-urlblock-title"
 msgstr "URL Blocking Filter"
+
+msgid "menu-internet-firewall-forwarding-title"
+msgstr "Packet Forwarding"
+
+msgid "menu-internet-firewall-wordfilter-title"
+msgstr "Word Filter"
+
+msgid "menu-internet-parental-control-title"
+msgstr "Parental Control"
 
 msgid "menu-internet-firewall-zones-title"
 msgstr "Zones"
@@ -479,29 +508,20 @@ msgstr "Zones"
 msgid "menu-internet-firewall-port-mapping-title"
 msgstr "Port Forwarding"
 
-msgid "menu-internet-firewall-wordfilter-title"
-msgstr "Word Filter"
-
-msgid "menu-internet-firewall-svcfilter-title"
-msgstr "Service Filter"
+msgid "menu-internet-firewall-services-title"
+msgstr "Services"
 
 msgid "menu-internet-firewall-title"
 msgstr "Firewall"
 
-msgid "menu-internet-firewall-rules-title"
-msgstr "Rules"
-
 msgid "menu-internet-firewall-dmz-title"
 msgstr "DMZ"
 
-msgid "menu-internet-parental-control-title"
-msgstr "Parental Control"
+msgid "menu-internet-firewall-svcfilter-title"
+msgstr "Service Filter"
 
-msgid "menu-internet-firewall-forwarding-title"
-msgstr "Forwarding"
-
-msgid "menu-internet-firewall-services-title"
-msgstr "Services"
+msgid "menu-internet-firewall-rules-title"
+msgstr "Rules"
 
 msgid "menu-internet-firewall-urlblock-title"
 msgstr "URL Blocking"

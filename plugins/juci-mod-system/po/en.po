@@ -282,7 +282,7 @@ msgid "Running Processes"
 msgstr ""
 
 msgid "settings-password-title"
-msgstr "Router Password"
+msgstr "Change Account Passwords"
 
 msgid "settings-configuration-title"
 msgstr "Configuration"
@@ -317,7 +317,7 @@ msgid "settings-energy-title"
 msgstr "Energy Settings"
 
 msgid "menu-settings-password-title"
-msgstr "Router Password"
+msgstr "Passwords"
 
 msgid "menu-settings-configuration-title"
 msgstr "Configuration"

@@ -354,7 +354,7 @@ msgstr "DHCP Status"
 
 # share/menu.d/settings.json
 msgid "dhcp-settings-title"
-msgstr "DHCP"
+msgstr "DHCP Settings"
 
 # /home/reidar/juci/plugins/juci-dnsmasq-dhcp/src/pages/status-dhcp-leases.html
 msgid "menu-dhcp-status-title"

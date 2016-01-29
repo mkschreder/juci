@@ -31,16 +31,10 @@ JUCI.app
 })
 .controller("overviewStatusWidgetWifi", function($scope, $uci, $rpc){
 	$scope.wifiRadios = [];
-	JUCI.interval.repeat("overview-wireless", 1000, function(done){
-		//TODO: change to ubus call router radios when sukru has added status there
-		$uci.$sync(["wireless"]).done(function(){
-			if($uci.wireless && $uci.wireless["@wifi-device"]){
-				$scope.wifiRadios = $uci.wireless["@wifi-device"];
-			}
-			$scope.$apply(); 
-		}); 
-	}); 
-	
+	$rpc.juci.wireless.radios().done(function(data){
+		$scope.wifiRadios = Object.keys(data).map(function(radio){ return data[radio]; });
+		$scope.$apply(); 
+	});
 })
 .controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext, $juciDialog){
 	var pauseSync = false;
