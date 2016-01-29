@@ -113,13 +113,12 @@
 					}); 
 				}
 			], function(){
-				if(info){
-					networks = networks.map(function(x){
-						// set $info to the information gathered from network.interface.dump() or undefined
+				networks = networks.map(function(x){
+					// set $info to the information gathered from network.interface.dump() or undefined
+					if(info && info.find)
 						x.$info = info.find(function(y){ return x[".name"] == y.interface; });
-						return x;
-					});
-				}
+					return x;
+				});
 				deferred.resolve(networks); 
 			}); 
 			
