@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.controller("dropbearSettings", function($scope, $uci, $systemService, $network,$tr,gettext){
+.controller("dropbearSettings", function($scope, $uci, $systemService, dropbearAddKey, $network, $tr, gettext){
 	$scope.data = {
 
 	};
