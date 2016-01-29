@@ -34,13 +34,15 @@ JUCI.app
 	function updateDevices(net){
 		if(!net) return;
 		$ethernet.getAdapters().done(function(adapters){
-			var aptmap = adapters.filter(function(dev){
+			var filtered = adapters.filter(function(dev){
 				return !dev.flags || !dev.flags.split(",").find(function(f){ return f == "NOARP"; });
 			})
-			var wan = aptmap.find(function(dev){ return dev.device.match(/^eth[\d]+\.[\d]+$/); });
+			var wan = filtered.find(function(dev){ return dev.device.match(/^eth[\d]+\.[\d]+$/); });
 			if(wan){
-				aptmap = aptmap.filter(function(dev){return wan.device.split(".")[0] != dev.device; });
+				filtered = filtered.filter(function(dev){return wan.device.split(".")[0] != dev.device; });
 			}
+			var aptmap = {};
+			filtered.map(function(apt){ aptmap[apt.device] = apt; });
 			net.$addedDevices = ((net.ifname.value != "")?net.ifname.value.split(" "):[])
 				.filter(function(x){return x && x != "" && aptmap[x]; })
 				.map(function(x){ 
@@ -49,7 +51,7 @@ JUCI.app
 					delete aptmap[x]; 
 					return { name: a.name, device: a.device, adapter: a }; 
 				}); 
-			net.$addableDevices = aptmap; 
+			net.$addableDevices = Object.keys(aptmap).map(function(k){ return aptmap[k]; }); 
 			$scope.$apply(); 
 		}); 
 	}; updateDevices($scope.connection); 
