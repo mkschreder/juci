@@ -58,7 +58,7 @@ msgid "Default Route"
 msgstr "Default Route"
 
 msgid "internet-multiwan-title"
-msgstr "MultiWAN"
+msgstr "MultiWAN Configuration"
 
 msgid "menu-internet-multiwan-title"
 msgstr "MultiWAN"
