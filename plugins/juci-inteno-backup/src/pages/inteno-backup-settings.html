@@ -6,8 +6,8 @@
 			<p translate>Select the services/settings to backup</p>
 			<juci-config-lines>
 				<juci-config-line ng-repeat="service in services" title="{{ service['.name'] }}" help="{{ service.desc.value }}">
-					<switch class="green" ng-model="service.keep.value" />
-				<juci-config-line>
+					<switch class="green" ng-model="service.keep.value"></switch>
+				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
 	</div>
