@@ -47,10 +47,15 @@ function sysupgrade_clean()
 	print(json.encode(res)); 
 end
 
+function sysupgrade_online(params)
+
+end
+
 juci.ubus({
 	["check"] = sysupgrade_check, 
 	["test"] = sysupgrade_test, 
 	["start"] = sysupgrade_start,
-	["clean"] = sysupgrade_clean
+	["clean"] = sysupgrade_clean,
+	["online"] = sysupgrade_online
 }, arg); 
 
