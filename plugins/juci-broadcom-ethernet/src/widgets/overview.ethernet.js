@@ -10,9 +10,10 @@ JUCI.app
 	$scope.ethPorts = [];
 	JUCI.interval.repeat("overview-status-widget-ethernet", 1000, function(done){
 		$ethernet.getAdapters().done(function(adapters){
-			$scope.ethPorts = adapters.filter(function(a){ return a.type == "eth-port"; }).sort(function(port){
-				if(port.name == "WAN") return 1;
-				return 0;
+			$scope.ethPorts = adapters.filter(function(a){ return a.type == "eth-port"; }).sort(function(a, b){
+				if(a.name == "WAN") return 1;
+				if(b.name == "WAN") return -1;
+				return parseInt(a.name.slice(-1)) - parseInt(b.name.slice(-1));
 			});
 			$scope.$apply();
 		}).always(function(){done();});
