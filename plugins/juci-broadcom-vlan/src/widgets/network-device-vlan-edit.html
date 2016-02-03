@@ -1,16 +1,16 @@
 <div>
 	<juci-config-lines>
 		<juci-config-line title="{{'Name'|translate}}">
-			<input type="text" class="form-control" ng-model="conf.name.value"/>
+			<input type="text" class="form-control" ng-model="device.name.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Base Device'|translate}}">
 			<juci-select ng-model="data.base_device" ng-items="baseDevices" placeholder="{{'Pick base device'|translate}}"/>
 		</juci-config-line>
 		<juci-config-line title="{{'802.1q'}}">
-			<input type="text" class="form-control" ng-model="conf.vlan8021q.value"/>
+			<input type="number" min="1" max="4096" class="form-control" ng-model="device.vlan8021q.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'802.1p'}}">
-			<input type="text" class="form-control" ng-model="conf.vlan8021p.value"/>
+			<input type="number" min="0" max="7" class="form-control" ng-model="device.vlan8021p.value"/>
 		</juci-config-line>
 	</juci-config-lines>
 </div>
