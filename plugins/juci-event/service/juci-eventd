@@ -69,29 +69,31 @@ timer = uloop.timer(function()
 			["message"] = message
 		}; 
 		local month, day, hour, min, sec, year = string.match(date, "%S+%s+(%S+)%s+(%d+)%s+(%d+):(%d+):(%d+)%s+(%S+)"); 
-		local month_names = {
-			["Jan"] = 1, 
-			["Feb"] = 2, 
-			["Mar"] = 3, 
-			["Apr"] = 4, 
-			["May"] = 5, 
-			["Jun"] = 6, 
-			["Jul"] = 7, 
-			["Aug"] = 8, 
-			["Sep"] = 9, 
-			["Oct"] = 10, 
-			["Nov"] = 11, 
-			["Dec"] = 12
-		}; 
-		month = month_names[month]; 
-		local event = {
-			time = os.time({ year = year, month = month, day = day, hour = hour, min = min, sec = sec}),
-			type = "logread.msg", 
-			data = obj
-		}; 
-		if(event.time > last_logread_event_time) then table.insert(events, event) end
-		last_logread_event_time = event.time; 
-		prune_events(); 
+		if(day and month and year) then
+			local month_names = {
+				["Jan"] = 1, 
+				["Feb"] = 2, 
+				["Mar"] = 3, 
+				["Apr"] = 4, 
+				["May"] = 5, 
+				["Jun"] = 6, 
+				["Jul"] = 7, 
+				["Aug"] = 8, 
+				["Sep"] = 9, 
+				["Oct"] = 10, 
+				["Nov"] = 11, 
+				["Dec"] = 12
+			}; 
+			month = month_names[month]; 
+			local event = {
+				time = os.time({ year = year, month = month, day = (day or 1), hour = hour, min = min, sec = sec}),
+				type = "logread.msg", 
+				data = obj
+			}; 
+			if(event.time > last_logread_event_time) then table.insert(events, event) end
+			last_logread_event_time = event.time; 
+			prune_events(); 
+		end
 	end
 	timer:set(2000); 
 end); 
