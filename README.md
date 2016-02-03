@@ -24,6 +24,23 @@ If offers you the following:
 * Dynamic theming - you can switch color themes at runtime. 
 * Full language support - allowing for complete localization of your gui. Language file generation is even partially automatic (for html text). Also supporting dynamically changing language on page without having to reload the application. Also featuring quick debug mode for translations where you can see which strings are missing in currently used language pack. 
 
+How to support JUCI
+-------------------
+
+To support JUCI project (or any other GPL project) you can hire one of JUCI
+developers on contract basis to help you develop your particular product. You
+get plenty of code already in the repository free of charge under the terms of
+GPL - and you also get plenty of new features added on your demand. Depending
+on their availability, developers may have variable ammounts of time to put
+into your project. To get list of JUCI developers, you can clone this repo and
+run git shortlog command. 
+
+	git shortlog -s -e -n
+
+Since JUCI is distributed under the terms of GPL, you must also be aware that
+any functionality implemented just for you, must, by definition, also fall into
+GPL. 
+
 Usage on OpenWRT
 ----------------
 
@@ -38,7 +55,7 @@ src-git-full juci https://github.com/mkschreder/mks-openwrt-feed.git
 ./scripts/feeds update juci
 ./scripts/feeds install -f -p juci -a
 
-- select juci core, inteno theme and plugins under JUCI menu in menuconfig
+- select juci core, inteno theme and openwrt plugins under JUCI menu in menuconfig
   (NOTE: some plugins conflict with eachother so you can not select
   juci-broadcom-wl and juci-openwrt-wireless at the same time). 
 
@@ -93,6 +110,11 @@ user is used to login but if you don't have password set for admin user you
 will not be able to login. So then go to the console and set password for admin
 user or change the user used for logging in by editing /etc/config/rpcd and
 then do /etc/init.d/rpcd restart. 
+
+If you can not login, it could be that you have not installed all juci packages
+correctly. JUCI requires modified versions of rpcd and uhttpd. In the case that
+you did not install the feed with "-f" option, you will not be overriding rpcd
+and so you will not be able to login. 
 
 JUCI also includes a nodejs server which you can do for local testing and for
 forwarding jsonrpc calls to your router during testing (juci-local-server). 
