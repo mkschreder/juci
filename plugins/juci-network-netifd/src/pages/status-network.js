@@ -52,9 +52,9 @@ JUCI.app
 				} 
 				$scope.$apply(); 
 				next(); 
-			}, 
+			}/*, 
 			function(next){
-				/*$broadcomDsl.status().done(function(result){
+				$broadcomDsl.status().done(function(result){
 					switch(result.dslstats.status){
 						case 'Idle': $scope.dsl_status = 'disabled'; break; 
 						case 'Showtime': $scope.dsl_status = 'ok'; break; 
@@ -63,8 +63,8 @@ JUCI.app
 					$scope.dslinfo = result.dslstats; 
 					$scope.$apply(); 
 					next(); 
-				});*/ 
-			}
+				});
+			}*/
 		], function(){
 			resume(); 
 		}); 
