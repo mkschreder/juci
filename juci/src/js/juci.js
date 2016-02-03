@@ -323,13 +323,11 @@
 			$events.subscribe("uci.commit", function(ev){
 				var data = ev.data; 
 				if(data && $uci[data.config]){
-					console.log("reloading config "+data.config); 
 					$uci[data.config].$reload().done(function(){ 
 						// reload all gui 
 						$rootScope.$apply(); 
 					}); 
 				}
-				console.log("commit: "+JSON.stringify(data)); 
 			}); 
 		}); 
 

@@ -225,16 +225,21 @@
 				if(this.svalue != undefined) this.value = this.svalue; 
 			},
 			$update: function(value, keep_user){
-				if(this.dvalue instanceof Array){
+				if(this.ovalue instanceof Array){
+					// if user has modified value and we have keep user set then we do not discard his changes
+					// otherwise we also update uvalues
+					if(!keep_user || !this.dirty) {
+						Object.assign(this.uvalue, value); 
+						this.dirty = false; 
+					}
+					// store original value
 					Object.assign(this.ovalue, value); 
-					if(!keep_user) Object.assign(this.uvalue, value); 
-					if(keep_user && !this.ovalue.equals(this.uvalue)) this.is_dirty = true; 
-					else this.is_dirty = false; 
 				} else {
+					if(!keep_user || !this.dirty) {
+						this.uvalue = value; 
+						this.dirty = false; 
+					} 
 					this.ovalue = value; 
-					if(!keep_user) this.uvalue = value; 
-					if(keep_user && this.ovalue !== this.uvalue) this.is_dirty = true; 
-					else this.is_dirty = false; 
 				}
 			}, 
 			get value(){
