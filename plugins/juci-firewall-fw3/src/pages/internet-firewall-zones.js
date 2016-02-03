@@ -26,7 +26,6 @@ JUCI.app
 		return item.name.value; 
 	}
 	
-	
 	$scope.onCreateZone = function(){
 		$uci.firewall.$create({
 			".type": "zone", 
@@ -40,6 +39,15 @@ JUCI.app
 		if(!zone) alert(gettext("Please select a zone to delete!")); 
 		if(confirm(gettext("Are you sure you want to delete this zone?"))){
 			zone.$delete().done(function(){
+				var rem = [];
+				$uci.firewall["@forwarding"].map(function(fw){
+					if(fw.src.value == zone.name.value || fw.dest.value == zone.name.value){
+						rem.push(fw);
+					}
+				});
+				for(var i = rem.length; i > 0; i--){
+					rem[i-1].$delete();
+				}
 				$scope.$apply(); 
 			}); 
 		}

@@ -207,8 +207,8 @@ UCI.firewall.$registerSectionType("zone", {
 	"output":			{ dvalue: "ACCEPT", type: String }, 
 	"forward":			{ dvalue: "REJECT", type: String }, 
 	"network": 			{ dvalue: [], type: Array }, 
-	"masq":				{ dvalue: true, type: Boolean }, 
-	"mtu_fix": 			{ dvalue: true, type: Boolean }
+	"masq":				{ dvalue: false, type: Boolean }, 
+	"mtu_fix": 			{ dvalue: false, type: Boolean }
 }); 
 
 UCI.firewall.$registerSectionType("forwarding", {
