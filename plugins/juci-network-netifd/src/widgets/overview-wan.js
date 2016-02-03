@@ -35,13 +35,40 @@ JUCI.app
 		var numhours = Math.floor((seconds % 86400) / 3600);
 		var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
 		var numseconds = ((seconds % 86400) % 3600) % 60;
-		if (numdays > 0) { return (numdays + 'd ' + numhours + 'h ' + numminutes + 'm ' + numseconds + 's');}
-		if (numhours > 0) { return (numhours + 'h ' + numminutes + 'm ' + numseconds + 's');}
-		if (numminutes > 0) { return (numminutes + 'm ' + numseconds + 's');}
-		return (numseconds+ 's');
+		var sec = (numseconds < 10)? '0' + numseconds : '' + numseconds;
+		if (numdays > 0) { return (numdays + 'd ' + numhours + 'h ' + numminutes + 'm ' + sec + 's');}
+		if (numhours > 0) { return (numhours + 'h ' + numminutes + 'm ' + sec + 's');}
+		if (numminutes > 0) { return (numminutes + 'm ' + sec + 's');}
+		return (sec+ 's');
     };
 })
-.controller("overviewWidgetWAN", function($scope, $uci, $rpc, $firewall){
+.controller("overviewWidgetWAN", function($scope, $uci, $rpc, $firewall, $juciDialog, $tr, gettext){
+	$scope.showDnsSettings = function(){
+		if(!$scope.wan_ifs) return;
+		$firewall.getZoneNetworks("wan").done(function(nets){
+			var model = {
+				aquired: $scope.wan_ifs,
+				settings: nets
+			};
+			$juciDialog.show("network-wan-dns-settings-edit", {
+				title: $tr(gettext("Edit DNS servers")),
+				on_button: function(btn, inst){
+					if(btn.value == "cancel"){
+						nets.map(function(x){
+							if(x.$reset) x.$reset();
+						});
+						inst.dismiss("cancel");
+					}
+					if(btn.value == "apply"){
+						$uci.$save();
+						inst.close();
+					}
+				},
+				size: "md",
+				model: model
+			});
+		});
+	};
 	$scope.statusClass = "text-success"; 
 	JUCI.interval.repeat("overview-wan", 2000, function(done){
 		$rpc.network.interface.dump().done(function(result){

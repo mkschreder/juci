@@ -18,7 +18,9 @@
 	<juci-config-section>
 		<juci-list-editor ng-items="dropbear" get-item-title="getTitle($item)" item-editor="dropbear-settings-edit" on-create="onAddInstance()" on-delete="onDeleteInstance($item)" ></juci-list-editor>
 	</juci-config-section>
-	<juci-errors></juci-errors>
-	<juci-config-apply></juci-config-apply> 
+	<juci-config-section>
+		<h2 translate>Accepted SSH keys</h2>
+		<juci-list-editor ng-items="keyList" get-item-title="getItemTitle($item)" on-delete="onDeleteKey($item)" on-create="onAddKey()"></juci-list-editor>
+	</juci-config-section>
 	</div>
 </juci-layout-with-sidebar>

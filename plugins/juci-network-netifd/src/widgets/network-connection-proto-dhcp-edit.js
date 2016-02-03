@@ -55,7 +55,7 @@ JUCI.app
 		}
 		return true;
 	};
-	/*$scope.evalReqopts = function(tag){ //Not used in this version of JUCI
+	$scope.evalReqopts = function(tag){
 		var opts = $scope.interface.reqopts.value.split(" ").filter(function(x){ return x != ""}).map(function(x){ return parseInt(x)});
 		if(opts.find(function(opt){ 
 			if(opt > 0 && opt < 255  ) return false;
@@ -72,5 +72,5 @@ JUCI.app
 				$scope.interface.reqopts.$error=null;
 			}
 		}
-	};*/ //Not used in this version of JUCI
+	};
 }); 

@@ -16,12 +16,40 @@
 
 UCI.juci.$registerSectionType("pagesystemstatus", {
 	"show_meminfo": 	{ dvalue: true, type: Boolean }, 
-	"show_diskinfo": 	{ dvalue: true, type: Boolean }
+	"show_diskinfo": 	{ dvalue: true, type: Boolean },
+	"show_loadavg":		{ dvalue: false, type: Boolean }
 }); 
 UCI.juci.$insertDefaults("pagesystemstatus"); 
 
 JUCI.app
 .controller("StatusSystemPage", function ($scope, $rootScope, $uci, $rpc, gettext, $tr, $config) {
+	$scope.changes = [];
+	Object.keys($uci).map(function(x){
+		var tmp = []
+		if($uci[x].$getWriteRequests){
+			tmp = $uci[x].$getWriteRequests();
+		}
+		tmp.map(function(ch){
+			if(ch.values){
+				Object.keys(ch.values).map(function(opt){
+					var uciField = $uci[ch.config][ch.section][opt];
+					if(uciField.ovalue instanceof Array){
+						if(uciField.ovalue.length == uciField.uvalue.length){
+							var eq = true;
+							for(var i = 0; i < uciField.ovalue.length; i++){
+								if(uciField.ovalue[i] != uciField.uvalue[i]) eq = false;
+							}
+							if(eq) return;
+						}
+					}		
+					if(uciField.ovalue == uciField.uvalue) return;
+					$scope.changes.push({ config:ch.config, section: ch.section, option: opt, uvalue:ch.values[opt], ovalue: uciField.ovalue })
+				});
+			}
+		});
+	});
+	$scope.data = {changes: $scope.changes}
+
 	$scope.systemStatusTbl = {
 		rows: [["", ""]]
 	}; 
@@ -80,12 +108,15 @@ JUCI.app
 				[$tr(gettext("Firmware Version")), board.release.revision || $tr(gettext("N/A"))],
 				[$tr(gettext("Local Time")), new Date(sys.localtime * 1000)],
 				[$tr(gettext("Uptime")), timeFormat(sys.uptime)],
-				[$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"], 
 				[$tr(gettext("CPU")), ""+(cpu_load || 0)+"%"]
 			]; 
-			if($config.mode == "expert"){
+			if($uci.juci["pagesystemstatus"] && $uci.juci["pagesystemstatus"].show_loadavg.value){
+				$scope.systemStatusTbl.rows.push([$tr(gettext("System Load Avg. (1m)")), ""+(info.load.avg[0] / 10.0) + "%"]); 
+			}
+			if($config.local.mode == "expert"){
 				var arr = $scope.systemStatusTbl.rows; 
 				arr.push([$tr(gettext("Kernel Version")), board.kernel || info.system.kernel || $tr(gettext("N/A"))]); 
+				arr.push([$tr(gettext("Filesystem")), info.system.filesystem || $tr(gettext("N/A"))]);
 				arr.push([$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))]);  
 			}
 			

@@ -1,9 +1,20 @@
-UCI.validators.IPAddressValidator = function(){
-	this.validate = function(field){
-		if(field.value && field.value != "" && !field.value.match(/^\b(?:\d{1,3}\.){3}\d{1,3}\b$/)) return gettext("IP Address must be a valid ipv4 address!"); 
-		return null;
-	}
-}; 
+/*	
+	This file is part of JUCI (https://github.com/mkschreder/juci.git)
+
+	Copyright (c) 2015 Martin K. Schröder <mkschreder.uk@gmail.com>
+	Copyright (c) 2015 Reidar Cederqvist <reidar.cederqvist@gmail.com>
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+*/ 
+
 
 UCI.validators.IP6PrefixLengthValidator = function(){
 	this.validate = function(field){
@@ -15,23 +26,6 @@ UCI.validators.IP6PrefixLengthValidator = function(){
 		return gettext("valid values are: 'no' and 48-64");
 	}
 };
-
-UCI.validators.IP6AddressValidator = function(){
-	this.validate = function(field){
-		if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Aaddress must be a valid IPv6 address"); 
-		return null; 
-	}
-} 
-
-UCI.validators.MACAddressValidator = function(){
-	this.validate = function(field){
-		if(field.value == "") return null;
-		if(!(typeof field.value == "string") ||
-			!field.value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/)) 
-			return gettext("Value must be a valid MAC-48 address"); 
-		return null; 
-	}
-}; 
 
 UCI.validators.MACListValidator = function(){
 	this.validate = function(field){
@@ -64,7 +58,7 @@ UCI.network.$registerSectionType("interface", {
 	"device":				{ dvalue: '', type: String }, 
 	"proto":				{ dvalue: '', type: String }, 
 	"ipaddr":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
-	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
+	"netmask":				{ dvalue: '', type: String, validator: UCI.validators.IP4NetmaskValidator },
 	"gateway":				{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
 	"ip6addr":				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator }, 
 	"ip6gw": 				{ dvalue: '', type: String, validator: UCI.validators.IP6AddressValidator },
@@ -122,6 +116,12 @@ UCI.network.$registerSectionType("interface", {
 		return gettext("Network interface ") + (section[".name"] || section.name || gettext("Unnamed interface")) + gettext(" MUST have  a protocol set");
 	var errors = [];
 	switch (section.proto.value){
+		case "none":
+			if(section.type.value != "bridge")
+				errors.push(gettext("Unmanaged networks need to be setup as a bridge"));
+			if(section.ifname.value == "")
+				errors.push(gettext("Unmanaged networks need at least one device in bridge"));
+			break;
 		case "static":
 			if(section.ipaddr.value && section.netmask.value){
 				var ip = section.ipaddr.value.split("."); 
@@ -136,10 +136,8 @@ UCI.network.$registerSectionType("interface", {
 					if(bad) errors.push("Given IP address and netmask are invalid together!"); 
 				}*/
 			}
-			if((section.ipaddr.value == "" && section.netmask.value == "") || section.ip6addr.value == "")
+			if((section.ipaddr.value == "" || section.netmask.value == "") && section.ip6addr.value == "")
 				errors.push(gettext("Either ipv4 or ipv6 address is needed"));
-			else if(section.ip6addr.value == "" && (section.netmask.value == "" || section.ipaddr.value == ""))
-				errors.push(gettext("Both IP Address and netmask are needed for static IPv4 configuration"));
 			if(section.ifname.value == "")
 				errors.push(gettext("Physical interface unspecified"));
 			break;

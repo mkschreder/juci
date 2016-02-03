@@ -4,7 +4,7 @@
 			<i class="fa fa-spinner fa-spin fa-2x" ng-show="!items"></i>
 			<div ng-show="!sortable" class="list-group">
 				<a ng-show="items" href="" class="list-group-item" ng-repeat="i in items track by $index" ng-click="onListEditItem(i)" ng-class="{active: item == i}">{{getItemTitle({"$item": i})}}
-					<i ng-show="showIcon" class="fa fa-circle text-{{ iconStatus({$item:i})}}" style="float:right; margin-top:3px"></i>
+					<i ng-show="showIcon" class="{{getIcon(iconStatus({$item:i}))}}" style="float:right; margin-bottom:2px"></i>
 				</a>
 			</div>
 			<div ng-show="sortable" class="list-group">

@@ -1,10 +1,9 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetFirewallRulesPage">
-		<h2 translate>Rules</h2>
+		<h2 translate>Firewall Rules</h2>
 		<p translate>internet.firewall.rules.info</p>
 		<juci-config-section>
 			<juci-list-editor ng-items="rules" item-editor="firewall-rule-edit" get-item-title="getItemTitle($item)" on-create="onCreateRule()" on-delete="onDeleteRule($item)"/>
 		</juci-config-section>
-		<juci-config-apply></juci-config-apply>
 	</div>
 </juci-layout-with-sidebar>

@@ -93,11 +93,52 @@
 	
 	function IP4AddressValidator(){
 		this.validate = function(field){
-			if(field.value && field.value != "" && !field.value.match(/^\b(?:\d{1,3}\.){3}\d{1,3}\b$/)) return gettext("IP Address must be a valid ipv4 address!"); 
+			var error = gettext("IP Address must be a valid IPv4 address!");
+			if(!field.value || field.value == "") return null;
+			if(field.value.match(/^[\.\d]+$/) == null) return error;
+			if(field.value.split(".").length != 4 || field.value.split(".")
+				.filter(function(part){ return (part !="" && (parseInt(part) < 256))}).length != 4) return error;
 			return null;
 		}
-	}; 
-	
+	};
+
+	function IP4MulticastAddressValidator(){
+		this.validate = function(field){
+			if(!field.value || field.value == "") return null;
+			var error = gettext("Address is not a valid  Multicast address");
+			var ipv4 = new IP4AddressValidator();
+			if(ipv4.validate(field) != null) return error;
+			if(parseInt(field.value.split(".")[0]) > 239 || parseInt(field.value.split(".")[0]) < 224) return error;
+			return null;
+		}
+	};
+
+	function IP4UnicastAddressValidator(){
+		this.validate = function(field){
+			var error = gettext("IP Address is not a valid Unicast address!");
+			if(!field.value || field.value == "") return null;
+			if(field.value == "0.0.0.0") return error;
+			var ip4 = new IP4AddressValidator();
+			if(ip4.validate(field) != null) return error;
+			var ip4multi = new IP4MulticastAddressValidator();
+			if(ip4multi.validate(field) == null) return error; // multicast addresses is not valid unicast address;
+			return null;
+		};
+	};
+
+	function IP4CIDRValidator(){
+		this.validate = function(field){
+			if(!field.value || field.value == "") return null;
+			ipv4 = new IP4AddressValidator();
+			if(field.value.split("/").length != 2) return gettext("IP Address must be on the form: IP address/netmask length");
+			var err = ipv4.validate({ value: field.value.split("/")[0] });
+			if(err) return err;
+			var mask = field.value.split("/")[1];
+			if(!mask.match(/^0/) && mask.match(/^[\d\.]+$/) && parseInt(mask) < 25) return null
+			return gettext("Netmask must be a value between 0 and 24");
+		};
+	};
+
 	function IPAddressValidator(){
 		this.validate = function(field){
 			var ipv4 = new IP4AddressValidator();
@@ -106,30 +147,25 @@
 			return gettext("IP Address must be a valid ipv4 or ipv6 address!");
 		}
 	}; 
+	
+	function IP4NetmaskValidator(){
+		this.validate = function(field){
+			var error = gettext("Netmask must be a valid IPv4 netmask");
+			if(!field.value || field.value == "") return null;
+			var ipv4 = new IP4AddressValidator();
+			if(ipv4.validate(field) != null) return error;
+			if(!field.value.split(".").map(function(part){return ("00000000" + (parseInt(part) >>> 0)
+				.toString(2)).slice(-8);}).join("").match(/^1+0+$/)) return error;
+			return null;
+		}
+	};
 
 	function IP6AddressValidator(){
 		this.validate = function(field){
-			if(field.value && field.value != "" && !field.value.match("("+
-				"([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|"+ //          # 1:2:3:4:5:6:7:8
-				"([0-9a-fA-F]{1,4}:){1,7}:|"+ //                         # 1::                              1:2:3:4:5:6:7::
-				"([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|"+ //         # 1::8             1:2:3:4:5:6::8  1:2:3:4:5:6::8
-				"([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|"+ //  # 1::7:8           1:2:3:4:5::7:8  1:2:3:4:5::8
-				"([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|"+ //  # 1::6:7:8         1:2:3:4::6:7:8  1:2:3:4::8
-				"([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|"+ //  # 1::5:6:7:8       1:2:3::5:6:7:8  1:2:3::8
-				"([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|"+ //  # 1::4:5:6:7:8     1:2::4:5:6:7:8  1:2::8
-				"[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|"+ //       # 1::3:4:5:6:7:8   1::3:4:5:6:7:8  1::8  
-				":((:[0-9a-fA-F]{1,4}){1,7}|:)|"+ //                     # ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8 ::8       ::     
-				"fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|"+ //     # fe80::7:8%eth0   fe80::7:8%1     (link-local IPv6 addresses with zone index)
-				"::(ffff(:0{1,4}){0,1}:){0,1}"+ //
-				"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"+ //
-				"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|"+ //          # ::255.255.255.255   ::ffff:255.255.255.255  ::ffff:0:255.255.255.255  (IPv4-mapped IPv6 addresses and IPv4-translated addresses)
-				"([0-9a-fA-F]{1,4}:){1,4}:"+ //
-				"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"+ //
-				"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"+ //           # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33 (IPv4-Embedded IPv6 Address)
-				")")) return gettext("IPv6 Aaddress must be a valid ipv6 address"); 
-			return null; 
+			if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
+			return null;
 		}
-	} 
+	};
 
 	function MACAddressValidator(){
 		this.validate = function(field){
@@ -207,8 +243,16 @@
 				else return this.uvalue; 
 			},
 			set value(val){
-				// do not update if value has not changed
-				if(val == this.uvalue) return; 
+				// set dirty if not same
+				var self = this; 
+				self.is_dirty = val != self.ovalue; 
+				if(self.ovalue instanceof Array && !(val instanceof Array)) return; 
+				if(val instanceof Array && self.ovalue instanceof Array){
+					self.is_dirty = false; 
+					if(val.length != self.ovalue.length) self.is_dirty = true; 
+					val.forEach(function(x, i){ if(self.ovalue[0] != x) self.is_dirty = true; }); 
+				}
+
 				// properly handle booleans
 				if(this.schema.type == Boolean){
 					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off"; }
@@ -223,12 +267,10 @@
 						this.uvalue = val; 
 					}
 				}
-				// always set dirty when changed 
-				this.is_dirty = true; 
 			},
 			get error(){
 				// make sure we ignore errors if value is default and was not changed by user
-				if(this.uvalue == this.schema.dvalue) return null; 
+				if(this.uvalue == this.schema.dvalue || this.uvalue == this.ovalue) return null; 
 				if(this.validator) return this.validator.validate(this); 
 				return null; 
 			},
@@ -286,7 +328,7 @@
 							if(!value) value = []; 
 							break; 
 						//case Boolean: 
-							//if(data[k] === "true" || data[k] === "1" || data[k] === "on") value = true; 
+							//if(data[k] === 'true" || data[k] === "1" || data[k] === "on") value = true; 
 							//else if(data[k] === "false" || data[k] === "0" || data[k] == "off") value = false; 
 						//	break; 
 						default: 
@@ -483,7 +525,7 @@
 			var errors = [];
 			var self = this;  
 			Object.keys(self).map(function(x){
-				if(self[x].constructor == UCI.Section) {
+				if(self[x] && self[x].constructor == UCI.Section) {
 					self[x].$getErrors().map(function(e){
 						if(e instanceof Array){
 							errors = errors.concat(e.map(function(err){ return self[".name"]+"."+x+": "+err;}));
@@ -495,7 +537,18 @@
 			}); 
 			return errors; 
 		}
-	
+		
+		UCIConfig.prototype.$reset = function(){
+			var self = this; 
+			Object.keys(self).map(function(x){
+				if(self[x] && self[x].constructor == UCI.Section){
+					self[x].$reset(); 
+					if(self[x][".new"]) self[x].$delete(); 
+				}
+			}); 
+			self[".need_commit"] = false; 
+		}
+
 		UCIConfig.prototype.$mark_for_reload = function(){
 			this.deferred = null; 
 		}
@@ -661,7 +714,7 @@
 				item[".name"] = state.section; 
 				self[".need_commit"] = true; 
 				var section = _insertSection(self, item); 
-				//section[".new"] = true; 
+				section[".new"] = true; 
 				deferred.resolve(section); 
 			}).fail(function(){
 				deferred.reject(); 
@@ -675,7 +728,7 @@
 			var arr = this["@"+type]; 
 			var self = this; 
 			if(!arr){
-				console.error("UCI."+self[".name"]+".$reorder: not such section types, got "+type); 
+				console.error("UCI."+self[".name"]+".$reorder: section "+type+" is unknown!"); 
 				setTimeout(function(){ def.reject(); }, 0); 
 				return def.promise(); 
 			}
@@ -738,6 +791,64 @@
 		return deferred.promise(); 
 	}
 	
+	// returns true if there are uci changes
+	UCI.prototype.$hasChanges = function(){
+		var self = this; 
+		return !!Object.keys(self).find(function(x){ 
+			if(self[x].constructor != UCI.Config) return false; 
+			if(self[x][".need_commit"]) return true; 
+			if(self[x].$getWriteRequests().length) return true; 
+			return false; 
+		}); 
+	}
+	
+	UCI.prototype.$getChanges = function(){
+		var changes = []; 
+		var self = this; 
+		Object.keys(self).map(function(x){
+			if(!self[x] || self[x].constructor != UCI.Config) return; 
+			if(self[x][".need_commit"]){
+				changes.push({
+					type: "config", 
+					config: self[x][".name"]
+				}); 
+			}
+			/*Object.keys(self[x]).map(function(k){
+				var section = self[x][k]; 
+				if(section[".new"]) changes.push({ 
+					type: "add",
+					config: self[x][".name"], 
+					section: section[".name"]
+				}); 
+			});*/  
+			self[x].$getWriteRequests().map(function(ch){
+				Object.keys(ch.values).map(function(opt){
+					var o = self[x][ch.section][opt]; 
+					if(o.is_dirty){
+						changes.push({
+							type: "option", 
+							config: self[x][".name"], 
+							section: self[x][ch.section][".name"],
+							option: opt, 
+							uvalue: o.uvalue, 
+							ovalue: o.ovalue
+						}); 
+					}
+				}); 
+			});
+		});
+		return changes; 
+	}
+
+	// marks all configs for reload on next sync of the config 
+	UCI.prototype.$clearCache = function(){
+		var self = this; 
+		Object.keys(self).map(function(x){ 
+			if(self[x].constructor != UCI.Config) return; 
+			self[x].$reset(); 
+		}); 
+	}
+
 	UCI.prototype.$registerConfig = function(name){
 		if(!(name in section_types)) section_types[name] = {}; 
 		if(!(name in this)) this[name] = new UCI.Config(this, name); 
@@ -914,7 +1025,7 @@
 				//	deferred.resolve(); 
 				//	return; 
 				//} commenting out because we do need to commit if new sections have been added
-				$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
+				//$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
 					async.eachSeries(Object.keys(self), function(config, next){
 						if(self[config].constructor != UCI.Config || !self[config][".need_commit"]) {
 							next(); 
@@ -923,30 +1034,35 @@
 						console.log("Committing changes to "+config); 
 						$rpc.uci.commit({config: config}).done(function(){
 							self[config][".need_commit"] = false; 
+							// we need to set deferred to null to make sync work (with new changes to how we handle changed fields)
+							// the sync is necessary to make sure that all data is reloaded and has correct names after a commit
+							// removing this sync will result in weird behaviour such as certain fields not being deleted even 
+							// though you have called uci delete on them. Basically we currently have to resync the state in order
+							// to guarantee more fault tolerant operation. 
+							self[config].deferred = null; 
 							self[config].$sync().done(function(){
 								next(); 
 							}).fail(function(err){
 								console.log("error synching config "+config+": "+err); 
+								next(); 
 							}); 
 						}).fail(function(err){
 							errors.push("could not commit config: "+err); 
 							next(); 
 						}); 
-						next(); 
 					}, function(){
-						console.log("Commit done!"); 
 						// this is to always make sure that we do this outside of this code flow
 						setTimeout(function(){
 							if(errors && errors.length) deferred.reject(errors); 
 							else deferred.resolve(); 
 						},0); 
 					}); 
-				}).fail(function(error){
+			//	}).fail(function(error){
 					// Apply may fail for a number of reasons (for example if there is nothing to apply) 
 					// but it does not matter so we should not fail when it does not succeed. 
-					deferred.resolve(); 
+			//		deferred.resolve(); 
 					//deferred.reject([error]); 
-				}); 
+			//	}); 
 			}
 		]); 
 		return deferred.promise(); 
@@ -968,7 +1084,11 @@
 		MACListValidator: MACListValidator,
 		IPAddressValidator: IPAddressValidator,
 		IP6AddressValidator: IP6AddressValidator,
-		IP4AddressValidator: IP4AddressValidator
+		IP4AddressValidator: IP4AddressValidator,
+		IP4NetmaskValidator: IP4NetmaskValidator,
+		IP4MulticastAddressValidator: IP4MulticastAddressValidator,
+		IP4CIDRValidator: IP4CIDRValidator,
+		IP4UnicastAddressValidator: IP4UnicastAddressValidator
 	}; 
 	/*if(exports.JUCI){
 		var JUCI = exports.JUCI; 

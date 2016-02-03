@@ -18,5 +18,6 @@ JUCI.app.controller("IntenoBackupSettingsCtrl", function($scope, $uci, $tr, gett
 	$uci.$sync(["backup"]).done(function(){
 		$scope.services = $uci.backup["@service"];
 		$scope.backup = $uci.backup; 
+		$scope.$apply(); 
 	});
 });

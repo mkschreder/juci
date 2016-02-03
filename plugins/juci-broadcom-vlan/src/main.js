@@ -29,10 +29,11 @@ JUCI.app.factory("$broadcomVLAN", function($uci, $rpc){
 						delete ports[adapter.device]; 
 					}
 				}); 
-				Object.keys(ports).map(function(port){
+				Object.keys(ports).map(function(k){
+					var port = ports[k]; 
 					adapters.push({
 						name: port.name, 
-						device: port.ifname, 
+						device: port.id, 
 						type: port.type, 
 						state: "DOWN"
 					}); 

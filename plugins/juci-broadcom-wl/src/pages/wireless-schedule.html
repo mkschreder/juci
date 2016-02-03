@@ -1,7 +1,7 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="wirelessSchedulePage">
 		<juci-config-section>
-			<juci-config-heading>{{ 'Schedule' | translate }}</juci-config-heading>
+			<juci-config-heading>{{ 'wireless-schedule-title' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'wifi.schedule.info' | translate }}</juci-config-info>
 			<juci-config-lines>
 				<juci-config-line title="{{'Schedule Function'|translate}}">
@@ -39,7 +39,6 @@
 				</tbody>
 			</table>
 		</juci-config-section>
-		<juci-config-apply></juci-config-apply>
 		<modal title="Add a new WiFi Schedule" ng-show="schedule" on-accept="onAcceptSchedule()" 
 			on-dismiss="onDismissSchedule()" dismiss-label="Cancel" accept-label="Save">
 			<juci-schedule-edit ng-model="schedule"></juci-schedule-edit>

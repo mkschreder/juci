@@ -40,9 +40,6 @@ JUCI.app
 		if(!dev) alert(gettext("Please select a device in the list!")); 
 		if(confirm(gettext("Are you sure you want to delete this device?"))){
 			dev.$delete().done(function(){
-				$scope.vlan_devices = $scope.vlan_devices.filter(function(d){
-					return d != dev; 
-				}); 
 				$scope.$apply(); 
 			}); 
 		}

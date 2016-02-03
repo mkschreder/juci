@@ -88,7 +88,8 @@ function Netmon:update_clients()
 
 	-- resolve the manufacturers and update known hosts database
 	print("Updating hosts database..."); 
-	local res = conn:call("uci", "get", { config = "hosts" }); 
+	-- TODO: this is wrong way to do this because we are writing to FLASH! put it into a file instead!
+	--[[local res = conn:call("uci", "get", { config = "hosts" }); 
 	if(not res or not res.values) then return; end
 	local hosts = res.values;  
 	for mac,cl in pairs(online_clients) do 
@@ -112,6 +113,7 @@ function Netmon:update_clients()
 	end
 	-- commit all changes
 	conn:call("uci", "commit", { config = "hosts" }); 
+	]]--
 end
 
 function Netmon:monitor()

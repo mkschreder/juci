@@ -47,16 +47,24 @@ JUCI.app
 	$scope.$watch("modal", function(){
 		$scope.passwordStrength = measureStrength($scope.modal.password); 
 	}, true); 
+	
+	var username = $scope.modal.username = $rpc.$session.data.username; 
+	$scope.$watch("modal.username", function(value){
+		if(value == undefined) return; 
+		username = value; 
+	}); 
+
 	$scope.onChangePasswordClick = function(){
 		$scope.modal = {}; 
 		$scope.showModal = 1; 
 	}
+
 	$scope.onAcceptModal = function(){
 		$scope.error = ""; 
 		if($scope.modal.password != $scope.modal.password2) alert($tr(gettext("Passwords do not match!"))); 
 		else {
 			// TODO: change to correct username
-			$rpc.juci.system.user.setpassword({sid: $rpc.$sid(), username: $scope.username, password: $scope.modal.password, oldpassword: $scope.modal.old_password}).done(function(data){
+			$rpc.juci.system.user.setpassword({sid: $rpc.$sid(), username: username, password: $scope.modal.password, oldpassword: $scope.modal.old_password}).done(function(data){
 				if(data.error){
 					alert(data.error); 
 				} else {

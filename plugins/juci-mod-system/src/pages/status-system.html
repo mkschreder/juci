@@ -9,5 +9,9 @@
 		<juci-table ng-show="show_diskinfo"
 			title="{{'Storage'|translate}}"
 			data="systemStorageTbl"></juci-table>
+		<div ng-show="data.changes.length">
+			<h2 translate>Unsaved changes</h2>
+			<juci-changes-edit ng-model="data" hide-btn="true"></juci-changes-edit>
+		<div>
 	</div>
 </juci-layout-with-sidebar>

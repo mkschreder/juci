@@ -42,7 +42,7 @@ function ethernet_list_network_adapters(opts)
 		local count,fields = words(line); 
 		if fields[1] then 
 			if fields[1]:match("%d+:") then
-				if(next(obj) ~= nil) then table.insert(adapters, obj); end
+				if(next(obj) ~= nil and obj.device ~= "lo") then table.insert(adapters, obj); end
 				obj = {}; 
 				obj.device = fields[2]:match("([^:@]+)"); -- match until @ in vlan adapters 
 				obj.name = obj.device; 

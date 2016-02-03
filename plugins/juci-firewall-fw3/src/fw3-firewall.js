@@ -79,12 +79,17 @@ JUCI.app
 		}, 
 		getZoneClients: function(zone){
 			var def = $.Deferred();
-			var networks = {};
-			var selected_zone = {};
-			var clients = {};
+			var networks = [];
+			var selected_zone = null;
+			var clients = [];
 			async.series([
 				function(next){
 					sync().always(function(){
+						selected_zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone;});
+						if(!selected_zone) {
+							def.reject({error: gettext("Zone does not exist!")}); 
+							return; 
+						}
 						next();
 					});
 				},
@@ -97,16 +102,8 @@ JUCI.app
 					$network.getConnectedClients().done(function(con_clients){
 						clients = con_clients;
 					}).always(function(){next();});
-				},
-				function(next){
-					selected_zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone;});
-					next();
 				}
 			], function(){
-				if(!selected_zone){
-					def.reject({ error: "Zone does not exist!" });
-					return;
-				}
 				//filter out networks by the selected zone
 				var zone_networks = networks.filter(function(net){
 					return selected_zone.network.value.find(function(zone_net){ return zone_net == net[".name"]; }) !== undefined;
@@ -115,12 +112,18 @@ JUCI.app
 					def.reject({ error: "Found no networks in zone" });
 					return;
 				}
+				// TODO: this may already be fixed but sometimes clients is not an array and this causes a crash. If error is never printed then it is probably safe now. 
+				if(!clients.filter){
+					console.error("Clients is not an array. Please fix your code!"); 
+					def.resolve([]); 
+					return; 
+				}
 				var zone_clients = clients.filter(function(client){
 					return zone_networks.find(function(net){
 						return net.$info.device == client.device;
 					});
 				});
-				def.resolve(zone_clients);
+				def.resolve(zone_clients || []);
 			});
 			return def.promise();
 		},

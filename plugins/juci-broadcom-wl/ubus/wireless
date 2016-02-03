@@ -118,6 +118,7 @@ wireless_radios(){
 	for radio in $RADIOS; do
 		if [ "$(wlctl -i $radio apsta)" == "1" ]; then continue; fi
 		json_add_object "$radio"
+		json_add_string "device" $radio
 		FREQ=$(wlctl -i $radio assoc | awk -F' ' '/Chanspec/ { print $2; }'); 
 		if [ "$FREQ" == "2.4GHz" ]; then
 			json_add_array "hwmodes";
@@ -154,7 +155,11 @@ wireless_radios(){
 			json_add_int "" "$chan"
 		done
 		json_close_array
+		# the Mode line will contain channel 
+		CHAN=$(wlctl -i $radio assoc|grep "Primary channel"|awk '{print $NF}');
+		json_add_string "current_channel" $CHAN
 		json_add_string "frequency" "$FREQ"
+		json_add_boolean "isup" "$(wlctl -i $radio isup)";
 		json_close_object
 	done
 	json_dump

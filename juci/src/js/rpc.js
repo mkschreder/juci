@@ -31,7 +31,6 @@
 	
 	function rpc_request(type, namespace, method, data){
 		var sid = ""; 
-		var deferred = $.Deferred(); 
 		
 		// check if the request has been made only recently with same parameters
 		var key = namespace+method+JSON.stringify(data); 

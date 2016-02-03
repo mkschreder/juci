@@ -30,38 +30,11 @@ JUCI.app
 	 };  
 })
 .controller("overviewStatusWidgetWifi", function($scope, $uci, $rpc){
-	JUCI.interval.repeat("overview-wireless", 1000, function(done){
-		async.series([function(next){
-			$uci.$sync(["wireless"]).done(function(){
-				$scope.wireless = $uci.wireless;  
-				if($uci.wireless && $uci.wireless.status) {
-					if($uci.wireless.status.wlan.value){
-						$scope.statusClass = "text-success"; 
-					} else {
-						$scope.statusClass = "text-default"; 
-					}
-				}
-				$scope.$apply(); 
-				next(); 
-			}); 
-		}, function(next){
-			$rpc.juci.wireless.clients().done(function(result){
-				$scope.done = 1; 
-				var clients = {}; 
-				result.clients.map(function(x){ 
-					if(!clients[x.band]) clients[x.band] = []; 
-					clients[x.band].push(x); 
-				}); 
-				$scope.wifiClients = clients; 
-				$scope.wifiBands = Object.keys(clients); 
-				$scope.$apply(); 
-				next();
-			}); 
-		}], function(){
-			done(); 
-		}); 
-	}); 
-	
+	$scope.wifiRadios = [];
+	$rpc.juci.wireless.radios().done(function(data){
+		$scope.wifiRadios = Object.keys(data).map(function(radio){ return data[radio]; });
+		$scope.$apply(); 
+	});
 })
 .controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext, $juciDialog){
 	var pauseSync = false;

@@ -732,10 +732,10 @@ msgid "wireless-general-title"
 msgstr "General"
 
 msgid "wireless-schedule-title"
-msgstr "Schedule"
+msgstr "WiFi Scheduling"
 
 msgid "wireless-wps-title"
-msgstr "WPS"
+msgstr "WPS Settings"
 
 msgid "wireless-client-mode-title"
 msgstr "Client Mode Wifi"

@@ -1,39 +1,27 @@
-/*	
-	This file is part of JUCI (https://github.com/mkschreder/juci.git)
-
-	Copyright (c) 2015 Reidar Cederqvist <reidar.cederqvist@gmail.com>
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-*/ 
+//! Author: Reidar Cederqvist <reidar.cederqvist@gmail.com>
 
 JUCI.app
 .directive("diagnosticsWidget90Speedtest", function($compile, $parse){
 	return {
+		scope: true,
+		replace: true,
 		templateUrl: "/widgets/diagnostics-widget-speedtest.html",
 		controller: "diagnosticsWidget90Speedtest", 
 	 };  
 })
 .controller("diagnosticsWidget90Speedtest", function($scope, $rpc, $events, $uci, utilsAddTestserverPicker){
 	$scope.data = {
-		packagesize: 50000,
+		packagesize: 50,
 		test_type: "up_down",
 		result: "",
 		state: ""
 	}; 
-	$scope.min = 10000; 
-	$scope.max = 100000; 
+	var min = 1; 
+	var max = 100; 
 	$scope.$watch('data.packagesize', function(new_value){
-		if(new_value < $scope.min)$scope.data.packagesize = $scope.min;
-		if(new_value > $scope.max)$scope.data.packagesize = $scope.max;
-	});
+		if(new_value < min)$scope.data.packagesize = min;
+		if(new_value > max)$scope.data.packagesize = max;
+	}, false);
 
 	function getServers(){
 		$scope.allTestServers = $scope.testServers.map(function(x){
@@ -67,11 +55,15 @@ JUCI.app
 			window.alert("Only one test can be run at a time");
 			return;
 		}
+		var server = $scope.testServers.find(function(x){ return $scope.data.server == x.server.value;});
+		var port = server.port.value;
+		var address = server.server.value;
+		$scope.data.state="running";
 		$rpc.juci.utils.speedtest.run({
 			"testmode": $scope.data.test_type,
-			"port": $scope.data.server.port.value,
-			"packagesize": $scope.data.packagesize,
-			"address": $scope.data.server.server.value
+			"port": port,
+			"packagesize": $scope.data.packagesize * 1000,
+			"address": address
 		}).done(function(response){
 			if(response && response.message=="success"){
 				$scope.data.state="running";
@@ -83,7 +75,7 @@ JUCI.app
 	};
 	
 	$scope.onRemoveAddress = function(){
-		var server = $scope.testServers.filter(function(x){
+		var server = $scope.testServers.find(function(x){
 			return $scope.data.server == x.server.value
 		});
 		if(!server){
@@ -110,20 +102,42 @@ JUCI.app
 		});
 	}
 	$events.subscribe("juci.utils.speedtest", function(res){
-		switch(res.data.status) {
-		case 0:
-			$scope.data.result="Upstream: " + res.data.upstream + "\nDownstream: " + res.data.downstream;
-			$scope.data.state="result";
-			break;
-		case -1:
-			$scope.data.result="Wrong TP-test address and/or port";
-			$scope.data.state="error";
-			break;
-		case -2:
-			$scope.data.result="Wrong TP-test port but correct address";
-			$scope.data.state="error";
-			break;
+		if(res.data && res.data.status){
+			switch(res.data.status) {
+			case 0:
+				var upstream = parseInt(res.data.upstream);
+				if(upstream == "NaN") {
+					upstream = "none"
+				}else{
+					upstream = upstream / 1000 / 1000;
+				}
+				var downstream = parseInt(res.data.downstream);
+				if(downstream == "NAN"){
+					downstream = "none"
+				}else{
+					downstream = downstream / 1000 / 1000;
+				}
+				if(res.data.upstream != "none" && res.data.downstream != "none"){
+					$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s\nDownstream: " + downstream.toFixed(2) + " Mbit/s";
+				}else if(res.data.upstream != "none"){
+					$scope.data.result="Upstream: " + upstream.toFixed(2) + " Mbit/s";
+				}else if(res.data.downstream != "none"){
+					$scope.data.result="Downstream: " + downstream.toFixed(2) + " Mbit/s";
+				}else {
+					$scope.data.result="No speeds found";
+				}
+				$scope.data.state="result";
+				break;
+			case -1:
+				$scope.data.result="Wrong TP-test address and/or port";
+				$scope.data.state="error";
+				break;
+			case -2:
+				$scope.data.result="Wrong TP-test port but correct address";
+				$scope.data.state="error";
+				break;
+			}
+			$scope.$apply();
 		}
-		$scope.$apply();
 	});
 }); 

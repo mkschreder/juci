@@ -1,6 +1,6 @@
 JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 	// fire off initial sync
-	var sync = $uci.$sync("layer2_interface_ethernet");
+	var sync = $uci.$sync(["layer2_interface_ethernet", "ports"]);
 	
 	function Ethernet(){
 		
@@ -54,7 +54,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 				}
 			});
 			to_remove.forEach(function(i){ adapters.splice(i, 1); }); 	
-			Object.keys(ports).map(function(k){
+			/*Object.keys(ports).map(function(k){
 				var port = ports[k]; 
 				adapters.push({
 					name: port.name, 
@@ -62,7 +62,7 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 					type: port.type, 
 					state: "DOWN"
 				}); 
-			}); 
+			});*/ 
 			def.resolve(); 
 		}).fail(function(){
 			def.reject(); 
@@ -74,34 +74,26 @@ JUCI.app.factory("$broadcomEthernet", function($rpc, $uci){
 		var def = $.Deferred(); 
 		
 		sync.done(function(){
-			if($rpc.router && $rpc.router.boardinfo){
-				$rpc.router.boardinfo().done(function(boardinfo){
-					var names = boardinfo.ethernet.port_names.split(" "); 
-					var devs = boardinfo.ethernet.port_order.split(" "); 
-						
-					var devices = devs.map(function(dev, i){
-						return {
-							get name(){ return names[i]; },
-							get id(){ return dev; },
-							get type(){ return "eth-port"; },
-							is_wan_port: ($uci.layer2_interface_ethernet.Wan && ($uci.layer2_interface_ethernet.Wan.baseifname.value == dev)),
-							base: { name: names[i], id: dev }
-						}; 
-					}); 
-					// Add the broadcom wan port vlan as well. TODO: remove this crap from system itself. 
-					if($uci.layer2_interface_ethernet.Wan){
-						var port = $uci.layer2_interface_ethernet.Wan; 
-						devices.push({
-							name: "WAN", 
-							id: port.ifname.value, 
-							type: "vlan"
-						}); 
-					}
-					def.resolve(devices);  
-				}); 
-			} else {
-				def.resolve([]); 
+			var devices = [];
+			if($uci.ports && $uci.ports["@ethport"]){
+				devices = $uci.ports["@ethport"].map(function(port){
+					return {
+						get name(){ return port.name.value; },
+						get id(){ return port.ifname.value; },
+						get type(){ return "eth-port" },
+						base: { name: port.name.value, id: port.ifname.value }
+					};
+				});
 			}
+			if($uci.layer2_interface_ethernet.Wan){
+				var port = $uci.layer2_interface_ethernet.Wan;
+				devices.push({
+					get name(){ return "WAN"; },
+					get id(){ return port.ifname.value; },
+					get type(){ return "vlan"; }
+				});
+			}
+			def.resolve(devices);
 		}); 
 		return def.promise(); 
 	}
@@ -125,6 +117,7 @@ UCI.$registerConfig("ports");
 UCI.ports.$registerSectionType("ethport", {
 	"ifname": 	{ dvalue: "", type: String }, 
 	"speed": 	{ dvalue: "auto", type: String }, 
-	"pause": 	{ dvalue: false, type: Boolean }
+	"pause": 	{ dvalue: false, type: Boolean },
+	"name":		{ dvalue: "", type: String }
 }); 
 

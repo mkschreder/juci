@@ -143,6 +143,10 @@ msgstr ""
 msgid "off"
 msgstr "Off"
 
+# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/overview.voice.js
+msgid "Unknown"
+msgstr ""
+
 msgid "on"
 msgstr "On"
 
@@ -315,6 +319,10 @@ msgid "TLS"
 msgstr ""
 
 # /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-service-provider.js
+msgid "Account "
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/sip-service-provider.js
 msgid "Direct"
 msgstr ""
 
@@ -392,6 +400,10 @@ msgstr "Phone"
 msgid "Schedule"
 msgstr ""
 
+# /home/reidar/juci/plugins/juci-inteno-voice-client/src/widgets/overview.voice.small.html
+msgid "ONLINE"
+msgstr ""
+
 msgid "OFFLINE"
 msgstr ""
 
@@ -452,7 +464,7 @@ msgid "Phone Lines"
 msgstr ""
 
 msgid "phone.lines.info"
-msgstr "Configure phone lines."
+msgstr "Configure Voice lines."
 
 msgid "Advanced SIP Settings"
 msgstr "Advanced SIP Settings"
@@ -893,10 +905,15 @@ msgstr "Status of your voice lines."
 msgid "Your Phone Lines"
 msgstr ""
 
-msgid "Phone Number"
+msgid "Domain"
 msgstr ""
 
-msgid "Domain"
+# /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/status-phone.html
+msgid "Registration interval (s)"
+msgstr ""
+
+# /home/reidar/juci/plugins/juci-inteno-voice-client/src/pages/status-phone.html
+msgid "Last registration"
 msgstr ""
 
 msgid "Status"
@@ -994,6 +1011,9 @@ msgid "Select Schedule Mode"
 msgstr ""
 
 msgid "Add a new Ringing Schedule"
+msgstr ""
+
+msgid "Phone Number"
 msgstr ""
 
 msgid "Pick Phone Number"

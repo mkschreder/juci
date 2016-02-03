@@ -50,6 +50,9 @@
 			},
 			"uci": [
 				"system"
+			],
+			"juci-io": [
+				"backup"
 			]
 		},
 		"write": {

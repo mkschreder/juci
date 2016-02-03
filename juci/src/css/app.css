@@ -19,6 +19,16 @@
 	border-left: 4px solid rgba(255, 0, 0, 0.6); 
 }
 
+.juci-config-apply-pane {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	background-color: white;
+	padding: 10px;
+	z-index: 1000; 
+	box-shadow: 1px 1px 5px 1px rgb(136, 136, 136); 
+}
+
 .juci-config-info {
 	margin-bottom: 20px; 
 }

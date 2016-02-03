@@ -1,0 +1,129 @@
+canvas {
+    width: 854px;
+    height: 480px;
+    cursor: move;
+    text-align: center;
+    background-color: black;
+    display: none;
+}
+
+#viewport-info {
+    position: relative;
+    margin: auto;
+    width: 854px;
+}
+
+#viewport-info h3 {
+    margin: 2px;
+}
+
+#viewport-info ul {
+    list-style: none;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+#controls, #config {
+    float: left;
+    width: 411px;
+    height: 120px;
+    margin: 5px;
+    margin-top: 10px;
+    padding: 3px;
+    background-image: url('../images/clang_floor2.png');
+    background-color: #3B3632;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#config {
+    text-align: right;
+}
+
+#fullscreenBtn {
+    cursor: pointer;
+}
+
+#vrBtn {
+    cursor: pointer;
+}
+
+#viewport-frame:-moz-full-screen, :-moz-full-screen canvas, canvas:-moz-full-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+}
+
+#viewport-frame:-webkit-full-screen, :-webkit-full-screen canvas, canvas:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+}
+
+#loading {
+    position: relative;
+    margin: auto;
+    top: 200px;
+    padding: 10px;
+    border: 2px solid #666;
+    border-radius: 5px;
+    width: 200px;
+    z-index: 5;
+    background-color: black;
+    text-align: center;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+#mobileVrBtn {
+    position: absolute;
+    bottom: 1em;
+    right: 4em;
+}
+
+#mobileFullscreenBtn {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+}
+
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+    h2, #viewport-info {
+        display: none !important;
+    }
+
+    #webgl-error {
+        width: 100%;
+        height: 100%;
+    }
+
+    #viewport-frame
+     {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+    }
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: move;
+        background-color: black;
+        display: none;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+    }
+}
+
