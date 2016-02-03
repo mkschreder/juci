@@ -279,12 +279,12 @@
 						$window.scrollTo(0, 0); 
 					}, 
 					onExit: function($uci, $tr, gettext, $interval, $events){
-						/*if($uci.$hasChanges()){
+						if($uci.$hasChanges()){
 							if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?"))))
 								$uci.$save(); 
 							else
 								$uci.$clearCache(); 
-						}*/
+						}
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$events.removeAll();
@@ -304,7 +304,7 @@
 			};
 		});
 
-		app.run(function($templateCache, $rpc, $rootScope){
+		app.run(function($templateCache, $uci, $events, $rpc, $rootScope){
 			var self = scope.JUCI;
 			// add capability lookup to root scope so that it can be used inside html ng-show directly 
 			$rootScope.has_capability = function(cap_name){
@@ -314,11 +314,23 @@
 				}
 				return $rpc.$session.acls.juci.capabilities.indexOf(cap_name) != -1; 
 			}
+			// register all templates 
 			Object.keys(self.templates).map(function(k){
 				//console.log("Registering template "+k); 
 				$templateCache.put(k, self.templates[k]); 
 			}); 
-			
+			// subscribe to uci change events and notify uci object
+			$events.subscribe("uci.commit", function(ev){
+				var data = ev.data; 
+				if(data && $uci[data.config]){
+					console.log("reloading config "+data.config); 
+					$uci[data.config].$reload().done(function(){ 
+						// reload all gui 
+						$rootScope.$apply(); 
+					}); 
+				}
+				console.log("commit: "+JSON.stringify(data)); 
+			}); 
 		}); 
 
 		app.factory('$rpc', function(){

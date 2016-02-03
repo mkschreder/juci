@@ -224,14 +224,18 @@
 			$cancel_edit: function(){
 				if(this.svalue != undefined) this.value = this.svalue; 
 			},
-			$update: function(value){
+			$update: function(value, keep_user){
 				if(this.dvalue instanceof Array){
 					Object.assign(this.ovalue, value); 
-					Object.assign(this.uvalue, value); 
+					if(!keep_user) Object.assign(this.uvalue, value); 
+					if(keep_user && !this.ovalue.equals(this.uvalue)) this.is_dirty = true; 
+					else this.is_dirty = false; 
 				} else {
-					this.ovalue = this.uvalue = value; 
+					this.ovalue = value; 
+					if(!keep_user) this.uvalue = value; 
+					if(keep_user && this.ovalue !== this.uvalue) this.is_dirty = true; 
+					else this.is_dirty = false; 
 				}
-				this.is_dirty = false; 
 			}, 
 			get value(){
 				if(this.schema.type == Boolean){
@@ -245,7 +249,11 @@
 			set value(val){
 				// set dirty if not same
 				var self = this; 
-				self.is_dirty = val != self.ovalue; 
+				if(val instanceof Array){
+					self.is_dirty = !val.equals(self.uvalue); 
+				} else {
+					self.is_dirty = val != self.ovalue; 
+				}
 				if(self.ovalue instanceof Array && !(val instanceof Array)) return; 
 				if(val instanceof Array && self.ovalue instanceof Array){
 					self.is_dirty = false; 
@@ -282,8 +290,9 @@
 				this.is_dirty = value; 
 			},
 			get dirty(){
-				if(this.is_dirty || this.uvalue != this.ovalue) return true; 
-				return false; 
+				if(this.uvalue instanceof Array && this.uvalue.equals(this.ovalue)) return false; 
+				else if(this.uvalue === this.ovalue) return false; 
+				return this.is_dirty; 
 			}
 		}
 		UCI.Field = UCIField; 
@@ -293,7 +302,8 @@
 			this[".config"] = config; 
 		}
 		
-		UCISection.prototype.$update = function(data){
+		UCISection.prototype.$update = function(data, opts){
+			if(!opts) opts = {}; 
 			if(!(".type" in data)) throw new Error("Supplied object does not have required '.type' field!"); 
 			// try either <config>-<type> or just <type>
 			var sconfig = section_types[this[".config"][".name"]]; 
@@ -335,7 +345,8 @@
 							value = data[k]; 
 					}
 				}
-				field.$update(value); 
+				//if(k === "hostname") console.log("field "+k+" from "+field.value+" to "+value); 
+				field.$update(value, opts.keep_user_changes); 
 			}); 
 		}
 		
@@ -495,9 +506,9 @@
 			self[item[".name"]] = section; 
 			return section; 
 		}
-		function _updateSection(self, item){
+		function _updateSection(self, item, opts){
 			var section = self[item[".name"]]; 
-			if(section && section.$update) section.$update(item); 
+			if(section && section.$update) section.$update(item, opts); 
 		}
 		
 		function _unlinkSection(self, section){
@@ -552,11 +563,31 @@
 		UCIConfig.prototype.$mark_for_reload = function(){
 			this.deferred = null; 
 		}
+		
+		// reloads data from backend without modifying values set by user
+		UCIConfig.prototype.$reload = function(){
+			var self = this; 
+			this.$sync({keep_user_changes: true}); 
+			var def = $.Deferred(); 
+			$rpc.uci.get({config: self[".name"]}).done(function(data){
+				var vals = data.values;
+				Object.keys(vals).filter(function(x){
+					return vals[x][".type"] in section_types[self[".name"]]; 
+				}).map(function(k){
+					_updateSection(self, vals[k], {keep_user_changes: true}); 
+					def.resolve(); 
+				}); 
+			}).fail(function(){
+				def.reject(); 
+			}); 
+			return def.promise(); 
+		}
 
-		UCIConfig.prototype.$sync = function(){
+		UCIConfig.prototype.$sync = function(opts){
 			var deferred = $.Deferred(); 
 			var self = this; 
-		
+			if(!opts) opts = {}; 
+
 			if(self.deferred) return self.deferred.promise(); 
 			
 			self.deferred = deferred; 
@@ -586,7 +617,7 @@
 						return vals[x][".type"] in section_types[self[".name"]]; 
 					}).map(function(k){
 						if(!(k in self)) _insertSection(self, vals[k]); 
-						else _updateSection(self, vals[k]); 
+						else _updateSection(self, vals[k], opts); 
 						delete to_delete[k]; 
 					}); 
 					

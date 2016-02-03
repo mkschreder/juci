@@ -134,8 +134,12 @@ JUCI.app
 				console.error("Could not save uci configuration!"); 
 			}).always(function(){
 				$scope.busy = 0; 
-				$scope.success = gettext("Settings have been applied successfully!"); 
-				setTimeout(function(){$scope.$apply();}, 0); 
+				// I'm removing the success reporting for now because the pane automatically hides when all changes have been applied.  
+				//$scope.success = gettext("Settings have been applied successfully!"); 
+				$scope.$apply(); 
+				/*setTimeout(function(){
+					$scope.success = null; 
+				}, 1000); */
 			}); 
 		} catch(e){
 			$scope.busy = 0; 
@@ -154,26 +158,32 @@ JUCI.app
 	return {
 		template: '<div ng-hide="hide" class="juci-config-apply-pane">'+
 		//'<button class="btn btn-sm btn-default pull-right" ng-click="onHide()"><i class="fa fa-times-circle"></i></button>'+
-		'<div class="container">{{reload()}}'+
+		'<div class="container">'+
 			'<juci-config-apply></juci-config-apply>'+
 		'</div></div>',
 		scope: {}, 
 		replace: true,
 		controller: "juciConfigApplyPane"
 	}; 
-}).controller("juciConfigApplyPane", function($scope, $uci){
+}).controller("juciConfigApplyPane", function($scope, $events, $rootScope, $uci){
 	$scope.changes = $uci.$getChanges(); 
 	$scope.hide = true; 
-	//$scope.onHide = function(){
-//		$scope.hide = true; 
-//	}
+	
 	// TODO: reloading takes a lot of computing (have to go through all fields)
 	// and this reload may happen several times in a row. 
 	// perhaps do not run it every time? 
-	$scope.reload = function(){
+	$rootScope.$watch(function(){
 		var changes = $uci.$getChanges(); 
-		if(changes.length > 0) $scope.hide = false; 
-		else $scope.hide = true; 
-	};  
+		if(changes.length > 0) {
+			if($scope.hide == true) { 
+				// reset the message when showing the pane again
+				$scope.success = null; 
+			}
+			$scope.hide = false; 
+		} else {
+			$scope.hide = true; 
+		}
+		return true; // have to return true to avoid infinite digest!
+	});  
 }); 
 

@@ -83,6 +83,18 @@ if (!Array.prototype.find) {
   };
 }
 
+if(!Array.prototype.equals){
+	Array.prototype.equals = function(a){
+		if(!(a instanceof Array)) return false; 
+		var b = this; 
+		var i = a.length;
+		if (i != b.length) return false;
+		while (i--) {
+			if (a[i] !== b[i]) return false;
+		}
+		return true;
+	}
+}
 // First, checks if it isn't implemented yet.
 if (!String.prototype.format) {
   String.prototype.format = function() {
