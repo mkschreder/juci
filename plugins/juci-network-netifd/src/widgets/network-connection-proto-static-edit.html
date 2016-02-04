@@ -27,7 +27,7 @@
 		<juci-config-heading translate>IPv6 Settings</juci-config-heading>
 		<juci-config-lines>
 			<!-- IPv6 Assign -->
-			<juci-config-line ng-show="interface.is_lan.value" title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Leave empty for Disabled' | translate }}">
+			<juci-config-line ng-show="interface.is_lan.value" title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Only numbers allowed. Leave empty for Disabled' | translate }}">
 				<input type="text" ng-change="onAssignChange()" class="form-control" ng-model="interface.ip6assign.value" placeholder="{{ 'Disabled' | translate }}" />
 			</juci-config-line>
 			<juci-config-line title="{{'IPv6 Assigned Prefix Hint'|translate}}" ng-show="interface.is_lan.value" error="interface.ip6hint.error">
