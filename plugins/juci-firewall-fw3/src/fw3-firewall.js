@@ -138,10 +138,10 @@ JUCI.app
 		},
 		// we determine what networks are wan/lan/guest based on zones. This is currently hardcoded,
 		// but probably should not be in the future. This will break if the user has different zone names!
-		getLanZone: function(){ 
+		getLanZones: function(){ 
 			var deferred = $.Deferred(); 
 			sync().done(function(){
-				deferred.resolve($uci.firewall["@zone"].find(function(x){ return x.name.value == "lan"; })); 
+				deferred.resolve($uci.firewall["@zone"].filter(function(x){ return x.masq.value == false; })); 
 			}); 
 			return deferred.promise(); 
 		},
@@ -154,10 +154,10 @@ JUCI.app
 			return deferred.promise(); 
 		},
 		
-		getWanZone: function(){ 
+		getWanZones: function(){ 
 			var deferred = $.Deferred(); 
 			sync().done(function(){
-				deferred.resolve($uci.firewall["@zone"].find(function(x){ return x.name.value == "wan"; })); 
+				deferred.resolve($uci.firewall["@zone"].filter(function(x){ return x.masq.value == true; })); 
 			}); 
 			return deferred.promise(); 
 		}, 
