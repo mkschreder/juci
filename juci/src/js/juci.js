@@ -240,6 +240,33 @@
 							templateUrl: (page.redirect)?"pages/default.html":page.template
 						}
 					},
+					resolve: {
+						saveChangesOnExit: function($uci, $tr, gettext){
+							var def = $.Deferred(); 
+							if($uci.$getErrors().length > 0){
+								alert($tr(gettext("There are errors in your most recent changes. Please try applying them manually and fixing any errors before leaving this page!"))); 
+								def.reject(); 
+							} else {
+								if($uci.$hasChanges()){
+									if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?")))){
+										$uci.$save().fail(function(){
+											alert($tr(gettext("Could not automatically save configuration. Please apply it manyally and fix any errors."))); 
+											def.reject(); 
+										}).done(function(){
+											def.resolve(); 
+										}); 
+									} else {
+										$uci.$clearCache(); 
+										def.resolve(); 
+									}
+								} else {
+									def.resolve(); 
+								}
+							}
+
+							return def.promise(); 
+						}
+					},
 					// Perfect! This loads our controllers on demand! :) 
 					// Leave this code here because it serves as a valuable example
 					// of how this can be done. 
@@ -278,13 +305,7 @@
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($uci, $tr, gettext, $interval, $events){
-						if($uci.$hasChanges()){
-							if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?"))))
-								$uci.$save(); 
-							else
-								$uci.$clearCache(); 
-						}
+					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit){
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$events.removeAll();
