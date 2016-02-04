@@ -1,7 +1,7 @@
 <div>
 	<juci-config-lines>
-		<juci-config-line title="{{'Name'|translate}}">
-			<input type="text" class="form-control" ng-model="zone.name.value"/>
+		<juci-config-line title="{{'Name'|translate}}" help="{{'IMPORTANT: Changing names of existing zones can have adverse effects so it is not recommended for existing zones!'|translate}}">
+			<input type="text" class="form-control" ng-disabled="zone.name.ovalue != 'new_zone'" ng-model="zone.name.value"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Default Policy'|translate}}">
 			<table class="table">
