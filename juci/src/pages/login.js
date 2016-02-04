@@ -17,8 +17,11 @@
 JUCI.app
 .controller("LoginPageCtrl", function($scope){
 	JUCI.interval.repeat("juci-check-loggedin", 1000, function(done){
-		if($rpc.$isLoggedIn()) window.location = "/"; 	
-		done(); 
+		$rpc.$authenticate().done(function(){
+			window.location = "/"; 	
+		}).always(function(){
+			done(); 
+		}); 
 	}); 
 }); 
 
