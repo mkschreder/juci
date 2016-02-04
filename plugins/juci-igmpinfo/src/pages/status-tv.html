@@ -13,7 +13,7 @@
 					<th translate>WAN Port</th> 
 					<th translate>Timeout</th>
 				</tr>
-				<tr ng-repeat="row in igmptable">
+				<tr ng-repeat="row in igmptable track by $index">
 					<td>{{row.group}}</td>
 					<td>{{row.reporter}}</td>
 					<td>{{row.device}}</td>

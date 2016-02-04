@@ -71,7 +71,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="conf in subconfigs">
+				<tr ng-repeat="conf in subconfigs track by $index">
 					<td><input type="text" class="form-control" ng-model="conf.url.value"></td>
 					<td><input type="text" class="form-control" ng-model="conf.packagecontrol.value"></td>
 					<td><switch class="green" ng-model="conf.enabled.value" /></td>

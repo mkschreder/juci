@@ -32,7 +32,7 @@
 				<th><a href="" ng-click="order('cipher')" translate>Cipher</a></th>
 				<th><a href="" ng-click="order('wps_version')" translate>WPS</a></th>
 			</thead>
-			<tr ng-repeat="ap in access_points | orderBy:predicate:reverse">
+			<tr ng-repeat="ap in access_points track by $index | orderBy:predicate:reverse">
 				<td>{{ap.ssid}}</td>
 				<td>{{ap.frequency}}</td>
 				<td>{{ap.channel}}</td>

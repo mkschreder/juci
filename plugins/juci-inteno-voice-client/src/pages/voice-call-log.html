@@ -21,7 +21,7 @@
 					<th translate>Your number</th>
 					<th translate>Duration</th>
 				</tr>
-				<tr ng-repeat="log in call_log | filter:phoneFilter">
+				<tr ng-repeat="log in call_log track by $index | filter:phoneFilter">
 					<td>
 						<i class='fa fa-arrow-left' ng-class="log.class" ng-show="log.direction == 'OUTGOING'"></i>
 						<i class='fa fa-arrow-right' ng-class="log.class" ng-show="log.direction == 'INCOMING'"></i>

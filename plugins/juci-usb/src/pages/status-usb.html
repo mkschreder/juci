@@ -9,7 +9,7 @@
 				<th translate>Vendor Name</th>
 				<th translate>Device Name</th>
 			</thead>
-			<tr ng-repeat="dev in devices">
+			<tr ng-repeat="dev in devices track by $index">
 				<td>{{dev.productid}}</td>
 				<td>{{dev.vendorid}}</td>
 				<td>{{dev.manufacturer}}</td>

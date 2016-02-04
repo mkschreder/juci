@@ -14,7 +14,7 @@
 				<th translate>MTU</th>
 				<th style="width: 1%"></th>
 			</thead>
-			<tr ng-repeat="route in routes">
+			<tr ng-repeat="route in routes track by $index">
 				<td><div class="form-group {{getError(route.interface) ? '': 'has-error'}}">
 					<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
 				</div></td>
@@ -46,7 +46,7 @@
 				<th translate>MTU</th>
 				<th style="width: 1%"></th>
 			</thead>
-			<tr ng-repeat="route in routes6">
+			<tr ng-repeat="route in routes6 track by $index">
 				<td><div class="form-group {{getError(route.interface) ? '': 'has-error'}}">
 					<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
 				</div></td>

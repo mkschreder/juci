@@ -14,7 +14,7 @@
 				<p translate>wifi.wps.in.progress</p>
 			</juci-config-section>
 			<juci-config-section ng-show="wireless.status.wps.value && progress != 1">
-				<juci-config-lines ng-repeat="interface in wireless['@wifi-iface']">
+				<juci-config-lines ng-repeat="interface in wireless['@wifi-iface'] track by $index">
 					<juci-config-line title="{{'Enable WPS on'|translate}} {{interface.ssid.value}}">
 						<switch ng-show="wpsUnlocked(interface)" ng-model="interface.wps_pbc.value" class="green" ng-change="save()" ></switch>
 						<strong ng-hide="wpsUnlocked(interface)" translate>Disabled</strong>

@@ -22,13 +22,13 @@
 				<p class="col-md-12" style="font-size: 20px; color: red;" >{{error}}</p>
 			</div>
 		</div>
-		<div ng-repeat="(section_id, values) in subsections" ng-show="!loading" class="col-md-6">
+		<div ng-repeat="(section_id, values) in subsections track by $index" ng-show="!loading" class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">{{ section_id }}</h3>
 				</div>
 				<div class="panel-body">
-					<div class="row" ng-repeat="(k, v) in values">
+					<div class="row" ng-repeat="(k, v) in values track by $index">
 						<div class="col-md-6">
 							{{k}}
 						</div>

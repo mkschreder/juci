@@ -19,7 +19,7 @@
 				<juci-select ng-items="types" ng-model="data.type"></juci-select>
 			</juci-config-line>
 			<juci-config-line title="{{'Filter by:'|translate}}" ng-show="filters.length > 0">
-				<div class="checkbox checkbox-info" ng-repeat="filter in filters">
+				<div class="checkbox checkbox-info" ng-repeat="filter in filters track by $index">
 					<input type="checkbox" ng-model="filter.checked" ng-change="applyFilter()" />
 					<label><strong>{{filter.name}}</strong></label>
 				</div>

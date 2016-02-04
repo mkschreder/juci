@@ -29,7 +29,7 @@
 					<th style="width:20%" translate>Status</th>
 					<th style="width:1%" translate>Action</th>
 				</thead>
-				<tr ng-repeat="hs in status.handsets">
+				<tr ng-repeat="hs in status.handsets track by $index">
 					<td>{{hs.id}}</td>
 					<td>{{toHexaDecimal(hs.address)}}</td>
 					<td>{{hs.online|uppercase}}</td>

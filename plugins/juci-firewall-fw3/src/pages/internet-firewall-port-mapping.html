@@ -26,7 +26,7 @@
 					<th></th>
 				</thead>
 				<tbody >
-					<tr ng-repeat="r in redirects">
+					<tr ng-repeat="r in redirects track by $index">
 						<td>{{ r.name.value }}</td>
 						<td>{{ r.src.value }} {{'to'|translate}} {{ r.dest.value }}</td>
 						<td>{{ r.dest_ip.value }}</td>

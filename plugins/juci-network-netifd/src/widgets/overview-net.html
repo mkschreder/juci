@@ -11,7 +11,7 @@
 			<div class="col-xs-2" style="padding:10px;" ng-show="ipaddr"><i class="fa fa-edit" ng-click="onEditLan()" style="float:right;cursor:pointer;"></i></div>
 		</div>
 		<i ng-show="!clients" class="fa fa-spinner fa-spin"></i>
-		<div class="row" ng-repeat="client in clients" style="margin-bottom: 10px;">
+		<div class="row" ng-repeat="client in clients track by $index" style="margin-bottom: 10px;">
 			<div style="{{((client.online)?'':'color: grey !important')}}" dynamic="client._display_html"/>
 		</div>
 	</div>
