@@ -73,16 +73,11 @@ JUCI.app
 	JUCI.interval.repeat("overview-wan", 2000, function(done){
 		$rpc.network.interface.dump().done(function(result){
 			var interfaces = result.interface; 
-			$firewall.getZones().done(function(zones){
-				var wan = zones.find(function(x){ return x.name.value == "wan"; }); 
-				if(!wan) { done(); return; }; 
-				var wan_ifs = interfaces.filter(function(x){
-					return wan.network.value.find(function(net) { return net == x.interface; }); 
-				}); 
+			$firewall.getZoneNetworks("wan").done(function(wan_ifs){
 				var default_route_ifs = wan_ifs.filter(function(x){ 
-					return x.route && x.route.length && 
-						(x.route.find(function(r){ return r.target == "0.0.0.0" || r.target == "::"; }));
-				}); 
+					return x.$info && x.$info.route && x.$info.route.length && 
+						(x.$info.route.find(function(r){ return r.target == "0.0.0.0" || r.target == "::"; }));
+				}).map(function(x){ return x.$info}); 
 				var con_types = {}; 
 				var all_gateways = {}; 
 				default_route_ifs.map(function(i){
