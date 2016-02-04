@@ -262,6 +262,8 @@ UCI.wireless.$registerSectionType("wifi-iface", {
 	// validate ssid
 	if(section.ssid.value.length >= 32) 
 		return gettext("SSID string can be at most 32 characters long!"); 
+	if(section.ssid.value.length == 0)
+		return gettext("SSID must be set!"); 
 	// validate keys
 	if(section.encryption.value.indexOf("wep") == 0){
 		for(var id = 1; id <= 4; id++){
