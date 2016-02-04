@@ -15,12 +15,20 @@
 				<th style="width: 1%"></th>
 			</thead>
 			<tr ng-repeat="route in routes">
-				<td><juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select></td>
-				<td><input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'Target IP Address'|translate}}"/></td>
-				<td><input type="text" class="form-control" ng-model="route.netmask.value" placeholder="{{'Netmask'|translate}}"/></td>
-				<td><input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'Default Gateway'|translate}}"/></td>
-				<td><input type="text" class="form-control" ng-model="route.metric.value" placeholder="{{'0'|translate}}"/></td>
-				<td><input type="text" class="form-control" ng-model="route.mtu.value" placeholder="{{'1500'|translate}}"/></td>
+				<td><div class="form-group {{getError(route.interface) ? '': 'has-error'}}">
+					<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
+				</div></td>
+				<td><div class="form-group {{getError(route.target) ? '': 'has-error'}}">
+					<input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'Target IP Address'|translate}}"/>
+				</div></td>
+				<td><div class="form-group {{getError(route.netmask) ? '': 'has-error'}}">
+					<input type="text" class="form-control" ng-model="route.netmask.value" placeholder="{{'Netmask'|translate}}"/>
+				</div></td>
+				<td><div class="form-group {{getError(route.gateway) ? '': 'has-error'}}">
+					<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'Default Gateway'|translate}}"/>
+				</div></td>
+				<td><input type="number" min="0" max="4294967295" class="form-control" ng-model="route.metric.value" placeholder="{{'0'|translate}}"/></td>
+				<td><input type="number" min="60" max="2048" class="form-control" ng-model="route.mtu.value" placeholder="{{'Iface MTU'|translate}}"/></td>
 				<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
 			</tr>
 			<tr>
@@ -39,11 +47,17 @@
 				<th style="width: 1%"></th>
 			</thead>
 			<tr ng-repeat="route in routes6">
-				<td><juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select></td>
-				<td><input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'IPv6 Address'|translate}}"/></td>
-				<td><input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'IPv6 Gateway'|translate}}"/></td>
-				<td><input type="text" class="form-control" ng-model="route.metric.value" placeholder="{{'0'|translate}}"/></td>
-				<td><input type="text" class="form-control" ng-model="route.mtu.value" placeholder="{{'1500'|translate}}"/></td>
+				<td><div class="form-group {{getError(route.interface) ? '': 'has-error'}}">
+					<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
+				</div></td>
+				<td><div class="form-group {{getError(route.target) ? '': 'has-error'}}">
+					<input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'IPv6 Address'|translate}}"/>
+				</div></td>
+				<td><div class="form-group {{getError(route.gateway) ? '': 'has-error'}}">
+					<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'IPv6 Gateway'|translate}}"/>
+				</div></td>
+				<td><input type="number" class="form-control" ng-model="route.metric.value" placeholder="{{'0'|translate}}"/></td>
+				<td><input type="number" class="form-control" ng-model="route.mtu.value" placeholder="{{'Iface MTU'|translate}}"/></td>
 				<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
 			</tr>
 			<tr>
