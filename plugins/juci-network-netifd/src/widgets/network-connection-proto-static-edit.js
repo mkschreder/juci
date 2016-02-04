@@ -21,7 +21,7 @@ JUCI.app
 	}); 
 	$scope.interface_types = [
 		{ label: $tr(gettext("Uplink")),	 value: false },
-		{ label: $tr(gettext("Downlink")), value: true }
+		{ label: $tr(gettext("Local Link")), value: true }
 	];
 	$scope.ip = {};
 	$scope.ip.types = [
