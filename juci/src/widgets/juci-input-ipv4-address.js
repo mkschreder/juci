@@ -56,6 +56,13 @@ JUCI.app
 		if(ipaddr == "..." || ipaddr == ".." || ipaddr == ".") ipaddr = "";
 		if($scope.ngModel != ipaddr) ngModel.assign($scope.$parent, ipaddr);
 	};
+	
+	$scope.onCopy = function(ev){
+		if(ev.originalEvent.clipboardData && ev.originalEvent.clipboardData.setData){
+			ev.originalEvent.clipboardData.setData("text/plain", $scope.data.parts.join(".")); 
+			ev.preventDefault(); 
+		}
+	}
 
 	$scope.onPaste = function(ev){
 		var ip = ev.originalEvent.clipboardData.getData('text/plain');
