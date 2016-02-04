@@ -71,8 +71,18 @@ JUCI.app.run(function($ethernet, $network, $uci, $broadcomVLAN){
 UCI.$registerConfig("layer2_interface_vlan"); 
 UCI.layer2_interface_vlan.$registerSectionType("vlan_interface", {
 	"name":					{ dvalue: '', type: String }, 
-	"ifname":					{ dvalue: '', type: String }, 
-	"baseifname":					{ dvalue: '', type: String }, 
-	"vlan8021q":					{ dvalue: '101', type: String }, 
-	"vlan8021p":					{ dvalue: '5', type: String }
+	"ifname":				{ dvalue: '', type: String }, 
+	"baseifname":			{ dvalue: '', type: String }, 
+	"vlan8021q":			{ dvalue: '', type: Number }, 
+	"vlan8021p":			{ dvalue: '', type: Number }
+}, function(section){
+	var errors = [];
+	if(!section.vlan8021p || section.vlan8021p.value == "" || isNaN(section.vlan8021p.value) || section.vlan8021p.value <  0 || section.vlan8021p.value > 7)
+		errors.push("VLAN priority must be between 0 and 7");
+	if(!section.vlan8021q || section.vlan8021q.value == "" || isNaN(section.vlan8021q.value) || section.vlan8021q.value < 1 || section.vlan8021q.value > 4096)
+		errors.push("VLAN Q-tag must be between 1 and 4096");
+	if(!section.ifname || section.ifname.value == "" || !section.baseifname || section.baseifname.value == "")
+		errors.push("VLAN must have a base-device");
+	if(errors.length) return errors;
+	return null;
 }); 

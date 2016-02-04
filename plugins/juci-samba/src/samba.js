@@ -64,8 +64,8 @@ UCI.samba.$registerSectionType("sambashare", {
 	"name":			{ dvalue: "", type: String }, 
 	"path":			{ dvalue: "/mnt", type: String },
 	"users":		{ dvalue: "", type: String }, // comma separated list
-	"read_only":	{ dvalue: "", type: String }, // Yes/no
-	"guest_ok":		{ dvalue: "", type: String }, // Yes/no
+	"read_only":	{ dvalue: "no", type: Boolean }, // Yes/no
+	"guest_ok":		{ dvalue: "no", type: Boolean }, // Yes/no
 	"create_mask":	{ dvalue: "0700", type: String }, 
 	"dir_mask":		{ dvalue: "0700", type: String } 
 }); 

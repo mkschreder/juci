@@ -24,7 +24,7 @@ JUCI.app
 		templateUrl: "/widgets/firewall-zone-edit.html"
 	}; 
 })
-.controller("firewallZoneEdit", function($scope, $firewall, gettext, $network, networkConnectionPicker){
+.controller("firewallZoneEdit", function($scope, $firewall, gettext, $network, networkConnectionPicker, $uci){
 	$scope.policys = [
 		{ label: gettext("ACCEPT"), value: "ACCEPT" }, 
 		{ label: gettext("REJECT"), value: "REJECT" }, 
@@ -33,6 +33,7 @@ JUCI.app
 	]; 
 	
 	$scope.$watch("zone", function(zone){
+		$scope.zones = {source:[], dest:[]}
 		if(!zone) return; 
 		$network.getNetworks().done(function(nets){
 			if(!zone || !zone.network) return; 
@@ -70,5 +71,5 @@ JUCI.app
 		}
 	}
 	
-	
 }); 
+

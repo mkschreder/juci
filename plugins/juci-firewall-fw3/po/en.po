@@ -319,7 +319,7 @@ msgid "Packet Forwarding"
 msgstr "Packet Forwarding"
 
 msgid "internet.firewall.forwarding.info"
-msgstr "Configure port forwarding here."
+msgstr "Packet forwarding enables forwarding of incoming packets from one network interface to another. Normally this should only be enabled going from 'lan' interface to a 'wan' interface. If you would like to enable forwarding from wan to lan, make sure you know what you are doing."
 
 # /home/martin/juci/plugins/juci-firewall-fw3/src/pages/internet-firewall.html
 msgid "Enable firewall"
