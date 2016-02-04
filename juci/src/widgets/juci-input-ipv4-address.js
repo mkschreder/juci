@@ -52,7 +52,7 @@ JUCI.app
 	// reassemble model when parts change
 	$scope.updateModel = function() {
 		console.log("Assemble parts: "+$scope.data.parts);
-		var ipaddr = Object.keys($scope.data.parts).map(function(x){ return $scope.data.parts[x] }).join(".");
+		var ipaddr = $scope.data.parts.join(".");
 		if(ipaddr == "..." || ipaddr == ".." || ipaddr == ".") ipaddr = "";
 		if($scope.ngModel != ipaddr) ngModel.assign($scope.$parent, ipaddr);
 	};
@@ -65,4 +65,22 @@ JUCI.app
 		parts.forEach(function(v, i){ $scope.data.parts[i] = v; });
 		$scope.updateModel();
 	}
+}).directive('juciInputIpv4AutoMoveOnDot', function() {
+  return {
+    restrict: 'A',
+    link: function($scope,elem,attrs) {
+      elem.bind('keydown', function(e) {
+        var code = e.keyCode || e.which;
+        if (code == 190) {
+			e.preventDefault();
+			var inputs = elem.parent().parent().parent().find(":input"); 
+			var next = inputs.eq(inputs.index(elem) + 1); 
+			var cur = inputs.eq(inputs.index(elem)); 
+			next.attr("ovalue", next.val()).val("").focus(); 
+			if(cur.attr("ovalue") && cur.val() == "") cur.val(cur.attr("ovalue")); 
+        }
+      });
+    }
+  }
 });
+
