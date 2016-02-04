@@ -71,8 +71,5 @@ JUCI.app
 		}
 	}
 	
-}).filter("uppercase", function(){
-	return function(string){
-		return String(string).toUpperCase();
-	};
-});
+}); 
+
