@@ -44,37 +44,6 @@ JUCI.app
 			}).filter(function(x){ return x != null; }); 
 			$scope.$apply(); 
 		}); 
-		$firewall.getZones().done(function(zones){
-			var others = zones.filter(function(z){ return z.name.value != zone.name.value }).map(function(z){ return { name:z.name.value }; });
-			$uci.$sync("firewall").done(function(){
-				var forwards = $uci.firewall["@forwarding"];
-				others.map(function(other){
-					if(forwards.find(function(fw){ return fw.src.value == other.name && fw.dest.value == zone.name.value; }))
-						$scope.zones.source.push({name: other.name, selected: true });
-					else
-						$scope.zones.source.push({name: other.name, selected: false });
-					if(forwards.find(function(fw){ return fw.dest.value == other.name && fw.src.value == zone.name.value; }))
-						$scope.zones.dest.push({ name: other.name, selected: true });
-					else
-						$scope.zones.dest.push({ name: other.name, selected: false });
-				});
-				$scope.changeForwards = function(){
-					var rem = forwards.filter(function(fw){ return fw.src.value == zone.name.value || fw.dest.value == zone.name.value; });
-					for(var i = rem.length; i > 0; i--){ rem[i-1].$delete();}
-					$scope.zones.source.map(function(src){
-						if(src.selected){
-							$uci.firewall.$create({ ".type":"forwarding", "src": src.name, "dest": zone.name.value });
-						}
-					});
-					$scope.zones.dest.map(function(dst){
-						if(dst.selected){
-							$uci.firewall.$create({ ".type":"forwarding", "src": zone.name.value, "dest": dst.name });
-						}
-					});
-				};
-				$scope.$apply();
-			});
-		});
 	}); 
 	
 	$scope.getItemTitle = function(net){

@@ -27,22 +27,6 @@
 		<juci-config-line title="{{'MSS clamping'|translate}}">
 			<switch class="green" ng-model="zone.mtu_fix.value" />
 		</juci-config-line>
-		<juci-config-line title="{{'Allow forward to destination zones:'|translate}}">
-			<div ng-repeat="zone in zones.dest">
-				<div class="checkbox checkbox-info">
-					<input type="checkbox" ng-model="zone.selected" ng-click="changeForwards()"/>
-					<label><strong>{{zone.name|uppercase}}</strong></label>
-				</div>
-			</div>
-		</juci-config-line>
-		<juci-config-line title="{{'Allow forward from source zones:'|translate}}">
-			<div ng-repeat="zone in zones.source">
-				<div class="checkbox checkbox-info">
-					<input type="checkbox" ng-model="zone.selected" ng-click="changeForwards()"/>
-					<label><strong>{{zone.name|uppercase}}</strong></label>
-				</div>
-			</div>
-		</juci-config-line>
 		<juci-config-line title="{{'Zone members:'|translate}}">
 		</juci-config-line>
 	</juci-config-lines>
