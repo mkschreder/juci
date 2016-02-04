@@ -64,13 +64,22 @@ JUCI.app
 			var def = $.Deferred();  
 			sync().done(function(){
 				$network.getNetworks({ filter: opts.filter }).done(function(nets){
-					var selected_zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone; }); 
+					var selected_zone;
+					if(zone == "lan"){
+						selected_zone = $uci.firewall["@zone"].filter(function(x){ return x.masq.value == false; });
+					}else if(zone == "wan"){
+						selected_zone = $uci.firewall["@zone"].filter(function(x){ return x.masq.value == true; });
+					}else{
+						var selected_zone = [$uci.firewall["@zone"].find(function(x){ return x.name.value == zone; }) ];
+					}
 					if(!selected_zone) {
 						def.reject({error: "Zone does not exist!"}); 
 						return; 
 					}
 					var zone_nets = nets.filter(function(x){
-						return selected_zone.network.value.indexOf(x[".name"]) != -1; 
+						return selected_zone.find(function(zone){
+							return zone.network.value.indexOf(x[".name"]) != -1;
+						});
 					}); 
 					def.resolve(zone_nets); 
 				}); 
