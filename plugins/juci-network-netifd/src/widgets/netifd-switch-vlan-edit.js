@@ -40,6 +40,8 @@ JUCI.app
 		if(!vlan) return; 
 		// TODO: do we always need CPU port (5) to be tagged? 
 		var list = vlan.ports.value.split(" ").filter(function(x){ return x != "5t"; });  
+		// reset all selections before we set them again
+		$scope.allSwitchPorts.map(function(x){ x.selected = false; }); 
 		$scope.selectedSwitchPorts = list.map(function(x){ 
 			return $scope.allSwitchPorts.find(function(y){ return y.value == parseInt(x); }); 
 		}).filter(function(x){ if(x) x.selected = true; return x != null; }); 
