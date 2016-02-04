@@ -218,6 +218,11 @@ UCI.network.$registerSectionType("route", {
 	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
 	"metric": 				{ dvalue: 0, type: Number },
 	"mtu": 					{ dvalue: 1500, type: Number }
+}, function(section){
+	if(section.interface.value == "") return gettext("Please specify interface for route!"); 
+	if(section.target.value == "") return gettext("Please specify target for route!"); 
+	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
+	if(section.gatewa.value == "") return gettext("Please specify gateway for route!"); 
 }); 
 
 UCI.network.$registerSectionType("route6", {
@@ -226,6 +231,10 @@ UCI.network.$registerSectionType("route6", {
 	"gateway": 				{ dvalue: "", type: String },
 	"metric": 				{ dvalue: 0, type: Number },
 	"mtu": 					{ dvalue: 1500, type: Number }
+}, function(section){
+	if(section.interface.value == "") return gettext("Please specify interface for ipv6 route!"); 
+	if(section.target.value == "") return gettext("Please specify target for ipv6 route!"); 
+	if(section.gateway.value == "") return gettext("Please specify gateway for ipv6 route!");
 }); 
 
 UCI.network.$registerSectionType("switch", {
