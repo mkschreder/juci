@@ -223,6 +223,7 @@ UCI.network.$registerSectionType("route", {
 	if(section.target.value == "") return gettext("Please specify target for route!"); 
 	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
 	if(section.gatewa.value == "") return gettext("Please specify gateway for route!"); 
+	return null; 
 }); 
 
 UCI.network.$registerSectionType("route6", {
@@ -235,6 +236,7 @@ UCI.network.$registerSectionType("route6", {
 	if(section.interface.value == "") return gettext("Please specify interface for ipv6 route!"); 
 	if(section.target.value == "") return gettext("Please specify target for ipv6 route!"); 
 	if(section.gateway.value == "") return gettext("Please specify gateway for ipv6 route!");
+	return null; 
 }); 
 
 UCI.network.$registerSectionType("switch", {
