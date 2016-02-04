@@ -243,9 +243,14 @@
 					resolve: {
 						saveChangesOnExit: function($uci, $tr, gettext){
 							var def = $.Deferred(); 
-							if($uci.$getErrors().length > 0){
-								alert($tr(gettext("There are errors in your most recent changes. Please try applying them manually and fixing any errors before leaving this page!"))); 
-								def.reject(); 
+							var errors = $uci.$getErrors(); 
+							if(errors.length > 0){
+								if(confirm($tr(gettext("There are errors in your current configuration. "+
+									"Please try applying them manually and fixing any errors before leaving this page! Following errors have been found: \n\n"+errors.join("\n"))))){
+									def.reject(); 
+								} else {
+									def.resolve(); 
+								}
 							} else {
 								if($uci.$hasChanges()){
 									if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?")))){
