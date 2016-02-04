@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.controller("InternetPortMappingPageCtrl", function($scope, $uci, $rpc){
+.controller("InternetPortMappingPageCtrl", function($scope, $uci, $rpc, $tr, gettext){
 	function reload(){
 		$uci.$sync("firewall").done(function(){
 			$scope.redirects = $uci.firewall["@redirect"];
@@ -52,6 +52,10 @@ JUCI.app
 	$scope.onAcceptEdit = function(){
 		$scope.errors = $scope.rule.$getErrors(); 
 		if($scope.errors.length) return; 
+		var found = $uci.firewall["@redirect"].find(function(x){
+			return x != $scope.rule && x.name.value == $scope.rule.name.value; 
+		}); 
+		if(found) { alert($tr(gettext("A port forwarding rule with the same name already exists! Please specify a different name!"))); return; }
 		$scope.rule[".new"] = false; 
 		$scope.rule = null;  
 	};
