@@ -252,6 +252,8 @@
 									def.resolve(); 
 								}
 							} else {
+								def.resolve(); 
+								/*
 								if($uci.$hasChanges()){
 									if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?")))){
 										$uci.$save().fail(function(){
@@ -266,7 +268,7 @@
 									}
 								} else {
 									def.resolve(); 
-								}
+								}*/
 							}
 
 							return def.promise(); 
