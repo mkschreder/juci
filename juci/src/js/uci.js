@@ -838,6 +838,16 @@
 		}); 
 	}
 	
+	UCI.prototype.$getErrors = function(){
+		var self = this; 
+		var errors = []; 
+		Object.keys(self).map(function(x){
+			if(!self[x] || self[x].constructor != UCI.Config) return; 
+			errors = errors.concat(self[x].$getErrors()); 
+		}); 
+		return errors; 
+	}
+		
 	UCI.prototype.$getChanges = function(){
 		var changes = []; 
 		var self = this; 
@@ -1053,7 +1063,7 @@
 			}, 
 			function(next){
 				if(errors.length) {
-					deferred.reject(errors); 
+					setTimeout(function(){ deferred.reject(errors); }, 0); 
 					return; 
 				}
 				// this will prevent making ubus call if there were no changes to apply 
