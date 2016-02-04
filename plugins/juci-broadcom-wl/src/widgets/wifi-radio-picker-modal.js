@@ -24,10 +24,19 @@ JUCI.app
 		{ label: $tr(gettext("Client (STA)")), value: "sta" }
 	]; 
 	
-	$wireless.getDevices().done(function(devices){
-		$scope.allRadios = devices.map(function(x){
-			return { label: x[".frequency"] + " (" + x[".name"] + ")", value: x[".name"] }; 
-		}); 
+	$wireless.getInterfaces().done(function(interfaces){
+		$wireless.getDevices().done(function(devices){
+			var fullRadios = devices.filter(function(dev){ 
+				radiotyppe = interfaces.filter(function(intf){ return intf[".frequency"] == dev[".frequency"]; });
+				if(radiotyppe.length > 3) return true;
+				return false
+			}).map(function(x){ return x[".frequency"]; });
+			$scope.allRadios = devices.filter(function(dev){
+				return fullRadios.find(function(radio){ return radio == dev[".frequency"] }) == undefined;
+			}).map(function(x){
+				return { label: x[".frequency"] + " (" + x[".name"] + ")", value: x[".name"] };
+			});
+		});
 	}); 
   $scope.ok = function () {
 		$scope.errors = []; 
