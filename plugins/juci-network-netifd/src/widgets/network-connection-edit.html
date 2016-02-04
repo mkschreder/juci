@@ -63,7 +63,7 @@
 				<network-connection-ip6-settings-edit ng-model="interface" ></network-connection-ip6-settings-edit>
 			</tab>-->
 			<tab heading="{{ 'DHCP' | translate}}" ng-show="interface.proto.value == 'static'">
-				<network-connection-dhcp-server-settings ng-connection="interface"/>
+				<network-connection-dhcp-server-settings ng-show="interface.proto.value == 'static'" ng-connection="interface"/>
 			</tab>
 		</tabset>
 	</div>
