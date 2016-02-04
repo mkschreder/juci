@@ -409,7 +409,8 @@ end
 
 function systime_get()
 	local result = { 
-		unix_time = os.time()
+		unix_time = os.time(),
+		local_time = (juci.shell("date") or ""):gsub("\n", "")
 	}; 
 	print(json.encode(result)); 
 end

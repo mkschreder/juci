@@ -58,7 +58,7 @@ JUCI.app
 
 	JUCI.interval.repeat("system.time", 1000, function(done){
 		$rpc.juci.system.time.get().done(function(result){
-			$scope.localtime = (new Date(result.unix_time * 1000)).toLocaleString(); 
+			$scope.localtime = result.local_time; 
 			$scope.$apply(); 
 			done(); 
 		}); 
