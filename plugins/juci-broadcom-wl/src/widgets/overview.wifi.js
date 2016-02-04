@@ -37,7 +37,6 @@ JUCI.app
 	});
 })
 .controller("overviewWidgetWifi", function($scope, $rpc, $uci, $tr, gettext, $juciDialog){
-	var pauseSync = false;
 	$scope.wireless = {
 		clients: []
 	}; 
@@ -55,11 +54,9 @@ JUCI.app
 	}
 
 	$scope.onEditSSID = function(iface){
-		pauseSync = true;
 		$juciDialog.show("uci-wireless-interface", {
 			title: $tr(gettext("Edit wireless interface")),  
 			on_button: function(btn, inst){
-				pauseSync = false;
 				if(btn.value == "cancel"){
 					iface.uci_dev.$reset();
 					inst.dismiss("cancel");
@@ -83,15 +80,14 @@ JUCI.app
 			function(next){
 				$uci.$sync("wireless").done(function(){
 					$rpc.juci.wireless.devices().done(function(result){
-						$scope.wifi = $uci.wireless;  
-						$scope.vifs = result.devices.map(function(dev){
-							if(dev.ssid == "") return null; 
-							var uci_dev = $uci.wireless["@wifi-iface"].find(function(w){
-								return w.ifname.value == dev.device; 
+						$scope.vifs = $uci.wireless["@wifi-iface"].map(function(iface){
+							var dev = result.devices.find(function(dev){
+								return iface.ifname.value == dev.device; 
 							}); 
-							dev.uci_dev = uci_dev; 
+							if(!dev) return null;
+							dev.uci_dev = iface; 
 							return dev; 
-						}).filter(function(x){ return x != null; });  
+						}).filter(function(x){ return x != null; }); 
 						if($uci.wireless && $uci.wireless.status) {
 							$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
 							$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
@@ -124,11 +120,18 @@ JUCI.app
 		return def.promise(); 
 	}; 
 	JUCI.interval.repeat("wifi-overview", 10000, function(done){
-		if(pauseSync){
-			done();
-			return;
+		if($scope && $scope.vifs){
+			var tab_info = {};
+			$scope.vifs.map(function(vif){
+				if(vif && vif._expanded) tab_info[vif.device] = vif._expanded;
+			});
 		}
 		refresh().done(function(){
+			if(!$scope || !$scope.vifsi || !tab_info) return;
+			$scope.vifs.map(function(vif){
+				if(tab_info[vif.device]) vif._expanded = tab_info[vif.evice];
+			});
+			$scope.$apply();
 			done(); 
 		}); 
 	}); 
