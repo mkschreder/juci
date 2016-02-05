@@ -2,7 +2,7 @@
 	<juci-config-section>
 		<juci-config-heading>{{ 'Voice Lines' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'phone.lines.info' | translate }}</juci-config-info>
-		<juci-expandable title="{{line.name.value}}" ng-repeat="line in phone_lines track by $index" open=false>
+		<juci-expandable title="{{line.name.value}}" ng-repeat="line in phone_lines track by $index" open="$first">
 			<juci-config-lines>
 				<juci-config-line title="{{'Name'|translate}}">
 					<input type="text" class="form-control" ng-model="line.name.value"/>
