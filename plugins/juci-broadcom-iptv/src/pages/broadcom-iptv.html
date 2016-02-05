@@ -26,7 +26,7 @@
 				<juci-config-line title="{{ 'Robustness value' | translate }}">
 					<input type="number" class="form-control" ng-model="mcpd.igmp_robustness_value.value"/>
 				</juci-config-line>
-				<juci-config-line title="{{ 'LAN to LAN multicast' | translate }}">
+				<juci-config-line title="{{ 'LAN to LAN multicast' | translate }}" help="{{'Check box to enable LAN to LAN multicast'|translate}}">
 					<switch class="green" ng-model="mcpd.igmp_lan_to_lan_multicast.value"/>
 				</juci-config-line>
 				<juci-config-line title="{{ 'Max groups' | translate }}">
@@ -46,6 +46,9 @@
 				</juci-config-line>
 				<juci-config-line title="{{ 'Enable IGMP proxy' | translate }}">
 					<switch class="green" ng-model="mcpd.igmp_proxy_enable.value"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Ignore SSM Range'|translate}}" help="{{'Check box to ignore SSM RFC to enable regular multicast on SSM-Range'|translate}}">
+					<switch class="green" ng-model="mcpd.igmp_ssm_range_ignore" />
 				</juci-config-line>
 				<juci-config-line title="{{ 'IGMP snooping mode' | translate }}">
 					<juci-select ng-items="snooping_mode" ng-model="mcpd.igmp_snooping_enable.value"></juci-select>
