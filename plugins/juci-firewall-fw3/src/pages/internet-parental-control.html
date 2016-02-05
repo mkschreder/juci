@@ -25,8 +25,8 @@
 				<tbody >
 					<tr ng-repeat="r in accessRules track by $index">
 						<td>{{r.weekdays.value}}</td>
-						<td>{{r.start_time.value}}</td>
-						<td>{{r.stop_time.value}}</td>
+						<td>{{convertTime(r.start_time.value, diff)}}</td>
+						<td>{{convertTime(r.stop_time.value, diff)}}</td>
 						<td>
 							<div ng-repeat="mac in r.src_mac.value track by $index">
 								<div class="col-xs-2"><i class="fa fa-desktop"></i></div>
