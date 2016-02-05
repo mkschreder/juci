@@ -42,7 +42,7 @@ JUCI.app
 		$scope.baseDevices = baseDevices; 
 		$scope.$apply(); 
 		
-		$scope.$watch("device", function(value){
+		$scope.$watch("device", function onNetworkAdslDeviceChanged(value){
 			if(!value) return; 
 				$scope.conf = value.base || value;
 		}); 

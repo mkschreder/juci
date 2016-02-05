@@ -68,7 +68,7 @@ JUCI.app
 		};
 		// clear a field if user unclicks the checkbox
 		Object.keys($scope.data).map(function(k){
-			$scope.$watch("data."+k, function(value){
+			$scope.$watch("data."+k, function onFirewallRuleEnabledChanged(value){
 				var field = k.replace("_enabled", ""); 
 				if(!value && $scope.rule) $scope.rule[field].value = ""; 
 			}); 
@@ -96,7 +96,7 @@ JUCI.app
 		}); 
 	}
 	
-	$scope.$watch("rule", function(rule){
+	$scope.$watch("rule", function onFirewallRuleModelChanged(rule){
 		if(!rule) return; 
 		update(); 
 	}); 

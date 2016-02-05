@@ -34,7 +34,7 @@ JUCI.app
 		controller: "ModalController", 
 		link: function (scope, element, attrs) {
 			scope.element = element;
-			scope.$watch("ngShow", function(value){
+			scope.$watch("ngShow", function onModalNgShow(value){
 				if(value)
 					$(element).modal('show');
 				else

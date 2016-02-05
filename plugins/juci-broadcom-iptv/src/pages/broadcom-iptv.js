@@ -48,7 +48,7 @@ JUCI.app
 			$scope.$apply(); 
 		});
 	}); 
-	$scope.$watch('networks', function(){
+	$scope.$watch('networks', function onFirewallNetworksChanged(){
 		if(!$scope.networks.selected_wan || !$scope.networks.selected_lan || !$scope.mcpd) return;
 		$scope.mcpd.igmp_proxy_interfaces.value = $scope.networks.selected_wan.map(function(x){return x.name}).join(" ");	
 		$scope.mcpd.igmp_snooping_interfaces.value = $scope.networks.selected_lan.map(function(x){return x.name}).join(" ");

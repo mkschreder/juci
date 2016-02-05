@@ -44,7 +44,7 @@ JUCI.app.directive("multiwanRuleEdit", function($compile, $parse){
 		{ label: $tr(gettext("Load Balancer (Compability)")),	value: "balancer" }
 	];
 	var first = true;
-	$scope.$watch("model", function(){
+	$scope.$watch("model", function onMultiwanRuleModelChanged(){
 		if(!$scope.model || !first) return;
 		if($scope.model.src.value != '')$scope.addresses.push({ label: $scope.model.src.value, value: $scope.model.src.value });
 		first = false;

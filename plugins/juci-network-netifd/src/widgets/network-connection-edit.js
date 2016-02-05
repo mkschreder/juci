@@ -107,11 +107,11 @@ JUCI.app
 			$scope.$apply();
 		});
 	});
-	$scope.$watch("interface.type.value", function(value){
+	$scope.$watch("interface.type.value", function onNetworkConnectionTypeChanged(value){
 		if(!$scope.interface) return; 
 		$scope.interface.$type_editor = "<network-connection-type-"+($scope.interface.type.value||'none')+"-edit ng-model='interface'/>"; 
 	}); 
-	$scope.$watch("interface", function(){
+	$scope.$watch("interface", function onNetworkInterfaceModelChanged(){
 		if(!$scope.interface) return; 
 		setProto($scope.interface.proto.value);
 		$scope.interface.$type_editor = "<network-connection-type-"+($scope.interface.type.value||'none')+"-edit ng-model='interface'/>"; 

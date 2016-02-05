@@ -18,7 +18,7 @@ JUCI.app
 	}; 
 	var min = 1; 
 	var max = 100; 
-	$scope.$watch('data.packagesize', function(new_value){
+	$scope.$watch('data.packagesize', function onDiagnosticsPacketsizeChanged(new_value){
 		if(new_value < min)$scope.data.packagesize = min;
 		if(new_value > max)$scope.data.packagesize = max;
 	}, false);

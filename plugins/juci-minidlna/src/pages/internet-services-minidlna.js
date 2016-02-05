@@ -74,7 +74,7 @@ JUCI.app
 		{ label: $tr(gettext("Video")),					value: "V" },
 		{ label: $tr(gettext("Pictures")),				value: "P" }
 	];
-	$scope.$watch('port', function(){
+	$scope.$watch('port', function onMinidlnaPortChanged(){
 		if(!$scope.port.value)return;
 		$scope.config.port.value = $scope.port.value;
 	}, true);
@@ -87,7 +87,7 @@ JUCI.app
 		}
 		$scope.config.album_art_names.value = $scope.album_art.join("/");
 	};
-	$scope.$watch("network.selected", function(){
+	$scope.$watch("network.selected", function onNetworkSelectedChanged(){
 		if(!$scope.config)return;
 		$scope.config.network.value = $scope.network.selected.map(function(x){
 			return x.name;

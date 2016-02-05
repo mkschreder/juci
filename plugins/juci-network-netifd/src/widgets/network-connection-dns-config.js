@@ -14,7 +14,7 @@ JUCI.app
 })
 .controller("networkConnectionDnsConfig", function($scope, $uci, $network, $rpc, $log, gettext){
 	$scope.data = [];
-	$scope.$watch("interface", function(){
+	$scope.$watch("interface", function onNetworkDNSModelChanged(){
 		if(!$scope.interface || !$scope.interface.dns) return;
 		$scope.data = $scope.interface.dns.value.map(function(dns){
 			return { value:dns}
@@ -34,7 +34,7 @@ JUCI.app
 	};
 	$scope.addDns = function(dns){ $scope.data.push({ value: ""})};
 	$scope.removeDns = function(index){ if($scope.data[index]) $scope.data.splice(index, 1);};
-	$scope.$watch("data", function(){
+	$scope.$watch("data", function onNetworkDNSDataChanged(){
 		if(!$scope.data || !$scope.interface || !$scope.interface.dns) return;
 		$scope.interface.dns.value = $scope.data.map(function(x){ return x.value});
 	}, true);

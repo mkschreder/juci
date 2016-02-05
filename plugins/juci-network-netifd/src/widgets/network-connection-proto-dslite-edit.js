@@ -24,7 +24,7 @@ JUCI.app
 })
 .controller("networkConnectionProtoDsliteAdvancedEditCtrl", function($scope, $uci){
 	$scope.allInterfaces = $uci.network["@interface"].map(function(interf){ return { label: String(interf[".name"]).toUpperCase(), value: interf[".name"]}}).filter(function(x){ return x.value != "loopback" });
-	$scope.$watch("interface", function(){
+	$scope.$watch("interface", function onNetworkProtoDSliteModelChanged(){
 		if(!$scope.interface || !$scope.allInterfaces) return;
 		if($scope.allInterfaces.find(function(x){ return x.value == $scope.interface.tunlink.value }) == undefined) $scope.interface.tunlink.value = "";
 	}, false);

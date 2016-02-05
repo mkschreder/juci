@@ -34,7 +34,7 @@ $juci.app.directive("juciInputTimespan", function () {
 	$scope.validateTimespan = function(time){
 		return (new UCI.validators.TimespanValidator()).validate({ value: time }); 
 	}
-	$scope.$watch("model", function(model){
+	$scope.$watch("model", function onJuciInputTimespanModelChanged(model){
 		if(model && model.value && model.value.split){
 			var value = model.value; 
 			var parts = value.split("-"); 

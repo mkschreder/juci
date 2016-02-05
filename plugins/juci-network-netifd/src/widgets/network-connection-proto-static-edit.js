@@ -13,7 +13,7 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionProtoStaticEdit", function($scope, $uci, $network, $rpc, $log, $tr, gettext){
-	$scope.$watch("interface", function(){
+	$scope.$watch("interface", function onNetworkStaticModelChanged(){
 		if(!$scope.interface) return;
 		$scope.ip.type = ($scope.interface.ip6assign.value == "" ? "alloc" : "assign");
 		$scope.interface.dns.value = $scope.interface.dns.value.filter(function(x){ if(x == "") return false; return true});;
@@ -59,7 +59,7 @@ JUCI.app
 		}
 	};
 	
-	$scope.$watchCollection("bridgedInterfaces", function(value){
+	$scope.$watchCollection("bridgedInterfaces", function onNetworkStaticBridgedChanged(value){
 		if(!value || !$scope.interface || !(value instanceof Array)) return; 
 		$scope.interface.ifname.value = value.join(" "); 
 	}); 

@@ -71,7 +71,7 @@ JUCI.app
 		transclude: true, 
 		link: function (scope, element, attrs) {
 			if(!("noPull" in attrs)) scope.pullClass = "pull-right";
-			scope.$watch("error", function(value){
+			scope.$watch("error", function configError(value){
 				if(value){
 					scope.errorClass = "field-error"; 
 				} else {
@@ -180,7 +180,12 @@ JUCI.app
 	// TODO: reloading takes a lot of computing (have to go through all fields)
 	// and this reload may happen several times in a row. 
 	// perhaps do not run it every time? 
-	$rootScope.$watch(function(){
+	var prev_time = (new Date()).getTime(); 
+	$rootScope.$watch(function onWatchJuciConfigApplyChanges(){
+		var now = (new Date()).getTime(); 
+		if(now < (prev_time + 500)) return; 
+		prev_time = now; 
+
 		var changes = $uci.$getChanges(); 
 		if(changes.length > 0) {
 			if($scope.hide == true) { 

@@ -44,12 +44,12 @@ JUCI.app
 		return 0; 
 	}
 	
-	$scope.$watch("modal", function(){
+	$scope.$watch("modal", function onSystemPasswordModalChanged(){
 		$scope.passwordStrength = measureStrength($scope.modal.password); 
 	}, true); 
 	
 	var username = $scope.modal.username = $rpc.$session.data.username; 
-	$scope.$watch("modal.username", function(value){
+	$scope.$watch("modal.username", function onSystemPasswordUsernameChanged(value){
 		if(value == undefined) return; 
 		username = value; 
 	}); 

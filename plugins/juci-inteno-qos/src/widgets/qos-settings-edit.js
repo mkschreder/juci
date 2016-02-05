@@ -40,7 +40,7 @@ JUCI.app
 		$scope.$apply();
 	});
 	var done = false;
-	$scope.$watch("rule", function(){
+	$scope.$watch("rule", function onQosSettingsRuleChanged(){
 		if(!$scope.rule || done) return;
 		done = true;
 		$scope.ports = $scope.rule.ports.value.split(",").map(function(port){return {value: port }});

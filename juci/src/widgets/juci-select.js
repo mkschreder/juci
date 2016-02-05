@@ -38,12 +38,12 @@ JUCI.app
 				$scope.selected = item; 
 			}
 
-			$scope.$watch("ngItems", function(){
+			$scope.$watch("ngItems", function onJuciSelectItemsChanged(){
 				if($scope.ngItems == undefined || $scope.ngModel == undefined) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
 			}); 
 
-			$scope.$watch("ngModel", function(value){
+			$scope.$watch("ngModel", function onJuciSelectModelChanged(value){
 				if(value == undefined || $scope.ngItems == undefined) return; 
 				$scope.selected = $scope.ngItems.find(function(x){ return x.value == ngModel($scope.$parent); }); 
 			});

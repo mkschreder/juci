@@ -26,7 +26,7 @@ JUCI.app
 	};  
 })
 .controller("networkDeviceVlanEdit", function($scope, $network, $uci){
-	$scope.$watch("device", function(value){
+	$scope.$watch("device", function onNetworkVLANModelChanged(value){
 		$scope.data = {
 			base_device: ""
 		};
@@ -35,11 +35,11 @@ JUCI.app
 		if(parts.length != 2) return; 
 		$scope.data.base_device = parts[0]; 
 	}, false); 
-	$scope.$watch("device.vlan8021q.value", function(value){
+	$scope.$watch("device.vlan8021q.value", function onNetworkVLANqChanged(value){
 		if(!$scope.device) return; 
 		$scope.device.ifname.value = $scope.data.base_device+"."+value; 
 	}, false); 
-	$scope.$watch("data.base_device", function(value){
+	$scope.$watch("data.base_device", function onNetworkVLANBaseDeviceChanged(value){
 		if(!$scope.device || !$scope.data || !$scope.data.base_device) return; 
 		$scope.device.ifname.value = value+"."+$scope.device.vlan8021q.value; 
 		$scope.device.baseifname.value = value; 

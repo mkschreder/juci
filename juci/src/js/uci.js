@@ -847,10 +847,18 @@
 		}); 
 		return errors; 
 	}
-		
+
+	var prev_changes = []; 
+	var prev_time = (new Date()).getTime(); 
 	UCI.prototype.$getChanges = function(){
 		var changes = []; 
 		var self = this; 
+		
+		// prevent this function from running more often than once a second
+		//var now = (new Date()).getTime(); 
+		//if(now < (prev_time + 1000)) return prev_changes; 
+		//prev_time = now; 
+
 		Object.keys(self).map(function(x){
 			if(!self[x] || self[x].constructor != UCI.Config) return; 
 			if(self[x][".need_commit"]){
@@ -883,6 +891,7 @@
 				}); 
 			});
 		});
+		prev_changes = changes; 
 		return changes; 
 	}
 

@@ -26,7 +26,7 @@ JUCI.app
 	$scope.speed_dials = []; 
 	$scope.speed_dialing = true; 
 	
-	$scope.$watch("speed_dials", function(){
+	$scope.$watch("speed_dials", function onPhoneSpeedDialsChanged(){
 		var dials = {}; 
 		$scope.speed_dials.map(function(x){ if(x.number != "") dials[x.tone] = x; }); 
 		async.eachSeries(Object.keys(dials), function(k, next){

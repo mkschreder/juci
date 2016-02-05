@@ -20,7 +20,7 @@ JUCI.app
 		$scope.mboxes.unshift({ label: $tr(gettext("No Mailbox")),	value:"" });
 		$scope.$apply();
 	});
-	$scope.$watch("model", function(){
+	$scope.$watch("model", function onSipServiceProviderModelChanged(){
 		if(!$scope.model) return;
 		$scope.selected_lines = $scope.model.call_lines.value.split(" ").map(function(x){
 			var name = String(x);

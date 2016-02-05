@@ -56,7 +56,7 @@ JUCI.app
 		}); 
 	}; updateDevices($scope.connection); 
 	
-	$scope.$watch("connection", function(value){
+	$scope.$watch("connection", function onNetworkBridgeModelChanged(value){
 		if(!value) return; 
 		updateDevices(value); 	
 	});

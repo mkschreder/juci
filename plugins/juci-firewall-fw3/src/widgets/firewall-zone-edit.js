@@ -32,7 +32,7 @@ JUCI.app
 		{ label: gettext("FORWARD"), value: "FORWARD" }
 	]; 
 	
-	$scope.$watch("zone", function(zone){
+	$scope.$watch("zone", function onFirewallZoneModelChanged(zone){
 		$scope.zones = {source:[], dest:[]}
 		if(!zone) return; 
 		$network.getNetworks().done(function(nets){

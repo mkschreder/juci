@@ -32,7 +32,7 @@ JUCI.app
 		});
 		$scope.provs.unshift({ label:$tr(gettext("No Account")), value: ""});
 	});
-	$scope.$watch("model", function(){
+	$scope.$watch("model", function onSipUsersModelChanged(){
 		if(!$scope.model) return;
 		fixCodecs();
 	}, false);

@@ -21,7 +21,7 @@ JUCI.app
 	$scope.connectedHosts = []; 
 	$scope.data = {}; 
 
-	$scope.$watch("data.selected", function(value){
+	$scope.$watch("data.selected", function onExHostSelectedChanged(value){
 		if(!value || !$uci.firewall || !$uci.firewall.dmz) return; 
 		$uci.firewall.dmz.host.value = value.ipaddr; 
 		$uci.firewall.dmz.ip6addr.value = value.ip6addr; 

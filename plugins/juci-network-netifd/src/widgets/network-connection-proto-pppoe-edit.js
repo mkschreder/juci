@@ -13,7 +13,7 @@ JUCI.app
 	 };  
 })
 .controller("networkConnectionProtoPppoeEdit", function($scope, $uci, $network, $rpc, $log, gettext){
-	$scope.$watch("interface", function(){
+	$scope.$watch("interface", function onNetworkPppoeModelChanged(){
 		if(!$scope.interface) return;
 		$scope.interface.type.value = "";
 	}, false);

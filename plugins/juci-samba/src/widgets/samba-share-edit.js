@@ -35,7 +35,7 @@ JUCI.app
 		out: []
 	};
 
-	$scope.$watch("share", function(value){
+	$scope.$watch("share", function onSambaShareModelChanged(value){
 		if(!value) return; 
 		$scope.data.model = (value.path.value.length > 3) ? value.path.value.slice(4): "";
 		$uci.$sync("samba").done(function(){
@@ -65,11 +65,11 @@ JUCI.app
 		});
 	};
 
-	$scope.$watch("users.out", function(){
+	$scope.$watch("users.out", function onSambaUsersOutChanged(){
 		if(!$scope.users || !$scope.users.out || !$scope.share) return;
 		$scope.share.users.value = $scope.users.out.map(function(user){ return user.value; }).join(",");
 	}, false);
-	$scope.$watch("data.model", function(value){
+	$scope.$watch("data.model", function onSambaUsersDataModelChanged(value){
 		if(!$scope.share) return;
 		$scope.share.path.value = "/mnt" + value;
 	}, false);

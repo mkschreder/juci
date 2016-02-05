@@ -20,7 +20,7 @@ JUCI.app
 			restrict: 'A',
 			replace: true,
 			link: function (scope, element, attrs) {
-				scope.$watch(attrs.dynamic, function(html) {
+				scope.$watch(attrs.dynamic, function onDynamicHtmlChange(html) {
 					try {
 						element.html(html);
 						$compile(element.contents())(scope);

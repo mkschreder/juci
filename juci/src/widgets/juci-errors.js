@@ -27,7 +27,7 @@ JUCI.app
 	}; 
 })
 .controller("juciErrors", function($scope, $rootScope, $localStorage){
-	$scope.$watch("ngModel", function(value){
+	$scope.$watch("ngModel", function onJuciErrorsModelChanged(value){
 		if(value) $scope.errors = $scope.ngModel; 
 		else $scope.errors = $rootScope.errors; 
 	}); 

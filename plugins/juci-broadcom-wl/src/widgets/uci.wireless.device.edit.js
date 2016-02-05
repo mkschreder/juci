@@ -26,7 +26,7 @@ JUCI.app
 		require: "^ngModel"
 	 };  
 }).controller("WifiDeviceEditController", function($scope, $rpc, $tr, gettext){
-	$scope.$watch("device", function(device){
+	$scope.$watch("device", function onWirelessDeviceModelChanged(device){
 		if(!device) return; 
 
 		$rpc.juci.wireless.radios().done(function(result){

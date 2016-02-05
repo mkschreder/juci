@@ -35,7 +35,7 @@ JUCI.app
 	};
 }).controller("networkConnectionProtoDhcpAdvancedEditCtrl", function($scope){
 	$scope.dnslist = [];
-	$scope.$watch("interface", function(){
+	$scope.$watch("interface", function onNetworkDHCPModelChanged(){
 		if(!$scope.interface) return;
 		$scope.interface.dns.value = $scope.interface.dns.value.filter(function(x){ return x != "" });
 		$scope.dnslist = $scope.interface.dns.value.map(function(x){ return { text: x }});

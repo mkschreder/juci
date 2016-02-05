@@ -60,7 +60,7 @@ JUCI.app
 	}); 
 
 	// when model changes, reload the values
-	$scope.$watch("vlan", function(vlan){
+	$scope.$watch("vlan", function onNetworkVLANModelChanged(vlan){
 		loadConfig(); 
 	}); 
 }); 

@@ -13,7 +13,7 @@ JUCI.app
 	};
 })
 .controller("testWidgetCtrl", function($scope, $uci){
-	$scope.$watch("model", function(){
+	$scope.$watch("model", function onTestWidgetModelChanged(){
 		if(!$scope.model) return;
 		$uci.$sync($scope.model.configs).done(function(){
 			$scope.model.configs.map(function(config){

@@ -27,7 +27,7 @@ JUCI.app
 		{ label: $tr(gettext("1/8 speed Async")),	value: 8 },
 		{ label: $tr(gettext("1/8 Async when entering wait, 1/1 Sync otherwise")),	value: 256 },
 	];
-	$scope.$watch("pwr.cpur4kwait.value", function() {
+	$scope.$watch("pwr.cpur4kwait.value", function onBcmPowerCPUWaitChanged() {
 		if(!$scope.pwr) return;
 		if(!$scope.pwr.cpur4kwait.value){
 			$scope.pwr.sr.value = false;

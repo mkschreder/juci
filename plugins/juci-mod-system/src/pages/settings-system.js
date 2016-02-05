@@ -46,12 +46,12 @@ JUCI.app
 		$scope.$apply(); 
 	}); 
 	
-	$scope.$watch("system.zonename.value", function(value){
+	$scope.$watch("system.zonename.value", function onSystemZonenameChanged(value){
 		if(!value || !$scope.timezones) return; 
 		$scope.system.timezone.value = $scope.timezones[value]; 
 	}); 
 	
-	$scope.$watch("system.hostname.value", function(value){
+	$scope.$watch("system.hostname.value", function onSystemHostnameChanged(value){
 		if(value == undefined) return; 
 		if(!value) $scope.system.hostname.value = $scope.boardinfo.model.replace(" ", "_"); 
 	}); 

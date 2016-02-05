@@ -34,7 +34,7 @@ JUCI.app
 	var ngModel = $parse($attrs.ngModel);
 
 	// extract model into the parts
-	$scope.$watch("ngModel", function(value){
+	$scope.$watch("ngModel", function onJuciInputIpv4ModelChanged(value){
 		if(value === undefined || typeof value != "string") return;
 		var parts = value.split(".");
 		$scope.data.parts = [];

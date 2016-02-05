@@ -69,7 +69,7 @@ JUCI.app
 
 	var graph2d = new vis.Graph2d(container, dataset, groups, options);
 
-	$scope.$watch("scan_list", function(value){
+	$scope.$watch("scan_list", function onApsGraphScanlistChanged(value){
 		if(!value) return; 		
 	
 		dataset.remove(dataset.getIds()); 

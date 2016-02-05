@@ -62,11 +62,11 @@ JUCI.app
 		}
 	}
 
-	$scope.$watch("model", function(model){
+	$scope.$watch("model", function onJuciSelectModelChanged(model){
 		update();
 	}); 
 
-	$scope.$watch("items", function(items){
+	$scope.$watch("items", function onJuciSelectItemsChanged(items){
 		update();
 	});
 }); 

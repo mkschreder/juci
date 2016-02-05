@@ -12,7 +12,7 @@ JUCI.app
 		$scope.data.wan_port = $scope.ports.find(function(x){ return x.ifname.value == $uci.layer2_interface_ethernet.Wan.baseifname.value; }); 
 		$scope.config = $uci.layer2_interface_ethernet.Wan; 
 		
-		$scope.$watch("data.wan_port", function(value){
+		$scope.$watch("data.wan_port", function onLayer2WANPortChanged(value){
 			if(!value) return; 
 			$broadcomEthernet.configureWANPort(value.ifname.value); 
 		}); 

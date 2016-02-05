@@ -75,12 +75,12 @@ JUCI.app
 				}); 
 			}
 			
-			$scope.$watch("urlList", function(){
+			$scope.$watch("urlList", function onParentalUrlListChanged(){
 				$scope.urlblock.url.value = $scope.urlList.map(function(k){
 					return k.url; 
 				}); 
 			}, true);
-			$scope.$watch("macList", function(){
+			$scope.$watch("macList", function onParentalMACListChanged(){
 				$scope.urlblock.src_mac.value = $scope.macList.map(function(k){
 					return k.mac; 
 				}); 

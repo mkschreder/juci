@@ -30,7 +30,7 @@ JUCI.app
 		if(!$uci.system.ntp) return; 
 		$scope.ntp = $uci.system.ntp.server.value.map(function(x){ return { server: x }; }); 
 		$scope.$apply(); 
-		$scope.$watch("ntp", function(){
+		$scope.$watch("ntp", function onSystemNTPChanged(){
 			$uci.system.ntp.server.value = []; 
 			$scope.ntp.map(function(ntp){
 				$uci.system.ntp.server.value.push(ntp.server); 

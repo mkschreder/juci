@@ -35,7 +35,7 @@ JUCI.app
 	
 	var ngModel = $parse($attrs.ngModel); 
 
-	$scope.$watch("ngModel", function(value){
+	$scope.$watch("ngModel", function onJuciInputModelChange(value){
 		if(value == undefined) return; 
 		if($scope.portRange && value && value.split){
 			var parts = value.split("-"); 

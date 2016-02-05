@@ -45,12 +45,12 @@ JUCI.app.directive("dhcpHostEntriesEdit", function(){
 		{ label: $tr(gettext("IPv4")),	value: "ipv4" },
 		{ label: $tr(gettext("IPv6")),	value: "ipv6" }
 	];
-	$scope.$watch("model", function(){
+	$scope.$watch("model", function onDhcpHostModelChanged(){
 		if(!$scope.model) return;
 		$scope.model.ip.validator = ($scope.model.family.value == 'ipv4') ? new $uci.validators.IP4AddressValidator(): new $uci.validators.IP6AddressValidator();
 		$scope.names = $scope.model.name.value.map(function(name){ return { value: name }});
 	}, false);
-	$scope.$watch("names", function(){
+	$scope.$watch("names", function onDhcpHostNamesChanged(){
 		if(!$scope.names) return;
 		$scope.model.name.value = $scope.names.map(function(name){ return name.value });
 	}, true);

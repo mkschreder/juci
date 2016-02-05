@@ -25,7 +25,7 @@ JUCI.app
 		replace: true
 	 };  
 }).controller("uciFirewallRuleEdit", function($scope, $uci, $rpc, $network, $log, $tr, gettext){
-	$scope.$watch("ngModel", function(value){
+	$scope.$watch("ngModel", function onFirewallRuleModelChanged(value){
 		if(!value) return; 
 		var ngModel = value; 
 		if(ngModel && ngModel.src_dport && ngModel.dest_port && ngModel.src_dport.value && ngModel.dest_port.value){

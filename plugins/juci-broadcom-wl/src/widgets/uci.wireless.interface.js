@@ -77,12 +77,12 @@ JUCI.app
 		$scope.$apply(); 
 	}); 
 
-	$scope.$watch("interface", function(value){
+	$scope.$watch("interface", function onWirelessInterfaceModelChanged(value){
 		if(!value) return; 
 		//$scope.title = "wifi-iface.name="+$scope.interface[".name"]; 
 	});
 
-	$scope.$watch("interface.closed.value", function(value, oldvalue){
+	$scope.$watch("interface.closed.value", function onWirelessInterfaceClosedChanged(value, oldvalue){
 		if(!$scope.interface) return; 
 		if(value && value != oldvalue){
 			if($scope.interface.wps_pbc.value && !confirm(gettext("If you disable SSID broadcasting, WPS function will be disabled as well. You will need to enable it manually later. Are you sure you want to continue?"))){
