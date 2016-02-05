@@ -47,7 +47,7 @@ ul.left-menu li a.open {
 ul.left-sub-menu {
 	list-style-type: none;
 	padding: 0;
-	margin: -10px 0 10px 20px;
+	margin: 0px 0 10px 20px;
 }
 
 ul.left-sub-menu li {

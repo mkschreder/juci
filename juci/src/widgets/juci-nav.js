@@ -33,30 +33,6 @@ JUCI.app
 		return Object.keys(menu.children) > 0;
 	};
 
-	$scope.isItemActive = function (item) {
-		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
-		if(!active_node) return false; 
-		if(item.href === active_node.href) {
-			if(item.children_list && item.children_list.length > 0) {
-				$scope.showSubMenuItems = true;
-			} else {
-				$scope.showSubMenuItems = false;
-			}
-			return true;
-		} else if (active_node.path.indexOf(item.path) === 0){
-			$scope.showSubMenuItems = true; 
-		} else {
-			$scope.showSubMenuItems = false; 
-		}
-		return false;
-	};
-
-	$scope.isSubItemActive = function (item) {
-		var active_node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
-		if(!active_node) return false; 
-		return item.href === active_node.href;
-	};
-
 	$scope.itemVisible = function(item){
 		if(!item.modes || !item.modes.length) return true; 
 		else if(item.modes && item.modes.indexOf($config.local.mode) == -1) {
@@ -69,10 +45,14 @@ JUCI.app
 		var node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
 		if(node) {
 			$scope.tree = $navigation.tree(node.path.split("/")[0]); 
+			$scope.tree.children_list.map(function(item){
+				item._open = node.path.indexOf(item.path) == 0; 
+				item._class = (item.href == node.href)?'open':''; 
+				item.children_list.map(function(item2){
+					item2._class = (item2.href == node.href)?'open':''; 
+				}); 
+			}); 
 		}
-		//var path = $location.path().replace(/^\/+|\/+$/g, '');
-		//var subtree = path.split("-")[0];
-		//$scope.tree = $navigation.tree(subtree);
 	}
 	activate();
 	
