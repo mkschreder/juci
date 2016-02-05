@@ -29,7 +29,8 @@ JUCI.app
 	};  
 }).controller("juciExpandableCtrl", function($scope){
 	$scope.data = { open: true }; 
-	if($scope.open == undefined) $scope.data.open = true;
+	console.log($scope.open);
+	if($scope.open != undefined) $scope.data.open = $scope.open;
 	$scope.toggle_open = function(){
 		$scope.data.open = !$scope.data.open;
 	};
