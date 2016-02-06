@@ -50,12 +50,16 @@ JUCI.app
 					if(sec.interface.up) {
 						sec.status = "ok"; 
 						sec.interface._status_text = gettext("UP"); 
-					}
-					else if(sec.interface.pending) {
+						sec.interface._status_class = "success"; 
+					} else if(sec.interface.pending) {
 						sec.status = "progress"; 
 						sec.interface._status_text = gettext("PENDING"); 
+						sec.interface._status_class = "warning"; 
+					} else {
+						sec.status = "error"; 
+						sec.interface._status_text = gettext("ERROR"); 
+						sec.interface._status_class = "danger"; 
 					}
-					else sec.status = "error"; 
 				} 
 				$scope.$apply(); 
 				next(); 
