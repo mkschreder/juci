@@ -115,6 +115,7 @@ JUCI.app
 		var model = {changes: $scope.changes};
 		$juciDialog.show("juci-changes-edit", {
 			title: gettext("Unsaved Changes"),
+			buttons: [{label: gettext("OK"), value: "apply"}],
 			on_apply: function(btn, inst){
 				if(!model.reverted) return true;
 				model.reverted.map(function(x){
