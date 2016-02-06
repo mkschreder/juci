@@ -26,38 +26,8 @@ local function prune_events()
 	events = goodevents; 
 end
 
-local objects = {
-	["juci.event"] = {
-		poll = {
-			function(req, params)
-				prune_events()
-				conn:reply(req, { list = events }); 
-				-- remove this pruning. We now prune events older than 10s..
-				--if(params and params["clear"]) then events = {}; collectgarbage(); end
-			end, { clear = ubus.INT32 }
-		}
-	}
-}; 
-
-conn:add(objects)
-
-local event_handlers = {
-	["*"] = function(msg, type)
-		prune_events(); 
-		local ev = {
-			time = os.time(os.date("*t")), -- add a timestamp
-			type = type, 
-			data = msg
-		}; 
-		table.insert(events, ev); 
-	end,
-}
-
-conn:listen(event_handlers)
-
-local timer = nil; 
 local last_logread_event_time = 0; 
-timer = uloop.timer(function()
+local function poll_logread_events() 
 	local stdout = juci.shell("logread -l 20 2>/dev/null"); 
 	for line in stdout:gmatch("[^\r\n]+") do 
 		local date,type,source,message = line:match("([^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*)%s+([^%s]*)%s+([^%s:]*):%s+(.*)"); 
@@ -95,8 +65,36 @@ timer = uloop.timer(function()
 			prune_events(); 
 		end
 	end
-	timer:set(2000); 
-end); 
-timer:set(0); 
+end
+
+local objects = {
+	["juci.event"] = {
+		poll = {
+			function(req, params)
+				prune_events()
+				poll_logread_events()
+				conn:reply(req, { list = events }); 
+				-- remove this pruning. We now prune events older than 10s..
+				--if(params and params["clear"]) then events = {}; collectgarbage(); end
+			end, { clear = ubus.INT32 }
+		}
+	}
+}; 
+
+conn:add(objects)
+
+local event_handlers = {
+	["*"] = function(msg, type)
+		prune_events(); 
+		local ev = {
+			time = os.time(os.date("*t")), -- add a timestamp
+			type = type, 
+			data = msg
+		}; 
+		table.insert(events, ev); 
+	end,
+}
+
+conn:listen(event_handlers)
 
 uloop.run()
