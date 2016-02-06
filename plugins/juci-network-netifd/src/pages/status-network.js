@@ -17,11 +17,35 @@
 JUCI.app
 .controller("NetifdNetworkStatusPage", function ($scope, $uci, $rpc, gettext) {
 	//$scope.expanded = false; 
-	
+		
 	JUCI.interval.repeat("status.refresh", 2000, function(resume){
+		var ports = {}; 
+		var ports_by_name = {}; 
 		async.series([
 			function(next){
 				$uci.$sync("network").done(function(){ next(); }); 
+			}, 
+			function(next){
+				// get openwrt port status (sometimes the only way to read port status) 
+				if($rpc.juci.swconfig){
+					$rpc.juci.swconfig.status().done(function(status){
+						status.ports.map(function(p){
+							ports[p.id] = p; 
+						}); 
+						$uci.network["@switch_port_label"].map(function(x){
+							var port = ports[x.id.value]; 
+							if(port) {
+								port.label = x.name.value; 
+								ports_by_name[String(x.name.value)] = port; 
+							}
+						}); 
+						next(); 
+					}).fail(function(){
+						next(); 
+					}); 
+				} else {
+					next(); 
+				}
 			}, 
 			function(next){
 				$rpc.network.interface.dump().done(function(result){
@@ -44,9 +68,13 @@ JUCI.app
 						interface: i
 					}); 
 				}); 
-				$scope.sections = sections.filter(function(x){ return x.interface !== undefined; }).sort(function(a, b) { return a.interface.up > b.interface.up; }); 
 				for(var c = 0; c < sections.length; c++){
 					var sec = sections[c]; 
+					// TODO: this is wrong way to do this, but we have no other way to check wan status atm.
+					if(sec.interface.interface == "wan" && ports_by_name["WAN"]){
+						if(ports_by_name["WAN"].state == "down") sec.interface.up = false; 
+					}
+					//-------------
 					if(sec.interface.up) {
 						sec.status = "ok"; 
 						sec.interface._status_text = gettext("UP"); 
@@ -55,12 +83,17 @@ JUCI.app
 						sec.status = "progress"; 
 						sec.interface._status_text = gettext("PENDING"); 
 						sec.interface._status_class = "warning"; 
+					} else if(!sec.interface.up) {
+						sec.status = "error"; 
+						sec.interface._status_text = gettext("DOWN"); 
+						sec.interface._status_class = "default"; 
 					} else {
 						sec.status = "error"; 
 						sec.interface._status_text = gettext("ERROR"); 
 						sec.interface._status_class = "danger"; 
 					}
 				} 
+				$scope.sections = sections.filter(function(x){ return x.interface !== undefined; }).sort(function(a, b) { return a.interface.up > b.interface.up; }); 
 				$scope.$apply(); 
 				next(); 
 			}/*, 

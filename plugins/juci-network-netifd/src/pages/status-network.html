@@ -5,7 +5,7 @@
 			<juci-config-info>{{ 'status.status.info' | translate }}</juci-config-info>
 		</juci-config-section>
 		<juci-expandable title="{{sec.name|uppercase}}" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface && sec.interface.available">
-			<div class="row">
+			<div class="row" ng-show="sec.interface.up">
 				<div class="col-md-6">
 					<h3 translate>IPv4</h3>
 					<table class="table table-condensed">
@@ -66,7 +66,9 @@
 					<table class="table table-condensed">
 						<tr>
 							<td><strong>{{'Status'|translate}}</strong></td>
-							<td width="1px"><div class="label" ng-class="'label-'+sec.interface._status_class">{{sec.interface._status_text|translate}}</div></td>
+							<td width="1px" style="text-align: right;">
+								<div class="label pull-right" ng-class="'label-'+sec.interface._status_class">{{sec.interface._status_text|translate}}</div>
+							</td>
 						</tr>
 						<tr ng-hide="sec.interface._config.is_lan.value">
 							<td><strong translate>DNS Server(s)</strong></td>
