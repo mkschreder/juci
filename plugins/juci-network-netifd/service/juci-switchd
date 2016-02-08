@@ -83,19 +83,21 @@ while(true) do
 				end
 			end
 			local ethdevice = eth.."."..x.vlan; 
-			-- netifd does not seem to handle this correctly right now. So we currently do not bring the actual eth interfaces up and down. 
+			-- tell netifd that we want to bring this device down. It would not work to use ip link down.. 
 			if(dev_status[ethdevice] == nil or dev_status[ethdevice] ~= up) then
 				if(up) then
-					--print("bringing "..ethdevice.." up"); 
-					--juci.shell("ip link set eth0."..x.vlan.." up"); 
+					print("bringing "..ethdevice.." up"); 
+					juci.shell("ubus call network.device set_state '{\"name\":\""..ethdevice.."\", \"defer\":false }'"); 
 				else
-					--print("bringing "..ethdevice.." down");
-					--juci.shell("ip link set eth0."..x.vlan.." down"); 
+					print("bringing "..ethdevice.." down");
+					juci.shell("ubus call network.device set_state '{\"name\":\""..ethdevice.."\", \"defer\":true }'"); 
 				end
 			end
 			dev_status[ethdevice] = up; 
 		end); 
 		-- loop through all network and if any interface in the network is up then we bring it up
+		-- NOTE: this is not needed anymore when we use netifd device set_state api!
+		--[[
 		cur:foreach("network","interface",function(x)
 			-- check if any interface in this network interface is up
 			local up = false; 
@@ -119,6 +121,7 @@ while(true) do
 			end
 			if_status[name] = up; 
 		end); 
+		]]--
 	end
 	juci.shell("sleep 1"); 
 end
