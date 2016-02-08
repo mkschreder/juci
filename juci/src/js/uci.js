@@ -592,6 +592,11 @@
 			var deferred = $.Deferred(); 
 			var self = this; 
 			if(!opts) opts = {}; 
+			
+			if(self._do_reload) {
+				self._do_reload = false; 
+				self.deferred = self.$reload(); 
+			}
 
 			if(self.deferred) return self.deferred.promise(); 
 			
@@ -901,6 +906,14 @@
 		Object.keys(self).map(function(x){ 
 			if(self[x].constructor != UCI.Config) return; 
 			self[x].$reset(); 
+		}); 
+	}
+
+	UCI.prototype.$mark_for_reload = function(){
+		var self = this; 
+		Object.keys(self).map(function(x){ 
+			if(self[x].constructor != UCI.Config) return; 
+			self[x]._do_reload = true; 
 		}); 
 	}
 

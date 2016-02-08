@@ -26,13 +26,16 @@ JUCI.app
 		controllerAs: "ctrl"
 	}; 
 })
-.controller("NavCtrl", function($scope, $navigation, $location, $state, $rootScope, $config){
+.controller("NavCtrl", function($scope, $uci, $navigation, $state, $location, $state, $rootScope, $config){
 	$scope.showSubMenuItems = false;
 	
 	$scope.hasChildren = function(menu){
 		return Object.keys(menu.children) > 0;
 	};
-
+	$scope.onLinkClick = function(){
+		$state.reload(); 
+		$uci.$mark_for_reload(); 
+	}
 	$scope.itemVisible = function(item){
 		if(!item.modes || !item.modes.length) return true; 
 		else if(item.modes && item.modes.indexOf($config.local.mode) == -1) {
