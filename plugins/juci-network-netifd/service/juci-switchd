@@ -1,0 +1,124 @@
+#!/usr/bin/lua 
+
+-- Copyright (c) 2016, Martin K. Schröder <mkschreder.uk@gmail.com>
+-- This software is free to use under the terms of GNU GPLv2 License. 
+--[[
+This is a support service for managing primarily broadcom switch which is based
+on the OpenWRT switch system. The switch is configured by assigning vlan tags
+to packets that arrive on switch ports and then tagging them when sending them
+to the internal CPU eth port. The result is that we can set up eth0.X
+interfaces for each switch port - or at least have a separate port for the wan
+interface. 
+
+The problem is that there is no clear cut way to bring networks up and down
+based on whether the cable is plugged in or not. The CPU port where tagged
+packets arrive, has no way of knowing about the state of the cables because it
+only sees the incoming stream of packets. So we need to explicitly manage this
+information about port cable status externally. This service solves this
+problem by managing networks bringing them down when no cable is connected to
+any switch port bringed on that interface and bringing them up again when at
+least one cable is connected. 
+
+The result is that we can bring down the network WAN interface when cable is
+unplugged from switch port
+WAN.  
+
+]]--
+
+local juci = require("juci/core"); 
+local json = require("juci/json"); 
+require("uci"); 
+
+local function swconfig_get_switches()
+	local lines = juci.shell("swconfig list | grep Found | awk '{print $2 \" \" $4;}'"); 
+	local devices = {}; 
+	for line in lines:gmatch("[^\r\n]+") do 
+		local dev,model = line:match("(%S+)%s+(%S+)"); 
+		if(dev and model) then
+			devices[dev] = {
+				device = dev,
+				model = model
+			}; 
+		end
+	end
+	return devices; 
+end
+
+local function swconfig_get_switch_ports(swdevice) 
+	local links = juci.shell("swconfig dev %s show | grep link", swdevice); 
+	local ports = {}; 
+	for line in links:gmatch("[^\r\n]+") do 
+		-- link: port:4 link:up speed:1000baseT full-duplex auto
+		-- link: port:4 link:down
+		local id,status = line:match("%s+link:%s+port:(%d+)%s+link:(%S+).*"); 
+		if(id and status) then 
+			ports[tonumber(id)] = { 
+				id = tonumber(id), 
+				status = status
+			};  
+		end
+	end
+	return ports; 
+end
+
+local cur = uci.cursor(); 
+local dev_status = {}; 
+local if_status = {}; 
+while(true) do 
+	local switches = swconfig_get_switches(); 
+	-- TODO: the switch name and ethernet interface are hardcoded right now. 
+	local sw = switches["switch0"]; 
+	local eth = "eth0"; 
+	if(sw) then
+		local ports = swconfig_get_switch_ports(sw.device); 
+		local port_vlan = {}; 
+		cur:foreach("network","switch_vlan",function(x)
+			-- check if any ports on this vlan are up
+			local up = false; 
+			for port_id in x.ports:gmatch("%S+") do 
+				port_id = tonumber(port_id); 
+				if(ports[port_id] and ports[port_id].status == "up") then
+					up = true;
+					break;
+				end
+			end
+			local ethdevice = eth.."."..x.vlan; 
+			-- netifd does not seem to handle this correctly right now. So we currently do not bring the actual eth interfaces up and down. 
+			if(dev_status[ethdevice] == nil or dev_status[ethdevice] ~= up) then
+				if(up) then
+					--print("bringing "..ethdevice.." up"); 
+					--juci.shell("ip link set eth0."..x.vlan.." up"); 
+				else
+					--print("bringing "..ethdevice.." down");
+					--juci.shell("ip link set eth0."..x.vlan.." down"); 
+				end
+			end
+			dev_status[ethdevice] = up; 
+		end); 
+		-- loop through all network and if any interface in the network is up then we bring it up
+		cur:foreach("network","interface",function(x)
+			-- check if any interface in this network interface is up
+			local up = false; 
+			for ifname in x.ifname:gmatch("%S+") do
+				-- if the device is unmanaged by us then we bring the network up here
+				-- TODO: determine if we really want to bring up all networks that contain unmanaged ifs
+				-- should we instead just ignore them? 
+				if(dev_status[ifname] == nil or dev_status[ifname]) then
+					up = true; 
+				end
+			end
+			local name = x[".name"]; 
+			if(if_status[name] == nil or if_status[name] ~= up) then
+				if(up) then 
+					print("bringing "..name.." up"); 
+					juci.shell("ifup "..name); 
+				else
+					print("bringin "..name.." down"); 
+					juci.shell("ifdown "..name); 
+				end
+			end
+			if_status[name] = up; 
+		end); 
+	end
+	juci.shell("sleep 1"); 
+end

@@ -57,6 +57,7 @@ JUCI.app
 						if($uci.network[x.interface]) x._config = $uci.network[x.interface]; 
 						return x; 
 					}); 
+				}).always(function(){
 					next(); 
 				}); 
 			}, 
@@ -93,7 +94,7 @@ JUCI.app
 						sec.interface._status_class = "danger"; 
 					}
 				} 
-				$scope.sections = sections.filter(function(x){ return x.interface !== undefined; }).sort(function(a, b) { return a.interface.up > b.interface.up; }); 
+				$scope.sections = sections.filter(function(x){ return x.interface !== undefined; });//.sort(function(a, b) { return a.interface.up > b.interface.up; }); 
 				$scope.$apply(); 
 				next(); 
 			}/*, 
