@@ -222,7 +222,7 @@ UCI.network.$registerSectionType("route", {
 	if(section.interface.value == "") return gettext("Please specify interface for route!"); 
 	if(section.target.value == "") return gettext("Please specify target for route!"); 
 	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
-	if(section.gatewa.value == "") return gettext("Please specify gateway for route!"); 
+	if(section.gateway.value == "") return gettext("Please specify gateway for route!"); 
 	return null; 
 }); 
 

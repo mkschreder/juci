@@ -46,7 +46,7 @@ JUCI.app
 						rem.push(fw);
 					}
 				});
-				async.series(rem, function(x, next){
+				async.eachSeries(rem, function(x, next){
 					x.$delete().always(function(){ next(); }); 
 				}, function(){
 					$scope.$apply(); 
