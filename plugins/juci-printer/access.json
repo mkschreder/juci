@@ -1,0 +1,15 @@
+{
+	"juci-printer": {
+		"description": "JUCI printer module",
+		"read": {
+			"uci": [
+				"p910nd"
+			]
+		},
+		"write": {
+			"uci": [
+				"p910nd"
+			]
+		}
+	}
+}
