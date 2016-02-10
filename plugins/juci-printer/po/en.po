@@ -12,7 +12,15 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 # /home/reidar/juci/plugins/juci-printer/src/pages/internet-services-printer.html
-msgid "p910nd - Printer server"
+msgid "internet-services-printer-title"
+msgstr "Printers"
+
+# /home/reidar/juci/plugins/juci-printer/src/pages/internet-services-printer.html
+msgid "internet-services-printer-info"
+msgstr "Edit settings for printers"
+
+# /home/reidar/juci/plugins/juci-printer/src/pages/internet-services-printer.html
+msgid "Printer"
 msgstr ""
 
 # /home/reidar/juci/plugins/juci-printer/src/pages/internet-services-printer.html
@@ -36,9 +44,5 @@ msgid "Bidirectional mode"
 msgstr ""
 
 # /home/reidar/juci/plugins/juci-printer/src/pages/internet-services-printer.html
-msgid "internet-services-printer-title"
-msgstr "p910nd - Printer server"
-
-# /home/reidar/juci/plugins/juci-printer/src/pages/internet-services-printer.html
 msgid "menu-internet-services-printer-title"
-msgstr "Printers"
+msgstr "Printer Server"
