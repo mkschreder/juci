@@ -108,8 +108,7 @@ JUCI.app
 						// check flags 
 						if(cl.flags.match(/NOIP/)) cl.ipaddr = $tr(gettext("No IP address")); 
 					}); 
-					next(); 
-				}).fail(function(){
+				}).always(function(){
 					next();
 				});
 			},
