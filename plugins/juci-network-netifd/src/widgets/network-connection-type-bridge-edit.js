@@ -19,7 +19,6 @@ JUCI.app
 	return {
 		scope: {
 			connection: "=ngModel", 
-			doNotMarkBridgedDevices: "@"
 		}, 
 		templateUrl: "/widgets/network-connection-type-bridge-edit.html", 
 		controller: "networkConnectionTypeBridgeEdit", 
@@ -82,7 +81,7 @@ JUCI.app
 			// remove the device from any other interface that may be using it right now (important!); 
 			$network.getNetworks().done(function(nets){
 				$ethernet.getAdapters().done(function(adapters){
-					nets.filter(function(net){ return net.type.value == "bridge" || net.type.value == "anywan"; }).map(function(net){
+					nets.filter(function(net){ return net.type.value == "bridge"; }).map(function(net){
 						net.ifname.value = net.ifname.value.split(" ").filter(function(dev){ 
 							if(dev == device && !confirm($tr(gettext("Are you sure you want to remove device "+dev+" from network "+net['.name']+" and use it in this bridge?")))) {
 								keep_device = true; 
@@ -94,19 +93,12 @@ JUCI.app
 					}); 
 					
 					if(keep_device) return; 
-					
 					$scope.connection.ifname.value += " " + device; 
 					$scope.connection.ifname.value.split(" ")
-						.filter(function(x){ return x != ""; })
-						.map(function(dev_name){
-							var dev = adapters.find(function(d){ return d.device == dev_name; }); 
-							
-							if(!$scope.doNotMarkBridgedDevices){
-								// mark devies that are part of the bridge as bridged
-								//if(dev) dev.bridged = true; 
-								// TODO: this is removed for now. 
-							}
-						}); 
+					.filter(function(x){ return x != ""; })
+					.map(function(dev_name){
+						var dev = adapters.find(function(d){ return d.device == dev_name; }); 
+					});
 					updateDevices($scope.connection);
 				}); 
 			}); 
