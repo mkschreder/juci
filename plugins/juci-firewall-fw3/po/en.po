@@ -316,7 +316,7 @@ msgid ""
 msgstr ""
 
 msgid "Packet Forwarding"
-msgstr "Packet Forwarding"
+msgstr ""
 
 msgid "internet.firewall.forwarding.info"
 msgstr "Packet forwarding enables forwarding of incoming packets from one network interface to another. Normally this should only be enabled going from 'lan' interface to a 'wan' interface. If you would like to enable forwarding from wan to lan, make sure you know what you are doing."
@@ -494,7 +494,7 @@ msgid "internet-firewall-urlblock-title"
 msgstr "URL Blocking Filter"
 
 msgid "menu-internet-firewall-forwarding-title"
-msgstr "Packet Forwarding"
+msgstr "Zone Forwarding"
 
 msgid "menu-internet-firewall-wordfilter-title"
 msgstr "Word Filter"
