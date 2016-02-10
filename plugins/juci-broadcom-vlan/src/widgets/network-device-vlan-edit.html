@@ -12,5 +12,8 @@
 		<juci-config-line title="{{'802.1p'}}">
 			<input type="number" min="0" max="7" class="form-control" ng-model="device.vlan8021p.value"/>
 		</juci-config-line>
+		<juci-config-line title="This device will be used in a bridge">
+			<switch class="green" ng-model="device.bridge.value"></switch>
+		</juci-config-line>
 	</juci-config-lines>
 </div>

@@ -70,11 +70,12 @@ JUCI.app.run(function($ethernet, $network, $uci, $broadcomVLAN){
 
 UCI.$registerConfig("layer2_interface_vlan"); 
 UCI.layer2_interface_vlan.$registerSectionType("vlan_interface", {
-	"name":					{ dvalue: '', type: String }, 
-	"ifname":				{ dvalue: '', type: String }, 
-	"baseifname":			{ dvalue: '', type: String }, 
-	"vlan8021q":			{ dvalue: '', type: Number }, 
-	"vlan8021p":			{ dvalue: '', type: Number }
+	"name":			{ dvalue: '', type: String }, 
+	"ifname":		{ dvalue: '', type: String }, 
+	"bridge":		{ dvalue: false, type: Boolean },
+	"baseifname":	{ dvalue: '', type: String }, 
+	"vlan8021q":	{ dvalue: '', type: Number }, 
+	"vlan8021p":	{ dvalue: '', type: Number }
 }, function(section){
 	var errors = [];
 	if(!section.vlan8021p || section.vlan8021p.value == "" || isNaN(section.vlan8021p.value) || section.vlan8021p.value <  0 || section.vlan8021p.value > 7)

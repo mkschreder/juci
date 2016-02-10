@@ -15,5 +15,8 @@
 		<juci-config-line title="{{'IP QoS Scheduler Algorithm'|translate}}">
 			<juci-select ng-model="conf.ipqos.value" ng-items="qosAlos"/>
 		</juci-config-line>
+		<juci-config-line title="This device will be used in a bridge">
+			<switch class="green" ng-model="conf.bridge.value"></switch>
+		</juci-config-line>
 	</juci-config-lines>
 </div>

@@ -44,5 +44,4 @@ JUCI.app
 			$scope.conf = value.base || value; 
 		}); 
 	}); 
-	
 }); 
