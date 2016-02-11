@@ -52,6 +52,10 @@ JUCI.app
 			};
 			$juciDialog.show("network-wan-dns-settings-edit", {
 				title: $tr(gettext("Edit DNS servers")),
+				buttons: [
+					{ label: $tr(gettext("Save")), value: "save", primary: true },
+					{ label: $tr(gettext("Cancel")), value: "cancel" }
+				],
 				on_button: function(btn, inst){
 					if(btn.value == "cancel"){
 						nets.map(function(x){
@@ -59,8 +63,7 @@ JUCI.app
 						});
 						inst.dismiss("cancel");
 					}
-					if(btn.value == "apply"){
-						$uci.$save();
+					if(btn.value == "save"){
 						inst.close();
 					}
 				},

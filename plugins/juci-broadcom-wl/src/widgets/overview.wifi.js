@@ -56,13 +56,16 @@ JUCI.app
 	$scope.onEditSSID = function(iface){
 		$juciDialog.show("uci-wireless-interface", {
 			title: $tr(gettext("Edit wireless interface")),  
+			buttons: [
+				{ label: $tr(gettext("Save")), value: "save", primary: true },
+				{ label: $tr(gettext("Cancel")), value: "cancel" }
+			],
 			on_button: function(btn, inst){
 				if(btn.value == "cancel"){
 					iface.uci_dev.$reset();
 					inst.dismiss("cancel");
 				}
-				if(btn.value == "apply"){
-					$uci.$save();
+				if(btn.value == "save"){
 					inst.close();
 				}
 			},
