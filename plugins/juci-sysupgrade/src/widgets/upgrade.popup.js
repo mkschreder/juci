@@ -48,15 +48,14 @@ JUCI.app
 .controller("upgradePopup", function($scope, $modalInstance, images, gettext){
 	$scope.images = images; 
 	$scope.data = {}; 
-  $scope.ok = function () {
+	$scope.ok = function () {
 		if(!$scope.data.selected) {
 			alert(gettext("You need to select a network!")); 
 			return; 
 		}
 		$modalInstance.close($scope.data.selected);
-  };
-
-  $scope.cancel = function () {
+	};
+	$scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
 })

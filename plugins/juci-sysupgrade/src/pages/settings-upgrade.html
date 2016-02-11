@@ -41,10 +41,10 @@
 				<input type="hidden" name="filename" value="{{uploadFilename}}" />
 				<juci-config-lines>
 					<juci-config-line title="{{'Pick firmware file to upload'|translate}}">
-						<input type="file" class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile"/>
+						<input type="file" onchange="angular.element(this).scope().onFileSelected()" class="btn btn-default btn-file" id="imageFileSelector"  name="filedata" />
 					</juci-config-line>
 					<juci-config-line title="{{'Start upgrade'|translate}}">
-						<button ng-click="onUploadUpgrade()" class="btn btn-lg btn-default" ng-class="{ 'disabled': uploadFile }">{{'Upgrade'|translate}}</button>
+						<button ng-click="onStartUpgrade()" class="btn btn-lg btn-default {{imageSelected ? '': 'disabled'}}">{{'Upgrade'|translate}}</button>
 					</juci-config-line>
 				</juci-config-lines>
 			</form>
@@ -52,9 +52,9 @@
 		<!-- commenting this for now. But if it is necessary to show these then add a config option for this page to show/hide them -->
 		<!--<p class="alert alert-warning" ng-hide="system.upgrade.fw_check_url.value" translate>Online upgrade is disabled</p>
 		<p class="alert alert-warning" ng-hide="system.upgrade.fw_usb_path.value" translate>USB upgrade is disabled</p>-->
-		<modal title="Do you want to keep your configuration?" ng-show="showConfirm" on-accept="onConfirmKeep()" on-dismiss="onConfirmWipe()" accept-label="Yes" dismiss-label="No">
+		<!--<modal title="Do you want to keep your configuration?" ng-show="showConfirm" on-accept="onConfirmKeep()" on-dismiss="onConfirmWipe()" accept-label="Yes" dismiss-label="No">
 			<p translate>If you answer yes then your configuration will be saved before the upgrade and restored after the upgrade has completed. If you choose 'no' then all your current configuration will be reset to defaults.</p>
-		</modal>
+		</modal>-->
 		<modal title="Firmware Upgrade" ng-show="showUpgradeStatus">
 			<center>
 				<p style="text-align: center;" ng-show="!error">{{message}}</p>
