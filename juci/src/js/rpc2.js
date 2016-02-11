@@ -65,12 +65,11 @@
 		var obj = null; 
 		var self = this; 
 		try { obj = JSON.parse(data); } catch(e) { 
-			console.log("RPC: could not parse data: "+e); 
-			setTimeout(function(){ def.reject(); }, 0); 
-			return def.promise(); 
+			console.log("RPC: could not parse data: "+e+": "+data); 
+			return; 
 		} 
 		if(!obj.map) return; 
-		//console.log("RPC got data: "+data); 
+		console.log("RPC got data: "+data); 
 		obj.map(function(msg){ 
 			if(!msg.jsonrpc || msg.jsonrpc != "2.0") return; 
 			if(msg.id && msg.result != undefined && self.requests[msg.id]){

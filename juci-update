@@ -36,12 +36,12 @@ fi
 #	cat $file >> $WWW/__all.css
 #done
 
-if [ "$MODE" = "RELEASE" ]; then
+[ "$MODE" = "RELEASE" ] && {
 	for file in `find ${WWW} -type f | grep -v "\.gz" | grep -v cgi-bin`; do
 		echo "Compressing ${file}..."; 
 		#gzip -f ${file}
 	done
-fi
+}
 
 # now update the index file to include any extra files
 INDEX=${WWW}/index.html
