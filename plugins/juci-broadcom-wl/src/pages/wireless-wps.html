@@ -41,7 +41,7 @@
 				<p translate>wifi.wps.pin.info</p>
 				<juci-config-lines>
 					<juci-config-line title="{{'WPS Using Generated PIN'|translate}}">
-						<switch id="enabled" name="enabled" ng-model="router.wps_devicepin" ng-change="save()" class="green"></switch>
+						<switch id="enabled" name="enabled" ng-model="router.wps_devicepin"  class="green"></switch>
 					</juci-config-line>
 					<juci-config-line title="{{'Generated PIN'|translate}}" >
 						<input type="text" class="form-control input-lg"  ng-model="generatedPIN" readonly />

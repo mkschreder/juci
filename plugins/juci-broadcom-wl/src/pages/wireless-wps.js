@@ -58,10 +58,6 @@ JUCI.app
 		$scope.generatedPIN = data.pin; 
 	}); 
 	
-	$scope.save = function(){
-		//TODO: Change to ubus call
-		$uci.$save(); 
-	}
 	$scope.onPairPBC = function(){
 		$rpc.juci.wireless.wps.pbc();
 	}
@@ -71,6 +67,7 @@ JUCI.app
 	}
 	$scope.onGeneratePIN = function(){
 		$rpc.juci.wireless.wps.genpin().done(function(data){
+			if(!data || data.pin == "") return;
 			$rpc.juci.wireless.wps.setpin({pin: data.pin}).done(function(){
 				$scope.generatedPIN = data.pin; 
 				$scope.$apply(); 
