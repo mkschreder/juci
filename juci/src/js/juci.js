@@ -243,6 +243,19 @@
 					resolve: {
 						saveChangesOnExit: function($uci, $tr, gettext){
 							var def = $.Deferred(); 
+							// this will remove any invalid data when user tries to leave a page and revert changes that have resulted in errors. 
+							// it is good to do this as a way to go along with the element of "Least Surprise" and avoid the nag dialog that would 
+							// otherwise ask the user to fix the errors.. 
+							try { 
+								$uci.$autoCleanInvalidConfigs().done(function(){
+									def.resolve(); 
+								}).fail(function(){
+									def.reject(); 
+								}); 
+							} catch(e){
+								alert("Error while auto cleaning configs. This should not happen. "+e); 
+							}
+							/*
 							var errors = $uci.$getErrors(); 
 							if(errors.length > 0){
 								if(confirm($tr(gettext("There are errors in your current configuration. "+
@@ -253,24 +266,8 @@
 								}
 							} else {
 								def.resolve(); 
-								/*
-								if($uci.$hasChanges()){
-									if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?")))){
-										$uci.$save().fail(function(){
-											alert($tr(gettext("Could not automatically save configuration. Please apply it manyally and fix any errors."))); 
-											def.reject(); 
-										}).done(function(){
-											def.resolve(); 
-										}); 
-									} else {
-										$uci.$clearCache(); 
-										def.resolve(); 
-									}
-								} else {
-									def.resolve(); 
-								}*/
-							}
-
+							}							}
+							*/
 							return def.promise(); 
 						}
 					},

@@ -282,6 +282,8 @@
 				}
 			},
 			get error(){
+				// even if default is null, if the field is required then it is considered invalid!
+				if(!this.uvalue && this.schema.required) return gettext("Field value required!"); 
 				// make sure we ignore errors if value is default and was not changed by user
 				if(this.uvalue == this.schema.dvalue || this.uvalue == this.ovalue) return null; 
 				if(this.validator) return this.validator.validate(this); 
@@ -444,6 +446,20 @@
 					self[k].$cancel_edit();
 			});
 		}
+		
+		UCISection.prototype.$autoCleanInvalidValues = function(){
+			var self = this; 
+			var valid = true; 
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				var f = self[k]; 
+				if(f.error) console.error("Invalid field "+f.error); 
+				if(f.error) f.value = f.ovalue; 
+				if(f.error) f.value = f.dvalue; 
+				if(f.error) valid = false; 
+			});
+			return valid; 
+		}
 
 		UCISection.prototype.$getErrors = function(){
 			var errors = []; 
@@ -585,6 +601,35 @@
 			}).fail(function(){
 				def.reject(); 
 			}); 
+			return def.promise(); 
+		}
+		
+		UCIConfig.prototype.$autoCleanInvalidSections = function(){
+			var def = $.Deferred(); 
+			var self = this; 
+			
+			var to_delete = {}; 
+			Object.keys(self).map(function(x){
+				if(self[x].constructor != UCI.Section) return; 
+				// attemt to clean invalid values (by setting them to original ones)
+				self[x].$autoCleanInvalidValues(); 
+				// if section still has errors then we delete the section
+				if(self[x].$getErrors().length){
+					to_delete[x] = self[x];
+				}
+			}); 
+			
+			async.eachSeries(Object.keys(to_delete), function(x, next){
+				if(!to_delete[x]) { next(); return; }
+				var section = to_delete[x]; 
+				console.warn("Deleting errornous section "+x); 
+				section.$delete().always(function(){
+					next(); 
+				}); 
+			}, function(){
+				def.resolve();
+			});  
+
 			return def.promise(); 
 		}
 
@@ -842,7 +887,25 @@
 			return false; 
 		}); 
 	}
-	
+
+	UCI.prototype.$autoCleanInvalidConfigs = function(){
+		var self = this; 
+		var def = $.Deferred(); 
+		async.eachSeries(Object.keys(self), function(x, next){
+			if(!self[x] || self[x].constructor != UCI.Config){
+				next(); 
+				return; 
+			}
+			self[x].$autoCleanInvalidSections().always(function(){
+				next(); 
+			});
+			next(); 
+		}, function(){
+			def.resolve(); 
+		}); 
+		return def.promise(); 
+	}
+
 	UCI.prototype.$getErrors = function(){
 		var self = this; 
 		var errors = []; 
