@@ -10,13 +10,13 @@
 			<juci-config-line title="{{'Pick SSID'|translate}}">
 				<input type="text" class="form-control" ng-model="data.ssid" placeholder="{{'New SSID'|translate}}"/>
 			</juci-config-line>
-			<juci-config-line title="{{'Mode'|translate}}">
+			<!--<juci-config-line title="{{'Mode'|translate}}">
 				<juci-select ng-model="data.mode" ng-items="allModes" placeholder="Select Interface Mode"></juci-select>
-			</juci-config-line>
+			</juci-config-line>-->
 		</juci-config-lines>
 		<div class="alert alert-danger" ng-show="errors.length">
 			<ul>
-				<li ng-repeat="err in errors">{{err}}</li>
+				<li ng-repeat="err in errors track by $index">{{err}}</li>
 			</ul>
 		</div>
 	</div>

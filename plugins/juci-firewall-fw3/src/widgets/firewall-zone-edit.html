@@ -27,8 +27,24 @@
 		<juci-config-line title="{{'MSS clamping'|translate}}">
 			<switch class="green" ng-model="zone.mtu_fix.value" />
 		</juci-config-line>
+		<juci-config-line title="{{'Allow forward to destination zones:'|translate}}">
+			<div ng-repeat="zone in zones.dest track by $index">
+				<div class="checkbox checkbox-info">
+					<input type="checkbox" ng-model="zone.selected" ng-click="changeForwards()"/>
+					<label><strong>{{zone.name|uppercase}}</strong></label>
+				</div>
+			</div>
+		</juci-config-line>
+		<juci-config-line title="{{'Allow forward from source zones:'|translate}}">
+			<div ng-repeat="zone in zones.source track by $index">
+				<div class="checkbox checkbox-info">
+					<input type="checkbox" ng-model="zone.selected" ng-click="changeForwards()"/>
+					<label><strong>{{zone.name|uppercase}}</strong></label>
+				</div>
+			</div>
+		</juci-config-line>
 		<juci-config-line title="{{'Zone members:'|translate}}">
 		</juci-config-line>
 	</juci-config-lines>
-	<juci-list-editor ng-items="networks" get-item-title="getItemTitle($item)" on-create="onAddNetwork()" on-delete="onRemoveNetwork($item)"></juci-list-editor>
+	<juci-list-editor ng-items="zone.network.value" get-item-title="getItemTitle($item)" on-create="onAddNetwork()" on-delete="onRemoveNetwork($item)"></juci-list-editor>
 </div>

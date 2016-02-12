@@ -25,7 +25,7 @@
 					<th></th>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in schedules">
+					<tr ng-repeat="item in schedules track by $index">
 						<td>{{ item.days.value.join(",") }}</td>
 						<td>{{ item.time.value }}</td>
 						<!--<td>{{ item.enabled.value }}</td>-->

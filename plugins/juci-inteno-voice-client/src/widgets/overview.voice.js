@@ -57,10 +57,6 @@ JUCI.app
 		var status = $uci.voice_client.RINGING_STATUS; 
 		if(status){
 			status.enabled.value = !status.enabled.value; 
-			$scope.phoneSchedStatus = ((status.enabled.value)?gettext("on"):gettext("off")); 
-			$uci.$save().done(function(){
-				$scope.$apply();
-			}); 
 		}
 	}
 }); 

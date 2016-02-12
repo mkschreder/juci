@@ -39,8 +39,9 @@ JUCI.app
 			$scope.$apply(); 
 		}); 
 	}); 
-	$scope.$watch("data.dhcpEnabled", function onNetworkConnectionDHCPChanged(value){
-		if(!$scope.dhcp) {
+	$scope.$watch("data.dhcpEnabled", function(value){
+		if($scope.dhcp == undefined) return;
+		if($scope.connection && $scope.connection.proto && $scope.connection.proto.value == "static") {
 			if($scope.connection){
 				$uci.dhcp.$create({
 					".type": "dhcp", 

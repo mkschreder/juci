@@ -102,7 +102,7 @@ JUCI.app
 		});
 	}
 	$events.subscribe("juci.utils.speedtest", function(res){
-		if(res.data && res.data.status){
+		if(res.data && res.data.status != undefined){
 			switch(res.data.status) {
 			case 0:
 				var upstream = parseInt(res.data.upstream);

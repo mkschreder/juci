@@ -6,7 +6,7 @@
 			<h3 translate>ARP Table</h3>
 			<table class="table">
 				<thead><th translate>IP address</th><th translate>MAC address</th><th translate>Device</th></thead>
-				<tr ng-repeat="arp in arp_table">
+				<tr ng-repeat="arp in arp_table track by $index">
 					<td>{{arp.ipaddr}}</td>
 					<td>{{arp.macaddr}}</td>
 					<td>{{arp.device}}</td>
@@ -22,7 +22,7 @@
 					<th translate>Genmask</th>
 					<th translate>Device</th>
 				</thead>
-				<tr ng-repeat="route in ipv4_routes">
+				<tr ng-repeat="route in ipv4_routes track by $index">
 					<td>{{route.destination}}</td>
 					<td>{{route.gateway}}</td>
 					<td>{{route.mask}}</td>
@@ -34,7 +34,7 @@
 			<h3 translate>IPv6 Routing Table</h3>
 			<table class="table">
 				<thead><th translate>IPv6 address</th><th translate>Next Hop</th><th translate>Device</th></thead>
-				<tr ng-repeat="route in ipv6_routes">
+				<tr ng-repeat="route in ipv6_routes track by $index">
 					<td>{{route.destination}}</td>
 					<td>{{route.next_hop}}</td>
 					<td>{{route.iface}}</td>
@@ -52,7 +52,7 @@
 					<th translate>MAC Address</th>
 					<th translate>Router</th>
 				</thead>
-				<tr ng-repeat="n in neighbors">
+				<tr ng-repeat="n in neighbors track by $index">
 					<td>{{n.ip6addr}}</td>
 					<td>{{n.ip6status}}</td>
 					<td>{{n.device}}</td>

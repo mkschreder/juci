@@ -4,7 +4,7 @@
 			<td style="width:1%"><i class="fa fa-wifi"></i></td>
 			<td style="padding-left: 10px;"><a href="#!/wireless-general" style="color:white;">{{'Wireless'|translate}}</a></td>
 			<td style="width:1%; white-space: nowrap; ">
-				<span ng-show="wifiRadios.length" ng-repeat="radio in wifiRadios" style="margin-left:5px;" class="label label-{{radio.isup ? 'success' : 'default'}}">
+				<span ng-show="wifiRadios.length" ng-repeat="radio in wifiRadios track by $index" style="margin-left:5px;" class="label label-{{radio.isup ? 'success' : 'default'}}">
 				{{radio.frequency}} 
 				</span>
 				<i class="fa fa-spinner fa-spin" ng-show="!wifiRadios"></i>

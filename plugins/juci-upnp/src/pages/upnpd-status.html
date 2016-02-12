@@ -13,7 +13,7 @@
 				<th translate>Source</th>
 				<th translate>Dest.</th>
 			</thead>
-			<tr ng-repeat="port in upnpOpenPorts">
+			<tr ng-repeat="port in upnpOpenPorts track by $index">
 				<td>{{port.num}}</td>
 				<td>{{port.packets}}</td>
 				<td>{{port.bytes}}</td>

@@ -27,6 +27,7 @@ UCI.mcpd.$registerSectionType("mcpd", {
 	"igmp_max_members":					{ type: Number },
 	"igmp_fast_leave":					{ type: Boolean },
 	"igmp_proxy_enable":				{ type: Number },
+	"igmp_ssm_range_ignore":			{ dvalue: false, type: Boolean },
 	"igmp_snooping_enable":				{ type: Number },
 	"igmp_snooping_interfaces":			{ dvalue: "", type: String },
 	"igmp_dscp_mark":					{ dvalue: "", type: String },

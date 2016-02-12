@@ -87,7 +87,7 @@ JUCI.app
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
 			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
 			'<div class="btn-toolbar" >'+
-			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Unsaved Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
+			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Unapplied Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
 			'<span ng-hide="changes && changes.length">{{"No unsaved changes" | translate}}</span>'+
 			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" ng-disabled="changes && !changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
 			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
@@ -99,18 +99,10 @@ JUCI.app
 		controller: "juciConfigApplyController"
 	 }; 
 }).controller("juciConfigApplyController", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
-	$scope.changes = []; 
 	$scope.numUnsavedChanges = function(){
+		$scope.changes = $uci.$getChanges();
 		return $scope.changes.length;
 	}; 
-
-	// only do this once per second and not on each digest!
-	JUCI.interval.repeat("changes-monitor", 1000, function(done){
-		$scope.changes = $uci.$getChanges();
-		setTimeout(function(){ $scope.$apply(); }, 0); 
-		done(); 
-	}); 
-
 	$scope.showChanges = function(){
 		var model = {changes: $scope.changes};
 		$juciDialog.show("juci-changes-edit", {

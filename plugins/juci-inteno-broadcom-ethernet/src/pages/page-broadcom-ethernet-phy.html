@@ -10,7 +10,7 @@
 			<juci-config-info>{{'This will be the port that will be used to configure the physical ethernet port as upling port for routing out to the internet.'|translate}}</juci-config-info>
 			<juci-config-line title="Port" no-pull>
 				<div class="btn-group">
-    	    		<label ng-repeat="port in ports" class="btn btn-success" ng-model="data.wan_port" btn-radio="port" uncheckable>{{port[".name"]}}</label>
+			 		<label ng-repeat="port in ports track by $index" class="btn btn-success" ng-model="data.wan_port" btn-radio="port" uncheckable>{{port[".name"]}}</label>
 				</div>
 				<p ng-show="data.wan_port" translate><strong>{{data.wan_port[".name"]}}</strong> socket will be used for passing packets to the internet.</p>
 			</juci-config-line>

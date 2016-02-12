@@ -741,7 +741,7 @@ msgid "wireless-client-mode-title"
 msgstr "Client Mode Wifi"
 
 msgid "wireless-devices-title"
-msgstr "Wireless Devices"
+msgstr "Wireless Radios"
 
 msgid "wireless-title"
 msgstr "WiFi"
@@ -774,7 +774,7 @@ msgid "menu-wireless-client-mode-title"
 msgstr "Client Mode"
 
 msgid "menu-wireless-devices-title"
-msgstr "Devices"
+msgstr "Radios"
 
 msgid "menu-wireless-title"
 msgstr "WiFi"

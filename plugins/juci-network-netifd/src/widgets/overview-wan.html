@@ -33,7 +33,7 @@
 				<td ><strong translate>DNS-Servers</strong></td>
 				<td>
 					<div ng-repeat="i in default_route_ifs track by $index">
-						<div ng-repeat="dns in i['dns-server']">{{dns}}<br/></div>
+						<div ng-repeat="dns in i['dns-server'] track by $index">{{dns}}<br/></div>
 					</div>
 				</td>
 				<td><span ng-click="showDnsSettings()" style="cursor:pointer;"><i class="fa fa-edit"></i></span></td>

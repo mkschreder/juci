@@ -31,7 +31,7 @@
 						<td style="text-align: right;"><span ng-show="wifi.status.wps.value" style="font-size: 0.8pn">{{wps.pin || "-"}}</span></td>
 					</tr>
 				</table>
-				<table class="table table-condensed" ng-repeat="iface in vifs">
+				<table class="table table-condensed" ng-repeat="iface in vifs track by $index">
 					<thead>
 						<th colspan="2">
 							<i class="fa fa-edit" style="float: right; cursor: pointer;" ng-click="onEditSSID(iface)"></i>

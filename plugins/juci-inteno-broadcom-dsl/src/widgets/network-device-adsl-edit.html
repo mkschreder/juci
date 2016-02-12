@@ -30,5 +30,8 @@
 		<juci-config-line title="{{'Encapsulation Mode'|translate}}">
 			<juci-select ng-model="conf.encapseoa.value" ng-items="encapModes"/>
 		</juci-config-line>
+		<juci-config-line title="This device will be used in a bridge">
+			<switch class="green" ng-model="conf.bridge.value"></switch>
+		</juci-config-line>
 	</juci-config-lines>
 </div>

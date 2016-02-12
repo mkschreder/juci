@@ -16,7 +16,7 @@
 		</juci-config-lines>
 		<div class="alert alert-danger" ng-show="errors.length">
 			<ul>
-				<li ng-repeat="err in errors">{{err}}</li>
+				<li ng-repeat="err in errors track by $index">{{err}}</li>
 			</ul>
 		</div>
 	</div>

@@ -15,7 +15,7 @@
 				</div>
 			</juci-config-line>
 			<juci-config-line title="{{'Currently added devices'|translate}}">
-				<div class="row" ng-repeat="mac in maclist">
+				<div class="row" ng-repeat="mac in maclist track by $index">
 					<div class="col-md-5 form-group">
 						<label class="visible-xs visible-sm" translate>Hostname</label>
 						<input type="text" class="form-control" ng-model="mac.hostname" ng-blur="rebuildMacList()"/>
@@ -42,7 +42,7 @@
 		</juci-config-lines>
 	</div>
 	<modal title="{{'Add clients to MAC filtering list'|translate}}" ng-show="showModal" on-accept="onAcceptModal()" on-dismiss="onDismissModal()" dismiss-label="{{'Cancel'|translate}}" accept-label="{{'Save'|translate}}">
-		<div class="row" ng-repeat="cl in client_list">
+		<div class="row" ng-repeat="cl in client_list track by $index">
 			<div class="col-xs-6">
 				<div class="checkbox checkbox-small checkbox-info">
 					<input type="checkbox" ng-model="cl.checked"/>

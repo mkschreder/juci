@@ -10,7 +10,7 @@
 				<th translate>Cipher</th>
 				<th translate>Connect</th>
 			</thead>
-			<tr ng-repeat="ap in access_points">
+			<tr ng-repeat="ap in access_points track by $index">
 				<td>{{ap.ssid}}</td>
 				<td>{{ap.snr}}</td>
 				<td>{{ap.cipher}}</td>
