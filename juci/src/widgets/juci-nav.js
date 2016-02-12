@@ -32,7 +32,9 @@ JUCI.app
 	$scope.hasChildren = function(menu){
 		return Object.keys(menu.children) > 0;
 	};
-	$scope.onLinkClick = function(){
+	$scope.onLinkClick = function(item){
+		var node = $navigation.findNodeByHref($location.path().replace(/\//g, "")); 
+		if(node.href != item.href) return; 
 		$state.reload(); 
 		$uci.$mark_for_reload(); 
 	}
