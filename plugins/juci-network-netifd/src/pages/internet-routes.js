@@ -27,13 +27,6 @@ JUCI.app
 		$scope.$apply(); 
 	}); 
 
-	$scope.getError = function(option){
-		console.log(option);
-		if(option.value == "") return false;
-		if(option.error == null) return true;
-		return false;
-	};
-	
 	$scope.onAddRoute = function(){
 		$uci.network.$create({
 			".type": "route"
