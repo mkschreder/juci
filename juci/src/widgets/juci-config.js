@@ -99,10 +99,18 @@ JUCI.app
 		controller: "juciConfigApplyController"
 	 }; 
 }).controller("juciConfigApplyController", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
+	$scope.changes = []; 
 	$scope.numUnsavedChanges = function(){
-		$scope.changes = $uci.$getChanges();
 		return $scope.changes.length;
 	}; 
+
+	// only do this once per second and not on each digest!
+	JUCI.interval.repeat("changes-monitor", 1000, function(done){
+		$scope.changes = $uci.$getChanges();
+		setTimeout(function(){ $scope.$apply(); }, 0); 
+		done(); 
+	}); 
+
 	$scope.showChanges = function(){
 		var model = {changes: $scope.changes};
 		$juciDialog.show("juci-changes-edit", {
