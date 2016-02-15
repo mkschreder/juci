@@ -668,6 +668,10 @@
 					config: self[".name"]
 				}).done(function(data){
 					var vals = data.values;
+					if(vals == undefined){
+						deferred.reject(); 
+						return;
+					}
 					Object.keys(vals).filter(function(x){
 						return vals[x][".type"] in section_types[self[".name"]]; 
 					}).map(function(k){
@@ -859,7 +863,7 @@
 		
 		$rpc.uci.configs().done(function(response){
 			var cfigs = response.configs; 
-			if(!cfigs) { next("could not retrieve list of configs!"); return; }
+			if(!cfigs) { console.error("No configs found!"); next("could not retrieve list of configs!"); return; }
 			cfigs.map(function(k){
 				if(!(k in section_types)) {
 					console.log("Missing type definition for config "+k); 

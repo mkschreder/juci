@@ -57,7 +57,8 @@
 		RPC_CACHE = retain; 
 		
 		data.ubus_rpc_session = RPC_SESSION_ID; 
-		if(!connect) connect = $rpc2.$connect("ws://"+window.location.host+"/websocket/");
+		//if(!connect) connect = $rpc2.$connect("ws://"+window.location.host+"/websocket/");
+		if(!connect) connect = $rpc2.$connect("ws://localhost:1234");
 	//	if(!connect) connect = $rpc2.$connect("ws://192.168.1.1/websocket/");
 		connect.done(function(){
 			if(type == "call"){
@@ -66,13 +67,13 @@
 					var def = RPC_CACHE[key].deferred; 
 					var time_taken = Date.now() - start_time; 
 					//console.log("ret: "+JSON.stringify(ret)); 
-					if(ret[0] && (ret[0].code != undefined || ret[0].error)){
+					if(ret && (ret.code != undefined || ret.error)){
 						//console.log("FAIL request ("+time_taken+"ms): "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
-						def.reject(ret[0] || {}); 
+						def.reject(ret.result || {}); 
 					}
 					else {
 						//console.log("request ("+time_taken+"ms): "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
-						def.resolve(ret[0]); 
+						def.resolve(ret); 
 					}
 				}).fail(function(){
 					console.log("RPC FAIL!"); 
@@ -80,7 +81,7 @@
 				}); 
 			} else if(type == "list"){
 				$rpc2.$list().done(function(ret){
-					RPC_CACHE[key].deferred.resolve(ret[0] || {}); 
+					RPC_CACHE[key].deferred.resolve(ret || {}); 
 				}).fail(function(){
 					RPC_CACHE[key].deferred.reject(); 
 				}); 
@@ -284,9 +285,9 @@
 			default_calls.map(function(x){ self.$register(x); }); 
 			// request list of all methods and construct rpc object containing all of the methods in javascript. 
 			rpc_request("list", "*", "", {}).done(function(result){
-				//alert(JSON.stringify(result)); 
 				Object.keys(result).map(function(obj){
 					Object.keys(result[obj]).map(function(method){
+						console.log("Adding method "+method); 
 						self.$register(obj, method); 
 					}); 
 				}); 

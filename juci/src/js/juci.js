@@ -82,6 +82,7 @@
 		// TODO: maybe rewrite the init sequence
 		async.series([
 			function(next){
+				console.log("UBUS Init"); 
 				scope.UBUS.$init().done(function(){
 					if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
 						// TODO: make this prettier. 
@@ -98,6 +99,7 @@
 				}); 
 			},  
 			function(next){
+				console.log("UCI Init"); 
 				$uci.$init().done(function(){
 					next(); 
 				}).fail(function(){
@@ -107,6 +109,7 @@
 				}); 
 			}, 
 			function(next){
+				console.log("JUCI Init"); 
 				$juci.config.$init().done(function(){
 					next(); 
 				}).fail(function(){
@@ -116,6 +119,7 @@
 				}); 
 			}, 
 			function(next){
+				console.log("Trying to authenticate.."); 
 				$rpc.$authenticate().done(function(){
 					next(); 
 				}).fail(function(){
@@ -137,7 +141,10 @@
 					acls = UBUS.$session.acls["access-group"]; 
 				}
 				console.log("juci: loading menu from server.."); 
-				$uci.juci["@menu"].map(function(menu){
+				$uci.juci["@menu"].sort(function(a, b){
+					return String(a.path.value).localeCompare(b.path.value); 
+				}).map(function(menu){
+					console.log("adding menu: "+menu.path.value); 
 					// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
 					if(menu.acls.value.length && menu.acls.value.find(function(x){
 						return !acls[x]; 

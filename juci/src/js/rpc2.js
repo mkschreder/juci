@@ -69,11 +69,12 @@
 			return; 
 		} 
 		if(!obj.map) return; 
-		console.log("RPC got data: "+data); 
 		obj.map(function(msg){ 
 			if(!msg.jsonrpc || msg.jsonrpc != "2.0") return; 
 			if(msg.id && msg.result != undefined && self.requests[msg.id]){
-				self.requests[msg.id].deferred.resolve(msg.result); 
+				var req = self.requests[msg.id]; 
+				console.log("RPC response ("+((new Date()).getTime() - req.time)+"ms): "+JSON.stringify(msg.result)); 
+				req.deferred.resolve(msg.result); 
 			} else if(msg.id && msg.error != undefined && self.requests[msg.id]){
 				self.requests[msg.id].deferred.reject(msg.error); 
 			} else if(!msg.id && msg.method && msg.params && self.events[msg.method]){
@@ -92,6 +93,7 @@
 		self.seq++; 
 		var req = self.requests[self.seq] = {
 			id: self.seq,
+			time: (new Date()).getTime(),
 			deferred: $.Deferred()
 		}; 
 		var str = JSON.stringify({
