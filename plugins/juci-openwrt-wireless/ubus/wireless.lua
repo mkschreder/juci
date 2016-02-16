@@ -13,8 +13,10 @@
 --          Frequency offset: unknown
 --          Supports VAPs: yes  PHY name: phy0
 
-local juci = require("juci.core"); 
+local juci = require("juci/core"); 
 local iwinfo = require("iwinfo"); 
+local ubus = require("juci/ubus"); 
+
 --require("iwinfo"); 
 --require("ubus"); 
 
@@ -140,7 +142,7 @@ local function wireless_get_caps()
 end
 
 local function wireless_radios()
-
+	return {}; 
 end
 
 local function wireless_countrylist(msg)
@@ -156,8 +158,7 @@ end
 local function wireless_htmodelist(msg)
 	local result = {}
 	if(not msg.device) then
-		print(json.encode({ error = "no device specified!" })); 
-		return -1; 
+		return { error = "no device specified!" }; 
 	end
 	result.htmodes = wireless_get_80211_htmodelist(msg.device); 
 	return result; 
@@ -166,8 +167,7 @@ end
 local function wireless_freqlist(msg)
 	local result = {}
 	if(not msg.device) then
-		print(json.encode({ error = "no device specified!" })); 
-		return -1; 
+		return { error = "no device specified!" }; 
 	end
 	result.channels = wireless_get_80211_freqlist(msg.device); 
 	return result; 
