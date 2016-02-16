@@ -7,7 +7,7 @@ else
 BIN:=bin
 endif
 
-BACKEND_BIN_DIR:=$(BIN)/usr/lib/ubus/juci/
+BACKEND_BIN_DIR:=$(BIN)/usr/lib/juci/api/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
 TMP_DIR:=tmp
