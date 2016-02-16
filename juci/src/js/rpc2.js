@@ -65,7 +65,7 @@
 		var obj = null; 
 		var self = this; 
 		try { obj = JSON.parse(data); } catch(e) { 
-			console.log("RPC: could not parse data: "+e+": "+data); 
+			console.error("RPC: could not parse data: "+e+": "+data); 
 			return; 
 		} 
 		if(!obj.map) return; 
@@ -102,8 +102,13 @@
 			method: "call", 
 			params: [object, method, data]
 		})+"\n";  
-		console.log("websocket > "+str); 
-		self.socket.send(str); 
+		//console.log("websocket > "+str); 
+		try {
+			self.socket.send(str); 
+		} catch(e){
+			console.error("Websocket error: "+e); 
+			self.socket.onclose(); 
+		}
 		return req.deferred.promise();  
 	}
 	RPC.prototype.$subscribe = function(name, func){
