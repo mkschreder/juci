@@ -15,7 +15,8 @@
 
 local juci = require("juci.core"); 
 local iwinfo = require("iwinfo"); 
-require("ubus"); 
+--require("iwinfo"); 
+--require("ubus"); 
 
 local function wireless_get_80211_device_names()
 	-- this will get list of devices that support phy80211 interface. 
@@ -129,13 +130,13 @@ end
 local function wireless_devices()
 	local result = {}; 
 	result.devices = wireless_get_80211_devices(); 
-	print(json.encode(result)); 
+	return result; 
 end
 
 local function wireless_get_caps()
 	local result = {}; 
 	result.devices = wireless_get_80211_caps();
-	print(json.encode(result)); 
+	return result; 
 end
 
 local function wireless_radios()
@@ -143,13 +144,13 @@ local function wireless_radios()
 end
 
 local function wireless_countrylist(msg)
-	local result = {}
+	local result = {}; 
 	if(not msg.device) then
-		print(json.encode({ error = "no device specified!" })); 
-		return -1; 
+		return { error = "no device specified!" }; 
 	end
+	print("getting countrylist for "..msg.device); 
 	result.countries = wireless_get_80211_countrylist(msg.device); 
-	print(json.encode(result)); 
+	return result; 
 end
 
 local function wireless_htmodelist(msg)
@@ -159,7 +160,7 @@ local function wireless_htmodelist(msg)
 		return -1; 
 	end
 	result.htmodes = wireless_get_80211_htmodelist(msg.device); 
-	print(json.encode(result)); 
+	return result; 
 end
 
 local function wireless_freqlist(msg)
@@ -169,37 +170,33 @@ local function wireless_freqlist(msg)
 		return -1; 
 	end
 	result.channels = wireless_get_80211_freqlist(msg.device); 
-	print(json.encode(result)); 
+	return result; 
 end
 
 local function wireless_clients()
 	local devices = wireless_get_80211_device_names(); 
 	local result = { clients = {} }; 
 	for _,wldev in ipairs(devices) do
-		local cn = ubus.connect(); 
-		if(cn) then
-			local cl = cn:call("hostapd."..wldev, "get_clients", {}); 
-			if(cl) then 
-				for macaddr,client in pairs(cl.clients) do 
-					local extinfo = wireless_get_extended_stainfo(wldev, macaddr); 
-					
-					local client = {
-						device = wldev, 
-						macaddr = macaddr
-					}; 
+		local cl = ubus.call("hostapd."..wldev, "get_clients", {}); 
+		if(cl) then 
+			for macaddr,client in pairs(cl.clients) do 
+				local extinfo = wireless_get_extended_stainfo(wldev, macaddr); 
+				
+				local client = {
+					device = wldev, 
+					macaddr = macaddr
+				}; 
 
-					for k,v in pairs(extinfo) do client[k] = v; end
+				for k,v in pairs(extinfo) do client[k] = v; end
 
-					table.insert(result.clients, client); 
-				end
-				cn:close(); 
+				table.insert(result.clients, client); 
 			end
 		end
 	end
-	print(json.encode(result)); 
+	return result; 
 end 
 
-juci.ubus({
+return {
 	devices = wireless_devices,
 	caps = wireless_get_caps,
 	radios = wireless_radios, 
@@ -207,4 +204,4 @@ juci.ubus({
 	countrylist = wireless_countrylist,
 	htmodelist = wireless_htmodelist,
 	freqlist = wireless_freqlist
-}, arg); 
+}; 

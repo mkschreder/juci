@@ -20,9 +20,9 @@ local function get_port_status()
 			}); 
 		end
 	end
-	print(json.encode(state)); 
+	return state; 
 end
 
-juci.ubus({
+return {
 	status = get_port_status
-}, arg); 
+}; 

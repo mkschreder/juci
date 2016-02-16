@@ -16,7 +16,7 @@ local function network_status_arp()
 	local clients = {}; 
 	for line in output:gmatch("[^\r\n]+") do 
 		local words = fields(line); 
-		if(words[1] and words[1]:match("%d\.%d\.%d\.%d")) then 
+		if(words[1] and words[1]:match("%d.%d.%d.%d")) then 
 			table.insert(clients, {
 				ipaddr = words[1], 
 				hw = words[2], 
@@ -27,7 +27,7 @@ local function network_status_arp()
 			}); 
 		end
 	end
-	print(json.encode({ clients = clients })); 
+	return { clients = clients }; 
 end
 
 local function network_status_ipv4routes()
@@ -35,7 +35,7 @@ local function network_status_ipv4routes()
 	local routes = {}; 
 	for line in output:gmatch("[^\r\n]+") do 
 		local words = fields(line); 
-		if(words[1] and words[1]:match("%d\.%d\.%d\.%d")) then 
+		if(words[1] and words[1]:match("%d.%d.%d.%d")) then 
 			table.insert(routes, {
 				destination = words[1], 
 				gateway = words[2], 
@@ -48,7 +48,7 @@ local function network_status_ipv4routes()
 			}); 
 		end
 	end
-	print(json.encode({ routes = routes })); 
+	return { routes = routes }; 
 end
 
 local function network_status_ipv6routes()
@@ -68,17 +68,17 @@ local function network_status_ipv6routes()
 			}); 
 		end
 	end
-	print(json.encode({ routes = routes })); 
+	return { routes = routes }; 
 end
 
 local function network_status_ipv6neigh()
 	local neigh = network.ipv6neigh(); 
-	print(json.encode({ neighbors = neigh })); 
+	return { neighbors = neigh }; 
 end
 
-juci.ubus({
+return {
 	["arp"] = network_status_arp,
 	["ipv4routes"] = network_status_ipv4routes, 
 	["ipv6routes"] = network_status_ipv6routes,
 	["ipv6neigh"] = network_status_ipv6neigh
-}, arg); 
+}; 

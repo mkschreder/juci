@@ -31,9 +31,9 @@ local function backup_get_features()
 	print(json.encode(res)); 
 end
 
-juci.ubus({
+return {
 	["restore"] = backup_restore, 
 	["features"] = backup_get_features, 
 	["clean"] = backup_clean
-}, arg); 
+}; 
 

@@ -13,6 +13,6 @@ function ddns_list_providers()
 	print(json.encode(result)); 
 end
 
-juci.ubus({
+return {
 	providers = ddns_list_providers
-}, arg); 
+}; 

@@ -17,7 +17,7 @@ function sysupgrade_check(params)
 			end
 		end
 	end
-	print(json.encode(res)); 
+	return res; 
 end
 
 function sysupgrade_test(params)
@@ -28,7 +28,7 @@ function sysupgrade_test(params)
 	res["stdout"] = stdout;
 	res["stderr"] = stderr; 
 	res["error"] = ret; 
-	print(json.encode(res)); 
+	return res; 
 end
 
 function sysupgrade_start(params)
@@ -38,24 +38,24 @@ function sysupgrade_start(params)
 	if params["keep"] ~= 1 then keep = "-n" end
 	if params["path"] then path = params["path"] end
 	res["stdout"],res["error"] = juci.shell("sysupgrade "..keep.." %s", path); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 function sysupgrade_clean()
 	local res = {}; 
 	res["stdout"] = juci.shell("sysupgrade --clean"); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 function sysupgrade_online(params)
 
 end
 
-juci.ubus({
+return {
 	["check"] = sysupgrade_check, 
 	["test"] = sysupgrade_test, 
 	["start"] = sysupgrade_start,
 	["clean"] = sysupgrade_clean,
 	["online"] = sysupgrade_online
-}, arg); 
+}; 
 

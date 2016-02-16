@@ -22,8 +22,9 @@ local function autocomplete(opts)
 	if(ret == 1) then return ret; end
 	print(json.encode(ret));
 end
-juci.ubus({
+
+return {
 	["folder_tree"] = folder_tree,
 	["autocomplete"] = autocomplete,
 	["status"] = get_status
-}, arg);
+};

@@ -18,6 +18,6 @@ function macdb_lookup(opts)
 	print(json.encode(res)); 
 end
 
-juci.ubus({
+return {
 	["lookup"] = macdb_lookup
-}, arg); 
+}; 

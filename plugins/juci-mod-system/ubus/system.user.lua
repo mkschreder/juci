@@ -26,7 +26,7 @@ local function checkpassword(user, pass)
 		if(fields[1] == user) then shpass = fields[2]; end
 	end
 	if shpass == nil then return false; end
-	local typ, salt, hash = shpass:match("\$([^$]+)$([^$]+)$([^$]+).*"); 
+	local typ, salt, hash = shpass:match("$([^$]+)$([^$]+)$([^$]+).*"); 
 	local epass = juci.shell("echo %s | openssl passwd -1 -salt "..salt.." -stdin", pass);
 	epass = epass:match("[^\r\n]+"); 
 	if shpass == epass then 
@@ -80,7 +80,7 @@ local function user_list(opts)
 	print(json.encode({ users = users }));  
 end
 
-juci.ubus({
+return {
 	["setpassword"] = user_set_password,
 	["listusers"] = user_list
-}, arg); 
+}; 

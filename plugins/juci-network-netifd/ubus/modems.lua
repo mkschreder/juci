@@ -47,7 +47,7 @@ function list_4g_modems()
 	print(json.encode({info = "no data"}));
 end
 
-juci.ubus({
+return {
 	["list"] = list_modems,
 	["list4g"] = list_4g_modems
-}, arg); 
+}; 

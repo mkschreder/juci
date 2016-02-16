@@ -12,7 +12,7 @@ function ethernet_list_network_adapters(opts)
 	
 	function ipv4parse(ip)
 		if not ip then return "",""; end
-		local ip,num = ip:match("([%d\.]+)/(%d+)"); 
+		local ip,num = ip:match("([%d\\.]+)/(%d+)"); 
 		local mask = "0.0.0.0"; 
 		if num then 
 			local inet_mask = "255"; 
@@ -93,9 +93,9 @@ function ethernet_list_network_adapters(opts)
 			if(state) then v.state = state:gsub("%s",""):upper(); end;
 		end
 	end
-	print(json.encode({ adapters = adapters })); 
+	return { adapters = adapters }; 
 end
 
-juci.ubus({
+return {
 	["adapters"] = ethernet_list_network_adapters
-}, arg); 
+}; 

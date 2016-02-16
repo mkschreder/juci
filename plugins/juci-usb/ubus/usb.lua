@@ -42,11 +42,7 @@ function usb_list_devices()
 	print(json.encode(res)); 
 end
 
+return {
+	list = usb_list_devices
+}; 
 
-if arg[1] == ".methods" then 
-	print("list");
-elseif arg[1] == "list" then 
-	usb_list_devices();
-else 
-	io.write("Unknown method!\n"); 
-end

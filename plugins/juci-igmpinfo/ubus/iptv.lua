@@ -25,6 +25,6 @@ function iptv_igmptable()
 	print(json.encode(res)); 
 end
 
-juci.ubus({
+return {
 	["igmptable"] = iptv_igmptable
-}, arg);
+};

@@ -36,6 +36,6 @@ function process_list()
 	print(json.encode(res)); 
 end
 
-juci.ubus({
+return {
 	["list"] = process_list
-}, arg); 
+}; 

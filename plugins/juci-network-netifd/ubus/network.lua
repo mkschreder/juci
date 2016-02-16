@@ -1,5 +1,8 @@
 #!/usr/bin/lua
 
+-- Copyright (c) 2016 Martin Schröder <mkschreder.uk@gmail.com>. All rights reserved. 
+-- This module is distributed under GNU GPLv2.
+
 local juci = require("juci/core"); 
 local netstat = require("juci/netstat"); 
 local ethernet = require("juci/ethernet"); 
@@ -13,12 +16,12 @@ function network_list_services()
 			table.insert(result.list, s); 
 		end
 	end
-	print(json.encode(result)); 
+	return result; 
 end
 
 function network_list_connected_clients()
 	local clients = network.clients(); 
-	print(json.encode({ clients = clients })); 	
+	return { clients = clients }; 	
 end
 
 function network_nat_table()
@@ -45,7 +48,7 @@ function network_nat_table()
 		line = file:read("*l"); 
 	end
 	file:close(); 
-	print(json.encode(result)); 
+	return result; 
 end
 
 function list_protos()
@@ -54,13 +57,30 @@ function list_protos()
 	for line in data:gmatch("[^\r\n]+") do
 		table.insert(protos, line);
 	end
-	print(json.encode({ protocols = protos }));
+	return { protocols = protos };
 end
 
+local function network_load()
+	return {
+		active_connections = tonumber(juci.shell("cat /proc/sys/net/netfilter/nf_conntrack_count") or "0"), 
+		max_connections = tonumber(juci.shell("cat /proc/sys/net/netfilter/nf_conntrack_max") or "0")
+	}; 	
+end
 
-juci.ubus({
+local function network_nameservers()
+	local out = juci.shell("awk '/nameserver/{print $2}' /var/resolv.conf.auto"); 
+	local result = { nameservers = {} }; 
+	for line in out:gmatch("[^\r\n]+") do
+		table.insert(result.nameservers, line); 
+	end
+	return result; 
+end
+
+return {
+	["load"] = network_load, 
+	["nameservers"] = network_nameservers, 
 	["services"] = network_list_services,
 	["clients"] = network_list_connected_clients, 
 	["nat_table"] = network_nat_table,
 	["protocols"] = list_protos
-}, arg); 
+}; 

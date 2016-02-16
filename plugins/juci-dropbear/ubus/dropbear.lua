@@ -104,8 +104,8 @@ local function dropbear_removepublickey(opts)
 	print("{}");
 end
 
-juci.ubus({
+return {
 	["get_public_keys"] = dropbear_getpublickeys,
 	["add_public_key"] = dropbear_addpublickey,
 	["remove_public_key"] = dropbear_removepublickey
-}, arg);
+};

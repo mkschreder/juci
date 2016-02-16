@@ -1,11 +1,7 @@
 #!/usr/bin/lua 
 
 local juci = require("juci/core"); 
-local dirent = require("posix.dirent")
 local json = require("juci/json"); 
-require("ubus"); 
-
-local conn = ubus.connect(); 
 
 local function list_dir(dir) 
 	local files, ok = dirent.dir(dir); 
@@ -103,7 +99,7 @@ local function service_status(service)
 	print(json.encode({ running = (svcs[service.name] ~= nil) }));
 end
 
-juci.ubus({
+return {
 	["list"] = service_list,
 	["start"] = service_start,
 	["stop"] = service_stop, 
@@ -111,4 +107,4 @@ juci.ubus({
 	["disable"] = service_disable, 
 	["reload"] = service_reload, 
 	["status"] = service_status
-}, arg); 
+}; 

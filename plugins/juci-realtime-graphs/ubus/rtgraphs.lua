@@ -6,9 +6,9 @@ local json = require("juci/json");
 local function bwc_get_graph(opts)
 	if(not opts.ethdevice) then print(json.encode({ error = "No device specified" })); return 0; end
 	local graph = juci.shell("luci-bwc -i %s 2>/dev/null", opts.ethdevice); 
-	print(string.format("{\"graph\":[%s]}", graph)); 
+	return { graph = json.decode("["..graph.."]") }; 
 end
 
-juci.ubus({
+return {
 	["get"] = bwc_get_graph
-}, arg); 
+}; 

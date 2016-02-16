@@ -25,6 +25,6 @@ local function upnp_list_open_ports()
 	print(json.encode(result))
 end
 
-juci.ubus({
+return {
 	ports = upnp_list_open_ports
-}, arg); 
+}; 

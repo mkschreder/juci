@@ -22,7 +22,7 @@ local function get_ipv6leases()
 	print(json.encode(result));
 end
 
-juci.ubus({
+return {
 	["ipv4leases"] = get_ipv4leases,
 	["ipv6leases"] = get_ipv6leases
-}, arg);
+};

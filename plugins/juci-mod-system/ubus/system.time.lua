@@ -431,9 +431,9 @@ function system_get_time_diff()
 	print(json.encode({diff = diff, format = "system - utc"}));
 end
 
-juci.ubus({
+return {
 	["timediff"] = system_get_time_diff,
 	["zonelist"] = systime_list_zones, 
 	["get"] = systime_get, 
 	["set"] = systime_set
-}, arg); 
+}; 

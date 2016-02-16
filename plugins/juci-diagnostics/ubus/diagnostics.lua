@@ -30,9 +30,9 @@ function diag_traceroute6(opts)
 	print(json.encode(res)); 
 end
 
-juci.ubus({
+return {
 	["ping"] = diag_ping, 
 	["ping6"] = diag_ping6, 
 	["traceroute"] = diag_traceroute,
 	["traceroute6"] = diag_traceroute6
-}, arg); 
+}; 

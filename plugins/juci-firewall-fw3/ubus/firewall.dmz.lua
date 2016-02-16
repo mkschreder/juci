@@ -9,7 +9,7 @@ local function excluded_ports()
 	print(json.encode({result = (result or "")}));
 end
 
-juci.ubus({
+return {
 	["excluded_ports"] = excluded_ports
-}, arg);
+};
 
