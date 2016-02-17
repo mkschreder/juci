@@ -1,0 +1,4 @@
+ubus /juci/utils.speedtest run x
+ubus /juci/diagnostics ping x
+ubus /juci/diagnostics traceroute x
+uci speedtest * rw

@@ -28,9 +28,7 @@
 		"local.features", 
 		"local.set_rpc_host"
 	]; 
-
 	var connect = null; 
-
 	function rpc_request(type, namespace, method, data){
 		var sid = ""; 
 		
@@ -56,9 +54,9 @@
 		});
 		RPC_CACHE = retain; 
 		
-		data.ubus_rpc_session = RPC_SESSION_ID; 
+		data._ubus_session_id = RPC_SESSION_ID; 
 		//if(!connect) connect = $rpc2.$connect("ws://"+window.location.host+"/websocket/");
-		if(!connect) connect = $rpc2.$connect("ws://localhost:1234");
+		if(!connect) connect = $rpc2.$connect("ws://192.168.2.1:1234");
 	//	if(!connect) connect = $rpc2.$connect("ws://192.168.1.1/websocket/");
 		connect.done(function(){
 			if(type == "call"){
@@ -75,8 +73,9 @@
 						//console.log("request ("+time_taken+"ms): "+type+", object="+namespace+", method="+method+", data="+JSON.stringify(data)+", resp="+JSON.stringify(ret)); 
 						def.resolve(ret); 
 					}
-				}).fail(function(){
-					console.log("RPC FAIL!"); 
+				}).fail(function(err){
+					var def = RPC_CACHE[key].deferred; 
+					console.error("RPC ERROR ("+namespace+","+method+"): "+err); 
 					def.reject(); 
 				}); 
 			} else if(type == "list"){
@@ -158,7 +157,7 @@
 			var self = this; 
 			var deferred  = $.Deferred(); 
 			
-			if(!self.session){
+			if(!RPC_SESSION_ID){
 				setTimeout(function(){ deferred.reject(); }, 0); 
 				return deferred.promise(); 
 			}
@@ -168,25 +167,13 @@
 			// of the new tab as well. We therefore need to take sid from the local storage so we always have latest sid!
 			var stored_sid = scope.localStorage.getItem("sid"); 
 			if(stored_sid !== RPC_DEFAULT_SESSION_ID) RPC_SESSION_ID = stored_sid; 
-
-			self.session.access({
-				//"ubus_rpc_session": RPC_SESSION_ID,
-				"scope": "ubus" 
-			}).done(function(result){
-        		if(!("username" in (result.data||{}))) {
-					// username must be returned in the response. If it is not returned then rpcd is of wrong version. 
-					//alert(gettext("You have been logged out due to inactivity")); 
-					RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; // reset sid to 000..
-					scope.localStorage.setItem("sid", RPC_SESSION_ID); 
-					deferred.reject(); 
-				} else {
-					self.$session = result; 
-					if(!("data" in self.$session)) self.$session.data = {}; 
-					//console.log("Session: Loggedin! "); 
-					deferred.resolve(result); 
-				}  
+			
+			$rpc2.$authenticate(RPC_SESSION_ID).done(function(result){
+     			self.$session = {}; 
+				deferred.resolve(); 
 			}).fail(function err(result){
 				RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; 
+				scope.localStorage.setItem("sid", RPC_SESSION_ID); 
 				console.error("Session access call failed: you will be logged out!"); 
 				deferred.reject(); 
 			}); 
@@ -201,13 +188,9 @@
 				return deferred.promise(); 
 			}
 
-			self.session.login({
-				"username": opts.username, 
-				"password": opts.password
-			}).done(function(result){
-				RPC_SESSION_ID = result.ubus_rpc_session;
+			$rpc2.$login(opts.username, opts.password).done(function(result){
+				RPC_SESSION_ID = result;
 				scope.localStorage.setItem("sid", RPC_SESSION_ID); 
-				self.$session = result; 
 				//JUCI.localStorage.setItem("sid", self.sid); 
 				//if(result && result.acls && result.acls.ubus) setupUbusRPC(result.acls.ubus); 
 				deferred.resolve(self.sid); 

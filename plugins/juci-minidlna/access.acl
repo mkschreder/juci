@@ -1,0 +1,5 @@
+uci minidlna * rw 
+ubus /juci/minidlna folder_tree x
+ubus /juci/minidlna autocomplete x
+ubus /juci/minidlna status x
+ubus /juci/system.service status x

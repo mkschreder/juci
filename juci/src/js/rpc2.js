@@ -15,7 +15,7 @@
 */ 
 
 (function(scope){
-	var RPC_DEFAULT_SESSION_ID = "00000000000000000000000000000000"; 
+	var RPC_DEFAULT_SESSION_ID = ""; 
 	
 	var gettext = function(text){ return text; }; 
 
@@ -24,6 +24,7 @@
 		this.events = {}; 
 		this.seq = parseInt(Math.random()*65535); 
 		this.connected = false; 
+		this.sid = RPC_DEFAULT_SESSION_ID; 
 	}
 
 	RPC.prototype.$connect = function(address){
@@ -73,7 +74,7 @@
 			if(!msg.jsonrpc || msg.jsonrpc != "2.0") return; 
 			if(msg.id && msg.result != undefined && self.requests[msg.id]){
 				var req = self.requests[msg.id]; 
-				console.log("RPC response ("+((new Date()).getTime() - req.time)+"ms): "+JSON.stringify(msg.result)); 
+				console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "+JSON.stringify(msg.result)); 
 				req.deferred.resolve(msg.result); 
 			} else if(msg.id && msg.error != undefined && self.requests[msg.id]){
 				self.requests[msg.id].deferred.reject(msg.error); 
@@ -87,30 +88,74 @@
 			}
 		}); 
 	}
-	
-	RPC.prototype.$call = function(object, method, data){
+
+	RPC.prototype.$authenticate = function(sid){
 		var self = this; 
-		self.seq++; 
-		var req = self.requests[self.seq] = {
-			id: self.seq,
+		var def = $.Deferred(); 
+		self.$request("authenticate", [sid]).done(function(){
+			self.sid = sid; 
+			def.resolve(); 
+		}).fail(function(){
+			def.reject(); 
+		}); 
+		return def.promise(); 
+	}
+
+    RPC.prototype.$login = function(username, password){
+        var self = this;                
+        var def = $.Deferred();         
+        self.$request("challenge").done(function(resp){
+            console.log("GOT CHALLENGE: "+JSON.stringify(resp)); 
+            var sha = new jsSHA("SHA-1", "TEXT");    
+            var pwhash = new jsSHA("SHA-1", "TEXT"); 
+            pwhash.update(username);    
+            sha.update(resp.token);     
+            sha.update(pwhash.getHash("HEX"));       
+            self.$request("login", [username, sha.getHash("HEX")]).done(function(resp){
+                console.log("LOGIN RESULT: "+JSON.stringify(resp)); 
+                if(resp.success) self.sid = resp.success; 
+                def.resolve(resp.success);               
+            }).fail(function(){         
+                def.reject();           
+            }); 
+        }).fail(function(){             
+            def.reject();               
+        }); 
+        return def.promise();           
+    }
+
+    RPC.prototype.$request = function(method, params){
+        var self = this;                
+        self.seq++;                     
+        var req = self.requests[self.seq] = {    
+            id: self.seq,
 			time: (new Date()).getTime(),
-			deferred: $.Deferred()
-		}; 
-		var str = JSON.stringify({
-			jsonrpc: "2.0", 
-			id: req.id, 
-			method: "call", 
-			params: [object, method, data]
-		})+"\n";  
-		//console.log("websocket > "+str); 
+			method: method, 
+			params: params, 
+            deferred: $.Deferred()      
+        }; 
+        var str = JSON.stringify({      
+            jsonrpc: "2.0",             
+            id: req.id,                 
+            method: method,             
+            params: params || []        
+        })+"\n";                        
+        console.log("websocket > "+str);         
 		try {
 			self.socket.send(str); 
 		} catch(e){
 			console.error("Websocket error: "+e); 
 			self.socket.onclose(); 
 		}
-		return req.deferred.promise();  
+
+        return req.deferred.promise();  
+    }
+	
+	RPC.prototype.$call = function(object, method, data){
+		this.sid = localStorage.getItem("sid"); 
+		return this.$request("call", [this.sid, object, method, data]); 
 	}
+
 	RPC.prototype.$subscribe = function(name, func){
 		if(!this.events[name]) this.events[name] = []; 
 		this.events[name].push(func); 
@@ -124,22 +169,7 @@
 	}
 
 	RPC.prototype.$list = function(){
-		var self = this; 
-		self.seq++; 
-		var req = self.requests[self.seq] = {
-			id: self.seq,
-			deferred: $.Deferred()
-		}; 
-		var str = JSON.stringify({
-			jsonrpc: "2.0", 
-			id: req.id, 
-			method: "list", 
-			params: ["*"]
-		})+"\n"; 
-		console.log("websocket > "+str); 
-		self.socket.send(str); 
-		return req.deferred.promise();  
-
+		return this.$request("list", [this.sid, "*"]); 
 	}
 	
 	scope.UBUS2 = scope.$rpc2 = new RPC();  

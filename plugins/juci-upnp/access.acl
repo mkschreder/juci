@@ -1,0 +1,2 @@
+ubus /juci/upnpd ports x
+uci upnpd * rw

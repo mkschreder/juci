@@ -1,0 +1,3 @@
+ubus /juci/broadcom.dsl status x
+uci layer2_interface_adsl * rw
+uci layer2_interface_vdsl * rw

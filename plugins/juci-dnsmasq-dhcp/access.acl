@@ -1,0 +1,3 @@
+uci dhcp * rw
+ubus /juci/dhcp ipv4leases x
+ubus /juci/dhcp ipv6leases x

@@ -1,0 +1,4 @@
+ubus /juci/ethernet adapters x
+uci layer2_interface_ethernet * rw
+uci ports * rw
+uci layer2_interface_vlan * rw
