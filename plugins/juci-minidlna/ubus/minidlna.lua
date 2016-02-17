@@ -12,15 +12,17 @@ local function get_status(opts)
 		if(field == "Video files") then result.count.video = tonumber(value); end 
 		if(field == "Image files") then result.count.image = tonumber(value); end 
 	end
-	print(json.encode(result)); 
+	return result; 
 end
+
 local function folder_tree()
-	print(json.encode(juci.file.folder_tree()));
+	return juci.file.folder_tree();
 end
+
 local function autocomplete(opts)
 	local ret = juci.file.autocomplete(opts);
 	if(ret == 1) then return ret; end
-	print(json.encode(ret));
+	return ret; 
 end
 
 return {

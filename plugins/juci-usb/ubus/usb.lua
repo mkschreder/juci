@@ -39,7 +39,7 @@ function usb_list_devices()
 	if next(obj) ~= nil then table.insert(devices, obj) end
 	local res = {}; 
 	res["devices"] = devices; 
-	print(json.encode(res)); 
+	return res; 
 end
 
 return {

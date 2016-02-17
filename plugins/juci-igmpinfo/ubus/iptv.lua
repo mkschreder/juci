@@ -22,7 +22,7 @@ function iptv_igmptable()
 	end
 	f:close(); 
 	res["table"] = tbl; 
-	print(json.encode(res)); 
+	return res; 
 end
 
 return {

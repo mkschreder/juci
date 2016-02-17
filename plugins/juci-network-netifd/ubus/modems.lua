@@ -15,14 +15,13 @@ function list_modems()
 			table.insert(modems, line);
 		end
 	end
-	print(json.encode({ modems = modems }));
+	return { modems = modems };
 end
 
 function list_4g_modems()
 	local file = io.open(PATH, "r");
 	if(file == nil) then
-		print(json.encode({info = "could not open file"}));
-		return;
+		return {info = "could not open file"};
 	end;
 	local modems = {};
 	local tmp = {};
@@ -40,11 +39,11 @@ function list_4g_modems()
 		end
 		table.insert(modems, {service=tmp[7], dev=tmp[6], name=name, ifname=tmp[5]});
 		if next(modems) then
-			print(json.encode({modems = modems}));
+			return {modems = modems};
 			return;
 		end
 	end
-	print(json.encode({info = "no data"}));
+	return {info = "no data"};
 end
 
 return {

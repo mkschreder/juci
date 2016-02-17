@@ -29,8 +29,7 @@ function network_nat_table()
 	local file = io.open("/proc/net/ip_conntrack"); 
 	local result = {table={}}; 
 	if(not file) then
-		print(json.encode(result)); 
-		return; 
+		return result; 
 	end
 	local line = file:read("*l"); 
 	while(line) do

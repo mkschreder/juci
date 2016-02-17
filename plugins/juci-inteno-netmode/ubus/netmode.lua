@@ -17,21 +17,20 @@ end
 
 function netmode_select(params)
 	if not params or not params.netmode then 
-		print(json.encode({ error = "Please supply netmode argument!"})); 
-		return; 
+		return { error = "Please supply netmode argument!"}; 
 	end
 	local src = "/etc/netmodes/config_"..string.gsub(params.netmode, "[^A-Za-z0-9]*", ""); 
 	if fs.existsSync(src) then 
 		local stdout = juci.shell("cp -r %s/* /etc/config/", src); 
 		juci.shell("uci set netmode.setup.curmode=%s; uci commit netmode", params.netmode); 
-		print(json.encode({ netmode = params.netmode, configs_dir = src})); 
-		juci.shell("reboot"); 
+		juci.shell("reboot&"); 
+		return { netmode = params.netmode, configs_dir = src}; 
 	else 
-		print(json.encode({ error = "Netmode not found"})); 
+		return { error = "Netmode not found"}; 
 	end
 end
 
-juci.ubus({
+return {
 	["current"] = netmode_current,
 	["select"] = netmode_select
-}, arg); 
+}; 

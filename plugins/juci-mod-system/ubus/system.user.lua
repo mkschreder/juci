@@ -39,25 +39,21 @@ local function user_set_password(opts)
 	if not opts["password"] then return 5; end
 	local session = juci.session.get(opts.sid); 
 	if not session then 
-		print(json.encode({ error = "Could not find session!" })); 
-		return 1; 
+		return { error = "Could not find session!" }; 
 	end
 	if session.data.username ~= opts.username and not juci.session.access(opts.sid, "passwd", "otheruser", { "write" }) then 
-		print(json.encode({ error = "Can not change password for another user!" })); 
-		return 1; 
+		return { error = "Can not change password for another user!" }; 
 	end
 	if not juci.session.access(opts.sid, "passwd", "self", { "write" }) then 
-		print(json.encode({ error = "Permission denied!" }));
-		return 1; 
+		return { error = "Permission denied!" };
 	end
 	if not checkpassword(opts.username, opts.oldpassword) then 
-		print(json.encode({ error = "Invalid username/password!"})); 
-		return 1; 
+		return { error = "Invalid username/password!"}; 
 	end
 	local stdout = juci.shell("echo -e \"%s\" | passwd %s", opts["password"].."\\n"..opts["password"], opts["username"]); 
-	print(json.encode({
+	return {
 		["stdout"] = stdout
-	})); 
+	}; 
 end
 
 local function user_list(opts)
@@ -67,8 +63,7 @@ local function user_list(opts)
 	local listothers = juci.session.access(opts.sid, "passwd", "otheruser", { "write" }); 
 	local session = juci.session.get(opts.sid); 
 	if(not session) then
-		print(json.encode({ users = {}, error = "Session not found! ("..(opts.sid or "")..")"}));
-		return 1; 
+		return { users = {}, error = "Session not found! ("..(opts.sid or "")..")"};
 	end
 	for user in all_users:gmatch("[^\r\n]+") do
 		if(not listothers) then 
@@ -77,7 +72,7 @@ local function user_list(opts)
 			table.insert(users, user); 
 		end
 	end
-	print(json.encode({ users = users }));  
+	return { users = users };  
 end
 
 return {

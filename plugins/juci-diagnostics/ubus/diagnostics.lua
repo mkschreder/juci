@@ -6,28 +6,28 @@ function diag_ping(opts)
 	local res = {}; 
 	if(not opts["host"]) then return; end; 
 	res["stdout"] = juci.shell("ping -c 5 -W 1 %s", opts["host"]); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 function diag_ping6(opts)
 	local res = {}; 
 	if(not opts["host"]) then return; end; 
 	res["stdout"] = juci.shell("ping6 -c 5 -W 1 %s", opts["host"]); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 function diag_traceroute(opts)
 	local res = {}; 
 	if(not opts["host"]) then return; end; 
 	res["stdout"] = juci.shell("traceroute -q 1 -w 1 -n %s", opts["host"]); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 function diag_traceroute6(opts)
 	local res = {}; 
 	if(not opts["host"]) then return; end; 
 	res["stdout"] = juci.shell("traceroute6 -q 1 -w 2 -n %s", opts["host"]); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 return {

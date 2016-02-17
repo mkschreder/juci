@@ -4,13 +4,13 @@ local juci = require("juci.core");
 local json = require("juci.json");
 
 local function folder_tree()
-	print(json.encode(juci.file.folder_tree()));
+	return juci.file.folder_tree();
 end
 
 local function autocomplete(opts)
 	local ret = juci.file.autocomplete(opts);
 	if(ret == 1) then return ret; end
-	print(json.encode(ret));
+	return ret;
 end
 
 return {

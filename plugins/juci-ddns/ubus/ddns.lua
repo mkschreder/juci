@@ -10,7 +10,7 @@ function ddns_list_providers()
 	for line in list:gmatch("%S+") do
 		table.insert(result.providers, line); 
 	end
-	print(json.encode(result)); 
+	return result;
 end
 
 return {

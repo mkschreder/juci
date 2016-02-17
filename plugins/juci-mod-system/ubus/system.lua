@@ -18,7 +18,7 @@ function system_filesystems(opts)
 		}; 
 		table.insert(lines, obj); 
 	end
-	print(json.encode(res)); 
+	return res; 
 end
 
 function system_logread(opts)
@@ -52,17 +52,17 @@ function system_logread(opts)
 		}; 
 		table.insert(lines, obj); 
 	end
-	print(json.encode(res)); 
+	return res; 
 end
 
 function system_reboot()
 	juci.shell("/sbin/reboot 2>/dev/null"); 
-	print(json.encode({})); 
+	return {}; 
 end
 
 function system_defaultreset()
 	juci.shell("/sbin/defaultreset 2> /dev/null"); 
-	print(json.encode({})); 
+	return {}; 
 end
 
 function trim(s)
@@ -162,20 +162,20 @@ function system_info()
 	end
 	for i,v in ipairs(port_names) do table.insert(ports, {name=v, device = port_order[i]}); end
 	
-	print(json.encode({
+	return {
 		system = system, 
 		load = cpuload, 
 		keys = keys, 
 		memoryKB = memory, 
 		eth_ports = ports
-	})); 
+	}; 
 end
 
-juci.ubus({
+return {
 	["info"] = system_info, 
 	["log"] = system_logread, 
 	["defaultreset"] = system_defaultreset,
 	["filesystems"] = system_filesystems, 
 	["reboot"] = system_reboot
-}, arg); 
+}; 
 

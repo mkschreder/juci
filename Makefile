@@ -7,7 +7,7 @@ else
 BIN:=bin
 endif
 
-BACKEND_BIN_DIR:=$(BIN)/usr/lib/juci/api/
+BACKEND_BIN_DIR:=$(BIN)/usr/lib/juci/api/juci/
 CODE_DIR:=$(BIN)/www/js
 CSS_DIR:=$(BIN)/www/css
 TMP_DIR:=tmp
@@ -83,10 +83,9 @@ $(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(TMP_DIR)/$(CODE_LOAD)-$(1).js $(TMP_DIR)/$(S
 $(1)-install: $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
-	$(Q)if [ -d $(2)/service ]; then $(CP) $(2)/service/* $(BIN)/usr/lib/ubus-services/; fi
+	$(Q)if [ -d $(2)/service ]; then $(CP) $(2)/service/* $(BIN)/usr/lib/juci/services/; fi
 	@-chmod +x $(BACKEND_BIN_DIR)/* 
-	$(Q)if [ -f $(2)/menu.json ]; then $(CP) $(2)/menu.json $(BIN)/usr/share/rpcd/menu.d/$(1).json; fi
-	$(Q)if [ -f $(2)/access.json ]; then $(CP) $(2)/access.json $(BIN)/usr/share/rpcd/acl.d/$(1).json; fi
+	$(Q)if [ -f $(2)/access.acl ]; then $(CP) $(2)/access.acl $(BIN)/usr/lib/juci/acl/$(1).acl; fi
 endef
 
 ifneq ($(MODULE),)
@@ -138,10 +137,9 @@ prepare: .cleaned
 	@mkdir -p $(BIN)/usr/bin/
 	@mkdir -p $(BIN)/usr/share/juci/
 	@mkdir -p $(BIN)/usr/share/lua/
-	@mkdir -p $(BIN)/usr/share/rpcd/menu.d/
-	@mkdir -p $(BIN)/usr/share/rpcd/acl.d/
+	@mkdir -p $(BIN)/usr/lib/juci/acl/
 	@mkdir -p $(BACKEND_BIN_DIR)
-	@mkdir -p $(BIN)/usr/lib/ubus-services/
+	@mkdir -p $(BIN)/usr/lib/juci/services/
 	@mkdir -p $(BIN)/etc/hotplug.d/
 	
 node_modules: package.json

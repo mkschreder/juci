@@ -10,7 +10,7 @@ local function get_ipv4leases()
 	for _,i in pairs(leases) do 
 		table.insert(result.leases, i);
 	end
-	print(json.encode(result));
+	return result; 
 end
 
 local function get_ipv6leases()
@@ -19,7 +19,7 @@ local function get_ipv6leases()
 	for _,i in pairs(leases) do 
 		table.insert(result.leases, i);
 	end
-	print(json.encode(result));
+	return result; 
 end
 
 return {

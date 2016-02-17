@@ -12,23 +12,21 @@ function read_ssl()
 		end;
 		file:close();
 	end;
-	print(json.encode({result=res}));
+	return {result=res};
 end;
 
 function write_ssl(opts)
 	local data = opts.data;
 	if data == nil then
-		print(json.encode({result="error no data"}));
-		return 
+		return {result="error no data"};
 	end
 	local file = io.open(PATH, "w+");
 	file:write(data);
 	file:close();
-	print(json.encode({result="success"}));
+	return {result="success"};
 end;
 
-
-juci.ubus({
+return {
 	["get_trusted_ca"] = read_ssl,
 	["set_trusted_ca"] = write_ssl
-}, arg);
+};

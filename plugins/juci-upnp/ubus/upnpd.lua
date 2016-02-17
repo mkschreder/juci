@@ -22,7 +22,7 @@ local function upnp_list_open_ports()
 			dst_port = dst_port
 		}); 
 	end
-	print(json.encode(result))
+	return result; 
 end
 
 return {

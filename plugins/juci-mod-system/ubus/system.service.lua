@@ -47,43 +47,40 @@ local function service_list()
 		
 		table.insert(services, svc); 
 	end
-	print(json.encode({services = services})); 
+	return {services = services}; 
 end
 
 local function service_start(service)
 	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s start", service.name);
-		print('{}');
+		return {}; 
 	else 
-		print(json.encode({ error = "Invalid service!"})); 
+		return { error = "Invalid service!"}; 
 	end
 end 
 
 local function service_stop(service)
 	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s stop", service.name);
-		print('{}');
-	else
-		print(json.encode({ error = "Invalid service!"})); 
+		return {}; 
 	end
+	return { error = "Invalid service!"}; 
 end 
 
 local function service_enable(service)
 	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s enable", service.name);
-		print('{}');
-	else
-		print(json.encode({ error = "Invalid service!"})); 
+		return {}; 
 	end
+	return { error = "Invalid service!"}; 
 end
 
 local function service_disable(service)
 	if(is_service(service.name)) then
 		juci.shell("/etc/init.d/%s disable", service.name);
-		print('{}');
-	else 
-		print(json.encode({ error = "Invalid service!"})); 
+		return {}; 
 	end
+	return { error = "Invalid service!"}; 
 end
 
 local function service_reload(service)
@@ -91,12 +88,12 @@ local function service_reload(service)
 	then
 		juci.shell("/etc/init.d/%s reload", service.name);
 	end
-	print('{}');
+	return {}; 
 end
 
 local function service_status(service)
 	local svcs = conn:call("service", "list", {});	
-	print(json.encode({ running = (svcs[service.name] ~= nil) }));
+	return { running = (svcs[service.name] ~= nil) };
 end
 
 return {

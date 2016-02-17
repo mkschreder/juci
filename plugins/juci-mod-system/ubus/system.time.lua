@@ -404,7 +404,7 @@ local zones = {
 }; 
 
 function systime_list_zones()
-	print(json.encode({ zones = zones })); 
+	return { zones = zones }; 
 end
 
 function systime_get()
@@ -412,23 +412,24 @@ function systime_get()
 		unix_time = os.time(),
 		local_time = (juci.shell("date") or ""):gsub("\n", "")
 	}; 
-	print(json.encode(result)); 
+	return result; 
 end
 
 function systime_set(params)
 	local time = params.unix_time; 
 	if(not time) then
-		print(json.encode({ error = "Invalid argument!" })); 
+		return { error = "Invalid argument!" }; 
 	else
-		local result = juci.shell("date +%%s -s @%d", time); 
+		juci.shell("date +%%s -s @%d", time); 
 	end
+	return {}; 
 end
 
 function system_get_time_diff()
 	local system_time_hour = juci.shell("date | awk '{print $4}' | cut -d ':' -f 1");
 	local utc_time_hour = juci.shell("date -u | awk '{print $4}' | cut -d ':' -f 1");
 	local diff = system_time_hour - utc_time_hour;
-	print(json.encode({diff = diff, format = "system - utc"}));
+	return {diff = diff, format = "system - utc"};
 end
 
 return {

@@ -83,9 +83,9 @@ function dsl_stats()
 		elseif(parts[1] == "CRC") then ctr.crc_down = parts[2]; ctr.crc_up = parts[3]; 
 		end
 	end
-	print(json.encode({dslstats = res})); 
+	return {dslstats = res}; 
 end
 
-juci.ubus({
+return {
 	["status"] = dsl_stats
-}, arg); 
+}; 

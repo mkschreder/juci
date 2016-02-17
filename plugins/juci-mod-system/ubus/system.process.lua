@@ -33,7 +33,7 @@ function process_list()
 		lc = lc + 1; 
 		
 	end
-	print(json.encode(res)); 
+	return res; 
 end
 
 return {

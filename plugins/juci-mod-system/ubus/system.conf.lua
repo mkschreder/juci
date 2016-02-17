@@ -15,20 +15,20 @@ local function backup_restore(opts)
 	else
 		res["stdout"] = juci.shell("sysupgrade --restore-backup /tmp/backup.tar.gz"); 
 	end
-	print(json.encode(res)); 
+	return res; 
 end
 
 local function backup_clean()
 	local res = {}; 
 	res["stdout"] = juci.shell("sysupgrade --clean"); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 local function backup_get_features()
 	local res = { }; 
 	if("" ~= juci.shell("openssl version")) then res.encryption = true; else res.encryption = false end
 	res.comment = false; 
-	print(json.encode(res)); 
+	return res; 
 end
 
 return {

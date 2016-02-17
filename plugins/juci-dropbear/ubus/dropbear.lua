@@ -35,19 +35,19 @@ local function dropbear_getpublickeys(opts)
 		end
 		file:close();
 	end
-	print(json.encode({keys=res}));
+	return {keys=res};
 end
 
 local function dropbear_addpublickey(opts)
-	if(not opts["key"]) then print(json.encode({error="err-no-key"})); return; end;
+	if(not opts["key"]) then return {error="err-no-key"}; end;
 
 	local keyPart=tokenize(opts["key"]);
-	if(not keyPart[1] or not keyPart[2] or not keyPart[3]) then print(json.encode({error="Invalid Key: Missing part"})); return; end
+	if(not keyPart[1] or not keyPart[2] or not keyPart[3]) then return {error="Invalid Key: Missing part"}; end
 
 	--check if key is right format
 	local keyBaseId=keyPart[2]:sub(1, 16);
 	if( not ((keyPart[1] == "ssh-rsa" and  keyBaseId == "AAAAB3NzaC1yc2EA") or (keyPart[1] == "ssh-dss" and keyBaseId == "AAAAB3NzaC1kc3MA"))) then
-		 print(json.encode({error="Invalid Key:Malformed format"})); return; end
+		 return {error="Invalid Key:Malformed format"}; return; end
 
 	local file = io.open(FILEPATH, "a+");
 	-- check if key already exists
@@ -60,24 +60,23 @@ local function dropbear_addpublickey(opts)
 		end
 	end
 	file:close();
-	if(exists) then print(json.encode({error = "Key already exists!"})); return; end
+	if(exists) then return {error = "Key already exists!"}; return; end
 
 	-- add the new key
 	file = io.open(FILEPATH, "a");
 	if(not file) then
-		print(json.encode({ error = "err-no-file-open" }));
-		return;
+		return { error = "err-no-file-open" };
 	end
 	file:write(trim(opts.key).."\n");
 	file:close();
 
-	print("{}");
+	return {}; 
 end
 
 local function dropbear_removepublickey(opts)
-	if(not opts["type"]) then print(json.encode({error="err-no-type"})); return; end;
-	if(not opts["id"]) then print(json.encode({status="err-no-id"})); return; end;
-	if(not opts["key"]) then print(json.encode({status="err-no-key"})); return; end;
+	if(not opts["type"]) then return {error="err-no-type"}; return; end;
+	if(not opts["id"]) then return {status="err-no-id"}; return; end;
+	if(not opts["key"]) then return {status="err-no-key"}; return; end;
 
 	-- read in keys and then remove the one that matches the line
 	local file = io.open(FILEPATH, "r");
@@ -93,7 +92,7 @@ local function dropbear_removepublickey(opts)
 			end
 		end
 		file:close();
-		if(not found) then print(json.encode({ error = "Key not found!" })); return; end
+		if(not found) then return { error = "Key not found!" }; return; end
 		-- TODO: can this be a race condition? What if someone else opens the file right after we have closed it? Any way to avoid it?
 		file = io.open(FILEPATH, "w");
 		for _,line in ipairs(keys) do
@@ -101,7 +100,7 @@ local function dropbear_removepublickey(opts)
 		end
 		file:close();
 	end
-	print("{}");
+	return {}; 
 end
 
 return {

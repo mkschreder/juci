@@ -5,7 +5,7 @@ local juci = require("juci/core");
 
 function wireless_scan(opts)
 	juci.shell("wlctl scan 2>/dev/null"); 
-	print("{}"); 
+	return {}; 
 end
 
 function wireless_scanresults(opts)
@@ -36,7 +36,7 @@ function wireless_scanresults(opts)
 			if v == "WPS:" then obj["wps_version"] = fields[i+1] end
 		end
 	end
-	print(json.encode(resp)); 
+	return resp; 
 end
 
 juci.ubus({

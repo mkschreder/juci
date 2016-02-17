@@ -15,7 +15,7 @@ function macdb_lookup(opts)
 		line = f:read("*l"); 
 	end
 	f:close(); 
-	print(json.encode(res)); 
+	return res; 
 end
 
 return {
