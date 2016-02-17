@@ -1,5 +1,7 @@
 ubus /uci get x
 ubus /uci set x
+ubus /uci add x
+ubus /uci delete x
 ubus /uci apply x
 ubus /uci revert x
 ubus /uci commit x
