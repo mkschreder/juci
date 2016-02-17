@@ -25,6 +25,7 @@ define Plugin/juci
 	JAVASCRIPT-y+=src/lib/js/async.js
 	JAVASCRIPT-y+=src/lib/js/vis.js
 	JAVASCRIPT-y+=src/lib/js/js-schema.min.js
+	JAVASCRIPT-y+=src/js/sha.js
 	JAVASCRIPT-y+=src/lib/js/require.js
 	JAVASCRIPT-y+=src/lib/js/jquery.min.js
 	JAVASCRIPT-y+=src/lib/js/cytoscape.min.js

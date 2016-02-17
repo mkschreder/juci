@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.factory("$juciDialog", function($modal, $network, $tr, gettext, $modal){
+.factory("$juciDialog", function($modal, $network, $tr, gettext){
 	return {
 		show: function(widget, opts){
 			var def = $.Deferred(); 

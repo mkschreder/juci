@@ -144,12 +144,12 @@
 				$uci.juci["@menu"].sort(function(a, b){
 					return String(a[".name"]).localeCompare(b[".name"]); 
 				}).map(function(menu){
-					//console.log("adding menu: "+menu.path.value); 
+					console.log("adding menu: "+menu.path.value); 
 					// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
-					if(menu.acls.value.length && menu.acls.value.find(function(x){
+					/*if(menu.acls.value.length && menu.acls.value.find(function(x){
 						return !acls[x]; 
 					})) return; 
-
+*/
 					var redirect = menu.redirect.value; 
 					var page = menu.page.value; 
 					if(page == "") page = undefined; 

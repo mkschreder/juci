@@ -103,7 +103,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	if($rpc.$isLoggedIn()){
 		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
 	} else {
-		$juci.redirect("login");
+		//$juci.redirect("login");
 	}
 	
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
@@ -111,7 +111,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		$rpc.$authenticate().fail(function(){
 			// TODO: this also redirects to login without notice if box reboots, or rpcd crashes. 
 			// Determine whether this behavior can be improved because it can be annoying (of course the most annoying part is that rpcd crashes in the first place..) 
-			$juci.redirect("login");
+			//$juci.redirect("login");
 		});
 	}, 10000); 
 }) 
