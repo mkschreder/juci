@@ -18,7 +18,7 @@ JUCI.app
 .controller("SettingsPasswordCtrl", function($scope, $rpc, $tr, gettext){
 	$scope.showPassword = 0; 
 	$scope.showModal = 0; 
-	$scope.username = $rpc.$session.data.username; 
+	$scope.username = ""; //$rpc.$session.data.username; 
 	$scope.modal = {
 		old_password: "", 
 		password: "", 
@@ -48,7 +48,7 @@ JUCI.app
 		$scope.passwordStrength = measureStrength($scope.modal.password); 
 	}, true); 
 	
-	var username = $scope.modal.username = $rpc.$session.data.username; 
+	var username = $scope.modal.username; 
 	$scope.$watch("modal.username", function onSystemPasswordUsernameChanged(value){
 		if(value == undefined) return; 
 		username = value; 
