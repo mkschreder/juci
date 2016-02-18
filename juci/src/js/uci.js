@@ -229,10 +229,12 @@
 					// if user has modified value and we have keep user set then we do not discard his changes
 					// otherwise we also update uvalues
 					if(!keep_user || !this.dirty) {
+						this.uvalue.length = 0; 
 						Object.assign(this.uvalue, value); 
 						this.dirty = false; 
 					}
 					// store original value
+					this.ovalue.length = 0; 
 					Object.assign(this.ovalue, value); 
 				} else {
 					if(!keep_user || !this.dirty) {
