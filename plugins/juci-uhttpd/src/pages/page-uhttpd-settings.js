@@ -74,7 +74,7 @@ JUCI.app
 				return (y.value == x);
 			});
 		});
-		$scope.$watch("data", function(){
+		$scope.$watch("data", function onUhttpdDataChanged(){
 			$scope.logopts.ubus_status.value = $scope.data.status.map(function(x){
 				return x.value;
 			});

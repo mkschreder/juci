@@ -1,8 +1,14 @@
 JUCI Webgui for Embedded Routers
 --------------------------------
 
-JUCI is a JavaScript-based web interface for broadband routers running Iopsys /
-OpenWRT.
+JUCI project delivers new state of the art web interface technology to embedded
+devices running OpenWRT Linux. 
+
+Current minimum specs: 
+	- 8M flash (including operating system. Although using images and icons in themes would require at least 16M).  
+	- 32M ram
+	- 400Mhz CPU supported by OpenWRT. 
+	- A modern web browser. 
 
 JUCI is built with html5, angularjs and bootstrap: 
 
@@ -17,12 +23,22 @@ What is JUCI?
 
 If offers you the following: 
 
-* Extremely resource-efficient for your device - your router only needs to run the core functions (which can be written in C!) and the gui itself is running entirely inside the client's browser). You router only computes and sends the minimum information necessary. 
-* Full mobile support
-* Easy to work with - the code uses angular.js and html5, making it extremely easy to add new gui elements to the gui. 
-* Full control and flexibility - yet many ready-made components: allowing you to pick yourself which level you want to develop on. There are no restrictions to the look and feel of your gui. 
-* Dynamic theming - you can switch color themes at runtime. 
-* Full language support - allowing for complete localization of your gui. Language file generation is even partially automatic (for html text). Also supporting dynamically changing language on page without having to reload the application. Also featuring quick debug mode for translations where you can see which strings are missing in currently used language pack. 
+- Extremely resource-efficient for your device - your router only needs to run
+  the core functions (which can be written in C!) and the gui itself is running
+  entirely inside the client's browser). You router only computes and sends the
+  minimum information necessary. 
+- Full mobile support
+- Easy to work with - the code uses angular.js and html5, making it extremely
+  easy to add new gui elements to the gui. 
+- Full control and flexibility - yet many ready-made components: allowing you
+  to pick yourself which level you want to develop on. There are no
+  restrictions to the look and feel of your gui. 
+- Dynamic theming - you can switch color themes at runtime. 
+- Full language support - allowing for complete localization of your gui.
+  Language file generation is even partially automatic (for html text). Also
+  supporting dynamically changing language on page without having to reload the
+  application. Also featuring quick debug mode for translations where you can
+  see which strings are missing in currently used language pack. 
 
 How to support JUCI
 -------------------
@@ -44,66 +60,27 @@ GPL.
 Usage on OpenWRT
 ----------------
 
-You can now try JUCI on openwrt. 
+Here is how to build and install JUCI on OpenWRT: 
 
-Here is how to install it:
-
-- Add my feed to your feeds.conf.default
-src-git-full juci https://github.com/mkschreder/mks-openwrt-feed.git
+- Add official JUCI feed to your feeds.conf.default
+src-git-full juci https://github.com/mkschreder/juci-feed.git
 
 - Update and install the feed (with -f to force overrides)
 ./scripts/feeds update juci
 ./scripts/feeds install -f -p juci -a
 
-- select juci core, inteno theme and openwrt plugins under JUCI menu in menuconfig
-  (NOTE: some plugins conflict with eachother so you can not select
-  juci-broadcom-wl and juci-openwrt-wireless at the same time). 
+- select juci-full to build all packages currently supported on OpenWRT. 
 
-For example, you could append this to your .config and then do make defconfig: 
+	CONFIG_PACKAGE_juci-full=y
 
-	CONFIG_PACKAGE_juci-ubus-core=y
-	# CONFIG_PACKAGE_juci-broadcom-dsl is not set
-	# CONFIG_PACKAGE_juci-broadcom-ethernet is not set
-	# CONFIG_PACKAGE_juci-broadcom-vlan is not set
-	# CONFIG_PACKAGE_juci-broadcom-wl is not set
-	CONFIG_PACKAGE_juci-ddns=y
-	CONFIG_PACKAGE_juci-diagnostics=y
-	CONFIG_PACKAGE_juci-dnsmasq-dhcp=y
-	CONFIG_PACKAGE_juci-dropbear=y
-	CONFIG_PACKAGE_juci-ethernet=y
-	CONFIG_PACKAGE_juci-event=y
-	CONFIG_PACKAGE_juci-firewall-fw3=y
-	# CONFIG_PACKAGE_juci-freecwmp is not set
-	# CONFIG_PACKAGE_juci-igmpinfo is not set
-	# CONFIG_PACKAGE_juci-inteno-multiwan is not set
-	# CONFIG_PACKAGE_juci-inteno-router is not set
-	# CONFIG_PACKAGE_juci-jquery-console=y
-	# CONFIG_PACKAGE_juci-macdb is not set
-	CONFIG_PACKAGE_juci-minidlna=y
-	CONFIG_PACKAGE_juci-mod-status=y
-	CONFIG_PACKAGE_juci-mod-system=y
-	# CONFIG_PACKAGE_juci-natalie-dect is not set
-	# CONFIG_PACKAGE_juci-netmode is not set
-	CONFIG_PACKAGE_juci-network-netifd=y
-	CONFIG_PACKAGE_juci-openwrt-wireless=y
-	# CONFIG_PACKAGE_juci-router-openwrt is not set
-	CONFIG_PACKAGE_juci-samba=y
-	CONFIG_PACKAGE_juci-simple-gui=y
-	CONFIG_PACKAGE_juci-snmp=y
-	CONFIG_PACKAGE_juci-sysupgrade=y
-	CONFIG_PACKAGE_juci-uhttpd=y
-	CONFIG_PACKAGE_juci-upnp=y
-	CONFIG_PACKAGE_juci-usb=y
-	# CONFIG_PACKAGE_juci-utils is not set
-	CONFIG_PACKAGE_juci-theme-inteno=y
-	CONFIG_PACKAGE_juci=y
+- run "make defconfig" to select all dependencies. 
 
 - BUILD! 
 
-Menus can be configured in /etc/config/juci. As a start you can use
-juci.config.example and copy it to your router /etc/config/juci. Then you can
-modify it to get the menus you want.  A better menu system is on the todo
-list.. 
+Menus will be automatically configured by the juci-full package uci-defaults
+scripts. If you want to use juci in a custom firmware you would typically
+create a custom metapackage that would only select your plugins and configure
+JUCI according to your own custom needs.
 
 If you go to your router ip you should see the login screen. By default admin
 user is used to login but if you don't have password set for admin user you

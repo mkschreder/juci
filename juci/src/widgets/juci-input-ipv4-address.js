@@ -34,7 +34,7 @@ JUCI.app
 	var ngModel = $parse($attrs.ngModel);
 
 	// extract model into the parts
-	$scope.$watch("ngModel", function(value){
+	$scope.$watch("ngModel", function onJuciInputIpv4ModelChanged(value){
 		if(value === undefined || typeof value != "string") return;
 		var parts = value.split(".");
 		$scope.data.parts = [];
@@ -52,10 +52,17 @@ JUCI.app
 	// reassemble model when parts change
 	$scope.updateModel = function() {
 		console.log("Assemble parts: "+$scope.data.parts);
-		var ipaddr = Object.keys($scope.data.parts).map(function(x){ return $scope.data.parts[x] }).join(".");
+		var ipaddr = $scope.data.parts.join(".");
 		if(ipaddr == "..." || ipaddr == ".." || ipaddr == ".") ipaddr = "";
 		if($scope.ngModel != ipaddr) ngModel.assign($scope.$parent, ipaddr);
 	};
+	
+	$scope.onCopy = function(ev){
+		if(ev.originalEvent.clipboardData && ev.originalEvent.clipboardData.setData){
+			ev.originalEvent.clipboardData.setData("text/plain", $scope.data.parts.join(".")); 
+			ev.preventDefault(); 
+		}
+	}
 
 	$scope.onPaste = function(ev){
 		var ip = ev.originalEvent.clipboardData.getData('text/plain');
@@ -65,4 +72,22 @@ JUCI.app
 		parts.forEach(function(v, i){ $scope.data.parts[i] = v; });
 		$scope.updateModel();
 	}
+}).directive('juciInputIpv4AutoMoveOnDot', function() {
+  return {
+    restrict: 'A',
+    link: function($scope,elem,attrs) {
+      elem.bind('keydown', function(e) {
+        var code = e.keyCode || e.which;
+        if (code == 190) {
+			e.preventDefault();
+			var inputs = elem.parent().parent().parent().find(":input"); 
+			var next = inputs.eq(inputs.index(elem) + 1); 
+			var cur = inputs.eq(inputs.index(elem)); 
+			next.attr("ovalue", next.val()).val("").focus(); 
+			if(cur.attr("ovalue") && cur.val() == "") cur.val(cur.attr("ovalue")); 
+        }
+      });
+    }
+  }
 });
+

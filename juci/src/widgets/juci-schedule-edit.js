@@ -53,15 +53,15 @@ JUCI.app
 	]; 
 	$scope.selectedTimeFrame = $scope.allTimeFrames[0].value; 
 	
-	$scope.$watch("time_span.end_time", function(value){
+	$scope.$watch("time_span.end_time", function onTimeSpanEndChange(value){
 		if(!$scope.schedule) return; 
 		$scope.schedule.time_end = value; 
 	}); 
-	$scope.$watch("time_span.start_time", function(value){
+	$scope.$watch("time_span.start_time", function onTimeSpanStartChange(value){
 		if(!$scope.schedule) return; 
 		$scope.schedule.time_start = value; 
 	}); 
-	$scope.$watch("days", function(){
+	$scope.$watch("days", function onDaysChanged(){
 		if(!$scope.schedule) return; 
 		$scope.schedule.days.splice(0, $scope.schedule.days.length); 
 		$scope.days.map(function(x){ $scope.schedule.days.push(x); }); 
@@ -74,7 +74,7 @@ JUCI.app
 			if(equal == $scope.days.length && equal == dayTranslation[x].length) $scope.selectedTimeFrame = x; 
 		}); 
 	}, true); 
-	$scope.$watch("schedule", function(value){
+	$scope.$watch("schedule", function onScheduleChanged(value){
 		if(!value) return; 
 		$scope.time_span.value = (value.time_start||"")+"-"+(value.time_end||""); 
 		$scope.days.splice(0, $scope.days.length); 

@@ -38,6 +38,9 @@ msgstr "Energy Settings"
 msgid "services.samba.info"
 msgstr "General samba settings."
 
+msgid "samba.users.info"
+msgstr "Samba Users Configuration"
+
 # /home/martin/juci/plugins/juci-samba/src/pages/internet-services-samba.html
 msgid "Workgroup"
 msgstr ""

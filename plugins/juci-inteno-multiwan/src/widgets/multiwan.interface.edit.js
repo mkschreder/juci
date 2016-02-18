@@ -78,7 +78,7 @@ JUCI.app
 	];
 	$scope.dns = [{label: $tr(gettext('Auto')), value: 'auto'},{label: $tr(gettext('Custom')), value: 'custom'}];
 	$scope.failover_to = [];
-	$scope.$watch('interface', function(){
+	$scope.$watch('interface', function onMultiwanModelChanged(){
 		if(!$scope.interface) return;
 		if($scope.dns.filter(function(x){return x.value == $scope.interface.dns.value}).length == 0){
 			$scope.dns.unshift({label:$scope.interface.dns.value, value:$scope.interface.dns.value});

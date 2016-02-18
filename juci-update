@@ -7,7 +7,7 @@ MODE="$2"
 MODE=${MODE:="RELEASE"}
 
 
-if [ "$MODE" == "RELEASE" ]; then
+if [ "$MODE" = "RELEASE" ]; then
 	JS_WILDCARD="*.js.gz"
 	CSS_WILDCARD="*.css.gz"
 else
@@ -35,7 +35,7 @@ fi
 #	cat $file >> $WWW/__all.css
 #done
 
-if [ "$MODE" == "RELEASE" ]; then
+if [ "$MODE" = "RELEASE" ]; then
 	for file in `find ${WWW} -type f | grep -v "\.gz" | grep -v cgi-bin`; do
 		echo "Compressing ${file}..."; 
 		gzip -f ${file}
@@ -91,6 +91,6 @@ echo "<!doctype html>
 </body>
 </html>" > ${INDEX}
 
-if [ "$MODE" == "RELEASE" ]; then
+if [ "$MODE" = "RELEASE" ]; then
 	gzip -f ${INDEX}
 fi

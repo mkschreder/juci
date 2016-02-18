@@ -17,11 +17,16 @@
 			</div>
 			<button class="btn btn-default pull-right" style="margin:5px;" ng-click="onAddFolder()"><i class="fa fa-plus"></i></button>
 		</juci-config-line>
+		<juci-config-line title="{{'Allowed users'|translate}}">
+			<dropdown-multi-select input-model="users.all" output-model="users.out" button-label="label" item-label="label"
+							on-open="reloadUsers()" tick-property="selected">
+			</dropdown-multi-select>
+		</juci-config-line>
 		<juci-config-line title="{{'Allow Guest Access'|translate}}">
-			<switch ng-model="data.guest_ok" class="green"/>
+			<switch ng-model="share.guest_ok.value" class="green"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Read only?'|translate}}">
-			<switch ng-model="data.read_only" class="green"/>
+			<switch ng-model="share.read_only.value" class="green"/>
 		</juci-config-line>
 	</juci-config-lines>
 </div>

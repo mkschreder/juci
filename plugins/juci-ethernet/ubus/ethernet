@@ -62,7 +62,7 @@ function ethernet_list_network_adapters(opts)
 				if not obj.ipv4 then obj.ipv4 = {} end
 				local ipobj = {}; 
 				ipobj.addr,ipobj.mask = ipv4parse(fields[2]); 
-				-- parse remaining pairs for ipaddr options
+				-- pase remaining pairs for ipaddr options
 				for id = 3,count,2 do
 					ipobj[fields[id]] = fields[id+1]; 
 				end
@@ -87,6 +87,12 @@ function ethernet_list_network_adapters(opts)
 	-- add last parsed adapter to the list as well
 	if(next(obj) ~= nil) then table.insert(adapters, obj); end
 	
+	for i,v in pairs(adapters) do
+		if(v.state and v.state == "UNKNOWN" and v.device and string.find(v.device, "wl")) then
+			local state = juci.shell("wlctl -i %s bss", v.device);
+			if(state) then v.state = state:gsub("%s",""):upper(); end;
+		end
+	end
 	print(json.encode({ adapters = adapters })); 
 end
 

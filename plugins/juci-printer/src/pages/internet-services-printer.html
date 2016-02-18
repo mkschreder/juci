@@ -1,0 +1,25 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="printerPageCtrl">
+		<juci-config-heading>{{ 'internet-services-printer-title'|translate}}</juci-config-heading>
+		<juci-config-info>{{'internet-services-printer-info'|translate}}</juci-config-info>
+		<juci-config-section></juci-config-section>
+		<juci-config-section ng-repeat="printer in allPrinters track by $index">
+			<h3>{{'Printer'| translate}} {{$index + 1}}</h3>
+			<juci-config-lines>
+				<juci-config-line title="{{'Enable'|translate}}">
+					<switch class="green" ng-model="printer.enabled.value">
+				</juci-config-line>
+				<juci-config-line title="{{'Interface'|translate}}" help="{{'Specifies the interface to listen on'|translate}}">
+					<juci-select ng-model="printer.interface.value" ng-items="allLanInterfaces">
+				</juci-config-line>
+				<juci-config-line title="{{'Port'|translate}}" help="{{'Specifies the interface to listen on'|translate}}">
+					<juci-select ng-model="printer.port.value" ng-items="allPorts">
+				</juci-config-line>
+				<juci-config-line title="{{'Bidirectional mode'|translate}}">
+					<switch class="green" ng-model="printer.bidirectional.value">
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+	</div>
+</juci-layout-with-sidebar>
+

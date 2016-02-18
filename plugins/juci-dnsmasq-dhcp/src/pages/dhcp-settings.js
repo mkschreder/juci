@@ -26,19 +26,19 @@ JUCI.app
 		$scope.rebind_domain = $scope.dnsmasq.rebind_domain.value.map(function(domain){ return { label: domain }});
 		$scope.$apply();
 	});	
-	$scope.$watch("rebind_domain", function(){
+	$scope.$watch("rebind_domain", function onDhcpSettingsRebindDomainChanged(){
 		if(!$scope.server) return;
 		$scope.dnsmasq.rebind_domain.value = $scope.rebind_domain.map(function(x){ return x.label });
 	}, true);
-	$scope.$watch("server", function(){
+	$scope.$watch("server", function onDhcpSettingsServerChanged(){
 		if(!$scope.server) return;
 		$scope.dnsmasq.server.value = $scope.server.map(function(x){ return x.label });
 	}, true);
-	$scope.$watch("bogusnxdomain", function(){
+	$scope.$watch("bogusnxdomain", function onDhcpBogusNXDomainChanged(){
 		if(!$scope.bogusnxdomain) return;
 		$scope.dnsmasq.bogusnxdomain.value = $scope.bogusnxdomain.map(function(x){ return x.label });
 	}, true);
-	$scope.$watch("hostfiles", function(){
+	$scope.$watch("hostfiles", function onDhcpHostFilesChanged(){
 		if(!$scope.hostfiles) return;
 		$scope.dnsmasq.addnhosts.value = $scope.hostfiles.map(function(x){return x.label});
 	}, true);

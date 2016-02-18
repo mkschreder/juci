@@ -27,7 +27,7 @@ JUCI.app
 }).controller("uciFirewallNatRuleEdit", function($scope, $uci, $rpc, $firewall, $network, $log){
 	$scope.portIsRange = 0;
 	$scope.data = {}; 
-	$scope.$watch("rule", function(value){
+	$scope.$watch("rule", function onFirewallNatRuleModelChanged(value){
 		if(!value) return;
 		// TODO: why does rule all of a sudden gets value that is not a uci sectioN??
 		if(!value[".config"]) { 
@@ -39,7 +39,7 @@ JUCI.app
 			$scope.portIsRange = (value.src_dport.value.indexOf("-") != -1) || (value.dest_port.value.indexOf("-") != -1); 
 		}
 	}); 
-	$scope.$watch("data.src_ip_enabled", function(value){
+	$scope.$watch("data.src_ip_enabled", function onFirewallSRCIPChanged(value){
 		if($scope.rule && value == false) $scope.rule.src_ip.value = ""; 
 	}); 
 

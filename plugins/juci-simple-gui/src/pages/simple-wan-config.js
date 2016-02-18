@@ -40,12 +40,12 @@ JUCI.app
 		{ label: $tr(gettext("DHCP v6")), value: "dhcpv6" }, 
 	]; 
 
-	$scope.$watch("wan.proto.value", function(value){
+	$scope.$watch("wan.proto.value", function onFirewallWANProtoChanged(value){
 		if(!$scope.wan.proto) return; 
 		$scope.editor = "<network-connection-proto-"+$scope.wan.proto.value+"-edit ng-model='wan'/>"; 
 	}); 
 
-	$scope.$watch("wan6.proto.value", function(value){
+	$scope.$watch("wan6.proto.value", function onFirewallWAN6ProtoChanged(value){
 		if(!value) return; 
 		$scope.editor6 = "<network-connection-proto-"+value+"-edit ng-model='wan6'/>"; 
 	}); 

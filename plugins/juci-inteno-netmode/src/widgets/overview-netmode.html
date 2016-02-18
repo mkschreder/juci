@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+			<i class="icon icon-ethernet" style="margin-right: 10px;"/> {{'Profile'|translate}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class="col-xs-8" style="white-space: nowrap;">
+			<juci-select ng-show="allNetmodes.length" ng-model="currentNetmode" ng-items="allNetmodes" ></juci-select>
+			<p translate ng-show="!allNetmodes.length">No profiles available</p>
+		</div>
+		<div class="col-xs-4">
+			<button class="btn btn-success pull-right" ng-click="onChangeModeConfirm()" ng-disabled="!(allNetmodes.length > 0)" translate>Change Profile</button>
+		</div>
+	</div>
+</div>

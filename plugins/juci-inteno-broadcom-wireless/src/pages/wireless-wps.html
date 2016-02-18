@@ -1,0 +1,77 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="wirelessWPSPage">
+		<juci-config>
+			<juci-config-section>
+				<juci-config-heading>{{ 'wireless-wps-title' | translate }}</juci-config-heading>
+				<juci-config-info>{{ 'wifi.wps.info' | translate }}</juci-config-info>
+				<juci-config-lines>
+					<juci-config-line title="{{'WPS Function'|translate}}">
+						<switch id="enabled" name="enabled" ng-model="wireless.status.wps.value" class="green" ng-change="save()"></switch>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="progress == 1">
+				<p translate>wifi.wps.in.progress</p>
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value && progress != 1">
+				<juci-config-lines ng-repeat="interface in wireless['@wifi-iface'] track by $index">
+					<juci-config-line title="{{'Enable WPS on'|translate}} {{interface.ssid.value}}">
+						<switch ng-show="wpsUnlocked(interface)" ng-model="interface.wps_pbc.value" class="green" ng-change="save()" ></switch>
+						<strong ng-hide="wpsUnlocked(interface)" translate>Disabled</strong>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value">
+				<h2 translate>WPS-PBC: Push Button on Device</h2>
+				<p translate>wifi.wps.pbc.info</p>
+				<juci-config-lines>
+					<juci-config-line title="{{'Enable WPS button on router'|translate}}">
+						<switch id="enabled" name="enabled" ng-model="router.wps_button_enabled" class="green" ng-change="save()" ></switch>
+					</juci-config-line>
+					<juci-config-line ng-show="router.wps_button_enabled" title="{{'Pressing WiFi on/off button on your router for long time activates pairing '|translate}}" >
+						<switch id="enabled" name="enabled" ng-model="router.wifi_button_wps_function_enabled" class="green" ng-change="save()" ></switch>
+					</juci-config-line>
+					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}">
+						<button class="btn btn-lg btn-default col-xs-12" ng-click="onPairPBC()" translate>Pair</button>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value">
+				<h2 translate>WPS-REG: Router provides PIN</h2>
+				<p translate>wifi.wps.pin.info</p>
+				<juci-config-lines>
+					<juci-config-line title="{{'WPS Using Generated PIN'|translate}}">
+						<switch id="enabled" name="enabled" ng-model="router.wps_devicepin"  class="green"></switch>
+					</juci-config-line>
+					<juci-config-line title="{{'Generated PIN'|translate}}" >
+						<input type="text" class="form-control input-lg"  ng-model="generatedPIN" readonly />
+					</juci-config-line>
+					<juci-config-line title="{{'Generate New PIN'|translate}}" >
+						<button class="btn btn-lg btn-default" ng-click="onGeneratePIN()" translate>Generate</button>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section ng-show="wireless.status.wps.value">
+				<h2 translate>WPS-PIN: Another Device provides PIN</h2>
+				<p translate>wifi.wps.otherpin.info</p>
+				<juci-config-lines>
+					<juci-config-line title="{{'Enter your device PIN'|translate}}">
+						<input type="text" class="form-control input-lg" ng-model="data.userPIN" placeholder="{{'Enter your PIN here'|translate}}"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Pair (within 2 minutes)'|translate}}">
+						<button class="btn btn-lg btn-default" ng-click="onPairUserPIN()" translate>Pair</button>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+		</juci-config>
+		<modal title="{{'Attempting to Pair'|translate}}" ng-show="progress > 0 && progress != 2 && progress < 8" dismiss-label="Cancel" on-dismiss="onCancelWPS()">
+			<div style="text-align: center;">
+				<div ng-show="progress != 0" >
+					<i class="fa fa-spinner fa-spin fa-3x"></i>
+					<!--<p>{{timeRemaining}} <span translate>seconds remaining</span></p>-->
+				</div>
+				<p translate>{{text_status}}</p>
+			</div>
+		</modal>
+	</div>
+</juci-layout-with-sidebar>

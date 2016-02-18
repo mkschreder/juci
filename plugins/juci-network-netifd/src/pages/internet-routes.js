@@ -26,7 +26,7 @@ JUCI.app
 		}); 
 		$scope.$apply(); 
 	}); 
-	
+
 	$scope.onAddRoute = function(){
 		$uci.network.$create({
 			".type": "route"

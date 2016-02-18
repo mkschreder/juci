@@ -12,7 +12,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="v4lease in ipv4leases">
+				<tr ng-repeat="v4lease in ipv4leases track by $index">
 					<td>{{ v4lease.hostname }}</td>
 					<td>{{ v4lease.ipaddr }}</td>
 					<td>{{ v4lease.macaddr }}</td>
@@ -34,7 +34,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="v6lease in ipv6leases">
+				<tr ng-repeat="v6lease in ipv6leases track by $index">
 					<td>{{ v6lease.hostname }}</td>
 					<td>{{ v6lease.ip6addr }}</td>
 					<td>{{ v6lease.duid }}</td>

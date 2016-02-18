@@ -70,7 +70,7 @@ JUCI.app
 	});
 
 
-	$scope.$watch("model.lan", function(){
+	$scope.$watch("model.lan", function onOverviewNetworkLanChanged(){
 		if(!$scope.model.lan) return;
 		$uci.$sync("dhcp").done(function(){
 			$scope.model.dhcp = $uci.dhcp["@dhcp"].find(function(x){
@@ -80,7 +80,7 @@ JUCI.app
 		});
 	}, false);
 
-	$scope.$watch("model.dhcpEnabled", function(){
+	$scope.$watch("model.dhcpEnabled", function onOverviewDHCPEnabledChanged(){
 		if(!$scope.model.dhcp){
 			if($scope.model.lan && $scope.model.dhcpEnabled != undefined){
 				$uci.dhcp.$create({
@@ -103,6 +103,10 @@ JUCI.app
 		pauseSync = true;
 		$juciDialog.show("simple-lan-settings-edit", {
 			title: $tr(gettext("Edit LAN Settings")),
+			buttons: [
+				{ label: $tr(gettext("Save")), value: "save", primary: true },
+				{ label: $tr(gettext("Cancel")), value: "cancel" }
+			],
 			on_button: function(btn, inst){
 				pauseSync = false;
 				if(btn.value == "cancel") {
@@ -110,8 +114,7 @@ JUCI.app
 					$scope.model.dhcp.$reset();
 					inst.dismiss("cancel"); 
 				}
-				if(btn.value == "apply") { 
-					$uci.$save();
+				if(btn.value == "save") { 
 					inst.close();
 				}
 			},

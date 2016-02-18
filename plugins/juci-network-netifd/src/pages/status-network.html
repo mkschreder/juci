@@ -4,37 +4,91 @@
 			<juci-config-heading>{{ 'Status' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'status.status.info' | translate }}</juci-config-info>
 		</juci-config-section>
-		<juci-expandable title="{{sec.name|uppercase}}" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface && sec.interface.available">
-			<juci-config-lines ng-hide="sec.interface.errors" >
-				<juci-config-line ng-show="sec.interface['ipv4-address'][0]" 
-					title="{{'IP Address'|translate}}">
-					<strong>{{sec.interface['ipv4-address'][0].address}}</strong>
-				</juci-config-line>
-				<juci-config-line ng-show="sec.interface['ipv6-address'][0]" 
-					title="{{'IPv6 Address'|translate}}">
-					<strong>{{sec.interface["ipv6-address"][0].address + "/" + sec.interface["ipv6-address"][0].mask}}</strong>
-				</juci-config-line>
-				<juci-config-line ng-show="sec.interface['ipv6-prefix'][0]" 
-					title="{{'IPv6 Prefix'|translate}}">
-					<strong>{{sec.interface['ipv6-prefix'][0].address + "/" + sec.interface['ipv6-prefix'][0].mask}}</strong>
-				</juci-config-line>
-				<juci-config-line title="{{'Gateway'|translate}}" ng-show="sec.interface._defaultroute4.nexthop">
-					<strong>{{sec.interface._defaultroute4.nexthop}}</strong>
-				</juci-config-line>
-				<juci-config-line title="{{'Primary DNS'|translate}}" ng-show="sec.interface['dns-server'][0]">
-					<strong>{{sec.interface["dns-server"][0]}}</strong>
-				</juci-config-line>
-				<juci-config-line title="{{'Secondary DNS'|translate}}" ng-show="sec.interface['dns-server'][1]">
-					<strong>{{sec.interface["dns-server"][1]}}</strong>
-				</juci-config-line>
-			</juci-config-lines>
+		<juci-expandable title="{{sec.name|uppercase}}" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface">
+			<div class="row" ng-show="sec.interface.up">
+				<div class="col-md-6">
+					<h3 translate>IPv4</h3>
+					<table class="table table-condensed">
+						<tr>
+							<td><strong translate>IPv4 Address(s)</strong></td>
+							<td>
+								<dl>
+									<dd ng-hide="sec.interface['ipv4-address'][0]"><strong>-</strong></dd>
+									<dd ng-repeat="ip in sec.interface['ipv4-address']"><strong>{{ip.address + "/"+ ip.mask}}</strong></dd>
+								</dl>
+							</td>
+						</tr>
+						<tr>
+							<td><strong translate>Default Gateway</strong></td>
+							<td>
+								<strong ng-hide="sec.interface._defaultroute4.nexthop">-</strong>
+								<strong>{{sec.interface._defaultroute4.nexthop}}</strong>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<h3 translate>IPv6</h3>
+					<table class="table table-condensed">
+						<tr ng-hide="sec.interface._config.is_lan.value">
+							<td><strong translate>IPv6 Address(s)</strong></td>
+							<td>
+								<dl>
+									<dd ng-hide="sec.interface['ipv6-address'][0]"><strong>-</strong></dd>
+									<dd ng-repeat="ip in sec.interface['ipv6-address']"><strong>{{ip.address + "/" + ip.mask}}</strong></dd>
+								</dl>
+							</td>
+						</tr>
+						<tr ng-hide="sec.interface._config.is_lan.value">
+							<td><strong translate>IPv6 Prefix(s)</strong></td>
+							<td>
+								<dl>
+									<dd ng-hide="sec.interface['ipv6-prefix'][0]"><strong>-</strong></dd>
+									<dd ng-repeat="ip in sec.interface['ipv6-prefix']"><strong>{{ip.address + "/" + ip.mask}}</strong></dd>
+								</dl>
+							</td>
+						</tr>
+						<tr ng-show="sec.interface._config.is_lan.value">
+							<td><strong translate>Prefix Deleg.</strong></td>
+							<td>
+								<dl>
+									<dd ng-hide="sec.interface['ipv6-prefix-assignment'][0]"><strong>-</strong></dd>
+									<dd ng-repeat="ip in sec.interface['ipv6-prefix-assignment']"><strong>{{ip.address + "/" +ip.mask}}</strong></dd>
+								</dl>
+							</td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-condensed">
+						<tr>
+							<td><strong>{{'Status'|translate}}</strong></td>
+							<td width="1px" style="text-align: right;">
+								<div class="label pull-right" ng-class="'label-'+sec.interface._status_class">{{sec.interface._status_text|translate}}</div>
+							</td>
+						</tr>
+						<tr ng-hide="sec.interface._config.is_lan.value">
+							<td><strong translate>DNS Server(s)</strong></td>
+							<td>
+								<dl>
+									<dd ng-hide="sec.interface['dns-server'][0]"><strong>-</strong></dd>
+									<dd ng-repeat="ip in sec.interface['dns-server']"><strong>{{ip}}</strong></dd>
+								</dl>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</juci-expandable>
-		<juci-expandable title="DSL" status="dsl_status" ng-show="dsl_status == 'ok' || dsl_status == 'progress'">
+		<!--<juci-expandable title="DSL" status="dsl_status" ng-show="dsl_status == 'ok' || dsl_status == 'progress'">
 			<juci-config-lines >
 				<juci-config-line title="{{'Line Status'|translate}}">
 					<strong>{{dslinfo.status}}</strong>
 				</juci-config-line>
 			</juci-config-lines>
-		</juci-expandable>
+		</juci-expandable>-->
 	</div>
 </juci-layout-with-sidebar>

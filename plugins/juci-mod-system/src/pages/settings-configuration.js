@@ -22,6 +22,7 @@ JUCI.app
 
 	$rpc.juci.system.conf.features().done(function(features){
 		$scope.features = features; 
+		$scope.$apply(); 
 	}); 
 
 	$scope.onReset = function(){

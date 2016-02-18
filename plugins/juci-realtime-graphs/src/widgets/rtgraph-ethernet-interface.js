@@ -26,7 +26,7 @@ JUCI.app
 		require: "^ngModel"
 	 };  
 }).controller("rtgraphEthernetInterface", function($scope, $rpc, $element){	
-	$scope.$watch("ifname", function(value){
+	$scope.$watch("ifname", function onRTGRAPHModelChanged(value){
 		if(!value) return; 
 		var container = $element.find(".rtgraph").get(0); 
 		var items = []; 

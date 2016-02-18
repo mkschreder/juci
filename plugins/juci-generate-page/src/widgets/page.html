@@ -1,8 +1,8 @@
 <div>
-	<juci-config-section ng-repeat="section in model.sections">
+	<juci-config-section ng-repeat="section in model.sections track by $index">
 		<h2 translate ng-show="section.title">{{section.title}}</h2>
 		<juci-config-lines>
-			<div ng-repeat="line in section.lines">
+			<div ng-repeat="line in section.lines track by $index">
 				<juci-config-line ng-show="line.title" title="{{line.title}}">
 					<div dynamic=line._widget></div>
 				</juci-config-line>

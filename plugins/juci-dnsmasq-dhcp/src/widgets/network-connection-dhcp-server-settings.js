@@ -29,7 +29,7 @@ JUCI.app
 .controller("networkConnectionDhcpServerSettings", function($scope, $network, $uci){
 	$scope.data = {}; 
 	$scope.data.dhcpEnabled = false; 
-	$scope.$watch("connection", function(value){
+	$scope.$watch("connection", function onNetworkConnectionModelChanged(value){
 		if(!value) return; 
 		$uci.$sync("dhcp").done(function(){
 			$scope.dhcp = $uci.dhcp["@dhcp"].find(function(x){
@@ -40,7 +40,8 @@ JUCI.app
 		}); 
 	}); 
 	$scope.$watch("data.dhcpEnabled", function(value){
-		if(!$scope.dhcp) {
+		if($scope.dhcp == undefined) return;
+		if($scope.connection && $scope.connection.proto && $scope.connection.proto.value == "static") {
 			if($scope.connection){
 				$uci.dhcp.$create({
 					".type": "dhcp", 

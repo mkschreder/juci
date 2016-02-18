@@ -29,7 +29,7 @@ JUCI.app
 	$scope.maclist = []; 
 	
 	// watch for model change
-	$scope.$watch("interface", function(i){
+	$scope.$watch("interface", function onInterfaceMacfilterModelChanged(i){
 		$scope.maclist = []; 
 		console.log("Syncing interface.."); 
 		if(i.maclist && i.maclist.value){

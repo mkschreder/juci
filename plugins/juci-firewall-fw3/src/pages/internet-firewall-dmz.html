@@ -3,7 +3,11 @@
 		<juci-config-heading>{{'DMZ / Exposed Host'|translate}}</juci-config-heading>
 		<juci-config-section >
 			<juci-config-info>{{'internet.exposed_host.info'|translate}}</juci-config-info>
-			<juci-config-lines>
+			<div ng-show="done && !available" class="alert alert-error">
+				<p translate>Firewall dmz configuration does not exist yet. Do you want to create it?</p>
+				<button ng-click="onCreateDMZConfig()" translate>Create</button>
+			</div>
+			<juci-config-lines ng-show="done && available">
 				<juci-config-line title="{{'Enable'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="firewall.dmz.enabled.value" class="green"></switch>
 				</juci-config-line>

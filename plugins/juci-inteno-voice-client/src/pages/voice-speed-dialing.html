@@ -9,7 +9,7 @@
 				</juci-config-line>
 			</juci-config-lines>
 			<div class="row" ng-show="speed_dialing">
-				<div class="col-md-6" ng-repeat="dial in speed_dials">
+				<div class="col-md-6" ng-repeat="dial in speed_dials track by $index">
 					<div class="col-md-3">#{{dial.tone}}</div>
 					<div class="col-md-9 form-group">
 						<input type="text" class="form-control" ng-model="dial.number"/>

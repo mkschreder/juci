@@ -213,19 +213,34 @@ UCI.network.$registerSectionType("interface", {
 
 UCI.network.$registerSectionType("route", {
 	"interface": 			{ dvalue: "", type: String }, 
-	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
-	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator }, 
-	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
+	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator, required: true }, 
+	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator, required: true }, 
+	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator, required: true },
 	"metric": 				{ dvalue: 0, type: Number },
-	"mtu": 					{ dvalue: 1500, type: Number }
+	"mtu": 					{ dvalue: undefined, type: Number }
+}, function(section){
+	if(!section) return;
+	// do not return list of errors because it will create a HUGE list of errors if user happens to have added multiple sections with errors. 
+	// better to return only one error at a time!
+	if(section.interface.value == "") return gettext("Please specify interface for route!");
+	if(section.target.value == "") return gettext("Please specify target for route!"); 
+	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
+	if(section.gateway.value == "") return gettext("Please specify gateway for route!"); 
+	return null; 
 }); 
 
 UCI.network.$registerSectionType("route6", {
 	"interface": 			{ dvalue: "", type: String }, 
-	"target": 				{ dvalue: "", type: String }, 
-	"gateway": 				{ dvalue: "", type: String },
+	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IP6AddressValidator, required: true }, 
+	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IP6AddressValidator, required: true },
 	"metric": 				{ dvalue: 0, type: Number },
-	"mtu": 					{ dvalue: 1500, type: Number }
+	"mtu": 					{ dvalue: undefined, type: Number }
+}, function(section){
+	if(!section) return;
+	if(section.interface.value == "") return gettext("Please specify interface for ipv6 route!"); 
+	if(section.target.value == "") return gettext("Please specify target for ipv6 route!"); 
+	if(section.gateway.value == "") return gettext("Please specify gateway for ipv6 route!");
+	return null; 
 }); 
 
 UCI.network.$registerSectionType("switch", {

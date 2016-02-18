@@ -52,6 +52,10 @@ JUCI.app
 			};
 			$juciDialog.show("network-wan-dns-settings-edit", {
 				title: $tr(gettext("Edit DNS servers")),
+				buttons: [
+					{ label: $tr(gettext("Save")), value: "save", primary: true },
+					{ label: $tr(gettext("Cancel")), value: "cancel" }
+				],
 				on_button: function(btn, inst){
 					if(btn.value == "cancel"){
 						nets.map(function(x){
@@ -59,8 +63,7 @@ JUCI.app
 						});
 						inst.dismiss("cancel");
 					}
-					if(btn.value == "apply"){
-						$uci.$save();
+					if(btn.value == "save"){
 						inst.close();
 					}
 				},
@@ -73,16 +76,11 @@ JUCI.app
 	JUCI.interval.repeat("overview-wan", 2000, function(done){
 		$rpc.network.interface.dump().done(function(result){
 			var interfaces = result.interface; 
-			$firewall.getZones().done(function(zones){
-				var wan = zones.find(function(x){ return x.name.value == "wan"; }); 
-				if(!wan) { done(); return; }; 
-				var wan_ifs = interfaces.filter(function(x){
-					return wan.network.value.find(function(net) { return net == x.interface; }); 
-				}); 
+			$firewall.getZoneNetworks("wan").done(function(wan_ifs){
 				var default_route_ifs = wan_ifs.filter(function(x){ 
-					return x.route && x.route.length && 
-						(x.route.find(function(r){ return r.target == "0.0.0.0" || r.target == "::"; }));
-				}); 
+					return x.$info && x.$info.route && x.$info.route.length && 
+						(x.$info.route.find(function(r){ return r.target == "0.0.0.0" || r.target == "::"; }));
+				}).map(function(x){ return x.$info}); 
 				var con_types = {}; 
 				var all_gateways = {}; 
 				default_route_ifs.map(function(i){

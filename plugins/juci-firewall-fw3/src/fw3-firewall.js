@@ -64,13 +64,22 @@ JUCI.app
 			var def = $.Deferred();  
 			sync().done(function(){
 				$network.getNetworks({ filter: opts.filter }).done(function(nets){
-					var selected_zone = $uci.firewall["@zone"].find(function(x){ return x.name.value == zone; }); 
+					var selected_zone;
+					if(zone == "lan"){
+						selected_zone = $uci.firewall["@zone"].filter(function(x){ return x.masq.value == false; });
+					}else if(zone == "wan"){
+						selected_zone = $uci.firewall["@zone"].filter(function(x){ return x.masq.value == true; });
+					}else{
+						var selected_zone = [$uci.firewall["@zone"].find(function(x){ return x.name.value == zone; }) ];
+					}
 					if(!selected_zone) {
 						def.reject({error: "Zone does not exist!"}); 
 						return; 
 					}
 					var zone_nets = nets.filter(function(x){
-						return selected_zone.network.value.indexOf(x[".name"]) != -1; 
+						return selected_zone.find(function(zone){
+							return zone.network.value.indexOf(x[".name"]) != -1;
+						});
 					}); 
 					def.resolve(zone_nets); 
 				}); 
@@ -129,10 +138,10 @@ JUCI.app
 		},
 		// we determine what networks are wan/lan/guest based on zones. This is currently hardcoded,
 		// but probably should not be in the future. This will break if the user has different zone names!
-		getLanZone: function(){ 
+		getLanZones: function(){ 
 			var deferred = $.Deferred(); 
 			sync().done(function(){
-				deferred.resolve($uci.firewall["@zone"].find(function(x){ return x.name.value == "lan"; })); 
+				deferred.resolve($uci.firewall["@zone"].filter(function(x){ return x.masq.value == false; })); 
 			}); 
 			return deferred.promise(); 
 		},
@@ -145,10 +154,10 @@ JUCI.app
 			return deferred.promise(); 
 		},
 		
-		getWanZone: function(){ 
+		getWanZones: function(){ 
 			var deferred = $.Deferred(); 
 			sync().done(function(){
-				deferred.resolve($uci.firewall["@zone"].find(function(x){ return x.name.value == "wan"; })); 
+				deferred.resolve($uci.firewall["@zone"].filter(function(x){ return x.masq.value == true; })); 
 			}); 
 			return deferred.promise(); 
 		}, 
@@ -207,8 +216,8 @@ UCI.firewall.$registerSectionType("zone", {
 	"output":			{ dvalue: "ACCEPT", type: String }, 
 	"forward":			{ dvalue: "REJECT", type: String }, 
 	"network": 			{ dvalue: [], type: Array }, 
-	"masq":				{ dvalue: true, type: Boolean }, 
-	"mtu_fix": 			{ dvalue: true, type: Boolean }
+	"masq":				{ dvalue: false, type: Boolean }, 
+	"mtu_fix": 			{ dvalue: false, type: Boolean }
 }); 
 
 UCI.firewall.$registerSectionType("forwarding", {
@@ -229,9 +238,9 @@ UCI.firewall.$registerSectionType("redirect", {
 	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator },
 	"reflection": 		{ dvalue: false, type: Boolean }
 }, function(section){
-	if(!section.name.value) return gettext("Rule name can not be empty!"); 
-	if(!section.src_dport.value) return gettext("Source port can not be empty!"); 
-	if(!section.dest_port.value) return gettext("Dest. port can not be empty!"); 
+	if(section.name.value == "") return gettext("Rule name can not be empty!"); 
+	if(section.src_dport.value == "") return gettext("Source port can not be empty!"); 
+	if(section.dest_port.value == "") return gettext("Dest. port can not be empty!"); 
 	return null; 
 }); 
 

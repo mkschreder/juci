@@ -86,7 +86,7 @@ JUCI.app
 		$scope.onItemMoved({ $item: i, $prev_index: idx, $index: idx + 1}); 
 	}
 	
-	$scope.$watch("items", function(){
+	$scope.$watch("items", function listEditorItems(){
 		if(!$scope.items ) return;
 		if($scope.items.length > 0) $scope.item = $scope.items[0]; 
 	})

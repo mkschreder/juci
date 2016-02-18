@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-size: 1.7em; padding-top: 0.3em; font-weight: bold; font-family: 'eurostyle';">
+			<i class="fa fa-wifi" style="margin-right: 10px;"/>{{'WiFi'|translate}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row" style="margin-bottom: 10px;">
+			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-calendar fa-2x"></i></div>
+			<div class="col-xs-7" style="padding-left: 0px">
+				<a class="overview-list-item-text" href="#!/wireless-schedule"><strong>{{'Schedule'|translate}}</strong></a>
+			</div>
+			<div class="col-xs-2">
+				<a class="label label-{{(wifiSchedStatus)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWIFISchedToggle()"><strong>{{wifiSchedStatus| translate}}</strong></a>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 10px;">
+			<div class="col-xs-3" style="text-align: center;"><i class="fa fa-wifi fa-2x"></i></div>
+			<div class="col-xs-7" style="padding-left: 0px">
+				<a class="overview-list-item-text" href="#!/wireless-wps"><strong>WPS</strong></a><br/>
+			</div>
+			<div class="col-xs-2">
+				<a class="label label-{{(wifiWPSStatus)?'success':'default'}} pull-right overview-list-item-label" href="" ng-click="onWPSToggle()"><strong>{{wifiWPSStatus | translate}}</strong></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="table table-condensed">
+					<tr>
+						<td><strong translate>WPS pin:</strong></td>
+						<td style="text-align: right;"><span ng-show="wifiWPSStatus" style="font-size: 0.8pn">{{wps.pin || "-"}}</span></td>
+					</tr>
+				</table>
+				<table class="table table-condensed" ng-repeat="iface in vifs track by $index">
+					<thead>
+						<th colspan="2">
+							<i class="fa fa-edit" style="float: right; cursor: pointer;" ng-click="onEditSSID(iface)"></i>
+							<i class="fa fa-toggle-right" style="cursor: pointer;" ng-show="!iface._expanded" ng-click="iface._expanded = !iface._expanded"></i>
+							<i class="fa fa-toggle-down" style="cursor: pointer;" ng-show="iface._expanded" ng-click="iface._expanded = !iface._expanded"></i>
+							<span ng-click="iface._expanded = !iface._expanded" style="cursor: pointer;">{{iface.ssid + ' (' + iface.mode + ')'}}</span>
+						</th>
+					</thead>
+					<tr ng-show="iface._expanded" ng-repeat="i in [['Frequency', 'frequency'], ['Channel', 'channel'], ['Noise', 'noise']]">
+						<td><strong translate>{{i[0] | translate}}</strong></td>
+						<td style="font-size: 0.8pn; text-align: right;">{{iface[i[1]] || "-"}}</td>
+					</tr>
+					<tr><td></td><td></td></tr><!-- an extra line as quick way to get a border after the last line -->
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

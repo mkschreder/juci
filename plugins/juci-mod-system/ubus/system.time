@@ -409,7 +409,8 @@ end
 
 function systime_get()
 	local result = { 
-		unix_time = os.time()
+		unix_time = os.time(),
+		local_time = (juci.shell("date") or ""):gsub("\n", "")
 	}; 
 	print(json.encode(result)); 
 end
@@ -423,7 +424,15 @@ function systime_set(params)
 	end
 end
 
+function system_get_time_diff()
+	local system_time_hour = juci.shell("date | awk '{print $4}' | cut -d ':' -f 1");
+	local utc_time_hour = juci.shell("date -u | awk '{print $4}' | cut -d ':' -f 1");
+	local diff = system_time_hour - utc_time_hour;
+	print(json.encode({diff = diff, format = "system - utc"}));
+end
+
 juci.ubus({
+	["timediff"] = system_get_time_diff,
 	["zonelist"] = systime_list_zones, 
 	["get"] = systime_get, 
 	["set"] = systime_set

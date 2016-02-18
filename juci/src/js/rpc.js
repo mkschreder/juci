@@ -127,6 +127,12 @@
 				setTimeout(function(){ deferred.reject(); }, 0); 
 				return deferred.promise(); 
 			}
+			
+			// this has to be done in order to prevent wrong results when user opens login page in another tab, 
+			// then logs in in a new tab and the old tab is still using the old sid so it will log the user out 
+			// of the new tab as well. We therefore need to take sid from the local storage so we always have latest sid!
+			var stored_sid = scope.localStorage.getItem("sid"); 
+			if(stored_sid !== RPC_DEFAULT_SESSION_ID) RPC_SESSION_ID = stored_sid; 
 
 			self.session.access({
 				//"ubus_rpc_session": RPC_SESSION_ID,

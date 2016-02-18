@@ -28,27 +28,51 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("sambaShareEdit", function($scope, $network, $modal, $juciDialog, $tr, gettext){
+.controller("sambaShareEdit", function($scope, $network, $modal, $juciDialog, $tr, gettext, $uci){
 	$scope.data = {}; 
+	$scope.users = {
+		all: [],
+		out: []
+	};
 
-	$scope.$watch("share", function(value){
+	$scope.$watch("share", function onSambaShareModelChanged(value){
 		if(!value) return; 
-		$scope.data.guest_ok = (value.guest_ok.value == "yes")?true:false; 
-		$scope.data.read_only = (value.read_only.value == "yes")?true:false; 
 		$scope.data.model = (value.path.value.length > 3) ? value.path.value.slice(4): "";
+		$uci.$sync("samba").done(function(){
+			var users = $uci.samba["@sambausers"];
+			var selected = value.users.value.split(",").filter(function(u){
+				return users.find(function(user){ return user.user.value == u; }) != null;
+			});
+			$scope.users.all = users.map(function(user){
+				var sel = selected.find(function(sel){ return user.user.value == sel; });
+				return {label: user.user.value + ((user.desc.value == "") ? "" : " (" + user.desc.value + ")"), value: user.user.value, selected: (sel)? true : false};
+			});
+			$scope.$apply();
+		});
 	}); 
-	$scope.$watch("data.model", function(value){
+	$scope.reloadUsers = function(){
+		if(!$scope.share) return;
+		$uci.$sync("samba").done(function(){
+			var users = $uci.samba["@sambausers"];
+			var selected = $scope.share.users.value.split(",").filter(function(u){
+				return users.find(function(user){ return user.user.value == u; }) != null;
+			});
+			$scope.users.all = users.map(function(user){
+				var sel = selected.find(function(sel){ return user.user.value == sel; });
+				return {label: user.user.value + ((user.desc.value == "") ? "" : " (" + user.desc.value + ")"), value: user.user.value, selected: (sel)? true : false};
+			});
+			$scope.$apply();
+		});
+	};
+
+	$scope.$watch("users.out", function onSambaUsersOutChanged(){
+		if(!$scope.users || !$scope.users.out || !$scope.share) return;
+		$scope.share.users.value = $scope.users.out.map(function(user){ return user.value; }).join(",");
+	}, false);
+	$scope.$watch("data.model", function onSambaUsersDataModelChanged(value){
 		if(!$scope.share) return;
 		$scope.share.path.value = "/mnt" + value;
 	}, false);
-	$scope.$watch("data.guest_ok", function(value){
-		if(!$scope.share) return; 
-		$scope.share.guest_ok.value = (value)?"yes":"no"; 
-	}); 
-	$scope.$watch("data.read_only", function(value){
-		if(!$scope.share) return; 
-		$scope.share.read_only.value = (value)?"yes":"no"; 
-	}); 
 
 	var def = null
 	$scope.onAutocomplete = function(query){

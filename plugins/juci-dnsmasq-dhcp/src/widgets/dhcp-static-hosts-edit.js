@@ -26,7 +26,7 @@ JUCI.app
 	};  
 })
 .controller("dhcpStaticHostsEdit", function($scope, $network, $uci){
-	$scope.$watch("dhcp", function(dhcp){
+	$scope.$watch("dhcp", function onDhcpStaticModelChanged(dhcp){
 		if(!dhcp) return; 
 		
 		$network.getConnectedClients().done(function(clients){

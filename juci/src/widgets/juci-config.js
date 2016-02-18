@@ -71,7 +71,7 @@ JUCI.app
 		transclude: true, 
 		link: function (scope, element, attrs) {
 			if(!("noPull" in attrs)) scope.pullClass = "pull-right";
-			scope.$watch("error", function(value){
+			scope.$watch("error", function configError(value){
 				if(value){
 					scope.errorClass = "field-error"; 
 				} else {
@@ -87,7 +87,7 @@ JUCI.app
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
 			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
 			'<div class="btn-toolbar" >'+
-			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Unsaved Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
+			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Unapplied Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
 			'<span ng-hide="changes && changes.length">{{"No unsaved changes" | translate}}</span>'+
 			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" ng-disabled="changes && !changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
 			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
@@ -99,14 +99,23 @@ JUCI.app
 		controller: "juciConfigApplyController"
 	 }; 
 }).controller("juciConfigApplyController", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
+	$scope.changes = []; 
 	$scope.numUnsavedChanges = function(){
-		$scope.changes = $uci.$getChanges();
 		return $scope.changes.length;
 	}; 
+
+	// only do this once per second and not on each digest!
+	JUCI.interval.repeat("changes-monitor", 1000, function(done){
+		$scope.changes = $uci.$getChanges();
+		setTimeout(function(){ $scope.$apply(); }, 0); 
+		done(); 
+	}); 
+
 	$scope.showChanges = function(){
 		var model = {changes: $scope.changes};
 		$juciDialog.show("juci-changes-edit", {
 			title: gettext("Unsaved Changes"),
+			buttons: [{label: gettext("OK"), value: "apply"}],
 			on_apply: function(btn, inst){
 				if(!model.reverted) return true;
 				model.reverted.map(function(x){
@@ -134,8 +143,12 @@ JUCI.app
 				console.error("Could not save uci configuration!"); 
 			}).always(function(){
 				$scope.busy = 0; 
-				$scope.success = gettext("Settings have been applied successfully!"); 
-				setTimeout(function(){$scope.$apply();}, 0); 
+				// I'm removing the success reporting for now because the pane automatically hides when all changes have been applied.  
+				//$scope.success = gettext("Settings have been applied successfully!"); 
+				$scope.$apply(); 
+				/*setTimeout(function(){
+					$scope.success = null; 
+				}, 1000); */
 			}); 
 		} catch(e){
 			$scope.busy = 0; 
@@ -154,26 +167,37 @@ JUCI.app
 	return {
 		template: '<div ng-hide="hide" class="juci-config-apply-pane">'+
 		//'<button class="btn btn-sm btn-default pull-right" ng-click="onHide()"><i class="fa fa-times-circle"></i></button>'+
-		'<div class="container">{{reload()}}'+
+		'<div class="container">'+
 			'<juci-config-apply></juci-config-apply>'+
 		'</div></div>',
 		scope: {}, 
 		replace: true,
 		controller: "juciConfigApplyPane"
 	}; 
-}).controller("juciConfigApplyPane", function($scope, $uci){
+}).controller("juciConfigApplyPane", function($scope, $events, $rootScope, $uci){
 	$scope.changes = $uci.$getChanges(); 
 	$scope.hide = true; 
-	//$scope.onHide = function(){
-//		$scope.hide = true; 
-//	}
+	
 	// TODO: reloading takes a lot of computing (have to go through all fields)
 	// and this reload may happen several times in a row. 
 	// perhaps do not run it every time? 
-	$scope.reload = function(){
+	var prev_time = (new Date()).getTime(); 
+	$rootScope.$watch(function onWatchJuciConfigApplyChanges(){
+		var now = (new Date()).getTime(); 
+		if(now < (prev_time + 500)) return; 
+		prev_time = now; 
+
 		var changes = $uci.$getChanges(); 
-		if(changes.length > 0) $scope.hide = false; 
-		else $scope.hide = true; 
-	};  
+		if(changes.length > 0) {
+			if($scope.hide == true) { 
+				// reset the message when showing the pane again
+				$scope.success = null; 
+			}
+			$scope.hide = false; 
+		} else {
+			$scope.hide = true; 
+		}
+		return true; // have to return true to avoid infinite digest!
+	});  
 }); 
 

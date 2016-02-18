@@ -1,0 +1,42 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="PhoneDectPage">
+		<h2 translate>DECT Radio</h2>
+		<juci-config-info>{{'phone.dect.info'|translate}}</juci-config-info>
+		<juci-config-lines>
+			<juci-config-line title="{{'DECT Radio' | translate }}">
+				<juci-select ng-items="dectModes" ng-model="dect.radio.value"></juci-select>
+			</juci-config-line>
+			<juci-config-line title="{{'Radio Status' | translate }}">
+				<label><b>{{status.radio.registration}}</b></label>
+			</juci-config-line>
+			<juci-config-line title="{{'Pair DECT Device (3 min)' | translate }}">
+				<button class="btn btn-default" ng-click="onStartPairing()" translate>Pair</button>
+			</juci-config-line>
+			<modal title="{{'Attempting to Pair'|translate}}" ng-show="status.radio.state == 'ENABLED' && !dismissed" dismiss-label="Cancel" on-dismiss="onCancelDECT()">
+				<div style="text-align: center;">        
+					<div ng-show="progress != 0" >           
+						<i class="fa fa-spinner fa-spin fa-3x"></i>
+					</div>
+					<p translate>{{'Trying to Pair' | translate}}</p>         
+				</div>
+			</modal>
+		</juci-config-lines>
+			<table class="table">
+				<thead style="text-align: center;">
+					<th style="width:1%" translate>Number</th>
+					<th translate>RFPI</th>
+					<th translate>State</th>
+					<th style="width:20%" translate>Status</th>
+					<th style="width:1%" translate>Action</th>
+				</thead>
+				<tr ng-repeat="hs in status.handsets track by $index">
+					<td>{{hs.id}}</td>
+					<td>{{toHexaDecimal(hs.address)}}</td>
+					<td>{{hs.online|uppercase}}</td>
+					<td>{{hs.status|uppercase}}</td>
+					<td><button class="btn btn-default" ng-click="onPingHandset(hs)" translate>Ping</button></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</juci-layout-with-sidebar>

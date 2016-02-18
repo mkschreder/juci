@@ -240,6 +240,37 @@
 							templateUrl: (page.redirect)?"pages/default.html":page.template
 						}
 					},
+					resolve: {
+						saveChangesOnExit: function($uci, $tr, gettext){
+							var def = $.Deferred(); 
+							// this will remove any invalid data when user tries to leave a page and revert changes that have resulted in errors. 
+							// it is good to do this as a way to go along with the element of "Least Surprise" and avoid the nag dialog that would 
+							// otherwise ask the user to fix the errors.. 
+							try { 
+								$uci.$autoCleanInvalidConfigs().done(function(){
+									def.resolve(); 
+								}).fail(function(){
+									def.reject(); 
+								}); 
+							} catch(e){
+								alert("Error while auto cleaning configs. This should not happen. "+e); 
+							}
+							/*
+							var errors = $uci.$getErrors(); 
+							if(errors.length > 0){
+								if(confirm($tr(gettext("There are errors in your current configuration. "+
+									"Please try applying them manually and fixing any errors before leaving this page! Following errors have been found: \n\n"+errors.join("\n"))))){
+									def.reject(); 
+								} else {
+									def.resolve(); 
+								}
+							} else {
+								def.resolve(); 
+							}							}
+							*/
+							return def.promise(); 
+						}
+					},
 					// Perfect! This loads our controllers on demand! :) 
 					// Leave this code here because it serves as a valuable example
 					// of how this can be done. 
@@ -278,13 +309,7 @@
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($uci, $tr, gettext, $interval, $events){
-						/*if($uci.$hasChanges()){
-							if(confirm($tr(gettext("You have unsaved changes. Do you want to save them before leaving this page?"))))
-								$uci.$save(); 
-							else
-								$uci.$clearCache(); 
-						}*/
+					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit){
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$events.removeAll();
@@ -304,7 +329,7 @@
 			};
 		});
 
-		app.run(function($templateCache, $rpc, $rootScope){
+		app.run(function($templateCache, $uci, $events, $rpc, $rootScope){
 			var self = scope.JUCI;
 			// add capability lookup to root scope so that it can be used inside html ng-show directly 
 			$rootScope.has_capability = function(cap_name){
@@ -314,11 +339,21 @@
 				}
 				return $rpc.$session.acls.juci.capabilities.indexOf(cap_name) != -1; 
 			}
+			// register all templates 
 			Object.keys(self.templates).map(function(k){
 				//console.log("Registering template "+k); 
 				$templateCache.put(k, self.templates[k]); 
 			}); 
-			
+			// subscribe to uci change events and notify uci object
+			$events.subscribe("uci.commit", function(ev){
+				var data = ev.data; 
+				if(data && $uci[data.config]){
+					$uci[data.config].$reload().done(function(){ 
+						// reload all gui 
+						$rootScope.$apply(); 
+					}); 
+				}
+			}); 
 		}); 
 
 		app.factory('$rpc', function(){

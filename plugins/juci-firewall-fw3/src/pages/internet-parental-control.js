@@ -55,7 +55,11 @@ JUCI.app
 			} else {
 				next(); 
 			}
-		}, function(){
+		}, function(next){
+			$rpc.juci.system.time.timediff().done(function(data){
+				$scope.diff = data.diff;
+			}).always(function(){next();});
+		}], function(){
 			$scope.accessRules = $uci.firewall["@rule"].filter(function(x){
 				return x.parental.value; 
 			}); 
@@ -75,12 +79,12 @@ JUCI.app
 				}); 
 			}
 			
-			$scope.$watch("urlList", function(){
+			$scope.$watch("urlList", function onParentalUrlListChanged(){
 				$scope.urlblock.url.value = $scope.urlList.map(function(k){
 					return k.url; 
 				}); 
 			}, true);
-			$scope.$watch("macList", function(){
+			$scope.$watch("macList", function onParentalMACListChanged(){
 				$scope.urlblock.src_mac.value = $scope.macList.map(function(k){
 					return k.mac; 
 				}); 
@@ -91,8 +95,14 @@ JUCI.app
 					return rule.parental.value; 
 				}); 
 			} updateRules(); 
-
-			console.log("************************************************************");
+			$scope.convertTime = function(orig, diff){
+				if(orig.match(/^[0-9]+:.+$/) == null || typeof diff != "number") return;
+				var parts = orig.split(":");
+				var new_hour = parseInt(parts[0]) + diff;
+				if(new_hour < 10) parts[0] = "0"+new_hour;
+				else parts[0] = ""+new_hour;
+				return parts.join(":");
+			};
 			$scope.onCreateAccessRule = function(){
 				console.log("Adding rule.."); 
 				$uci.firewall.$create({
@@ -114,8 +124,8 @@ JUCI.app
 			
 			$scope.onEditAccessRule = function(rule){
 				$scope.rule = {
-					time_start: rule.start_time.value, 
-					time_end: rule.stop_time.value, 
+					time_start: $scope.convertTime(rule.start_time.value, $scope.diff),
+					time_end: $scope.convertTime(rule.stop_time.value, $scope.diff),
 					days: rule.weekdays.value.split(" "), 
 					macList: rule.src_mac.value.map(function(x){ return { mac: x }; }), 
 					uci_rule: rule
@@ -142,8 +152,8 @@ JUCI.app
 				rule.src_mac.value = $scope.rule.macList.map(function(k){
 					return k.mac; 
 				}); 
-				rule.start_time.value = $scope.rule.time_start; 
-				rule.stop_time.value = $scope.rule.time_end; 
+				rule.start_time.value = $scope.convertTime($scope.rule.time_start, -$scope.diff);
+				rule.stop_time.value = $scope.convertTime($scope.rule.time_end, -$scope.diff); 
 				rule.weekdays.value = $scope.rule.days.join(" "); 
 				
 				$scope.errors = rule.$getErrors().concat($scope.validateTimeSpan($scope.rule.time_start+"-"+$scope.rule.time_end)).filter(function(x){ return x; }); 
@@ -163,5 +173,5 @@ JUCI.app
 			
 			$scope.$apply(); 
 		}
-	]); 
+	); 
 }); 

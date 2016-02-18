@@ -43,7 +43,7 @@
 					<th>RX Bytes</th>
 					<th>TX Bytes</th>-->
 				</thead>
-				<tr ng-repeat="con in connections | orderBy:predicate:reverse">
+				<tr ng-repeat="con in connections track by $index | orderBy:predicate:reverse">
 					<!--<td>{{con.ipv6}}</td>-->
 					<td>{{con.proto|uppercase}}</td>
 					<!--<td>{{con.expires}}</td>-->

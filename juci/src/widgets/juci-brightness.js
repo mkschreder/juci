@@ -63,7 +63,7 @@ JUCI.app
 		$scope.bars = bars; 
 	} update(); 
 	
-	$scope.$watch("model", function(value){
+	$scope.$watch("model", function onJuciBrightnessModelChanged(value){
 		update(); 
 	}); 
 	

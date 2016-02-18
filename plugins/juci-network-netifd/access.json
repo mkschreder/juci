@@ -3,6 +3,9 @@
 		"description": "JUCI Network Configuration module",
 		"read": {
 			"ubus": {
+				"/juci/swconfig": [
+					"status"
+				], 
 				"/juci/network": [
 					"clients", 
 					"load", 

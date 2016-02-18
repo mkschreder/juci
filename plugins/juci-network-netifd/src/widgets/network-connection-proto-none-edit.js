@@ -19,7 +19,7 @@ JUCI.app
 	};
 })
 .controller("networkConnectionProtoNoneEditCtrl", function($scope){
-	$scope.$watch("interface", function(){
+	$scope.$watch("interface", function onNetworkConnectionInterfaceChanged(){
 		if(!$scope.interface) return;
 		$scope.interface.type.value = "bridge";
 	}, false);

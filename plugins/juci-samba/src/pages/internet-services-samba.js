@@ -36,7 +36,7 @@ JUCI.app
 			$scope.$apply(); 
 		});
 	});  
-	$scope.$watch("data.output", function(output){
+	$scope.$watch("data.output", function onSambaDataOutputChanged(output){
 		if(!$scope.data || !$scope.config) return;
 		$scope.config.interface.value = output.map(function(net){return net.value;}).join(" ");
 	}, false);

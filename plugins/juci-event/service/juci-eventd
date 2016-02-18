@@ -26,11 +26,53 @@ local function prune_events()
 	events = goodevents; 
 end
 
+local last_logread_event_time = 0; 
+local function poll_logread_events() 
+	local stdout = juci.shell("logread -l 20 2>/dev/null"); 
+	for line in stdout:gmatch("[^\r\n]+") do 
+		local date,type,source,message = line:match("([^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*)%s+([^%s]*)%s+([^%s:]*):%s+(.*)"); 
+		string.gsub(message, "\n", ""); 
+		local obj = {
+			["date"] = date, 
+			["type"] = type, 
+			["source"] = source, 
+			["message"] = message
+		}; 
+		local month, day, hour, min, sec, year = string.match(date, "%S+%s+(%S+)%s+(%d+)%s+(%d+):(%d+):(%d+)%s+(%S+)"); 
+		if(day and month and year) then
+			local month_names = {
+				["Jan"] = 1, 
+				["Feb"] = 2, 
+				["Mar"] = 3, 
+				["Apr"] = 4, 
+				["May"] = 5, 
+				["Jun"] = 6, 
+				["Jul"] = 7, 
+				["Aug"] = 8, 
+				["Sep"] = 9, 
+				["Oct"] = 10, 
+				["Nov"] = 11, 
+				["Dec"] = 12
+			}; 
+			month = month_names[month]; 
+			local event = {
+				time = os.time({ year = year, month = month, day = (day or 1), hour = hour, min = min, sec = sec}),
+				type = "logread.msg", 
+				data = obj
+			}; 
+			if(event.time > last_logread_event_time) then table.insert(events, event) end
+			last_logread_event_time = event.time; 
+			prune_events(); 
+		end
+	end
+end
+
 local objects = {
 	["juci.event"] = {
 		poll = {
 			function(req, params)
 				prune_events()
+				poll_logread_events()
 				conn:reply(req, { list = events }); 
 				-- remove this pruning. We now prune events older than 10s..
 				--if(params and params["clear"]) then events = {}; collectgarbage(); end
@@ -54,47 +96,5 @@ local event_handlers = {
 }
 
 conn:listen(event_handlers)
-
-local timer = nil; 
-local last_logread_event_time = 0; 
-timer = uloop.timer(function()
-	local stdout = juci.shell("logread -l 20 2>/dev/null"); 
-	for line in stdout:gmatch("[^\r\n]+") do 
-		local date,type,source,message = line:match("([^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*%s+[^%s]*)%s+([^%s]*)%s+([^%s:]*):%s+(.*)"); 
-		string.gsub(message, "\n", ""); 
-		local obj = {
-			["date"] = date, 
-			["type"] = type, 
-			["source"] = source, 
-			["message"] = message
-		}; 
-		local month, day, hour, min, sec, year = string.match(date, "%S+%s+(%S+)%s+(%d+)%s+(%d+):(%d+):(%d+)%s+(%S+)"); 
-		local month_names = {
-			["Jan"] = 1, 
-			["Feb"] = 2, 
-			["Mar"] = 3, 
-			["Apr"] = 4, 
-			["May"] = 5, 
-			["Jun"] = 6, 
-			["Jul"] = 7, 
-			["Aug"] = 8, 
-			["Sep"] = 9, 
-			["Oct"] = 10, 
-			["Nov"] = 11, 
-			["Dec"] = 12
-		}; 
-		month = month_names[month]; 
-		local event = {
-			time = os.time({ year = year, month = month, day = day, hour = hour, min = min, sec = sec}),
-			type = "logread.msg", 
-			data = obj
-		}; 
-		if(event.time > last_logread_event_time) then table.insert(events, event) end
-		last_logread_event_time = event.time; 
-		prune_events(); 
-	end
-	timer:set(2000); 
-end); 
-timer:set(0); 
 
 uloop.run()

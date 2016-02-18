@@ -12,7 +12,7 @@
 					<th><a href="" ng-click="order('mtu')" translate>MTU</a></th>
 					<th width="1px"><a href="" ng-click="order('state')" translate>Status</th>
 				</thead>
-				<tr ng-repeat="dev in adapters | orderBy:predicate:reverse">
+				<tr ng-repeat="dev in adapters track by $index | orderBy:predicate:reverse">
 					<td><img ng-src="/img/juci-ethernet/icons/{{dev._icon}}.png" style="width: 20px; height: 20px;"/></td>
 					<td>{{dev.name}}</td>
 					<td>{{dev.device}}</td>

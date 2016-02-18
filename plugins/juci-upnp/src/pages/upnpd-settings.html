@@ -17,7 +17,7 @@
 					<th translate>Source</th>
 					<th translate>Dest.</th>
 				</tr>
-				<tr ng-repeat="port in upnpOpenPorts">
+				<tr ng-repeat="port in upnpOpenPorts track by $index">
 					<td>{{port.num}}</td>
 					<td>{{port.packets}}</td>
 					<td>{{port.bytes}}</td>
@@ -109,7 +109,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="acl in acls">
+							<tr ng-repeat="acl in acls track by $index">
 								<td><input type="text" class="form-control" ng-model="acl.comment.value"/></td>
 								<td><input type="text" class="form-control" ng-model="acl.ext_ports.value"/></td>
 								<td><input type="text" class="form-control" ng-model="acl.int_addr.value"/></td>

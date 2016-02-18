@@ -1,6 +1,6 @@
 <div>
 	<h3 translate>Static DHCP</h3>
-	<div ng-repeat="host in dhcp.staticHosts">
+	<div ng-repeat="host in dhcp.staticHosts track by $index">
 		<div class="row">
 			<div class="col-sm-4 form-group">
 				<label translate>Device Name</label>

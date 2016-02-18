@@ -46,7 +46,7 @@
 			</juci-config-lines>
 			<juci-config-lines ng-show="filter.block_incoming.value">
 				<juci-config-line title="{{'Do not allow connections from these numbers'|translate}}">
-					<div class="row" ng-repeat="rule in incomingRules">
+					<div class="row" ng-repeat="rule in incomingRules track by $index">
 						<div class="form-group form-inline">
 							<input type="text" class="form-control" ng-model="rule.extension.value"  ng-blur="onSave()" placeholder="{{'Phone Extension'|translate}}"/>
 							<button class="btn btn-default" ng-click="onDeleteIncomingRule(rule)"><i class="fa fa-trash"></i></button>

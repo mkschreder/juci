@@ -34,7 +34,9 @@ JUCI.app
 				}
 			}
 			if(opts.size == undefined) opts.size = "lg";
-			opts.widget = "<" + widget + " ng-model='model'/>"; 
+			if(widget == null && !opts.content) opts.widget = "<div></div>";
+			if(widget == null && opts.content) opts.widget = opts.content;
+			else opts.widget = "<" + widget + " ng-model='model'/>"; 
 			var modalInstance = $modal.open({
 				animation: false,
 				backdrop: "static", 

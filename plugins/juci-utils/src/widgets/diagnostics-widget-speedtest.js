@@ -18,7 +18,7 @@ JUCI.app
 	}; 
 	var min = 1; 
 	var max = 100; 
-	$scope.$watch('data.packagesize', function(new_value){
+	$scope.$watch('data.packagesize', function onDiagnosticsPacketsizeChanged(new_value){
 		if(new_value < min)$scope.data.packagesize = min;
 		if(new_value > max)$scope.data.packagesize = max;
 	}, false);
@@ -102,7 +102,7 @@ JUCI.app
 		});
 	}
 	$events.subscribe("juci.utils.speedtest", function(res){
-		if(res.data && res.data.status){
+		if(res.data && res.data.status != undefined){
 			switch(res.data.status) {
 			case 0:
 				var upstream = parseInt(res.data.upstream);
