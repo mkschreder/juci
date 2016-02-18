@@ -84,7 +84,6 @@ $(1)-install: $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js
 	$(call Plugin/$(1)/install,$(BIN))
 	$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
 	$(Q)if [ -d $(2)/service ]; then $(CP) $(2)/service/* $(BIN)/usr/lib/juci/services/; fi
-	@-chmod +x $(BACKEND_BIN_DIR)/* 
 	$(Q)if [ -f $(2)/access.acl ]; then $(CP) $(2)/access.acl $(BIN)/usr/lib/juci/acl/$(1).acl; fi
 endef
 
@@ -103,14 +102,6 @@ export CFLAGS:=$(CFLAGS)
 
 ifeq ($(DESTDIR),)
 	DESTDIR:=/
-endif
-
-ifeq ($(CONFIG_PACKAGE_juci-igmpinfo),y)
-	UBUS_MODS += backend/igmpinfo
-endif 
-
-ifeq ($(CONFIG_PACKAGE_juci-ubus-core),y)
-	UBUS_MODS += backend/juci-core
 endif
 
 .cleaned: Makefile Makefile.local Makefile.basic 
