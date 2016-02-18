@@ -53,15 +53,9 @@ JUCI.app
 	}
 
 	JUCI.interval.repeat("login-connection-check", 5000, function(done){
-		$rpc.$isConnected().done(function(){
-			$scope.is_connected = true; 
-		}).fail(function(){
-			$scope.is_connected = false; 
-		}).always(function(){
-			$scope.connecting = false; 
-			$scope.$apply(); 
-			done(); 
-		}); 
+		$scope.is_connected = $rpc.$isConnected(); 
+		$scope.connecting = $rpc.conn_promise != null && !$scope.is_connected; 
+		done(); 
 	}); 
 	$scope.doLogin = function(){
 		var deferred = $.Deferred(); 
@@ -80,11 +74,7 @@ JUCI.app
 				}
 			}, 
 			function(next){
-				$rpc.$login({
-					"username": $scope.form.username, 
-					"password": $scope.form.password, 
-					"remember": $scope.form.remember
-				}).done(function success(res){
+				$rpc.$login($scope.form.username,$scope.form.password).done(function success(res){
 					//$state.go("home", {}, {reload: true});
 					$window.location.href="/"; 
 					deferred.resolve(); 

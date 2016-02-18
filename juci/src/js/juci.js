@@ -83,19 +83,18 @@
 		async.series([
 			function(next){
 				console.log("UBUS Init"); 
-				scope.UBUS.$init().done(function(){
-					if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
-						// TODO: make this prettier. 
-						//alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
-						//return; 
+				scope.UBUS.$connect("ws://"+window.location.host+"/websocket/").done(function(){
+					scope.UBUS.$init().done(function(){
+						if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
+							deferred.reject(); 
+							return; 
+						} 
+						next();
+					}).fail(function(){
 						deferred.reject(); 
-						return; 
-					} 
-					next();
+					}); 
 				}).fail(function(){
-					console.error("UBUS failed to initialize: this means that no rpc calls will be available. You may get errors if other parts of the application assume a valid RPC connection!"); 
 					deferred.reject(); 
-					//next(); 
 				}); 
 			},  
 			function(next){

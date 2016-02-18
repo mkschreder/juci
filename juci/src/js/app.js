@@ -99,13 +99,14 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	gettextCatalog.debug = $config.settings.juci.language_debug.value;
 	
 	var path = $location.path().replace(/\//g, ""); 
+	
 	// load the right page from the start
-	if($rpc.$isLoggedIn()){
+/*	if($rpc.$isLoggedIn()){
 		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
 	} else {
 		//$juci.redirect("login");
 	}
-	
+*/	
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){
 		$rpc.$authenticate().fail(function(){
