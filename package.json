@@ -18,7 +18,10 @@
     "array.prototype.find": "*",
 	"node-getopt": "*", 
 	"gettext-parser": "*",
-	"underscore": "*"
+	"underscore": "*",
+	"ws": "*", 
+	"jqeury-deferred": "*",
+	"express-ws": "*"
   },
   "engines": {
     "node": "0.10.x",
