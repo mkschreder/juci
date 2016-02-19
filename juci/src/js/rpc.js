@@ -34,7 +34,6 @@
 		if(this.conn_promise) return this.conn_promise; 
 		var self = this; 
 		var def = this.conn_promise = $.Deferred(); 
-		if(!address) address = this.url; // at first undefined 
 		if(!address) address = "ws://"+window.location.host+"/websocket/"; 
 		var socket = this.socket = new WebSocket(address); 	
 		console.log("connecting to rpc server at ("+address+")"); 
@@ -47,7 +46,7 @@
 		socket.onerror = function(){
 			self.conn_promise = null; 
 			self.connected = false; 
-			console.log("connection failed!"); 
+			console.error("connection failed!"); 
 			def.reject(); 
 			setTimeout(function(){
 				self.$connect(address); 
@@ -121,6 +120,8 @@
 
     RevoRPC.prototype.$request = function(method, params){
         var self = this; 
+		// prevent trying to send while websocket is connecting
+		if(!self.connected) return;  
 		self.seq++; 
 		var req = self.requests[self.seq] = {    
 			id: self.seq,

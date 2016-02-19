@@ -24,6 +24,7 @@ if (!Date.prototype.toLocaleFormat) {
 		};
 	}());
 }*/
+
 // just for the extractor
 function gettext(str) { return str; }; 
 	

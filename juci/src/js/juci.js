@@ -83,7 +83,7 @@
 		async.series([
 			function(next){
 				console.log("UBUS Init"); 
-				scope.UBUS.$connect("ws://"+window.location.host+"/websocket/").done(function(){
+				scope.UBUS.$connect().done(function(){
 					scope.UBUS.$init().done(function(){
 						if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
 							deferred.reject(); 
