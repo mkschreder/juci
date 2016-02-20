@@ -52,9 +52,9 @@ mkdir -p ${WWW}/css;
 STYLES_HTML="" #"<link href='__all.css' rel='stylesheet' type='text/css' />"
 SCRIPTS_HTML="" #"<script src='__all.js'></script>"
 for file in `find ${WWW}/css -name "$CSS_WILDCARD" | sort`; do
-	echo "Adding $file to index"
-	style=${file#${WWW}}
+	style=${file#${WWW}/}
 	style=${style%.gz}
+	echo "Adding $style to index"
 	STYLES_HTML="${STYLES_HTML}<link href='${style}' rel='stylesheet' type='text/css' />"
 done
 
@@ -62,10 +62,10 @@ done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->/" 
 #cat /www/index.html | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->test<!-- STYLES_END -->/g" 
 
-for file in `find ${WWW}/js -name "$JS_WILDCARD" | sort`; do
-	echo "Adding $file to index"
-	JSFILE=${file#${WWW}}
+for file in `find ${WWW}/js/ -name "$JS_WILDCARD" | sort`; do
+	JSFILE=${file#${WWW}/}
 	JSFILE=${JSFILE%.gz}
+	echo "Adding $JSFILE to index"
 	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${JSFILE}\"></script>"
 done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- SCRIPTS_BEGIN -->.*<!-- SCRIPTS_END -->/<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->/" 
