@@ -20,7 +20,7 @@
 	"gettext-parser": "*",
 	"underscore": "*",
 	"ws": "*", 
-	"jqeury-deferred": "*",
+	"jquery-deferred": "*",
 	"express-ws": "*"
   },
   "engines": {
