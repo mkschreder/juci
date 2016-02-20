@@ -53,11 +53,11 @@ JUCI.app
 .directive("juciConfigLine", function(){
 	return {
 		template: '<div><div class="row juci-config-line" style="margin-top: 20px; ">'+
-			'<div class="col-xs-6 {{errorClass}}">'+
+			'<div class="col-md-6 {{errorClass}}">'+
 				'<label style="font-size: 1.2em">{{title}}</label>'+
 				'<p style="font-size: 12px">{{help}}</p>'+
 			'</div>'+
-			'<div class="col-xs-6 juci-config-line-data">'+
+			'<div class="col-md-6 col-xs-pull-0 juci-config-line-data">'+
 				'<div class="{{pullClass}}" ng-transclude></div>'+
 			'</div></div>'+
 			'<div class="alert alert-danger" style="font-size: 0.8em" ng-show="error">{{error}}</div>'+
