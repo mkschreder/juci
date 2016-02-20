@@ -32,12 +32,12 @@ JUCI.app
 		"username": "", 
 		"password": "", 
 		"remember": 0, 
-		"host": "" 
+		"host": localStorage.getItem("rpc_url") || ""
 	}; 
 	$scope.showlogin = $config.settings.login.showusername.value; 
 	$scope.form.username = $config.settings.login.defaultuser.value||"admin"; 
 	$scope.connecting = true; 
-
+	
 	$scope.errors = []; 
 	$scope.showHost = $config.settings.login.showhost.value; 
 
@@ -63,8 +63,8 @@ JUCI.app
 			}, 
 			function(next){
 				$rpc.$login($scope.form.username,$scope.form.password).done(function success(res){
-					//$state.go("home", {}, {reload: true});
-					//$window.location.href="/"; 
+					//window.location.reload(); 
+					window.location.href="/"; 
 					deferred.resolve(); 
 				}).fail(function fail(res){
 					//$scope.errors.push(res); 
@@ -81,8 +81,7 @@ JUCI.app
 		var deferred = $.Deferred(); 
 		$rpc.$logout().done(function(){
 			console.log("Logged out!"); 
-			//$state.go("home", {}, {reload: true});
-			JUCI.redirect("overview"); //$window.location.href="/"; 
+			window.location.reload(); 
 			deferred.resolve(); 
 		}).fail(function(){
 			console.error("Error logging out!");

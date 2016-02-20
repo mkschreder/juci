@@ -82,7 +82,7 @@
 		// TODO: maybe rewrite the init sequence
 		async.series([
 			function(next){
-				console.log("UBUS Init"); 
+				console.log("RPC init"); 
 				scope.UBUS.$connect().done(function(){
 					scope.UBUS.$init().done(function(){
 						if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
@@ -91,10 +91,12 @@
 						} 
 						next();
 					}).fail(function(){
-						deferred.reject(); 
+						console.log("could not initialize rpc interface"); 
+						next(); 
 					}); 
 				}).fail(function(){
-					deferred.reject(); 
+					console.error("could not connect to rpc interface"); 
+					next(); 
 				}); 
 			},  
 			function(next){

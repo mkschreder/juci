@@ -29,28 +29,34 @@
 	RevoRPC.prototype.$sid = function(){
 		return localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
 	}
+
+	RevoRPC.prototype.onDisconnected = function(){
+		this.connected = false; 
+		this.conn_promise = null; 
+		//scope.localStorage.setItem("rpc_url", undefined); 
+	}
+
 	// Connects to the rpc server. Resolves if connection has been established and fails otherwise. 
 	RevoRPC.prototype.$connect = function(address){
 		var self = this; 
 		var def = this.conn_promise = $.Deferred(); 
-		if(!address) address = "ws://"+window.location.host+"/websocket/"; 
+		if(!address) address = localStorage.getItem("rpc_url"); 
+		if(!address || address == 'undefined') address = "ws://"+window.location.host+"/websocket/"; 
+		scope.localStorage.setItem("rpc_url", address); 
 		var socket = this.socket = new WebSocket(address); 	
 		console.log("connecting to rpc server at ("+address+")"); 
 		socket.onopen = function(){
 			console.log("RPC connection established!"); 
 			self.connected = true; 
-			self.url = address;
 			def.resolve(); 
 		} 
 		socket.onerror = function(){
-			self.conn_promise = null; 
-			self.connected = false; 
+			self.onDisconnected(); 
 			console.error("connection failed!"); 
 			def.reject();
 		}
 		socket.onclose = function(){
-			self.conn_promise = null; 
-			self.connected = false; 
+			self.onDisconnected(); 
 		}
 		socket.onmessage = function(e){
 			// resolve requests 
@@ -66,11 +72,14 @@
 				// a result message with a matching request
 				if(msg.id && msg.result != undefined && self.requests[msg.id]){
 					var req = self.requests[msg.id]; 
+					clearTimeout(req.timeout); 
 					console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "+JSON.stringify(msg.result)); 
 					req.deferred.resolve(msg.result); 
 				} 
 				// an error message for corresponding request
 				else if(msg.id && msg.error != undefined && self.requests[msg.id]){
+					var req = self.requests[msg.id]; 
+					clearTimeout(req.timeout); 
 					self.requests[msg.id].deferred.reject(msg.error); 
 				} 
 				// an event message without id but with method and params
@@ -105,8 +114,11 @@
             sha.update(pwhash.getHash("HEX"));       
             self.$request("login", [username, sha.getHash("HEX")]).done(function(resp){
                 console.log("LOGIN RESULT: "+JSON.stringify(resp)); 
-                if(resp.success) scope.localStorage.setItem("sid", resp.success); 
-                def.resolve(resp.success);               
+                if(resp.success) {
+					scope.localStorage.setItem("sid", resp.success); 
+					def.resolve(resp.success); 
+				}
+				if(resp.error) def.reject(); 
             }).fail(function(){         
                 def.reject();           
             }); 
@@ -128,6 +140,11 @@
 		var req = self.requests[self.seq] = {    
 			id: self.seq,
 			time: (new Date()).getTime(),
+			timeout: setTimeout(function(){
+				self.requests[req.id] = undefined; 
+				console.error("request timed out!"); 
+				req.deferred.reject(); 
+			}, 5000),
 			method: method, 
 			params: params, 
 			deferred: $.Deferred()      
@@ -143,6 +160,8 @@
 			self.socket.send(str); 
 		} catch(e){
 			console.error("Websocket error: "+e); 
+			req.deferred.reject(); 
+			self.requests[req.id] = undefined; 
 			self.socket.onclose(); 
 		}
         return req.deferred.promise();  
