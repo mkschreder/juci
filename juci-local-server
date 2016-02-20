@@ -73,7 +73,7 @@ socket.onclose = function(){
 app.ws('/websocket/', function(ws, req) {
 	console.log("Starting websocket to "+config.ubus_uri);     
 	socket.onmessage = function(e){ 
-		process.stdout.write("JSON REQ: "+e.data); 
+		process.stdout.write("JSON REQ: "+e.data+"\n"); 
 		ws.send(e.data);    
 	} 
 	ws.on("message",function(msg){
