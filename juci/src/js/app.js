@@ -22,11 +22,6 @@ String.prototype.toCamel = function(){
 	return this.replace(/(\-[a-z])/g, function($1){return $1.toUpperCase().replace('-','');});
 };
 
-$.jsonRPC.setup({
-  endPoint: '/ubus',
-  namespace: 'juci'
-});
-
 window.$ = $; 
 
 require.config({
@@ -36,7 +31,6 @@ require.config({
 
 JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $urlRouterProvider, $controllerProvider, $templateCacheProvider, $provide) {
 	console.log("CONF"); 
-	//$locationProvider.otherwise({ redirectTo: "/" });
 	$locationProvider.hashPrefix('!');
 	$locationProvider.html5Mode(false); 
 	
@@ -101,12 +95,12 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	var path = $location.path().replace(/\//g, ""); 
 	
 	// load the right page from the start
-/*	if($rpc.$isLoggedIn()){
+	if($rpc.$authenticate()){
 		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
 	} else {
 		//$juci.redirect("login");
 	}
-*/	
+
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){
 		$rpc.$authenticate().fail(function(){
@@ -153,7 +147,7 @@ angular.element(document).ready(function() {
 	JUCI.$init().done(function(){
 		angular.bootstrap(document, ["juci"]);
 	}).fail(function(){
-		window.location = "/initfail.html"; 
+		//window.location = "/initfail.html"; 
 		//alert("JUCI failed to initialize! look in browser console for more details (this should not happen!)"); 
 	}); 
 });

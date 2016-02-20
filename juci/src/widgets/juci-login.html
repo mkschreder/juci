@@ -16,16 +16,16 @@
 			</div>
 		</div>
 		<div class="form-group" ng-show="showHost">
-			<label class="sr-only" translate>Host</label>
-			<input ng-disabled="!is_connected" ng-model="form.host" type="text" class="form-control" placeholder="Router IP">
+			<label class="sr-only" translate>RPC URL</label>
+			<input ng-model="form.host" type="text" class="form-control" placeholder="RPC Websocket Url (ws://..)">
 		</div>
 		<div class="form-group" ng-show="showlogin">
 			<label for="inputEmail"  class="sr-only" translate>Username</label>
-			<input ng-disabled="!is_connected" ng-model="form.username" type="text" id="inputEmail" class="form-control" placeholder="{{'Username'|translate}}" required >
+			<input ng-model="form.username" type="text" id="inputEmail" class="form-control" placeholder="{{'Username'|translate}}" required >
 		</div>
 		<div class="form-group">
 			<label for="inputPassword" class="sr-only" translate>Password</label>
-			<input ng-change="errors = []" ng-disabled="!is_connected" ng-model="form.password" type="password" id="inputPassword" class="form-control" placeholder="{{'Password'|translate}}" required autofocus>
+			<input ng-change="errors = []" ng-model="form.password" type="password" id="inputPassword" class="form-control" placeholder="{{'Password'|translate}}" required autofocus>
 		</div>
 		<!--<div class="checkbox">
 			<label>
@@ -33,7 +33,7 @@
 			</label>
 		</div>-->
 		<div class="form-group">
-			<button ng-disabled="!is_connected || logging_in" ng-click="doLogin()" class="btn btn-lg btn-primary btn-block" type="submit">
+			<button ng-disabled="logging_in" ng-click="doLogin()" class="btn btn-lg btn-primary btn-block" type="submit">
 				<i class="fa fa-spinner fa-spin" ng-show="logging_in"></i> <span ng-show="!logging_in" translate>Sign in</span>
 				<span ng-show="logging_in" translate>Signing in...</span>
 			</button>

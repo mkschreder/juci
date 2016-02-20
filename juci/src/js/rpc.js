@@ -31,7 +31,6 @@
 	}
 	// Connects to the rpc server. Resolves if connection has been established and fails otherwise. 
 	RevoRPC.prototype.$connect = function(address){
-		if(this.conn_promise) return this.conn_promise; 
 		var self = this; 
 		var def = this.conn_promise = $.Deferred(); 
 		if(!address) address = "ws://"+window.location.host+"/websocket/"; 
@@ -47,17 +46,11 @@
 			self.conn_promise = null; 
 			self.connected = false; 
 			console.error("connection failed!"); 
-			def.reject(); 
-			setTimeout(function(){
-				self.$connect(address); 
-			}, 5000); 
+			def.reject();
 		}
 		socket.onclose = function(){
 			self.conn_promise = null; 
 			self.connected = false; 
-			setTimeout(function(){
-				self.$connect(address); 
-			}, 5000); 
 		}
 		socket.onmessage = function(e){
 			// resolve requests 
@@ -95,6 +88,11 @@
 		return def.promise(); 
 	}
 
+    RevoRPC.prototype.$logout = function(){
+		var sid = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
+		return this.$request("logout", [sid]); 
+    }
+
     RevoRPC.prototype.$login = function(username, password){
         var self = this;                
         var def = $.Deferred();         
@@ -121,7 +119,11 @@
     RevoRPC.prototype.$request = function(method, params){
         var self = this; 
 		// prevent trying to send while websocket is connecting
-		if(!self.connected) return;  
+		if(!self.connected) {
+			var def = $.Deferred(); 
+			def.reject(); 
+			return def.promise(); 
+		}
 		self.seq++; 
 		var req = self.requests[self.seq] = {    
 			id: self.seq,

@@ -398,6 +398,7 @@
 
 	UCI.juci.$registerSectionType("login", {
 		"showusername":		{ dvalue: true, type: Boolean }, // whether to show or hide the username on login page 
+		"showhost":			{ dvalue: true, type: Boolean }, // whether to show or hide the target host on login pages
 		"defaultuser":		{ dvalue: "admin", type: String } // default user to display on login page or to use when username is hidden 
 	}); 
 	UCI.juci.$insertDefaults("login"); 

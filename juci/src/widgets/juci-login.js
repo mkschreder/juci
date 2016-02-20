@@ -39,18 +39,7 @@ JUCI.app
 	$scope.connecting = true; 
 
 	$scope.errors = []; 
-	$scope.showHost = 0; 
-	if($rpc.local){
-		$rpc.local.features().done(function(features){
-			if(features.list) features.list.map(function(x){
-				if(x.indexOf("rpcforward") == 0) {
-					$scope.showHost = 1; 
-					$scope.form.host = $localStorage.getItem("rpc_host")||""; 
-				}
-			}); 
-			$scope.$apply(); 
-		}); 
-	}
+	$scope.showHost = $config.settings.login.showhost.value; 
 
 	JUCI.interval.repeat("login-connection-check", 5000, function(done){
 		$scope.is_connected = $rpc.$isConnected(); 
@@ -63,20 +52,19 @@ JUCI.app
 		$scope.logging_in = true; 
 		async.series([
 			function(next){
-				if($scope.form.host.length > 0){
-					$rpc.local.set_rpc_host({"rpc_host": $scope.form.host})
-					.done(function(){
-						$localStorage.setItem("rpc_host", $scope.form.host); 
-					})
-					.always(function(){next();}); 
-				} else {
+				$rpc.$connect($scope.form.host).done(function(){
 					next(); 
-				}
+				}).fail(function(){
+					$scope.errors.push(gettext("Could not connect to "+$scope.form.host+"!"));
+					$scope.logging_in = false; 
+					$scope.$apply(); 
+					deferred.reject(); 
+				}); 
 			}, 
 			function(next){
 				$rpc.$login($scope.form.username,$scope.form.password).done(function success(res){
 					//$state.go("home", {}, {reload: true});
-					$window.location.href="/"; 
+					//$window.location.href="/"; 
 					deferred.resolve(); 
 				}).fail(function fail(res){
 					//$scope.errors.push(res); 
