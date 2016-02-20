@@ -15,7 +15,7 @@
 */ 
  
 JUCI.app
-.controller("SettingsUpgradeCtrl", function($scope, $uci, $config, $rpc, $tr, gettext, $juciDialog){
+.controller("SettingsUpgradeCtrl", function($scope, $uci, $config, $rpc, $tr, gettext){
 	$scope.sessionID = $rpc.$sid();
 	$scope.uploadFilename = "/tmp/firmware.bin";
 	$scope.usbFileName = "()"; 
@@ -78,6 +78,37 @@ JUCI.app
 			$scope.$apply(); 
 			alert("Image check failed!"); 
 		});
+
+		// no need for such fancy way of checking whether we are rebooting
+		/*
+		$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep_configs)?1:0)}).done(function(result){
+			// this will actually never succeed because server will be killed
+			console.error("upgrade_start returned success, which means that it actually probably failed but did not return an error"); 
+			$scope.error = (result.stdout||"") + (result.stderr||""); 
+			$scope.$apply(); 
+		}).fail(function(response){
+			window.location.
+			// clear all juci intervals 
+			JUCI.interval.$clearAll(); 
+						
+			$scope.message = gettext("Upgrade process has started. The web gui will not be available until the upgrade process has completed!");
+			$scope.$apply(); 
+			
+			setTimeout(function(){
+				JUCI.interval.repeat("upgrade", 1000, function(done){
+					$rpc.session.access().done(function(){
+						// it will not succeed anymore because box is rebooting
+					}).fail(function(result){
+						if(result.code && result.code == -32002) { // access denied error. We will get it when it boots up again. 
+							window.location.reload(); 
+						}
+					}).always(function(){
+						done(); 
+					}); 
+				}); 
+			}, 20000); // give it some 20 seconds to actually shut down
+		});
+		*/
 	}
 	
 	$scope.onCheckOnline = function(){
@@ -121,46 +152,14 @@ JUCI.app
 			upgradeStart($scope.usbUpgrade, keep); 
 		}); 
 	}
-	$scope.onStartUpgrade = function(){
-		$juciDialog.show(null, {
-			title: $tr(gettext("Do you want to keep your configuration?")),
-			content: $tr(gettext("If you answer yes then your configuration will be saved before the upgrade and restored after the upgrade has completed. If you choose 'no' then all your current configuration will be reset to defaults.")),
-			buttons: [
-				{ label: $tr(gettext("Yes")), value: "yes", primary: true },
-				{ label: $tr(gettext("No")), value: "no" },
-				{ label: $tr(gettext("Abort")), value: "abort" }
-			],
-			on_button: function(btn, inst){
-				if(btn.value == "yes"){
-					startUpgrade(true);
-					inst.close();
-				}
-				if(btn.value == "no"){
-					startUpgrade(false);
-					inst.close();
-				}
-				if(btn.value == "abort"){
-					inst.dismiss("abort");
-				}
-			}
-		});
-	}
 	
-	$scope.imageSelected = false;
-	$scope.onFileSelected = function(){
-		var dom = document.getElementById("imageFileSelector");
-		if(dom.files && dom.files.length > 0 ){
-			$scope.imageSelected = true;
-		}else{
-			$scope.imageSelected = false;
-		}
-		$scope.$apply();
-	};
-
 	$scope.onCheckUSB(); 
 	$scope.onCheckOnline(); 
 	
-	function startUpgrade(keep_configs){
+	$scope.onUploadComplete = function(result){
+		console.log("Upload completed: "+JSON.stringify(result)); 
+	}
+	$scope.onUploadUpgrade = function(keep_configs){
 		$scope.showUpgradeStatus = 1; 
 		$scope.message = "Uploading..."; 
 		$scope.progress = 'uploading'; 
