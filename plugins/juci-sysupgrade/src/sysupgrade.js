@@ -39,7 +39,7 @@ JUCI.app.run(function($uci, $rpc, $tr, gettext, upgradePopup){
 						$rpc
 					}); */
 					if(confirm($tr(gettext("A new system software upgrade is available. Do you want to visit upgrade page and upgrade now?")))) {
-						window.location = "/#!/settings-upgrade"; 
+						window.location.href = "/#!/settings-upgrade"; 
 					}
 				} 
 				next(); 
