@@ -35,19 +35,27 @@
 		<juci-config-section>
 			<h2>{{'Manual Firmware Upgrade'|translate}}</h2>
 			<p>{{'settings.upgrade.manual.info'|translate}}</p>
-			<iframe name="postiframe" id="postiframe" style="display: none;" ></iframe>
-			<form target="postiframe" name="uploadForm" action="/cgi-bin/juci-upload" method="post" enctype="multipart/form-data" >
-				<input type="hidden" name="sessionid" value="{{sessionID}}" />
-				<input type="hidden" name="filename" value="{{uploadFilename}}" />
-				<juci-config-lines>
-					<juci-config-line title="{{'Pick firmware file to upload'|translate}}">
-						<input type="file" class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Start upgrade'|translate}}">
-						<button ng-click="onUploadUpgrade()" class="btn btn-lg btn-default" ng-class="{ 'disabled': uploadFile }">{{'Upgrade'|translate}}</button>
-					</juci-config-line>
-				</juci-config-lines>
-			</form>
+			<juci-config-lines>
+				<juci-config-line title="{{'Pick firmware file to upload'|translate}}">
+					<input ng-disabled="uploading" type="file" 
+						class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile" onchange="angular.element(this).scope().onSelectFile(event)"/>
+					<progressbar ng-show="uploading" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
+					<button ng-show="uploading" ng-click="onCancelUpload()" 
+						class="btn btn-lg btn-default">{{'Cancel'|translate}}</button>
+				</juci-config-line>
+				<juci-config-line title="{{'Start upgrade'|translate}}">
+					<div ng-show="upgradeUploaded">
+						<i ng-show="upgradeVerfication" class="fa fa-lg fa-spinner fa-spin text-warning"></i>
+						<i ng-show="upgradeValid" class="fa fa-lg fa-check text-success"></i>
+						<div ng-show="upgradeInvalid">
+							<i class="pull-left fa fa-lg fa-times-circle text-danger"></i>
+							<p>{{imageError}}</p>
+						</div>
+					</div>
+					<button ng-show="upgradeUploaded && upgradeValid" ng-click="onStartUpgrade()" 
+						class="btn btn-lg btn-success">{{'Upgrade'|translate}}</button>
+				</juci-config-line>
+			</juci-config-lines>
 		</juci-config-section>
 		<!-- commenting this for now. But if it is necessary to show these then add a config option for this page to show/hide them -->
 		<!--<p class="alert alert-warning" ng-hide="system.upgrade.fw_check_url.value" translate>Online upgrade is disabled</p>
