@@ -46,8 +46,8 @@
 				<juci-config-line title="{{'Start upgrade'|translate}}">
 					<div ng-show="!upgradeUploaded"><p translate>No image uploaded yet!</p></div>
 					<div ng-show="upgradeUploaded" class="pull-left">
-						<i ng-show="upgradeVerfication" class="fa fa-lg fa-spinner fa-spin text-warning"></i>
-						<i ng-show="upgradeValid" class="fa fa-lg fa-check text-success"></i>
+						<i ng-show="upgradeVerfication" class="fa fa-3x fa-spinner fa-spin text-warning" style="margin-right: 20px;"></i>
+						<i ng-show="upgradeValid" class="fa fa-3x fa-check text-success" style="margin-right: 20px"></i>
 						<div ng-show="upgradeInvalid">
 							<i class="pull-left fa fa-lg fa-times-circle text-danger"></i>
 							<p>{{imageError}}</p>

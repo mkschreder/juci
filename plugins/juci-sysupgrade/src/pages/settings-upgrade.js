@@ -55,13 +55,14 @@ JUCI.app
 				return; 
 			}
 			$scope.upgradeValid = true; 
+			$scope.upgradeUploaded = true; 
 		}).fail(function(){
 			$scope.upgradeInvalid = true; 
 		}).always(function(){
 			$scope.upgradeVerification = false; 
 			$scope.$apply();
 		}); 
-	}
+	} upgradeVerify(); 
 
 	$scope.onSelectFile = function(ev){
 		var input = ev.target; 
