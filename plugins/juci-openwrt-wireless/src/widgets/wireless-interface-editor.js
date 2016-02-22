@@ -30,16 +30,14 @@ JUCI.app
 			var devcounter = {}; 
 			$scope.interfaces.map(function(x){
 				var dev = devices.find(function(dev) { return dev[".name"] == x.device.value; });  
-				if(dev){
-					x[".frequency"] = dev[".frequency"]; 
-				}
+				if(dev) x[".frequency"] = (dev[".info"].frequency/1000)
 			}); 
 			$scope.$apply(); 
 		}); 
 	}); 
 	
 	$scope.getItemTitle = function($item){
-		return ($item.ssid.value + ' @ ' + $item.ifname.value + ' (' + $item[".frequency"] + ')'); 
+		return ($item.ssid.value + ' @ ' + $item.ifname.value + ' (' + $item[".frequency"] + 'Ghz)'); 
 	}
 	
 	$scope.onCreateInterface = function(){
