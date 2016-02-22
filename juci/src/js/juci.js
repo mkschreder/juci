@@ -81,7 +81,7 @@
 		var $rpc = scope.UBUS; 
 		// TODO: maybe rewrite the init sequence
 		async.series([
-			function(next){
+			function doConnect(next){
 				console.log("RPC init"); 
 				scope.UBUS.$connect().done(function(){
 					scope.UBUS.$init().done(function(){
@@ -96,6 +96,11 @@
 					}); 
 				}).fail(function(){
 					console.error("could not connect to rpc interface"); 
+					// TODO: current reconnection logic is bad. Need to probably handle it automatically in rpc.js
+					// but must make sure that we either then reinit the app upon reconnect, or reload the page!
+					setTimeout(function doRetryConnect(){
+						doConnect(function(){}); 
+					},2000); 
 					next(); 
 				}); 
 			},  

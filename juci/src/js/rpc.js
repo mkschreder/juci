@@ -56,6 +56,7 @@
 			def.reject();
 		}
 		socket.onclose = function(){
+			console.error("connection closed!"); 
 			self.onDisconnected(); 
 		}
 		socket.onmessage = function(e){
@@ -73,7 +74,7 @@
 				if(msg.id && msg.result != undefined && self.requests[msg.id]){
 					var req = self.requests[msg.id]; 
 					clearTimeout(req.timeout); 
-					console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "+JSON.stringify(msg.result)); 
+					//console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "); //+JSON.stringify(msg.result)); 
 					req.deferred.resolve(msg.result); 
 				} 
 				// an error message for corresponding request
@@ -155,7 +156,7 @@
 			method: method,             
 			params: params || []        
 		})+"\n";                        
-		console.log("websocket > "+str);         
+		//console.log("websocket > "+str);         
 		try {
 			self.socket.send(str); 
 		} catch(e){
