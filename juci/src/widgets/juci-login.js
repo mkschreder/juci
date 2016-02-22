@@ -42,10 +42,14 @@ JUCI.app
 	$scope.showHost = $config.settings.login.showhost.value; 
 
 	JUCI.interval.repeat("login-connection-check", 5000, function(done){
+		// TODO: this connection logic is bad. Must refactor this into something that is more stable. 
+		// Must be done without forcing user to reload the page!
 		$scope.is_connected = $rpc.$isConnected(); 
-		$scope.connecting = $rpc.conn_promise != null && !$scope.is_connected; 
+		$scope.connecting = $rpc.conn_promise && !$scope.is_connected; 
+		setTimeout(function(){ $scope.$apply(); }, 0); 
 		done(); 
 	}); 
+	
 	$scope.doLogin = function(){
 		var deferred = $.Deferred(); 
 		$scope.errors = []; 
