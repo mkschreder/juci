@@ -44,7 +44,8 @@
 						class="btn btn-lg btn-default">{{'Cancel'|translate}}</button>
 				</juci-config-line>
 				<juci-config-line title="{{'Start upgrade'|translate}}">
-					<div ng-show="upgradeUploaded">
+					<div ng-show="!upgradeUploaded"><p translate>No image uploaded yet!</p></div>
+					<div ng-show="upgradeUploaded" class="pull-left">
 						<i ng-show="upgradeVerfication" class="fa fa-lg fa-spinner fa-spin text-warning"></i>
 						<i ng-show="upgradeValid" class="fa fa-lg fa-check text-success"></i>
 						<div ng-show="upgradeInvalid">
