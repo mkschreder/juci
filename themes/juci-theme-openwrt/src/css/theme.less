@@ -115,7 +115,7 @@ ul.left-sub-menu {
 .btn-primary, .btn-success, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open &>.dropdown-toggle.btn-primary, .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
 	color: #FFF;
 	background-color: @theme-success-color !important;
-	border-color: @theme-success-color;
+	border-color: @theme-success-color !important;
 }
 .btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary.active[disabled], .btn-primary.focus[disabled], .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
 	background-color: lighten(@theme-success-color, 10%);
@@ -163,10 +163,10 @@ ul.left-sub-menu {
 			min-width: @control-width !important;
 		}
 		& > .form-control[type="number"] {
-			min-width: @control-width;
+			min-width: @control-width !important;
 		}
 		& > .form-control[type="password"] {
-			min-width: @control-width;
+			min-width: @control-width !important;
 		}
 		.juci-select {
 			@arrow-width: 26px; 
