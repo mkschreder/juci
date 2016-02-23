@@ -17,6 +17,7 @@
 (function(scope){
 	var RPC_DEFAULT_SESSION_ID = "00000000000000000000000000000000"; 
 	var gettext = function(text){ return text; }; 
+	var _session_data = {}; 
 
 	function RevoRPC(){
 		this.requests = {}; 
@@ -24,6 +25,7 @@
 		this.seq = 1; 
 		this.sid = RPC_DEFAULT_SESSION_ID; 
 		this.conn_promise = null; 
+		Object.defineProperty(this, "$session", { get: function(){ return _session_data; } }); 
 	}
 
 	RevoRPC.prototype.$sid = function(){
@@ -33,6 +35,7 @@
 	RevoRPC.prototype.onDisconnected = function(){
 		this.connected = false; 
 		this.conn_promise = null; 
+		_session_data = {}; 
 		//scope.localStorage.setItem("rpc_url", undefined); 
 	}
 
@@ -110,7 +113,7 @@
             console.log("GOT CHALLENGE: "+JSON.stringify(resp)); 
             var sha = new jsSHA("SHA-1", "TEXT");    
             var pwhash = new jsSHA("SHA-1", "TEXT"); 
-            pwhash.update(username);    
+            pwhash.update(password);    
             sha.update(resp.token);     
             sha.update(pwhash.getHash("HEX"));       
             self.$request("login", [username, sha.getHash("HEX")]).done(function(resp){
@@ -172,8 +175,9 @@
 		var self = this; 
 		var sid = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
 		var def = $.Deferred(); 
-		self.$request("authenticate", [sid]).done(function(){
+		self.$request("authenticate", [sid]).done(function(response){
 			self.sid = sid; 
+			_session_data = response; 
 			def.resolve(); 
 		}).fail(function(){
 			def.reject(); 
