@@ -11,7 +11,6 @@ JUCI.app
 	$scope.album_art = []
 	$minidlna.getConfig().done(function(config){
 		$scope.config = config; 
-		$scope.port.value = Number($scope.config.port.value);
 		$scope.album_art = $scope.config.album_art_names.value.split("/");
 		$scope.tagslistData = $scope.config.media_dir.value.filter(function(dir){
 			var pre = dir.substr(0, 2);
@@ -75,7 +74,7 @@ JUCI.app
 		{ label: $tr(gettext("Pictures")),				value: "P" }
 	];
 	$scope.$watch('port', function onMinidlnaPortChanged(){
-		if(!$scope.port.value)return;
+		if(!$scope.port || !$scope.port.value)return;
 		$scope.config.port.value = $scope.port.value;
 	}, true);
 	$scope.onChangeAAName = function(tag){

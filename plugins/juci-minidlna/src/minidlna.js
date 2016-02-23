@@ -26,7 +26,8 @@ JUCI.app
 	MiniDLNA.prototype.getConfig = function(){
 		var deferred = $.Deferred(); 
 		$uci.$sync("minidlna").done(function(){
-			deferred.resolve($uci.minidlna.config); 
+			if(!$uci.minidlna.config) deferred.reject(); 
+			else deferred.resolve($uci.minidlna.config); 
 		}); 
 		return deferred.promise(); 
 	}
@@ -37,7 +38,7 @@ JUCI.app
 UCI.$registerConfig("minidlna");
 UCI.minidlna.$registerSectionType("minidlna", {
 	"enabled":          { dvalue: 0, type: Number },
-	"port":         	{ dvalue: "", type: String },
+	"port":         	{ dvalue: "", type: Number },
 	"interface":        { dvalue: "", type: String },
 	"friendly_name":    { dvalue: "", type: String },
 	"db_dir":         	{ dvalue: "/var/run/minidlna", type: String },
