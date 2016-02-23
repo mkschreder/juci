@@ -1,0 +1,22 @@
+v2.16.03 (WiP)
+- Speed, responsiveness and flexibility improved by moving completely over to
+  new websocket interface. 
+- Dependencies on ubus-scriptd, juci-rpcd and juci-uhttpd removed. Dependency
+  on lighttpd with websocket support added. jucid added.  
+- It is now possible to do sysupgrade over RPC which works the same way in
+  mobile app as in browser - it's good if uploads work the same way. 
+- Application now targetting mobile platforms where no browser refresh is
+  possible (everything must work without requiring refresh)
+- rpc.js completely rewritten (and much simplified)
+v2.16.02 (stable)
+- Much improved validation
+- Ctrl+C support on ipv4 fields (they also support Ctrl-V for pasting full IP
+  addresses!)
+- Much improved change management. Many bugs fixed. 
+- Redone network status page
+- Added names to all anonymous functions to simplify profiling and debugging
+- Optimized several computationally intensive tasks that were bogging down CPU
+v2.16.01 
+- New apply pane at the bottom of page. No more apply buttons in forms. 
+- Many crashes fixed. 
+- Added several new validators for things like ip addresses, netmasks etc. 
