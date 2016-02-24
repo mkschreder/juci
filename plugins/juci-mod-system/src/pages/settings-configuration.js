@@ -95,7 +95,7 @@ JUCI.app
 			if(!confirm($tr(gettext("Are you sure you want to save backup without password?")))) return; 
 		}
 		$rpc.juci.system.conf.backup({password: $scope.data.pass}).done(function(result){
-			if(result.filename) window.open(window.location.protocol+"//"+window.location.host+"/"+result.filename); 
+			if(result.id) window.open(window.location.origin+"/cgi-bin/juci-download?id="+result.id); 
 		}); 
 		$scope.data = {}; 
 		$scope.showModal = 0; 
