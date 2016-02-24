@@ -23,6 +23,7 @@ JUCI.app
 	 };  
 })
 .controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $config, $firewall, $juciDialog, $tr, gettext){
+	if(!$rpc.system || !$rpc.network) return; 
 	function drawCyGraph(){
 		var nodes = []; 
 		var edges = []; 

@@ -27,6 +27,7 @@
 			
 		// $config.local points to local storage
 		self.local = localStorage; 
+		self.board = { system: {} }; 
 
 		async.series([
 			function(next){
