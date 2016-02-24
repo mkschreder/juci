@@ -95,11 +95,11 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	var path = $location.path().replace(/\//g, ""); 
 	
 	// load the right page from the start
-	if($rpc.$authenticate()){
+	$rpc.$authenticate().done(function(){
 		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
-	} else {
+	}).fail(function(){
 		$juci.redirect("login");
-	}
+	}); 
 
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){

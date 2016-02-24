@@ -254,6 +254,16 @@
 						}
 					},
 					resolve: {
+						isAuthenticated: function($rpc){
+							var def = $.Deferred(); 
+							// this will touch the session so that it does not expire
+							$rpc.$authenticate().done(function(){
+								def.resolve(true); 
+							}).fail(function(){
+								def.resolve(false); 
+							});
+							return def.promise(); 
+						}, 
 						saveChangesOnExit: function($uci, $tr, gettext){
 							var def = $.Deferred(); 
 							// this will remove any invalid data when user tries to leave a page and revert changes that have resulted in errors. 
@@ -300,7 +310,14 @@
 						}
 					},*/
 					// this function will run upon load of every page in the gui
-					onEnter: function($uci, $window, $rootScope, $tr, gettext){
+					onEnter: function($uci, $window, $rootScope, $tr, gettext, isAuthenticated){
+						if(!isAuthenticated){
+							$juci.redirect("login"); 
+						} 
+						
+						// TODO: do we really need this now?
+						$uci.$rollback(); 
+
 						if(page.redirect) {
 							//alert("page redirect to "+page.redirect); 
 							$juci.redirect(page.redirect); 
@@ -308,21 +325,16 @@
 						}
 						
 						$rootScope.errors.splice(0, $rootScope.errors.length); 
-						
-						// this will touch the session so that it does not expire
-						$rpc.$authenticate().done(function(){
-							$uci.$rollback(); 
-						}).fail(function(){
-							$juci.redirect("login");
-						});
-						
-						// document.title = $tr(name.replace(/\//g, ".").replace(/-/g, ".")+".title")+" - "+$tr(gettext("application.name")); 
+
 						document.title = $tr(name+"-title"); 
 
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit){
+					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit, isAuthenticated){
+						if(!isAuthenticated) {
+							$juci.redirect("login"); 
+						}
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$events.removeAll();
@@ -337,8 +349,8 @@
 		// the global error handler
 		app.factory('$exceptionHandler', function() {
 			return function(exception) {
-				throw exception; 
-				//throw exception+": \n\n"+exception.stack;
+			//	throw exception; 
+				throw exception+": \n\n"+exception.stack;
 			};
 		});
 
