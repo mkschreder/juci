@@ -149,28 +149,34 @@
 				console.log("juci: loading menu from server.."); 
 				$uci.juci["@menu"].sort(function(a, b){
 					return String(a[".name"]).localeCompare(b[".name"]); 
-				}).map(function(menu){
-					console.log("adding menu: "+menu.path.value); 
-					// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
-					/*if(menu.acls.value.length && menu.acls.value.find(function(x){
-						return !acls[x]; 
-					})) return; 
-*/
-					var redirect = menu.redirect.value; 
-					var page = menu.page.value; 
-					if(page == "") page = undefined; 
-					if(redirect == "") redirect = undefined; 
-					page = redirect || page; 
-					var obj = {
-						path: menu.path.value, 
-						href: page, 
-						modes: menu.modes.value || [ ], 
-						text: "menu-"+(menu.page.value || menu.path.value.replace(/\//g, "-"))+"-title" 
-					}; 
-					$juci.navigation.register(obj); 
-					JUCI.page(page, "pages/"+page+".html", redirect); 
 				}); 
-				next(); 
+				$rpc.juci.ui.menu().done(function(result){
+					Object.keys(result).map(function(sname){
+						return result[sname]; 
+					}).sort(function(a, b){ return a[".index"] - b[".index"]; }).map(function(menu){
+						// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
+						/*if(menu.acls.value.length && menu.acls.value.find(function(x){
+							return !acls[x]; 
+						})) return; 
+	*/
+						var redirect = menu.redirect; 
+						var page = menu.page; 
+						console.log("adding menu: "+page+" "+menu.path); 
+						if(page == "") page = undefined; 
+						if(redirect == "") redirect = undefined; 
+						page = redirect || page; 
+						var obj = {
+							path: menu.path, 
+							href: page, 
+							modes: menu.modes || [ ], 
+							text: "menu-"+(menu.page || menu.path.replace(/\//g, "-"))+"-title" 
+						}; 
+						$juci.navigation.register(obj); 
+						JUCI.page(page, "pages/"+page+".html", redirect); 
+					}); 
+				}).always(function(){
+					next(); 
+				}); 
 				/*$rpc.juci.ui.menu().done(function(data){
 					//console.log(JSON.stringify(data)); 
 					// get menu keys and sort them so that parent elements will come before their children
