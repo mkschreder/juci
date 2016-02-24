@@ -36,25 +36,35 @@
 			<h2>{{'Manual Firmware Upgrade'|translate}}</h2>
 			<p>{{'settings.upgrade.manual.info'|translate}}</p>
 			<juci-config-lines>
-				<juci-config-line title="{{'Pick firmware file to upload'|translate}}">
-					<input ng-disabled="uploading" type="file" 
+				<juci-config-line title="{{'Upload new image'|translate}}" no-pull>
+					<input style="width: 100%" ng-show="state != 'UPLOADING'" ng-disabled="uploading" type="file" 
 						class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile" onchange="angular.element(this).scope().onSelectFile(event)"/>
-					<progressbar ng-show="uploading" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
-					<button ng-show="uploading" ng-click="onCancelUpload()" 
-						class="btn btn-lg btn-default">{{'Cancel'|translate}}</button>
+					<progressbar class="text-success" ng-show="state == 'UPLOADING'" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
+					<button style="width: 100%" ng-show="state == 'UPLOADING'" ng-click="onCancelUpload()" 
+						class="btn btn-default" translate>Cancel Upload</button>
 				</juci-config-line>
-				<juci-config-line title="{{'Start upgrade'|translate}}">
-					<div ng-show="!upgradeUploaded"><p translate>No image uploaded yet!</p></div>
-					<div ng-show="upgradeUploaded" class="pull-left">
-						<i ng-show="upgradeVerfication" class="fa fa-3x fa-spinner fa-spin text-warning" style="margin-right: 20px;"></i>
-						<i ng-show="upgradeValid" class="fa fa-3x fa-check text-success" style="margin-right: 20px"></i>
-						<div ng-show="upgradeInvalid">
-							<i class="pull-left fa fa-lg fa-times-circle text-danger"></i>
-							<p>{{imageError}}</p>
-						</div>
+				<juci-config-line title="{{'Start upgrade'|translate}}" no-pull>
+					<div ng-show="!imageExists && (state == 'VERIFIED' || state == 'INIT')"><p translate>No image uploaded yet!</p></div>
+					<p ng-show="state == 'UPLOADING'" translate>Please wait.. <i class="fa fa-spinner fa-spin text-warning"></i></p>
+					<div ng-show="state == 'UPLOADED' || state == 'VERIFYING' || state == 'VERIFIED'" class="pull-left">
+						<i ng-show="state == 'VERIFYING'" class="fa fa-spinner fa-spin text-warning" style="margin-right: 20px;"></i>
+						<i ng-show="state == 'VERIFIED' && imageValid" class="fa fa-check text-success" style="margin-right: 20px"></i>
 					</div>
-					<button ng-show="upgradeUploaded && upgradeValid" ng-click="onStartUpgrade()" 
-						class="btn btn-lg btn-success">{{'Upgrade'|translate}}</button>
+					<div ng-show="imageExists && state == 'FAILED'">
+						<i class="pull-left fa fa-lg fa-times-circle text-danger"></i>
+						<p>{{imageError}}</p>
+						<p translate>Please upload a new image of valid type!</p>
+					</div>
+					<div ng-show="state == 'VERIFIED'">
+						<button ng-click="onStartUpgrade()" 
+							class="pull-right btn btn-success">{{'Upgrade'|translate}}</button>
+						<p translate>New software found. Please upgrade!</p>
+					</div>
+					<div ng-show="state == 'UPGRADING' || state == 'WAITING'">
+						<i class="pull-left fa fa-lg fa-spinner fa-spin text-warning"></i>
+						<p ng-show="state == 'UPGRADING'" translate>Preparing upgrade...</p>
+						<p ng-show="state == 'WAITING'" translate>Writing to flash.. please wait until device reboots and then reload this page!</p>
+					</div>
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>

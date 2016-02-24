@@ -21,7 +21,8 @@ JUCI.app
 	$scope.uploadProgress = 0; 
 	$scope.usbFileName = "()"; 
 	$scope.usbUpgradeAvailable = false;  
-	
+	$scope.state = 'INIT'; 
+
 	$scope.current_version = $config.board.release.distribution + " " + $config.board.release.version + " " + $config.board.release.revision; 
 	
 	$uci.$sync("system").done(function(){
@@ -35,60 +36,87 @@ JUCI.app
 	}); 
 
 	$scope.onStartUpgrade = function(){
+		$scope.state = 'UPGRADING'; 
 		$rpc.juci.system.upgrade.start({"path": $scope.uploadPath, "keep": (($scope.keepSettings)?1:0)}).done(function(){
-			// we never get here
+			setTimeout(function(){
+				if($rpc.$isConnected()) {
+					// upgrading probably did not start correctly since we should be disconnected right now. 
+					$scope.state = 'FAIL'; 
+					$scope.imageError = $tr(gettext("Upgrade did not start. Please reload this page and try again!")); 
+					return; 
+				}
+				$scope.state = 'WRITING'; 
+				$scope.connected = false; 
+				function next(){
+					setTimeout(function(){
+						if($rpc.$isConnected()){
+							$scope.state = 'READY'; 
+							window.location.reload(); 
+						} else {
+							next(); 
+						}
+					}, 1000); 
+				} next(); 
+			}, 10000); 
+		}).fail(function(){
+			$scope.state = 'FAIL'; 
+		}).always(function(){
+			$scope.$apply(); 
 		}); 
 	}
 
 	$scope.onCancelUpload = function(){
-		$scope.uploading = false; 
+		$scope.state = 'INIT'; 
+		$scope.uploadFilename = null; 
 	}
 
 	function upgradeVerify(){
-		$scope.upgradeVerification = true; 
-		$scope.upgradeValid = $scope.upgradeInvalid = false; 
+		$scope.state = 'VERIFYING'; 
 		$rpc.juci.system.upgrade.test({"path": $scope.uploadFilename}).done(function(result){
+			$scope.imageExists = result.exists; 
 			if(result && result.error) {
 				$scope.imageError = $tr(gettext("Image check failed:"))+result.stdout; 
-				$scope.upgradeInvalid = true; 
+				$scope.state = 'FAILED'; 
 				$scope.$apply(); 
 				return; 
-			}
-			$scope.upgradeValid = true; 
-			$scope.upgradeUploaded = true; 
+			} 
+			if(result.exists) $scope.state = 'VERIFIED'; 
+			else $scope.state = 'INIT'; 
 		}).fail(function(){
-			$scope.upgradeInvalid = true; 
+			$scope.state = 'FAILED'; 
 		}).always(function(){
-			$scope.upgradeVerification = false; 
 			$scope.$apply();
 		}); 
 	} upgradeVerify(); 
 
 	$scope.onSelectFile = function(ev){
 		var input = ev.target; 
+		
 		var reader = new FileReader(); 
-		function tobase64(arrayBuffer){
-			return window.btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
-		}
-		$scope.uploading = true; 
-		$scope.upgradeUploaded = false; 
+		$scope.state = 'UPLOADING'; 
 		reader.onload = function(){
 			var buffer = reader.result; 
 			var start = 0; 
 			var slice = 10000; 
 			var slices = 0; 
 			var time = (new Date()).getTime(); 
+
+			function tobase64(arrayBuffer){
+				return window.btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
+			}
+
 			console.log("uploading file of size "+buffer.byteLength); 
 			function doSpeedCalc(){
 				setTimeout(function(){
 					$scope.uploadSpeed = Math.round((slices * slice) / 1000) / 1000; 
 					slices = 0; 
-					if($scope.uploading) doSpeedCalc(); 
+					if($scope.state == 'UPLOADING') doSpeedCalc(); 
 				}, 1000); 
 			} doSpeedCalc(); 
 			function next(){
 				if((start + slice) > buffer.byteLength) slice = buffer.byteLength - start; 
 				$rpc.file.write({
+					filename: "/tmp/firmware.bin",
 					seek: start, 
 					length: slice, 
 					data64: tobase64(buffer.slice(start, start + slice))
@@ -96,8 +124,7 @@ JUCI.app
 					start += slice; 
 					if(start >= buffer.byteLength){
 						console.log("File uploaded!"); 
-						$scope.uploading = false; 
-						$scope.upgradeUploaded = true; 
+						$scope.state = 'UPLOADED'; 
 						upgradeVerify(); 
 						$scope.$apply(); 
 					} else {
@@ -105,12 +132,12 @@ JUCI.app
 						setTimeout(function(){ 
 							$scope.uploadProgress = Math.round((start / buffer.byteLength) * 100); 
 							$scope.$apply(); 
-							if($scope.uploading) next(); 
+							if($scope.state == 'UPLOADING') next(); 
 						}, 0); 
 					}
 				}).fail(function(){
 					console.error("File upload failed!"); 
-					$scope.uploading = false; 
+					$scope.state = 'FAILED'; 
 					$scope.$apply(); 
 				}); 
 			} next(); 
@@ -118,7 +145,7 @@ JUCI.app
 		try {
 			reader.readAsArrayBuffer(input.files[0]); 
 		} catch(e){
-			$scope.uploading = false; 
+			$scope.state = 'INIT'; 
 		}
 	}
 	
