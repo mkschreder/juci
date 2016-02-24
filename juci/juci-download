@@ -1,0 +1,21 @@
+#!/usr/bin/lua
+
+-- Download helper for files created by the rpc server "file.createDownload" function
+
+local cgi = require("juci.cgi"); 
+
+local id = cgi.query("id"); 
+
+if(not id or not id:match("[%dabcdf]+")) then
+	print("Invalid format!"); 
+	os.exit(-1); 
+end
+
+local file = "/tmp/"..id; 
+local f = io.open(file, "r"); 
+if(not f) then 
+        print("Access denied!"); 
+end 
+f:close(); 
+
+os.execute("cat "..file.."; rm -f "..file);                         
