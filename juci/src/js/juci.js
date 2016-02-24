@@ -150,6 +150,7 @@
 				$uci.juci["@menu"].sort(function(a, b){
 					return String(a[".name"]).localeCompare(b[".name"]); 
 				}); 
+				if(!$rpc.juci.ui) { console.error("ui.menu call missing!"); next(); return; }
 				$rpc.juci.ui.menu().done(function(result){
 					Object.keys(result).map(function(sname){
 						return result[sname]; 
