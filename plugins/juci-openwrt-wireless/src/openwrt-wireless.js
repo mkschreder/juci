@@ -74,6 +74,10 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 
 	Wireless.prototype.getConnectedClients = function(){
 		var def = $.Deferred(); 
+		if(!$rpc.juci.wireless) {
+			setTimeout(function(){ def.reject(); }, 0); 
+			return def.promise(); 
+		}
 		$rpc.juci.wireless.clients().done(function(clients){
 			if(clients && clients.clients) {
 				clients.clients.map(function(cl){

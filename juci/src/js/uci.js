@@ -865,7 +865,7 @@
 		
 		$rpc.uci.configs().done(function(response){
 			var cfigs = response.configs; 
-			if(!cfigs) { console.error("No configs found!"); next("could not retrieve list of configs!"); return; }
+			if(!cfigs) { console.error("No configs found!"); deferred.reject(); return; }
 			cfigs.map(function(k){
 				if(!(k in section_types)) {
 					console.log("Missing type definition for config "+k); 

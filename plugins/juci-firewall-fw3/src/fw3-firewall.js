@@ -129,7 +129,7 @@ JUCI.app
 				}
 				var zone_clients = clients.filter(function(client){
 					return zone_networks.find(function(net){
-						return net.$info.device == client.device;
+						return net.$info && net.$info.device == client.device;
 					});
 				});
 				def.resolve(zone_clients || []);
