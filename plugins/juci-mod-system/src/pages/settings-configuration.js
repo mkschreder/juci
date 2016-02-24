@@ -94,7 +94,9 @@ JUCI.app
 		if($scope.data.pass == undefined || $scope.data.pass_repeat == undefined){
 			if(!confirm($tr(gettext("Are you sure you want to save backup without password?")))) return; 
 		}
-		$("form[name='backupForm']").submit();
+		$rpc.juci.system.conf.backup({password: $scope.data.pass}).done(function(result){
+			if(result.filename) window.open(window.location.protocol+"//"+window.location.host+"/"+result.filename); 
+		}); 
 		$scope.data = {}; 
 		$scope.showModal = 0; 
 	}
