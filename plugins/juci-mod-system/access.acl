@@ -30,3 +30,4 @@ ubus /system info x
 uci system * rw
 juci backup download r
 juci file /tmp/backup.tar.gz w
+ubus /juci/system.conf backup x
