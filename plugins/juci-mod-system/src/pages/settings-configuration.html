@@ -38,24 +38,19 @@
 				translate>Encryption of backups has been disabled (please make sure you have openssl cli utility installed!)</div>
 		</modal>
 		<modal title="Load New Configuration" ng-show="showUploadModal" on-accept="onUploadConfig()" on-dismiss="onCancelRestore()" dismiss-label="Cancel" accept-label="Continue">
-			<iframe name="postiframe" id="postiframe" style="display: none;" ></iframe>
-			<form target="postiframe" name="restoreForm" id="restoreForm" action="/cgi-bin/juci-upload" method="post" enctype="multipart/form-data" autocomplete="off">
-				<input type="hidden" name="sessionid" value="{{sessionID}}" />
-				<input type="hidden" name="filename" value="/tmp/backup.tar.gz" />
-				<juci-config-lines>
-					<juci-config-line title="{{'Pick configuration backup to upload'|translate}}">
-						<input type="file" class="btn btn-default btn-file" name="filedata" />
-					</juci-config-line>
-					<juci-config-line title="{{'Backup file password'|translate}}">
-						<input type="password" class="form-control" name="pass" ng-disabled="!features.encryption" ng-model="data.pass" placeholder="{{'Password (if encrypted)'|translate}}"/>
-					</juci-config-line>
-					<div class="alert alert-danger" ng-show="!features.encryption" 
-						translate>Uploading encrypted backups is not supported (requires openssl cli utility installed on the router!)</div>
-					<!--<juci-config-line title="{{'Start upgrade'|translate}}">
-						<input type="submit" class="btn btn-lg btn-default" value="{{'Upgrade'|translate}}"/>
-					</juci-config-line>-->
-				</juci-config-lines>
-			</form>
+			<juci-config-lines>
+				<juci-config-line title="{{'Pick configuration backup to upload'|translate}}">
+					<input type="file" class="btn btn-default btn-file"  onchange="angular.element(this).scope().onUploadFileChanged(event.target.files[0])"/>
+				</juci-config-line>
+				<juci-config-line title="{{'Backup file password'|translate}}">
+					<input type="password" class="form-control" name="pass" ng-disabled="!features.encryption" ng-model="data.pass" placeholder="{{'Password (if encrypted)'|translate}}"/>
+				</juci-config-line>
+				<div class="alert alert-danger" ng-show="!features.encryption" 
+					translate>Uploading encrypted backups is not supported (requires openssl cli utility installed on the router!)</div>
+				<!--<juci-config-line title="{{'Start upgrade'|translate}}">
+					<input type="submit" class="btn btn-lg btn-default" value="{{'Upgrade'|translate}}"/>
+				</juci-config-line>-->
+			</juci-config-lines>
 		</modal>
 	</div>
 </juci-layout-with-sidebar>

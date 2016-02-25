@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.controller("SettingsConfigurationCtrl", function($scope, $rpc, $tr, gettext){
+.controller("SettingsConfigurationCtrl", function($scope, $upload, $rpc, $tr, gettext){
 	$scope.sessionID = $rpc.$sid(); 
 	$scope.resetPossible = 0; 
 	$scope.resetPossible = 1; 
@@ -54,38 +54,33 @@ JUCI.app
 		} catch(e){}
 		iframe.each(function(e){$(e).contents().html("<html>");}); ; 
 	}, 500); */
+	$scope.onUploadFileChanged = function(file){
+		$scope.uploadFile = file; 
+	} 
 	$scope.onUploadConfig = function(){
-		$("#postiframe").bind("load", function(){
-			var json = $(this).contents().text(); 
-			try {
-				var obj = JSON.parse(json); 
-				$scope.onUploadComplete(JSON.parse(json));
-			} catch(e){}
-			$(this).unbind("load"); 
-		}); 
-		$("form[name='restoreForm']").submit();
-	}
-	$scope.onUploadComplete = function(result){
-		console.log("Uploaded: "+JSON.stringify(result)); 
-		$rpc.juci.system.conf.restore({
-			pass: $scope.data.pass
-		}).done(function(result){
-			if(result.error){
-				alert(result.error); 
-			} else {
-				$scope.showUploadModal = 0; 
-				$scope.$apply(); 
-				if(confirm($tr(gettext("Configuration has been restored. You need to reboot the device for settings to take effect! Do you want to reboot now?")))){
-					$rpc.juci.system.reboot(); 
+		$upload.$write("/tmp/backup.tar.gz", $scope.uploadFile).done(function(){
+			$rpc.juci.system.conf.restore({
+				pass: $scope.data.pass
+			}).done(function(result){
+				if(result.error){
+					alert(result.error); 
+				} else {
+					$scope.$apply(); 
+					if(confirm($tr(gettext("Configuration has been restored. You need to reboot the device for settings to take effect! Do you want to reboot now?")))){
+						$rpc.juci.system.reboot(); 
+					}
 				}
-			}
-		}).fail(function(err){
-			console.error("Filed: "+JSON.stringify(err)); 
-		}).always(function(){
-			$scope.data = {}; 
-			$scope.$apply(); 
+			}).fail(function(err){
+				console.error("Failed: "+JSON.stringify(err)); 
+			}).always(function(){
+				$scope.data = {}; 
+				$scope.$apply(); 
+			}); 
+		}).fail(function(){
+			alert($tr(gettext("File upload failed!"))); 
 		}); 
 	}
+
 	$scope.onAcceptModal = function(){
 		if($scope.data.pass != $scope.data.pass_repeat) {
 			alert($tr(gettext("Passwords do not match!"))); 
