@@ -61,10 +61,11 @@
 							class="pull-right btn btn-success">{{'Upgrade'|translate}}</button>
 						<juci-select ng-model="data.keepSettings" ng-items="keepSettingsList"></juci-select>
 					</div>
-					<div ng-show="state == 'UPGRADING' || state == 'WAITING'">
+					<div ng-show="state == 'UPGRADING' || state == 'WRITING'">
 						<i class="pull-left fa fa-lg fa-spinner fa-spin text-warning"></i>
 						<p ng-show="state == 'UPGRADING'" translate>Preparing upgrade...</p>
-						<p ng-show="state == 'WAITING'" translate>Writing to flash.. please wait until device reboots and then reload this page!</p>
+						<p ng-show="state == 'WRITING'" translate><i class="fa fa-spin fa-spinner text-warning"></i>
+							Writing to flash.. please wait until device reboots and then reload this page!</p>
 					</div>
 				</juci-config-line>
 			</juci-config-lines>

@@ -44,6 +44,10 @@ JUCI.app
 	$scope.onStartUpgrade = function(){
 		$scope.state = 'UPGRADING'; 
 		$rpc.juci.system.upgrade.start({"path": $scope.uploadPath, "keep": (($scope.keepSettings)?1:0)}).done(function(){
+			window.location.href="/reboot.html"; 
+			/*
+			// monitoring a reboot is very problematic for several reasons (for instance what if router comes up with a different netmask after upgrade?)
+			// TODO: write robus monitoring code that will work every time. 
 			setTimeout(function(){
 				if($rpc.$isConnected()) {
 					// upgrading probably did not start correctly since we should be disconnected right now. 
@@ -54,16 +58,18 @@ JUCI.app
 				$scope.state = 'WRITING'; 
 				$scope.connected = false; 
 				function next(){
-					setTimeout(function(){
-						if($rpc.$isConnected()){
-							$scope.state = 'READY'; 
-							window.location.reload(); 
-						} else {
-							next(); 
-						}
-					}, 1000); 
+					$rpc.$connect().fail(function(){
+						setTimeout(function(){
+							if($rpc.$isConnected()){
+								$scope.state = 'READY'; 
+								window.location.reload(); 
+							} else {
+								next(); 
+							}
+						}, 1000); 
+					}); 
 				} next(); 
-			}, 10000); 
+			}, 15000); */
 		}).fail(function(){
 			$scope.state = 'FAIL'; 
 		}).always(function(){
