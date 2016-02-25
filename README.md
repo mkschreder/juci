@@ -351,6 +351,19 @@ JUCI documentation can definitely be improved. You can speed up this process by
 posting your questions on the issues board on juci github page
 (https://github.com/mkschreder/juci/issues). 
 
+About Me
+--------
+
+I'm a freelance consultant and I love to develop software. I work best when I
+can freely apply my knowledge to fulfill customer needs and adopt free software
+for solving specific customer problems. I can accept work from anyone as long
+as it is compatible with my existing obligations and duties. I do not work
+exclusively for anyone - it does not motivate me and I find it detrimental to
+performance. I find that I achieve best results when I get to adopt my software
+to a wide variety of different situations which resonates very well with the
+freedoms of free software. If you feel that I can add value to your products
+you should definitely email me about it to mkschreder.uk@gmail.com.
+
 License Notice
 --------------
 
