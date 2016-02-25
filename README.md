@@ -99,13 +99,34 @@ forwarding jsonrpc calls to your router during testing (juci-local-server).
 The GPL
 -------
 
-Software should be impossible to lock down. 
+![GPL Compatibility](http://www.dwheeler.com/essays/floss-license-slide-image.png "GPL Compatibility Chart")
 
-JUCI uses GPL as primary license for all code, data and documentation. 
+JUCI project chooses the GPL because GPL is a license that protects software
+freedom. Freedom for software means that the software can move around the world
+and that every developer, anywhere, has freedom to adopt software to solve his
+specific problems. However, for this freedom to be lasting and perpetual it
+must follow that you as recipient of this software must also give the same
+freedoms to anyone else to whom you redistribute it. 
 
-You may use juci in any commertial application, firmware or embedded device
-without fearing any consequences other than being ready to make your own
-version of JUCI freely available to your customers to change and redistribute.
+GPL puts this idea into written form. Therefore JUCI is distributed under the
+GPLv3 as the most flexible of the freedom licenses which protects the freedoms
+of both software and your freedoms as the user who chooses to use this software
+and build products with it.  
+
+GPL (regardless of version) means that you as the user of the JUCI project
+(whether you use it commercially or privately) are always protected by law to
+exercise the four freedoms of GPL software: 
+
+- the freedom to run it
+- the freedom to study it
+- the freedom to redistribute it
+- the freedom to adopt it to your own needs and to your own products.
+
+You may do whatever you want with this software, but you can not take these
+freedoms away from it. These freedoms are granted to you by the GPL only on the
+condition that you never take them away or deny them to someone else as you
+adopt, modify and redistribute this software. And you must also guard these
+freedoms from anyone who may try to take them away. 
 
 Contribution
 ------------
