@@ -23,8 +23,14 @@ JUCI.app
 	$scope.usbUpgradeAvailable = false;  
 	$scope.state = 'INIT'; 
 
+	$scope.data = { keepSettings: true }; 
 	$scope.current_version = $config.board.release.distribution + " " + $config.board.release.version + " " + $config.board.release.revision; 
 	
+	$scope.keepSettingsList = [
+		{ label: $tr(gettext("Keep all configuration")), value: true }, 
+		{ label: $tr(gettext("Reset all configuration")), value: false }
+	]; 
+
 	$uci.$sync("system").done(function(){
 		$scope.system = $uci.system; 
 		$scope.$apply(); 

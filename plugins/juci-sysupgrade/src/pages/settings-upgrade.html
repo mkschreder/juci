@@ -39,7 +39,7 @@
 				<juci-config-line title="{{'Upload new image'|translate}}" no-pull>
 					<input style="width: 100%" ng-show="state != 'UPLOADING'" ng-disabled="uploading" type="file" 
 						class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile" onchange="angular.element(this).scope().onSelectFile(event)"/>
-					<progressbar class="text-success" ng-show="state == 'UPLOADING'" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
+					<progressbar type="success" ng-show="state == 'UPLOADING'" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
 					<button style="width: 100%" ng-show="state == 'UPLOADING'" ng-click="onCancelUpload()" 
 						class="btn btn-default" translate>Cancel Upload</button>
 				</juci-config-line>
@@ -56,9 +56,10 @@
 						<p translate>Please upload a new image of valid type!</p>
 					</div>
 					<div ng-show="state == 'VERIFIED'">
+						<p translate>New software found. Please upgrade!</p>
 						<button ng-click="onStartUpgrade()" 
 							class="pull-right btn btn-success">{{'Upgrade'|translate}}</button>
-						<p translate>New software found. Please upgrade!</p>
+						<juci-select ng-model="data.keepSettings" ng-items="keepSettingsList"></juci-select>
 					</div>
 					<div ng-show="state == 'UPGRADING' || state == 'WAITING'">
 						<i class="pull-left fa fa-lg fa-spinner fa-spin text-warning"></i>
