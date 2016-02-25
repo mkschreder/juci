@@ -95,6 +95,13 @@ JUCI.app
 			$scope.$apply();	
 		});
 	};
+	
+	$scope.onDownloadLogs = function(){
+		$rpc.juci.logs.download().done(function(result){
+			if(result.id) window.open(window.location.origin+"/cgi-bin/juci-download?id="+result.id); 
+			else alert($tr(gettext("Could not download logs!"))); 
+		}); 
+	}
 
 	JUCI.interval.repeat("syslog", 1000, function(done){
 		if(!log.autoRefresh){

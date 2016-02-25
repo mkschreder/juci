@@ -1,1 +1,2 @@
 ubus /juci/event poll x
+ubus /juci/logs download x
