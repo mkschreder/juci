@@ -60,6 +60,7 @@ define Plugin/juci
 	JAVASCRIPT-y+=src/js/tr.js
 	JAVASCRIPT-y+=src/js/theme.js
 	JAVASCRIPT-y+=src/js/timeout.js
+	JAVASCRIPT-y+=src/js/upload.js
 	JAVASCRIPT-y+=src/widgets/*.js
 	JAVASCRIPT-y+=src/pages/*.js
 endef
