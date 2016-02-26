@@ -82,10 +82,15 @@ echo "<!doctype html>
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
 	<title>JUCI</title><!--ng-bind='title'-->
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
 	${STYLES_HTML}
 </head>
-<body role='document' ng-cloak >
+<body role='document'>
+	<div ng-hide='juci_loaded' class='juci-loadsplash'>
+		<div style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 1%; height: 1%;'>
+			<i class='fa fa-2x fa-spin fa-spinner text-success'></i>
+		</div>
+	</div>
 	<div ui-view='content' style='min-height: 1000px;'></div>
 	${SCRIPTS_HTML}
 </body>

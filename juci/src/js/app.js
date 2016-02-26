@@ -104,11 +104,12 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){
 		$rpc.$authenticate().fail(function(){
-			// TODO: this also redirects to login without notice if box reboots, or rpcd crashes. 
-			// Determine whether this behavior can be improved because it can be annoying (of course the most annoying part is that rpcd crashes in the first place..) 
-			//$juci.redirect("login");
+			// TODO: this may not be optimal if it becomes annoying 
+			$juci.redirect("login");
 		});
 	}, 10000); 
+
+	$rootScope.juci_loaded = true; 
 }) 
 // TODO: figure out how to avoid forward declarations of things we intend to override. 
 .directive("juciFooter", function(){ return {} })

@@ -38,6 +38,11 @@
 		_session_data = {}; 
 		//scope.localStorage.setItem("rpc_url", undefined); 
 	}
+	
+	RevoRPC.prototype.$reset = function(){
+		// reset the stored rpc url
+		localStorage.setItem("rpc_url", "ws://"+window.location.host+"/websocket/"); 
+	}
 
 	// Connects to the rpc server. Resolves if connection has been established and fails otherwise. 
 	RevoRPC.prototype.$connect = function(address){
@@ -46,7 +51,14 @@
 		if(!address) address = localStorage.getItem("rpc_url"); 
 		if(!address || address == 'undefined') address = "ws://"+window.location.host+"/websocket/"; 
 		scope.localStorage.setItem("rpc_url", address); 
-		var socket = this.socket = new WebSocket(address); 	
+		var socket = null; 
+		try {
+			socket = this.socket = new WebSocket(address); 	
+		} catch(e){
+			console.log("Failed to initialize websocket using address "+address); 
+			setTimeout(function(){ def.reject(); }, 0); 
+			return def.promise(); 
+		}
 		console.log("connecting to rpc server at ("+address+")"); 
 		socket.onopen = function(){
 			console.log("RPC connection established!"); 
