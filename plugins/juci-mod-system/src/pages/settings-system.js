@@ -65,8 +65,12 @@ JUCI.app
 	}); 
 	
 	$scope.setRouterTimeToBrowserTime = function(){
+		$scope.state = 'SETTING_TIME'; 
 		$rpc.juci.system.time.set({ unix_time: Math.floor((new Date()).getTime() / 1000) }).done(function(){
-			
+				
+		}).always(function(){
+			$scope.state = 'IDLE'; 
+			$scope.$apply(); 
 		}); 
 	}; 
 }); 
