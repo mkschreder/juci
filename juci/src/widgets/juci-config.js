@@ -86,12 +86,16 @@ JUCI.app
 		template: '<div>'+
 			'<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>'+
 			'<div class="alert alert-success" ng-show="!errors.length && success">{{success}}</div>'+
-			'<div class="btn-toolbar" >'+
-			'<button class="btn btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Pending Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
+			'<div class="row col-md-6">'+
+			'<button class="btn col-xs-12 col-md-6 btn-lg btn-default" ng-show="changes && changes.length" ng-click="showChanges()">{{"Pending Changes" | translate}} <span class="badge">{{numUnsavedChanges()}}</span></button>'+
 			'<span ng-hide="changes && changes.length">{{"No unsaved changes" | translate}}</span>'+
-			'<button class="btn btn-lg btn-default col-lg-2 pull-right" ng-click="onCancel()" ng-disabled="changes && !changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
-			'<button class="btn btn-lg btn-primary col-lg-2 pull-right" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
-			'</div><div style="clear: both;"></div></div>', 
+			'</div><br class="visible-xs visible-sm"/><div class="row">'+
+			'<div class="col-xs-6 col-md-offset-2 col-md-2">'+
+			'<button class="btn btn-lg btn-primary" style="width:100%" ng-click="onApply()" title="{{\'Write settings to the router\'|translate}}" ng-disabled="busy"><i class="fa fa-spinner" ng-show="busy"/>{{ "Apply"| translate }}</button>'+
+			'</div>'+
+			'<div class="col-xs-6 col-md-2">'+
+			'<button class="btn btn-lg btn-default" style="width:100%" ng-click="onCancel()" ng-disabled="changes && !changes.length" title="{{\'Discard all changes and reload\'|translate}}">{{ "Cancel" | translate }}</button>'+
+			'</div></div><div style="clear: both;"></div></div>', 
 		replace: true, 
 		scope: {
 			onPreApply: "&"
