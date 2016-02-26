@@ -1,0 +1,7 @@
+ubus /juci/system.upgrade check x
+ubus /juci/system.upgrade test x
+ubus /juci/system.upgrade start x
+ubus /juci/system.upgrade clean x
+uci system * rw
+ubus /file write x
+juci file /tmp/firmware.bin w 

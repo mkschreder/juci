@@ -1,0 +1,4 @@
+ubus /juci/dropbear add_public_key x
+ubus /juci/dropbear get_public_key x
+ubus /juci/dropbear remove_public_key x
+uci dropbear * rw

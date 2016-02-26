@@ -1,0 +1,3 @@
+uci sambe * rw
+ubus /juci/samba folder_tree x
+ubus /juci/samba autocomplete x

@@ -99,7 +99,7 @@ JUCI.app
 			try {
 				cpu_load = Math.round(100 * (prev_cpu.usr - info.system.cpu.usr) / (prev_cpu.total - info.system.cpu.total)); 
 			} catch(e){ }
-			prev_cpu = info.system.cpu; 
+			prev_cpu = (info.system || {}).cpu; 
 
 			$scope.systemStatusTbl.rows = [
 				[$tr(gettext("Hostname")), board.hostname || info.system.name],

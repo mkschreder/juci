@@ -15,256 +15,254 @@
 */ 
 
 (function(scope){
-	var RPC_HOST = ""; //(($config.rpc.host)?$config.rpc.host:"")
 	var RPC_DEFAULT_SESSION_ID = "00000000000000000000000000000000"; 
-	var RPC_SESSION_ID = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
-	var RPC_CACHE = {}; 
-	
 	var gettext = function(text){ return text; }; 
-	
-	var default_calls = [
-		"session.access", 
-		"session.login", 
-		"local.features", 
-		"local.set_rpc_host"
-	]; 
-	
-	function rpc_request(type, namespace, method, data){
-		var sid = ""; 
-		
-		// check if the request has been made only recently with same parameters
-		var key = namespace+method+JSON.stringify(data); 
-		if(!RPC_CACHE[key]){
-			RPC_CACHE[key] = {}; 
-		}
-		//if(RPC_CACHE[key].time && ((new Date()).getTime() - RPC_CACHE[key].time.getTime()) < 3000){
-		// if this request with same parameters is already in progress then just return the existing promise 
-		if(RPC_CACHE[key].deferred && RPC_CACHE[key].deferred.state() == "pending"){
-			return RPC_CACHE[key].deferred.promise(); 
-		} else {
-			RPC_CACHE[key].deferred = $.Deferred(); 
-		} 
+	var _session_data = {}; 
 
-		// remove completed requests from cache
-		var retain = {}; 
-		Object.keys(RPC_CACHE).map(function(k){
-			if(RPC_CACHE[k].deferred && RPC_CACHE[k].deferred.state() == "pending"){
-				retain[k] = RPC_CACHE[k]; 
-			}
-		}); 
-		RPC_CACHE = retain; 
+	function RevoRPC(){
+		this.requests = {}; 
+		this.events = {}; 
+		this.seq = 1; 
+		this.sid = RPC_DEFAULT_SESSION_ID; 
+		this.conn_promise = null; 
+		Object.defineProperty(this, "$session", { get: function(){ return _session_data; } }); 
+	}
 
-		// setup default rpcs
-		$.jsonRPC.withOptions({
-			namespace: "", 
-			endPoint: RPC_HOST+"/ubus"
-		}, function(){	 
-			//var sid = "00000000000000000000000000000000"; 
-			//if($rootScope.sid) sid = $rootScope.sid; 
-			//data.ubus_rpc_session = sid;  
-			this.request(type, {
-				params: [ RPC_SESSION_ID, namespace, method, data],
-				success: function(result){
-					if(result.result instanceof Array && result.result[0] != 0){ // || result.result[1] == undefined) {
-						function _errstr(error){
-							switch(error){
-								case 0: return gettext("OK"); 
-								case 1: return gettext("Invalid command"); 
-								case 2: return gettext("Invalid parameters"); 
-								case 3: return gettext("Method not found"); 
-								case 4: return gettext("Object not found"); 
-								case 5: return gettext("No data"); 
-								case 6: return gettext("Access denied"); 
-								case 7: return gettext("Timed out"); 
-								case 8: return gettext("Not supported"); 
-								case 9: return gettext("Unknown error"); 
-								case 10: return gettext("Connection failed"); 
-								default: return gettext("RPC error #")+result.result[0]+": "+result.result[1]; 
-							}
-						}
-						console.log("RPC succeeded ("+namespace+"."+method+"), but returned error: "+JSON.stringify(result)+": "+_errstr(result.result[0]));
-						RPC_CACHE[key].deferred.reject(_errstr(result.result[0])); 
-						return; 
-					}
+	RevoRPC.prototype.$sid = function(){
+		return localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
+	}
 
-					//console.log("SID: "+sid + " :: "+ JSON.stringify(result)); 
-					RPC_CACHE[key].time = new Date();
-					// valid rpc response is either [code,{result}] or just {result}
-					// we handle both! (if code == 0 it means success. We already check for errors above) 
-					if(result.result instanceof Array){	
-						RPC_CACHE[key].data = result.result[1];
-						RPC_CACHE[key].deferred.resolve(result.result[1]);
-					} else {
-						RPC_CACHE[key].data = result.result; 
-						RPC_CACHE[key].deferred.resolve(result.result); 
-					}
-				}, 
-				error: function(result){
-					console.error("RPC error ("+namespace+"."+method+"): "+JSON.stringify(result));
-					if(result && result.error){
-						RPC_CACHE[key].deferred.reject(result.error);  
-						//$rootScope.$broadcast("error", result.error.message); 
-					}
-				}
-			})
-		});
-		return RPC_CACHE[key].deferred.promise(); 
+	RevoRPC.prototype.onDisconnected = function(){
+		this.connected = false; 
+		this.conn_promise = null; 
+		_session_data = {}; 
+		//scope.localStorage.setItem("rpc_url", undefined); 
 	}
 	
-	var rpc = {
-		$sid: function(sid){
-			if(sid) RPC_SESSION_ID = sid; 
-			else return RPC_SESSION_ID; 
-		}, 
-		$isLoggedIn: function(){
-			return RPC_SESSION_ID !== RPC_DEFAULT_SESSION_ID; 
-		}, 
-		$authenticate: function(){
-			var self = this; 
-			var deferred  = $.Deferred(); 
-			
-			if(!self.session){
-				setTimeout(function(){ deferred.reject(); }, 0); 
-				return deferred.promise(); 
-			}
-			
-			// this has to be done in order to prevent wrong results when user opens login page in another tab, 
-			// then logs in in a new tab and the old tab is still using the old sid so it will log the user out 
-			// of the new tab as well. We therefore need to take sid from the local storage so we always have latest sid!
-			var stored_sid = scope.localStorage.getItem("sid"); 
-			if(stored_sid !== RPC_DEFAULT_SESSION_ID) RPC_SESSION_ID = stored_sid; 
+	RevoRPC.prototype.$reset = function(){
+		// reset the stored rpc url
+		localStorage.setItem("rpc_url", "ws://"+window.location.host+"/websocket/"); 
+	}
 
-			self.session.access({
-				//"ubus_rpc_session": RPC_SESSION_ID,
-				"scope": "ubus" 
-			}).done(function(result){
-        		if(!("username" in (result.data||{}))) {
-					// username must be returned in the response. If it is not returned then rpcd is of wrong version. 
-					//alert(gettext("You have been logged out due to inactivity")); 
-					RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; // reset sid to 000..
-					scope.localStorage.setItem("sid", RPC_SESSION_ID); 
-					deferred.reject(); 
-				} else {
-					self.$session = result; 
-					if(!("data" in self.$session)) self.$session.data = {}; 
-					//console.log("Session: Loggedin! "); 
-					deferred.resolve(result); 
-				}  
-			}).fail(function err(result){
-				RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; 
-				console.error("Session access call failed: you will be logged out!"); 
-				deferred.reject(); 
-			}); 
-			return deferred.promise(); 
-		}, 
-		$login: function(opts){
-			var self = this; 
-			var deferred  = $.Deferred(); 
-			
-			if(!self.session) {
-				setTimeout(function(){ deferred.reject(); }, 0);  
-				return deferred.promise(); 
-			}
-
-			self.session.login({
-				"username": opts.username, 
-				"password": opts.password
-			}).done(function(result){
-				RPC_SESSION_ID = result.ubus_rpc_session;
-				scope.localStorage.setItem("sid", RPC_SESSION_ID); 
-				self.$session = result; 
-				//JUCI.localStorage.setItem("sid", self.sid); 
-				//if(result && result.acls && result.acls.ubus) setupUbusRPC(result.acls.ubus); 
-				deferred.resolve(self.sid); 
-			}).fail(function(result){
-				deferred.reject(result); 
-			}); 
-			return deferred.promise(); 
-		},
-		$logout: function(){
-			var deferred = $.Deferred(); 
-			var self = this; 
-
-			if(!self.session) {
-				setTimeout(function(){ deferred.reject(); }, 0);  
-				return deferred.promise(); ; 
-			}
-
-			self.session.destroy().done(function(){
-				RPC_SESSION_ID = RPC_DEFAULT_SESSION_ID; // reset sid to 000..
-				scope.localStorage.setItem("sid", RPC_SESSION_ID); 
-				deferred.resolve(); 
-			}).fail(function(){
-				deferred.reject(); 
-			}); 
-			return deferred.promise(); 
-		},
-		$register: function(object, method){
-			// console.log("registering: "+object+", method: "+method); 
-			if(!object || !method) return; 
-			var self = this; 
-			function _find(path, method, obj){
-				if(!obj.hasOwnProperty(path[0])){
-					obj[path[0]] = {}; 
-				}
-				if(!path.length) {
-					(function(object, method){
-						// create the rpc method
-						obj[method] = function(data){
-							if(!data) data = { }; 
-							return rpc_request("call", object, method, data); 
-						}
-					})(object, method); 
-				} else {
-					var child = path[0]; 
-					path.shift(); 
-					_find(path, method, obj[child]); 
-				}
-			}
-			// support new slash paths /foo/bar..
-			var npath = object; 
-			if(object.startsWith("/")) npath = object.substring(1); 
-			_find(npath.split(/[\.\/]/), method, self); 
-		}, 
-		$list: function(){
-			return rpc_request("list", "*", "", {}); 
-		},
-		$isConnected: function(){
-			// we do a simple list request. If it fails then we assume we do not have a proper connection to the router
-			var self = this; 
-			var deferred = $.Deferred(); 
-			rpc_request("list", "*", "", {}).done(function(result){
-				deferred.resolve(); 
-			}).fail(function(){
-				deferred.reject(); 
-			}); 
-			return deferred.promise(); 
-		}, 
-		$init: function(host){
-			var self = this; 
-			if(host) {
-				if(host.host) RPC_HOST = host.host;
-			} 
-			console.log("Init UBUS -> "+RPC_HOST); 
-			var deferred = $.Deferred(); 
-			default_calls.map(function(x){ self.$register(x); }); 
-			// request list of all methods and construct rpc object containing all of the methods in javascript. 
-			rpc_request("list", "*", "", {}).done(function(result){
-				//alert(JSON.stringify(result)); 
-				Object.keys(result).map(function(obj){
-					Object.keys(result[obj]).map(function(method){
-						self.$register(obj, method); 
-					}); 
-				}); 
-				deferred.resolve(); 
-			}).fail(function(){
-				deferred.reject(); 
-			}); 
-			return deferred.promise(); 
+	// Connects to the rpc server. Resolves if connection has been established and fails otherwise. 
+	RevoRPC.prototype.$connect = function(address){
+		var self = this; 
+		var def = this.conn_promise = $.Deferred(); 
+		if(!address) address = localStorage.getItem("rpc_url"); 
+		if(!address || address == 'undefined') address = "ws://"+window.location.host+"/websocket/"; 
+		scope.localStorage.setItem("rpc_url", address); 
+		var socket = null; 
+		try {
+			socket = this.socket = new WebSocket(address); 	
+		} catch(e){
+			console.log("Failed to initialize websocket using address "+address); 
+			setTimeout(function(){ def.reject(); }, 0); 
+			return def.promise(); 
 		}
-	}; 
+		console.log("connecting to rpc server at ("+address+")"); 
+		socket.onopen = function(){
+			console.log("RPC connection established!"); 
+			self.connected = true; 
+			def.resolve(); 
+		} 
+		socket.onerror = function(){
+			self.onDisconnected(); 
+			console.error("connection failed!"); 
+			def.reject();
+		}
+		socket.onclose = function(){
+			console.error("connection closed!"); 
+			self.onDisconnected(); 
+		}
+		socket.onmessage = function(e){
+			// resolve requests 
+			var data = e.data; 
+			var obj = null; 
+			try { obj = JSON.parse(data); } catch(e) { 
+				console.error("RPC: could not parse message: "+e+": "+data); 
+				return; 
+			} 
+			if(!(obj instanceof Array) || !obj.map) return; 
+			obj.map(function(msg){ 
+				if(!msg.jsonrpc || msg.jsonrpc != "2.0") return; 
+				// a result message with a matching request
+				if(msg.id && msg.result != undefined && self.requests[msg.id]){
+					var req = self.requests[msg.id]; 
+					clearTimeout(req.timeout); 
+					//console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "); //+JSON.stringify(msg.result)); 
+					req.deferred.resolve(msg.result); 
+				} 
+				// an error message for corresponding request
+				else if(msg.id && msg.error != undefined && self.requests[msg.id]){
+					var req = self.requests[msg.id]; 
+					clearTimeout(req.timeout); 
+					self.requests[msg.id].deferred.reject(msg.error); 
+				} 
+				// an event message without id but with method and params
+				else if(!msg.id && msg.method && msg.params && self.events[msg.method]){
+					self.events[msg.method].map(function(f){
+						f({
+							type: msg.method, 
+							data: msg.params
+						}); 
+					}); 
+				}
+			}); 
+
+		} 
+		return def.promise(); 
+	}
+
+    RevoRPC.prototype.$logout = function(){
+		var sid = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
+		return this.$request("logout", [sid]); 
+    }
+
+    RevoRPC.prototype.$login = function(username, password){
+        var self = this;                
+        var def = $.Deferred();         
+        self.$request("challenge").done(function(resp){
+            console.log("GOT CHALLENGE: "+JSON.stringify(resp)); 
+            var sha = new jsSHA("SHA-1", "TEXT");    
+            var pwhash = new jsSHA("SHA-1", "TEXT"); 
+            pwhash.update(password);    
+            sha.update(resp.token);     
+            sha.update(pwhash.getHash("HEX"));       
+            self.$request("login", [username, sha.getHash("HEX")]).done(function(resp){
+                console.log("LOGIN RESULT: "+JSON.stringify(resp)); 
+                if(resp.success) {
+					scope.localStorage.setItem("sid", resp.success); 
+					def.resolve(resp.success); 
+				}
+				if(resp.error) def.reject(); 
+            }).fail(function(){         
+                def.reject();           
+            }); 
+        }).fail(function(){             
+            def.reject();               
+        }); 
+        return def.promise();           
+    }
+
+    RevoRPC.prototype.$request = function(method, params){
+        var self = this; 
+		// prevent trying to send while websocket is connecting
+		if(!self.connected) {
+			var def = $.Deferred(); 
+			def.reject(); 
+			return def.promise(); 
+		}
+		self.seq++; 
+		var req = self.requests[self.seq] = {    
+			id: self.seq,
+			time: (new Date()).getTime(),
+			timeout: setTimeout(function(){
+				self.requests[req.id] = undefined; 
+				console.error("request timed out!"); 
+				req.deferred.reject(); 
+			}, 5000),
+			method: method, 
+			params: params, 
+			deferred: $.Deferred()      
+		}; 
+		var str = JSON.stringify({      
+			jsonrpc: "2.0",             
+			id: req.id,                 
+			method: method,             
+			params: params || []        
+		})+"\n";                        
+		//console.log("websocket > "+str);         
+		try {
+			self.socket.send(str); 
+		} catch(e){
+			console.error("Websocket error: "+e); 
+			req.deferred.reject(); 
+			self.requests[req.id] = undefined; 
+			self.socket.onclose(); 
+		}
+        return req.deferred.promise();  
+    }
+
+	RevoRPC.prototype.$authenticate = function(){
+		var self = this; 
+		var sid = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
+		var def = $.Deferred(); 
+		self.$request("authenticate", [sid]).done(function(response){
+			self.sid = sid; 
+			_session_data = response; 
+			def.resolve(); 
+		}).fail(function(){
+			def.reject(); 
+		}); 
+		return def.promise(); 
+	}
 	
-	scope.UBUS = scope.$rpc = rpc; 
+	RevoRPC.prototype.$call = function(object, method, data){
+		var sid = localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
+		data._ubus_session_id = sid; 
+		return this.$request("call", [sid, object, method, data]); 
+	}
+
+	RevoRPC.prototype.$subscribe = function(name, func){
+		if(!this.events[name]) this.events[name] = []; 
+		this.events[name].push(func); 
+	}
+
+	RevoRPC.prototype.$list = function(){
+		var sid = localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
+		return this.$request("list", [sid || "", "*"]); 
+	}
 	
+	RevoRPC.prototype.$register = function(object, method){
+		// console.log("registering: "+object+", method: "+method); 
+		if(!object || !method) return; 
+		var self = this; 
+		function _find(path, method, obj){
+			if(!obj.hasOwnProperty(path[0])){
+				obj[path[0]] = {}; 
+			}
+			if(!path.length) {
+				(function(object, method){
+					// create the rpc method
+					obj[method] = function(data){
+						if(!data) data = { }; 
+						return self.$call(object, method, data); 
+					}
+				})(object, method); 
+			} else {
+				var child = path[0]; 
+				path.shift(); 
+				_find(path, method, obj[child]); 
+			}
+		}
+		// support new slash paths /foo/bar..
+		var npath = object; 
+		if(object.startsWith("/")) npath = object.substring(1); 
+		_find(npath.split(/[\.\/]/), method, self); 
+	}
+
+	RevoRPC.prototype.$isConnected = function(){
+		return this.connected; 
+	}
+
+	RevoRPC.prototype.$init = function(host){
+		var self = this; 
+		var deferred = $.Deferred(); 
+		// request list of all methods and construct rpc object containing all of the methods in javascript. 
+		self.$list().done(function(result){
+			Object.keys(result).map(function(obj){
+				Object.keys(result[obj]).map(function(method){
+					//console.log("Adding method "+method); 
+					self.$register(obj, method); 
+				}); 
+			}); 
+			deferred.resolve(); 
+		}).fail(function(){
+			deferred.reject(); 
+		}); 
+		return deferred.promise(); 
+	}
+
+	scope.UBUS = scope.$rpc = new RevoRPC(); 
 })(typeof exports === 'undefined'? this : global); 
 

@@ -22,11 +22,6 @@ String.prototype.toCamel = function(){
 	return this.replace(/(\-[a-z])/g, function($1){return $1.toUpperCase().replace('-','');});
 };
 
-$.jsonRPC.setup({
-  endPoint: '/ubus',
-  namespace: 'juci'
-});
-
 window.$ = $; 
 
 require.config({
@@ -36,7 +31,6 @@ require.config({
 
 JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $urlRouterProvider, $controllerProvider, $templateCacheProvider, $provide) {
 	console.log("CONF"); 
-	//$locationProvider.otherwise({ redirectTo: "/" });
 	$locationProvider.hashPrefix('!');
 	$locationProvider.html5Mode(false); 
 	
@@ -99,21 +93,23 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	gettextCatalog.debug = $config.settings.juci.language_debug.value;
 	
 	var path = $location.path().replace(/\//g, ""); 
-	// load the right page from the start
-	if($rpc.$isLoggedIn()){
-		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
-	} else {
-		$juci.redirect("login");
-	}
 	
+	// load the right page from the start
+	$rpc.$authenticate().done(function(){
+		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
+	}).fail(function(){
+		$juci.redirect("login");
+	}); 
+
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){
 		$rpc.$authenticate().fail(function(){
-			// TODO: this also redirects to login without notice if box reboots, or rpcd crashes. 
-			// Determine whether this behavior can be improved because it can be annoying (of course the most annoying part is that rpcd crashes in the first place..) 
+			// TODO: this may not be optimal if it becomes annoying 
 			$juci.redirect("login");
 		});
 	}, 10000); 
+
+	$rootScope.juci_loaded = true; 
 }) 
 // TODO: figure out how to avoid forward declarations of things we intend to override. 
 .directive("juciFooter", function(){ return {} })
@@ -152,7 +148,7 @@ angular.element(document).ready(function() {
 	JUCI.$init().done(function(){
 		angular.bootstrap(document, ["juci"]);
 	}).fail(function(){
-		window.location = "/initfail.html"; 
+		//window.location = "/initfail.html"; 
 		//alert("JUCI failed to initialize! look in browser console for more details (this should not happen!)"); 
 	}); 
 });

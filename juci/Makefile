@@ -25,6 +25,7 @@ define Plugin/juci
 	JAVASCRIPT-y+=src/lib/js/async.js
 	JAVASCRIPT-y+=src/lib/js/vis.js
 	JAVASCRIPT-y+=src/lib/js/js-schema.min.js
+	JAVASCRIPT-y+=src/js/sha.js
 	JAVASCRIPT-y+=src/lib/js/require.js
 	JAVASCRIPT-y+=src/lib/js/jquery.min.js
 	JAVASCRIPT-y+=src/lib/js/cytoscape.min.js
@@ -59,21 +60,20 @@ define Plugin/juci
 	JAVASCRIPT-y+=src/js/tr.js
 	JAVASCRIPT-y+=src/js/theme.js
 	JAVASCRIPT-y+=src/js/timeout.js
+	JAVASCRIPT-y+=src/js/upload.js
 	JAVASCRIPT-y+=src/widgets/*.js
 	JAVASCRIPT-y+=src/pages/*.js
 endef
 
 define Plugin/juci/install
-	$(INSTALL_DIR) $(1)/www/
+	$(INSTALL_DIR) $(1)/www/cgi-bin/
 	$(INSTALL_DIR) $(1)/etc/config/
-	$(INSTALL_DIR) $(1)/etc/init.d/
 	$(CP) $(PLUGIN_DIR)/juci.default.config $(1)/etc/config/juci
-	$(CP) $(PLUGIN_DIR)/juci.init $(1)/etc/init.d/juci
 	$(CP) $(PLUGIN_DIR)/src/img/ $(1)/www/
 	$(CP) $(PLUGIN_DIR)/src/fonts/ $(1)/www/
 	$(INSTALL_DIR) $(1)/usr/share/lua/juci/
-	$(CP) $(PLUGIN_DIR)/lualibs/* $(1)/usr/share/lua/
 	$(CP) $(PLUGIN_DIR)/lua/* $(1)/usr/share/lua/juci/
 	$(CP) $(PLUGIN_DIR)/reboot.html $(1)/www/	
+	$(CP) $(PLUGIN_DIR)/juci-download $(1)/www/cgi-bin/	
 	$(CP) $(PLUGIN_DIR)/initfail.html $(1)/www/	
 endef

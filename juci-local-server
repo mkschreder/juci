@@ -7,7 +7,13 @@ var fs = require("fs");
 var request = require("request"); 
 var http = require("http"); 
 var bodyParser = require('body-parser')
-var config = { port: 3000, ubus_uri: "http://192.168.1.1/ubus" };
+var config = { port: 3000 };
+var exec = require("child_process").exec; 
+var $ = require("jquery-deferred"); 
+var spawn = require('child_process').spawn;
+var expressWs = require("express-ws")(app); 
+var WebSocket = require("ws"); 
+
 
 //check if file exists and is a file
 if (fs.existsSync("juci-local-server.config")){
@@ -20,7 +26,8 @@ if (fs.existsSync("juci-local-server.config")){
 
 for(var i = 0; i < process.argv.length; i++){
 	switch(process.argv[i]){
-		case "--host": config.ubus_uri = "http://"+process.argv[++i]+"/ubus"; break; 
+		//case "--host": config.ubus_uri = "ws://"+process.argv[++i]+"/websocket/"; break; 
+		case "--host": config.ubus_uri = "ws://"+process.argv[++i]+":1234"; break; 
 		case "--port": config.port = parseInt(process.argv[++i]); break; 
 		case "--ubus": config.ubus_uri = process.argv[++i]; break; 
 	}; 
@@ -44,298 +51,42 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.use(express.static(__dirname + '/bin/www'));
 
-var rpc_calls = {
-	/*"juci.ui.menu": function(params, next){
-		var menu = {}; 
-		// combine all menu files we have locally
-		fs.readdir("share/menu.d", function(err, files){
-			files.map(function(file){
-				var obj = JSON.parse(fs.readFileSync("share/menu.d/"+file)); 
-				Object.keys(obj).map(function(k){
-					menu[k] = obj[k]; 
-				});  
-			}); 
-			next({
-				menu: menu
-			}); 
-		}); 
-	}, */
-	"local.features": function(params, next){
-		next({"list": ["rpcforward"]}); 
-	}, 
-	"local.set_rpc_host": function(params, next){
-		if(params.rpc_host) {
-			config.ubus_uri = "http://"+params.rpc_host+"/ubus"; 
-			console.log("Server: will forward all requests to "+config.ubus_uri); 
-		}
-		next({}); 
-	}, 
-	/*"session.access": function(params, next){
-		next({
-			"access-group": [ "a", "b" ] // just bogus access groups
-		}); 
-	}*/
-}; 
-
-var spawn = require('child_process').spawn;
-
 spawn('make', ["debug", "DEFAULT_THEME=y"], { customFds: [0,1,2] })
 .on("exit", function(code){
 	console.log("Recompiled gui, code: "+code); 
 }); 
-
-/*
-setTimeout(function recompile(){
-	spawn('make', ["debug", "DEFAULT_THEME=y"], { customFds: [0,1,2] })
-	.on("exit", function(code){
-		console.log("Recompiled gui, code: "+code); 
-		setTimeout(recompile, 5000); 
-	}); 
-}, 0); */
-
-/**
- * Real keep-alive HTTP agent
- * 
- *                  ------------=================----------------
- * UPDATE: There are more proper implementations for this problem, distributed as
- *         npm modules like this one: https://github.com/TBEDP/agentkeepalive
- *                  ------------=================----------------
- * 
- * The http module's agent implementation only keeps the underlying TCP
- * connection alive, if there are pending requests towards that endpoint in the agent
- * queue. (Not bug, but "feature": https://github.com/joyent/node/issues/1958)
- * 
- * You might be in a situation, where you send requests one-by-one, so closing
- * the connection every time simply does not make sense, since you know you will
- * send the next one in a matter of milliseconds.
- *
- * This module provides a modified Agent implementation that does exactly that.
- *
- * TODO: The implementation lacks connection closing: there is no timeout for terminating
- * the connections.
- *
- * http://atimb.me
- */
-
-var util = require('util');
-var EventEmitter = require('events').EventEmitter;
-var net = require('net');
-
-var Agent = function(options) {
-  var self = this;
-  self.options = options || {};
-  self.requests = {};
-  self.sockets = {};
-  self.unusedSockets = {};
-  self.maxSockets = self.options.maxSockets || Agent.defaultMaxSockets;
-  self.on('free', function(socket, host, port) {
-    var name = host + ':' + port;
-    if (self.requests[name] && self.requests[name].length) {
-      self.requests[name].shift().onSocket(socket);
-    } else {
-      // If there are no pending requests just destroy the
-      // socket and it will get removed from the pool. This
-      // gets us out of timeout issues and allows us to
-      // default to Connection:keep-alive.
-      //socket.destroy();
-      if (!self.unusedSockets[name]) {
-          self.unusedSockets[name] = [];
-      }
-      self.unusedSockets[name].push(socket);
-    }
-  });
-  self.createConnection = net.createConnection;
+var socket = new WebSocket(config.ubus_uri);  
+var connect = $.Deferred(); 
+socket.onopen = function(){     
+	console.log("Websocket RPC connected!"); 
+	connect.resolve();  
+}                               
+socket.onerror = function(){    
+	console.log("Websocket error!");         
+	connect.reject(); 
 }
-util.inherits(Agent, EventEmitter);
-
-Agent.defaultMaxSockets = 5;
-
-Agent.prototype.defaultPort = 80;
-Agent.prototype.addRequest = function(req, host, port) {
-  var name = host + ':' + port;
-  if (this.unusedSockets[name] && this.unusedSockets[name].length) {
-      req.onSocket(this.unusedSockets[name].shift());
-      //if (!this.unusedSockets[name].length) {
-      //    delete this.unusedSockets[name];
-      //}
-      return;
-  }
-  if (!this.sockets[name]) {
-    this.sockets[name] = [];
-  }
-  if (this.sockets[name].length < this.maxSockets) {
-    // If we are under maxSockets create a new one.
-    req.onSocket(this.createSocket(name, host, port));
-  } else {
-    // We are over limit so we'll add it to the queue.
-    if (!this.requests[name]) {
-      this.requests[name] = [];
-    }
-    this.requests[name].push(req);
-  }
-};
-Agent.prototype.createSocket = function(name, host, port) {
-  var self = this;
-  var s = self.createConnection(port, host, self.options);
-  if (!self.sockets[name]) {
-    self.sockets[name] = [];
-  }
-  this.sockets[name].push(s);
-  var onFree = function() {
-    self.emit('free', s, host, port);
-  }
-  s.on('free', onFree);
-  var onClose = function(err) {
-    // This is the only place where sockets get removed from the Agent.
-    // If you want to remove a socket from the pool, just close it.
-    // All socket errors end in a close event anyway.
-    self.removeSocket(s, name, host, port);
-  }
-  s.on('close', onClose);
-  var onRemove = function() {
-    // We need this function for cases like HTTP "upgrade"
-    // (defined by WebSockets) where we need to remove a socket from the pool
-    //  because it'll be locked up indefinitely
-    self.removeSocket(s, name, host, port);
-    s.removeListener('close', onClose);
-    s.removeListener('free', onFree);
-    s.removeListener('agentRemove', onRemove);
-  }
-  s.on('agentRemove', onRemove);
-  return s;
-};
-Agent.prototype.removeSocket = function(s, name, host, port) {
-  if (this.sockets[name]) {
-    var index = this.sockets[name].indexOf(s);
-    if (index !== -1) {
-      this.sockets[name].splice(index, 1);
-    }
-  } else if (this.sockets[name] && this.sockets[name].length === 0) {
-    // don't leak
-    delete this.sockets[name];
-    delete this.requests[name];
-  }
-  if (this.requests[name] && this.requests[name].length) {
-    // If we have pending requests and a socket gets closed a new one
-    // needs to be created to take over in the pool for the one that closed.
-    this.createSocket(name, host, port).emit('free');
-  }
-};
-
-module.exports = Agent;
+socket.onclose = function(){    
+	console.log("websocket closed!"); 
+}
 
 // RPC end point
-app.post('/ubus', function(req, res) {
-  res.header('Content-Type', 'application/json');
-  
-  var data = req.body, err = null, rpcMethod;
- 
-	if (!err && data.jsonrpc !== '2.0') {
-		onError({
-			code: -32600,
-			message: 'Bad Request. JSON RPC version is invalid or missing',
-			data: null
-		}, 400);
-		return;
-	}
-	
-	var name = data.params[1]+"."+data.params[2]; 
-	if(name in rpc_calls){
-		console.log("JSON_LOCAL: "+JSON.stringify(data)); 
-	
-		rpc_calls[name](data.params[3], function(resp){
-			var json = JSON.stringify({
-				jsonrpc: "2.0", 
-				result: [0, resp]
-			});
-			console.log("JSON_RESP: "+json); 
-			res.write(json); 
-			res.end(); 
+app.ws('/websocket/', function(ws, req) {
+	console.log("Starting websocket to "+config.ubus_uri);     
+	socket.onmessage = function(e){ 
+		process.stdout.write("JSON REQ: "+e.data+"\n"); 
+		ws.send(e.data);    
+	} 
+	ws.on("message",function(msg){
+		process.stdout.write("JSON RES: "+msg); 
+		connect.done(function(){
+			socket.send(msg); 
 		}); 
-	} else {
-		console.log("JSON_CALL (-> "+config.ubus_uri+"): "+JSON.stringify(data)); 
-		
-		function sendResponse(body){
-			var json = JSON.stringify(body); 
-			console.log("JSON_RESP: "+json); 
-			res.write(json); 
-			res.end(); 
-		}
-		
-		var timedOut = false; 
-		var timeout = setTimeout(function(){
-			/*var body = {
-				jsonrpc: "2.0", 
-				result: [1, "ETIMEOUT", data]
-			};
-			timedOut = true; 
-			sendResponse(body);*/ 
-		}, 5000); 
-		
-		request({ 
-			url: config.ubus_uri,
-			method: "POST",
-			headers: {
-				"Connection": "close", // do not use keepalive for our simulator server
-				//"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0",
-				//"Accept": 
-				//"Accept-Language": "en-US,en;q=0.5",
-				//"Content-Type": "application/x-www-form-urlencoded", 
-				//"User-Agent": "curl/7.35.0",
-				//"Host": "192.168.1.6",
-				"Content-Type": "application/json"
-			},
-			//json: true,   // <--Very important!!!
-			body: JSON.stringify(data)
-		}, function (error, response, body) {
-			if(error){ 
-				console.log("ERROR: "+error+": "+body+": "+response); 
-				body = {
-					jsonrpc: "2.0", 
-					result: [1, String(error)]
-				};
-				//doLocalRPC(); 
-			}
-			clearTimeout(timeout); 
-			if(!timedOut){
-				sendResponse(body); 
-			}
-		});
-		//console.log("Unknown RPC call "+name); 
-		//res.end(); 
-	}
-	
-  
-/*
-	console.log(JSON.stringify(data)); 
-	
-  */
+	}); 
 });
 
 var server = app.listen(config.port, function () {
 	var host = server.address().address;
 	var port = server.address().port;
-
-	for(var i = 0; i < process.argv.length; i++){
-		switch(process.argv[i]){
-			case "-p": {
-				var paths = process.argv[++i].split(";"); 
-				paths.map(function(k){
-					var url, path; 
-					if(k.indexOf(":") >= 0){
-						var parts = k.split(":"); 
-						path = parts[1]; 
-						url = parts[0]; 
-					} else {
-						url = k.split("/").pop(); 
-						path = k; 
-					}
-					console.log("Adding extra plugin search path: "+path+" at "+url); 
-					app.use(url, express.static(path + '/'));
-				}); 
-			} break; 
-		}
-	}
 	console.log('Local server listening on http://%s:%s', host, port);
 });
 

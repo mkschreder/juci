@@ -55,7 +55,6 @@ JUCI.app
 	var codecNames = ["codec0", "codec1", "codec2", "codec3", "codec4", "codec5", "codec6"];
 	function fixCodecs(){
 		for( var i = 0; i < 7; i++){
-			if(i != 0 && $scope.model[codecNames[i-1]].value == "") {console.log(i);break;}
 			$scope.codecs[codecNames[i]] = $scope.codecs.all.filter(function(x){
 				for(var j = 0; j < i; j++){
 					if($scope.model[codecNames[j]].value === x.value)return false;

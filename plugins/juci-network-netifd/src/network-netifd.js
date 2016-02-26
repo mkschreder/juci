@@ -205,6 +205,7 @@
 			var def = $.Deferred(); 
 	
 			$uci.$sync("network").done(function(){
+				if(!$rpc.network || !$rpc.network.interface) { def.reject(); return; }
 				$rpc.network.interface.dump().done(function(result){
 					if(result && result.interface) {
 						var wanifs = []; 

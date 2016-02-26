@@ -32,61 +32,43 @@ JUCI.app
 		"username": "", 
 		"password": "", 
 		"remember": 0, 
-		"host": "" 
+		"host": localStorage.getItem("rpc_url") || ""
 	}; 
 	$scope.showlogin = $config.settings.login.showusername.value; 
 	$scope.form.username = $config.settings.login.defaultuser.value||"admin"; 
 	$scope.connecting = true; 
-
+	
 	$scope.errors = []; 
-	$scope.showHost = 0; 
-	if($rpc.local){
-		$rpc.local.features().done(function(features){
-			if(features.list) features.list.map(function(x){
-				if(x.indexOf("rpcforward") == 0) {
-					$scope.showHost = 1; 
-					$scope.form.host = $localStorage.getItem("rpc_host")||""; 
-				}
-			}); 
-			$scope.$apply(); 
-		}); 
-	}
+	$scope.showHost = $config.settings.login.showhost.value; 
 
 	JUCI.interval.repeat("login-connection-check", 5000, function(done){
-		$rpc.$isConnected().done(function(){
-			$scope.is_connected = true; 
-		}).fail(function(){
-			$scope.is_connected = false; 
-		}).always(function(){
-			$scope.connecting = false; 
-			$scope.$apply(); 
-			done(); 
-		}); 
+		// TODO: this connection logic is bad. Must refactor this into something that is more stable. 
+		// Must be done without forcing user to reload the page!
+		$scope.is_connected = $rpc.$isConnected(); 
+		$scope.connecting = $rpc.conn_promise && !$scope.is_connected; 
+		setTimeout(function(){ $scope.$apply(); }, 0); 
+		done(); 
 	}); 
+	
 	$scope.doLogin = function(){
 		var deferred = $.Deferred(); 
 		$scope.errors = []; 
 		$scope.logging_in = true; 
 		async.series([
 			function(next){
-				if($scope.form.host.length > 0){
-					$rpc.local.set_rpc_host({"rpc_host": $scope.form.host})
-					.done(function(){
-						$localStorage.setItem("rpc_host", $scope.form.host); 
-					})
-					.always(function(){next();}); 
-				} else {
+				$rpc.$connect($scope.form.host).done(function(){
 					next(); 
-				}
+				}).fail(function(){
+					$scope.errors.push(gettext("Could not connect to "+$scope.form.host+"!"));
+					$scope.logging_in = false; 
+					$scope.$apply(); 
+					deferred.reject(); 
+				}); 
 			}, 
 			function(next){
-				$rpc.$login({
-					"username": $scope.form.username, 
-					"password": $scope.form.password, 
-					"remember": $scope.form.remember
-				}).done(function success(res){
-					//$state.go("home", {}, {reload: true});
-					$window.location.href="/"; 
+				$rpc.$login($scope.form.username,$scope.form.password).done(function success(res){
+					//window.location.reload(); 
+					window.location.href="/"; 
 					deferred.resolve(); 
 				}).fail(function fail(res){
 					//$scope.errors.push(res); 
@@ -103,8 +85,7 @@ JUCI.app
 		var deferred = $.Deferred(); 
 		$rpc.$logout().done(function(){
 			console.log("Logged out!"); 
-			//$state.go("home", {}, {reload: true});
-			JUCI.redirect("overview"); //$window.location.href="/"; 
+			window.location.reload(); 
 			deferred.resolve(); 
 		}).fail(function(){
 			console.error("Error logging out!");

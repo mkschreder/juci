@@ -1,16 +1,26 @@
 JUCI Webgui for Embedded Routers
 --------------------------------
 
-JUCI project delivers new state of the art web interface technology to embedded
-devices running OpenWRT Linux. 
+JUCI is modern web interface developed for OpenWRT-based embedded devices. It
+is built using HTML5 and angular.js and uses websockets for communicating with
+a compact and fast lua backend running on the embedded device. You can build
+both the frontend application and the backend server independently of each
+other and use them separately. 
 
-Current minimum specs: 
-	- 8M flash (including operating system. Although using images and icons in themes would require at least 16M).  
-	- 32M ram
-	- 400Mhz CPU supported by OpenWRT. 
-	- A modern web browser. 
+The RevoRPCD project which JUCI uses as it's websocket based backend RPC server
+can be found here: https://github.com/mkschreder/jucid.git. 
 
-JUCI is built with html5, angularjs and bootstrap: 
+JUCI Flash and Memory Requirements (actual runtime usage): 
+
+- ~5M flash for full-featured frontend install (including http server)
+- ~160k flash for backend rpc server (revorpcd)
+- 16M ram (revorpcd + lighttpd server) 
+
+JUCI architecture looks roughly like this: 
+
+![JUCI Architecture](/media/juci-architecture.jpg)
+
+JUCI frontend is built with html5, angularjs and bootstrap: 
 
 ![Desktop](/media/screenshot.jpg?raw=true "JUCI Screenshot")
 

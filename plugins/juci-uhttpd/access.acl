@@ -1,0 +1,2 @@
+uci uhttpd * rw
+uci logopts * rw

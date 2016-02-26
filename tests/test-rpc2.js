@@ -20,7 +20,7 @@ $rpc2.$connect(params.host).done(function(){
 	var t = Date.now(); 
 
 	if(params.method == "list"){
-		$rpc2.$call("/ubus/server", "ubus.server.list", {}).done(function(ret){
+		$rpc2.$call("/ubus/peer", "ubus.peer.list", {}).done(function(ret){
 			var n = Date.now(); 
 			var objects = ret[0]; 
 			Object.keys(objects).map(function(k){

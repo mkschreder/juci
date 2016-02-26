@@ -50,6 +50,8 @@ JUCI.app
 			function(next){
 				$rpc.network.interface.dump().done(function(result){
 					_interfaces = result.interface.filter(function(x){
+						// filter out everything that is not an interface in the config (this will currently remove aliases as well)
+						if(!$uci.network["@interface"].find(function(j){ return j[".name"] == x.interface;})) return false; 
 						return x.interface != "loopback"; // filter out loopback. Is there any use case where we would want it? 
 					}).map(function(x){
 						// figure out correct default gateway

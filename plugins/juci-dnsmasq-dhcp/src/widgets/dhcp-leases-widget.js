@@ -33,7 +33,7 @@ JUCI.app
 	});
 	JUCI.interval.repeat("ipv6leases", 1000, function(done){
 		$rpc.juci.dhcp.ipv6leases().done(function(data){
-			$scope.ipv6leases = data.leases;
+			$scope.ipv6leases = data.leases.filter(function(x){ return x.leasetime; });
 			$scope.$apply();
 		}).always(function(){
 			done();
@@ -44,6 +44,7 @@ JUCI.app
 		return ""+a;
 	};
 	$scope.to_time_remaining = function(time){
+		if(!time) time = (new Date()).getTime(); // prevent NaN!
 		var date_now = new Date();
 		var time_now = date_now.getTime();
 		var time_left = (time - (time_now /1000))

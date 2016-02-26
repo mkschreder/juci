@@ -55,7 +55,6 @@ JUCI.app
 		}
 		$firewall.getZoneClients("lan").done(function(clients){
 			$scope.clients = [];
-			console.log(JSON.stringify(clients)); 
 			clients.map(function(client){
 				client._display_html = "<"+client._display_widget + " ng-model='client'/>";
 				$scope.clients.push(client);

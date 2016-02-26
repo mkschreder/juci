@@ -35,16 +35,19 @@ JUCI.app
 	$scope.onLogout = function(){
 		console.log("logging out");
 		$rpc.$logout().always(function(){
-			window.location.href="/";
+			$juci.redirect("#!/"); 
 		});
 	}
 	$network.getDefaultRouteNetworks().done(function(result){
 		$scope.wanifs = result.map(function(x){ return x.$info; }); 
 		$scope.$apply(); 
 	}); 
-	$rpc.system.board().done(function(res){
-		board = res;
-		$scope.firmware = board.release.distribution + " " + board.release.version + " " + board.release.revision; 
-		$scope.$apply(); 
-	})
+	if($rpc.system && $rpc.system.board){
+		$rpc.system.board().done(function(res){
+			board = res;
+			if(board.release)
+				$scope.firmware = board.release.distribution + " " + board.release.version + " " + board.release.revision; 
+			$scope.$apply(); 
+		}); 
+	}
 }); 

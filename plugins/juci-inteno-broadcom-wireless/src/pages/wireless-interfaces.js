@@ -26,7 +26,6 @@ JUCI.app
 		var numb = {};
 		$scope.devices.map(function(dev){ return numb[dev[".frequency"]] = 0; });
 		$scope.interfaces.map(function(iface){ numb[iface[".frequency"]] ++; });
-		console.log(Object.keys(numb).filter(function(freq){ return numb[freq] < 4; }).length == 0);
 		if(Object.keys(numb).filter(function(freq){ return numb[freq] < 4; }).length == 0){
 			alert($tr(gettext("No more Wireless Interface spaces left. There can't be more then 4 Interfaces on each radio")));
 			return;

@@ -23,6 +23,7 @@ JUCI.app
 	 };  
 })
 .controller("overviewSliderWidget10Network", function($scope, $uci, $rpc, $network, $config, $firewall, $juciDialog, $tr, gettext){
+	if(!$rpc.system || !$rpc.network) return; 
 	function drawCyGraph(){
 		var nodes = []; 
 		var edges = []; 
@@ -408,6 +409,7 @@ JUCI.app
 		$network.getConnectedClients().done(function(clients){
 			$rpc.network.interface.dump().done(function(stats){
 				var interfaces = stats.interface; 
+				if(!interfaces) return; 
 				var gw_if = interfaces.find(function(x){ return x.route && x.route[0] && x.route[0].target == "0.0.0.0"; }); 
 				$firewall.getZones().done(function(zones){
 					var wan = zones.find(function(x){ return x.name.value == "wan"; }); 

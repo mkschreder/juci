@@ -74,6 +74,10 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 
 	Wireless.prototype.getConnectedClients = function(){
 		var def = $.Deferred(); 
+		if(!$rpc.juci.wireless) {
+			setTimeout(function(){ def.reject(); }, 0); 
+			return def.promise(); 
+		}
 		$rpc.juci.wireless.clients().done(function(clients){
 			if(clients && clients.clients) {
 				clients.clients.map(function(cl){
@@ -89,14 +93,15 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	
 	Wireless.prototype.getDevices = function(){
 		var deferred = $.Deferred(); 
-		$uci.$sync("wireless").done(function(){
-			$uci.wireless["@wifi-device"].map(function(x){
-				// TODO: this should be a uci "displayname" or something
-				// TODO: actually this should be based on wireless ubus call field
-				if(x.band.value == "a") x[".frequency"] = gettext("5GHz"); 
-				else if(x.band.value == "b") x[".frequency"] = gettext("2.4GHz"); 
+		$rpc.juci.wireless.devices().done(function(result){
+			$uci.$sync("wireless").done(function(){
+				$uci.wireless["@wifi-device"].map(function(x){
+					if(!result || !result.devices) return; 
+					var dev = result.devices.find(function(y){ return x.ifname.value == y.device; }); 
+					if(dev) x[".info"] = dev; 
+				}); 
+				deferred.resolve($uci.wireless["@wifi-device"]); 
 			}); 
-			deferred.resolve($uci.wireless["@wifi-device"]); 
 		}); 
 		return deferred.promise(); 
 	}

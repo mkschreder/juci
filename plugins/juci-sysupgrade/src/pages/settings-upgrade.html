@@ -35,19 +35,40 @@
 		<juci-config-section>
 			<h2>{{'Manual Firmware Upgrade'|translate}}</h2>
 			<p>{{'settings.upgrade.manual.info'|translate}}</p>
-			<iframe name="postiframe" id="postiframe" style="display: none;" ></iframe>
-			<form target="postiframe" name="uploadForm" action="/cgi-bin/juci-upload" method="post" enctype="multipart/form-data" >
-				<input type="hidden" name="sessionid" value="{{sessionID}}" />
-				<input type="hidden" name="filename" value="{{uploadFilename}}" />
-				<juci-config-lines>
-					<juci-config-line title="{{'Pick firmware file to upload'|translate}}">
-						<input type="file" class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile"/>
-					</juci-config-line>
-					<juci-config-line title="{{'Start upgrade'|translate}}">
-						<button ng-click="onUploadUpgrade()" class="btn btn-lg btn-default" ng-class="{ 'disabled': uploadFile }">{{'Upgrade'|translate}}</button>
-					</juci-config-line>
-				</juci-config-lines>
-			</form>
+			<juci-config-lines>
+				<juci-config-line title="{{'Upload new image'|translate}}" no-pull>
+					<input style="width: 100%" ng-show="state != 'UPLOADING'" ng-disabled="uploading" type="file" 
+						class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile" onchange="angular.element(this).scope().onSelectFile(event)"/>
+					<progressbar type="success" ng-show="state == 'UPLOADING'" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
+					<button style="width: 100%" ng-show="state == 'UPLOADING'" ng-click="onCancelUpload()" 
+						class="btn btn-default" translate>Cancel Upload</button>
+				</juci-config-line>
+				<juci-config-line title="{{'Start upgrade'|translate}}" no-pull>
+					<div ng-show="!imageExists && (state == 'VERIFIED' || state == 'INIT')"><p translate>No image uploaded yet!</p></div>
+					<p ng-show="state == 'UPLOADING'" translate>Please wait.. <i class="fa fa-spinner fa-spin text-warning"></i></p>
+					<div ng-show="state == 'UPLOADED' || state == 'VERIFYING' || state == 'VERIFIED'" class="pull-left">
+						<i ng-show="state == 'VERIFYING'" class="fa fa-spinner fa-spin text-warning" style="margin-right: 20px;"></i>
+						<i ng-show="state == 'VERIFIED' && imageValid" class="fa fa-check text-success" style="margin-right: 20px"></i>
+					</div>
+					<div ng-show="imageExists && state == 'FAILED'">
+						<i class="pull-left fa fa-lg fa-times-circle text-danger"></i>
+						<p>{{imageError}}</p>
+						<p translate>Please upload a new image of valid type!</p>
+					</div>
+					<div ng-show="state == 'VERIFIED'">
+						<p translate>Valid image found! Press 'Upgrade' to proceed!</p>
+						<button ng-click="onStartUpgrade()" 
+							class="pull-right btn btn-success">{{'Upgrade'|translate}}</button>
+						<juci-select ng-model="data.keepSettings" ng-items="keepSettingsList"></juci-select>
+					</div>
+					<div ng-show="state == 'UPGRADING' || state == 'WRITING'">
+						<i class="pull-left fa fa-lg fa-spinner fa-spin text-warning"></i>
+						<p ng-show="state == 'UPGRADING'" translate>Preparing upgrade...</p>
+						<p ng-show="state == 'WRITING'" translate><i class="fa fa-spin fa-spinner text-warning"></i>
+							Writing to flash.. please wait until device reboots and then reload this page!</p>
+					</div>
+				</juci-config-line>
+			</juci-config-lines>
 		</juci-config-section>
 		<!-- commenting this for now. But if it is necessary to show these then add a config option for this page to show/hide them -->
 		<!--<p class="alert alert-warning" ng-hide="system.upgrade.fw_check_url.value" translate>Online upgrade is disabled</p>

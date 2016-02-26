@@ -1,0 +1,3 @@
+uci network * r
+uci ddns * rw
+ubus /juci/ddns providers x

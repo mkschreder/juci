@@ -5,7 +5,7 @@
 		<juci-config-section>
 			<juci-list-editor ng-items="devices" item-editor="uci-wireless-device-edit" 
 				on-create="onCreateDevice()" on-delete="onDeleteDevice($item)" 
-				get-item-title="$item['.name'] + ' (' + $item['.frequency'] + ')'" allow-edit="false"></juci-list-editor>
+				get-item-title="$item['.name'] + ' (' + ($item['.info'].frequency/1000) + 'Ghz)'" allow-edit="false"></juci-list-editor>
 		</juci-config-section>
 	</div>
 </juci-layout-with-sidebar>

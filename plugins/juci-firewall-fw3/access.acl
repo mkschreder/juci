@@ -1,0 +1,4 @@
+ubus /network.interface status x
+ubus /juci/firewall.dmz x
+ubus /juci/system.time timediff x
+uci firewall * rw

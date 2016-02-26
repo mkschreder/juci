@@ -5,9 +5,13 @@
 		<i class="fa fa-spinner fa-spin fa-2x" ng-show="!loaded"></i>
 		<juci-config-section ng-show="loaded">
 			<juci-config-lines>
-				<juci-config-line title="{{'Local Time'|translate}}">
+				<juci-config-line title="{{'Current Time'|translate}}">
 					<span class="label label-default">{{localtime}}</span>
-					<button class="btn btn-default btn-success" ng-click="setRouterTimeToBrowserTime()">{{'Set to Browser Time'|translate}}</button>
+				</juci-config-line>
+				<juci-config-line title="{{'Reset Time'|translate}}">
+					<button class="btn btn-default btn-success" ng-click="setRouterTimeToBrowserTime()" ng-disabled="state == 'SETTING_TIME'">
+						<i class="fa fa-spin fa-spinning" ng-show="state == 'SETTING_TIME'"></i>{{'Set to Browser Time'|translate}}
+					</button>
 				</juci-config-line>
 				<juci-config-line title="{{'Timezone'|translate}}">
 					<juci-select ng-model="system.zonename.value" ng-items="allTimeZones"/>

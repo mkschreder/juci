@@ -81,23 +81,31 @@
 		var $rpc = scope.UBUS; 
 		// TODO: maybe rewrite the init sequence
 		async.series([
-			function(next){
-				scope.UBUS.$init().done(function(){
-					if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
-						// TODO: make this prettier. 
-						//alert("Can not establish ubus connection to router. If the router is rebooting then please wait a few minutes and try again."); 
-						//return; 
-						deferred.reject(); 
-						return; 
-					} 
-					next();
+			function doConnect(next){
+				console.log("RPC init"); 
+				scope.UBUS.$connect().done(function(){
+					scope.UBUS.$init().done(function(){
+						if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
+							deferred.reject(); 
+							return; 
+						} 
+						next();
+					}).fail(function(){
+						console.log("could not initialize rpc interface"); 
+						next(); 
+					}); 
 				}).fail(function(){
-					console.error("UBUS failed to initialize: this means that no rpc calls will be available. You may get errors if other parts of the application assume a valid RPC connection!"); 
-					deferred.reject(); 
-					//next(); 
+					console.error("could not connect to rpc interface"); 
+					// TODO: current reconnection logic is bad. Need to probably handle it automatically in rpc.js
+					// but must make sure that we either then reinit the app upon reconnect, or reload the page!
+					setTimeout(function doRetryConnect(){
+						doConnect(function(){}); 
+					},2000); 
+					next(); 
 				}); 
 			},  
 			function(next){
+				console.log("UCI Init"); 
 				$uci.$init().done(function(){
 					next(); 
 				}).fail(function(){
@@ -107,6 +115,7 @@
 				}); 
 			}, 
 			function(next){
+				console.log("JUCI Init"); 
 				$juci.config.$init().done(function(){
 					next(); 
 				}).fail(function(){
@@ -116,6 +125,7 @@
 				}); 
 			}, 
 			function(next){
+				console.log("Trying to authenticate.."); 
 				$rpc.$authenticate().done(function(){
 					next(); 
 				}).fail(function(){
@@ -137,27 +147,37 @@
 					acls = UBUS.$session.acls["access-group"]; 
 				}
 				console.log("juci: loading menu from server.."); 
-				$uci.juci["@menu"].map(function(menu){
-					// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
-					if(menu.acls.value.length && menu.acls.value.find(function(x){
-						return !acls[x]; 
-					})) return; 
-
-					var redirect = menu.redirect.value; 
-					var page = menu.page.value; 
-					if(page == "") page = undefined; 
-					if(redirect == "") redirect = undefined; 
-					page = redirect || page; 
-					var obj = {
-						path: menu.path.value, 
-						href: page, 
-						modes: menu.modes.value || [ ], 
-						text: "menu-"+(menu.page.value || menu.path.value.replace(/\//g, "-"))+"-title" 
-					}; 
-					$juci.navigation.register(obj); 
-					JUCI.page(page, "pages/"+page+".html", redirect); 
+				$uci.juci["@menu"].sort(function(a, b){
+					return String(a[".name"]).localeCompare(b[".name"]); 
 				}); 
-				next(); 
+				if(!$rpc.juci.ui) { console.error("ui.menu call missing!"); next(); return; }
+				$rpc.juci.ui.menu().done(function(result){
+					Object.keys(result).map(function(sname){
+						return result[sname]; 
+					}).sort(function(a, b){ return a[".index"] - b[".index"]; }).map(function(menu){
+						// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
+						/*if(menu.acls.value.length && menu.acls.value.find(function(x){
+							return !acls[x]; 
+						})) return; 
+	*/
+						var redirect = menu.redirect; 
+						var page = menu.page; 
+						console.log("adding menu: "+page+" "+menu.path); 
+						if(page == "") page = undefined; 
+						if(redirect == "") redirect = undefined; 
+						page = redirect || page; 
+						var obj = {
+							path: menu.path, 
+							href: page, 
+							modes: menu.modes || [ ], 
+							text: "menu-"+(menu.page || menu.path.replace(/\//g, "-"))+"-title" 
+						}; 
+						$juci.navigation.register(obj); 
+						JUCI.page(page, "pages/"+page+".html", redirect); 
+					}); 
+				}).always(function(){
+					next(); 
+				}); 
 				/*$rpc.juci.ui.menu().done(function(data){
 					//console.log(JSON.stringify(data)); 
 					// get menu keys and sort them so that parent elements will come before their children
@@ -241,6 +261,16 @@
 						}
 					},
 					resolve: {
+						isAuthenticated: function($rpc){
+							var def = $.Deferred(); 
+							// this will touch the session so that it does not expire
+							$rpc.$authenticate().done(function(){
+								def.resolve(true); 
+							}).fail(function(){
+								def.resolve(false); 
+							});
+							return def.promise(); 
+						}, 
 						saveChangesOnExit: function($uci, $tr, gettext){
 							var def = $.Deferred(); 
 							// this will remove any invalid data when user tries to leave a page and revert changes that have resulted in errors. 
@@ -287,7 +317,14 @@
 						}
 					},*/
 					// this function will run upon load of every page in the gui
-					onEnter: function($uci, $window, $rootScope, $tr, gettext){
+					onEnter: function($uci, $window, $rootScope, $tr, gettext, isAuthenticated){
+						if(!isAuthenticated){
+							$juci.redirect("login"); 
+						} 
+						
+						// TODO: do we really need this now?
+						$uci.$rollback(); 
+
 						if(page.redirect) {
 							//alert("page redirect to "+page.redirect); 
 							$juci.redirect(page.redirect); 
@@ -295,21 +332,16 @@
 						}
 						
 						$rootScope.errors.splice(0, $rootScope.errors.length); 
-						
-						// this will touch the session so that it does not expire
-						$rpc.$authenticate().done(function(){
-							$uci.$rollback(); 
-						}).fail(function(){
-							$juci.redirect("login");
-						});
-						
-						// document.title = $tr(name.replace(/\//g, ".").replace(/-/g, ".")+".title")+" - "+$tr(gettext("application.name")); 
+
 						document.title = $tr(name+"-title"); 
 
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit){
+					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit, isAuthenticated){
+						if(!isAuthenticated) {
+							$juci.redirect("login"); 
+						}
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$events.removeAll();
@@ -324,8 +356,8 @@
 		// the global error handler
 		app.factory('$exceptionHandler', function() {
 			return function(exception) {
-				throw exception; 
-				//throw exception+": \n\n"+exception.stack;
+			//	throw exception; 
+				throw exception+": \n\n"+exception.stack;
 			};
 		});
 
@@ -392,6 +424,7 @@
 
 	UCI.juci.$registerSectionType("login", {
 		"showusername":		{ dvalue: true, type: Boolean }, // whether to show or hide the username on login page 
+		"showhost":			{ dvalue: true, type: Boolean }, // whether to show or hide the target host on login pages
 		"defaultuser":		{ dvalue: "admin", type: String } // default user to display on login page or to use when username is hidden 
 	}); 
 	UCI.juci.$insertDefaults("login"); 

@@ -7,13 +7,14 @@ MODE="$2"
 MODE=${MODE:="RELEASE"}
 
 
-if [ "$MODE" = "RELEASE" ]; then
-	JS_WILDCARD="*.js.gz"
-	CSS_WILDCARD="*.css.gz"
-else
-	JS_WILDCARD="*.js"
-	CSS_WILDCARD="*.css"
-fi
+#if [ "$MODE" = "RELEASE" ]; then
+#	JS_WILDCARD="*.js.gz"
+#	CSS_WILDCARD="*.css.gz"
+#else
+#fi
+
+JS_WILDCARD="*.js"
+CSS_WILDCARD="*.css"
 
 echo "Using mode: $MODE..."
 
@@ -35,12 +36,12 @@ fi
 #	cat $file >> $WWW/__all.css
 #done
 
-if [ "$MODE" = "RELEASE" ]; then
+[ "$MODE" = "RELEASE" ] && {
 	for file in `find ${WWW} -type f | grep -v "\.gz" | grep -v cgi-bin`; do
 		echo "Compressing ${file}..."; 
-		gzip -f ${file}
+		#gzip -f ${file}
 	done
-fi
+}
 
 # now update the index file to include any extra files
 INDEX=${WWW}/index.html
@@ -51,9 +52,9 @@ mkdir -p ${WWW}/css;
 STYLES_HTML="" #"<link href='__all.css' rel='stylesheet' type='text/css' />"
 SCRIPTS_HTML="" #"<script src='__all.js'></script>"
 for file in `find ${WWW}/css -name "$CSS_WILDCARD" | sort`; do
-	echo "Adding $file to index"
-	style=${file#${WWW}}
+	style=${file#${WWW}/}
 	style=${style%.gz}
+	echo "Adding $style to index"
 	STYLES_HTML="${STYLES_HTML}<link href='${style}' rel='stylesheet' type='text/css' />"
 done
 
@@ -61,10 +62,10 @@ done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->/" 
 #cat /www/index.html | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->test<!-- STYLES_END -->/g" 
 
-for file in `find ${WWW}/js -name "$JS_WILDCARD" | sort`; do
-	echo "Adding $file to index"
-	JSFILE=${file#${WWW}}
+for file in `find ${WWW}/js/ -name "$JS_WILDCARD" | sort`; do
+	JSFILE=${file#${WWW}/}
 	JSFILE=${JSFILE%.gz}
+	echo "Adding $JSFILE to index"
 	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${JSFILE}\"></script>"
 done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- SCRIPTS_BEGIN -->.*<!-- SCRIPTS_END -->/<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->/" 
@@ -81,16 +82,20 @@ echo "<!doctype html>
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
 	<title>JUCI</title><!--ng-bind='title'-->
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-	<base href='/'>
+	<link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
 	${STYLES_HTML}
 </head>
-<body role='document' ng-cloak >
+<body role='document'>
+	<div ng-hide='juci_loaded' class='juci-loadsplash'>
+		<div style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 1%; height: 1%;'>
+			<i class='fa fa-2x fa-spin fa-spinner text-success'></i>
+		</div>
+	</div>
 	<div ui-view='content' style='min-height: 1000px;'></div>
 	${SCRIPTS_HTML}
 </body>
 </html>" > ${INDEX}
 
-if [ "$MODE" = "RELEASE" ]; then
-	gzip -f ${INDEX}
-fi
+#if [ "$MODE" = "RELEASE" ]; then
+#	gzip -f ${INDEX}
+#fi

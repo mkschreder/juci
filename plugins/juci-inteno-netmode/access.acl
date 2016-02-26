@@ -1,0 +1,2 @@
+ubus /juci/netmode select x
+uci netmode * rw
