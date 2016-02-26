@@ -16,17 +16,17 @@ JUCI Flash and Memory Requirements (actual runtime usage):
 - ~160k flash for backend rpc server (revorpcd)
 - 16M ram (revorpcd + lighttpd server) 
 
-JUCI is built with html5, angularjs and bootstrap: 
+JUCI architecture looks roughly like this: 
+
+![JUCI Architecture](/media/juci-architecture.jpg)
+
+JUCI frontend is built with html5, angularjs and bootstrap: 
 
 ![Desktop](/media/screenshot.jpg?raw=true "JUCI Screenshot")
 
 JUCI is theme-able and fully mobile-ready (responsive): 
 
 ![Mobile](/media/mobile.jpg)
-
-JUCI architecture looks roughly like this: 
-
-![JUCI Architecture](/media/juci-architecture.jpg)
 
 What is JUCI? 
 -------------
