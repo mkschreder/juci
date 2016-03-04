@@ -874,6 +874,9 @@
 				if(!(k in self)){
 					//console.log("Adding new config "+k); 
 					self[k] = new UCI.Config(self, k); 
+					self[k]._exists = true; // mark that we have this config
+				} else {
+					self[k]._exists = true; // mark that we have this config
 				}
 			}); 
 			deferred.resolve(); 
