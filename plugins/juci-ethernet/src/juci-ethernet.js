@@ -30,6 +30,10 @@ JUCI.app.factory("$ethernet", function($rpc, $uci){
 		var self = this; 
 		$rpc.juci.ethernet.adapters().done(function(result){
 			if(result && result.adapters) {
+				result.adapters.map(function(x){
+					if(x.flags && x.flags.indexOf("UP") != -1) x.state = "UP"; 
+					else x.state = "DOWN"; 
+				}); 
 				// pipe all adapters though all subsystems and annotate them
 				async.each(self._subsystems, function(sys, next){
 					if(sys.annotateAdapters && sys.annotateAdapters instanceof Function){
