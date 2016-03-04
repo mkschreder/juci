@@ -87,14 +87,23 @@ JUCI.app
 	$scope.onEditSSID = function(iface){
 		$juciDialog.show("wireless-interface-edit", {
 			title: $tr(gettext("Edit wireless interface")),  
-			on_apply: function(btn, dlg){
-				$uci.$save(); 
-				return true; 
-			}, 
+			buttons: [
+				{ label: $tr(gettext("Save")), value: "save", primary: true },
+				{ label: $tr(gettext("Cancel")), value: "cancel" }
+			],
+			on_button: function(btn, inst){
+				if(btn.value == "cancel"){
+					iface.uci_dev.$reset();
+					inst.dismiss("cancel");
+				}
+				if(btn.value == "save"){
+					inst.close();
+				}
+			},
 			model: iface.uci_dev
 		}).done(function(){
-		
-		}); 
+
+		});
 	}
 
 	function refresh() {
@@ -106,14 +115,14 @@ JUCI.app
 				$uci.$sync("wireless").done(function(){
 					if(!$rpc.juci.wireless) { next(); return; }
 					$rpc.juci.wireless.devices().done(function(result){
-						$scope.wifi = $uci.wireless;  
-						$scope.vifs = result.devices.map(function(dev){
-							var uci_dev = $uci.wireless["@wifi-iface"].find(function(w){
-								return w.ifname.value == dev.device; 
+						$scope.vifs = $uci.wireless["@wifi-iface"].map(function(iface){
+							var dev = result.devices.find(function(dev){
+								return iface.ifname.value == dev.device; 
 							}); 
-							dev.uci_dev = uci_dev; 
+							if(!dev) return null;
+							dev.uci_dev = iface; 
 							return dev; 
-						}); //$uci.wireless["@wifi-iface"]; 
+						}).filter(function(x){ return x != null; }); 
 						if($uci.wireless && $uci.wireless.status) {
 							$scope.wifiSchedStatus = (($uci.wireless.status.schedule.value)?gettext("on"):gettext("off")); 
 							$scope.wifiWPSStatus = (($uci.wireless.status.wps.value)?gettext("on"):gettext("off")); 
@@ -133,10 +142,9 @@ JUCI.app
 					$scope.wireless.clients = clients.clients; 
 					$scope.wireless.clients.map(function(cl){
 						// check flags 
-						if(cl.flags && cl.flags.match(/NOIP/)) cl.ipaddr = $tr(gettext("No IP address")); 
+						if(!cl.authorized) cl.ipaddr = $tr(gettext("No IP address")); 
 					}); 
-					next(); 
-				}).fail(function(){
+				}).always(function(){
 					next();
 				});
 			},

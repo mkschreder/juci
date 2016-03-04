@@ -26,7 +26,7 @@ JUCI.app
 	
 	$wireless.getDevices().done(function(devices){
 		$scope.allRadios = devices.map(function(x){
-			return { label: x[".frequency"] + " (" + x[".name"] + ")", value: x[".name"] }; 
+			return { label: (x[".info"].frequency / 1000) + "Ghz (" + x[".name"] + ")", value: x[".name"] }; 
 		}); 
 	}); 
   $scope.ok = function () {
