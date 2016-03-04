@@ -130,12 +130,12 @@
 		this.validate = function(field){
 			if(!field.value || field.value == "") return null;
 			ipv4 = new IP4AddressValidator();
-			if(field.value.split("/").length != 2) return gettext("IP Address must be on the form: IP address/netmask length");
-			var err = ipv4.validate({ value: field.value.split("/")[0] });
+			var parts = field.value.split("/"); 
+			var err = ipv4.validate({ value: parts[0] });
 			if(err) return err;
-			var mask = field.value.split("/")[1];
-			if(!mask.match(/^0/) && mask.match(/^[\d\.]+$/) && parseInt(mask) < 25) return null
-			return gettext("Netmask must be a value between 0 and 24");
+			var mask = parseInt(parts[1]);
+			if(!isNaN(mask) && mask >= 0 && mask <= 32) return null; 
+			return gettext("Netmask must be a value between 0 and 32");
 		};
 	};
 
