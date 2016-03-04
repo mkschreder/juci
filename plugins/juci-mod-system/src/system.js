@@ -88,7 +88,11 @@ JUCI.app.factory("$systemService", function($rpc){
 			var def = $.Deferred(); 
 			this.list().done(function(services){
 				if(services) {
-					def.resolve(services.find(function(x){ return x.name == name; })); 
+					var s = services.find(function(x){ return x.name == name; }); 
+					if(s)
+						def.resolve(s); 
+					else
+						def.reject(); 
 				} else {
 					def.reject(); 
 				}
