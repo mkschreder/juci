@@ -50,8 +50,9 @@ JUCI.app
 				$scope.done = 1; 
 				var clients = {}; 
 				result.clients.map(function(x){ 
-					if(!clients[x.band]) clients[x.band] = []; 
-					clients[x.band].push(x); 
+					var freq = Math.floor(x.frequency / 100) / 10; 
+					if(!clients[freq]) clients[freq] = []; 
+					clients[freq].push(x); 
 				}); 
 				$scope.wifiClients = clients; 
 				$scope.wifiBands = Object.keys(clients); 
