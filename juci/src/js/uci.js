@@ -134,8 +134,8 @@
 			var err = ipv4.validate({ value: field.value.split("/")[0] });
 			if(err) return err;
 			var mask = field.value.split("/")[1];
-			if(!mask.match(/^0/) && mask.match(/^[\d\.]+$/) && parseInt(mask) < 25) return null
-			return gettext("Netmask must be a value between 0 and 24");
+			if(!isNaN(mask) && parseInt(mask) <= 32) return null
+			return gettext("Netmask must be a value between 0 and 32");
 		};
 	};
 
