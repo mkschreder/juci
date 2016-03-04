@@ -18,6 +18,7 @@ JUCI.app
 .controller("DDNSPage", function ($scope, $uci, $network) {
 	$scope.data = {}; 
 	$uci.$sync(["ddns"]).done(function () {
+		$scope.ddns_not_installed = !$uci.ddns._exists; 
 		$scope.ddns_list = $uci.ddns["@service"]; 
 		$scope.$apply(); 
 	}); 
@@ -25,7 +26,7 @@ JUCI.app
 	$scope.onAddDdnsSection = function(){
 		$uci.ddns.$create({
 			".type": "service", 
-			".name": "new ddns config",
+			"label": "new ddns config",
 			"enabled": true
 		}).done(function(ddns){
 			$scope.$apply(); 
