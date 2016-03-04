@@ -3,7 +3,8 @@
 		<juci-config-section>
 			<juci-config-heading>{{ 'General Settings' | translate }}</juci-config-heading>
 			<juci-config-info>{{ 'services.samba.info' | translate }}</juci-config-info>
-			<juci-config-lines>
+			<div ng-if="samba_not_installed" class="alert alert-danger" translate>Samba is not installed on this system</div>
+			<juci-config-lines ng-if="!samba_not_installed">
 				<juci-config-line title="{{'Name'|translate}}">
 					<input type="text" ng-model="config.name.value" class="form-control" placeholder="{{'Name'|translate}}"/>
 				</juci-config-line>
@@ -21,7 +22,7 @@
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
-		<juci-config-section>
+		<juci-config-section ng-if="!samba_not_installed">
 			<juci-config-heading>{{ 'Samba Shares' | translate }}</juci-config-heading>
 			<juci-config-info >{{'samba.shares.info'|translate}}</juci-config-info>
 			<juci-list-editor ng-items="shares" 
@@ -30,7 +31,7 @@
 				on-create="onCreateShare()"
 				on-delete="onDeleteShare($item)"></juci-list-editor>
 		</juci-config-section>
-		<juci-config-section>
+		<juci-config-section ng-if="!samba_not_installed">
 			<juci-config-heading>{{ 'Samba Users' | translate }}</juci-config-heading>
 			<juci-config-info >{{'samba.users.info'|translate}}</juci-config-info>
 			<juci-list-editor ng-items="users" 
