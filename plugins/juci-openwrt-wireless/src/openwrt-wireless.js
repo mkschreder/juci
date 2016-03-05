@@ -49,7 +49,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		var self = this; 
 		self.getInterfaces().done(function(list){
 			var devices = {}; 
-			list.map(function(x){ devices[x[".info"].device] = x; }); 
+			list.map(function(x){ if(x[".info"]) devices[x[".info"].device] = x; }); 
 			adapters.map(function(dev){
 				if(dev.device in devices){
 					dev.name = devices[dev.device].ssid.value + "@" + dev.device; 
@@ -100,6 +100,7 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 				$uci.wireless["@wifi-device"].map(function(x){
 					var dev = result.devices.find(function(y){ return x.ifname.value == y.device; }); 
 					if(dev) x[".info"] = dev; 
+					else x[".info"] = {}; // avoid crashes
 				}); 
 				deferred.resolve($uci.wireless["@wifi-device"]); 
 			}); 

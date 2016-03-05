@@ -30,7 +30,7 @@ JUCI.app
 			var devcounter = {}; 
 			$scope.interfaces.map(function(x){
 				var dev = devices.find(function(dev) { return dev[".name"] == x.device.value; });  
-				if(dev) {
+				if(dev && dev[".info"]) {
 					x[".frequency"] = (dev[".info"].frequency/1000)
 				}
 			}); 
