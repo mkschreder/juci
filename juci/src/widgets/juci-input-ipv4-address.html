@@ -1,4 +1,4 @@
-<div class="col-md-12" style="white-space: nowrap;">
+<div style="white-space: nowrap;">
 	<div ng-repeat="part in [0, 1, 2, 3]" style="float: left;">
 		<div style="width: 4em; float:left;" class="juci-input-ipv4">
 			<input type="text" style="min-width: 4em !important;" juci-input-ipv4-auto-move-on-dot ng-paste="onPaste($event)" ng-copy="onCopy($event)" class="form-control no-padding text-center" ng-change="updateModel()" ng-model="data.parts[part]" ng-model-options='{ getterSetter: true }' placeholder="{{placeholders[part]}}" maxlength="3" />
