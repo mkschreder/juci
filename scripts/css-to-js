@@ -1,4 +1,4 @@
-#!/usr/bin/nodejs
+#!/usr/bin/env node
 
 var JSON = require("JSON"); 
 var fs = require("fs"); 
