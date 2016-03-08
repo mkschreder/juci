@@ -89,6 +89,7 @@
 							deferred.reject(); 
 							return; 
 						} 
+						console.log("RPC initialized!"); 
 						next();
 					}).fail(function(){
 						console.log("could not initialize rpc interface"); 
@@ -125,8 +126,8 @@
 				}); 
 			}, 
 			function(next){
-				console.log("Trying to authenticate.."); 
 				$rpc.$authenticate().done(function(){
+					console.log("Authenticated!"); 
 					next(); 
 				}).fail(function(){
 					console.log("Failed to verify session."); 

@@ -25,7 +25,7 @@ JUCI.app
 	$scope.sid = $rpc.$sid(); 
 	$scope.filters = [];
 	
-	$config.settings.juci_event.filter.value.map(function(x){
+	if($config.settings.juci_event) $config.settings.juci_event.filter.value.map(function(x){
 		var filter = x.split(".")[0];
 		var id = x.split(".")[1];
 		if(inFilters(filter) == -1) $scope.filters.push({name:filter, filters:[id], checked:false});

@@ -364,7 +364,10 @@
 			var self = this; 
 
 			if(!$rpc.uci) {
-				setTimeout(function(){ deferred.reject(); }, 0); 
+				setTimeout(function(){ 
+					console.error("RPC uci object does not exist! Can not sync!"); 
+					deferred.reject(); 
+				}, 0); 
 				return deferred.promise(); 
 			}
 			
@@ -645,7 +648,7 @@
 				self.deferred = self.$reload(); 
 			}
 
-			if(self.deferred) return self.deferred.promise(); 
+			if(self.deferred && self.deferred.state() != "rejected") return self.deferred.promise(); 
 			
 			self.deferred = deferred; 
 

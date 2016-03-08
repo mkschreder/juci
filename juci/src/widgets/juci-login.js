@@ -22,11 +22,11 @@ JUCI.app
 		}, 
 		templateUrl: "/widgets/juci-login.html", 
 		replace: true, 
-		controller: "LoginControl",
+		controller: "juciLogin",
 		controllerAs: "ctrl"
 	}; 
 })
-.controller("LoginControl", function($scope, $config, $state, 
+.controller("juciLogin", function($scope, $config, $state, 
 	$window, $rpc, $localStorage, gettext){
 	$scope.form = { 
 		"username": "", 
@@ -34,12 +34,18 @@ JUCI.app
 		"remember": 0, 
 		"host": localStorage.getItem("rpc_url") || ""
 	}; 
-	$scope.showlogin = $config.settings.login.showusername.value; 
-	$scope.form.username = $config.settings.login.defaultuser.value||"admin"; 
+	$scope.showlogin = true; 
+	$scope.showHost = true; 
+
+	if($config.settings.login){
+		$scope.showlogin = $config.settings.login.showusername.value; 
+		$scope.form.username = $config.settings.login.defaultuser.value||"admin"; 
+		$scope.showHost = $config.settings.login.showhost.value;
+	} 
+
 	$scope.connecting = true; 
 	
 	$scope.errors = []; 
-	$scope.showHost = $config.settings.login.showhost.value; 
 
 	JUCI.interval.repeat("login-connection-check", 5000, function(done){
 		// TODO: this connection logic is bad. Must refactor this into something that is more stable. 
@@ -50,8 +56,9 @@ JUCI.app
 		done(); 
 	}); 
 	
-	$scope.doLogin = function(){
+	$scope.doLogin = function(redirect){
 		var deferred = $.Deferred(); 
+		if(!redirect) redirect = "/"; 
 		$scope.errors = []; 
 		$scope.logging_in = true; 
 		async.series([
@@ -68,24 +75,32 @@ JUCI.app
 			function(next){
 				$rpc.$login($scope.form.username,$scope.form.password).done(function success(res){
 					//window.location.reload(); 
-					window.location.href="/"; 
-					deferred.resolve(); 
+					//window.location.href=redirect; 
+					next(); 
 				}).fail(function fail(res){
 					//$scope.errors.push(res); 
+					console.error("Could not log in!"); 
 					$scope.errors.push(gettext("Please enter correct username and password!"));
 					$scope.logging_in = false; 
 					$scope.$apply(); 
 					deferred.reject(); 
 				}); 
+			}, 
+			function(next){
+				JUCI.$init().done(function(){
+					$state.go(redirect); 
+					deferred.resolve(); 
+				}); 
 			}
 		]); 
 		return deferred.promise(); 
 	}
-	$scope.doLogout = function(){
+	$scope.doLogout = function(redirect){
 		var deferred = $.Deferred(); 
+		if(!redirect) redirect = "/"; 
 		$rpc.$logout().done(function(){
 			console.log("Logged out!"); 
-			window.location.reload(); 
+			window.location.href=redirect; 
 			deferred.resolve(); 
 		}).fail(function(){
 			console.error("Error logging out!");

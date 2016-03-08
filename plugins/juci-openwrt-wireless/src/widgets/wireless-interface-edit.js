@@ -75,10 +75,12 @@ JUCI.app
 		{ label: $tr(gettext("WPA/WPA2 Enterprise Mixed Mode (TKIP + AES)")), value: "wpa-mixed+tkip+aes" }
 	]; 
 	$scope.cryptoChoices = allSupportedCryptoChoices.filter(function(x){
-		return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
+		if($config.settings.wireless)
+			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
+		return true; 
 	}); 
 
-	if($config.settings.wireless.cryptochoices.value.length){
+	if($config.settings.wireless && $config.settings.wireless.cryptochoices.value.length){
 		$scope.cryptoChoices = $scope.cryptoChoices.filter(function(x){
 			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
 		}); 
