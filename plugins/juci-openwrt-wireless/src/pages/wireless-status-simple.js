@@ -22,9 +22,19 @@ JUCI.app
 			$scope.devices = result.devices.map(function(dev){
 				dev._table = [
 					[$tr(gettext("SSID")), dev.ssid],
+					[$tr(gettext("Encryption")), dev.encryption.description],
 					[$tr(gettext("BSSID")), dev.bssid],
 					[$tr(gettext("Channel")), dev.channel], 
-					[$tr(gettext("Frequency")), ""+(parseFloat(dev.frequency)/1000.0)+" GHz"]
+					[$tr(gettext("HW Modes")), Object.keys(dev.hwmodes)
+						.filter(function(x){ return dev.hwmodes[x]; })
+						.map(function(x){ return "11"+x; }).join(",")
+					], 
+					[$tr(gettext("TX Power")), dev.txpower+"dBm"], 
+					[$tr(gettext("Bitrate")), (dev.bitrate/1000)+"Mbs"], 
+					[$tr(gettext("Quality")), dev.quality], 
+					[$tr(gettext("Signal")), dev.signal],
+					[$tr(gettext("Noise")), dev.noise],
+					//[$tr(gettext("Frequency")), ""+(parseFloat(dev.frequency)/1000.0)+" GHz"]
 				]; 
 				return dev; 
 			}); 

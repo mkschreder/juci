@@ -76,11 +76,20 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		var def = $.Deferred(); 
 		$rpc.juci.wireless.clients().done(function(clients){
 			if(clients && clients.clients) {
-				clients.clients.map(function(cl){
+				var clist = []; 
+				Object.keys(clients.clients).map(function(wldev){
+					var list = Object.keys(clients.clients[wldev]).map(function(x){ 
+						var cl = clients.clients[wldev][x]; 
+						cl.macaddr = String(x).toLowerCase(); 
+						return cl; 
+					}).map(function(x){ x.wldev = wldev; return x; }); 
+					clist = clist.concat(list); 
+				}); 
+				clist.map(function(cl){
 					if(cl.rssi && cl.noise && cl.noise > 0)
 						cl.snr = Math.floor(1 - (cl.rssi / cl.noise)); 
 				}); 
-				def.resolve(clients.clients); 
+				def.resolve(clist); 
 			}
 			else def.reject(); 
 		}); 

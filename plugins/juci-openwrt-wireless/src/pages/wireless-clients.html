@@ -4,18 +4,25 @@
 		<juci-config-info>{{'wireless.clients.info'|translate}}</juci-config-info>
 		<table class="table">
 			<thead>
-				<th translate>Hostname</th>
-				<th translate>MAC Address</th>
-				<th translate>IPv4</th>
-				<th translate>IPv6</th>
+				<th translate>IP-Address</th>
+				<th translate>MAC</th>
+				<th translate>Quality</th>
+				<th translate>Rates</th>
 				<th translate>Device</th>
+				<th translate>Radio</th>
 			</thead>
 			<tr ng-repeat="cl in clients track by $index">
-				<td>{{cl.hostname}}</td>
+				<td style="white-space: nowrap;">IPv4: {{cl.ipaddr || '-'}}<br/>IPv6: {{cl.ip6addr||'-'}}</td>
 				<td>{{cl.macaddr}}</td>
-				<td>{{cl.ipaddr}}</td>
-				<td>{{cl.ip6addr}}</td>
+				<td style="white-space: nowrap;">{{'Signal'|translate}}: {{cl._wireless.signal}}<br/>{{'Noise'|translate}}: {{cl._wireless.noise}}<br/>
+				SNR: {{cl._wireless.signal / cl._wireless.noise}}</td>
+				<td style="white-space: nowrap;">
+					{{'RX-Rate'|translate}}: {{cl._wireless.rx_rate / 1000}}<br/>
+					{{'TX-Rate'|translate}}: {{cl._wireless.tx_rate / 1000}}<br/>
+					{{'RX-Pkts'|translate}}: {{cl._wireless.rx_packets}}<br/>
+					{{'TX-Pkts'|translate}}: {{cl._wireless.tx_packets}}</td>
 				<td>{{cl.device}}</td>
+				<td>{{cl._wireless.wldev}}</td>
 			</tr>
 		</table>
 	</div>

@@ -28,7 +28,7 @@ JUCI.app
 }).controller("WifiDeviceEditController", function($scope, $rpc, $tr, gettext){
 	$scope.$watch("device", function onWirelessDeviceModelChanged(device){
 		if(!device) return; 
-		
+	/*	
 		$rpc.juci.wireless.radios().done(function(result){
 			if(device[".name"] in result){
 				var settings = result[device[".name"]]; 
@@ -38,7 +38,21 @@ JUCI.app
 			} 
 			$scope.$apply(); 
 		}); 
-		
+	*/		
+		$scope.allModes = [
+			{ label: "11a", value: "11a" }, 
+			{ label: "11b", value: "11b" }, 
+			{ label: "11g", value: "11g" }
+		]; 
+
+		$rpc.juci.wireless.txpowerlist({ device: $scope.device.ifname.value }).done(function(result){
+			if(!result || !result.txpowerlist) return; 
+			$scope.allSupportedTxPowers = result.txpowerlist.map(function(x){
+				return { label: x.dbm+" dBm ("+x.mw+" mw)", value: x.dbm }; 
+			}); 
+			$scope.$apply(); 
+		}); 
+
 		$rpc.juci.wireless.htmodelist({ device: $scope.device.ifname.value }).done(function(result){
 			if(!result || !result.htmodes) return; 
 			$scope.allBandwidthModes = Object.keys(result.htmodes).filter(function(k){ return result.htmodes[k]; }).map(function(x){
