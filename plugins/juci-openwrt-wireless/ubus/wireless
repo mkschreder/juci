@@ -183,10 +183,10 @@ end
 local function wireless_txpowerlist(msg)
 	local result = {}
 	if(not msg.device) then
-		return { error = "no device specified!" }; 
+		print(json.encode({ error = "no device specified!" })); 
 	end
 	result.txpowerlist = wireless_get_80211_txpowerlist(msg.device); 
-	return result; 
+	print(json.encode(result)); 
 end
 
 
@@ -194,24 +194,9 @@ local function wireless_clients()
 	local devices = wireless_get_80211_device_names(); 
 	local result = { clients = {} }; 
 	for _,wldev in ipairs(devices) do
-		local cn = ubus.connect(); 
-		if(cn) then
-			local cl = cn:call("hostapd."..wldev, "get_clients", {}); 
-			if(cl) then 
-				for macaddr,client in pairs(cl.clients) do 
-					local extinfo = wireless_get_extended_stainfo(wldev, macaddr); 
-					
-					local client = {
-						device = wldev, 
-						macaddr = macaddr
-					}; 
-
-					for k,v in pairs(extinfo) do client[k] = v; end
-
-					table.insert(result.clients, client); 
-				end
-				cn:close(); 
-			end
+		local t = iwinfo.type(wldev); 
+		if t and iwinfo[t] then 
+			result.clients[wldev] = iwinfo[t].assoclist(wldev); 
 		end
 	end
 	print(json.encode(result)); 
