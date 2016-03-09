@@ -10,7 +10,8 @@
 					"clients",
 					"countrylist",
 					"htmodelist", 
-					"freqlist"
+					"freqlist",
+					"txpowerlist"
 				]
 			},
 			"uci": [ "wireless" ]
