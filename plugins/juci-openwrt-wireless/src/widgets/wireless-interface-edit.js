@@ -79,13 +79,13 @@ JUCI.app
 			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
 		return true; 
 	}); 
-
+/*
 	if($config.settings.wireless && $config.settings.wireless.cryptochoices.value.length){
 		$scope.cryptoChoices = $scope.cryptoChoices.filter(function(x){
 			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
 		}); 
 	}
-
+*/
 	$scope.keyChoices = [
 		{label: $tr(gettext("Key")) + " #1", value: 1},
 		{label: $tr(gettext("Key")) + " #2", value: 2},

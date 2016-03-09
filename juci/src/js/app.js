@@ -96,6 +96,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 
 	var path = $location.path().replace(/\//g, ""); 
 
+	//NOTE: webgui-only
 	// load the right page from the start
 	$rpc.$authenticate().done(function(){
 		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
@@ -114,6 +115,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	$rootScope.juci_loaded = true; 
 }) 
 // TODO: figure out how to avoid forward declarations of things we intend to override. 
+/*
 .directive("juciFooter", function(){ return {} })
 .directive("juciLayoutNaked", function(){ return {} })
 .directive("juciLayoutSingleColumn", function(){ return {} })
@@ -132,7 +134,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 				})
 		}
 }}]); 
-
+*/
 // make autofocus directive work as expected
 JUCI.app.directive('autofocus', ['$timeout', function($timeout) {
   return {
@@ -145,6 +147,7 @@ JUCI.app.directive('autofocus', ['$timeout', function($timeout) {
   }
 }]);
 
+//NOTE: webgui-only
 // This ensures that we have control over the initialization order (base system first, then angular). 
 angular.element(document).ready(function() {
 	JUCI.$init().done(function(){

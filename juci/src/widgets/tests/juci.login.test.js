@@ -8,7 +8,6 @@ describe("core.login", function(){
 		controller("LoginControl", $scope); 
 	});
 	it("should be able to login", function(done){
-		console.log(JSON.stringify(Object.keys($scope))); 
 		$scope.form.username = PARAMS.username; 
 		$scope.form.password = PARAMS.password; 
 		$scope.doLogin().done(function(){
