@@ -72,12 +72,15 @@ Usage on OpenWRT
 
 Here is how to build and install JUCI on OpenWRT: 
 
-- Add official JUCI feed to your feeds.conf.default
-src-git-full juci https://github.com/mkschreder/juci-feed.git
+- Add official JUCI feed to your feeds.conf
+
+	src-git-full juci https://github.com/mkschreder/juci-openwrt-feed.git
 
 - Update and install the feed (with -f to force overrides)
-./scripts/feeds update juci
-./scripts/feeds install -f -p juci -a
+
+	./scripts/feeds update juci
+	
+	./scripts/feeds install -f -p juci -a
 
 - select juci-full to build all packages currently supported on OpenWRT. 
 
