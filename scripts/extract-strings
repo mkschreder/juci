@@ -1,3 +1,4 @@
+# Copyright 2016 Martin Schröder <mkschreder.uk@gmail.com>
 #!/bin/bash
 
 if [ "$1" = "" ]; then
