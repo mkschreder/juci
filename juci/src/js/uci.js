@@ -559,7 +559,7 @@
 		
 		function _insertSection(self, item){
 			// experimental feature for hiding sections from interface 
-			if(item["do_not_edit"]) return; 
+			if(item["do_not_edit"] || item["juci_hide"]) return; 
 
 			//console.log("Adding local section: "+self[".name"]+"."+item[".name"]); 
 			var section = new UCI.Section(self); 
