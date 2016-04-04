@@ -100,9 +100,9 @@ JUCI.app
 		scope: {
 			onPreApply: "&"
 		}, 
-		controller: "juciConfigApplyController"
+		controller: "juciConfigApply"
 	 }; 
-}).controller("juciConfigApplyController", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
+}).controller("juciConfigApply", function($scope, $uci, $rootScope, $tr, gettext, $juciDialog){
 	$scope.changes = []; 
 	$scope.numUnsavedChanges = function(){
 		return $scope.changes.length;

@@ -22,8 +22,10 @@ UCI.juci.$registerSectionType("pagesystemstatus", {
 UCI.juci.$insertDefaults("pagesystemstatus"); 
 
 JUCI.app
-.controller("StatusSystemPage", function ($scope, $rootScope, $uci, $rpc, gettext, $tr, $config) {
+.controller("statusSystemPage", function ($scope, $rootScope, $uci, $rpc, gettext, $tr, $config) {
 	$scope.changes = [];
+	if(!$rpc.juci) return; 
+
 	Object.keys($uci).map(function(x){
 		var tmp = []
 		if($uci[x].$getWriteRequests){
@@ -120,13 +122,17 @@ JUCI.app
 				arr.push([$tr(gettext("Target")), board.release.target || board.system || info.system.socver || $tr(gettext("N/A"))]);  
 			}
 			
+			$scope.systemMemoryInfo = {
+				mem_usage: Math.round(((sys.memory.total - sys.memory.free) / sys.memory.total) * 100), 
+			};
+				
 			$scope.systemMemoryTbl.rows = [
 				[$tr(gettext("Usage")), '<juci-progress value="'+Math.round((sys.memory.total - sys.memory.free) / 1000)+'" total="'+ Math.round(sys.memory.total / 1000) +'" units="kB"></juci-progress>'],
 				[$tr(gettext("Shared")), '<juci-progress value="'+Math.round(sys.memory.shared / 1000)+'" total="'+ Math.round(sys.memory.total / 1000) +'" units="kB"></juci-progress>'],
 				[$tr(gettext("Buffered")), '<juci-progress value="'+Math.round(sys.memory.buffered / 1000)+'" total="'+ Math.round(sys.memory.total / 1000) +'" units="kB"></juci-progress>'],
 				[$tr(gettext("Swap")), '<juci-progress value="'+Math.round((sys.swap.total - sys.swap.free) / 1000)+'" total="'+ Math.round(sys.swap.total / 1000) +'" units="kB"></juci-progress>']
 			];
-			
+
 			if($uci.juci["pagesystemstatus"] && $uci.juci["pagesystemstatus"].show_diskinfo.value){ 
 				$scope.show_diskinfo = true; 
 				$scope.systemStorageTbl.rows = []; 

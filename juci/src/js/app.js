@@ -89,11 +89,14 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 		$rootScope.errors.splice(0, $rootScope.errors.length); 
 	}); 
 	// set current language
-	gettextCatalog.setCurrentLanguage($config.settings.juci.default_language.value); 
-	gettextCatalog.debug = $config.settings.juci.language_debug.value;
-	
+	if($config.settings.juci){
+		gettextCatalog.setCurrentLanguage($config.settings.juci.default_language.value); 
+		gettextCatalog.debug = $config.settings.juci.language_debug.value;
+	}
+
 	var path = $location.path().replace(/\//g, ""); 
-	
+
+	//NOTE: webgui-only
 	// load the right page from the start
 	$rpc.$authenticate().done(function(){
 		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
@@ -112,6 +115,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	$rootScope.juci_loaded = true; 
 }) 
 // TODO: figure out how to avoid forward declarations of things we intend to override. 
+/*
 .directive("juciFooter", function(){ return {} })
 .directive("juciLayoutNaked", function(){ return {} })
 .directive("juciLayoutSingleColumn", function(){ return {} })
@@ -130,7 +134,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 				})
 		}
 }}]); 
-
+*/
 // make autofocus directive work as expected
 JUCI.app.directive('autofocus', ['$timeout', function($timeout) {
   return {
@@ -143,6 +147,7 @@ JUCI.app.directive('autofocus', ['$timeout', function($timeout) {
   }
 }]);
 
+//NOTE: webgui-only
 // This ensures that we have control over the initialization order (base system first, then angular). 
 angular.element(document).ready(function() {
 	JUCI.$init().done(function(){
@@ -152,4 +157,3 @@ angular.element(document).ready(function() {
 		//alert("JUCI failed to initialize! look in browser console for more details (this should not happen!)"); 
 	}); 
 });
-

@@ -6,9 +6,12 @@
 		<juci-config-line title="{{'Regulatory Domain'|translate}}" help="{{'Pick your country to comply with local regulations'|translate}}">
 			<juci-select ng-model="device.country.value" ng-items="regChoices"></juci-select>
 		</juci-config-line>
-		<!--<juci-config-line title="{{'Wifi Mode'|translate}}">
+		<!--<juci-config-line title="{{'HW Mode'|translate}}" help="{{'Hardware Mode'|translate}}">
 			<juci-select ng-model="device.hwmode.value" ng-items="allModes" placeholder="{{'Pick Hardware Mode'|translate}}"/>
 		</juci-config-line>-->
+		<juci-config-line title="{{'TX Power'|translate}}" help="{{'Maximum tx power'|translate}}">
+			<juci-select ng-model="device.txpower.value" ng-items="allSupportedTxPowers" placeholder="{{'Pick TX power'|translate}}"></juci-select>
+		</juci-config-line>
 		<juci-config-line title="{{'Bandwidth Mode'|translate}}" help="{{'Bandwidth mode (higher = faster theoretical throughput)'|translate}}">
 			<juci-select ng-model="device.htmode.value" ng-items="allBandwidthModes" placeholder="{{'Pick Bandwidth Mode'|translate}}"/>
 		</juci-config-line>

@@ -30,14 +30,17 @@ JUCI.app
 			var devcounter = {}; 
 			$scope.interfaces.map(function(x){
 				var dev = devices.find(function(dev) { return dev[".name"] == x.device.value; });  
-				if(dev) x[".frequency"] = (dev[".info"].frequency/1000)
+				if(dev && dev[".info"]) {
+					x[".frequency"] = (dev[".info"].frequency/1000)
+				}
 			}); 
 			$scope.$apply(); 
 		}); 
 	}); 
 	
 	$scope.getItemTitle = function($item){
-		return ($item.ssid.value + ' @ ' + $item.ifname.value + ' (' + $item[".frequency"] + 'Ghz)'); 
+		if($item[".info"]) console.log("ITEM: "+Object.keys($item[".info"])); 
+		return ($item.ssid.value + ' @ ' + (($item[".info"]||{}).device||"") + ($item[".frequency"]?' (' + $item[".frequency"] + 'Ghz)':"")); 
 	}
 	
 	$scope.onCreateInterface = function(){
@@ -59,7 +62,7 @@ JUCI.app
 				"ssid": data.ssid
 			}).done(function(interface){
 				//$scope.interfaces.push(interface); 
-				interface[".frequency"] = ($scope.devices.find(function(x){ return x[".name"] == interface.device.value; })||{})[".frequency"]; 
+				//interface[".frequency"] = interface[".info"].frequency / 1000; 
 				$scope.$apply(); 
 			}); 
 		}, function () {

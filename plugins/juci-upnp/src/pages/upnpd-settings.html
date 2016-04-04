@@ -1,8 +1,9 @@
 <juci-layout-with-sidebar>
-
 	<div ng-controller="UPNPMainPage">
 		<juci-config-heading>{{ 'UPNP Settings' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'internet.services.upnp.info' | translate }}</juci-config-info>
+		<div class="alert alert-danger" translate>UPnP configuration is not available on this system!</div>
+		<div ng-show="!upnp_not_present">
 		<h2 translate>UPnP Open Ports</h2>
 		<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
 		<juci-config-section>
@@ -125,5 +126,6 @@
 				</accordion-group>
 			</accordion>
 		</juci-config-section>
+		</div><!-- upnp not installed -->
 	</div>
 </juci-layout-with-sidebar>

@@ -130,12 +130,12 @@
 		this.validate = function(field){
 			if(!field.value || field.value == "") return null;
 			ipv4 = new IP4AddressValidator();
-			if(field.value.split("/").length != 2) return gettext("IP Address must be on the form: IP address/netmask length");
-			var err = ipv4.validate({ value: field.value.split("/")[0] });
+			var parts = field.value.split("/"); 
+			var err = ipv4.validate({ value: parts[0] });
 			if(err) return err;
-			var mask = field.value.split("/")[1];
-			if(!mask.match(/^0/) && mask.match(/^[\d\.]+$/) && parseInt(mask) < 25) return null
-			return gettext("Netmask must be a value between 0 and 24");
+			var mask = parseInt(parts[1]);
+			if(!isNaN(mask) && mask >= 0 && mask <= 32) return null; 
+			return gettext("Netmask must be a value between 0 and 32");
 		};
 	};
 
@@ -364,7 +364,10 @@
 			var self = this; 
 
 			if(!$rpc.uci) {
-				setTimeout(function(){ deferred.reject(); }, 0); 
+				setTimeout(function(){ 
+					console.error("RPC uci object does not exist! Can not sync!"); 
+					deferred.reject(); 
+				}, 0); 
 				return deferred.promise(); 
 			}
 			
@@ -645,7 +648,7 @@
 				self.deferred = self.$reload(); 
 			}
 
-			if(self.deferred) return self.deferred.promise(); 
+			if(self.deferred && self.deferred.state() != "rejected") return self.deferred.promise(); 
 			
 			self.deferred = deferred; 
 
@@ -874,6 +877,9 @@
 				if(!(k in self)){
 					//console.log("Adding new config "+k); 
 					self[k] = new UCI.Config(self, k); 
+					self[k]._exists = true; // mark that we have this config
+				} else {
+					self[k]._exists = true; // mark that we have this config
 				}
 			}); 
 			deferred.resolve(); 

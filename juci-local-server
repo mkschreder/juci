@@ -1,4 +1,4 @@
-#!/usr/bin/nodejs
+#!/usr/bin/env node
 
 var express = require('express');
 var app = express();
@@ -77,8 +77,8 @@ app.ws('/websocket/', function(ws, req) {
 		ws.send(e.data);    
 	} 
 	ws.on("message",function(msg){
-		process.stdout.write("JSON RES: "+msg); 
 		connect.done(function(){
+			process.stdout.write("JSON REQ: "+msg); 
 			socket.send(msg); 
 		}); 
 	}); 

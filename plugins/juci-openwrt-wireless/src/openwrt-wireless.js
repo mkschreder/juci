@@ -49,10 +49,11 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		var self = this; 
 		self.getInterfaces().done(function(list){
 			var devices = {}; 
-			list.map(function(x){ devices[x.ifname.value] = x; }); 
+			list.map(function(x){ if(x[".info"]) devices[x[".info"].device] = x; }); 
 			adapters.map(function(dev){
 				if(dev.device in devices){
 					dev.name = devices[dev.device].ssid.value + "@" + dev.device; 
+					dev.type = "wireless"; 
 					delete devices[dev.device]; 
 				}
 			});
@@ -80,11 +81,20 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		}
 		$rpc.juci.wireless.clients().done(function(clients){
 			if(clients && clients.clients) {
-				clients.clients.map(function(cl){
+				var clist = []; 
+				Object.keys(clients.clients).map(function(wldev){
+					var list = Object.keys(clients.clients[wldev]).map(function(x){ 
+						var cl = clients.clients[wldev][x]; 
+						cl.macaddr = String(x).toLowerCase(); 
+						return cl; 
+					}).map(function(x){ x.wldev = wldev; return x; }); 
+					clist = clist.concat(list); 
+				}); 
+				clist.map(function(cl){
 					if(cl.rssi && cl.noise && cl.noise > 0)
 						cl.snr = Math.floor(1 - (cl.rssi / cl.noise)); 
 				}); 
-				def.resolve(clients.clients); 
+				def.resolve(clist); 
 			}
 			else def.reject(); 
 		}); 
@@ -94,11 +104,12 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	Wireless.prototype.getDevices = function(){
 		var deferred = $.Deferred(); 
 		$rpc.juci.wireless.devices().done(function(result){
+			if(!result || !result.devices) return; 
 			$uci.$sync("wireless").done(function(){
 				$uci.wireless["@wifi-device"].map(function(x){
-					if(!result || !result.devices) return; 
 					var dev = result.devices.find(function(y){ return x.ifname.value == y.device; }); 
 					if(dev) x[".info"] = dev; 
+					else x[".info"] = {}; // avoid crashes
 				}); 
 				deferred.resolve($uci.wireless["@wifi-device"]); 
 			}); 
@@ -108,26 +119,31 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 	
 	Wireless.prototype.getInterfaces = function(){
 		var deferred = $.Deferred(); 
-		$uci.$sync("wireless").done(function(){
-			var ifs = $uci.wireless["@wifi-iface"]; 
-			// TODO: this is an ugly hack to automatically calculate wifi device name
-			// it is not guaranteed to be exact and should be replaced by a change to 
-			// how openwrt handles wireless device by adding an ifname field to wireless 
-			// interface configuration which will be used to create the ethernet device.  
-			/*
-			var counters = {}; 
-			ifs.map(function(i){
-				if(i.ifname.value == ""){
-					if(!counters[i.device.value]) counters[i.device.value] = 0; 
-					if(counters[i.device.value] == 0)
-						i.ifname.value = i.device.value; 
-					else
-						i.ifname.value = i.device.value + "." + counters[i.device.value]; 
-					counters[i.device.value]++; 
-				}
-			});*/ 
-			deferred.resolve(ifs); 
-		}); 
+		$rpc.juci.wireless.devices().done(function(result){
+			$uci.$sync("wireless").done(function(){
+				var ifs = $uci.wireless["@wifi-iface"]; 
+				ifs.map(function(x){
+					x[".info"] = result.devices.find(function(y){ return x.ssid.value == y.ssid; }); 
+				}); 
+				// TODO: this is an ugly hack to automatically calculate wifi device name
+				// it is not guaranteed to be exact and should be replaced by a change to 
+				// how openwrt handles wireless device by adding an ifname field to wireless 
+				// interface configuration which will be used to create the ethernet device.  
+				/*
+				var counters = {}; 
+				ifs.map(function(i){
+					if(i.ifname.value == ""){
+						if(!counters[i.device.value]) counters[i.device.value] = 0; 
+						if(counters[i.device.value] == 0)
+							i.ifname.value = i.device.value; 
+						else
+							i.ifname.value = i.device.value + "." + counters[i.device.value]; 
+						counters[i.device.value]++; 
+					}
+				});*/ 
+				deferred.resolve(ifs); 
+			}); 
+		}).fail(function(){ deferred.reject(); }); 
 		return deferred.promise(); 
 	}
 	

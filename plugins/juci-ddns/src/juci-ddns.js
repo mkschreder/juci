@@ -17,6 +17,7 @@
 UCI.$registerConfig("ddns");
 UCI.ddns.$registerSectionType("service", {
 	"enabled":              { dvalue: false, type: Boolean },
+	"label": 				{ dvalue: "my ddns", type: String }, // gui label for this entry
 	"interface":            { dvalue: "", type: String },
 	"use_syslog":           { dvalue: false, type: Boolean },
 	"service_name":         { dvalue: "", type: String },

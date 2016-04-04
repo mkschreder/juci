@@ -4,7 +4,7 @@
 			<switch ng-model="ddns.enabled.value" class="green"/>
 		</juci-config-line>
 		<juci-config-line title="{{'Label'|translate}}">
-			<input type="text" class="form-control" ng-model="ddns['.name']"/>
+			<input type="text" class="form-control" ng-model="ddns.label.value" placeholder="{{'Name'|translate}}"/>
 		</juci-config-line>
 		<juci-config-line title="{{'IP Retreival Method'|translate}}">
 			<juci-select ng-model="ddns.ip_source.value" ng-items="allSourceTypes"></juci-select>

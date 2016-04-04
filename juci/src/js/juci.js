@@ -57,7 +57,8 @@
 		var css = document.createElement("style");
 		css.type = "text/css";
 		css.innerHTML = style.css;
-		document.body.appendChild(css);
+		if(document.body) document.body.appendChild(css);
+		else console.error("Could not insert style. Document body is null"); // can happen on mobile!
 	}
 
 	JUCIMain.prototype.page = function(name, template, redirect){
@@ -89,6 +90,7 @@
 							deferred.reject(); 
 							return; 
 						} 
+						console.log("RPC initialized!"); 
 						next();
 					}).fail(function(){
 						console.log("could not initialize rpc interface"); 
@@ -125,8 +127,8 @@
 				}); 
 			}, 
 			function(next){
-				console.log("Trying to authenticate.."); 
 				$rpc.$authenticate().done(function(){
+					console.log("Authenticated!"); 
 					next(); 
 				}).fail(function(){
 					console.log("Failed to verify session."); 

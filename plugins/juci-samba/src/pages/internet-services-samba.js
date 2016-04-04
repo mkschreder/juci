@@ -16,6 +16,10 @@
 
 JUCI.app
 .controller("ServiceSambaPage", function($scope, $tr, gettext, $uci, $samba, gettext, $firewall){
+	if(!$uci.samba._exists) {
+		$scope.samba_not_installed = true; 
+		return; 
+	}
 	$scope.data = {
 		networks: [],
 		output: []

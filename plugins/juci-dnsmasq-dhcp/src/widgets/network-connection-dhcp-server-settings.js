@@ -35,14 +35,13 @@ JUCI.app
 			$scope.dhcp = $uci.dhcp["@dhcp"].find(function(x){
 				return x.interface.value == value[".name"] || x[".name"] == value[".name"]; 
 			}); 
-			$scope.data.dhcpEnabled = $scope.dhcp && !$scope.dhcp.ignore.value; 
+			if($scope.dhcp) $scope.data.dhcpEnabled = $scope.dhcp && !$scope.dhcp.ignore.value; 
 			$scope.$apply(); 
 		}); 
 	}); 
 	$scope.$watch("data.dhcpEnabled", function(value){
-		if($scope.dhcp == undefined) return;
 		if($scope.connection && $scope.connection.proto && $scope.connection.proto.value == "static") {
-			if($scope.connection){
+			if(!$scope.dhcp){
 				$uci.dhcp.$create({
 					".type": "dhcp", 
 					".name": $scope.connection[".name"],
@@ -52,9 +51,9 @@ JUCI.app
 					$scope.dhcp = dhcp; 
 					$scope.$apply(); 
 				}); 
+			} else {
+				$scope.dhcp.ignore.value = !value; 
 			}
-		} else {
-			$scope.dhcp.ignore.value = !value; 
 		}
 	}); 
 }); 

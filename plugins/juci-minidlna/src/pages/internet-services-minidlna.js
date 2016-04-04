@@ -62,7 +62,7 @@ JUCI.app
 	});
 	
 	$rpc.juci.system.service.status({name:"minidlna"}).done(function(result){
-		$scope.is_running = result.running ? "active" : "inactive";
+		$scope.is_running = result.running;
 		$scope.$apply();
 	});
 

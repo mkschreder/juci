@@ -41,16 +41,16 @@
 	
 	RevoRPC.prototype.$reset = function(){
 		// reset the stored rpc url
-		localStorage.setItem("rpc_url", "ws://"+window.location.host+"/websocket/"); 
+		localStorage.setItem("rpc_url", window.location.host || ""); //"ws://"+window.location.host+"/websocket/"); 
 	}
 
 	// Connects to the rpc server. Resolves if connection has been established and fails otherwise. 
-	RevoRPC.prototype.$connect = function(address){
+	RevoRPC.prototype.$connect = function(host){
 		var self = this; 
 		var def = this.conn_promise = $.Deferred(); 
-		if(!address) address = localStorage.getItem("rpc_url"); 
-		if(!address || address == 'undefined') address = "ws://"+window.location.host+"/websocket/"; 
-		scope.localStorage.setItem("rpc_url", address); 
+		var _host = host || localStorage.getItem("rpc_url") || window.location.host;  
+		var address = "ws://"+_host+"/websocket/"; 
+		scope.localStorage.setItem("rpc_url", _host); 
 		var socket = null; 
 		try {
 			socket = this.socket = new WebSocket(address); 	

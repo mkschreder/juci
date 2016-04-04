@@ -24,6 +24,9 @@ JUCI.app
 				$scope.$apply();
 				done(); 
 			}); 
+		}).fail(function(){
+			$scope.upnp_not_present = true; 
+			$scope.$apply(); 
 		});
 	}); 
 	$scope.networks = [];

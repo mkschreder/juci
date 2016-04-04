@@ -5,4 +5,5 @@ ubus /juci/wireless clients x
 ubus /juci/wireless countrylist x
 ubus /juci/wireless htmodelist x
 ubus /juci/wireless freqlist x
+ubus /juci/wireless txpowerlist x
 uci wireless * rw

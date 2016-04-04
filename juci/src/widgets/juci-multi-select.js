@@ -48,7 +48,6 @@ JUCI.app
 				model: x, 
 				selected: true
 			}; 
-			//console.log($scope.getItemTitle({ "$item": x })); 
 			//$scope.data.input.push(item); 
 			$scope.data.input.push(item); 
 		}); 

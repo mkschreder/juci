@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.controller("SettingsPasswordCtrl", function($scope, $rpc, $tr, gettext){
+.controller("settingsPasswordPage", function($scope, $rpc, $tr, gettext){
 	$scope.showPassword = 0; 
 	$scope.showModal = 0; 
 

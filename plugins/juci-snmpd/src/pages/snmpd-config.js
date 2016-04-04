@@ -17,7 +17,11 @@
 JUCI.app
 .controller("SnmpConfigPage", function($scope, $uci, gettext){
 	$uci.$sync("snmpd").done(function(){
-		if(!$uci.snmpd || !$uci.snmpd["@system"].length) return; 
+		if(!$uci.snmpd._exists) {
+			$scope.snmpd_not_installed = true; 
+			$scope.$apply(); 
+			return; 
+		}
 		$scope.config = $uci.snmpd["@system"][0]; 
 		$scope.$apply(); 
 	}); 
