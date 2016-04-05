@@ -1,5 +1,0 @@
-ubus /sys.dect status rw 
-ubus /sys.dect ping rw 
-ubus /sys.dect pair rw 
-ubus /sys.dect.handset.* ping rw 
-uci dect * rw
