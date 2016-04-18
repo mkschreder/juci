@@ -17,7 +17,7 @@
 JUCI.app.directive("juciListSimpleEditor", function(){
 	return {
 		scope: {
-			items: "=ngModel", 
+			items: "=ngItems", 
 			getItemTitle: "&getItemTitle", 
 			onCreate: "&onAddItem", 
 			onDelete: "&onDeleteItem", 
