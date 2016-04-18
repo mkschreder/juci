@@ -270,11 +270,12 @@ UCI.network.$registerSectionType("switch_port", {
 UCI.$registerConfig("hosts");
 UCI.hosts.$registerSectionType("host", {
 	"device":            { dvalue: "", type: String },
-	"ipaddr":               { dvalue: "", type: String },
-	"name":             { dvalue: "", type: String },
+	"ipaddr":               { dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator },
+	"name": 			{ dvalue: "", type: String }, // deprecated!
+	"names": 			{ dvalue: [], type: Array }, 
 	"manufacturer":             { dvalue: "", type: String },
-	"hostname":		{ dvalue: "", type: String, required: true}, 
-	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, required: true}
+	"hostname":		{ dvalue: "", type: String}, 
+	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/}
 });
 
 UCI.juci.$registerSectionType("network", {
