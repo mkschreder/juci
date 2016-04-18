@@ -279,6 +279,7 @@ UCI.hosts.$registerSectionType("host", {
 }, function(host){
 	if(host.ipaddr.value == "") return gettext("Host ip address can not be empty!");
 	if(host.names.value.length == 0) return gettext("Host must have at least one hostname!"); 
+	if(UCI.hosts["@host"] && UCI.hosts["@host"].find(function(x){ return x != host && x.ipaddr.value == host.ipaddr.value; })) return gettext("An entry for host already exists: ")+host.ipaddr.value; 
 	return null; 
 }); 
 
