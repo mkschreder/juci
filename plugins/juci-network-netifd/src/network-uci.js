@@ -276,7 +276,11 @@ UCI.hosts.$registerSectionType("host", {
 	"manufacturer":             { dvalue: "", type: String },
 	"hostname":		{ dvalue: "", type: String}, 
 	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/}
-});
+}, function(host){
+	if(host.ipaddr.value == "") return gettext("Host ip address can not be empty!");
+	if(host.names.value.length == 0) return gettext("Host must have at least one hostname!"); 
+	return null; 
+}); 
 
 UCI.juci.$registerSectionType("network", {
 	"wan4_interface": 	{ dvalue: "wan", type: String }, // default wan4 interface name 
