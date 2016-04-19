@@ -28,7 +28,7 @@
 		}, 
 		repeat: function(name, t, fn){
 			function _onTimeout(){
-				fn(function next(ret, err){
+				if(fn) fn(function next(ret, err){
 					if(!ret) {
 						if(!_timeouts[name] || !_timeouts[name].cleared)
 							_timeouts[name] = setTimeout(_onTimeout, t); 
