@@ -526,13 +526,16 @@
 					errors.push(e); 
 				}
 			}
-			if(type && type[".validator"] && (type[".validator"] instanceof Function)){
-				try {
-					var e = type[".validator"](self); 
-					if(e) errors.push(e); 
-				} catch(e){
-					errors.push(e); 
-				}
+			if(type && type[".validators"]){
+				type[".validators"].map(function(val){
+					if(!(val instanceof Function)) return; 
+					try {
+						var e = val(self); 
+						if(e) errors.push(e); 
+					} catch(e){
+						errors.push(e); 
+					}
+				}); 
 			}
 			return errors; 
 		}
@@ -766,11 +769,18 @@
 		UCIConfig.prototype.$registerSectionType = function(name, descriptor, validator){
 			var config = this[".name"]; 
 			var conf_type = section_types[config]; 
-			if(name in conf_type) throw new Error("Section "+name+" already defined. Please fix your code!"); 
+			if(name in conf_type) console.warn("Section "+name+" already defined. Will extend existing section! If this is not your intention, fix your code!"); 
 			if(typeof conf_type === "undefined") conf_type = section_types[config] = {}; 
-			conf_type[name] = descriptor; 
-			this["@"+name] = []; 
-			if(validator !== undefined && validator instanceof Function) conf_type[name][".validator"] = validator; 
+			// either create a new type or extend/overwrite existing field definitions 
+			if(!conf_type[name]) conf_type[name] = descriptor; 
+			else Object.keys(descriptor).map(function(k){
+				conf_type[name][k] = descriptor[k];  
+			}); 
+			// add an empty list of sections of this type
+			if(!this["@"+name]) this["@"+name] = []; 
+			// add validator
+			if(!conf_type[name][".validators"]) conf_type[name][".validators"] = []; 
+			if(validator !== undefined && validator instanceof Function) conf_type[name][".validators"].push(validator); 
 			//console.log("Registered new section type "+config+"."+name); 
 		}
 		
