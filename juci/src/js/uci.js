@@ -348,6 +348,9 @@
 	(function(){
 		function UCISection(config){
 			this[".config"] = config; 
+			this.__defineSetter__("validator", function(value){
+				this[".user_validator"] = value; 
+			}); 
 		}
 		
 		UCISection.prototype.$update = function(data, opts){
@@ -513,6 +516,16 @@
 				}
 			}); 
 			var type = this[".section_type"]; 
+			// support user defined validators for a section
+			var uval = this[".user_validator"]; 
+			if(uval && uval instanceof Function){
+				try {
+					var e = uval(self); 
+					if(e) errors.push(e); 
+				} catch(e){
+					errors.push(e); 
+				}
+			}
 			if(type && type[".validator"] && (type[".validator"] instanceof Function)){
 				try {
 					var e = type[".validator"](self); 
@@ -796,12 +809,6 @@
 			return deferred.promise(); 
 		}
 		
-		// creates a new object that will have values set to values
-		UCIConfig.prototype.create = function(item, offline){
-			console.error("UCI.section.create is deprecated. Use $create() instead!"); 
-			return this.$create(item, offline); 
-		}
-
 		UCIConfig.prototype.$create = function(item, offline){
 			var self = this; 
 			if(!(".type" in item)) throw new Error("Missing '.type' parameter!"); 
