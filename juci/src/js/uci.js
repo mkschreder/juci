@@ -193,11 +193,13 @@
 	// TODO: make all validators everywhere use a validator created using "new" instead of just a reference to a function!
 
 	function IntegerRangeValidator(start, end){
-		this.validate = function(field){
-			if(field.value < start || field.value > end){
-				return String(gettext("Value must be in range {0} to {1}!")).format(start, end); 
+		return function IntegerRangeValidatorImpl(){
+			this.validate = function(field){
+				if(field.value < start || field.value > end){
+					return String(gettext("Value must be in range {0} to {1}!")).format(start, end); 
+				}
+				return null; 
 			}
-			return null; 
 		}
 	}
 
