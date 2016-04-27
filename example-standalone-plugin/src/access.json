@@ -1,0 +1,11 @@
+{
+	"example-stand-alone": {
+		"description": "JUCI Standalone Plugin Example",
+		"read": {
+			"uci": [ "whatever" ]
+		},
+		"write": {
+			"uci": [ "whatever" ]
+		}
+	}
+}
