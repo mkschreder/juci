@@ -23,7 +23,7 @@ JUCI.app
 		$scope.wan = $uci.network.wan; 
 		$scope.wan6 = $uci.network.wan6; 
 		$scope.editor = "<network-connection-proto-"+$scope.wan.proto.value+"-edit ng-model='wan'/>"; 
-		$scope.editor6 = "<network-connection-proto-"+$scope.wan6.proto.value+"-edit ng-model='wan6'/>"; 
+		if($scope.wan6) $scope.editor6 = "<network-connection-proto-"+$scope.wan6.proto.value+"-edit ng-model='wan6'/>"; 
 		$scope.loaded = true; 
 		$scope.$apply(); 
 	}); 
