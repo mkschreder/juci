@@ -207,8 +207,17 @@
 		return function ArrayValidatorImpl(){
 			this.validate = function(field){
 				if(!(field.value instanceof Array)) return gettext("field value is not an array!"); 
+				// create an instance of the validator if validator is a function
+				// this fixes the issue of using ItemValidator both inside array validator and as a standalone validator
+				// TODO: proper fix by making all validators use the same format that supports validators that take custom options. Currently complex validators are highly unintuitive to create.  
+				if(itemValidator instanceof Function) itemValidator = new itemValidator(); 
+
 				var errors = field.value.map(function(x){
 					// TODO: this is actually creating a dummy field object because validators expect to be passed a field. This may fail with some validators!
+					if(!itemValidator || !itemValidator.validate){
+						console.warn("ArrayValidator: field validator is missing 'validate' method. Code seems to have compatibility issues. Please file a bug report about this!"); 
+						return null; 
+					}
 					return itemValidator.validate({value: x}); 
 				}).filter(function(x){ return !!x;}); 
 				if(!errors.length) return null; 
