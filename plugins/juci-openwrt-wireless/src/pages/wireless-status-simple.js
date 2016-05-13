@@ -29,8 +29,8 @@ JUCI.app
 						.filter(function(x){ return dev.hwmodes[x]; })
 						.map(function(x){ return "11"+x; }).join(",")
 					], 
-					[$tr(gettext("TX Power")), dev.txpower+"dBm"], 
-					[$tr(gettext("Bitrate")), (dev.bitrate/1000)+"Mbs"], 
+					[$tr(gettext("TX Power")), dev.txpower+" dBm"], 
+					[$tr(gettext("Bitrate")), (dev.bitrate/1000)+" Mbs"], 
 					[$tr(gettext("Quality")), dev.quality], 
 					[$tr(gettext("Signal")), dev.signal],
 					[$tr(gettext("Noise")), dev.noise],

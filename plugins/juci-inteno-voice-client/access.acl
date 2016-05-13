@@ -1,6 +1,0 @@
-ubus asterisk status x
-ubus asterisk.call_log list x
-ubus /juci/voice_client get_trusted_ca x
-ubus /juci/voice_client set_trusted_ca x
-ubus /juci/system reboot x
-uci voice_client * rw

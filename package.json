@@ -5,8 +5,6 @@
     "JSON": "*",
     "express": "*",
     "body-parser": "*",
-    "grunt": "*",
-    "grunt-angular-gettext": "*",
     "request": "*",
     "glob": "*",
     "async": "*",

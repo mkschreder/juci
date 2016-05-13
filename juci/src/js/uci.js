@@ -190,11 +190,52 @@
 		}
 	}; 
 
+	// TODO: make all validators everywhere use a validator created using "new" instead of just a reference to a function!
+
+	function IntegerRangeValidator(start, end){
+		this.validate = function(field){
+			if(field.value < start || field.value > end){
+				return String(gettext("Value must be in range {0} to {1}!")).format(start, end); 
+			}
+			return null; 
+		}
+	}
+
+	function ArrayValidator(itemValidator){
+		return function ArrayValidatorImpl(){
+			this.validate = function(field){
+				if(!(field.value instanceof Array)) return gettext("field value is not an array!"); 
+				var errors = field.value.map(function(x){
+					// TODO: this is actually creating a dummy field object because validators expect to be passed a field. This may fail with some validators!
+					return itemValidator.validate({value: x}); 
+				}).filter(function(x){ return !!x;}); 
+				if(!errors.length) return null; 
+				return errors; 
+			}
+		}
+	}
 
 	
 	var section_types = {};
 	function UCI(){
-		
+		this.validators = {
+			WeekDayListValidator: WeekDayListValidator, 
+			TimespanValidator: TimespanValidator, 
+			PortValidator: PortValidator, 
+			NumberLimitValidator: NumberLimitValidator, 
+			TimeValidator: TimeValidator,
+			MACAddressValidator: MACAddressValidator,
+			MACListValidator: MACListValidator,
+			IPAddressValidator: IPAddressValidator,
+			IP6AddressValidator: IP6AddressValidator,
+			IP4AddressValidator: IP4AddressValidator,
+			IP4NetmaskValidator: IP4NetmaskValidator,
+			IP4MulticastAddressValidator: IP4MulticastAddressValidator,
+			IP4CIDRValidator: IP4CIDRValidator,
+			IP4UnicastAddressValidator: IP4UnicastAddressValidator,
+			IntegerRangeValidator: IntegerRangeValidator, 
+			ArrayValidator: ArrayValidator
+		}; 
 	}
 	(function(){
 		function UCIField(value, schema){
@@ -522,6 +563,9 @@
 		}
 		
 		function _insertSection(self, item){
+			// experimental feature for hiding sections from interface 
+			if(item["do_not_edit"] || item["juci_hide"]) return; 
+
 			//console.log("Adding local section: "+self[".name"]+"."+item[".name"]); 
 			var section = new UCI.Section(self); 
 			section.$update(item); 
@@ -1217,22 +1261,6 @@
 	}
 
 	scope.UCI = new UCI(); 
-	scope.UCI.validators = {
-		WeekDayListValidator: WeekDayListValidator, 
-		TimespanValidator: TimespanValidator, 
-		PortValidator: PortValidator, 
-		NumberLimitValidator: NumberLimitValidator, 
-		TimeValidator: TimeValidator,
-		MACAddressValidator: MACAddressValidator,
-		MACListValidator: MACListValidator,
-		IPAddressValidator: IPAddressValidator,
-		IP6AddressValidator: IP6AddressValidator,
-		IP4AddressValidator: IP4AddressValidator,
-		IP4NetmaskValidator: IP4NetmaskValidator,
-		IP4MulticastAddressValidator: IP4MulticastAddressValidator,
-		IP4CIDRValidator: IP4CIDRValidator,
-		IP4UnicastAddressValidator: IP4UnicastAddressValidator
-	}; 
 	/*if(exports.JUCI){
 		var JUCI = exports.JUCI; 
 		JUCI.uci = exports.uci = new UCI(); 

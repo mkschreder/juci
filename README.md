@@ -28,6 +28,54 @@ JUCI is theme-able and fully mobile-ready (responsive):
 
 ![Mobile](/media/mobile.jpg)
 
+News
+----
+
+Latest version of juci is 2.16.04. 
+
+Release notes: 
+- Removed plugins that do not work on OpenWRT. 
+
+Release notes version 2.16.03: 
+- Moved backend to a specialized juci server and removed dependency on ubus in
+  the backend (see motivation below)
+
+Removing ubus dependency (Feb 2016) 
+-----------------------------------
+
+Original juci server was using ubus as it's primary way to organize backend
+components. This seemed like an awesome idea at the time when juci project was
+started. Everyone was going to "ubusify" everything. But with time this was
+starting to cause more pain than good. I will try to explain the implications
+of "ubusifying" everything below. 
+
+Ubus is an excellent system for interprocess communication. However, using it
+for organizing components of a single application is a very bad idea. It leads to
+what can best be compared to "microkernel" design. This forces even the most
+simple tasks such as checking whether user has access rights to some resource
+to require a serialization and deserialization of parameters (twice!).
+Micokernel is no different in that it forces everything to be a service. We
+know from experience that microkernels never really have been successful
+because their performance sucks for quite obvious reasons (you end up spending
+most of your time packing and unpacking messages instead of just making simple
+method calls). 
+
+So latest version of juci eliminates all this meaningless rpc message passing
+and instead implements a single lua backend server that responds to rpc calls
+from the client and directly provides all necessary services to all backend
+components that are installed. Instead of all backend components making ubus
+calls for things like session control, they all now instead just make direct
+calls into the backend server and this is orders of magnitude more efficient
+then all the unnecessary internal ubus calls. 
+
+Ubus is still supported of course and in fact you should use ubus as means of
+communicating with other programs running on the system. But for components of
+the juci backend ubus is no longer used. A single backend server is currently
+the best solution that I have tried. I have also tried using CGI and lua
+scripts, but I was not happy with the performance of that solution. It is
+important to be able to support large number of rpc calls and a specialized
+juci server makes this very easy to do. 
+
 What is JUCI? 
 -------------
 
