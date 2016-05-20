@@ -27,7 +27,7 @@ local function checkpassword(user, pass)
 	end
 	if shpass == nil then return false; end
 	local typ, salt, hash = shpass:match("\$([^$]+)$([^$]+)$([^$]+).*"); 
-	local epass = juci.shell("echo %s | openssl passwd -1 -salt "..salt.." -stdin", pass);
+	local epass = juci.shell("echo '%s' | openssl passwd -1 -salt "..salt.." -stdin", pass);
 	epass = epass:match("[^\r\n]+"); 
 	if shpass == epass then 
 		return true; 
@@ -54,7 +54,7 @@ local function user_set_password(opts)
 		print(json.encode({ error = "Invalid username/password!"})); 
 		return 1; 
 	end
-	local stdout = juci.shell("echo -e \"%s\" | passwd %s", opts["password"].."\\n"..opts["password"], opts["username"]); 
+	local stdout = juci.shell("echo -e '%s'\"\n\"'%s' | passwd %s", opts["password"], opts["password"], opts["username"]); 
 	print(json.encode({
 		["stdout"] = stdout
 	})); 
@@ -62,7 +62,7 @@ end
 
 local function user_list(opts)
 	-- list only users that are configured for rpc logins
-	local all_users = juci.shell("uci show rpcd | grep username | awk -F'=' '{print $2;}'");  
+	local all_users = juci.shell("uci show rpcd | grep username | awk -F\\' '{print $2;}'");  
 	local users = {};
 	local listothers = juci.session.access(opts.sid, "passwd", "otheruser", { "write" }); 
 	local session = juci.session.get(opts.sid); 

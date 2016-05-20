@@ -15,11 +15,12 @@
 */ 
 
 JUCI.app
-.controller("SettingsPasswordCtrl", function($scope, $rpc, $tr, gettext){
+.controller("settingsPasswordPage", function($scope, $rpc, $tr, gettext){
 	$scope.showPassword = 0; 
 	$scope.showModal = 0; 
-	$scope.username = $rpc.$session.data.username; 
+
 	$scope.modal = {
+		username: $rpc.$session.data.username,
 		old_password: "", 
 		password: "", 
 		password2: ""
@@ -48,14 +49,13 @@ JUCI.app
 		$scope.passwordStrength = measureStrength($scope.modal.password); 
 	}, true); 
 	
-	var username = $scope.modal.username = $rpc.$session.data.username; 
 	$scope.$watch("modal.username", function onSystemPasswordUsernameChanged(value){
 		if(value == undefined) return; 
-		username = value; 
+		$scope.username = value; 
 	}); 
 
 	$scope.onChangePasswordClick = function(){
-		$scope.modal = {}; 
+		$scope.modal = { username: $scope.username }; 
 		$scope.showModal = 1; 
 	}
 
@@ -64,7 +64,7 @@ JUCI.app
 		if($scope.modal.password != $scope.modal.password2) alert($tr(gettext("Passwords do not match!"))); 
 		else {
 			// TODO: change to correct username
-			$rpc.juci.system.user.setpassword({sid: $rpc.$sid(), username: username, password: $scope.modal.password, oldpassword: $scope.modal.old_password}).done(function(data){
+			$rpc.juci.system.user.setpassword({sid: $rpc.$sid(), username: $scope.username, password: $scope.modal.password, oldpassword: $scope.modal.old_password}).done(function(data){
 				if(data.error){
 					alert(data.error); 
 				} else {
