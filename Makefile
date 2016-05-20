@@ -1,3 +1,7 @@
+# This file is part of JUCI Project (http://mkschreder.github.com/juci)
+# Main Makefile
+# Copyright (c) 2015-2016 Martin K. Schröder <mkschreder.uk@gmail.com>
+
 DIRS-y:=juci 
 PLUGINS-y:=
 
