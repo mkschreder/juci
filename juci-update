@@ -6,13 +6,13 @@ WWW="$1"
 MODE="$2"
 MODE=${MODE:="RELEASE"}
 
-if [ "$MODE" = "RELEASE" ]; then
-	JS_WILDCARD="*.js.gz"
-	CSS_WILDCARD="*.css.gz"
-else
+#if [ "$MODE" = "RELEASE" ]; then
+#	JS_WILDCARD="*.js.gz"
+#	CSS_WILDCARD="*.css.gz"
+#else
 	JS_WILDCARD="*.js"
 	CSS_WILDCARD="*.css"
-fi
+#fi
 
 echo "Using mode: $MODE..."
 
