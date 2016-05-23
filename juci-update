@@ -63,7 +63,7 @@ done
 
 for file in `find ${WWW}/js -name "$JS_WILDCARD" | sort`; do
 	echo "Adding $file to index"
-	JSFILE=${file#${WWW}}
+	JSFILE=${file#${WWW}/}
 	JSFILE=${JSFILE%.gz}
 	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${JSFILE}\"></script>"
 done
