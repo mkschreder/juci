@@ -155,7 +155,7 @@ release: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo "======= JUCI RELEASE =========="
 	@./scripts/juci-compile $(BIN) 
 	@if [ "$(CONFIG_PACKAGE_juci)" = "y" ]; then ./juci-update $(BIN)/www RELEASE; fi
-	@cp juci-update $(BIN)/usr/bin/
+	#@cp juci-update $(BIN)/usr/bin/
 
 debug: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo "======= JUCI DEBUG =========="
@@ -163,7 +163,7 @@ debug: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	#@grunt 
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
 	@./juci-update $(BIN)/www DEBUG
-	@cp juci-update $(BIN)/usr/bin/
+	#@cp juci-update $(BIN)/usr/bin/
 
 DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) docs/juci.md
 DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD)) docs/juci.html
@@ -193,7 +193,7 @@ docs/juci.md: $(wildcard plugins/**/docs/*.md)
 install: 
 	$(INSTALL_DIR) $(BIN)/usr/bin/
 	@cp juci.config.example $(BIN)/usr/share/juci/
-	@cp juci-update $(BIN)/usr/bin/
+	#@cp juci-update $(BIN)/usr/bin/
 	@cp -Rp $(BIN)/* $(DESTDIR)
 
 .PHONY: $(PHONY) $(UBUS_MODS) 
