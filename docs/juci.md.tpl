@@ -3,8 +3,8 @@ JUCI
 
 JUCI WebGUI is designed for building modern and dynamic web interfaces for embedded devices. 
 
-Project git: [http://mkschreder.github.com/juci](http://mkschreder.github.com/juci)
-Official docs: [http://mkschreder.github.io/juci](http://mkschreder.github.io/juci)
+* Project git: [http://mkschreder.github.com/juci](http://mkschreder.github.com/juci)
+* Official docs: [http://mkschreder.github.io/juci](http://mkschreder.github.io/juci)
 
 Installing 
 ----------
