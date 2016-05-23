@@ -51,7 +51,7 @@ STYLES_HTML="" #"<link href='__all.css' rel='stylesheet' type='text/css' />"
 SCRIPTS_HTML="" #"<script src='__all.js'></script>"
 for file in `find ${WWW}/css -name "$CSS_WILDCARD" | sort`; do
 	echo "Adding $file to index"
-	style=${file#${WWW}}
+	style=${file#${WWW}/}
 	style=${style%.gz}
 	STYLES_HTML="${STYLES_HTML}<link href='${style}' rel='stylesheet' type='text/css' />"
 done
