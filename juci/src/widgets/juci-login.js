@@ -85,8 +85,8 @@ JUCI.app
 					"password": $scope.form.password, 
 					"remember": $scope.form.remember
 				}).done(function success(res){
-					//$state.go("home", {}, {reload: true});
-					$window.location.href="/"; 
+					JUCI.redirectHome(); 
+					window.location.reload(); 
 					deferred.resolve(); 
 				}).fail(function fail(res){
 					//$scope.errors.push(res); 
@@ -103,8 +103,8 @@ JUCI.app
 		var deferred = $.Deferred(); 
 		$rpc.$logout().done(function(){
 			console.log("Logged out!"); 
-			//$state.go("home", {}, {reload: true});
-			JUCI.redirect("overview"); //$window.location.href="/"; 
+			JUCI.redirectHome(); 
+			window.location.reload(); 
 			deferred.resolve(); 
 		}).fail(function(){
 			console.error("Error logging out!");

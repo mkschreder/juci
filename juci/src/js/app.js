@@ -71,7 +71,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 })
 .run(function($rootScope, $state, gettextCatalog, $tr, gettext, $rpc, $config, $location, $navigation, $templateCache, $languages){
 	console.log("juci: angular init"); 
-	
+
 	// TODO: maybe use some other way to gather errors than root scope? 
 	$rootScope.errors = []; 
 	
@@ -100,6 +100,12 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	
 	var path = $location.path().replace(/\//g, ""); 
 	// load the right page from the start
+
+	// TODO: perhaps move somewhere else
+	$juci.redirectHome = function(){
+		$juci.redirect($config.settings.juci.homepage.value || "overview"); 
+	}	
+
 	if($rpc.$isLoggedIn()){
 		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
 	} else {

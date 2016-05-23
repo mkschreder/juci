@@ -35,7 +35,8 @@ JUCI.app
 	$scope.onLogout = function(){
 		console.log("logging out");
 		$rpc.$logout().always(function(){
-			window.location.href="/";
+			JUCI.redirectHome(); 
+			window.location.reload(); 
 		});
 	}
 	$network.getDefaultRouteNetworks().done(function(result){
