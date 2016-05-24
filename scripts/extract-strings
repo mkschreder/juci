@@ -1,5 +1,5 @@
-# Copyright 2016 Martin Schröder <mkschreder.uk@gmail.com>
 #!/bin/bash
+# Copyright 2016 Martin Schröder <mkschreder.uk@gmail.com>
 
 if [ "$1" = "" ]; then
 	echo "Usage: extract-strings <file>"
