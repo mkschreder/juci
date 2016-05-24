@@ -59,9 +59,6 @@
 			namespace: "", 
 			endPoint: RPC_HOST+"/ubus"
 		}, function(){	 
-			//var sid = "00000000000000000000000000000000"; 
-			//if($rootScope.sid) sid = $rootScope.sid; 
-			//data.ubus_rpc_session = sid;  
 			this.request(type, {
 				params: [ RPC_SESSION_ID, namespace, method, data],
 				success: function(result){
@@ -103,7 +100,6 @@
 					console.error("RPC error ("+namespace+"."+method+"): "+JSON.stringify(result));
 					if(result && result.error){
 						RPC_CACHE[key].deferred.reject(result.error);  
-						//$rootScope.$broadcast("error", result.error.message); 
 					}
 				}
 			})
@@ -135,7 +131,6 @@
 			if(stored_sid !== RPC_DEFAULT_SESSION_ID) RPC_SESSION_ID = stored_sid; 
 
 			self.session.access({
-				//"ubus_rpc_session": RPC_SESSION_ID,
 				"scope": "ubus" 
 			}).done(function(result){
         		if(!("username" in (result.data||{}))) {
