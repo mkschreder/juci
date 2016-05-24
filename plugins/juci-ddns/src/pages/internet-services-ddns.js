@@ -21,11 +21,19 @@ JUCI.app
 		$scope.ddns_list = $uci.ddns["@service"]; 
 		$scope.$apply(); 
 	}); 
+	
+	function nextNumber(){
+		var i; 
+		for(i = 0; i < $scope.ddns_list.length; i++){
+			if(!$scope.ddns_list.find(function(x){ return x[".name"] == "DDNS_"+i; })) return i; 
+		}
+		return i; 
+	}
 
 	$scope.onAddDdnsSection = function(){
 		$uci.ddns.$create({
 			".type": "service", 
-			".name": "new ddns config",
+			".name": "DDNS_"+nextNumber(),
 			"enabled": true
 		}).done(function(ddns){
 			$scope.$apply(); 
