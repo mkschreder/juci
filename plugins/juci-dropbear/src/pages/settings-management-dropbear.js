@@ -39,7 +39,7 @@ JUCI.app
 
 	$scope.onAddInstance = function(){
 		$uci.dropbear.$create({
-			".type":"dropbear",
+			".type":"dropbear"
 		}).done(function() {
 			$scope.$apply();
 		});
@@ -57,7 +57,7 @@ JUCI.app
 		}
 	}
 
-	$scope.onServiceEnableDisable = function(enabled){
+	$scope.onServiceEnableDisable = function(){
 		if(!$scope.service) return;
 		if($scope.service.enabled){
 			$scope.service.disable().always(function(){ $scope.$apply(); });
