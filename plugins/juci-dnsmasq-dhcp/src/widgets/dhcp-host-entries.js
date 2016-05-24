@@ -36,7 +36,6 @@ JUCI.app.directive("dhcpHostEntries", function(){
 	
 	$scope.getItemTitle = function(item){
 		return $tr(gettext("Hostname(s) for ")) + ((item.ip.value == "") ? ((item.family.value == "ipv4") ? $scope.ipv4 : $scope.ipv6) : item.ip.value);
-		return item[".name"];
 	}
 	$scope.onAddDomain = function(){
 		$uci.dhcp.$create({ ".type":"domain", "family":"ipv4"}).done(function(){
