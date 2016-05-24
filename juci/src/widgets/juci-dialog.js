@@ -40,6 +40,7 @@ JUCI.app
 			var modalInstance = $modal.open({
 				animation: false,
 				backdrop: "static", 
+				keyboard: false,
 				size: opts.size,
 				templateUrl: opts.templateUrl || 'widgets/juci-dialog.html',
 				controller: opts.controller || 'juciDialog',
