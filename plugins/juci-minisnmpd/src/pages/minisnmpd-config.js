@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.controller("MiniSNMPDConfigPage", function($scope, $uci, gettext){
+.controller("MiniSNMPDConfigPage", function($scope, $uci){
 	$uci.$sync("snmpd").done(function(){
 		if(!$uci.snmpd || !$uci.snmpd["@system"].length) return; 
 		$scope.config = $uci.snmpd["@system"][0]; 
