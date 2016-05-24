@@ -15,7 +15,7 @@
 */ 
 
 JUCI.app
-.controller("InternetWanServices", function($scope, $rpc, $network, $uci, $tr){
+.controller("InternetWanServices", function($scope, $rpc, $network, $uci){
 	$uci.$sync("firewall").done(function(){
 		function findRule(service){
 			return $uci.firewall["@rule"].find(function(r){
