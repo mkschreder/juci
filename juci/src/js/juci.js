@@ -22,6 +22,9 @@
 		this.plugins = {}; 
 		this.templates = {}; 
 		this.pages = {}; 
+		// allow access through JUCI.rpc && JUCI.uci
+		this.rpc = $rpc; 
+		this.uci = $uci; 
 	}
 	
 	JUCIMain.prototype.module = function(name, root, data){
@@ -76,15 +79,16 @@
 		self.templates[name] = code; 
 	}
 	
-	JUCIMain.prototype.$init = function(){
+	JUCIMain.prototype.$init = function(options){
 		var scripts = []; 
 		var deferred = $.Deferred(); 
+		if(!options) options = {}; 
 		var $rpc = scope.UBUS; 
 		// TODO: maybe rewrite the init sequence
 		async.series([
 			function doConnect(next){
 				console.log("RPC init"); 
-				scope.UBUS.$connect().done(function(){
+				scope.UBUS.$connect(options.host).done(function(){
 					scope.UBUS.$init().done(function(){
 						if(!scope.UBUS.juci || !scope.UBUS.juci.system || !scope.UBUS.juci.system.info){
 							deferred.reject(); 

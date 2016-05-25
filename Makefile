@@ -1,6 +1,8 @@
 DIRS-y:=juci 
 PLUGINS-y:=
 
+VERSION:=2.16.05
+
 ifneq ($(MODULE),)
 BIN:=$(MODULE)/bin
 else
@@ -149,6 +151,21 @@ debug: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo -e "\033[0;33m [UPDATE] $@ \033[m"
 	@./juci-update $(BIN)/www DEBUG
 	@cp juci-update $(BIN)/usr/bin/
+
+
+JUCI_LIB_PATH:=bin/lib
+JUCI_LIB_OUTPUT:=$(JUCI_LIB_PATH)/juci-$(VERSION).js
+JUCI_LIB_OBJECTS:=compat.js rpc.js uci.js juci.js config.js upload.js sha.js navigation.js
+JUCI_LIB_OBJECTS:=juci/src/lib/js/jquery.min.js juci/src/lib/js/async.js $(addprefix juci/src/js/,$(JUCI_LIB_OBJECTS))
+
+library: prepare
+	@echo "======= JUCI LIBRARY ========="
+	@mkdir -p $(JUCI_LIB_PATH)
+	@echo "Including jquery and async.js into JUCI library!"
+	@awk 'FNR==1{print ""}1' $(JUCI_LIB_OBJECTS) > $(JUCI_LIB_OUTPUT)
+	@echo "Library has been built: $(JUCI_LIB_OUTPUT)"
+
+PHONY+=library
 
 DOCS_MD:= README.md $(wildcard juci/docs/*.md docs/*.md plugins/**/docs/*.md) docs/juci.md
 DOCS_HTML:= $(patsubst %.md,%.html,$(DOCS_MD)) docs/juci.html
