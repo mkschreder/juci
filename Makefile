@@ -162,7 +162,8 @@ library: prepare
 	@echo "======= JUCI LIBRARY ========="
 	@mkdir -p $(JUCI_LIB_PATH)
 	@echo "Including jquery and async.js into JUCI library!"
-	@awk 'FNR==1{print ""}1' $(JUCI_LIB_OBJECTS) > $(JUCI_LIB_OUTPUT)
+	@echo "var JUCI_MOBILE_BUNDLE=true;">> $(JUCI_LIB_OUTPUT)
+	@awk 'FNR==1{print ""}1' $(JUCI_LIB_OBJECTS) >> $(JUCI_LIB_OUTPUT)
 	@echo "Library has been built: $(JUCI_LIB_OUTPUT)"
 
 PHONY+=library

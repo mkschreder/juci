@@ -104,9 +104,9 @@
 					console.error("could not connect to rpc interface"); 
 					// TODO: current reconnection logic is bad. Need to probably handle it automatically in rpc.js
 					// but must make sure that we either then reinit the app upon reconnect, or reload the page!
-					setTimeout(function doRetryConnect(){
-						doConnect(function(){}); 
-					},2000); 
+					//setTimeout(function doRetryConnect(){
+				//		doConnect(function(){}); 
+					//},2000); 
 					next(); 
 				}); 
 			},  
@@ -236,7 +236,8 @@
 	}
 	
 	scope.JUCI = scope.$juci = new JUCIMain(); 
-	if(typeof angular !== "undefined"){
+	// TODO: JUCI_MOBILE_BUNDLE is a check to avoid undefined modules and we should not init juci as a desktop app at all if we are on mobile
+	if(typeof angular !== "undefined" && !JUCI_MOBILE_BUNDLE){
 		// TODO: this list should eventually be split out into plugins.
 		// we should in fact use JUCI.app.depends.push("...") for this then
 		// otherwise this list of things that are always included in juci will become quite big..
@@ -408,6 +409,21 @@
 
 		app.factory('$localStorage', function() {
 			return scope.localStorage; 
+		});
+		
+		// for binding enter key..	
+		app.directive('ngReturnPressed', function() {
+			return function(scope, element, attrs) {
+				element.bind("keydown keypress", function(event) {
+					if(event.which === 13) {
+						scope.$apply(function(){
+							scope.$eval(attrs.ngEnter, {'event': event});
+						});
+
+						event.preventDefault();
+					}
+				});
+			};
 		});
 	}
 

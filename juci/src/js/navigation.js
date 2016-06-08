@@ -116,7 +116,7 @@
 	}
 	JUCI.navigation = new JUCINavigation(); 
 	
-	JUCI.app.factory('$navigation', function navigationProvider(){
+	if(JUCI.app) JUCI.app.factory('$navigation', function navigationProvider(){
 		return JUCI.navigation; 
 	}); 
 })(JUCI); 
