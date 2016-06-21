@@ -71,7 +71,7 @@ JUCI.app
 
 			confirmKeep().done(function(keep){
 				$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep)?1:0)}); // this never completes
-				window.location = "/reboot.html";  
+				window.location = "reboot.html";  
 			}); 
 		}).fail(function(){
 			$scope.showUpgradeStatus = 0; 
@@ -165,17 +165,14 @@ JUCI.app
 		$scope.progress = 'uploading'; 
 		$("#postiframe").bind("load", function(){
 			var json = $(this).contents().text(); 
-			var obj = {}; 
 			try {
-				obj = JSON.parse(json); 
 				upgradeStart($scope.uploadFilename); 
 			} catch(e){
-				$scope.error = $tr(gettext("The server returned an error"))+" ("+JSON.stringify(json)+")";
-				$scope.message = $tr(gettext("Upload completed!"))
-				$scope.$apply();
-				//return;   
+				alert($tr(gettext("Could not start upgrade process!"))); 	
 			}
-			
+			$scope.message = $tr(gettext("Upload completed!"))
+			$scope.$apply();
+
 			$(this).unbind("load"); 
 		}); 
 		$("form[name='uploadForm']").submit();
