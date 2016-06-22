@@ -70,8 +70,9 @@ JUCI.app
 			}
 
 			confirmKeep().done(function(keep){
-				$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep)?1:0)}); // this never completes
-				window.location = "reboot.html";  
+				$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep)?1:0)}).done(function(){
+					window.location = "reboot.html";  
+				}); 
 			}); 
 		}).fail(function(){
 			$scope.showUpgradeStatus = 0; 
