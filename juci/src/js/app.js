@@ -24,10 +24,12 @@ String.prototype.toCamel = function(){
 
 window.$ = $; 
 
-require.config({
-    baseUrl: '/',
-    urlArgs: 'v=1.0'
-});
+/*
+	require.config({
+		baseUrl: '/',
+		urlArgs: 'v=1.0'
+	});
+*/
 
 JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $urlRouterProvider, $controllerProvider, $templateCacheProvider, $provide) {
 	console.log("CONF"); 

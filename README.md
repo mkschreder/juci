@@ -1,6 +1,9 @@
 JUCI Webgui for Embedded Routers
 --------------------------------
 
+	Date: 23 May 2016
+	Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
 JUCI is modern web interface developed for OpenWRT-based embedded devices. It
 is built using HTML5 and angular.js and uses websockets for communicating with
 a compact and fast lua backend running on the embedded device. You can build
@@ -9,6 +12,10 @@ other and use them separately.
 
 The RevoRPCD project which JUCI uses as it's websocket based backend RPC server
 can be found here: https://github.com/mkschreder/jucid.git. 
+
+JUCI Documentation in HTML form can be found here: [http://mkschreder.github.io/juci](http://mkschreder.github.io/juci/)
+
+It is recommended that you start by reading overview of how juci works found here: [http://mkschreder.github.io/juci/manual/how-juci-works.html](http://mkschreder.github.io/juci/manual/how-juci-works.html)
 
 JUCI Flash and Memory Requirements (actual runtime usage): 
 
@@ -31,7 +38,8 @@ JUCI is theme-able and fully mobile-ready (responsive):
 News
 ----
 
-Latest version of juci is 2.16.04. 
+Latest version of juci is 2.16.05. 
+Latest release of juci is 2.16.02 (Orange Sunrize)
 
 Release notes: 
 - Removed plugins that do not work on OpenWRT. 

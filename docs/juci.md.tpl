@@ -3,6 +3,9 @@ JUCI
 
 JUCI WebGUI is designed for building modern and dynamic web interfaces for embedded devices. 
 
+* Project git: [http://mkschreder.github.com/juci](http://mkschreder.github.com/juci)
+* Official docs: [http://mkschreder.github.io/juci](http://mkschreder.github.io/juci)
+
 Installing 
 ----------
 
@@ -15,6 +18,8 @@ Contributing
 
 Working with JUCI
 -----------------
+
+* [How JUCI Works](how-juci-works.html) - a short overview of how juci works
 * [Creating Pages](creating-pages.html) - learn how to setup a new page in juci plugin
 * [Creating themes for JUCI](creating-themes.html) - learn how theming works and how to develop custom styles
 * [Creating translations](creating-translations.html) - learn how to add support for new languages

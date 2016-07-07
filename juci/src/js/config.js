@@ -57,7 +57,7 @@
 	}
 	$juci.config = new JUCIConfig(); 
 	
-	JUCI.app.factory('$config', function(){
+	if(JUCI.app) JUCI.app.factory('$config', function(){
 		return $juci.config; 
 	}); 
 })(JUCI); 

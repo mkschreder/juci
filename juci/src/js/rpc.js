@@ -119,17 +119,23 @@
     }
 
     RevoRPC.prototype.$login = function(username, password){
+		// allow object as input!
+		// TODO: change input to object everywhere once we are stable
+		if(username && username.username != undefined){
+			password = username.password; 
+			username = username.username; 
+		}
         var self = this;                
         var def = $.Deferred();         
         self.$request("challenge").done(function(resp){
-            console.log("GOT CHALLENGE: "+JSON.stringify(resp)); 
+            console.log("login: got challenge: "+JSON.stringify(resp)); 
             var sha = new jsSHA("SHA-1", "TEXT");    
             var pwhash = new jsSHA("SHA-1", "TEXT"); 
             pwhash.update(password);    
             sha.update(resp.token);     
             sha.update(pwhash.getHash("HEX"));       
             self.$request("login", [username, sha.getHash("HEX")]).done(function(resp){
-                console.log("LOGIN RESULT: "+JSON.stringify(resp)); 
+                console.log("login: "+JSON.stringify(resp)); 
                 if(resp.success) {
 					scope.localStorage.setItem("sid", resp.success); 
 					def.resolve(resp.success); 
