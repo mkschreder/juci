@@ -70,9 +70,12 @@ JUCI.app
 			}
 
 			confirmKeep().done(function(keep){
-				$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep)?1:0)}).done(function(){
+				$rpc.juci.system.upgrade.start({"path": path, "keep": ((keep)?1:0)}); 
+				// use a timeout here after all because this is a special case where the above call may not even return in case the http 
+				// server gets killed too quickly!
+				setTimeout(function(){
 					window.location = "reboot.html";  
-				}); 
+				}, 4000); 
 			}); 
 		}).fail(function(){
 			$scope.showUpgradeStatus = 0; 
