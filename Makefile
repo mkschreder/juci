@@ -66,7 +66,7 @@ $(TMP_DIR)/$(STYLE_LOAD)-$(1).css.js: $(TMP_DIR)/$(STYLE_LOAD)-$(1).css
 $(TMP_DIR)/$(1)-compiled-styles.css: $(STYLES_LESS_$(1)) 
 	@echo -e "\033[0,33m[LESS]\t$(1) -> $$@\033[m"
 	@echo "" > $$@
-	$(Q)if [ "" != "$$^" ]; then for file in $$^; do lessc $$$$file >> $$@; echo "" >> $$@; done; fi
+	$(Q)if [ "" != "$$^" ]; then for file in $$^; do lessc $$$$file >> $$@ || exit -1; echo "" >> $$@; done; fi
 $(TMP_DIR)/$(TPL_LOAD)-$(1).tpl.js: $(TEMPLATES_$(1))
 	@echo -e "\033[0;33m[HTML]\t$(1) -> $$@\033[m"
 	@#echo "   * $$^"
@@ -84,7 +84,7 @@ $(CODE_DIR)/$(CODE_LOAD)-$(1).js: $(TMP_DIR)/$(CODE_LOAD)-$(1).js $(TMP_DIR)/$(S
 	cat $$^ > $$@
 $(1)-install: $(2)/po/template.pot $(CODE_DIR)/$(CODE_LOAD)-$(1).js
 	$(call Plugin/$(1)/install,$(BIN))
-	-$(Q)if [ -d $(2)/ubus ]; then $(CP) $(2)/ubus/* $(BACKEND_BIN_DIR); fi
+	-$(Q)if [ -d $(2)/rpc ]; then $(CP) $(2)/rpc/* $(BACKEND_BIN_DIR); fi
 	$(Q)if [ -d $(2)/service ]; then $(CP) $(2)/service/* $(BIN)/usr/lib/juci/services/; fi
 	$(Q)if [ -f $(2)/access.acl ]; then $(CP) $(2)/access.acl $(BIN)/usr/lib/juci/acl/$(1).acl; fi
 endef
