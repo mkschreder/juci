@@ -1,19 +1,18 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetPortMappingPageCtrl">
-		<h2 translate>Port Mapping</h2>
-		<p translate>Port mapping allows remote computers to connect to a specific device within your private network.</p>
-		<!--<div class="panel panel-default" ng-show="rule">
-			<div class="panel-heading">
-				<h3 class="panel-title">{{rule[".name"]}}</h3>
-			</div>
-			<div class="panel-body">
-				<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
-			</div>
-			<div class="panel-footer">
-				<juci-config-apply ></juci-config-apply>
-			</div>
-		</div>-->
-		<juci-config-section ng-show="redirects">
+		<juci-config title="{{'Port Mapping'|translate}}">
+			<p translate>Port mapping allows remote computers to connect to a specific device within your private network.</p>
+			<!--<div class="panel panel-default" ng-show="rule">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{rule[".name"]}}</h3>
+				</div>
+				<div class="panel-body">
+					<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
+				</div>
+				<div class="panel-footer">
+					<juci-config-apply ></juci-config-apply>
+				</div>
+			</div>-->
 			<table class="table">
 				<thead>
 					<th translate>Name</th>
@@ -42,10 +41,10 @@
 					</tr>
 				</tbody>
 			</table>
-		</juci-config-section>
-		<modal title="{{'Add / Edit Port Mapping'|translate}}" ng-show="rule" on-accept="onAcceptEdit()" on-dismiss="onCancelEdit()" dismiss-label="{{'Cancel'|translate}}" accept-label="{{'Save'|translate}}">
-			<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
-			<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>
-		</modal>
+			<modal title="{{'Add / Edit Port Mapping'|translate}}" ng-show="rule" on-accept="onAcceptEdit()" on-dismiss="onCancelEdit()" dismiss-label="{{'Cancel'|translate}}" accept-label="{{'Save'|translate}}">
+				<uci-firewall-nat-rule-edit ng-model="rule"></uci-firewall-nat-rule-edit>
+				<div class="alert alert-danger" ng-show="errors && errors.length"><ul><li ng-repeat="e in errors track by $index">{{e|translate}}</li></ul></div>
+			</modal>
+		</juci-config>
 	</div>
 </juci-layout-with-sidebar>

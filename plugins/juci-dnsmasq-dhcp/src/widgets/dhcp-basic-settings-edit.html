@@ -1,11 +1,15 @@
 <div>
-	<juci-config-line title="{{'DHCP Pool Start'|translate}}" error="dhcp.start.error">
-		<input class="form-control pull-right" style="width: 60px;" ng-model="dhcp.start.value"  placeholder="1"></input>
-	</juci-config-line>
-	<juci-config-line title="{{'DHCP Pool Size'|translate}}" error="dhcp.limit.error">
-		<input class="form-control pull-right" style="width: 60px;" ng-model="dhcp.limit.value" placeholder="1"></input>
-	</juci-config-line>
-	<juci-config-line title="{{'DHCP Lease Time'|translate}}">
-		<juci-select ng-model="dhcp.leasetime.value" ng-items="dhcpLeaseTimes" placeholder="{{'Lease Time'|translate}}"/>
-	</juci-config-line>
+	<juci-config-section title="{{'Basic Settings'|translate}}">
+		<juci-config-lines>
+			<juci-config-line title="{{'DHCP Pool Start'|translate}}" error="dhcp.start.error">
+				<input class="form-control pull-right" style="width: 60px;" ng-model="dhcp.start.value"  placeholder="1"></input>
+			</juci-config-line>
+			<juci-config-line title="{{'DHCP Pool Size'|translate}}" error="dhcp.limit.error">
+				<input class="form-control pull-right" style="width: 60px;" ng-model="dhcp.limit.value" placeholder="1"></input>
+			</juci-config-line>
+			<juci-config-line title="{{'DHCP Lease Time'|translate}}">
+				<juci-select ng-model="dhcp.leasetime.value" ng-items="dhcpLeaseTimes" placeholder="{{'Lease Time'|translate}}"/>
+			</juci-config-line>
+		</juci-config-lines>
+	</juci-config-section>
 </div>

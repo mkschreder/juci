@@ -1,15 +1,15 @@
 <div>
-	<juci-config-lines>
-		<juci-config-line title="{{'Name'|translate}}">
-			<input type="text" class="form-control" ng-model="rule.name.value" placeholder="{{'Name'|translate}}"/>
-		</juci-config-line>
-	</juci-config-lines>
-	<juci-config-section>
+	<juci-config-section title="{{'Rule Settings'|translate}}">
+		<juci-config-lines>
+			<juci-config-line title="{{'Name'|translate}}">
+				<input type="text" class="form-control" ng-model="rule.name.value" placeholder="{{'Name'|translate}}"/>
+			</juci-config-line>
+		</juci-config-lines>
 		<div class="row">
 			<div class="col-md-6">
 				<h3 translate>Source</h3>
 				<juci-config-lines>
-					<juci-config-line title="{{'Source zone'|translate}}">
+					<juci-config-line title="{{'Zone'|translate}}">
 						<juci-select ng-model="rule.src.value" ng-items="allZones"></juci-select>
 					</juci-config-line>
 					<juci-config-line title="{{'IP'|translate}}">
@@ -44,7 +44,7 @@
 			<div class="col-md-6">
 				<h3 translate>Destination</h3>
 				<juci-config-lines>
-					<juci-config-line title="{{'Destination zone'|translate}}">
+					<juci-config-line title="{{'Zone'|translate}}">
 						<juci-select ng-model="rule.dest.value" ng-items="allZones"></juci-select>
 					</juci-config-line>
 					<juci-config-line title="{{'IP'|translate}}">
@@ -77,16 +77,18 @@
 				</juci-config-lines>
 			</div>
 		</div>
+		<hr/>
+		<juci-config-lines>
+			<juci-config-line title="{{'Family'|translate}}">
+				<juci-select ng-model="rule.family.value" ng-items="familyChoices"></juci-select>
+			</juci-config-line>
+			<juci-config-line title="{{'Protocol'|translate}}">
+				<juci-select ng-model="rule.proto.value" ng-items="protocolChoices"></juci-select>
+			</juci-config-line>
+			<juci-config-line title="{{'Firewall Action'|translate}}">
+				<juci-select ng-model="rule.target.value" ng-items="targetChoices"></juci-select>
+			</juci-config-line>
+		</juci-config-lines>
+
 	</juci-config-section>
-	<juci-config-lines>
-		<juci-config-line title="{{'Family'|translate}}">
-			<juci-select ng-model="rule.family.value" ng-items="familyChoices"></juci-select>
-		</juci-config-line>
-		<juci-config-line title="{{'Protocol'|translate}}">
-			<juci-select ng-model="rule.proto.value" ng-items="protocolChoices"></juci-select>
-		</juci-config-line>
-		<juci-config-line title="{{'Firewall Action'|translate}}">
-			<juci-select ng-model="rule.target.value" ng-items="targetChoices"></juci-select>
-		</juci-config-line>
-	</juci-config-lines>
-</div>
+	</div>

@@ -1,7 +1,6 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="ServiceSambaPage">
-		<juci-config-section>
-			<juci-config-heading>{{ 'General Settings' | translate }}</juci-config-heading>
+		<juci-config-section title="{{'General Settings'|translate}}">
 			<juci-config-info>{{ 'services.samba.info' | translate }}</juci-config-info>
 			<div ng-if="samba_not_installed" class="alert alert-danger" translate>Samba is not installed on this system</div>
 			<juci-config-lines ng-if="!samba_not_installed">
@@ -22,8 +21,7 @@
 				</juci-config-line>
 			</juci-config-lines>
 		</juci-config-section>
-		<juci-config-section ng-if="!samba_not_installed">
-			<juci-config-heading>{{ 'Samba Shares' | translate }}</juci-config-heading>
+		<juci-config-section title="{{'Samba Shares'|translate}}" ng-if="!samba_not_installed">
 			<juci-config-info >{{'samba.shares.info'|translate}}</juci-config-info>
 			<juci-list-editor ng-items="shares" 
 				item-editor="samba-share-edit" 
@@ -31,8 +29,7 @@
 				on-create="onCreateShare()"
 				on-delete="onDeleteShare($item)"></juci-list-editor>
 		</juci-config-section>
-		<juci-config-section ng-if="!samba_not_installed">
-			<juci-config-heading>{{ 'Samba Users' | translate }}</juci-config-heading>
+		<juci-config-section title="{{'Samba Users'|translate}}" ng-if="!samba_not_installed">
 			<juci-config-info >{{'samba.users.info'|translate}}</juci-config-info>
 			<juci-list-editor ng-items="users" 
 				item-editor="samba-user-edit" 

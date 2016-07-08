@@ -2,8 +2,7 @@
 	<div ng-controller="StatusNetworkRoutes">
 		<h2 translate>Routing Status</h2>
 		<juci-config-info>{{'status.network.routes.info'|translate}}</juci-config-info>
-		<juci-config-section>
-			<h3 translate>ARP Table</h3>
+		<juci-config-section title="{{'ARP Table'|translate}}">
 			<table class="table">
 				<thead><th translate>IP address</th><th translate>MAC address</th><th translate>Device</th></thead>
 				<tr ng-repeat="arp in arp_table track by $index">
@@ -13,8 +12,7 @@
 				</tr>
 			</table>
 		</juci-config-section>
-		<juci-config-section>
-			<h3 translate>IPv4 Routing Table</h3>
+		<juci-config-section title="{{'IPv4 Routing Table'|translate}}">
 			<table class="table">
 				<thead>
 					<th translate>IPv4 address</th>
@@ -30,8 +28,7 @@
 				</tr>
 			</table>
 		</juci-config-section>
-		<juci-config-section>
-			<h3 translate>IPv6 Routing Table</h3>
+		<juci-config-section title="{{'IPv6 Routing Table'|translate}}">
 			<table class="table">
 				<thead><th translate>IPv6 address</th><th translate>Next Hop</th><th translate>Device</th></thead>
 				<tr ng-repeat="route in ipv6_routes track by $index">
@@ -41,8 +38,7 @@
 				</tr>
 			</table>
 		</juci-config-section>
-		<juci-config-section>
-			<h3 translate>IPv6 Neighbors Table</h3>
+		<juci-config-section title="{{'IPv6 Neighbors Table'|translate}}">
 			<div class="alert alert-info" ng-hide="neighbors.length" translate>No IPv6 devices connected</div>
 			<table class="table" ng-show="neighbors.length">
 				<thead>
@@ -61,6 +57,5 @@
 				</tr>
 			</table>
 		</juci-config-section>
-
 	</div>
 </juci-layout-with-sidebar>

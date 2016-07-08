@@ -17,15 +17,21 @@
 JUCI.app
 .directive("juciConfig", function(){
 	return {
-		template: '<div ng-transclude></div>', 
+		template: '<div class="juci-config"><h1 class="juci-config-title" ng-show="title">{{title}}</h1><div ng-transclude></div></div>', 
 		replace: true, 
+		scope: {
+			title: "@"
+		},
 		transclude: true
 	};  
 })
 .directive("juciConfigSection", function(){
 	return {
-		template: '<div><div class="juci-config-section" ng-transclude></div><hr style="width: 100%; border-bottom: 1px solid #ccc; clear: both;"/></div>', 
+		template: '<div class="juci-config-section"><h2 class="juci-config-section-title" ng-show="title"><span>{{title}}</span></h2><div class="juci-config-section-content" ng-transclude></div><hr style="width: 100%; border-bottom: 1px solid #ccc; clear: both;"/></div>', 
 		replace: true, 
+		scope: {
+			title: "@"
+		},
 		transclude: true
 	 };  
 })
@@ -38,7 +44,7 @@ JUCI.app
 })
 .directive("juciConfigHeading", function(){
 	return {
-		template: '<h2 ng-transclude></h2>', 
+		template: '<h2 class="juci-config-heading"><span ng-transclude></span><div class="trailing-arrow"></div></h2>', 
 		replace: true, 
 		transclude: true
 	 };  

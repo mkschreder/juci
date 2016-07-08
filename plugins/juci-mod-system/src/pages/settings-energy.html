@@ -1,11 +1,9 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="SettingsEnergyCtrl">
-		<juci-config-section>
-			<juci-config-heading>{{ 'Energy Settings' | translate }}</juci-config-heading>
-			<juci-config-info>{{ 'settings.energy.info' | translate }}</juci-config-info>
-		</juci-config-section>
+		<juci-config-heading>{{ 'Power Saving and Energy Settings' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'settings.energy.info' | translate }}</juci-config-info>
 		<p translate ng-hide="boardpanel">Missing uci config boardpanel.</p>
-		<juci-config-section  ng-show="boardpanel">
+		<juci-config-section title="{{'Energy Settings'|translate}}"ng-show="boardpanel">
 			<juci-config-lines>
 				<juci-config-line title="{{'USB Port'|translate}}">
 					<switch id="enabled" name="enabled" ng-model="boardpanel.settings.usb_port.value" class="green" ng-change="onSave()"></switch>

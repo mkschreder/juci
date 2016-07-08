@@ -3,7 +3,7 @@
 		<h2 translate>General System Settings</h2>
 		<juci-config-info>{{'settings.system.general'|translate}}</juci-config-info>
 		<i class="fa fa-spinner fa-spin fa-2x" ng-show="!loaded"></i>
-		<juci-config-section ng-show="loaded">
+		<juci-config-section title="{{'Time and Timezone'|translate}}" ng-show="loaded">
 			<juci-config-lines>
 				<juci-config-line title="{{'Current Time'|translate}}">
 					<span class="label label-default">{{localtime}}</span>
@@ -19,10 +19,6 @@
 				<juci-config-line title="{{'Hostname'|translate}}">
 					<input type="text" class="form-control" ng-model="system.hostname.value" placeholder="{{'Hostname'|translate}}"/>
 				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>
-		<juci-config-section>
-			<juci-config-lines>
 				<juci-config-line title="{{'Time servers (NTP)'|translate}}">
 					<system-ntp-settings-edit></system-ntp-settings-edit>
 				</juci-config-line>

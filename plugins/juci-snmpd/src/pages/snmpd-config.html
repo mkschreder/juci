@@ -4,7 +4,7 @@
 		<juci-config-info>{{'snmpd.config.info'|translate}}</juci-config-info>
 		<div ng-if="snmpd_not_installed" class="alert alert-danger" translate>SNMP is not installed on this system</div>
 		<div ng-if="!snmpd_not_installed">
-			<juci-config-section>
+			<juci-config-section title="{{'General Settings'|translate}}">
 				<juci-config-lines>
 					<juci-config-line title="{{'Enabled'|translate}}">
 						<switch ng-model="config.enabled.value" class="green"/>

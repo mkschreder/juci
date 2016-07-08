@@ -2,8 +2,7 @@
 	<div ng-controller="wirelessFilteringPage">
 		<juci-config-heading>{{ 'MAC Filter' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'wifi.macfilter.info' | translate }}</juci-config-info>
-		<juci-config-section ng-show="interfaces && interfaces.length != 0" ng-repeat="iface in interfaces track by $index">
-			<juci-config-heading>{{ iface.ssid.value }} ({{iface[".frequency"]}})</juci-config-heading>
+		<juci-config-section title="{{ iface.ssid.value }} ({{iface['.frequency']}})" ng-show="interfaces && interfaces.length != 0" ng-repeat="iface in interfaces track by $index">
 			<uci-wireless-interface-macfilter-edit ng-model="iface"></uci-wifi-iface-macfilter-edit>
 		</juci-config-section>
 		<!--<juci-config-section>

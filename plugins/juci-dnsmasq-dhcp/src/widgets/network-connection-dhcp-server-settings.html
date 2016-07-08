@@ -1,15 +1,13 @@
 <div>
-	<juci-config-lines>
-		<juci-config-line title="{{'DHCP Server'|translate}}">
-			<switch ng-model="data.dhcpEnabled" class="green" ></switch>
-		</juci-config-line>
-	<juci-config-lines>
+	<juci-config-section title="{{'DHCP Server'|translate}}">
+		<juci-config-lines>
+			<juci-config-line title="{{'DHCP Server Enabled'|translate}}">
+				<switch ng-model="data.dhcpEnabled" class="green" ></switch>
+			</juci-config-line>
+		<juci-config-lines>
+	</juci-config-section>
 	<div ng-show="data.dhcpEnabled">
-		<juci-config-section>
-			<dhcp-basic-settings-edit  ng-model="dhcp" ng-connection="connection"></dhcp-basic-settings-edit>
-		</juci-config-section>
-		<juci-config-section>
-			<dhcp-static-hosts-edit ng-model="dhcp"></dhcp-static-hosts-edit>
-		</juci-config-section>
+		<dhcp-basic-settings-edit  ng-model="dhcp" ng-connection="connection"></dhcp-basic-settings-edit>
+		<dhcp-static-hosts-edit ng-model="dhcp"></dhcp-static-hosts-edit>
 	</div>
 </div>

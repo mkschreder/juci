@@ -1,70 +1,70 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetLANRoutesPage">
-		<juci-config-heading>{{ 'Static Routes' | translate }}</juci-config-heading>
-		<juci-config-info>{{ 'internet.lan.routes.info' | translate }}</juci-config-info>
-		<!-- TODO: make these into separate widgets. -->
-		<h3>{{'IPv4 Routes'|translate}}</h3>
-		<table class="table">
-			<thead>
-				<th translate>Interface</th>
-				<th translate>Target</th>
-				<th translate>Netmask</th>
-				<th translate>Gateway</th>
-				<th translate>Metric</th>
-				<th translate>MTU</th>
-				<th style="width: 1%"></th>
-			</thead>
-			<tr ng-repeat="route in routes track by $index">
-				<td><div class="form-group" ng-class="{'has-error':route.interface.error}">
-					<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
-				</div></td>
-				<td><div class="form-group" ng-class="{'has-error':route.target.error}">
-					<input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'Target IP Address'|translate}}"/>
-				</div></td>
-				<td><div class="form-group" ng-class="{'has-error':route.netmask.error}">
-					<input type="text" class="form-control" ng-model="route.netmask.value" placeholder="{{'Netmask'|translate}}"/>
-				</div></td>
-				<td><div class="form-group" ng-class="{'has-error':route.gateway.error}">
-					<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'Default Gateway'|translate}}"/>
-				</div></td>
-				<td><input type="number" min="0" max="4294967295" class="form-control" ng-model="route.metric.value" placeholder="route.metric.dvalue"/></td>
-				<td><input type="number" min="60" max="2048" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
-				<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
-			</tr>
-			<tr>
-				<td colspan="6"></td>
-				<td><button class="btn btn-default" ng-click="onAddRoute()"><i class="fa fa-plus"></i></button></td>
-			</tr>
-		</table>
-		<h3>{{'IPv6 Routes'|translate}}</h3>
-		<table class="table">
-			<thead>
-				<th translate>Interface</th>
-				<th translate>Target</th>
-				<th translate>Gateway</th>
-				<th translate>Metric</th>
-				<th translate>MTU</th>
-				<th style="width: 1%"></th>
-			</thead>
-			<tr ng-repeat="route in routes6 track by $index">
-				<td><div class="form-group" ng-class="{'has-error':route.interface.error}">
-					<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
-				</div></td>
-				<td><div class="form-group" ng-class="{'has-error':route.target.error}">
-					<input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'IPv6 Address'|translate}}"/>
-				</div></td>
-				<td><div class="form-group" ng-class="{'has-error':route.gateway.error}">
-					<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'IPv6 Gateway'|translate}}"/>
-				</div></td>
-				<td><input type="number" class="form-control" ng-model="route.metric.value" placeholder="route.metric.dvalue"/></td>
-				<td><input type="number" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
-				<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
-			</tr>
-			<tr>
-				<td colspan="5"></td>
-				<td><button class="btn btn-default" ng-click="onAddRoute6()"><i class="fa fa-plus"></i></button></td>
-			</tr>
-		</table>
-
+		<juci-config title="{{ 'Static Routes' | translate }}">
+			<juci-config-info>{{ 'internet.lan.routes.info' | translate }}</juci-config-info>
+			<!-- TODO: make these into separate widgets. -->
+			<h3>{{'IPv4 Routes'|translate}}</h3>
+			<table class="table">
+				<thead>
+					<th translate>Interface</th>
+					<th translate>Target</th>
+					<th translate>Netmask</th>
+					<th translate>Gateway</th>
+					<th translate>Metric</th>
+					<th translate>MTU</th>
+					<th style="width: 1%"></th>
+				</thead>
+				<tr ng-repeat="route in routes track by $index">
+					<td><div class="form-group" ng-class="{'has-error':route.interface.error}">
+						<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
+					</div></td>
+					<td><div class="form-group" ng-class="{'has-error':route.target.error}">
+						<input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'Target IP Address'|translate}}"/>
+					</div></td>
+					<td><div class="form-group" ng-class="{'has-error':route.netmask.error}">
+						<input type="text" class="form-control" ng-model="route.netmask.value" placeholder="{{'Netmask'|translate}}"/>
+					</div></td>
+					<td><div class="form-group" ng-class="{'has-error':route.gateway.error}">
+						<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'Default Gateway'|translate}}"/>
+					</div></td>
+					<td><input type="number" min="0" max="4294967295" class="form-control" ng-model="route.metric.value" placeholder="route.metric.dvalue"/></td>
+					<td><input type="number" min="60" max="2048" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
+					<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
+				</tr>
+				<tr>
+					<td colspan="6"></td>
+					<td><button class="btn btn-default" ng-click="onAddRoute()"><i class="fa fa-plus"></i></button></td>
+				</tr>
+			</table>
+			<h3>{{'IPv6 Routes'|translate}}</h3>
+			<table class="table">
+				<thead>
+					<th translate>Interface</th>
+					<th translate>Target</th>
+					<th translate>Gateway</th>
+					<th translate>Metric</th>
+					<th translate>MTU</th>
+					<th style="width: 1%"></th>
+				</thead>
+				<tr ng-repeat="route in routes6 track by $index">
+					<td><div class="form-group" ng-class="{'has-error':route.interface.error}">
+						<juci-select ng-model="route.interface.value" ng-items="allNetworks"></juci-select>
+					</div></td>
+					<td><div class="form-group" ng-class="{'has-error':route.target.error}">
+						<input type="text" class="form-control" ng-model="route.target.value" placeholder="{{'IPv6 Address'|translate}}"/>
+					</div></td>
+					<td><div class="form-group" ng-class="{'has-error':route.gateway.error}">
+						<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'IPv6 Gateway'|translate}}"/>
+					</div></td>
+					<td><input type="number" class="form-control" ng-model="route.metric.value" placeholder="route.metric.dvalue"/></td>
+					<td><input type="number" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
+					<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
+				</tr>
+				<tr>
+					<td colspan="5"></td>
+					<td><button class="btn btn-default" ng-click="onAddRoute6()"><i class="fa fa-plus"></i></button></td>
+				</tr>
+			</table>
+		</juci-config>
 	</div>
 </juci-layout-with-sidebar>
