@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-footer.html
+msgid "WAN IP Address"
+msgstr ""
+
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-footer.html
+msgid "Logout"
+msgstr ""
+
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-navbar.html
+msgid "Toggle navigation"
+msgstr ""
+
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-navbar.html
+msgid "No new events to show"
+msgstr ""
+
+# /home/martin/juci/themes/juci-theme-inteno/src/pages/status-about.html
+msgid "About"
+msgstr ""
+
+msgid "status-about-title"
+msgstr "About"
+
+# share/menu.d/overview.json
+msgid "overview-title"
+msgstr "Overview"
+
+msgid "menu-status-about-title"
+msgstr "About"
+
+# share/menu.d/overview.json
+msgid "menu-overview-title"
+msgstr "Overview"
+
+# share/menu.d/wifi.json
+
+# share/menu.d/internet.json
+
+# share/menu.d/settings.json
+
+# share/menu.d/settings.json
+
+# share/menu.d/status.vodafone.json
+
+# share/menu.d/status.json
+
+# share/menu.d/status.json
+

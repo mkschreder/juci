@@ -1,0 +1,21 @@
+<div>
+	<juci-navbar></juci-navbar>
+	<div ng-cloak class="juci-container container dynheight" role="main" >
+		<div class="row">
+			<!-- on small screens we place the menu undernewth the content -->
+			<div class="col-md-3 visible-md visible-lg juci-sidebar">
+				<juci-nav></juci-nav>
+			</div>
+			<div class="col-md-9 juci-content">
+				<juci-errors></juci-errors>
+				<ng-transclude></ng-transclude>
+			</div>
+			<!-- on small screens we place the menu undernewth the content -->
+			<div class="col-md-3 visible-xs visible-sm juci-sidebar">
+				<juci-nav></juci-nav>
+			</div>
+		</div>
+	</div>
+	<div style="height: 60px;"/>
+	<juci-footer></juci-footer>
+</div>

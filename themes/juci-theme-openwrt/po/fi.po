@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: JUCI\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Inteno\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+
+msgid "WAN IP Address"
+msgstr "WAN IP-osoite"
+
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-footer.html
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-navbar.html
+msgid "Toggle navigation"
+msgstr "Vaihda navigaatiota"
+
+# /home/martin/juci/themes/juci-theme-inteno/src/widgets/juci-navbar.html
+msgid "No new events to show"
+msgstr "Ei tapahtumia."
+
+msgid "About"
+msgstr "Tietoja"
+
+msgid "status-about-title"
+msgstr "Tietoja"
+
+# /home/martin/juci/themes/juci-theme-inteno/src/pages/overview.html
+msgid "overview-title"
+msgstr "Puheluloki"
+
+msgid "menu-status-about-title"
+msgstr "Tietoja"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-voice.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-asterisk.json
+msgid "menu-overview-title"
+msgstr "Yleisnäkymä"
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# menu.d/juci-mod-voice.json
+# #-#-#-#-#  titles.pot  #-#-#-#-#
+# bin/usr/share/rpcd/menu.d/juci-asterisk.json
+
+# #-#-#-#-#  all.pot  #-#-#-#-#
+# #-#-#-#-#  custom.pot  #-#-#-#-#
+# phone
+# #-#-#-#-#  custom.pot  #-#-#-#-#
+# phone
+

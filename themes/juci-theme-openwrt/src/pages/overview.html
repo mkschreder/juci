@@ -1,0 +1,34 @@
+<juci-layout-naked>
+	<juci-navbar></juci-navbar>
+	<div ng-controller="OverviewPageCtrl">
+		<div class="overview-banner">
+			<div class="container">
+				<div class="row" style="padding-top: 20px;">
+					<div class="col-sm-8 col-xs-1">
+						<carousel class="visible-sm visible-md visible-lg">
+							<slide ng-repeat="widget in overviewSliderWidgets" >
+								<div style="height: 360px" >
+									<div dynamic="widget"/>
+								</div>
+							</slide>
+						</carousel>
+					</div>
+					<div class="col-sm-3 col-xs-10 overview-status-box">
+						<div class="row" ng-repeat="widget in overviewStatusWidgets" style="padding-left: 10px; padding-right: 10px">
+							<div dynamic="widget"/>
+						</div>
+					</div>
+					<div class="col-xs-1"/>
+				</div>
+			</div>
+		</div>
+		<div class="container overview-widgets" style="min-height: 600px;">
+			<div class="row" ng-repeat="row in overviewWidgetRows">
+				<div class="col-sm-4 overview-box" ng-repeat="widget in row">
+					<div dynamic="widget"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<juci-footer></juci-footer>
+</juci-layout-naked>
