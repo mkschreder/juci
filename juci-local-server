@@ -55,19 +55,27 @@ spawn('make', ["debug", "DEFAULT_THEME=y"], { customFds: [0,1,2] })
 .on("exit", function(code){
 	console.log("Recompiled gui, code: "+code); 
 }); 
-var socket = new WebSocket(config.ubus_uri);  
-var connect = $.Deferred(); 
-socket.onopen = function(){     
-	console.log("Websocket RPC connected!"); 
-	connect.resolve();  
-}                               
-socket.onerror = function(){    
-	console.log("Websocket error!");         
-	connect.reject(); 
+
+var socket; 
+var connect; 
+function reconnect(){
+	console.log("Connecting to websocket: "+config.ubus_uri); 
+	socket = new WebSocket(config.ubus_uri);  
+	connect = $.Deferred(); 
+	socket.onopen = function(){     
+		console.log("Websocket RPC connected!"); 
+		connect.resolve();  
+	}                               
+	socket.onerror = function(){    
+		console.log("Websocket error!");         
+		connect.reject(); 
+	}
+	socket.onclose = function(){    
+		console.log("websocket closed!"); 
+	}
 }
-socket.onclose = function(){    
-	console.log("websocket closed!"); 
-}
+
+reconnect(); 
 
 // RPC end point
 app.ws('/websocket/', function(ws, req) {
@@ -77,7 +85,7 @@ app.ws('/websocket/', function(ws, req) {
 		try {
 			ws.send(e.data);    
 		} catch(e){
-			console.error(e); 
+			console.error("Could not send to client socket: "+e); 
 		}
 	} 
 	ws.on("message",function(msg){
@@ -86,7 +94,8 @@ app.ws('/websocket/', function(ws, req) {
 			try {
 				socket.send(msg); 
 			} catch(e) {
-				console.error(e); 
+				console.error("Could not send to server socket: "+e); 
+				reconnect(); 
 			}
 		}); 
 	}); 
