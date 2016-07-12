@@ -58,7 +58,7 @@ JUCI.app
 	
 	$scope.doLogin = function(redirect){
 		var deferred = $.Deferred(); 
-		if(!redirect) redirect = ""; 
+		if(!redirect) redirect = "overview"; 
 		$scope.errors = []; 
 		$scope.logging_in = true; 
 		async.series([
