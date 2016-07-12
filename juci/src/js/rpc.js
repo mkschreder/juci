@@ -77,37 +77,34 @@
 		socket.onmessage = function(e){
 			// resolve requests 
 			var data = e.data; 
-			var obj = null; 
-			try { obj = JSON.parse(data); } catch(e) { 
+			var msg = null; 
+			try { msg = JSON.parse(data); } catch(e) { 
 				console.error("RPC: could not parse message: "+e+": "+data); 
 				return; 
 			} 
-			if(!(obj instanceof Array) || !obj.map) return; 
-			obj.map(function(msg){ 
-				if(!msg.jsonrpc || msg.jsonrpc != "2.0") return; 
-				// a result message with a matching request
-				if(msg.id && msg.result != undefined && self.requests[msg.id]){
-					var req = self.requests[msg.id]; 
-					clearTimeout(req.timeout); 
-					//console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "); //+JSON.stringify(msg.result)); 
-					req.deferred.resolve(msg.result); 
-				} 
-				// an error message for corresponding request
-				else if(msg.id && msg.error != undefined && self.requests[msg.id]){
-					var req = self.requests[msg.id]; 
-					clearTimeout(req.timeout); 
-					self.requests[msg.id].deferred.reject(msg.error); 
-				} 
-				// an event message without id but with method and params
-				else if(!msg.id && msg.method && msg.params && self.events[msg.method]){
-					self.events[msg.method].map(function(f){
-						f({
-							type: msg.method, 
-							data: msg.params
-						}); 
+			if(!msg.jsonrpc || msg.jsonrpc != "2.0") return; 
+			// a result message with a matching request
+			if(msg.id && msg.result != undefined && self.requests[msg.id]){
+				var req = self.requests[msg.id]; 
+				clearTimeout(req.timeout); 
+				//console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "); //+JSON.stringify(msg.result)); 
+				req.deferred.resolve(msg.result); 
+			} 
+			// an error message for corresponding request
+			else if(msg.id && msg.error != undefined && self.requests[msg.id]){
+				var req = self.requests[msg.id]; 
+				clearTimeout(req.timeout); 
+				self.requests[msg.id].deferred.reject(msg.error); 
+			} 
+			// an event message without id but with method and params
+			else if(!msg.id && msg.method && msg.params && self.events[msg.method]){
+				self.events[msg.method].map(function(f){
+					f({
+						type: msg.method, 
+						data: msg.params
 					}); 
-				}
-			}); 
+				}); 
+			}
 
 		} 
 		return def.promise(); 
