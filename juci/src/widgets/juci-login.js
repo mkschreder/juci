@@ -38,8 +38,8 @@ JUCI.app
 	$scope.showHost = true; 
 
 	if($config.settings.login){
-		$scope.showlogin = $config.settings.login.showusername.value; 
-		$scope.form.username = $config.settings.login.defaultuser.value||"admin"; 
+		$scope.form.username = ($config.settings && $config.settings.login)? $config.settings.login.defaultuser.value: "admin";
+		$scope.showlogin = ($config.settings && $config.settings.login)? $config.settings.login.showusername.value:true;
 		$scope.showHost = $config.settings.login.showhost.value;
 	} 
 
