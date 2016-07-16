@@ -95,12 +95,12 @@ JUCI.app
 		]); 
 		return deferred.promise(); 
 	}
-	$scope.doLogout = function(redirect){
+	$scope.doLogout = function(){
 		var deferred = $.Deferred(); 
-		if(!redirect) redirect = "/"; 
 		$rpc.$logout().done(function(){
 			console.log("Logged out!"); 
-			window.location.href=redirect; 
+			JUCI.redirectHome(); 
+			window.location.reload(); 
 			deferred.resolve(); 
 		}).fail(function(){
 			console.error("Error logging out!");

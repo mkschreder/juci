@@ -49,7 +49,8 @@ JUCI.app
 	
 	$scope.onLogout = function(){
 		$rpc.$logout().always(function(){
-			$juci.redirect("#!/"); 
+			$juci.redirectHome(); 
+			window.location.reload(); 
 		});
 	}
 
