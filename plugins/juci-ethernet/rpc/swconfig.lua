@@ -14,14 +14,19 @@ local function get_port_status()
 	for line in links:gmatch("[^\r\n]+") do 
 		-- link: port:4 link:up speed:1000baseT full-duplex auto
 		-- link: port:4 link:down
-		local id,status,speed,duplex,mode = line:match("%s+link:%s+port:(%d+)%s+link:(%S+) speed:(%S+) (%S+) (%S+).*"); 
+		local id,status,speed,duplex,mode = line:match("%s+link:%s+port:(%d+)%s+link:(%S+)%s+speed:(%S+)%s+(%S+)%s+(%S+).*"); 
 		if(not speed or not duplex or not mode) then
 			id,status = line:match("%s+link:%s+port:(%d+)%s+link:(%S+).*"); 
 		end	
+
+		-- only add if one of the above was successful
 		if(id and status) then 
 			table.insert(state.ports, { 
 				id = tonumber(id), 
-				state = status
+				state = status, 
+				speed = speed, 
+				duplex = duplex, 
+				mode = mode
 			}); 
 		end
 	end
