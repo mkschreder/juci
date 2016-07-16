@@ -140,7 +140,9 @@ prepare: .cleaned
 	@mkdir -p $(BIN)/etc/hotplug.d/
 	
 node_modules: package.json
-	npm install --production
+	# we use existing node modules to be able to compile offline
+	tar -xzf node_modules.tar.gz
+	#npm install --production
 
 release: prepare node_modules $(TARGETS) $(UBUS_MODS)
 	@echo "======= JUCI RELEASE =========="
