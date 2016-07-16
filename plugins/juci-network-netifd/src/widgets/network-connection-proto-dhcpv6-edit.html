@@ -1,12 +1,10 @@
 <div>
-	<juci-config-section title="{{'DHCPv6'|translate}}">
-		<juci-config-lines>
-			<juci-config-line title="{{'Request IPv6 address'|translate}}">
-				<juci-select ng-model="interface.reqaddress.value" ng-items="allReqAddrTypes"/>
-			</juci-config-line>
-			<juci-config-line title="{{'Request Prefix Length'|translate}}" error="interface.reqprefix.error">
-				<juci-select ng-model="interface.reqprefix.value" ng-items="allPrefixReqTypes" editable="true"/>
-			</juci-config-line>
-		</juci-config-lines>
-	</juci-config-section>
+	<juci-config-lines>
+		<juci-config-line title="{{'Request IPv6 address'|translate}}">
+			<juci-select ng-model="interface.reqaddress.value" ng-items="allReqAddrTypes"/>
+		</juci-config-line>
+		<juci-config-line title="{{'Request Prefix Length'|translate}}" error="interface.reqprefix.error">
+			<juci-select ng-model="interface.reqprefix.value" ng-items="allPrefixReqTypes" editable="true"/>
+		</juci-config-line>
+	</juci-config-lines>
 </div>
