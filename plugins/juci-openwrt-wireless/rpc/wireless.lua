@@ -102,6 +102,22 @@ local function wireless_get_80211_txpowerlist(wldev)
 	return {}; 
 end
 
+local function wireless_get_scanlist()
+	local devices = wireless_get_80211_device_names(); 
+	local result = { }; 
+	for _,wldev in ipairs(devices) do 
+		local iw = iwinfo[iwinfo.type(wldev)];
+		if(iw) then 
+			local aps = iw.scanlist(wldev); 
+			for _,ap in ipairs(aps) do
+				ap.device = wldev; 
+			end
+			result[wldev] = aps; 
+		end
+	end
+	return result; 
+end 
+
 local function wireless_get_80211_caps()
 	local devices = wireless_get_80211_device_names(); 
 	local result = { devices = {} }; 
@@ -217,5 +233,6 @@ return {
 	countrylist = wireless_countrylist,
 	htmodelist = wireless_htmodelist,
 	freqlist = wireless_freqlist,
-	txpowerlist = wireless_txpowerlist
+	txpowerlist = wireless_txpowerlist,
+	scan = wireless_get_scanlist
 }; 

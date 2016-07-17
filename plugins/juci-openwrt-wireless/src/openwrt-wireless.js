@@ -100,6 +100,21 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 		}); 
 		return def.promise(); 
 	}
+
+	Wireless.prototype.getScanResults = function(){
+		var deferred = $.Deferred(); 
+		$rpc.juci.wireless.scan().done(function(result){
+			// merge together all interface for all devices
+			var aps = []; 
+			Object.keys(result).map(function(wldev){
+				aps = aps.concat(result[wldev]); 
+			}); 
+			deferred.resolve(aps); 
+		}).fail(function(){
+			deferred.reject(); 
+		}); 
+		return deferred.promise(); 
+	}
 	
 	Wireless.prototype.getDevices = function(){
 		var deferred = $.Deferred(); 

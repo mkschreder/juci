@@ -268,10 +268,10 @@ msgid "Broadcast SSID"
 msgstr ""
 
 msgid "Encryption"
-msgstr "Off"
+msgstr ""
 
 msgid "Choose Encryption"
-msgstr "Reset Configuration"
+msgstr ""
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
 # /home/martin/juci/plugins/juci-openwrt-wireless/src/widgets/wireless-interface-edit.html
@@ -522,6 +522,12 @@ msgstr ""
 
 msgid "Device"
 msgstr "Device"
+
+msgid "wireless-scan-title"
+msgstr "Scan"
+
+msgid "menu-wireless-scan-title"
+msgstr "Scan"
 
 msgid "wireless-interfaces-title"
 msgstr "Wireless Interfaces"
