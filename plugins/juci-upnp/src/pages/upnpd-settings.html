@@ -32,22 +32,22 @@
 			<juci-config-section title="{{'General Settings'|translate}}">
 				<juci-config-lines>
 					<juci-config-line title="{{'Automatically Start Service At Bootup'|translate}}" help="{{'Enable upnp daemon at boot time'|translate}}">
-						<switch ng-model="service.enabled" ng-change="onEnableDisableService()" class="green"></switch>
+						<switch ng-model="service.enabled" ng-change="onEnableDisableService()"></switch>
 					</juci-config-line>
 					<juci-config-line title="{{'Start / Stop Service'|translate}}" ng-show="upnp" help="{{'Start/stop upnp daemon (make sure you have WAN connection!)'|translate}}">
 						<button class="btn btn-default" ng-click="onStartStopService()"><i class="fa" ng-class="{'fa-play':!service.running,'fa-stop':service.running}"></i></button>
 					</juci-config-line>
 					<juci-config-line title="{{'Enable UPNP'|translate}}" ng-show="upnp" help="{{'Enable UPNP protocol'|translate}}">
-						<switch ng-model="upnp.enable_upnp.value" class="green"></switch>
+						<switch ng-model="upnp.enable_upnp.value"></switch>
 					</juci-config-line>
 					<juci-config-line title="{{'Enable NAT-PMP'|translate}}" ng-show="upnp" help="{{'Enable NAT-PMP protocol'|translate}}">
-						<switch ng-model="upnp.enable_natpmp.value" class="green"></switch>
+						<switch ng-model="upnp.enable_natpmp.value"></switch>
 					</juci-config-line>
 					<juci-config-line title="{{ 'Enable secure mode' | translate }}" help="{{ 'Allow adding forwards only to requesting ip addresses' | translate }}">
-						<switch ng-model="upnp.secure_mode.value" class="green"></switch>
+						<switch ng-model="upnp.secure_mode.value"></switch>
 					</juci-config-line>
 					<juci-config-line title="{{ 'Enable additional logging' | translate }}" help="{{ 'Puts extra debugging information into the system log' | translate }}">
-						<switch ng-model="upnp.log_output.value" class="green"></switch>
+						<switch ng-model="upnp.log_output.value"></switch>
 					</juci-config-line>
 					<juci-config-line title="{{ 'Downlink' | translate }}" help="{{ 'Value in KByte/s, informational only' | translate }}">
 						<input type="number" class="form-control" ng-model="upnp.download.value" />
