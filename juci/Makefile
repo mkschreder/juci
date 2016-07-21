@@ -11,7 +11,7 @@ define Plugin/juci
 	STYLES-y+=src/lib/css/ionicons.min.css
 	STYLES-y+=src/lib/css/angular-ui.min.css
 	STYLES-y+=src/lib/css/select.min.css
-	STYLES-y+=src/lib/css/angular-ui-switch.min.css
+	STYLES-y+=src/lib/css/angular-ui-switch.less
 	STYLES-y+=src/lib/css/awesome-bootstrap-checkbox.css
 	STYLES-y+=src/lib/css/vis.min.css
 	STYLES-y+=src/lib/css/ng-tags-input.css
