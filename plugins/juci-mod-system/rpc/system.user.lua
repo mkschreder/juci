@@ -8,6 +8,8 @@
 
 local juci = require("orange/core"); 
 
+local SHADOW_FILE = "/etc/orange/shadow"; 
+
 local function shadow_table()
 	local result = {}; 
 	local shadow = juci.readfile("/etc/shadow"); 
@@ -30,13 +32,13 @@ local function user_set_password(opts)
 	if not SESSION.access("juci", "passwd", "self", "w") then 
 		return { error = "Permission denied!" };
 	end
-	local oldchk = juci.shell("awk '/%s/{printf $2}' /etc/juci-shadow", opts.username); 
+	local oldchk = juci.shell("awk '/%s/{printf $2}' %s", opts.username, SHADOW_FILE); 
 	local oldhash = juci.shell("printf %s | sha1sum | awk '{printf $1}'", opts.oldpassword); 
 	if oldhash ~= oldchk then
 		return { error = "Invalid username/password!"}; 
 	end
 	local newhash = juci.shell("printf %s | sha1sum | awk '{printf $1}'", opts.password); 
-	juci.shell("sed -i 's/%s.*/%s %s/g' /etc/juci-shadow", opts.username, opts.username, newhash); 
+	juci.shell("sed -i 's/%s.*/%s %s/g' %s", opts.username, opts.username, newhash, SHADOW_FILE); 
 	return {
 		["stdout"] = stdout
 	}; 
@@ -44,7 +46,7 @@ end
 
 local function user_list(opts)
 	-- list only users that are configured for rpc logins
-	local all_users = juci.shell("awk '{print $1;}' /etc/juci-shadow");  
+	local all_users = juci.shell("awk '{print $1;}' %s", SHADOW_FILE);  
 	local users = {};
 	local listothers = SESSION.access("juci", "passwd", "otheruser", "w"); 
 	local session = SESSION.get(); 
