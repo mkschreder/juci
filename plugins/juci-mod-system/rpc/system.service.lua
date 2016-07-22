@@ -6,9 +6,9 @@
 -- See LICENSE file for more details. 
 
 
-local juci = require("juci/core"); 
-local json = require("juci/json"); 
-local ubus = require("juci/ubus"); 
+local juci = require("orange/core"); 
+local json = require("orange/json"); 
+local ubus = require("orange/ubus"); 
 
 local function list_dir(dir) 
 	local lines = juci.shell("ls %s",dir); 

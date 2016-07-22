@@ -1,7 +1,7 @@
 #!/usr/bin/lua
 
-local ubus = require("juci/ubus"); 
-local json = require("juci/json"); 
+local ubus = require("orange/ubus"); 
+local json = require("orange/json"); 
 
 local function juci_menu()
 	local menu = {}; 

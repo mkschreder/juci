@@ -6,9 +6,9 @@
 -- See LICENSE file for more details. 
 
 
-local juci = require("juci/core"); 
-local juci = require("juci.core");      
-local json = require("juci.json");      
+local juci = require("orange/core"); 
+local juci = require("orange/core");      
+local json = require("orange/json");      
 
 local function backup_create(opts)
 	local filename = "backup-"..os.date("%Y-%m-%d")..".tar.gz"; 

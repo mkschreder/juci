@@ -5,8 +5,8 @@
 -- This module is distributed under GNU GPLv3 with additional permission for signed images.
 -- See LICENSE file for more details. 
 
-local juci = require("juci.core");
-local json = require("juci.json");
+local juci = require("orange/core");
+local json = require("orange/json");
 
 local function folder_tree()
 	return juci.file.folder_tree();

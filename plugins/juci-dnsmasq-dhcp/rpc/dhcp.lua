@@ -5,9 +5,9 @@
 -- This module is distributed under GNU GPLv3 with additional permission for signed images.
 -- See LICENSE file for more details. 
 
-local juci = require("juci.core");
-local network = require("juci.network");
-local json = require("juci.json");
+local juci = require("orange/core");
+local network = require("orange/network");
+local json = require("orange/json");
 
 local function get_ipv4leases()
 	local leases = network.ipv4leases();

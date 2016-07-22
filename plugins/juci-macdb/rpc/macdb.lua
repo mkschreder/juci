@@ -5,7 +5,7 @@
 -- This module is distributed under GNU GPLv3 with additional permission for signed images.
 -- See LICENSE file for more details 
 
-local juci = require("juci/core"); 
+local juci = require("orange/core"); 
 
 function macdb_lookup(opts)
 	local res = {}; 

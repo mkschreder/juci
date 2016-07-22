@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 
-local juci = require("juci/core"); 
+local juci = require("orange/core"); 
 
 function system_filesystems(opts)
 	local res = {}; 

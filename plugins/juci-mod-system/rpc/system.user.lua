@@ -6,7 +6,7 @@
 -- See LICENSE file for more details. 
 
 
-local juci = require("juci/core"); 
+local juci = require("orange/core"); 
 
 local function shadow_table()
 	local result = {}; 

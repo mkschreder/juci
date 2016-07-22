@@ -19,9 +19,9 @@
 --          Frequency offset: unknown
 --          Supports VAPs: yes  PHY name: phy0
 
-local juci = require("juci/core"); 
+local juci = require("orange/core"); 
 local iwinfo = require("iwinfo"); 
-local ubus = require("juci/ubus"); 
+local ubus = require("orange/ubus"); 
 
 --require("iwinfo"); 
 --require("ubus"); 

@@ -6,7 +6,7 @@
 -- See LICENSE file for more details. 
 
 
-local juci = require("juci.core"); 
+local juci = require("orange/core"); 
 
 local function upnp_list_open_ports()
 	local result = { ports = {} }; 

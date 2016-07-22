@@ -5,8 +5,8 @@
 -- This module is distributed under GNU GPLv3 with additional permission for signed images.
 -- See LICENSE file for more details. 
 
-local juci = require("juci.core");
-local json = require("juci.json");
+local juci = require("orange/core");
+local json = require("orange/json");
 
 local function get_status(opts)
 	local info = juci.shell("wget -q -O - http://127.0.0.1:8200 | sed 's/<tr[^>]*>/\\n/g' | sed 's/<[^>]*>/\\t/g'"); 

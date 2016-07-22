@@ -5,10 +5,10 @@
 -- This module is distributed under GNU GPLv3 with additional permission for signed images.
 -- See LICENSE file for more details. 
 
-local juci = require("juci/core"); 
-local netstat = require("juci/netstat"); 
-local ethernet = require("juci/ethernet"); 
-local network = require("juci/network"); 
+local juci = require("orange/core"); 
+local netstat = require("orange/netstat"); 
+local ethernet = require("orange/ethernet"); 
+local network = require("orange/network"); 
 
 function network_list_services()
 	local services = netstat.list(); 

@@ -7,7 +7,7 @@
 -- See LICENSE file for more details. 
 
 
-local juci = require("juci/core"); 
+local juci = require("orange/core"); 
 
 local zones = {
 ["UTC"] = "UTC",

@@ -6,7 +6,7 @@
 -- See LICENSE file for more details. 
 
 
-local json = require("juci/json"); 
+local json = require("orange/json"); 
 
 -- T:  Bus=02 Lev=00 Prnt=00 Port=00 Cnt=00 Dev#=  1 Spd=480  MxCh= 3
 -- B:  Alloc=  0/800 us ( 0%), #Int=  0, #Iso=  0

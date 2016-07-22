@@ -5,8 +5,8 @@
 -- This module is distributed under JUCI Genereal Public License as published
 -- at https://github.com/mkschreder/jucid/COPYING. See COPYING file for details. 
 
-local juci = require("juci.core"); 
-local json = require("juci.json"); 
+local juci = require("orange/core"); 
+local json = require("orange/json"); 
 
 function ddns_list_providers()
 	local list = juci.shell("cat /usr/lib/ddns/services | awk '/\".*\"/{ gsub(\"\\\"\",\"\",$1); print($1);}'"); 
