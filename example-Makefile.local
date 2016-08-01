@@ -1,10 +1,6 @@
+## This is a file for building local copy for use with the juci-local-server
+
 CONFIG_PACKAGE_juci=y
-CONFIG_PACKAGE_juci-broadcom-dsl=y
-CONFIG_PACKAGE_juci-broadcom-ethernet=y
-CONFIG_PACKAGE_juci-broadcom-iptv=y
-CONFIG_PACKAGE_juci-broadcom-pwrmgmt=y
-CONFIG_PACKAGE_juci-broadcom-vlan=y
-CONFIG_PACKAGE_juci-broadcom-wl=y
 CONFIG_PACKAGE_juci-ddns=y
 CONFIG_PACKAGE_juci-diagnostics=y
 CONFIG_PACKAGE_juci-dnsmasq-dhcp=y
@@ -17,21 +13,14 @@ CONFIG_PACKAGE_juci-freecwmp=y
 CONFIG_PACKAGE_juci-iconnect=y
 CONFIG_PACKAGE_juci-icwmp=y
 CONFIG_PACKAGE_juci-igmpinfo=y
-CONFIG_PACKAGE_juci-inteno-backup=y
-CONFIG_PACKAGE_juci-inteno-multiwan=y
-CONFIG_PACKAGE_juci-inteno-provisioning=y
-CONFIG_PACKAGE_juci-inteno-qos=y
-CONFIG_PACKAGE_juci-inteno-router=y
-CONFIG_PACKAGE_juci-inteno-voice-client=y
-CONFIG_PACKAGE_juci-jquery-console=y
 CONFIG_PACKAGE_juci-macdb=y
 CONFIG_PACKAGE_juci-minidlna=y
 CONFIG_PACKAGE_juci-minisnmpd=y
 CONFIG_PACKAGE_juci-mod-status=y
 CONFIG_PACKAGE_juci-mod-system=y
-CONFIG_PACKAGE_juci-natalie-dect=y
 CONFIG_PACKAGE_juci-netmode=y
 CONFIG_PACKAGE_juci-network-netifd=y
+CONFIG_PACKAGE_juci-openwrt-wireless=y
 CONFIG_PACKAGE_juci-samba=y
 CONFIG_PACKAGE_juci-simple-gui=y
 CONFIG_PACKAGE_juci-snmpd=y
@@ -42,10 +31,5 @@ CONFIG_PACKAGE_juci-usb=y
 CONFIG_PACKAGE_juci-utils=y
 
 ####THEMES####
-CONFIG_PACKAGE_juci-theme-inteno=y
-#CONFIG_PACKAGE_juci-theme-vodafone=y
+CONFIG_PACKAGE_juci-theme-openwrt=y
 
-
-
-#DIRS-y += themes/juci-theme-inteno
-#DIRS-y += $(wildcard plugins/*)
