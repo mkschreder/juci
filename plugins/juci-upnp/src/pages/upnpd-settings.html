@@ -4,128 +4,123 @@
 		<juci-config-info>{{ 'internet.services.upnp.info' | translate }}</juci-config-info>
 		<div class="alert alert-danger" translate>UPnP configuration is not available on this system!</div>
 		<div ng-show="!upnp_not_present">
-		<h2 translate>UPnP Open Ports</h2>
-		<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
-		<juci-config-section>
-			<table class="table" ng-show="upnpOpenPorts.length">
-				<tr>
-					<th>#</th>
-					<th translate>Pkts. cnt.</th>
-					<th translate>Bytes</th>
-					<th translate>Target</th>
-					<th translate>Proto.</th>
-					<th translate>Opt</th>
-					<th translate>Source</th>
-					<th translate>Dest.</th>
-				</tr>
-				<tr ng-repeat="port in upnpOpenPorts track by $index">
-					<td>{{port.num}}</td>
-					<td>{{port.packets}}</td>
-					<td>{{port.bytes}}</td>
-					<td>{{port.target}}</td>
-					<td>{{port.proto}}</td>
-					<td>{{port.opt}}</td>
-					<td>{{port.src}} {{port.src_port}}</td>
-					<td>{{port.dst}} {{port.dst_port}}</td>
-				</tr>
-			</table>
-		</juci-config-section>
-		<accordion close-others="false">
-			<accordion-group heading="{{ 'General Settings' | translate }}" is-open=true >
-				<juci-config-section>
-					<juci-config-lines>
-						<juci-config-line title="{{'Automatically Start Service At Bootup'|translate}}" help="{{'Enable upnp daemon at boot time'|translate}}">
-							<switch ng-model="service.enabled" ng-change="onEnableDisableService()" class="green"></switch>
-						</juci-config-line>
-						<juci-config-line title="{{'Start / Stop Service'|translate}}" ng-show="upnp" help="{{'Start/stop upnp daemon (make sure you have WAN connection!)'|translate}}">
-							<button class="btn btn-default" ng-click="onStartStopService()"><i class="fa" ng-class="{'fa-play':!service.running,'fa-stop':service.running}"></i></button>
-						</juci-config-line>
-						<juci-config-line title="{{'Enable UPNP'|translate}}" ng-show="upnp" help="{{'Enable UPNP protocol'|translate}}">
-							<switch ng-model="upnp.enable_upnp.value" class="green"></switch>
-						</juci-config-line>
-						<juci-config-line title="{{'Enable NAT-PMP'|translate}}" ng-show="upnp" help="{{'Enable NAT-PMP protocol'|translate}}">
-							<switch ng-model="upnp.enable_natpmp.value" class="green"></switch>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Enable secure mode' | translate }}" help="{{ 'Allow adding forwards only to requesting ip addresses' | translate }}">
-							<switch ng-model="upnp.secure_mode.value" class="green"></switch>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Enable additional logging' | translate }}" help="{{ 'Puts extra debugging information into the system log' | translate }}">
-							<switch ng-model="upnp.log_output.value" class="green"></switch>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Downlink' | translate }}" help="{{ 'Value in KByte/s, informational only' | translate }}">
-							<input type="number" class="form-control" ng-model="upnp.download.value" />
-						</juci-config-line>
-						<juci-config-line title="{{ 'Uplink' | translate }}" help="{{ 'Value in KByte/s, informational only' | translate }}">
-							<input type="number" class="form-control" ng-model="upnp.upload.value" />
-						</juci-config-line>
-						<juci-config-line title="{{ 'Port' | translate }}">
-							<input type="number" class="form-control" ng-model="upnp.port.value" />
-						</juci-config-line>
-						<juci-config-line title="{{ 'External Interface' | translate }}">
-							<juci-select ng-items="networks" ng-model="upnp.external_iface.value"></juci-select>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Internal Interface' | translate }}">
-							<juci-select ng-items="networks" ng-model="upnp.internal_iface.value"></juci-select>
-						</juci-config-line>
-					</juci-config-lines>
-				</accordion-group>
-				<accordion-group heading="{{ 'Advanced Settings' | translate }}" is-open=false>
-					<juci-config-lines>
-						<juci-config-line title="{{ 'Device UUID' | translate }}">
-							<input type="text" class="form-control" ng-model="upnp.uuid.value" placeholder="UUID"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Announced serial number' | translate }}">
-							<input type="text" class="form-control" ng-model="upnp.serial_number.value" placeholder="{{'Serial Number'|translate}}"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Announced model number' | translate }}">
-							<input type="text" class="form-control" ng-model="upnp.model.value" placeholder="{{'Model Number'|translate}}"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Notify interval' | translate }}">
-							<input type="number" class="form-control" ng-model="upnp.notify_interval.value"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Clean rules threshold' | translate }}">
-							<input type="number" class="form-control" ng-model="upnp.clean_ruleset_threshold.value"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Clean rules interval' | translate }}">
-							<input type="number" class="form-control" ng-model="upnp.clean_ruleset_interval.value"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'Presentation URL' | translate }}">
-							<input type="text" class="form-control" placeholder="https://presentation.html" ng-model="upnp.presentation_url.value"/>
-						</juci-config-line>
-						<juci-config-line title="{{ 'UPnP lease file' | translate }}">
-							<input type="text" class="form-control" placeholder="/var/upnp.lease" ng-model="upnp.upnp_lease_file.value"/>
-						</juci-config-line>
-					</juci-config-lines>
-				</accordion-group>
-				<accordion-group heading="{{ 'UPnP ACLs' | translate }}" is-open=false>
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th translate>Comment</th>
-								<th translate>External ports</th>
-								<th translate>Internal addresses</th>
-								<th translate>Internal ports</th>
-								<th translate>Action</th>
-								<th translate>Sort</th><th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="acl in acls track by $index">
-								<td><input type="text" class="form-control" ng-model="acl.comment.value"/></td>
-								<td><input type="text" class="form-control" ng-model="acl.ext_ports.value"/></td>
-								<td><input type="text" class="form-control" ng-model="acl.int_addr.value"/></td>
-								<td><input type="text" clasS="form-control" ng-model="acl.int_ports.value"/></td>
-								<td><juci-select ng-items="action" ng-model="acl.action.value"></juci-select></td>
-								<td><button class="btn btn-default" ng-click="onAclMoveUp(acl)"><i class="fa fa-arrow-up"></i></button>
-									<button class="btn btn-default" ng-click="onAclMoveDown(acl)"><i class="fa fa-arrow-down"></i></button></td>
-								<td><button class="btn btn-default" ng-click="onAclRemove(acl)" translate>Delete</button>
-							</tr>
-							<tr><td/><td/><td/><td/><td/><td/><td><button class="btn btn-default" ng-click="onAclAdd()" translate>Add ACL</button></td></tr>
-						</tbody>
-					</table>
-				</accordion-group>
-			</accordion>
-		</juci-config-section>
+			<juci-config-section title="{{'Open Ports'|translate}}">
+				<span ng-show="!upnpOpenPorts.length" translate>No UPnP ports currently in use</span>
+				<table class="table" ng-show="upnpOpenPorts.length">
+					<tr>
+						<th>#</th>
+						<th translate>Pkts. cnt.</th>
+						<th translate>Bytes</th>
+						<th translate>Target</th>
+						<th translate>Proto.</th>
+						<th translate>Opt</th>
+						<th translate>Source</th>
+						<th translate>Dest.</th>
+					</tr>
+					<tr ng-repeat="port in upnpOpenPorts track by $index">
+						<td>{{port.num}}</td>
+						<td>{{port.packets}}</td>
+						<td>{{port.bytes}}</td>
+						<td>{{port.target}}</td>
+						<td>{{port.proto}}</td>
+						<td>{{port.opt}}</td>
+						<td>{{port.src}} {{port.src_port}}</td>
+						<td>{{port.dst}} {{port.dst_port}}</td>
+					</tr>
+				</table>
+			</juci-config-section>
+			<juci-config-section title="{{'General Settings'|translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{'Automatically Start Service At Bootup'|translate}}" help="{{'Enable upnp daemon at boot time'|translate}}">
+						<switch ng-model="service.enabled" ng-change="onEnableDisableService()"></switch>
+					</juci-config-line>
+					<juci-config-line title="{{'Start / Stop Service'|translate}}" ng-show="upnp" help="{{'Start/stop upnp daemon (make sure you have WAN connection!)'|translate}}">
+						<button class="btn btn-default" ng-click="onStartStopService()"><i class="fa" ng-class="{'fa-play':!service.running,'fa-stop':service.running}"></i></button>
+					</juci-config-line>
+					<juci-config-line title="{{'Enable UPNP'|translate}}" ng-show="upnp" help="{{'Enable UPNP protocol'|translate}}">
+						<switch ng-model="upnp.enable_upnp.value"></switch>
+					</juci-config-line>
+					<juci-config-line title="{{'Enable NAT-PMP'|translate}}" ng-show="upnp" help="{{'Enable NAT-PMP protocol'|translate}}">
+						<switch ng-model="upnp.enable_natpmp.value"></switch>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Enable secure mode' | translate }}" help="{{ 'Allow adding forwards only to requesting ip addresses' | translate }}">
+						<switch ng-model="upnp.secure_mode.value"></switch>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Enable additional logging' | translate }}" help="{{ 'Puts extra debugging information into the system log' | translate }}">
+						<switch ng-model="upnp.log_output.value"></switch>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Downlink' | translate }}" help="{{ 'Value in KByte/s, informational only' | translate }}">
+						<input type="number" class="form-control" ng-model="upnp.download.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Uplink' | translate }}" help="{{ 'Value in KByte/s, informational only' | translate }}">
+						<input type="number" class="form-control" ng-model="upnp.upload.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'Port' | translate }}">
+						<input type="number" class="form-control" ng-model="upnp.port.value" />
+					</juci-config-line>
+					<juci-config-line title="{{ 'External Interface' | translate }}">
+						<juci-select ng-items="networks" ng-model="upnp.external_iface.value"></juci-select>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Internal Interface' | translate }}">
+						<juci-select ng-items="networks" ng-model="upnp.internal_iface.value"></juci-select>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section title="{{'Advanced Settings'|translate}}">
+				<juci-config-lines>
+					<juci-config-line title="{{ 'Device UUID' | translate }}">
+						<input type="text" class="form-control" ng-model="upnp.uuid.value" placeholder="UUID"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Announced serial number' | translate }}">
+						<input type="text" class="form-control" ng-model="upnp.serial_number.value" placeholder="{{'Serial Number'|translate}}"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Announced model number' | translate }}">
+						<input type="text" class="form-control" ng-model="upnp.model.value" placeholder="{{'Model Number'|translate}}"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Notify interval' | translate }}">
+						<input type="number" class="form-control" ng-model="upnp.notify_interval.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Clean rules threshold' | translate }}">
+						<input type="number" class="form-control" ng-model="upnp.clean_ruleset_threshold.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Clean rules interval' | translate }}">
+						<input type="number" class="form-control" ng-model="upnp.clean_ruleset_interval.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'Presentation URL' | translate }}">
+						<input type="text" class="form-control" placeholder="https://presentation.html" ng-model="upnp.presentation_url.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{ 'UPnP lease file' | translate }}">
+						<input type="text" class="form-control" placeholder="/var/upnp.lease" ng-model="upnp.upnp_lease_file.value"/>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section title="{{'UPnP ACLs'|translate}}">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th translate>Comment</th>
+							<th translate>External ports</th>
+							<th translate>Internal addresses</th>
+							<th translate>Internal ports</th>
+							<th translate>Action</th>
+							<th translate>Sort</th><th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="acl in acls track by $index">
+							<td><input type="text" class="form-control" ng-model="acl.comment.value"/></td>
+							<td><input type="text" class="form-control" ng-model="acl.ext_ports.value"/></td>
+							<td><input type="text" class="form-control" ng-model="acl.int_addr.value"/></td>
+							<td><input type="text" clasS="form-control" ng-model="acl.int_ports.value"/></td>
+							<td><juci-select ng-items="action" ng-model="acl.action.value"></juci-select></td>
+							<td><button class="btn btn-default" ng-click="onAclMoveUp(acl)"><i class="fa fa-arrow-up"></i></button>
+								<button class="btn btn-default" ng-click="onAclMoveDown(acl)"><i class="fa fa-arrow-down"></i></button></td>
+							<td><button class="btn btn-default" ng-click="onAclRemove(acl)" translate>Delete</button>
+						</tr>
+						<tr><td/><td/><td/><td/><td/><td/><td><button class="btn btn-default" ng-click="onAclAdd()" translate>Add ACL</button></td></tr>
+					</tbody>
+				</table>
+			</juci-config-section>
 		</div><!-- upnp not installed -->
 	</div>
 </juci-layout-with-sidebar>

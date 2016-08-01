@@ -1,7 +1,6 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="simpleWANConfigPage">
-		<juci-config-section>
-			<h1 translate>WAN Configuration</h1>
+		<juci-config-section title="{{'WAN Configuration'|translate}}">
 			<juci-config-info>{{'wan.config.info'|translate}}</juci-config-info>
 			<div class="alert alert-danger" ng-show="loaded && !wan" translate>No wan interface found</div>
 			<juci-config-lines ng-show="loaded && wan">
@@ -15,16 +14,17 @@
 			<div dynamic="editor"/>
 			<network-connection-dns-config ng-model="wan"></network-connection-dns-config>
 		</juci-config-section>
-		<h1 translate>WAN IPv6 Configuration</h1>
-		<div class="alert alert-danger" ng-show="loaded && !wan6" translate>No wan interface found</div>
-		<juci-config-lines ng-show="loaded && wan6">
-			<juci-config-line title="{{'Enabled'|translate}}">
-				<switch ng-model="wan6.enabled.value" class="green"></switch>
-			</juci-config-line>
-			<juci-config-line title="{{'Configuration Method'|translate}}">
-				<juci-select ng-model="wan6.proto.value" ng-items="protocolTypes6" placeholder="{{'Choose Configuration Option'|translate}}"/>
-			</juci-config-line>
-		</juci-config-lines>
+		<juci-config-section title="{{'IPv6 WAN'|translate}}">
+			<div class="alert alert-danger" ng-show="loaded && !wan6" translate>No wan interface found</div>
+			<juci-config-lines ng-show="loaded && wan6">
+				<juci-config-line title="{{'Enabled'|translate}}">
+					<switch ng-model="wan6.enabled.value" class="green"></switch>
+				</juci-config-line>
+				<juci-config-line title="{{'Configuration Method'|translate}}">
+					<juci-select ng-model="wan6.proto.value" ng-items="protocolTypes6" placeholder="{{'Choose Configuration Option'|translate}}"/>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
 		<div dynamic="editor6"/>
 	</div>
 </juci-layout-with-sidebar>

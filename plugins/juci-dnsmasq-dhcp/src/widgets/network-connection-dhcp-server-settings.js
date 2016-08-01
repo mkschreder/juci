@@ -41,7 +41,7 @@ JUCI.app
 	}); 
 	$scope.$watch("data.dhcpEnabled", function(value){
 		if($scope.connection && $scope.connection.proto && $scope.connection.proto.value == "static") {
-			if(!$scope.dhcp){
+			if($scope.dhcp == undefined){
 				$uci.dhcp.$create({
 					".type": "dhcp", 
 					".name": $scope.connection[".name"],

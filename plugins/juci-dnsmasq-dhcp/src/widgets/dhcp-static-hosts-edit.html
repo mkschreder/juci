@@ -1,51 +1,52 @@
 <div>
-	<h3 translate>Static DHCP</h3>
-	<div ng-repeat="host in dhcp.staticHosts track by $index">
-		<div class="row">
-			<div class="col-sm-4 form-group">
-				<label translate>Device Name</label>
-				<input type="text" class="form-control" ng-model="host.name.value" placeholder="{{'Hostname'|translate}}"/>
+	<juci-config-section title="{{'Static DHCP'|translate}}">
+		<div ng-repeat="host in dhcp.staticHosts track by $index">
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label translate>Device Name</label>
+					<input type="text" class="form-control" ng-model="host.name.value" placeholder="{{'Hostname'|translate}}"/>
+				</div>
+				<div class="col-sm-4 form-group">
+					<label translate>MAC Address</label>
+					<input type="text" class="form-control" ng-model="host.mac.value" placeholder="{{'MAC'|translate}}"/>
+					<juci-error value="host.mac.error"/>
+				</div>
+				<div class="col-sm-3 form-group">
+					<label translate>IP Address</label>
+					<input type="text" class="form-control" ng-model="host.ip.value" placeholder="{{'IPv4 Address'|translate}}"/>
+					<juci-error value="host.ip.error"/>
+				</div>
+				<div class="col-sm-1 form-group" style="white-space: nowrap">
+					<label> </label>
+					<button class="btn btn-default pull-right" style="display: inline-block; float: none;" ng-click="onRemoveStaticDHCP(host)"><i class="fa fa-trash-o"></i></button>
+				</div>
 			</div>
-			<div class="col-sm-4 form-group">
-				<label translate>MAC Address</label>
-				<input type="text" class="form-control" ng-model="host.mac.value" placeholder="{{'MAC'|translate}}"/>
-				<juci-error value="host.mac.error"/>
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label translate>DUID (IPv6)</label>
+					<input type="text" class="form-control" ng-model="host.duid.value" placeholder="{{'IPv6 Unique ID'|translate}}"/>
+				</div>
+				<div class="col-sm-4 form-group">
+					<label translate>Host ID (IPv6)</label>	
+					<input type="text" class="form-control" ng-model="host.hostid.value" placeholder="{{'IPv6 Address ID'|translate}}"/>
+				</div>
+				<div class="col-sm-3 form-group"></div>
+				<div class="col-sm-1"></div>
 			</div>
-			<div class="col-sm-3 form-group">
-				<label translate>IP Address</label>
-				<input type="text" class="form-control" ng-model="host.ip.value" placeholder="{{'IPv4 Address'|translate}}"/>
-				<juci-error value="host.ip.error"/>
-			</div>
-			<div class="col-sm-1 form-group" style="white-space: nowrap">
-				<label> </label>
-				<button class="btn btn-default pull-right" style="display: inline-block; float: none;" ng-click="onRemoveStaticDHCP(host)"><i class="fa fa-trash-o"></i></button>
+			<div class="row">
+				<div class="col-xs-12 visible-xs">
+					<hr style="width: 100%; border-bottom: 1px solid #ccc; clear: both;"/>
+				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-4 form-group">
-				<label translate>DUID (IPv6)</label>
-				<input type="text" class="form-control" ng-model="host.duid.value" placeholder="{{'IPv6 Unique ID'|translate}}"/>
+			<div class="col-sm-7"></div>
+			<div class="col-sm-4 form-group" style="text-align: right;">
+				<juci-select ng-model="existingHost" ng-items="dhcp.connectedHosts" on-change="onExistingChanged()" placeholder="{{'Add Connected Host'|translate}}"/>
 			</div>
-			<div class="col-sm-4 form-group">
-				<label translate>Host ID (IPv6)</label>	
-				<input type="text" class="form-control" ng-model="host.hostid.value" placeholder="{{'IPv6 Address ID'|translate}}"/>
-			</div>
-			<div class="col-sm-3 form-group"></div>
-			<div class="col-sm-1"></div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 visible-xs">
-				<hr style="width: 100%; border-bottom: 1px solid #ccc; clear: both;"/>
+			<div class="col-sm-1 form-group" >
+				<button class="btn btn-default pull-right" ng-click="onAddStaticDHCP()"><i class="fa fa-plus"></i></button>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-7"></div>
-		<div class="col-sm-4 form-group" style="text-align: right;">
-			<juci-select ng-model="existingHost" ng-items="dhcp.connectedHosts" on-change="onExistingChanged()" placeholder="{{'Add Connected Host'|translate}}"/>
-		</div>
-		<div class="col-sm-1 form-group" >
-			<button class="btn btn-default pull-right" ng-click="onAddStaticDHCP()"><i class="fa fa-plus"></i></button>
-		</div>
-	</div>
+	</juci-config-section>
 </div>

@@ -1,9 +1,12 @@
 <div>
-	<juci-config-lines>
-		<juci-config-line title="{{ 'Interface Type'  | translate }}" help="{{ '' | translate }}">
-			<juci-select ng-items="interface_types" ng-model="interface.is_lan.value" on-change="onAssignmentChange($value)"></juci-select>
-		</juci-config-line>
-		<juci-config-heading translate>IPv4 Settings</juci-config-heading>
+	<!--<juci-config-section title="{{'Interface Type'|translate}}">
+		<juci-config-lines>
+			<juci-config-line title="{{ 'Interface Type'  | translate }}" help="{{ '' | translate }}">
+				<juci-select ng-items="interface_types" ng-model="interface.is_lan.value" on-change="onAssignmentChange($value)"></juci-select>
+			</juci-config-line>
+		</juci-config-lines>
+	</juci-config-section>-->
+	<h2>{{'IPv4'|translate}}</h2>
 		<juci-config-lines>
 			<juci-config-line title="{{'IPv4 Address'|translate}}" error="interface.ipaddr.error">
 				<juci-input-ipv4-address ng-model="interface.ipaddr.value"></juci-input-ipv4-address />
@@ -20,11 +23,9 @@
 			<juci-config-line title="{{'Create default route'|translate}}" ng-show="!interface.is_lan.value">
 				<switch ng-model="interface.defaultroute.value" class="green"></switch>
 			</juci-config-line>
-			<network-connection-dns-config ng-model="interface" ng-show="!interface.is_lan.value"></network-connection-dns-config>
+			<!--<network-connection-dns-config ng-model="interface" ng-show="!interface.is_lan.value"></network-connection-dns-config>-->
 		</juci-config-lines>
-	</juci-config-section>
-	<juci-config-section>
-		<juci-config-heading translate>IPv6 Settings</juci-config-heading>
+	<h2>{{'IPv6'|translate}}</h2>
 		<juci-config-lines>
 			<!-- IPv6 Assign -->
 			<juci-config-line ng-show="interface.is_lan.value" title="{{ 'IPv6 assignment length' | translate }}" help="{{ 'Only numbers allowed. Leave empty for Disabled' | translate }}">
@@ -44,5 +45,4 @@
 				<input type="text" class="form-control" ng-model="interface.ip6prefix.value" placeholder="{{'IPv6 Address Mask'|translate}}" />
 			</juci-config-line>
 		</juci-config-lines>
-	</juci-config-section>
 </div>

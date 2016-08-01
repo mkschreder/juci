@@ -23,7 +23,7 @@ JUCI.app
 		}); 
 	} reload(); 
 	
-	$scope.onAddRule = function(net){
+	$scope.onAddRule = function(){
 		$uci.firewall.$create({
 			".type": "redirect", 
 			"name": "new_rule",

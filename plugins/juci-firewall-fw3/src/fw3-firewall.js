@@ -261,18 +261,17 @@ UCI.firewall.$registerSectionType("rule", {
 	"type": 				{ dvalue: "generic", type: String }, 
 	"name":					{ dvalue: "", type: String }, 
 	"src":					{ dvalue: "", type: String }, 
-	"src_ip":				{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
+	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.IP4CIDRAddressValidator }, // needs to be extended type of ip address/mask
 	"src_mac": 			{ dvalue: [], type: Array, validator: UCI.validators.MACListValidator }, 
-	"src_port":			{ dvalue: "", type: String }, // can be a range
+	"src_port":			{ dvalue: "", type: String, validator: UCI.validators.PortValidator }, // can be a range
 	"dest":				{ dvalue: "", type: String }, 
 	"dest_ip":			{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
 	"dest_mac":			{ dvalue: "", type: String },
-	"dest_port":		{ dvalue: "", type: String }, // can be a range
+	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }, // can be a range
 	"proto":			{ dvalue: "any", type: String }, 
 	"target":			{ dvalue: "REJECT", type: String }, 
 	"family": 			{ dvalue: "ipv4", type: String }, 
 	"icmp_type": 		{ dvalue: [], type: Array },
-	"enabled": 			{ dvalue: true, type: Boolean },
 	"hidden": 			{ dvalue: false, type: Boolean }, 
 	"limit":			{ dvalue: "", type: String }, 
 	// scheduling

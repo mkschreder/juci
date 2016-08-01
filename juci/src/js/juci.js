@@ -237,7 +237,7 @@
 	
 	scope.JUCI = scope.$juci = new JUCIMain(); 
 	// TODO: JUCI_MOBILE_BUNDLE is a check to avoid undefined modules and we should not init juci as a desktop app at all if we are on mobile
-	if(typeof angular !== "undefined" && !JUCI_MOBILE_BUNDLE){
+	if(typeof angular !== "undefined" && (typeof JUCI_MOBILE_BUNDLE === 'undefined')){
 		// TODO: this list should eventually be split out into plugins.
 		// we should in fact use JUCI.app.depends.push("...") for this then
 		// otherwise this list of things that are always included in juci will become quite big..

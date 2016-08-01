@@ -1,7 +1,6 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="EventLogConfigPage">
-		<juci-config-section>
-			<juci-config-heading>{{'Log Settings'|translate}}</juci-config-heading>
+		<juci-config title="{{'Log Settings'|translate}}">
 			<juci-config-lines>
 				<juci-config-line title="{{'Log size'|translate}}" help="{{'Size of the file or circular memory buffer in KiB.'|translate}}">
 					<input type="number" class="form-control" ng-model="system.log_size.value" placeholder="{{'Log size in KB'|translate}}"></input>
@@ -21,6 +20,6 @@
 					<input type="number" class="form-control" min="1" max="65535" ng-model="system.log_port.value" placeholder="{{'Server port'|translate}}"/>
 				</juci-config-line>
 			</juci-config-lines>
-		</juci-config-section>
+		</juci-config>
 	</div>
 </juci-layout-with-sidebar>

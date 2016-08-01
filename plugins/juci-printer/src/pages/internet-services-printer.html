@@ -2,9 +2,7 @@
 	<div ng-controller="printerPageCtrl">
 		<juci-config-heading>{{ 'internet-services-printer-title'|translate}}</juci-config-heading>
 		<juci-config-info>{{'internet-services-printer-info'|translate}}</juci-config-info>
-		<juci-config-section></juci-config-section>
-		<juci-config-section ng-repeat="printer in allPrinters track by $index">
-			<h3>{{'Printer'| translate}} {{$index + 1}}</h3>
+		<juci-config-section title="{{'Printer'|translate}} {{$index + 1}}" ng-repeat="printer in allPrinters track by $index">
 			<juci-config-lines>
 				<juci-config-line title="{{'Enable'|translate}}">
 					<switch class="green" ng-model="printer.enabled.value">

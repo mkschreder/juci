@@ -24,7 +24,7 @@ JUCI.app
 	$scope.state = 'INIT'; 
 
 	$scope.data = { keepSettings: true }; 
-	$scope.current_version = $config.board.release.distribution + " " + $config.board.release.version + " " + $config.board.release.revision; 
+	$scope.current_version = $config.board.release.distribution + " " + $config.board.release.version; 
 	
 	$scope.keepSettingsList = [
 		{ label: $tr(gettext("Keep all configuration")), value: true }, 
@@ -43,38 +43,17 @@ JUCI.app
 
 	$scope.onStartUpgrade = function(){
 		$scope.state = 'UPGRADING'; 
-		$rpc.juci.system.upgrade.start({"path": $scope.uploadPath, "keep": (($scope.keepSettings)?1:0)}).done(function(){
-			window.location.href="/reboot.html"; 
-			/*
-			// monitoring a reboot is very problematic for several reasons (for instance what if router comes up with a different netmask after upgrade?)
-			// TODO: write robus monitoring code that will work every time. 
-			setTimeout(function(){
-				if($rpc.$isConnected()) {
-					// upgrading probably did not start correctly since we should be disconnected right now. 
-					$scope.state = 'FAIL'; 
-					$scope.imageError = $tr(gettext("Upgrade did not start. Please reload this page and try again!")); 
-					return; 
-				}
-				$scope.state = 'WRITING'; 
-				$scope.connected = false; 
-				function next(){
-					$rpc.$connect().fail(function(){
-						setTimeout(function(){
-							if($rpc.$isConnected()){
-								$scope.state = 'READY'; 
-								window.location.reload(); 
-							} else {
-								next(); 
-							}
-						}, 1000); 
-					}); 
-				} next(); 
-			}, 15000); */
-		}).fail(function(){
-			$scope.state = 'FAIL'; 
-		}).always(function(){
+		var timeout; 
+		$rpc.juci.system.upgrade.start({"path": $scope.uploadPath, "keep": (($scope.keepSettings)?1:0)}).fail(function(){
+			clearTimeout(timeout); 
+			$scope.state = 'FAILED'; 
 			$scope.$apply(); 
 		}); 
+		// NOTE: we are not using done() here because the start upgrade call may actually fail if server is killed
+		// Instead we use a timeout and redirect to reboot page after a short while. {
+		timeout = setTimeout(function(){
+			window.location.href="/reboot.html"; 
+		}, 2000); 
 	}
 
 	$scope.onCancelUpload = function(){

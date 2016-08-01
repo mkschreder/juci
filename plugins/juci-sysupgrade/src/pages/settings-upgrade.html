@@ -1,75 +1,71 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="SettingsUpgradeCtrl">
-		<juci-config-section> 
-			<juci-config-heading>{{ 'Firmware Upgrade' | translate }}</juci-config-heading>
+		<juci-config title="{{'Firmware Upgrade'|translate}}"> 
 			<juci-config-info>{{ 'settings.upgrade.info' | translate }}</juci-config-info>
 			<juci-config-lines>
 				<juci-config-line title="{{'Current Firmware Version'|translate}}">
 					<strong>{{current_version}}</strong>
 				</juci-config-line>
 			</juci-config-lines>
-		</juci-config-section>
-		<juci-config-section ng-show="system.upgrade.fw_check_url.value">
-			<h2>{{'Online Update'|translate}}</h2>
-			<p>{{'settings.upgrade.online.info'|translate}}</p>
-			<juci-config-lines>
-				<juci-config-line title="{{onlineUpgrade}}">
-					<button ng-hide="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onOnlineCheck()">
-						<i class="fa fa-spinner fa-spin" ng-show="onlineCheckInProgress"></i>{{'Check for Upgrade'|translate}}</button>
-					<button ng-show="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onUpgradeOnline()">{{'Install Upgrade'|translate}}</button>
-				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>
-		<juci-config-section ng-show="system.upgrade.fw_usb_path.value">
-			<h2>{{'USB Firmware Upgrade'|translate}}</h2>
-			<p>{{'settings.upgrade.usb.info'|translate}}</p>
-			<juci-config-lines>
-				<juci-config-line title="{{usbUpgrade}}" ng-show="usbUpgradeAvailable">
-					<button class="btn btn-lg btn-default" ng-click="onUpgradeUSB()">{{'Install Upgrade'|translate}}</button>
-				</juci-config-line>
-				<juci-config-line title="{{usbUpgrade}}" ng-hide="usbUpgradeAvailable">
-					<button class="btn btn-lg btn-default" ng-click="onCheckUSB()"><i class="fa fa-spinner fa-spin" ng-show="usbCheckInProgress"></i>{{'Check for Upgrade'|translate}}</button>
-				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>
-		<juci-config-section>
-			<h2>{{'Manual Firmware Upgrade'|translate}}</h2>
-			<p>{{'settings.upgrade.manual.info'|translate}}</p>
-			<juci-config-lines>
-				<juci-config-line title="{{'Upload new image'|translate}}" no-pull>
-					<input style="width: 100%" ng-show="state != 'UPLOADING'" ng-disabled="uploading" type="file" 
-						class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile" onchange="angular.element(this).scope().onSelectFile(event)"/>
-					<progressbar type="success" ng-show="state == 'UPLOADING'" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
-					<button style="width: 100%" ng-show="state == 'UPLOADING'" ng-click="onCancelUpload()" 
-						class="btn btn-default" translate>Cancel Upload</button>
-				</juci-config-line>
-				<juci-config-line title="{{'Start upgrade'|translate}}" no-pull>
-					<div ng-show="!imageExists && (state == 'VERIFIED' || state == 'INIT')"><p translate>No image uploaded yet!</p></div>
-					<p ng-show="state == 'UPLOADING'" translate>Please wait.. <i class="fa fa-spinner fa-spin text-warning"></i></p>
-					<div ng-show="state == 'UPLOADED' || state == 'VERIFYING' || state == 'VERIFIED'" class="pull-left">
-						<i ng-show="state == 'VERIFYING'" class="fa fa-spinner fa-spin text-warning" style="margin-right: 20px;"></i>
-						<i ng-show="state == 'VERIFIED' && imageValid" class="fa fa-check text-success" style="margin-right: 20px"></i>
-					</div>
-					<div ng-show="imageExists && state == 'FAILED'">
-						<i class="pull-left fa fa-lg fa-times-circle text-danger"></i>
-						<p>{{imageError}}</p>
-						<p translate>Please upload a new image of valid type!</p>
-					</div>
-					<div ng-show="state == 'VERIFIED'">
-						<p translate>Valid image found! Press 'Upgrade' to proceed!</p>
-						<button ng-click="onStartUpgrade()" 
-							class="pull-right btn btn-success">{{'Upgrade'|translate}}</button>
-						<juci-select ng-model="data.keepSettings" ng-items="keepSettingsList"></juci-select>
-					</div>
-					<div ng-show="state == 'UPGRADING' || state == 'WRITING'">
-						<i class="pull-left fa fa-lg fa-spinner fa-spin text-warning"></i>
-						<p ng-show="state == 'UPGRADING'" translate>Preparing upgrade...</p>
-						<p ng-show="state == 'WRITING'" translate><i class="fa fa-spin fa-spinner text-warning"></i>
-							Writing to flash.. please wait until device reboots and then reload this page!</p>
-					</div>
-				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>
+			<juci-config-section title="{{'Online Upgrade'|translate}}" ng-show="system.upgrade.fw_check_url.value">
+				<p>{{'settings.upgrade.online.info'|translate}}</p>
+				<juci-config-lines>
+					<juci-config-line title="{{onlineUpgrade}}">
+						<button ng-hide="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onOnlineCheck()">
+							<i class="fa fa-spinner fa-spin" ng-show="onlineCheckInProgress"></i>{{'Check for Upgrade'|translate}}</button>
+						<button ng-show="onlineUpgradeAvailable" class="btn btn-lg btn-default" ng-click="onUpgradeOnline()">{{'Install Upgrade'|translate}}</button>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section title="{{'USB Firmware Upgrade'|translate}}" ng-show="system.upgrade.fw_usb_path.value">
+				<p>{{'settings.upgrade.usb.info'|translate}}</p>
+				<juci-config-lines>
+					<juci-config-line title="{{usbUpgrade}}" ng-show="usbUpgradeAvailable">
+						<button class="btn btn-lg btn-default" ng-click="onUpgradeUSB()">{{'Install Upgrade'|translate}}</button>
+					</juci-config-line>
+					<juci-config-line title="{{usbUpgrade}}" ng-hide="usbUpgradeAvailable">
+						<button class="btn btn-lg btn-default" ng-click="onCheckUSB()"><i class="fa fa-spinner fa-spin" ng-show="usbCheckInProgress"></i>{{'Check for Upgrade'|translate}}</button>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+			<juci-config-section title="{{'Manual Firmware Upgrade'|translate}}">
+				<p>{{'settings.upgrade.manual.info'|translate}}</p>
+				<juci-config-lines>
+					<juci-config-line title="{{'Upload firmware image'|translate}}" no-pull>
+						<input style="width: 100%" ng-show="state != 'UPLOADING'" ng-disabled="uploading" type="file" 
+							class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile" onchange="angular.element(this).scope().onSelectFile(event)"/>
+						<progressbar type="success" ng-show="state == 'UPLOADING'" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>
+						<button style="width: 100%" ng-show="state == 'UPLOADING'" ng-click="onCancelUpload()" 
+							class="btn btn-default" translate>Cancel Upload</button>
+					</juci-config-line>
+					<juci-config-line title="{{'Start upgrade'|translate}}" no-pull>
+						<div ng-show="!imageExists && (state == 'VERIFIED' || state == 'INIT')"><p translate>No image uploaded yet!</p></div>
+						<p ng-show="state == 'UPLOADING'" translate>Please wait.. <i class="fa fa-spinner fa-spin text-warning"></i></p>
+						<div ng-show="state == 'UPLOADED' || state == 'VERIFYING' || state == 'VERIFIED'" class="pull-left">
+							<i ng-show="state == 'VERIFYING'" class="fa fa-spinner fa-spin text-warning" style="margin-right: 20px;"></i>
+							<i ng-show="state == 'VERIFIED' && imageValid" class="fa fa-check text-success" style="margin-right: 20px"></i>
+						</div>
+						<div ng-show="imageExists && state == 'FAILED'">
+							<i class="pull-left fa fa-lg fa-times-circle text-danger"></i>
+							<p>{{imageError}}</p>
+							<p translate>Please upload a new image of valid type!</p>
+						</div>
+						<div ng-show="state == 'VERIFIED'">
+							<p translate>Valid image found! Press 'Upgrade' to proceed!</p>
+							<button ng-click="onStartUpgrade()" 
+								class="pull-right btn btn-success">{{'Upgrade'|translate}}</button>
+							<juci-select ng-model="data.keepSettings" ng-items="keepSettingsList"></juci-select>
+						</div>
+						<div ng-show="state == 'UPGRADING' || state == 'WRITING'">
+							<i class="pull-left fa fa-lg fa-spinner fa-spin text-warning"></i>
+							<p ng-show="state == 'UPGRADING'" translate>Preparing upgrade...</p>
+							<p ng-show="state == 'WRITING'" translate><i class="fa fa-spin fa-spinner text-warning"></i>
+								Writing to flash.. please wait until device reboots and then reload this page!</p>
+						</div>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+		</juci-config>
 		<!-- commenting this for now. But if it is necessary to show these then add a config option for this page to show/hide them -->
 		<!--<p class="alert alert-warning" ng-hide="system.upgrade.fw_check_url.value" translate>Online upgrade is disabled</p>
 		<p class="alert alert-warning" ng-hide="system.upgrade.fw_usb_path.value" translate>USB upgrade is disabled</p>-->

@@ -23,10 +23,20 @@ JUCI.app
 		$scope.$apply(); 
 	}); 
 
+	function nextNumber(){
+		var i; 
+		for(i = 0; i < $scope.ddns_list.length; i++){
+			if(!$scope.ddns_list.find(function(x){ return x[".name"] == "DDNS_"+i; })) return i; 
+		}
+		return i; 
+	}
+
 	$scope.onAddDdnsSection = function(){
+		var name = "DDNS_"+nextNumber(); 
 		$uci.ddns.$create({
 			".type": "service", 
-			"label": "new ddns config",
+			".name": name, 
+			"label": name,
 			"enabled": true
 		}).done(function(ddns){
 			$scope.$apply(); 

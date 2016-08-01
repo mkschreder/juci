@@ -62,18 +62,13 @@ done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->${STYLES_HTML}<!-- STYLES_END -->/" 
 #cat /www/index.html | tr -d '\n' | sed "s/<!-- STYLES_BEGIN -->.*<!-- STYLES_END -->/<!-- STYLES_BEGIN -->test<!-- STYLES_END -->/g" 
 
-for file in `find ${WWW}/js/ -name "$JS_WILDCARD" | sort`; do
+for file in `find ${WWW}/js -name "$JS_WILDCARD" | sort`; do
+	echo "Adding $file to index"
 	JSFILE=${file#${WWW}/}
 	JSFILE=${JSFILE%.gz}
-	echo "Adding $JSFILE to index"
 	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${JSFILE}\"></script>"
 done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- SCRIPTS_BEGIN -->.*<!-- SCRIPTS_END -->/<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->/" 
-
-# temporary fix for copying hardware config to config. Maybe we will move it there permanently later...
-if [ -f /lib/db/config/hw ]; then
-	cp /lib/db/config/hw /etc/config/hardware
-fi 
 
 # workaround because stupid f**ing sed is not working on busybox #@"#"!"¤¤"#!"¤!½!!!
 echo "<!doctype html>

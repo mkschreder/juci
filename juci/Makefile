@@ -11,7 +11,7 @@ define Plugin/juci
 	STYLES-y+=src/lib/css/ionicons.min.css
 	STYLES-y+=src/lib/css/angular-ui.min.css
 	STYLES-y+=src/lib/css/select.min.css
-	STYLES-y+=src/lib/css/angular-ui-switch.min.css
+	STYLES-y+=src/lib/css/angular-ui-switch.less
 	STYLES-y+=src/lib/css/awesome-bootstrap-checkbox.css
 	STYLES-y+=src/lib/css/vis.min.css
 	STYLES-y+=src/lib/css/ng-tags-input.css
@@ -67,8 +67,8 @@ endef
 
 define Plugin/juci/install
 	$(INSTALL_DIR) $(1)/www/cgi-bin/
-	$(INSTALL_DIR) $(1)/usr/lib/juci/acl/
-	$(CP) $(PLUGIN_DIR)/access.acl $(1)/usr/lib/juci/acl/juci.acl
+	$(INSTALL_DIR) $(1)/usr/lib/orange/acl/
+	$(CP) $(PLUGIN_DIR)/access.acl $(1)/usr/lib/orange/acl/juci.acl
 	$(INSTALL_DIR) $(1)/etc/config/
 	$(CP) $(PLUGIN_DIR)/juci.default.config $(1)/etc/config/juci
 	$(CP) $(PLUGIN_DIR)/src/img/ $(1)/www/

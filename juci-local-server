@@ -27,7 +27,7 @@ if (fs.existsSync("juci-local-server.config")){
 for(var i = 0; i < process.argv.length; i++){
 	switch(process.argv[i]){
 		//case "--host": config.ubus_uri = "ws://"+process.argv[++i]+"/websocket/"; break; 
-		case "--host": config.ubus_uri = "ws://"+process.argv[++i]+":1234"; break; 
+		case "--host": config.ubus_uri = "ws://"+process.argv[++i]+":5303"; break; 
 		case "--port": config.port = parseInt(process.argv[++i]); break; 
 		case "--ubus": config.ubus_uri = process.argv[++i]; break; 
 	}; 
@@ -55,31 +55,48 @@ spawn('make', ["debug", "DEFAULT_THEME=y"], { customFds: [0,1,2] })
 .on("exit", function(code){
 	console.log("Recompiled gui, code: "+code); 
 }); 
-var socket = new WebSocket(config.ubus_uri);  
-var connect = $.Deferred(); 
-socket.onopen = function(){     
-	console.log("Websocket RPC connected!"); 
-	connect.resolve();  
-}                               
-socket.onerror = function(){    
-	console.log("Websocket error!");         
-	connect.reject(); 
+
+var socket; 
+var connect; 
+function reconnect(){
+	console.log("Connecting to websocket: "+config.ubus_uri); 
+	socket = new WebSocket(config.ubus_uri);  
+	connect = $.Deferred(); 
+	socket.onopen = function(){     
+		console.log("Websocket RPC connected!"); 
+		connect.resolve();  
+	}                               
+	socket.onerror = function(){    
+		console.log("Websocket error!");         
+		connect.reject(); 
+	}
+	socket.onclose = function(){    
+		console.log("websocket closed!"); 
+	}
 }
-socket.onclose = function(){    
-	console.log("websocket closed!"); 
-}
+
+reconnect(); 
 
 // RPC end point
 app.ws('/websocket/', function(ws, req) {
 	console.log("Starting websocket to "+config.ubus_uri);     
 	socket.onmessage = function(e){ 
 		process.stdout.write("JSON REQ: "+e.data+"\n"); 
-		ws.send(e.data);    
+		try {
+			ws.send(e.data);    
+		} catch(e){
+			console.error("Could not send to client socket: "+e); 
+		}
 	} 
 	ws.on("message",function(msg){
 		connect.done(function(){
 			process.stdout.write("JSON REQ: "+msg); 
-			socket.send(msg); 
+			try {
+				socket.send(msg); 
+			} catch(e) {
+				console.error("Could not send to server socket: "+e); 
+				reconnect(); 
+			}
 		}); 
 	}); 
 });

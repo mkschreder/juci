@@ -1,7 +1,6 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="SettingsUpgradeOptions">
-		<juci-config-section> 
-			<juci-config-heading>{{ 'Upgrade Options' | translate }}</juci-config-heading>
+		<juci-config-section title="{{'Upgrade Options'|translate}}"> 
 			<juci-config-info>{{ 'settings.upgrade.options.info' | translate }}</juci-config-info>
 			<h2 translate>Online Upgrade</h2>
 			<juci-config-lines>
@@ -12,7 +11,8 @@
 					<input type="text" class="form-control" ng-model="system.upgrade.fw_path_url.value" placeholder="{{'HTTP Directory'|translate}}"/>
 				</juci-config-line>
 			</juci-config-lines>
-			<h2 translate>USB Upgrade</h2>
+		</juci-config-section>
+		<juci-config-section title="{{'USB Upgrade'|translate}}">
 			<juci-config-lines>
 				<juci-config-line title="{{'Firmware image extension'|translate}}">
 					<juci-select ng-model="system.upgrade.fw_find_ext.value" ng-items="allImageExtensions"/>

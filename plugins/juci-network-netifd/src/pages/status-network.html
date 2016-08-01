@@ -1,9 +1,7 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="NetifdNetworkStatusPage">
-		<juci-config-section>
-			<juci-config-heading>{{ 'Status' | translate }}</juci-config-heading>
-			<juci-config-info>{{ 'status.status.info' | translate }}</juci-config-info>
-		</juci-config-section>
+		<juci-config-heading>{{ 'Status' | translate }}</juci-config-heading>
+		<juci-config-info>{{ 'status.status.info' | translate }}</juci-config-info>
 		<juci-expandable title="{{sec.name|uppercase}} ({{sec.interface._config.proto.value|uppercase}})" status="sec.status" ng-repeat="sec in sections" ng-show="sec.interface">
 			<div class="row" ng-show="sec.interface.up">
 				<div class="col-md-6">

@@ -35,7 +35,8 @@ JUCI.app
 	$scope.onLogout = function(){
 		console.log("logging out");
 		$rpc.$logout().always(function(){
-			$juci.redirect("#!/"); 
+			$juci.redirectHome(); 
+			window.location.reload(); 
 		});
 	}
 	$network.getDefaultRouteNetworks().done(function(result){
@@ -46,7 +47,7 @@ JUCI.app
 		$rpc.system.board().done(function(res){
 			board = res;
 			if(board.release)
-				$scope.firmware = board.release.distribution + " " + board.release.version + " " + board.release.revision; 
+				$scope.firmware = board.release.distribution + " " + board.release.version; 
 			$scope.$apply(); 
 		}); 
 	}

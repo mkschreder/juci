@@ -98,10 +98,14 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 
 	var path = $location.path().replace(/\//g, ""); 
 
+	$juci.redirectHome = function(){
+		$juci.redirect(path || $config.settings.juci.homepage.value || "overview"); 
+	}
+
 	//NOTE: webgui-only
 	// load the right page from the start
 	$rpc.$authenticate().done(function(){
-		$juci.redirect(path||$config.settings.juci.homepage.value || "overview"); 
+		$juci.redirectHome(); 
 	}).fail(function(){
 		$juci.redirect("login");
 	}); 

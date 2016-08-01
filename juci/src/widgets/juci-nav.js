@@ -22,11 +22,10 @@ JUCI.app
 		}, 
 		templateUrl: "/widgets/juci-nav.html", 
 		replace: true, 
-		controller: "NavCtrl",
-		controllerAs: "ctrl"
+		controller: "juciNav"
 	}; 
 })
-.controller("NavCtrl", function($scope, $uci, $navigation, $state, $location, $state, $rootScope, $config){
+.controller("juciNav", function($scope, $uci, $navigation, $state, $location, $state, $rootScope, $config){
 	$scope.showSubMenuItems = false;
 	
 	$scope.hasChildren = function(menu){

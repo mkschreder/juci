@@ -193,11 +193,13 @@
 	// TODO: make all validators everywhere use a validator created using "new" instead of just a reference to a function!
 
 	function IntegerRangeValidator(start, end){
-		this.validate = function(field){
-			if(field.value < start || field.value > end){
-				return String(gettext("Value must be in range {0} to {1}!")).format(start, end); 
-			}
-			return null; 
+		return function IntegerRangeValidatorImpl(){
+			this.validate = function(field){
+				if(field.value < start || field.value > end){
+					return String(gettext("Value must be in range {0} to {1}!")).format(start, end); 
+				}
+				return null; 
+ 			}
 		}
 	}
 
@@ -205,8 +207,17 @@
 		return function ArrayValidatorImpl(){
 			this.validate = function(field){
 				if(!(field.value instanceof Array)) return gettext("field value is not an array!"); 
+				// create an instance of the validator if validator is a function
+				// this fixes the issue of using ItemValidator both inside array validator and as a standalone validator
+				// TODO: proper fix by making all validators use the same format that supports validators that take custom options. Currently complex validators are highly unintuitive to create.  
+				if(itemValidator instanceof Function) itemValidator = new itemValidator(); 
+
 				var errors = field.value.map(function(x){
 					// TODO: this is actually creating a dummy field object because validators expect to be passed a field. This may fail with some validators!
+					if(!itemValidator || !itemValidator.validate){
+						console.warn("ArrayValidator: field validator is missing 'validate' method. Code seems to have compatibility issues. Please file a bug report about this!"); 
+						return null; 
+					}
 					return itemValidator.validate({value: x}); 
 				}).filter(function(x){ return !!x;}); 
 				if(!errors.length) return null; 
@@ -350,6 +361,9 @@
 	(function(){
 		function UCISection(config){
 			this[".config"] = config; 
+			this.__defineSetter__("validator", function(value){
+				this[".user_validator"] = value; 
+			}); 
 		}
 		
 		UCISection.prototype.$update = function(data, opts){
@@ -518,13 +532,26 @@
 				}
 			}); 
 			var type = this[".section_type"]; 
-			if(type && type[".validator"] && (type[".validator"] instanceof Function)){
+			// support user defined validators for a section
+			var uval = this[".user_validator"]; 
+			if(uval && uval instanceof Function){
 				try {
-					var e = type[".validator"](self); 
+					var e = uval(self); 
 					if(e) errors.push(e); 
 				} catch(e){
 					errors.push(e); 
 				}
+			}
+			if(type && type[".validators"]){
+				type[".validators"].map(function(val){
+					if(!(val instanceof Function)) return; 
+					try {
+						var e = val(self); 
+						if(e) errors.push(e); 
+					} catch(e){
+						errors.push(e); 
+					}
+				}); 
 			}
 			return errors; 
 		}
@@ -762,11 +789,18 @@
 		UCIConfig.prototype.$registerSectionType = function(name, descriptor, validator){
 			var config = this[".name"]; 
 			var conf_type = section_types[config]; 
-			if(name in conf_type) throw new Error("Section "+name+" already defined. Please fix your code!"); 
+			if(name in conf_type) console.warn("Section "+name+" already defined. Will extend existing section! If this is not your intention, fix your code!"); 
 			if(typeof conf_type === "undefined") conf_type = section_types[config] = {}; 
-			conf_type[name] = descriptor; 
-			this["@"+name] = []; 
-			if(validator !== undefined && validator instanceof Function) conf_type[name][".validator"] = validator; 
+			// either create a new type or extend/overwrite existing field definitions 
+			if(!conf_type[name]) conf_type[name] = descriptor; 
+			else Object.keys(descriptor).map(function(k){
+				conf_type[name][k] = descriptor[k];  
+			}); 
+			// add an empty list of sections of this type
+			if(!this["@"+name]) this["@"+name] = []; 
+			// add validator
+			if(!conf_type[name][".validators"]) conf_type[name][".validators"] = []; 
+			if(validator !== undefined && validator instanceof Function) conf_type[name][".validators"].push(validator); 
 			//console.log("Registered new section type "+config+"."+name); 
 		}
 		
@@ -805,12 +839,6 @@
 			return deferred.promise(); 
 		}
 		
-		// creates a new object that will have values set to values
-		UCIConfig.prototype.create = function(item, offline){
-			console.error("UCI.section.create is deprecated. Use $create() instead!"); 
-			return this.$create(item, offline); 
-		}
-
 		UCIConfig.prototype.$create = function(item, offline){
 			var self = this; 
 			if(!(".type" in item)) throw new Error("Missing '.type' parameter!"); 

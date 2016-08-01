@@ -8,7 +8,7 @@
 		<juci-config-line title="{{'SSID'|translate}}" help="{{'Wireless network ID'|translate}}">
 			<input type="text" class="form-control" placeholder="Wifi Name" ng-model="iface.ssid.value" maxlength="32"/>
 		</juci-config-line>
-		<juci-config-line title="{{'Broadcast SSID'|translate}}" help="{{'Make this SSID visible or hidden'|translate}}">
+		<juci-config-line title="{{'Broadcast SSID'|translate}}" help="{{'Disable to hide SSID'|translate}}">
 			<switch id="enabled" name="enabled" ng-model="iface.hidden.value" on-change="onShowSSIDToggle()" class="green" inverted></switch>
 		</juci-config-line>
 		<juci-config-line title="{{'Encryption'|translate}}" help="{{'Choose between supported encryption modes and cyphers'|translate}}">

@@ -1,8 +1,7 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetFirewallPageCtrl">
-		<h2 translate>Firewall settings</h2>
-		<p translate>internet.firewall.info</p>
-		<juci-config-section>
+		<juci-config-section title="{{'Firewall Settings'|translate}}">
+			<p translate>internet.firewall.info</p>
 			<juci-config-lines>
 				<juci-config-line title="{{'Enable firewall'|translate}}">
 					<switch ng-model="firewall.settings.disabled.value" class="green" inverted></switch>

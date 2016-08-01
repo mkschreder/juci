@@ -1,5 +1,5 @@
 <div>
-	<juci-expandable title="TP test">
+	<juci-config-section title="{{'TP test'|translate}}">
 		<juci-config-lines>
 			<juci-config-line title="{{'Direction'|translate}}">
 				<juci-select ng-model="data.test_type" ng-items="testType"/>
@@ -40,6 +40,6 @@
 			{{'Error'|translate}}: <br/>
 			<pre>{{data.result|translate}}</pre>
 		</div>
-	</juci-expandable>
+	</juci-config-section>
 </div>
 

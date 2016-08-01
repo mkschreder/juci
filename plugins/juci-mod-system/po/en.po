@@ -181,16 +181,16 @@ msgid "Please add a comment describing this configuration"
 msgstr ""
 
 msgid "Energy Settings"
-msgstr "Energy Settings"
+msgstr ""
 
 msgid "settings.energy.info"
 msgstr "Reduce power consumption by switching off unused functionality."
 
 msgid "USB Port"
-msgstr "USB Port"
+msgstr ""
 
 msgid "Status-LED"
-msgstr "Status-LED"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/settings-energy.html
 msgid "Power-LED"
@@ -264,7 +264,7 @@ msgid "Loading"
 msgstr ""
 
 msgid "System Status"
-msgstr "System Status"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-mod-system/src/pages/status-system.html
 msgid "Memory"

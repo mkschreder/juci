@@ -30,7 +30,7 @@ msgid "Read only?"
 msgstr ""
 
 msgid "General Settings"
-msgstr "Energy Settings"
+msgstr ""
 
 msgid "services.samba.info"
 msgstr "General samba settings."
@@ -43,14 +43,14 @@ msgid "Workgroup"
 msgstr ""
 
 msgid "Description"
-msgstr "Off"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-samba/src/pages/internet-services-samba.html
 msgid "Share User Home Directory"
 msgstr ""
 
-msgid "Samba Shares"
-msgstr "Samba shares configuration"
+msgid "Samba Shares Configuration"
+msgstr ""
 
 msgid "samba.shares.info"
 msgstr "Samba shares configuration"

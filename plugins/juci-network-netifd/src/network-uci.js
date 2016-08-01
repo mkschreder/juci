@@ -117,10 +117,6 @@ UCI.network.$registerSectionType("interface", {
 	var errors = [];
 	switch (section.proto.value){
 		case "none":
-			if(section.type.value != "bridge")
-				errors.push(gettext("Unmanaged networks need to be setup as a bridge"));
-			if(section.ifname.value == "")
-				errors.push(gettext("Unmanaged networks need at least one device in bridge"));
 			break;
 		case "static":
 			if(section.ipaddr.value && section.netmask.value){
@@ -215,7 +211,7 @@ UCI.network.$registerSectionType("route", {
 	"interface": 			{ dvalue: "", type: String }, 
 	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator, required: true }, 
 	"netmask": 				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator, required: true }, 
-	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator, required: true },
+	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IP4AddressValidator },
 	"metric": 				{ dvalue: 0, type: Number },
 	"mtu": 					{ dvalue: undefined, type: Number }
 }, function(section){
@@ -225,21 +221,19 @@ UCI.network.$registerSectionType("route", {
 	if(section.interface.value == "") return gettext("Please specify interface for route!");
 	if(section.target.value == "") return gettext("Please specify target for route!"); 
 	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
-	if(section.gateway.value == "") return gettext("Please specify gateway for route!"); 
 	return null; 
 }); 
 
 UCI.network.$registerSectionType("route6", {
 	"interface": 			{ dvalue: "", type: String }, 
 	"target": 				{ dvalue: "", type: String, validator: UCI.validators.IP6AddressValidator, required: true }, 
-	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IP6AddressValidator, required: true },
+	"gateway": 				{ dvalue: "", type: String, validator: UCI.validators.IP6AddressValidator },
 	"metric": 				{ dvalue: 0, type: Number },
 	"mtu": 					{ dvalue: undefined, type: Number }
 }, function(section){
 	if(!section) return;
 	if(section.interface.value == "") return gettext("Please specify interface for ipv6 route!"); 
 	if(section.target.value == "") return gettext("Please specify target for ipv6 route!"); 
-	if(section.gateway.value == "") return gettext("Please specify gateway for ipv6 route!");
 	return null; 
 }); 
 
@@ -270,12 +264,18 @@ UCI.network.$registerSectionType("switch_port", {
 UCI.$registerConfig("hosts");
 UCI.hosts.$registerSectionType("host", {
 	"device":            { dvalue: "", type: String },
-	"ipaddr":               { dvalue: "", type: String },
-	"name":             { dvalue: "", type: String },
+	"ipaddr":               { dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
+	"name": 			{ dvalue: "", type: String }, // deprecated!
+	"names": 			{ dvalue: [], type: Array }, 
 	"manufacturer":             { dvalue: "", type: String },
-	"hostname":		{ dvalue: "", type: String, required: true}, 
-	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, required: true}
-});
+	"hostname":		{ dvalue: "", type: String}, 
+	"macaddr":		{ dvalue: "", type: String, match: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/}
+}, function(host){
+	if(host.ipaddr.value == "") return gettext("Host ip address can not be empty!");
+	if(host.names.value.length == 0) return gettext("Host must have at least one hostname!"); 
+	if(UCI.hosts["@host"] && UCI.hosts["@host"].find(function(x){ return x != host && x.ipaddr.value == host.ipaddr.value; })) return gettext("An entry for host already exists: ")+host.ipaddr.value; 
+	return null; 
+}); 
 
 UCI.juci.$registerSectionType("network", {
 	"wan4_interface": 	{ dvalue: "wan", type: String }, // default wan4 interface name 

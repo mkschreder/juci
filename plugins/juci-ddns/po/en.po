@@ -12,10 +12,10 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 msgid "Interface"
-msgstr "Interface"
+msgstr ""
 
 msgid "Network"
-msgstr "Network"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-ddns/src/widgets/ddns-network-settings-edit.js
 msgid "Script"
@@ -42,7 +42,7 @@ msgid "Pick Connection"
 msgstr ""
 
 msgid "Pick Interface"
-msgstr "Pick Interface"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html
 msgid "Enter website to poll for ip address"
@@ -61,7 +61,7 @@ msgid "Provider"
 msgstr ""
 
 msgid "Choose DNS Provider"
-msgstr "Choose DNS Provider"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-ddns/src/widgets/ddns-network-settings-edit.html
 msgid "Domain name"
@@ -80,7 +80,7 @@ msgid "Use HTTPS"
 msgstr ""
 
 msgid "Enter DDNS Provider"
-msgstr "Enter DDNS Provider"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-ddns/src/pages/internet-services-ddns.html
 msgid "DDNS (Dynamic DNS)"

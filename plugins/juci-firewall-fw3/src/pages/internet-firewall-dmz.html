@@ -1,7 +1,6 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="InternetExHostPageCtrl">
-		<juci-config-heading>{{'DMZ / Exposed Host'|translate}}</juci-config-heading>
-		<juci-config-section >
+		<juci-config title="{{'DMZ / Exposed Host'|translate}}">
 			<juci-config-info>{{'internet.exposed_host.info'|translate}}</juci-config-info>
 			<div ng-show="done && !available" class="alert alert-error">
 				<p translate>Firewall dmz configuration does not exist yet. Do you want to create it?</p>
@@ -12,26 +11,26 @@
 					<switch id="enabled" name="enabled" ng-model="firewall.dmz.enabled.value" class="green"></switch>
 				</juci-config-line>
 			</juci-config-lines>
-		</juci-config-section>
-		<juci-config-section ng-show="firewall.dmz.enabled.value">
-			<div class="alert alert-danger" ng-show="nonforwardedPorts">
-				<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span translate>Warning: By using the exposed host function you bypass the firewall of your {{config.board.system}}. Please make sure that your computer is protected against attacks from Internet. The following ports will not be forwarded: {{ nonforwardedPorts || 'None'}}.</span></p>
-			</div>
-			<p translate>Choose the local IP address that should be exposed to Internet. Additionally you should configure this IP address as static DHCP address for your device (see Settings/Network).</p>
-			<juci-config-lines>
-				<juci-config-line title="{{'WAN IP Address'|translate}}">
-					<strong>{{wan.ip}}</strong>
-				</juci-config-line>
-				<juci-config-line title="{{'Host IPv4 Address'|translate}}">
-					<juci-input-ipv4-address ng-model="firewall.dmz.host.value"></juci-input-ipv4-address>
-				</juci-config-line>
-				<juci-config-line title="{{'Host IPv6 Address'|translate}}">
-					<input type="text" class="form-control" placeholder="{{'IPv6 Address'|translate}}" ng-model="firewall.dmz.ip6addr.value"/>
-				</juci-config-line>
-				<juci-config-line title="{{'Pick Existing Host'|translate}}">
-					<juci-select ng-model="data.selected" ng-items="connectedHosts" placeholder="{{'Select Existing Host'|translate}}"/>
-				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>
+			<juci-config-section title="{{'General Settings'|translate}}" ng-show="firewall.dmz.enabled.value">
+				<div class="alert alert-danger" ng-show="nonforwardedPorts">
+					<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span translate>Warning: By using the exposed host function you bypass the firewall of your {{config.board.system}}. Please make sure that your computer is protected against attacks from Internet. The following ports will not be forwarded: {{ nonforwardedPorts || 'None'}}.</span></p>
+				</div>
+				<p translate>Choose the local IP address that should be exposed to Internet. Additionally you should configure this IP address as static DHCP address for your device (see Settings/Network).</p>
+				<juci-config-lines>
+					<juci-config-line title="{{'WAN IP Address'|translate}}">
+						<strong>{{wan.ip}}</strong>
+					</juci-config-line>
+					<juci-config-line title="{{'Host IPv4 Address'|translate}}">
+						<juci-input-ipv4-address ng-model="firewall.dmz.host.value"></juci-input-ipv4-address>
+					</juci-config-line>
+					<juci-config-line title="{{'Host IPv6 Address'|translate}}">
+						<input type="text" class="form-control" placeholder="{{'IPv6 Address'|translate}}" ng-model="firewall.dmz.ip6addr.value"/>
+					</juci-config-line>
+					<juci-config-line title="{{'Pick Existing Host'|translate}}">
+						<juci-select ng-model="data.selected" ng-items="connectedHosts" placeholder="{{'Select Existing Host'|translate}}"/>
+					</juci-config-line>
+				</juci-config-lines>
+			</juci-config-section>
+		</juci-config>
 	</div>
 </juci-layout-with-sidebar>

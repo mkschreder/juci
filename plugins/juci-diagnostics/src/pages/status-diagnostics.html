@@ -2,18 +2,7 @@
 	<div ng-controller="StatusDiagnostics">
 		<juci-config-heading>{{ 'Diagnostic Utility' | translate }}</juci-config-heading>
 		<juci-config-info>{{ 'status.diagnostics.info' | translate }}</juci-config-info>
-		
-		<!--<juci-config-section>
-			<h3>{{'Automated Diagnostics'|translate}}</h3>
-			<p>{{'status.diagnostics.auto.info'|translate}}</p>
-			<juci-config-lines>
-				<juci-config-line title="">
-					<button class="btn btn-lg btn-default">{{'Diagnose'|translate}}</button>
-				</juci-config-line>
-			</juci-config-lines>
-		</juci-config-section>-->
-		<juci-config-section>
-			<h3>{{'Ping Test'|translate}}</h3>
+		<juci-config-section title="{{'Ping Test'|translate}}">
 			<p>{{'status.diagnostics.ping.info'|translate}}</p>
 			<div class="row">
 				<form class="form-inline form-group  pull-right">
@@ -24,8 +13,7 @@
 			<div class="alert alert-default" ng-show="data.pingResults">{{'Ping results'|translate}}: <br/><pre>{{data.pingResults}}</pre></div>
 			<div class="alert alert-danger" ng-show="data.pingError">{{'Error'|translate}}: <br/><pre>{{data.pingError}}</pre></div>
 		</juci-config-section>
-		<juci-config-section>
-			<h3>{{'Tracing Tool'|translate}}</h3>
+		<juci-config-section title="{{'Tracing Tool'|translate}}">
 			<p>{{'status.diagnostics.trace.info'|translate}}</p>
 			<div class="row">
 				<form class="form-inline form-group  pull-right">
@@ -36,8 +24,6 @@
 			<div class="alert alert-default" ng-show="data.traceResults">{{'Trace results'|translate}}: <br/><pre>{{data.traceResults}}</pre></div>
 			<div class="alert alert-danger" ng-show="data.traceError">{{'Error'|translate}}: <br/><pre>{{data.traceError}}</pre></div>
 		</juci-config-section>
-		<juci-config-section>
-			<diagnostics-widget90-speedtest></diagnostics-widget90-speedtest>
-		</juci-config-section>
+		<diagnostics-widget90-speedtest></diagnostics-widget90-speedtest>
 	</div>
 </juci-layout-with-sidebar>

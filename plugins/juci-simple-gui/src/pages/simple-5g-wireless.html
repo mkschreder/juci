@@ -1,14 +1,12 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="simple5GWirelessPage">
-		<h1 translate>5Ghz Wireless</h1>
+		<h1 translate>5GHz Wireless</h1>
 		<juci-config-info>{{'wireless.5g.info'|translate}}</juci-config-info>
-		<juci-config-section>
-			<h1 translate>Radio Configuration</h1>
+		<juci-config-section title="{{'Radio Configuration'|translate}}">
 			<div class="alert alert-danger" ng-show="loaded && !radio">Don't know which radio to show as 5G radio.</div>
 			<uci-wireless-device-edit ng-show="radio" ng-model="radio"></uci-wireless-device-edit>
 		</juci-config-section>
-		<juci-config-section>
-			<h1 translate>SSID Configuration</h1>
+		<juci-config-section title="{{'SSID Configuration'|translate}}">
 			<div class="alert alert-danger" ng-show="loaded && !wifi_main">No main SSID configured.</div>
 			<wireless-interface-edit ng-show="wifi_main" ng-model="wifi_main"></wireless-interface-edit>
 			<!--<div class="alert alert-danger" ng-show="loaded && !wifi_guest">No guest SSID configured.</div>-->
