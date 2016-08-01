@@ -47,7 +47,7 @@ JUCI.app
 		$rpc.system.board().done(function(res){
 			board = res;
 			if(board.release)
-				$scope.firmware = board.release.distribution + " " + board.release.version + " " + board.release.revision; 
+				$scope.firmware = board.release.distribution + " " + board.release.version; 
 			$scope.$apply(); 
 		}); 
 	}

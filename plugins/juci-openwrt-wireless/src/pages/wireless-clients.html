@@ -7,21 +7,18 @@
 				<th translate>IP-Address</th>
 				<th translate>MAC</th>
 				<th translate>Quality</th>
-				<th translate>Rates</th>
-				<th translate>Device</th>
+				<th translate>Counters TX/RX</th>
 				<th translate>Radio</th>
 			</thead>
 			<tr ng-repeat="cl in clients track by $index">
 				<td style="white-space: nowrap;">IPv4: {{cl.ipaddr || '-'}}<br/>IPv6: {{cl.ip6addr||'-'}}</td>
 				<td>{{cl.macaddr}}</td>
-				<td style="white-space: nowrap;">{{'Signal'|translate}}: {{cl._wireless.signal}}<br/>{{'Noise'|translate}}: {{cl._wireless.noise}}<br/>
-				SNR: {{cl._wireless.signal / cl._wireless.noise}}</td>
+				<td style="white-space: nowrap;">{{'Signal'|translate}}: {{cl._wireless.signal}} dBm<br/>{{'Noise'|translate}}: {{cl._wireless.noise}} dBm<br/>
+				SNR: {{cl._wireless.signal - cl._wireless.noise}} dBm</td>
 				<td style="white-space: nowrap;">
-					{{'RX-Rate'|translate}}: {{cl._wireless.rx_rate / 1000}}<br/>
-					{{'TX-Rate'|translate}}: {{cl._wireless.tx_rate / 1000}}<br/>
-					{{'RX-Pkts'|translate}}: {{cl._wireless.rx_packets}}<br/>
-					{{'TX-Pkts'|translate}}: {{cl._wireless.tx_packets}}</td>
-				<td>{{cl.device}}</td>
+					{{'PHY-Rate'|translate}}: {{cl._wireless.rx_rate}} / {{cl._wireless.tx_rate}} Mbps<br/>
+					{{'Packets'|translate}}: {{cl._wireless.rx_packets}} / {{cl._wireless.tx_packets}} <br/>
+					{{'Last Activity'|translate}}: {{cl._wireless.inactive / 1000}} Sec</td>
 				<td>{{cl._wireless.wldev}}</td>
 			</tr>
 		</table>

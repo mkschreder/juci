@@ -26,10 +26,10 @@ msgid "PPP over Ethernet"
 msgstr "Internet"
 
 msgid "wireless.2g.info"
-msgstr "2.4Ghz wireless configuration."
+msgstr "2.4GHz wireless configuration."
 
 # /home/martin/juci/plugins/juci-simple-gui/src/pages/simple-2g-wireless.html
-msgid "2.4Ghz Wireless"
+msgid "2.4GHz Wireless"
 msgstr ""
 
 # #-#-#-#-#  template.pot  #-#-#-#-#
@@ -47,10 +47,10 @@ msgid "SSID Configuration"
 msgstr ""
 
 msgid "wireless.5g.info"
-msgstr "Configure your 5Ghz wireless hotspot."
+msgstr "Configure your 5GHz wireless hotspot."
 
 # /home/martin/juci/plugins/juci-simple-gui/src/pages/simple-5g-wireless.html
-msgid "5Ghz Wireless"
+msgid "5GHz Wireless"
 msgstr ""
 
 msgid "lan.config.info"
@@ -99,10 +99,10 @@ msgid "simple-admin-title"
 msgstr "Admin"
 
 msgid "simple-5g-wireless-title"
-msgstr "5Ghz Wireless"
+msgstr "5GHz Wireless"
 
 msgid "simple-2g-wireless-title"
-msgstr "2Ghz Wireless"
+msgstr "2.4GHz Wireless"
 
 msgid "menu-simple-lan-config-title"
 msgstr "LAN"
@@ -121,10 +121,10 @@ msgid "menu-simple-admin-title"
 msgstr "Admin"
 
 msgid "menu-simple-5g-wireless-title"
-msgstr "5Ghz Wireless"
+msgstr "5GHz Wireless"
 
 msgid "menu-simple-2g-wireless-title"
-msgstr "2Ghz Wireless"
+msgstr "2GHz Wireless"
 
 # share/menu.d/status.json
 

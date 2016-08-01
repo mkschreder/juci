@@ -717,7 +717,7 @@ msgid "status.network.routes.info"
 msgstr "Static routes configuration"
 
 msgid "Routing Status"
-msgstr "Status"
+msgstr ""
 
 # /home/martin/juci/plugins/juci-network-netifd/src/pages/status-network-routes.html
 msgid "ARP Table"
@@ -767,7 +767,7 @@ msgid "Router"
 msgstr ""
 
 msgid "status-network-routes-title"
-msgstr "Routing Tables"
+msgstr "Routing/ARP Tables"
 
 msgid "internet-services-title"
 msgstr "Services"
@@ -798,7 +798,7 @@ msgid "network-title"
 msgstr "Network"
 
 msgid "menu-status-network-routes-title"
-msgstr "Routing Tables"
+msgstr "Routing/ARP Tables"
 
 msgid "menu-internet-services-title"
 msgstr "Services"

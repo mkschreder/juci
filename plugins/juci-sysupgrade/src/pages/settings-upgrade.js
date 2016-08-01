@@ -24,7 +24,7 @@ JUCI.app
 	$scope.state = 'INIT'; 
 
 	$scope.data = { keepSettings: true }; 
-	$scope.current_version = $config.board.release.distribution + " " + $config.board.release.version + " " + $config.board.release.revision; 
+	$scope.current_version = $config.board.release.distribution + " " + $config.board.release.version; 
 	
 	$scope.keepSettingsList = [
 		{ label: $tr(gettext("Keep all configuration")), value: true }, 

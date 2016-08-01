@@ -93,6 +93,10 @@ JUCI.app.factory("$wireless", function($uci, $rpc, $network, gettext){
 				clist.map(function(cl){
 					if(cl.rssi && cl.noise && cl.noise > 0)
 						cl.snr = Math.floor(1 - (cl.rssi / cl.noise)); 
+					if(cl.rx_rate && cl.rx_rate > 0)
+						cl.rx_rate = Math.floor((cl.rx_rate / 1000) + 0.5); 
+					if(cl.tx_rate && cl.tx_rate > 0)
+						cl.tx_rate = Math.floor((cl.tx_rate / 1000) + 0.5); 
 				}); 
 				def.resolve(clist); 
 			}

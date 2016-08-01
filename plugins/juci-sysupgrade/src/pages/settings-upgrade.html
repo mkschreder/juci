@@ -31,7 +31,7 @@
 			<juci-config-section title="{{'Manual Firmware Upgrade'|translate}}">
 				<p>{{'settings.upgrade.manual.info'|translate}}</p>
 				<juci-config-lines>
-					<juci-config-line title="{{'Upload new image'|translate}}" no-pull>
+					<juci-config-line title="{{'Upload firmware image'|translate}}" no-pull>
 						<input style="width: 100%" ng-show="state != 'UPLOADING'" ng-disabled="uploading" type="file" 
 							class="btn btn-default btn-file"  name="filedata" ng-model="uploadFile" onchange="angular.element(this).scope().onSelectFile(event)"/>
 						<progressbar type="success" ng-show="state == 'UPLOADING'" value="uploadProgress">{{uploadProgress}}% - ({{uploadSpeed}}Mbs)</progressbar>

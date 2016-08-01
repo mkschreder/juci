@@ -28,7 +28,8 @@ local ubus = require("orange/ubus");
 
 local function wireless_get_80211_device_names()
 	-- this will get list of devices that support phy80211 interface. 
-	local output = juci.shell("find /sys/class/net/**/*phy80211* 2> /dev/null | awk 'BEGIN{FS=\"/\"} { print $5 }'"); 
+	--local output = juci.shell("find /sys/class/net/**/*phy80211* 2> /dev/null | awk 'BEGIN{FS=\"/\"} { print $5 }'"); 
+	local output = juci.shell("find /sys/class/net/**/wireless 2>/dev/null | cut -d/ -f 5"); 
 	local devices = {}; 
 	for wldev in output:gmatch("[^\r\n]+") do   
 		table.insert(devices, wldev); 
@@ -41,6 +42,11 @@ local function wireless_get_80211_devices()
 	local result = { devices = {} }; 
 	for _,wldev in ipairs(devices) do 
 		local iw = iwinfo[iwinfo.type(wldev)];
+		-- check that we have quality info
+		local quality = iw.quality(wldev); 
+		if(quality == nil or quality == "") then 
+			quality = "N/A"; 
+		end
 		-- prevent devices that are not ready (do not have ssid) from appearing in the list!
 		if(iw and iw.ssid(wldev)) then 
 			table.insert(result.devices, {
@@ -53,7 +59,7 @@ local function wireless_get_80211_devices()
 				channel = iw.channel(wldev), 
 				frequency = iw.frequency(wldev), 
 				txpower = iw.txpower(wldev),
-				quality = iw.quality(wldev), 
+				quality = quality, 
 				quality_max = iw.quality(wldev),
 				signal = iw.signal(wldev),
 				noise = iw.noise(wldev),
