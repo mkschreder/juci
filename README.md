@@ -1,8 +1,11 @@
 JUCI Webgui for Embedded Routers
 --------------------------------
 
-	Date: 23 May 2016
+	Date: 01 Aug 2016
 	Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+
+* Latest version of juci is v2.16.08 
+* Juci feed for openwrt with all other packages that juci depends on can be found here: https://github.com/mkschreder/juci-openwrt-feed.git
 
 JUCI is modern web interface developed for OpenWRT-based embedded devices. It
 is built using HTML5 and angular.js and uses websockets for communicating with
