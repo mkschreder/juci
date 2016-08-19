@@ -8,3 +8,4 @@ ubus /uci commit x
 ubus /uci rollback x
 ubus /uci configs x
 ubus /juci/ui menu x
+uci juci * r
