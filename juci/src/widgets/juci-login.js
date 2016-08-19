@@ -74,8 +74,8 @@ JUCI.app
 			}, 
 			function(next){
 				$rpc.$login($scope.form.username,$scope.form.password).done(function success(res){
-					//window.location.reload(); 
-					//window.location.href=redirect; 
+					JUCI.redirectHome(); 
+					window.location.reload(); 
 					next(); 
 				}).fail(function fail(res){
 					//$scope.errors.push(res); 
