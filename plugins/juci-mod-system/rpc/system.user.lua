@@ -37,8 +37,7 @@ local function user_set_password(opts)
 	if oldhash ~= oldchk then
 		return { error = "Invalid username/password!"}; 
 	end
-	local newhash = juci.shell("printf %s | sha1sum | awk '{printf $1}'", opts.password); 
-	juci.shell("sed -i 's/%s.*/%s %s/g' %s", opts.username, opts.username, newhash, SHADOW_FILE); 
+	local stdout = juci.shell("orangectl passwd %s %s", opts.username, opts.password); 
 	return {
 		["stdout"] = stdout
 	}; 
