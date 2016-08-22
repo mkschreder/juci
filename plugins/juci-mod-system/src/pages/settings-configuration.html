@@ -1,7 +1,8 @@
 <juci-layout-with-sidebar>
 	<div ng-controller="SettingsConfigurationCtrl">
-		<juci-config-section title="{{'Backup'|translate}}">
-			<juci-config-info>{{ 'settings.config.info' | translate }}</juci-config-info>
+		<h2 translate>Configuration</h2>
+		<juci-config-info>{{ 'settings.config.info' | translate }}</juci-config-info>
+		<juci-config-section title="{{'Backup / Restore'|translate}}">
 			<juci-config-lines>
 				<juci-config-line title="{{'Save settings to computer with password protection'|translate}}">
 					<a ng-show="backupData" download="backup.tar.gz" href="{{backupData}}" translate>Download</a>
