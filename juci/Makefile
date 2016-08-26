@@ -69,6 +69,7 @@ define Plugin/juci/install
 	$(INSTALL_DIR) $(1)/www/cgi-bin/
 	$(INSTALL_DIR) $(1)/usr/lib/orange/acl/
 	$(CP) $(PLUGIN_DIR)/access.acl $(1)/usr/lib/orange/acl/juci.acl
+	$(CP) $(PLUGIN_DIR)/acl/*.acl $(1)/usr/lib/orange/acl/
 	$(INSTALL_DIR) $(1)/etc/config/
 	$(CP) $(PLUGIN_DIR)/juci.default.config $(1)/etc/config/juci
 	$(CP) $(PLUGIN_DIR)/src/img/ $(1)/www/
