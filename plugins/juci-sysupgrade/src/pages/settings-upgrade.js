@@ -41,6 +41,12 @@ JUCI.app
 		$scope.$apply(); 
 	}); 
 
+	function clearFileInputs(){
+		angular.forEach(angular.element("input[type='file']"), function(e){
+			angular.element(e).val(null); 
+		}); 
+	}
+
 	$scope.onStartUpgrade = function(){
 		$scope.state = 'UPGRADING'; 
 		var timeout; 
@@ -58,7 +64,8 @@ JUCI.app
 
 	$scope.onCancelUpload = function(){
 		$scope.state = 'INIT'; 
-		$scope.uploadFilename = null; 
+		$scope.uploadProgress = 0; 
+		clearFileInputs(); 	
 	}
 
 	function upgradeVerify(){
@@ -112,10 +119,13 @@ JUCI.app
 					length: slice, 
 					data64: tobase64(buffer.slice(start, start + slice))
 				}).done(function(){
+					if($scope.state != 'UPLOADING') return; 
 					start += slice; 
 					if(start >= buffer.byteLength){
 						console.log("File uploaded!"); 
 						$scope.state = 'UPLOADED'; 
+						$scope.uploadProgress = 0; 
+						clearFileInputs(); 
 						upgradeVerify(); 
 						$scope.$apply(); 
 					} else {
