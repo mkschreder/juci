@@ -50,11 +50,6 @@ JUCI.app
 		if(!value || !$scope.timezones) return; 
 		$scope.system.timezone.value = $scope.timezones[value]; 
 	}); 
-	
-	$scope.$watch("system.hostname.value", function onSystemHostnameChanged(value){
-		if(value == undefined) return; 
-		if(!value) $scope.system.hostname.value = $scope.boardinfo.model.replace(" ", "_"); 
-	}); 
 
 	JUCI.interval.repeat("system.time", 1000, function(done){
 		$rpc.juci.system.time.get().done(function(result){
