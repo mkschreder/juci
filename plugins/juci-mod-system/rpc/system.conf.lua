@@ -7,7 +7,6 @@
 
 
 local juci = require("orange/core"); 
-local juci = require("orange/core");      
 local json = require("orange/json");      
 
 local function backup_create(opts)
