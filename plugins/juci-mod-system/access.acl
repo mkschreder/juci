@@ -25,6 +25,7 @@ ubus /juci/system.service disable x
 ubus /juci/system.service reload x 
 ubus /juci/system info x 
 ubus /juci/system board x 
+ubus /juci/system.logs download x
 ubus /system board x
 ubus /system info x
 uci system * rw
