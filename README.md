@@ -198,7 +198,11 @@ Now you can start your uml image:
 Once you are in openwrt do this: 
 
 	# add orangerpcd user admin
-	orangectl 
+	orangectl adduser admin
+
+	# set password for juci user admin
+	orangectl passwd admin admin
+
 	# set network ip of openwrt to correct ip 
 	uci set network.lan.ipaddr=192.168.2.100
 	uci commit
