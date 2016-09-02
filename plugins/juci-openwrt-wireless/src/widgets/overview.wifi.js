@@ -143,7 +143,7 @@ JUCI.app
 				if(!$rpc.juci.wireless) { next(); return; }	
 				$rpc.juci.wireless.clients().done(function(clients){
 					$scope.wireless.clients = Object.keys(clients.clients).map(function(k){ return clients.clients[k]; })
-						.reduce(function(a, b) { return a.concat(b); }); 
+						.reduce(function(a, b) { return a.concat(b); }, []); 
 					$scope.wireless.clients.map(function(cl){
 						// check flags 
 						if(!cl.authorized) cl.ipaddr = $tr(gettext("No IP address")); 
