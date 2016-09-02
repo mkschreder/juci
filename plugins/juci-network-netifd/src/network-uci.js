@@ -134,28 +134,18 @@ UCI.network.$registerSectionType("interface", {
 			}
 			if((section.ipaddr.value == "" || section.netmask.value == "") && section.ip6addr.value == "")
 				errors.push(gettext("Either ipv4 or ipv6 address is needed"));
-			if(section.ifname.value == "")
-				errors.push(gettext("Physical interface unspecified"));
 			break;
 		case "dhcp":
-			if(section.ifname.value == "")
-				errors.push(gettext("DHCP interface needs physical interface"));
 			break;
 		case "dhcpv6":
-			if(section.ifname.value == "")
-				errors.push(gettext("DHCPv6 interface needs physical interface"));
 			break;
 		case "ppp":
 			if(section.device.value == "")
 				errors.push(gettext("Modem device needed for PPP interface"));
 			break;
 		case "pppoe":
-			if(section.ifname.value == "")
-				errors.push(gettext("PPPoE interface needs physical interface"));
 			break;
 		case "pppoa":
-			if(section.ifname.value == "")
-				errors.push(gettext("PPPoE interface needs physical interface"));
 			break;
 		case "3g":
 			if(section.device.value == "")

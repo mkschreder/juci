@@ -7,14 +7,16 @@ JUCI Webgui for Embedded Routers
 * Latest version of juci is v2.16.08 
 * Juci feed for openwrt with all other packages that juci depends on can be found here: https://github.com/mkschreder/juci-openwrt-feed.git
 
+Update: new build instructions available! 
+
 JUCI is modern web interface developed for OpenWRT-based embedded devices. It
 is built using HTML5 and angular.js and uses websockets for communicating with
 a compact and fast lua backend running on the embedded device. You can build
 both the frontend application and the backend server independently of each
 other and use them separately. 
 
-The RevoRPCD project which JUCI uses as it's websocket based backend RPC server
-can be found here: https://github.com/mkschreder/jucid.git. 
+The OrangeRPCD project which JUCI uses as it's websocket based backend RPC server
+can be found here: [https://github.com/mkschreder/orangerpcd.git](https://github.com/mkschreder/orangerpcd.git). 
 
 JUCI Documentation in HTML form can be found here: [http://mkschreder.github.io/juci](http://mkschreder.github.io/juci/)
 
@@ -129,27 +131,90 @@ GPL.
 Usage on OpenWRT
 ----------------
 
-Here is how to build and install JUCI on OpenWRT: 
+Here is how to build a user-mode-linux juci test build. For other architectures
+these instructions will for the most part be the same (apart from the uml
+options). UML image will run the whole system as a single executable on your
+host so you don't need to use any kind of emulator.  
 
-- Add official JUCI feed to your feeds.conf
+	# go to your openwrt directory
+	cd openwrt
 
-	src-git-full juci https://github.com/mkschreder/juci-openwrt-feed.git
+	# do a full clean (at least delete all your feeds first because we will be overriding things)
+	make distclean
 
-- Update and install the feed (with -f to force overrides)
+	# add juci feed to feeds conf
+	echo "src-git-full juci https://github.com/mkschreder/juci-openwrt-feed.git" >> feeds.conf.default
 
-	./scripts/feeds update juci
+	# update your feeds
+	./scripts/feeds update -a 
+
+	# first install all juci packages with force flag
+	./scripts/feeds install -f -a -p juci
+
+	# THEN install all openwrt packages
+	./scripts/feeds install -a
+
+	# select a few top level packages
+	cat >> .config
+	CONFIG_TARGET_uml=y
+	CONFIG_PACKAGE_juci-full-openwrt=y
+	CONFIG_PACKAGE_orange-rpcd=y
+	CONFIG_BUSYBOX_CUSTOM=y
+	CONFIG_BUSYBOX_CONFIG_SHA1SUM=y
+	^D
+
+	# fill out the rest of the selections
+	make defconfig
+
+	# build your image 
+	make 
 	
-	./scripts/feeds install -f -p juci -a
+	# image will be in bin/uml
 
-- select juci-full to build all packages currently supported on OpenWRT. 
+Before you test your image you need to set up tuntap network device on your host so that you can connect to the gui on the uml image:  
+	
+	# install user mode linux utils
+	sudo apt-get install uml-utilities
 
-	CONFIG_PACKAGE_juci-full=y
+	# create a tuntap network device
+	sudo tunctl -n <your user id>
+	
+	# set ip address of our tap 
+	sudo ifconfig tap0 192.168.2.254
 
-- run "make defconfig" to select all dependencies. 
+	# enable ip forwarding 
+	bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
+	
+	# add route
+	sudo route add -host 192.168.2.100 dev tap0
 
-- BUILD! 
+Now you can start your uml image: 
+	
+	cd openwrt/bin/uml/
+	
+	# starm uml image with tun tap network interface
+	./openwrt-uml-vmlinux ubd0=/data/software/openwrt-cc/bin/uml/openwrt-uml-ext4.img eth0=tuntap,tap0
 
-Menus will be automatically configured by the juci-full package uci-defaults
+Once you are in openwrt do this: 
+
+	# add orangerpcd user admin
+	orangectl adduser admin
+
+	# set password for juci user admin
+	orangectl passwd admin admin
+
+	# set network ip of openwrt to correct ip 
+	uci set network.lan.ipaddr=192.168.2.100
+	uci commit
+	ubus call network reload
+
+	# you will probably need to reboot because tuntap seems to be broken without it 
+	poweroff
+
+Now restart the uml image again and you should be able to access the gui at
+192.168.2.100 using your browser.  
+
+Menus will be automatically configured by the juci-full-openwrt package uci-defaults
 scripts. If you want to use juci in a custom firmware you would typically
 create a custom metapackage that would only select your plugins and configure
 JUCI according to your own custom needs.

@@ -49,10 +49,12 @@ JUCI.app
 			$rpc.juci.wireless.clients().done(function(result){
 				$scope.done = 1; 
 				var clients = {}; 
-				result.clients.map(function(x){ 
-					var freq = Math.floor(x.frequency / 100) / 10; 
-					if(!clients[freq]) clients[freq] = []; 
-					clients[freq].push(x); 
+				Object.keys(result.clients).map(function(k){ 
+					result.clients[k].map(function(x){
+						var freq = Math.floor(x.frequency / 100) / 10; 
+						if(!clients[freq]) clients[freq] = []; 
+						clients[freq].push(x); 
+					}); 
 				}); 
 				$scope.wifiClients = clients; 
 				$scope.wifiBands = Object.keys(clients); 
@@ -140,7 +142,8 @@ JUCI.app
 			function(next){
 				if(!$rpc.juci.wireless) { next(); return; }	
 				$rpc.juci.wireless.clients().done(function(clients){
-					$scope.wireless.clients = clients.clients; 
+					$scope.wireless.clients = Object.keys(clients.clients).map(function(k){ return clients.clients[k]; })
+						.reduce(function(a, b) { return a.concat(b); }); 
 					$scope.wireless.clients.map(function(cl){
 						// check flags 
 						if(!cl.authorized) cl.ipaddr = $tr(gettext("No IP address")); 

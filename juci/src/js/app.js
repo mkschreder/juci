@@ -49,7 +49,7 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	$juci.redirect = function(page){
 		window.location.href = "#!/"+page; 
 	}
-	$urlRouterProvider.otherwise("404"); 
+	//$urlRouterProvider.otherwise("overview"); 
 })
 .run(function($templateCache){
 	var _get = $templateCache.get; 
@@ -99,7 +99,9 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	var path = $location.path().replace(/\//g, ""); 
 
 	$juci.redirectHome = function(){
-		$juci.redirect(path || $config.settings.juci.homepage.value || "overview"); 
+		var home = path || $config.settings.juci.homepage.value || "overview"; 
+		console.log("Redirecting to homepage.. "+home); 
+		$juci.redirect(home); 
 	}
 
 	//NOTE: webgui-only

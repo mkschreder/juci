@@ -34,10 +34,12 @@ JUCI.app
 		}
 	}
 	$scope.onSaveConfig = function(){
+		$scope.data.pass = $scope.data.pass_repeat = ""; 
 		$scope.showModal = 1; 
 	}
 
 	$scope.onRestoreConfig = function(){
+		$scope.data.pass = $scope.data.pass_repeat = ""; 
 		$scope.showUploadModal = 1; 
 	}
 	$scope.onCancelRestore = function(){

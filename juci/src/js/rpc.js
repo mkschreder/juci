@@ -161,7 +161,7 @@
 			time: (new Date()).getTime(),
 			timeout: setTimeout(function(){
 				self.requests[req.id] = undefined; 
-				console.error("request timed out!"); 
+				console.error("request timed out! ("+method+")"); 
 				req.deferred.reject(); 
 			}, 5000),
 			method: method, 
@@ -202,7 +202,7 @@
 	
 	RevoRPC.prototype.$call = function(object, method, data){
 		var sid = localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
-		data._ubus_session_id = sid; 
+		//data._ubus_session_id = sid; 
 		return this.$request("call", [sid, object, method, data]); 
 	}
 

@@ -737,8 +737,8 @@
 			//console.log("To delete: "+Object.keys(to_delete)); 
 		
 			$rpc.uci.revert({
-				config: self[".name"]//, 
-				//ubus_rpc_session: $rpc.$sid()
+				config: self[".name"] 
+				//ubus_rpc_session: UCI_TR_ID
 			}).always(function(){ // we have to use always because we always want to sync regardless if reverts work or not ( they will not if the config is readonly! )
 				$rpc.uci.get({
 					config: self[".name"]
@@ -934,6 +934,7 @@
 		var self = this; 
 
 		if(!$rpc.uci) {
+			console.error("No uci rpc object present!"); 
 			setTimeout(function(){ deferred.reject(); }, 0); 
 			return deferred.promise(); 
 		}
@@ -1157,6 +1158,7 @@
 			}
 		}); 
 		async.eachSeries(revert_list, function(item, next){
+		/*
 			$rpc.uci.revert({"config": item[".name"], "ubus_rpc_session": $rpc.$sid()}).done(function(){
 				console.log("Reverted config "+item[".name"]); 
 				next(); 
@@ -1164,6 +1166,8 @@
 				errors.push("Failed to revert config "+item[".name"]); 
 				next(); 
 			}); 
+			*/
+			setTimeout(function(){ next(); }, 0);  
 		}, function(){
 			if(errors.length) deferred.reject(errors); 
 			else deferred.resolve(); 
@@ -1172,13 +1176,14 @@
 	}
 	
 	UCI.prototype.$rollback = function(){
+		var deferred = $.Deferred(); 
 		if(!$rpc.uci) {
-			var deferred = $.Deferred(); 
 			setTimeout(function(){ deferred.reject(); }, 0); 
-			return deferred.promise(); 
-		}
-
-		return $rpc.uci.rollback(); 
+		} else {
+			setTimeout(function(){ deferred.resolve(); }, 0); 
+		}	
+		return deferred.promise(); 
+		//return $rpc.uci.rollback(); 
 	}
 	
 	UCI.prototype.$apply = function(){
