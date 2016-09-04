@@ -74,8 +74,6 @@ define Plugin/juci/install
 	$(CP) $(PLUGIN_DIR)/juci.default.config $(1)/etc/config/juci
 	$(CP) $(PLUGIN_DIR)/src/img/ $(1)/www/
 	$(CP) $(PLUGIN_DIR)/src/fonts/ $(1)/www/
-	$(INSTALL_DIR) $(1)/usr/share/lua/juci/
-	$(CP) $(PLUGIN_DIR)/lua/* $(1)/usr/share/lua/juci/
 	$(CP) $(PLUGIN_DIR)/reboot.html $(1)/www/	
 	$(CP) $(PLUGIN_DIR)/juci-download $(1)/www/cgi-bin/	
 	$(CP) $(PLUGIN_DIR)/initfail.html $(1)/www/	
