@@ -29,7 +29,7 @@ for(var i = 0; i < process.argv.length; i++){
 		//case "--host": config.ubus_uri = "ws://"+process.argv[++i]+"/websocket/"; break; 
 		case "--host": config.ubus_uri = "ws://"+process.argv[++i]+":5303"; break; 
 		case "--port": config.port = parseInt(process.argv[++i]); break; 
-		case "--ubus": config.ubus_uri = process.argv[++i]; break; 
+		case "--url": config.ubus_uri = process.argv[++i]; break; 
 	}; 
 } 
 
@@ -39,8 +39,8 @@ if(!config.ubus_uri || !config.port){
 	console.log("		specify host to connect to"); 
 	console.log("	--port <port>"); 
 	console.log("		specify port to use for local server"); 
-	console.log("	--ubus <ubus url>"); 
-	console.log("		specify ubus url directly (https://192.168.1.1/ubus)"); 
+	console.log("	--url <websocket url>"); 
+	console.log("		specify websocket url directly (ws://192.168.1.1/websocket/)"); 
 	process.exit(); 
 }
 
@@ -66,8 +66,8 @@ function reconnect(){
 		console.log("Websocket RPC connected!"); 
 		connect.resolve();  
 	}                               
-	socket.onerror = function(){    
-		console.log("Websocket error!");         
+	socket.onerror = function(e){    
+		console.log("Websocket error: "+e);         
 		connect.reject(); 
 	}
 	socket.onclose = function(){    
@@ -79,7 +79,6 @@ reconnect();
 
 // RPC end point
 app.ws('/websocket/', function(ws, req) {
-	console.log("Starting websocket to "+config.ubus_uri);     
 	socket.onmessage = function(e){ 
 		process.stdout.write("JSON REQ: "+e.data+"\n"); 
 		try {
