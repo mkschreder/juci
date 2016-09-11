@@ -164,7 +164,7 @@ JUCI.app
 			$scope.busy = 0; 
 			setTimeout(function(){$scope.$apply();}, 0); 
 			$scope.$emit("error", e.message); 
-			console.error("Error while applying config: "+e.message); 
+			console.error("Error while applying config: "+e); 
 		}
 	}
 	$scope.onCancel = function(){

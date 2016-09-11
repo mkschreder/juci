@@ -81,6 +81,7 @@
 	
 	JUCIMain.prototype.$init = function(options){
 		var scripts = []; 
+		var self = this; 
 		var deferred = $.Deferred(); 
 		if(!options) options = {}; 
 		var $rpc = scope.UBUS; 
@@ -326,9 +327,6 @@
 					},*/
 					// this function will run upon load of every page in the gui
 					onEnter: function($uci, $window, $rootScope, $tr, gettext){
-						// TODO: do we really need this now?
-						$uci.$rollback(); 
-
 						if(page.redirect) {
 							//alert("page redirect to "+page.redirect); 
 							$juci.redirect(page.redirect); 

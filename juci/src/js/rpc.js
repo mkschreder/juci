@@ -167,9 +167,9 @@
 			time: (new Date()).getTime(),
 			timeout: setTimeout(function(){
 				self.requests[req.id] = undefined; 
-				console.error("request timed out! ("+method+")"); 
+				console.error("request timed out! ("+method+", "+JSON.stringify(params)+")"); 
 				req.deferred.reject(); 
-			}, 5000),
+			}, 20000),
 			method: method, 
 			params: params, 
 			deferred: $.Deferred()      
