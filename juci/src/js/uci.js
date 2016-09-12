@@ -1180,6 +1180,11 @@
 						reqlist.map(function(x){ writes.push(x); });  
 					}
 				}); 
+				// push errors to top level if there are errors in config! 
+				if(errors.length){
+					setTimeout(function(){ deferred.reject(errors); }, 0); 
+					return; 
+				}
 				console.log("Writing changes: "+JSON.stringify(writes)); 
 				async.eachSeries(writes, function(cmd, next){
 					$rpc.uci.set(cmd).done(function(response){
@@ -1195,12 +1200,10 @@
 					Object.keys(self).map(function(x){
 						if(self[x] instanceof UCI.Config) self[x].$commit(); 
 					}); 
-					next(); 
+					setTimeout(function(){ deferred.resolve();}, 0); 
 				}); 
 			}
-		], function(){
-			setTimeout(function(){ deferred.resolve();}, 0); 
-		}); 
+		]); 
 		return deferred.promise(); 
 	}
 	

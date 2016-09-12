@@ -76,7 +76,7 @@ JUCI.app
 	]; 
 	$scope.cryptoChoices = allSupportedCryptoChoices.filter(function(x){
 		if($config.settings.wireless)
-			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) != -1; 
+			return $config.settings.wireless.cryptochoices.value.indexOf(x.value) >= 0; 
 		return true; 
 	}); 
 /*
