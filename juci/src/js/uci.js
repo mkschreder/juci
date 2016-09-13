@@ -251,8 +251,8 @@
 	(function(){
 		function UCIField(value, schema){
 			if(!schema) throw new Error("No schema specified for the field!"); 
-			this.ovalue = value; 
-			if(value != null && value instanceof Array) {
+			this.ovalue = schema.dvalue; 
+			if(value != null && value instanceof Array && value.length) {
 				this.ovalue = []; Object.assign(this.ovalue, value); 
 			} 
 			this.is_dirty = false; 
@@ -277,9 +277,10 @@
 				if(this.svalue != undefined) this.value = this.svalue; 
 			},
 			$update: function(value, keep_user){
-				if(this.ovalue instanceof Array){
+				if(this.dvalue instanceof Array){
 					// if user has modified value and we have keep user set then we do not discard his changes
 					// otherwise we also update uvalues
+
 					if(!keep_user || !this.dirty) {
 						this.uvalue.length = 0; 
 						Object.assign(this.uvalue, value); 
@@ -611,7 +612,7 @@
 			if(!(type in self)) self[type] = []; 
 			self[type].push(section); 
 			self["@all"].push(section); 
-			self[item[".name"]] = section; 
+			if(item[".name"]) self[item[".name"]] = section; 
 			return section; 
 		}
 		function _updateSection(self, item, opts){
@@ -824,10 +825,11 @@
 		
 		UCIConfig.prototype.$insertDefaults = function(typename, sectionname){
 			if(!sectionname) sectionname = typename; 
+			//console.log("Adding new defaults section: "+JSON.stringify(values)); 
 			// insert a default section with the same name as the type
 			// this allows us to use $uci.config.section.setting.value without having to first check for the existence of the section.
 			// we will get defaults by default and if the section exists in the config file then we will get the values from the config.
-			_insertSection(this, { ".type": typename, ".name": sectionname });  
+			_insertSection(this, { ".type": typename, ".name": sectionname});  
 		}
 
 		UCIConfig.prototype.$deleteSection = function(section){
