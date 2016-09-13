@@ -56,37 +56,39 @@ spawn('make', ["debug", "DEFAULT_THEME=y"], { customFds: [0,1,2] })
 	console.log("Recompiled gui, code: "+code); 
 }); 
 
-var socket; 
-var connect; 
-function reconnect(){
-	console.log("Connecting to websocket: "+config.ubus_uri); 
-	socket = new WebSocket(config.ubus_uri);  
-	connect = $.Deferred(); 
-	socket.onopen = function(){     
-		console.log("Websocket RPC connected!"); 
-		connect.resolve();  
-	}                               
-	socket.onerror = function(e){    
-		console.log("Websocket error: "+e);         
-		connect.reject(); 
-	}
-	socket.onclose = function(){    
-		console.log("websocket closed!"); 
-	}
-}
-
-reconnect(); 
-
 // RPC end point
 app.ws('/websocket/', function(ws, req) {
-	socket.onmessage = function(e){ 
-		process.stdout.write("JSON REQ: "+e.data+"\n"); 
-		try {
-			ws.send(e.data);    
-		} catch(e){
-			console.error("Could not send to client socket: "+e); 
+
+	var socket; 
+	var connect; 
+	function reconnect(){
+		console.log("Connecting to websocket: "+config.ubus_uri); 
+		socket = new WebSocket(config.ubus_uri);  
+		connect = $.Deferred(); 
+		socket.onopen = function(){     
+			console.log("Websocket RPC connected!"); 
+			socket.onmessage = function(e){ 
+				process.stdout.write("JSON REQ: "+e.data+"\n"); 
+				try {
+					ws.send(e.data);    
+				} catch(e){
+					console.error("Could not send to client socket: "+e); 
+				}
+			} 
+			connect.resolve();  
+		}                               
+		socket.onerror = function(e){    
+			console.log("Websocket error: "+e);         
+			connect.reject(); 
+			reconnect(); 
 		}
-	} 
+		socket.onclose = function(){    
+			console.log("websocket closed!"); 
+		}
+	}
+
+	reconnect(); 
+
 	ws.on("message",function(msg){
 		connect.done(function(){
 			process.stdout.write("JSON REQ: "+msg); 
