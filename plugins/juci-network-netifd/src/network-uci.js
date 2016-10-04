@@ -212,7 +212,16 @@ UCI.network.$registerSectionType("route", {
 	if(section.target.value == "") return gettext("Please specify target for route!"); 
 	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
 	if(section.metric.value < 0) return gettext("Route metrix can not be a negative value!"); 
-	return null; 
+
+	// make sure we throw an error if there are duplicates
+	return ["target"].map(function(f){
+		var dups = UCI.network["@route"].filter(function(x){ 
+			return x != section && section[f].value && section[f].value == x[f].value; 
+		}); 
+		if(dups.length) {
+			return gettext("Duplicate static route entry for") + " '" + section[f].value + "'"; 
+		}
+	}).filter(function(x){ return x; }); 	
 }); 
 
 UCI.network.$registerSectionType("route6", {
