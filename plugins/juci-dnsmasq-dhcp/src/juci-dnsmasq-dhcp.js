@@ -65,9 +65,9 @@ UCI.dhcp.$registerSectionType("host", {
 	"hostid": 	{ dvalue: "", type: String }
 }, function(sec){
 	// make sure we throw an error if there are duplicates
-	return ["name", "mac", "ip"].map(function(f){
+	return ["name", "mac", "ip", "duid", "hostid"].map(function(f){
 		var dups = UCI.dhcp["@host"].filter(function(x){ 
-			return x != sec && sec[f].value == x[f].value; 
+			return x != sec && sec[f].value && sec[f].value == x[f].value; 
 		}); 
 		if(dups.length) {
 			return gettext("Duplicate DHCP entry for") + " '" + sec[f].value + "'"; 
