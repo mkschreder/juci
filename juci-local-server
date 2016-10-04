@@ -27,7 +27,7 @@ if (fs.existsSync("juci-local-server.config")){
 for(var i = 0; i < process.argv.length; i++){
 	switch(process.argv[i]){
 		//case "--host": config.ubus_uri = "ws://"+process.argv[++i]+"/websocket/"; break; 
-		case "--host": config.ubus_uri = "ws://"+process.argv[++i]+":5303"; break; 
+		case "--host": config.ubus_uri = "ws://"+process.argv[++i]+"/websocket/"; break; 
 		case "--port": config.port = parseInt(process.argv[++i]); break; 
 		case "--url": config.ubus_uri = process.argv[++i]; break; 
 	}; 
