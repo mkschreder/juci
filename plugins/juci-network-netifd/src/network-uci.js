@@ -211,6 +211,7 @@ UCI.network.$registerSectionType("route", {
 	if(section.interface.value == "") return gettext("Please specify interface for route!");
 	if(section.target.value == "") return gettext("Please specify target for route!"); 
 	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
+	if(section.metric.value < 0) return gettext("Route metrix can not be a negative value!"); 
 	return null; 
 }); 
 
