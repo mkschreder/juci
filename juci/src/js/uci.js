@@ -565,7 +565,7 @@
 					}
 				}); 
 			}
-			return errors; 
+			return errors; 	
 		}
 		
 		UCISection.prototype.$getChangedValues = function(){

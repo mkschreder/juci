@@ -24,10 +24,12 @@ UCI.system.$registerSectionType("system", {
 	"cronloglevel":		{ dvalue: 5, type: Number },
 	"log_size":		{ dvalue: 16, type: Number },
 	"log_file": 	{ dvalue: "", type: String },
-	"log_ip": 		{ dvalue: "", type: String },
+	"log_ip": 		{ dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
 	"log_port": 	{ dvalue: undefined, type: Number },
 	"log_prefix": 	{ dvalue: "", type: String }, 
 	"log_remote": 	{ dvalue: false, type: Boolean }
+}, function(sec){
+	if(sec.log_ip.value == "0.0.0.0") return gettext("Log IP is invalid"); 
 }); 
 
 UCI.system.$registerSectionType("timeserver", {
