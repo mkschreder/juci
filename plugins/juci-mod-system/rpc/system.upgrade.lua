@@ -44,7 +44,7 @@ local function sysupgrade_start(params)
 	local res = {}; 
 	local path = "/tmp/firmware.bin"; 
 	local keep = "-n"; 
-	if params["keep"] ~= 1 then keep = "" end
+	if params["keep"] == 1 then keep = "" end
 	if params["path"] then path = params["path"] end
 	print("starting upgrade: sysupgrade "..keep.." "..path); 
 	--res["stdout"] = juci.shell("sysupgrade "..keep.." %s&", path); 
