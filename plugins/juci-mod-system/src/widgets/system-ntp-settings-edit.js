@@ -27,18 +27,22 @@ JUCI.app
 })
 .controller("systemNtpSettingsEdit", function($scope, $rpc, $uci, $tr, gettext){
 	$uci.$sync("system").done(function(){
-		if(!$uci.system.ntp) return; 
 		$scope.ntp = $uci.system.ntp.server.value.map(function(x){ return { server: x }; }); 
-		$scope.$apply(); 
 		$scope.$watch("ntp", function onSystemNTPChanged(){
-			$uci.system.ntp.server.value = []; 
-			$scope.ntp.map(function(ntp){
-				$uci.system.ntp.server.value.push(ntp.server); 
+			var servers = {}; 
+			$scope.ntp.filter(function(ntp){
+				return ntp.server != ""; 
+			}).map(function(ntp){
+				servers[ntp.server] = true; 
 			}); 
+			//$scope.ntp = Object.keys(servers).map(function(x){ return { server: x }; }); 
+			$uci.system.ntp.server.value = Object.keys(servers); 
 		}, true); 
+		$scope.$apply(); 
 	}); 
 	$scope.onDeleteNTPServer = function(ntp){
 		$scope.ntp = $scope.ntp.filter(function(x){ return x != ntp; }); 
+		//$scope.ntp.splice($scope.ntp.indexOf(ntp), 1); 
 	}
 	$scope.onAddNTPServer = function(){
 		if(!$uci.system.ntp) return; 
