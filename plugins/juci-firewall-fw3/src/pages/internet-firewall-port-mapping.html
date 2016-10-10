@@ -18,6 +18,7 @@
 					<th></th>
 					<th translate>Name</th>
 					<th translate>Direction</th>
+					<th translate>Src. IP</th>
 					<th translate>Dst. IP</th>
 					<th translate>Protocol</th>
 					<th translate>Local port</th>
@@ -30,6 +31,7 @@
 						<td><input type="checkbox" ng-model="r.enabled.value"/></td>
 						<td>{{ r.name.value }}</td>
 						<td>{{ r.src.value }} {{'to'|translate}} {{ r.dest.value }}</td>
+						<td>{{ r.src_ip.value }}</td>
 						<td>{{ r.dest_ip.value }}</td>
 						<td>{{ r.proto.value }}</td>
 						<td>{{ r.dest_port.value }}</td>
@@ -38,7 +40,7 @@
 						<td style="width: 1%"><button class="btn btn-default" ng-click="onDeleteRule(r)"><i class="fa fa-trash-o"></i></button></td>
 					</tr>
 					<tr>
-						<td colspan="8"></td>
+						<td colspan="9"></td>
 						<td style="width: 1%"><button class="btn btn-default" ng-click="onAddRule()"><i class="fa fa-plus"></i></button></td>
 					</tr>
 				</tbody>

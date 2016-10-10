@@ -80,7 +80,7 @@ UCI.network.$registerSectionType("interface", {
 	"reqopts":				{ dvalue: "", type: String },
 	"metric":				{ dvalue: '', type: Number },
 	"iface6rd":				{ dvalue: "", type: String },
-	"broadcast": 			{ dvalue: '', type: Boolean }, 
+	"broadcast": 			{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: '', type: Boolean }, 
 	//ipv6 settings
