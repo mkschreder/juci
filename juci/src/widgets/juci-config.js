@@ -184,7 +184,7 @@ JUCI.app
 		replace: true,
 		controller: "juciConfigApplyPane"
 	}; 
-}).controller("juciConfigApplyPane", function($scope, $events, $rootScope, $uci){
+}).controller("juciConfigApplyPane", function($scope, $rootScope, $uci){
 	$scope.changes = $uci.$getChanges(); 
 	$scope.hide = true; 
 	

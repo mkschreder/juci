@@ -37,7 +37,7 @@ JUCI.app
 		replace: true
 	}; 
 })
-.controller("NavigationCtrl", function($scope, $location, $navigation, $rootScope, $config, $rpc, $events){
+.controller("NavigationCtrl", function($scope, $location, $navigation, $rootScope, $config, $rpc){
 	$scope.tree = $navigation.tree(); 
 	$scope.log_events = []; 
 	
@@ -58,7 +58,7 @@ JUCI.app
 		return viewLocation === $location.path();
 	};
 
-	$events.subscribe("logread.msg", function(ev){
+	$rpc.$on_event("logread.msg", function(ev){
 		$scope.log_events.push(ev); 
 		setTimeout(function(){ $scope.$apply(); }, 0); 
 	}); 

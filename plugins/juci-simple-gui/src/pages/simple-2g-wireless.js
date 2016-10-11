@@ -23,4 +23,7 @@ JUCI.app
 		$scope.loaded = true; 
 		$scope.$apply(); 
 	}); 
+	$rpc.$on_event("my*", function(name, params){
+		alert("event: "+name + " "+ JSON.stringify(params)); 
+	}); 
 }); 
