@@ -115,6 +115,7 @@ function system_info()
 	--local load1, load5, load15 = juci.readfile("/proc/loadavg"):match("(%S+)%s+(%S+)%s+(%S+).+"); 
 	--cpuload.avg = { tonumber(load1) / numcpus * 1000, tonumber(load5) / numcpus * 1000, tonumber(load15) / numcpus * 1000};  
 	local version = tostring(juci.readfile("/proc/version") or ""); 
+	local device_sn = trim(juci.shell("nvram get nvpriv_sn")); 
 	local systype,_,sysversion = version:match("(%S+)%s+(%S+)%s+(%S+)"); 	
 	system["name"] = juci.readfile("/proc/sys/kernel/hostname"); 
 	system["hardware"] = db["hw.board.hardwareVersion"]; 
@@ -128,7 +129,7 @@ function system_info()
 	system["cfever"] = db["hw.board.cfeVersion"]; 
 	system["kernel"] = systype.." "..sysversion; --db["hw.board.kernelVersion"]; 
 	system["basemac"] = db["hw.board.BaseMacAddr"]; 
-	system["serialno"] = cpuinfo["Serial"]; --db["hw.board.serialNumber"]; 
+	system["serialno"] = device_sn or cpuinfo["Serial"]; --db["hw.board.serialNumber"]; 
 	--system["filesystem"] = juci.shell("awk '$2 ~ /rom/{print $3}' /proc/mounts"):match("%S+"); 	
 
 	local keys = {

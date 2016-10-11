@@ -261,11 +261,11 @@ UCI.firewall.$registerSectionType("rule", {
 	"type": 				{ dvalue: "generic", type: String }, 
 	"name":					{ dvalue: "", type: String }, 
 	"src":					{ dvalue: "", type: String }, 
-	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.IP4CIDRAddressValidator }, // needs to be extended type of ip address/mask
+	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.IPCIDRAddressValidator }, // needs to be extended type of ip address/mask
 	"src_mac": 			{ dvalue: [], type: Array, validator: UCI.validators.MACListValidator }, 
 	"src_port":			{ dvalue: "", type: String, validator: UCI.validators.PortValidator }, // can be a range
 	"dest":				{ dvalue: "", type: String }, 
-	"dest_ip":			{ dvalue: "", type: String }, // needs to be extended type of ip address/mask
+	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPCIDRAddressValidator }, 
 	"dest_mac":			{ dvalue: "", type: String },
 	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }, // can be a range
 	"proto":			{ dvalue: "any", type: String }, 

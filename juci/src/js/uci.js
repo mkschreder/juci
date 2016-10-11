@@ -94,10 +94,11 @@
 	function IP4AddressValidator(){
 		this.validate = function(field){
 			var error = gettext("IP Address must be a valid IPv4 address!");
+			if(field.value == "0.0.0.0") return error;
 			if(!field.value || field.value == "") return null;
 			if(field.value.match(/^[\.\d]+$/) == null) return error;
 			if(field.value.split(".").length != 4 || field.value.split(".")
-				.filter(function(part){ return (part !="" && (parseInt(part) < 256))}).length != 4) return error;
+				.filter(function(part){ return (part !="" && (parseInt(part) < 255))}).length != 4) return error;
 			return null;
 		}
 	};
@@ -115,20 +116,21 @@
 
 	function IP4UnicastAddressValidator(){
 		this.validate = function(field){
-			var error = gettext("IP Address is not a valid Unicast address!");
-			if(!field.value || field.value == "") return null;
-			if(field.value == "0.0.0.0") return error;
+			if(!field.value) return null;
+			if(field.value == "0.0.0.0") return gettext("IP Address is not a valid Unicast address!");
 			var ip4 = new IP4AddressValidator();
-			if(ip4.validate(field) != null) return error;
+			var error = ip4.validate(field); 
+			if(error != null) return error;
 			var ip4multi = new IP4MulticastAddressValidator();
-			if(ip4multi.validate(field) == null) return error; // multicast addresses is not valid unicast address;
+			error = ip4multi.validate(field); 
+			if(error == null) return gettext("IP Address is not a valid Unicast address!");;
 			return null;
 		};
 	};
 
 	function IP4CIDRValidator(){
 		this.validate = function(field){
-			if(!field.value || field.value == "") return null;
+			if(!field.value) return null;
 			ipv4 = new IP4AddressValidator();
 			var parts = field.value.split("/"); 
 			var err = ipv4.validate({ value: parts[0] });
@@ -141,13 +143,28 @@
 
 	function IPAddressValidator(){
 		this.validate = function(field){
-			var ipv4 = new IP4AddressValidator();
-			var ipv6 = new IP6AddressValidator();
-			if(ipv4.validate(field) == null || ipv6.validate(field) == null) return null
-			return gettext("IP Address must be a valid ipv4 or ipv6 address!");
+			var ipv4 = (new IP4AddressValidator()).validate(field);
+			var ipv6 = (new IP6AddressValidator()).validate(field);
+			if(ipv4 && ipv6) return gettext("IP address must be an either valid IPv4 or IPv6 address!"); 
+			return null; 
 		}
 	}; 
 	
+	function IPCIDRAddressValidator(){
+		this.validate = function(field){
+			console.log("Cird validate"); 
+			if(!field.value) return null;
+			ip = new IPAddressValidator();
+			var parts = field.value.split("/"); 
+			var err = ip.validate({ value: parts[0] });
+			if(err) return err;
+			var mask = parseInt(parts[1]);
+			// TODO: what about ipv6?
+			if(isNaN(mask) || (mask >= 0 && mask <= 32)) return null; 
+			return gettext("Netmask must be a value between 0 and 32");
+		};
+	};
+
 	function IP4NetmaskValidator(){
 		this.validate = function(field){
 			var error = gettext("Netmask must be a valid IPv4 netmask");
@@ -162,7 +179,7 @@
 
 	function IP6AddressValidator(){
 		this.validate = function(field){
-			if(field.value && field.value != "" && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
+			if(field.value && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
 			return null;
 		}
 	};
@@ -243,6 +260,7 @@
 			IP4NetmaskValidator: IP4NetmaskValidator,
 			IP4MulticastAddressValidator: IP4MulticastAddressValidator,
 			IP4CIDRValidator: IP4CIDRValidator,
+			IPCIDRAddressValidator: IPCIDRAddressValidator,
 			IP4UnicastAddressValidator: IP4UnicastAddressValidator,
 			IntegerRangeValidator: IntegerRangeValidator, 
 			ArrayValidator: ArrayValidator
@@ -251,8 +269,8 @@
 	(function(){
 		function UCIField(value, schema){
 			if(!schema) throw new Error("No schema specified for the field!"); 
-			this.ovalue = value; 
-			if(value != null && value instanceof Array) {
+			this.ovalue = schema.dvalue; 
+			if(value != null && value instanceof Array && value.length) {
 				this.ovalue = []; Object.assign(this.ovalue, value); 
 			} 
 			this.is_dirty = false; 
@@ -277,9 +295,10 @@
 				if(this.svalue != undefined) this.value = this.svalue; 
 			},
 			$update: function(value, keep_user){
-				if(this.ovalue instanceof Array){
+				if(this.dvalue instanceof Array){
 					// if user has modified value and we have keep user set then we do not discard his changes
 					// otherwise we also update uvalues
+
 					if(!keep_user || !this.dirty) {
 						this.uvalue.length = 0; 
 						Object.assign(this.uvalue, value); 
@@ -296,6 +315,9 @@
 					this.ovalue = value; 
 				}
 			}, 
+			$commit: function(){
+				this.$update(this.uvalue, false); 
+			},
 			get value(){
 				if(this.schema.type == Boolean){
 					var uvalue = (this.uvalue == undefined)?this.ovalue:this.uvalue; 
@@ -409,7 +431,6 @@
 							value = data[k]; 
 					}
 				}
-				//if(k === "hostname") console.log("field "+k+" from "+field.value+" to "+value); 
 				field.$update(value, opts.keep_user_changes); 
 			}); 
 		}
@@ -474,6 +495,15 @@
 				if(!(self[k] instanceof UCI.Field)) return;
 				if(self[k].$reset) 
 					self[k].$reset(); 
+			}); 
+		}
+			
+		UCISection.prototype.$commit = function(){
+			var self = this; 
+			Object.keys(self).map(function(k){
+				if(!(self[k] instanceof UCI.Field)) return;
+				if(self[k].$commit) 
+					self[k].$commit(); 
 			}); 
 		}
 
@@ -553,7 +583,7 @@
 					}
 				}); 
 			}
-			return errors; 
+			return errors; 	
 		}
 		
 		UCISection.prototype.$getChangedValues = function(){
@@ -600,7 +630,7 @@
 			if(!(type in self)) self[type] = []; 
 			self[type].push(section); 
 			self["@all"].push(section); 
-			self[item[".name"]] = section; 
+			if(item[".name"]) self[item[".name"]] = section; 
 			return section; 
 		}
 		function _updateSection(self, item, opts){
@@ -628,7 +658,19 @@
 			}
 			if(section[".name"]) delete self[section[".name"]]; 
 		}
-		
+			
+		UCIConfig.prototype.$commit = function(){
+			var errors = [];
+			var self = this;  
+			Object.keys(self).map(function(x){
+				if(self[x] && self[x].constructor == UCI.Section) {
+					if(self[x].$commit) self[x].$commit(); 
+				}
+			}); 
+			self[".need_commit"] = false; 
+			return errors; 
+		}
+
 		UCIConfig.prototype.$getErrors = function(){
 			var errors = [];
 			var self = this;  
@@ -686,7 +728,7 @@
 			
 			var to_delete = {}; 
 			Object.keys(self).map(function(x){
-				if(self[x].constructor != UCI.Section) return; 
+				if(!self[x] || self[x].constructor != UCI.Section) return; 
 				// attemt to clean invalid values (by setting them to original ones)
 				self[x].$autoCleanInvalidValues(); 
 				// if section still has errors then we delete the section
@@ -736,39 +778,34 @@
 			}); 
 			//console.log("To delete: "+Object.keys(to_delete)); 
 		
-			$rpc.uci.revert({
-				config: self[".name"] 
-				//ubus_rpc_session: UCI_TR_ID
-			}).always(function(){ // we have to use always because we always want to sync regardless if reverts work or not ( they will not if the config is readonly! )
-				$rpc.uci.get({
-					config: self[".name"]
-				}).done(function(data){
-					var vals = data.values;
-					if(vals == undefined){
-						deferred.reject(); 
-						return;
-					}
-					Object.keys(vals).filter(function(x){
-						return vals[x][".type"] in section_types[self[".name"]]; 
-					}).map(function(k){
-						if(!(k in self)) _insertSection(self, vals[k]); 
-						else _updateSection(self, vals[k], opts); 
-						delete to_delete[k]; 
-					}); 
-					
-					// now delete any section that no longer exists in our local cache
-					async.eachSeries(Object.keys(to_delete), function(x, next){
-						if(!to_delete[x]) { next(); return; }
-						var section = to_delete[x]; 
-						//console.log("Would delete section "+section[".name"]+" of type "+section[".type"]); 
-						_unlinkSection(self, section); 
-						next(); 
-					}, function(){
-						deferred.resolve();
-					});  
-				}).fail(function(){
+			$rpc.uci.get({
+				config: self[".name"]
+			}).done(function(data){
+				var vals = data.values;
+				if(vals == undefined){
 					deferred.reject(); 
+					return;
+				}
+				Object.keys(vals).filter(function(x){
+					return vals[x][".type"] in section_types[self[".name"]]; 
+				}).map(function(k){
+					if(!(k in self)) _insertSection(self, vals[k]); 
+					else _updateSection(self, vals[k], opts); 
+					delete to_delete[k]; 
 				}); 
+				
+				// now delete any section that no longer exists in our local cache
+				async.eachSeries(Object.keys(to_delete), function(x, next){
+					if(!to_delete[x]) { next(); return; }
+					var section = to_delete[x]; 
+					//console.log("Would delete section "+section[".name"]+" of type "+section[".type"]); 
+					_unlinkSection(self, section); 
+					next(); 
+				}, function(){
+					deferred.resolve();
+				});  
+			}).fail(function(){
+				deferred.reject(); 
 			}); 
 			return deferred.promise(); 
 		}
@@ -806,10 +843,11 @@
 		
 		UCIConfig.prototype.$insertDefaults = function(typename, sectionname){
 			if(!sectionname) sectionname = typename; 
+			//console.log("Adding new defaults section: "+JSON.stringify(values)); 
 			// insert a default section with the same name as the type
 			// this allows us to use $uci.config.section.setting.value without having to first check for the existence of the section.
 			// we will get defaults by default and if the section exists in the config file then we will get the values from the config.
-			_insertSection(this, { ".type": typename, ".name": sectionname });  
+			_insertSection(this, { ".type": typename, ".name": sectionname});  
 		}
 
 		UCIConfig.prototype.$deleteSection = function(section){
@@ -1133,65 +1171,6 @@
 		return deferred.promise(); 
 	}
 	
-	/*
-	UCI.prototype.sync = function(opts){
-		console.error("$uci.sync() is deprecated and will be replaced with $uci.$sync() in future version to avoid config collisions. Please do not use it!"); 
-		return this.$sync(opts); 
-	}*/
-
-	UCI.prototype.$revert = function(){
-		var revert_list = []; 
-		var deferred = $.Deferred(); 
-		var errors = []; 
-		var self = this; 
-		
-		if(!$rpc.uci) {
-			// this will happen if there is no router connection!
-			setTimeout(function(){ deferred.reject(); }, 0); 
-			return deferred.promise(); 
-		}
-
-		Object.keys(self).map(function(k){
-			if(self[k].constructor == UCI.Config){
-				//if(self[k][".need_commit"]) revert_list.push(self[k][".name"]); 
-				revert_list.push(self[k]); 
-			}
-		}); 
-		async.eachSeries(revert_list, function(item, next){
-		/*
-			$rpc.uci.revert({"config": item[".name"], "ubus_rpc_session": $rpc.$sid()}).done(function(){
-				console.log("Reverted config "+item[".name"]); 
-				next(); 
-			}).fail(function(){
-				errors.push("Failed to revert config "+item[".name"]); 
-				next(); 
-			}); 
-			*/
-			setTimeout(function(){ next(); }, 0);  
-		}, function(){
-			if(errors.length) deferred.reject(errors); 
-			else deferred.resolve(); 
-		}); 
-		return deferred.promise(); 
-	}
-	
-	UCI.prototype.$rollback = function(){
-		var deferred = $.Deferred(); 
-		if(!$rpc.uci) {
-			setTimeout(function(){ deferred.reject(); }, 0); 
-		} else {
-			setTimeout(function(){ deferred.resolve(); }, 0); 
-		}	
-		return deferred.promise(); 
-		//return $rpc.uci.rollback(); 
-	}
-	
-	UCI.prototype.$apply = function(){
-		console.error("Apply method is deprecated and will be removed. Use $save() instead."); 
-		return this.$save(); 
-		//return $rpc.uci.apply({rollback: 0, timeout: 5000}); 
-	}
-	
 	UCI.prototype.$save = function(){
 		var deferred = $.Deferred(); 
 		var self = this; 
@@ -1221,68 +1200,28 @@
 						reqlist.map(function(x){ writes.push(x); });  
 					}
 				}); 
+				// push errors to top level if there are errors in config! 
+				if(errors.length){
+					setTimeout(function(){ deferred.reject(errors); }, 0); 
+					return; 
+				}
 				console.log("Writing changes: "+JSON.stringify(writes)); 
 				async.eachSeries(writes, function(cmd, next){
 					$rpc.uci.set(cmd).done(function(response){
 						console.log("... "+cmd.config+": "+JSON.stringify(response)); 
 						self[cmd.config][".need_commit"] = true; 
+						self[cmd.config].deferred = null; 
 						next(); 
 					}).fail(function(){
 						console.error("Failed to write config "+cmd.config); 
 						next(); 
 					}); 
 				}, function(){
-					next(); 
-				}); 
-			}, 
-			function(next){
-				if(errors.length) {
-					setTimeout(function(){ deferred.reject(errors); }, 0); 
-					return; 
-				}
-				// this will prevent making ubus call if there were no changes to apply 
-				//if(writes.length == 0 && !){
-				//	deferred.resolve(); 
-				//	return; 
-				//} commenting out because we do need to commit if new sections have been added
-				//$rpc.uci.apply({rollback: 0, timeout: 5000}).done(function(){
-					async.eachSeries(Object.keys(self), function(config, next){
-						if(self[config].constructor != UCI.Config || !self[config][".need_commit"]) {
-							next(); 
-							return; 
-						}
-						console.log("Committing changes to "+config); 
-						$rpc.uci.commit({config: config}).done(function(){
-							self[config][".need_commit"] = false; 
-							// we need to set deferred to null to make sync work (with new changes to how we handle changed fields)
-							// the sync is necessary to make sure that all data is reloaded and has correct names after a commit
-							// removing this sync will result in weird behaviour such as certain fields not being deleted even 
-							// though you have called uci delete on them. Basically we currently have to resync the state in order
-							// to guarantee more fault tolerant operation. 
-							self[config].deferred = null; 
-							self[config].$sync().done(function(){
-								next(); 
-							}).fail(function(err){
-								console.log("error synching config "+config+": "+err); 
-								next(); 
-							}); 
-						}).fail(function(err){
-							errors.push("could not commit config: "+err); 
-							next(); 
-						}); 
-					}, function(){
-						// this is to always make sure that we do this outside of this code flow
-						setTimeout(function(){
-							if(errors && errors.length) deferred.reject(errors); 
-							else deferred.resolve(); 
-						},0); 
+					Object.keys(self).map(function(x){
+						if(self[x] instanceof UCI.Config) self[x].$commit(); 
 					}); 
-			//	}).fail(function(error){
-					// Apply may fail for a number of reasons (for example if there is nothing to apply) 
-					// but it does not matter so we should not fail when it does not succeed. 
-			//		deferred.resolve(); 
-					//deferred.reject([error]); 
-			//	}); 
+					setTimeout(function(){ deferred.resolve();}, 0); 
+				}); 
 			}
 		]); 
 		return deferred.promise(); 

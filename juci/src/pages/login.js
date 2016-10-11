@@ -17,13 +17,13 @@
 JUCI.app
 .controller("LoginPageCtrl", function($scope, $rpc){
 	$rpc.$reset(); 
-	JUCI.interval.repeat("juci-check-loggedin", 1000, function(done){
+	/*JUCI.interval.repeat("juci-check-loggedin", 1000, function(done){
 		$rpc.$authenticate().done(function(){
 			window.location.href="/"; 
 		}).always(function(){
 			done(); 
 		}); 
-	}); 
+	})a; */
 }); 
 
 JUCI.page("login", "pages/login.html"); 

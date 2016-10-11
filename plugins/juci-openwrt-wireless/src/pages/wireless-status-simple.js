@@ -22,7 +22,7 @@ JUCI.app
 			$scope.devices = result.devices.map(function(dev){
 				dev._table = [
 					[$tr(gettext("SSID")), dev.ssid],
-					[$tr(gettext("Encryption")), dev.encryption.description],
+					[$tr(gettext("Encryption")), (dev.encryption || {}).description],
 					[$tr(gettext("BSSID")), dev.bssid],
 					[$tr(gettext("Channel")), dev.channel], 
 					[$tr(gettext("HW Modes")), Object.keys(dev.hwmodes)

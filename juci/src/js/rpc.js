@@ -112,7 +112,12 @@
 
     RevoRPC.prototype.$logout = function(){
 		var sid = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
-		return this.$request("logout", [sid]); 
+		var def = $.Deferred(); 
+		this.$request("logout", [sid]).done(function(){
+			$juci.loggedin = false; 
+			def.resolve(); 
+		}).fail(function(){ def.reject(); });  
+		return def.promise(); 
     }
 
     RevoRPC.prototype.$login = function(username, password){
@@ -134,6 +139,7 @@
             self.$request("login", [username, sha.getHash("HEX")]).done(function(resp){
                 console.log("login: "+JSON.stringify(resp)); 
                 if(resp.success) {
+					self.loggedin = true; 
 					scope.localStorage.setItem("sid", resp.success); 
 					def.resolve(resp.success); 
 				}
@@ -161,9 +167,9 @@
 			time: (new Date()).getTime(),
 			timeout: setTimeout(function(){
 				self.requests[req.id] = undefined; 
-				console.error("request timed out! ("+method+")"); 
+				console.error("request timed out! ("+method+", "+JSON.stringify(params)+")"); 
 				req.deferred.reject(); 
-			}, 5000),
+			}, 20000),
 			method: method, 
 			params: params, 
 			deferred: $.Deferred()      
@@ -185,7 +191,7 @@
 		}
         return req.deferred.promise();  
     }
-
+/*
 	RevoRPC.prototype.$authenticate = function(){
 		var self = this; 
 		var sid = scope.localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
@@ -199,7 +205,7 @@
 		}); 
 		return def.promise(); 
 	}
-	
+*/	
 	RevoRPC.prototype.$call = function(object, method, data){
 		var sid = localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
 		//data._ubus_session_id = sid; 
@@ -246,6 +252,10 @@
 
 	RevoRPC.prototype.$isConnected = function(){
 		return this.connected; 
+	}
+
+	RevoRPC.prototype.$isLoggedIn = function(){
+		return this.loggedin; 
 	}
 
 	RevoRPC.prototype.$init = function(host){

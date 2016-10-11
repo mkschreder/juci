@@ -63,6 +63,16 @@ UCI.dhcp.$registerSectionType("host", {
 	"ip":		{ dvalue: "", type: String, required: true, validator: UCI.validators.IPAddressValidator },  // TODO: change to ip address
 	"duid": 	{ dvalue: "", type: String }, 
 	"hostid": 	{ dvalue: "", type: String }
+}, function(sec){
+	// make sure we throw an error if there are duplicates
+	return ["name", "mac", "ip", "duid", "hostid"].map(function(f){
+		var dups = UCI.dhcp["@host"].filter(function(x){ 
+			return x != sec && sec[f].value && sec[f].value == x[f].value; 
+		}); 
+		if(dups.length) {
+			return gettext("Duplicate DHCP entry for") + " '" + sec[f].value + "'"; 
+		}
+	}).filter(function(x){ return x; }); 	
 }); 
 
 JUCI.app.factory("lanIpFactory", function($firewall, $tr, gettext){

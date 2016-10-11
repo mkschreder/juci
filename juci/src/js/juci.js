@@ -81,6 +81,7 @@
 	
 	JUCIMain.prototype.$init = function(options){
 		var scripts = []; 
+		var self = this; 
 		var deferred = $.Deferred(); 
 		if(!options) options = {}; 
 		var $rpc = scope.UBUS; 
@@ -113,6 +114,7 @@
 			function(next){
 				console.log("UCI Init"); 
 				$uci.$init().done(function(){
+					$juci.loggedin = true; 
 					next(); 
 				}).fail(function(){
 					console.error("UCI failed to initialize!"); 
@@ -130,7 +132,7 @@
 					//deferred.reject(); 
 				}); 
 			}, 
-			function(next){
+			/*function(next){
 				$rpc.$authenticate().done(function(){
 					console.log("Authenticated!"); 
 					next(); 
@@ -138,7 +140,7 @@
 					console.log("Failed to verify session."); 
 					next(); 
 				}); 
-			},
+			},*/
 			function(next){
 				// get the menu navigation
 				if(!$rpc.juci){
@@ -268,7 +270,7 @@
 						}
 					},
 					resolve: {
-						isAuthenticated: function($rpc){
+						/*isAuthenticated: function($rpc){
 							var def = $.Deferred(); 
 							// this will touch the session so that it does not expire
 							$rpc.$authenticate().done(function(){
@@ -277,7 +279,7 @@
 								def.resolve(false); 
 							});
 							return def.promise(); 
-						}, 
+						},*/ 
 						saveChangesOnExit: function($uci, $tr, gettext){
 							var def = $.Deferred(); 
 							// this will remove any invalid data when user tries to leave a page and revert changes that have resulted in errors. 
@@ -324,14 +326,7 @@
 						}
 					},*/
 					// this function will run upon load of every page in the gui
-					onEnter: function($uci, $window, $rootScope, $tr, gettext, isAuthenticated){
-						if(!isAuthenticated){
-							$juci.redirect("login"); 
-						} 
-						
-						// TODO: do we really need this now?
-						$uci.$rollback(); 
-
+					onEnter: function($uci, $window, $rootScope, $tr, gettext){
 						if(page.redirect) {
 							//alert("page redirect to "+page.redirect); 
 							$juci.redirect(page.redirect); 
@@ -345,10 +340,7 @@
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit, isAuthenticated){
-						if(!isAuthenticated) {
-							$juci.redirect("login"); 
-						}
+					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit){
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$events.removeAll();

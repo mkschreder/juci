@@ -20,12 +20,16 @@
 --          Supports VAPs: yes  PHY name: phy0
 
 local juci = require("orange/core"); 
+
+-- FIXME: do not use iwinfo!! it can not work safely on a concurrent backend where multiple scripts can load the library at the same time. 
+-- it only works here right now because this is (hopefully) the only script that is using it. 
+-- also it only works when calls are all serialized into one single lua object ('s' permission in acl!)
 local iwinfo = require("iwinfo"); 
+
 local ubus = require("orange/ubus"); 
 
 --require("iwinfo"); 
 --require("ubus"); 
-
 local function wireless_get_80211_device_names()
 	-- this will get list of devices that support phy80211 interface. 
 	--local output = juci.shell("find /sys/class/net/**/*phy80211* 2> /dev/null | awk 'BEGIN{FS=\"/\"} { print $5 }'"); 
@@ -48,7 +52,7 @@ local function wireless_get_80211_devices()
 			quality = "N/A"; 
 		end
 		-- prevent devices that are not ready (do not have ssid) from appearing in the list!
-		if(iw and iw.ssid(wldev)) then 
+		if(iw) then 
 			table.insert(result.devices, {
 				device = wldev, 
 				ssid = iw.ssid(wldev), 
@@ -78,51 +82,31 @@ end
 
 local function wireless_get_80211_countrylist(wldev)
 	local iw = iwinfo[iwinfo.type(wldev)];
-	if(iw) then 
-		return iw.countrylist(wldev); 
-	end
-	return {}; 
+	if(not iw) then return {}; end
+	local ret = iw.countrylist(wldev); 
+	return ret; 
 end
 
 local function wireless_get_80211_htmodelist(wldev)
 	local iw = iwinfo[iwinfo.type(wldev)];
-	if(iw) then 
-		return iw.htmodelist(wldev); 
-	end
-	return {}; 
+	if(not iw) then return {}; end
+	local ret = iw.htmodelist(wldev); 
+	return ret; 
 end
 
 local function wireless_get_80211_freqlist(wldev)
 	local iw = iwinfo[iwinfo.type(wldev)];
-	if(iw) then 
-		return iw.freqlist(wldev); 
-	end
-	return {}; 
+	if(not iw) then return {}; end
+	local ret = iw.freqlist(wldev); 
+	return ret; 
 end
 
 local function wireless_get_80211_txpowerlist(wldev)
 	local iw = iwinfo[iwinfo.type(wldev)];
-	if(iw) then 
-		return iw.txpwrlist(wldev); 
-	end
-	return {}; 
+	if(not iw) then return {}; end
+	local ret = iw.txpwrlist(wldev); 
+	return ret; 
 end
-
-local function wireless_get_scanlist()
-	local devices = wireless_get_80211_device_names(); 
-	local result = { }; 
-	for _,wldev in ipairs(devices) do 
-		local iw = iwinfo[iwinfo.type(wldev)];
-		if(iw) then 
-			local aps = iw.scanlist(wldev); 
-			for _,ap in ipairs(aps) do
-				ap.device = wldev; 
-			end
-			result[wldev] = aps; 
-		end
-	end
-	return result; 
-end 
 
 local function wireless_get_80211_caps()
 	local devices = wireless_get_80211_device_names(); 
@@ -165,6 +149,22 @@ local function wireless_get_extended_stainfo(wldev, macaddr)
 	return info; 
 end
 
+local function wireless_get_scanlist()
+	local devices = wireless_get_80211_device_names(); 
+	local result = { }; 
+	for _,wldev in ipairs(devices) do 
+		local iw = iwinfo[iwinfo.type(wldev)];
+		if(iw) then 
+			local aps = iw.scanlist(wldev); 
+			for _,ap in ipairs(aps) do
+				ap.device = wldev; 
+			end
+			result[wldev] = aps; 
+		end
+	end
+	return result; 
+end 
+
 local function wireless_devices()
 	local result = {}; 
 	result.devices = wireless_get_80211_devices(); 
@@ -177,16 +177,11 @@ local function wireless_get_caps()
 	return result; 
 end
 
-local function wireless_radios()
-	return {}; 
-end
-
 local function wireless_countrylist(msg)
 	local result = {}; 
 	if(not msg.device) then
 		return { error = "no device specified!" }; 
 	end
-	print("getting countrylist for "..msg.device); 
 	result.countries = wireless_get_80211_countrylist(msg.device); 
 	return result; 
 end
@@ -234,7 +229,6 @@ end
 return {
 	devices = wireless_devices,
 	caps = wireless_get_caps,
-	radios = wireless_radios, 
 	clients = wireless_clients,
 	countrylist = wireless_countrylist,
 	htmodelist = wireless_htmodelist,

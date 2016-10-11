@@ -99,25 +99,29 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 	var path = $location.path().replace(/\//g, ""); 
 
 	$juci.redirectHome = function(){
+		if(!$juci.loggedin) path = "login"; 
+		if($juci.loggedin && path == "login") path = null; 
 		var home = path || $config.settings.juci.homepage.value || "overview"; 
 		console.log("Redirecting to homepage.. "+home); 
-		$juci.redirect(home); 
+		setTimeout(function(){
+			$juci.redirect(home); 
+		}, 0); 
 	}
 
 	//NOTE: webgui-only
 	// load the right page from the start
-	$rpc.$authenticate().done(function(){
+	if($juci.loggedin){
 		$juci.redirectHome(); 
-	}).fail(function(){
+	} else {
 		$juci.redirect("login");
-	}); 
+	} 
 
 	// setup automatic session "pinging" and redirect to login page if the user session can not be accessed
 	setInterval(function(){
-		$rpc.$authenticate().fail(function(){
+		if(!$juci.loggedin){
 			// TODO: this may not be optimal if it becomes annoying 
 			$juci.redirect("login");
-		});
+		}
 	}, 10000); 
 
 	$rootScope.juci_loaded = true; 

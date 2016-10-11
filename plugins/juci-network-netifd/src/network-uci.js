@@ -80,7 +80,7 @@ UCI.network.$registerSectionType("interface", {
 	"reqopts":				{ dvalue: "", type: String },
 	"metric":				{ dvalue: '', type: Number },
 	"iface6rd":				{ dvalue: "", type: String },
-	"broadcast": 			{ dvalue: '', type: Boolean }, 
+	"broadcast": 			{ dvalue: '', type: String, validator: UCI.validators.IP4AddressValidator }, 
 	"hostname": 			{ dvalue: "", type: String }, 
 	"peerdns": 				{ dvalue: '', type: Boolean }, 
 	//ipv6 settings
@@ -211,7 +211,17 @@ UCI.network.$registerSectionType("route", {
 	if(section.interface.value == "") return gettext("Please specify interface for route!");
 	if(section.target.value == "") return gettext("Please specify target for route!"); 
 	if(section.netmask.value == "") return gettext("Please specify netmask for route!"); 
-	return null; 
+	if(section.metric.value < 0) return gettext("Route metrix can not be a negative value!"); 
+
+	// make sure we throw an error if there are duplicates
+	return ["target"].map(function(f){
+		var dups = UCI.network["@route"].filter(function(x){ 
+			return x != section && section[f].value && section[f].value == x[f].value; 
+		}); 
+		if(dups.length) {
+			return gettext("Duplicate static route entry for") + " '" + section[f].value + "'"; 
+		}
+	}).filter(function(x){ return x; }); 	
 }); 
 
 UCI.network.$registerSectionType("route6", {

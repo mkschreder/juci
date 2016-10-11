@@ -28,7 +28,7 @@
 						<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'Default Gateway'|translate}}"/>
 					</div></td>
 					<td><input type="number" min="0" max="4294967295" class="form-control" ng-model="route.metric.value" placeholder="route.metric.dvalue"/></td>
-					<td><input type="number" min="60" max="2048" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
+					<td><input style="width: 100px !important" type="number" min="60" max="2048" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
 					<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
 				</tr>
 				<tr>
@@ -57,7 +57,7 @@
 						<input type="text" class="form-control" ng-model="route.gateway.value" placeholder="{{'IPv6 Gateway'|translate}}"/>
 					</div></td>
 					<td><input type="number" class="form-control" ng-model="route.metric.value" placeholder="route.metric.dvalue"/></td>
-					<td><input type="number" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
+					<td><input style="width: 100px !important" type="number" class="form-control" ng-model="route.mtu.value" placeholder="{{'MTU'|translate}}"/></td>
 					<td><button class="btn btn-default" ng-click="onDeleteRoute(route)"><i class="fa fa-trash"></i></button></td>
 				</tr>
 				<tr>
