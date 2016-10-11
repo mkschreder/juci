@@ -25,6 +25,7 @@
 		this.seq = 1; 
 		this.sid = RPC_DEFAULT_SESSION_ID; 
 		this.conn_promise = null; 
+		this.event_listeners = {}; 
 		Object.defineProperty(this, "$session", { get: function(){ return _session_data; } }); 
 	}
 
@@ -90,6 +91,17 @@
 				//console.log("RPC response "+req.method+" "+JSON.stringify(req.params)+" ("+((new Date()).getTime() - req.time)+"ms): "); //+JSON.stringify(msg.result)); 
 				req.deferred.resolve(msg.result); 
 			} 
+			// on event message run an event handler
+			else if(!msg.id && msg.method && msg.params){
+				// go over all listeners and run any listener that matches our method
+				Object.keys(self.event_listeners).map(function(k){
+					if((new RegExp("^" + k.split("*").join(".*") + "$")).test(msg.method)){
+						self.event_listeners[k].map(function(x){
+							x(msg.method, msg.params); 
+						}); 
+					}
+				}); 
+			}
 			// an error message for corresponding request
 			else if(msg.id && msg.error != undefined && self.requests[msg.id]){
 				var req = self.requests[msg.id]; 
@@ -152,6 +164,16 @@
         }); 
         return def.promise();           
     }
+
+	RevoRPC.prototype.$on_event = function(wildcard, func){
+		var self = this; 
+		if(!self.event_listeners[wildcard]) self.event_listeners[wildcard] = []; 
+		self.event_listeners[wildcard].push(func); 
+	}
+
+	RevoRPC.prototype.$clearAllEvents = function(){
+		this.event_listeners = {}; 
+	}
 
     RevoRPC.prototype.$request = function(method, params){
         var self = this; 

@@ -29,8 +29,8 @@ JUCI.app
 		replace: true
 	 };  
 })
-.controller("overviewWidget40USB", function($scope, $uci, $usb, $events){
-	$events.subscribe("hotplug.usb", function(res){
+.controller("overviewWidget40USB", function($scope, $uci, $usb, $rpc){
+	$rpc.$on_event("hotplug.usb", function(res){
 		if(res.data && res.data.action && (res.data.action == "add" || res.data.action == "remove")){
 			update();
 		}

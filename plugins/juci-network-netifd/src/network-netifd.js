@@ -246,8 +246,8 @@
 	}); 
 	
 	// register basic vlan support 
-	JUCI.app.run(function($network, $uci, $rpc, $events, gettext, $tr, $ethernet, networkConnectionPicker){
-		$events.subscribe("hotplug.net", function(ev){
+	JUCI.app.run(function($network, $uci, $rpc, gettext, $tr, $ethernet, networkConnectionPicker){
+		$rpc.$on_event("hotplug.net", function(ev){
 			if(ev.data.action == "add"){
 				// we need to make sure that the new device is not already added to a network. 
 				$uci.$sync("network").done(function(){

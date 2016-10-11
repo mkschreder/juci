@@ -30,9 +30,6 @@ JUCI.app
 	}
 	
 	return new USB(); 
-}).run(function($events){	
-	$events.subscribe("usb.device.add", function(event){
-		console.log("USB Plugged in: "+JSON.stringify(event)); 
-	});
+}).run(function(){	
 });  
 

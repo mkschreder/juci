@@ -9,7 +9,7 @@ JUCI.app
 		controller: "diagnosticsWidget90Speedtest", 
 	 };  
 })
-.controller("diagnosticsWidget90Speedtest", function($scope, $rpc, $events, $uci, utilsAddTestserverPicker){
+.controller("diagnosticsWidget90Speedtest", function($scope, $rpc, $uci, utilsAddTestserverPicker){
 	$scope.data = {
 		packagesize: 50,
 		test_type: "up_down",
@@ -101,7 +101,7 @@ JUCI.app
 			});
 		});
 	}
-	$events.subscribe("juci.utils.speedtest", function(res){
+	$rpc.$on_event("juci.utils.speedtest", function(res){
 		if(res.data && res.data.status != undefined){
 			switch(res.data.status) {
 			case 0:

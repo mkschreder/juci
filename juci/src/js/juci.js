@@ -186,44 +186,6 @@
 				}).always(function(){
 					next(); 
 				}); 
-				/*$rpc.juci.ui.menu().done(function(data){
-					//console.log(JSON.stringify(data)); 
-					// get menu keys and sort them so that parent elements will come before their children
-					// this will automatically happen using normal sort because parent element paths are always shorter than their childrens. 
-					//var keys = Object.keys(data.menu).sort(function (a, b) { 
-					//	return a.localeCompare(b) ; 
-					//}); 
-					var keys = Object.keys(data.menu); 
-					
-					keys.map(function(key){
-						var menu = data.menu[key]; 
-						var view = menu.view; 
-						var redirect = menu.redirect; 
-						var path = key; 
-						//console.log("MENU: "+path); 
-						var obj = {
-							path: path, 
-							href: menu.page || path.replace(/\//g, "-").replace(/_/g, "-"), 
-							modes: menu.modes || [ ], 
-							text: menu.title 
-						}; 
-						$juci.navigation.register(obj); 
-						if(redirect) redirect = redirect.replace(/\//g, "-").replace(/_/g, "-"); 
-						// NOTE: all juci page templates currently have form word<dot>word<dot>..html
-						// And their names correspond to the structure of the menu we get from the box.
-						// - This makes it easy to find the right page file and simplifies managing a lot of pages.
-						// - This also allows plugins to override existing pages simply by supplying their own versions of the page templates
-						// - Conclusion: this is one of the things that should almost never be rewritten without providing 
-						//   a fallback mechanism for supporting the old (this) way because all plugins depend on this.  
-						// JUCI.page(obj.href, "pages/"+obj.path.replace(/\//g, ".")+".html", redirect); 
-						JUCI.page(obj.href, "pages/"+obj.href+".html", redirect); 
-					}); 
-					//console.log("NAV: "+JSON.stringify($navigation.tree())); 
-					//$rootScope.$apply(); 
-					next(); 
-				}).fail(function(){
-					next();
-				});*/ 
 			}, 
 			function(next){
 				// set various gui settings such as mode (and maybe theme) here
@@ -340,10 +302,10 @@
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($uci, $tr, gettext, $interval, $events, saveChangesOnExit){
+					onExit: function($uci, $tr, gettext, $interval, $rpc, saveChangesOnExit){
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
-						$events.removeAll();
+						$rpc.$clearAllEvents(); 
 					}
 				};  
 				
@@ -360,7 +322,7 @@
 			};
 		});
 
-		app.run(function($templateCache, $uci, $events, $rpc, $rootScope){
+		app.run(function($templateCache, $uci, $rpc, $rootScope){
 			var self = scope.JUCI;
 			// add capability lookup to root scope so that it can be used inside html ng-show directly 
 			$rootScope.has_capability = function(cap_name){
@@ -374,16 +336,6 @@
 			Object.keys(self.templates).map(function(k){
 				//console.log("Registering template "+k); 
 				$templateCache.put(k, self.templates[k]); 
-			}); 
-			// subscribe to uci change events and notify uci object
-			$events.subscribe("uci.commit", function(ev){
-				var data = ev.data; 
-				if(data && $uci[data.config]){
-					$uci[data.config].$reload().done(function(){ 
-						// reload all gui 
-						$rootScope.$apply(); 
-					}); 
-				}
 			}); 
 		}); 
 
