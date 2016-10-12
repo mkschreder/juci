@@ -34,6 +34,11 @@ if [ "$(which lessc)" == "" ]; then
 	ERR=1
 fi
 
+if [ "$(which msguniq)" == "" ]; then 
+	perr "!!! msguniq (gettext utility) is missing. Please install gettext package for compiling localization files!"
+	ERR=1
+fi
+
 if [ "$ERR" == "1" ]; then 
 	if [ "$(whoami)" != "root" ]; then 
 		perr "JUCI build dependencies are missing!."
