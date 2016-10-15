@@ -21,9 +21,22 @@ function network_list_services()
 	return result; 
 end
 
-function network_list_connected_clients()
+function network_list_connected_clients(args)
 	local clients = network.clients(); 
-	return { clients = clients }; 	
+	local result = {}; 
+	if(args.ping) then
+		for _,cl in ipairs(clients) do	
+			if(cl.ipaddr ~= nil and string.len(cl.ipaddr) > 0) then 
+				local alive = juci.shell("ping -c 1 -W 1 %s | grep 'packets received' | awk '{ if($1 == $4) { print 1 } else { print 0 } }'", cl.ipaddr); 
+				if alive:match("1") then 
+					table.insert(result, cl);
+				end
+			end
+		end
+	else 
+		result = clients; 
+	end
+	return { clients = result }; 	
 end
 
 function network_nat_table()
