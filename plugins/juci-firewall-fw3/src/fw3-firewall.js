@@ -257,15 +257,29 @@ UCI.firewall.$registerSectionType("dmz", {
 	"ip6addr":			{ dvalue: "", type: String, validator: UCI.validators.IP6AddressValidator }
 }); 
 
+UCI.validators.FirewallIPAddressValidator = function FirewallIPAddressValidator(){
+	this.validate = function(field){
+		var error = gettext("Firewall IP address can be an IPv4 or IPv6 IP in regular or CIDR notation"); 
+		var ip4cidr = new UCI.validators.IP4CIDRValidator();
+		var ip4 = new UCI.validators.IP4AddressValidator();
+		var ip6 = new UCI.validators.IP6AddressValidator();
+		var parts = field.value.split("/"); 
+		var mask = parseInt(parts[1]); 
+		if(ip4.validate(field) != null && ip6.validate(field) != null && ip4cidr.validate(field) != null && (isNaN(mask) || mask < 0 || mask > 32))
+			return error; 
+		return null; 
+	};
+};
+
 UCI.firewall.$registerSectionType("rule", {
 	"type": 				{ dvalue: "generic", type: String }, 
 	"name":					{ dvalue: "", type: String }, 
 	"src":					{ dvalue: "", type: String }, 
-	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.IPCIDRAddressValidator }, // needs to be extended type of ip address/mask
+	"src_ip":				{ dvalue: "", type: String, validator: UCI.validators.FirewallIPAddressValidator }, // needs to be extended type of ip address/mask
 	"src_mac": 			{ dvalue: [], type: Array, validator: UCI.validators.MACListValidator }, 
 	"src_port":			{ dvalue: "", type: String, validator: UCI.validators.PortValidator }, // can be a range
 	"dest":				{ dvalue: "", type: String }, 
-	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.IPCIDRAddressValidator }, 
+	"dest_ip":			{ dvalue: "", type: String, validator: UCI.validators.FirewallIPAddressValidator }, 
 	"dest_mac":			{ dvalue: "", type: String },
 	"dest_port":		{ dvalue: "", type: String, validator: UCI.validators.PortValidator }, // can be a range
 	"proto":			{ dvalue: "any", type: String }, 

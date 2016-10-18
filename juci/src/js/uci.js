@@ -94,11 +94,17 @@
 	function IP4AddressValidator(){
 		this.validate = function(field){
 			var error = gettext("IP Address must be a valid IPv4 address!");
-			if(field.value == "0.0.0.0") return error;
 			if(!field.value || field.value == "") return null;
-			if(field.value.match(/^[\.\d]+$/) == null) return error;
+			// match 4 groups of 1-3 digits separated by dots
+			if(field.value.match(/^[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}$/) == null) return error;
+			// validate each part to be an int between 0 and 255. 
+			// Note: this is a very crude way to validate, but we need information about netmask to fully validate a valid IP address
+			// for either a host or a lan interface. So we do that in the section validator instead. 
 			if(field.value.split(".").length != 4 || field.value.split(".")
-				.filter(function(part){ return (part !="" && (parseInt(part) < 255))}).length != 4) return error;
+				.filter(function(part){ 
+					part = parseInt(part); 
+					return (!isNaN(part) && part >= 0 && part <= 255)
+				}).length != 4) return error;
 			return null;
 		}
 	};
@@ -109,7 +115,9 @@
 			var error = gettext("Address is not a valid  Multicast address");
 			var ipv4 = new IP4AddressValidator();
 			if(ipv4.validate(field) != null) return error;
-			if(parseInt(field.value.split(".")[0]) > 239 || parseInt(field.value.split(".")[0]) < 224) return error;
+			var first = parseInt(field.value.split(".")[0]); 
+			// multicast addresses start with 1110 so range between 224 and 239 (included)
+			if(first > 239 || first < 224) return error;
 			return null;
 		}
 	};
@@ -117,18 +125,26 @@
 	function IP4UnicastAddressValidator(){
 		this.validate = function(field){
 			if(!field.value) return null;
-			if(field.value == "0.0.0.0") return gettext("IP Address is not a valid Unicast address!");
+			var error = gettext("IP Address is not a valid Unicast address!");
 			var ip4 = new IP4AddressValidator();
-			var error = ip4.validate(field); 
-			if(error != null) return error;
+			if(ip4.validate(field) != null) return error;
+			// if it is a multicast address then it is automatically not a unicast
 			var ip4multi = new IP4MulticastAddressValidator();
-			error = ip4multi.validate(field); 
-			if(error == null) return gettext("IP Address is not a valid Unicast address!");;
+			if(ip4multi.validate(field) == null) return error;  
 			return null;
 		};
 	};
 
 	function IP4CIDRValidator(){
+		function ip2long (ip) {
+			var parts = ip.split("."); 
+			var ret = 0; 
+			parts.map(function(x, i){ ret |= parseInt(x) << (8 * (3 - i)); }); 
+			return ret; 
+		}
+		function long2ip(l){
+			return [(l >> 24) & 255, (l >> 16) & 255, (l >> 8) & 255, l & 255].map(function(x){ return ""+x; }).join("."); 
+		}
 		this.validate = function(field){
 			if(!field.value) return null;
 			ipv4 = new IP4AddressValidator();
@@ -136,8 +152,13 @@
 			var err = ipv4.validate({ value: parts[0] });
 			if(err) return err;
 			var mask = parseInt(parts[1]);
-			if(!isNaN(mask) && mask >= 0 && mask <= 32) return null; 
-			return gettext("Netmask must be a value between 0 and 32");
+			if(isNaN(mask) || mask < 0 || mask > 32) return gettext("Netmask must be a value between 0 and 32");
+			var host = ip2long(parts[0]); 
+			var hostmin = (ip2long(parts[0]) & (-1 << (32 - mask))) + 1; 
+			var hostmax = (hostmin + Math.pow(2, (32 - mask)) - 2) - 1;
+			// validate the ip so that it is within the range
+			if(host < hostmin || host > hostmax) return gettext("Given IP/Netmask combination is not valid!"); 
+			return null; 
 		};
 	};
 
@@ -149,7 +170,7 @@
 			return null; 
 		}
 	}; 
-	
+/*	
 	function IPCIDRAddressValidator(){
 		this.validate = function(field){
 			console.log("Cird validate"); 
@@ -164,7 +185,7 @@
 			return gettext("Netmask must be a value between 0 and 32");
 		};
 	};
-
+*/
 	function IP4NetmaskValidator(){
 		this.validate = function(field){
 			var error = gettext("Netmask must be a valid IPv4 netmask");
@@ -260,7 +281,6 @@
 			IP4NetmaskValidator: IP4NetmaskValidator,
 			IP4MulticastAddressValidator: IP4MulticastAddressValidator,
 			IP4CIDRValidator: IP4CIDRValidator,
-			IPCIDRAddressValidator: IPCIDRAddressValidator,
 			IP4UnicastAddressValidator: IP4UnicastAddressValidator,
 			IntegerRangeValidator: IntegerRangeValidator, 
 			ArrayValidator: ArrayValidator
