@@ -1,0 +1,13 @@
+<juci-layout-with-sidebar>
+	<div ng-controller="SettingsConfigurationCtrl">
+		<h2 translate>Factory Reset</h2>
+		<juci-config-info>{{ 'settings.factoryreset.info' | translate }}</juci-config-info>
+		<juci-config-section title="{{'Factory Settings'|translate}}">
+			<juci-config-lines >
+				<juci-config-line title="{{'Reset restores the factory default settings of your gateway'|translate}}">
+					<button class="btn btn-lg btn-default" ng-click="onReset()" ng-disable="!resetPossible">{{'Reset'|translate}}</button>
+				</juci-config-line>
+			</juci-config-lines>
+		</juci-config-section>
+	</div>
+</juci-layout-with-sidebar>

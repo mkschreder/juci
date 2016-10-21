@@ -322,6 +322,12 @@ msgstr "Passwords"
 msgid "menu-settings-configuration-title"
 msgstr "Configuration"
 
+msgid "settings-factory-reset-title"
+msgstr "Factory Reset"
+
+msgid "menu-settings-factory-reset-title"
+msgstr "Factory Reset"
+
 # share/menu.d/settings.json
 msgid "menu-settings-system-title"
 msgstr "Settings"
