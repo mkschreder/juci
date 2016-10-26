@@ -749,7 +749,8 @@
 		UCIConfig.prototype.$autoCleanInvalidSections = function(){
 			var def = $.Deferred(); 
 			var self = this; 
-			
+		
+			/* Disable this for now because this is brutal
 			var to_delete = {}; 
 			Object.keys(self).map(function(x){
 				if(!self[x] || self[x].constructor != UCI.Section) return; 
@@ -759,7 +760,7 @@
 				if(self[x].$getErrors().length){
 					to_delete[x] = self[x];
 				}
-			}); 
+			});
 			
 			async.eachSeries(Object.keys(to_delete), function(x, next){
 				if(!to_delete[x]) { next(); return; }
@@ -771,7 +772,8 @@
 			}, function(){
 				def.resolve();
 			});  
-
+			*/
+			setTimeout(function(){ def.resolve(); }, 0); 
 			return def.promise(); 
 		}
 
