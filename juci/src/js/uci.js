@@ -730,6 +730,10 @@
 			var def = $.Deferred(); 
 			$rpc.uci.get({config: self[".name"]}).done(function(data){
 				var vals = data.values;
+				if(!vals) {
+					def.reject(); 
+					return; 
+				}
 				Object.keys(vals).filter(function(x){
 					return vals[x][".type"] in section_types[self[".name"]]; 
 				}).map(function(k){

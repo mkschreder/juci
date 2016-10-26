@@ -337,6 +337,10 @@
 
 						document.title = $tr(name+"-title"); 
 
+						// mark all config data to be reloaded from device
+						// (user changes will be kept) 
+						$uci.$mark_for_reload(); 
+
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
