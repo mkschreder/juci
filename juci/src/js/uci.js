@@ -737,7 +737,7 @@
 				Object.keys(vals).filter(function(x){
 					return vals[x][".type"] in section_types[self[".name"]]; 
 				}).map(function(k){
-					var section = = self[vals[k][".name"]];
+					var section = self[vals[k][".name"]];
 					if(section && section.$update)
 						_updateSection(self, vals[k], {keep_user_changes: true}); 
 					else
