@@ -737,7 +737,11 @@
 				Object.keys(vals).filter(function(x){
 					return vals[x][".type"] in section_types[self[".name"]]; 
 				}).map(function(k){
-					_updateSection(self, vals[k], {keep_user_changes: true}); 
+					var section = = self[vals[k][".name"]];
+					if(section && section.$update)
+						_updateSection(self, vals[k], {keep_user_changes: true}); 
+					else
+						_insertSection(self, vals[k]);
 					def.resolve(); 
 				}); 
 			}).fail(function(){
