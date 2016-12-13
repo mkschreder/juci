@@ -12,24 +12,26 @@
     "object-assign": "*",
     "jquery-deferred": "*",
     "watchjs": "*",
-    "uglify-js": "*", 
+    "uglify-js": "*",
     "array.prototype.find": "*",
-	"node-getopt": "*", 
-	"gettext-parser": "*",
-	"underscore": "*",
-	"ws": "*", 
-	"jquery-deferred": "*",
-	"express-ws": "*"
+    "node-getopt": "*",
+    "gettext-parser": "*",
+    "underscore": "*",
+    "ws": "*",
+    "express-ws": "*"
   },
   "engines": {
     "node": "0.10.x",
     "npm": "1.2.x"
   },
   "devDependencies": {
+    "grunt": "^1.0.1",
+    "istanbul": "^0.4.5",
     "jasmine-core": "~2.3.3",
-    "karma-jasmine": "~0.3.5",
+    "karma": "^1.3.0",
     "karma-firefox-launcher": "~0.1.6",
-    "mocha": "~2.2.5",
-    "karma-mocha": "~0.1.10"
+    "karma-jasmine": "~0.3.5",
+    "karma-mocha": "~0.1.10",
+    "mocha": "~2.2.5"
   }
 }

@@ -318,6 +318,9 @@
 			$commit: function(){
 				this.$update(this.uvalue, false); 
 			},
+			get dvalue(){
+				return this.schema.dvalue;
+			},
 			get value(){
 				if(this.schema.type == Boolean){
 					var uvalue = (this.uvalue == undefined)?this.ovalue:this.uvalue; 
@@ -767,7 +770,10 @@
 
 			if(!$rpc.uci) {
 				// this will happen if there is no router connection!
-				setTimeout(function(){ deferred.reject(); }, 0); 
+				setTimeout(function(){ 
+					console.error("uci is not defined!");
+					deferred.reject();
+				}, 0); 
 				return deferred.promise(); 
 			}
 
