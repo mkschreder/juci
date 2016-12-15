@@ -226,9 +226,7 @@ UCI.wireless.$registerSectionType("wifi-status", {
 	"sched_status":	{ dvalue: false, type: Boolean }
 }); 
 UCI.wireless.$registerSectionType("wifi-schedule", {
-	"days":		{ dvalue: [], type: Array, 
-		allow: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], 
-		alidator: UCI.validators.WeekDayListValidator},
+	"days":		{ dvalue: [], type: Array, validator: UCI.validators.WeekDayListValidator},
 	"time":		{ dvalue: "", type: String, validator: UCI.validators.TimespanValidator }
 }, function validator(section){
 	if(section.days.value.length == 0){

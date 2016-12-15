@@ -59,22 +59,27 @@
 	
 	function WeekDayListValidator(){
 		this.validate = function(field){
-			if(!field.schema.allow) return null; 
-			var days_valid = field.value.filter(function(x){
-				return field.schema.allow.indexOf(x) != -1; 
-			}).length; 
-			if(!days_valid) return gettext("Please pick days between mon-sun"); 
+			// note: can never happen because Arrays are now validated such that you can not set a value that is not an array
+			//if(!(field.value instanceof Array)) return gettext("Weekdays field is not an array. This is most probably a bug in the software that has to be fixed!"); 
+			var days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+			var invalid = field.value.find(function(x){
+				x = String(x).toLowerCase();
+				var r = days.find(function(d){
+					return d == x;
+				});
+				return r == undefined;
+			}); 
+			if(invalid != undefined) return gettext("Please pick days between mon-sun!"); 
 			return null; 
 		}
 	}
 
 	function PortValidator(){
 		this.validate = function(field){
-			if(field.value == undefined) return null; 
+			if(field.value == "") return null; 
 			var is_range = String(field.value).indexOf("-") != -1; 
 			var parts = String(field.value).split("-"); 
-			if(is_range && parts.length != 2) return gettext("Port range must have start and end port!"); 
-			if(!is_range && parts.length != 1) return gettext("You must specify port value!"); 
+			if(is_range && parts.length > 2) return gettext("Port range must have start and end port!"); 
 			var invalid = parts.find(function(x){ return !String(x).match(/^\d+$/) || Number(x) < 1 || Number(x) > 65535; }); 
 			if(invalid != undefined) return gettext("Invalid port number (must be a number between 1 and 65535!)"+" ("+invalid+")"); 
 			if(is_range && Number(parts[0]) > Number(parts[1])) return gettext("Start port must be smaller or equal to end port!"); 
@@ -90,7 +95,7 @@
 			}
 		}
 	}
-	
+
 	function IP4AddressValidator(){
 		this.validate = function(field){
 			var error = gettext("IP Address must be a valid IPv4 address!");
@@ -109,14 +114,15 @@
 			var error = gettext("Address is not a valid  Multicast address");
 			var ipv4 = new IP4AddressValidator();
 			if(ipv4.validate(field) != null) return error;
-			if(parseInt(field.value.split(".")[0]) > 239 || parseInt(field.value.split(".")[0]) < 224) return error;
+			var first = parseInt(field.value.split(".")[0]);
+			if(first > 239 || first < 224) return error;
 			return null;
 		}
 	};
 
 	function IP4UnicastAddressValidator(){
 		this.validate = function(field){
-			if(!field.value) return null;
+			if(!field.value || field.value == "") return null;
 			if(field.value == "0.0.0.0") return gettext("IP Address is not a valid Unicast address!");
 			var ip4 = new IP4AddressValidator();
 			var error = ip4.validate(field); 
@@ -152,7 +158,6 @@
 	
 	function IPCIDRAddressValidator(){
 		this.validate = function(field){
-			console.log("Cird validate"); 
 			if(!field.value) return null;
 			ip = new IPAddressValidator();
 			var parts = field.value.split("/"); 
@@ -160,7 +165,7 @@
 			if(err) return err;
 			var mask = parseInt(parts[1]);
 			// TODO: what about ipv6?
-			if(isNaN(mask) || (mask >= 0 && mask <= 32)) return null; 
+			if(isNaN(mask) || (mask >= 0 && mask <= 128)) return null; 
 			return gettext("Netmask must be a value between 0 and 32");
 		};
 	};
@@ -169,9 +174,11 @@
 		this.validate = function(field){
 			var error = gettext("Netmask must be a valid IPv4 netmask");
 			if(!field.value || field.value == "") return null;
-			var ipv4 = new IP4AddressValidator();
-			if(ipv4.validate(field) != null) return error;
-			if(!field.value.split(".").map(function(part){return ("00000000" + (parseInt(part) >>> 0)
+			var parts = field.value.split(".");
+			if(parts.length != 4) return error;
+			if(parts.find(function(x){ return Number(x) < 0 || Number(x) > 255; }) != undefined) return error;
+			// make sure mask follows the pattern of first all ones and then all zeros at the end
+			if(!parts.map(function(part){return ("00000000" + (parseInt(part) >>> 0)
 				.toString(2)).slice(-8);}).join("").match(/^1+0+$/)) return error;
 			return null;
 		}
@@ -195,30 +202,17 @@
 
 	function MACListValidator(){
 		this.validate = function(field){
-			if(field.value instanceof Array){
-				var errors = []; 
-				field.value.map(function(value){
-					if(!value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/))
-						errors.push(gettext("value must be a valid MAC-48 address")+": "+value); 
-				}); 
-				if(errors.length) return errors.join(", "); 
-			}
-			return null; 
+			// note: never true because it is impossible to set non array value on an array field
+			//if(!(field.value instanceof Array)) return gettext("MAC address list must be an array of items!");
+			var errors = []; 
+			field.value.map(function(value){
+				if(!value.match(/^(?:[A-Fa-f0-9]{2}[:-]){5}(?:[A-Fa-f0-9]{2})$/))
+					errors.push(gettext("value must be a valid MAC-48 address")+": "+value); 
+			}); 
+			if(errors.length) return errors.join(", "); 
+			return null;
 		}
 	}; 
-
-	// TODO: make all validators everywhere use a validator created using "new" instead of just a reference to a function!
-
-	function IntegerRangeValidator(start, end){
-		return function IntegerRangeValidatorImpl(){
-			this.validate = function(field){
-				if(field.value < start || field.value > end){
-					return String(gettext("Value must be in range {0} to {1}!")).format(start, end); 
-				}
-				return null; 
- 			}
-		}
-	}
 
 	function ArrayValidator(itemValidator){
 		return function ArrayValidatorImpl(){
@@ -262,7 +256,6 @@
 			IP4CIDRValidator: IP4CIDRValidator,
 			IPCIDRAddressValidator: IPCIDRAddressValidator,
 			IP4UnicastAddressValidator: IP4UnicastAddressValidator,
-			IntegerRangeValidator: IntegerRangeValidator, 
 			ArrayValidator: ArrayValidator
 		}; 
 	}
@@ -296,6 +289,9 @@
 			},
 			$update: function(value, keep_user){
 				if(this.dvalue instanceof Array){
+					if(!(value instanceof Array)) return; // skip an update without valid value
+					if(!this.ovalue) this.ovalue = [];
+					if(!this.uvalue) this.uvalue = [];
 					// if user has modified value and we have keep user set then we do not discard his changes
 					// otherwise we also update uvalues
 
@@ -333,8 +329,18 @@
 			set value(val){
 				// set dirty if not same
 				var self = this; 
+				self.__value_error = null;
+				if((typeof val != typeof this.schema.type()) || (val instanceof Array && !(self.ovalue instanceof Array))) {
+					//self.__value_error = gettext("Field has been set to value of a different type than what was defined in the schema!");
+					//return; 
+				}
+				if(self.schema.dvalue instanceof String && !(val instanceof String)){
+					//self.__value_error = gettext("Field has been set to value of a different type than what was defined in the schema!");
+					//return;
+				}
 				if(val instanceof Array){
-					self.is_dirty = !val.equals(self.uvalue); 
+					// our arrays never contain objects so we can do this
+					self.is_dirty = JSON.stringify(val) != JSON.stringify(self.uvalue); 
 				} else {
 					self.is_dirty = val != self.ovalue; 
 				}
@@ -350,7 +356,11 @@
 					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off"; }
 					else if(this.ovalue == "yes" || this.ovalue == "no") { this.uvalue = (val)?"yes":"no"; }
 					else if(this.ovalue == "true" || this.ovalue == "false") { this.uvalue = (val)?"true":"false"; } 
-					else this.uvalue = val; 
+					else if(this.ovalue == true || this.ovalue == false){
+						this.uvalue = val; 
+					} else {
+						this.__value_error = gettext("Invalid boolean value");
+					}
 				} else {
 					if(val instanceof Array) {
 						this.uvalue = []; 
@@ -361,6 +371,7 @@
 				}
 			},
 			get error(){
+				if(this.__value_error) return this.__value_error;
 				// even if default is null, if the field is required then it is considered invalid!
 				if(!this.uvalue && this.schema.required) return gettext("Field value required!"); 
 				// make sure we ignore errors if value is default and was not changed by user
@@ -369,6 +380,7 @@
 				return null; 
 			},
 			get valid(){
+				if(this.__value_error) return false;
 				if(this.validator) return this.validator.validate(this) == null; 
 				return true; 
 			}, 
@@ -376,7 +388,9 @@
 				this.is_dirty = value; 
 			},
 			get dirty(){
-				if(this.uvalue instanceof Array && this.uvalue.equals(this.ovalue)) return false; 
+				if(this.uvalue instanceof Array && 
+					// our arrays never contain objects so we can do this
+					JSON.stringify(this.uvalue) == JSON.stringify(this.ovalue)) return false; 
 				else if(this.uvalue === this.ovalue) return false; 
 				return this.is_dirty; 
 			}
@@ -521,7 +535,7 @@
 					self[k].$reset_defaults();
 			});
 		}
-		
+	/*	
 		UCISection.prototype.$begin_edit = function(){
 			var self = this; 
 			Object.keys(self).map(function(k){
@@ -553,7 +567,7 @@
 			});
 			return valid; 
 		}
-
+*/
 		UCISection.prototype.$getErrors = function(){
 			var errors = []; 
 			var self = this; 
@@ -707,24 +721,25 @@
 		}
 		
 		// reloads data from backend without modifying values set by user
-		UCIConfig.prototype.$reload = function(){
+		UCIConfig.prototype.$reload = function(keep){
 			var self = this; 
-			this.$sync({keep_user_changes: true}); 
 			var def = $.Deferred(); 
+			if(keep == undefined) keep = true; // if keep is not specified then default is to keep user changes
+			this.$mark_for_reload();
 			$rpc.uci.get({config: self[".name"]}).done(function(data){
 				var vals = data.values;
 				Object.keys(vals).filter(function(x){
 					return vals[x][".type"] in section_types[self[".name"]]; 
 				}).map(function(k){
-					_updateSection(self, vals[k], {keep_user_changes: true}); 
-					def.resolve(); 
+					_updateSection(self, vals[k], {keep_user_changes: keep}); 
 				}); 
+				def.resolve(); 
 			}).fail(function(){
 				def.reject(); 
 			}); 
 			return def.promise(); 
 		}
-		
+	/*	
 		UCIConfig.prototype.$autoCleanInvalidSections = function(){
 			var def = $.Deferred(); 
 			var self = this; 
@@ -753,7 +768,7 @@
 
 			return def.promise(); 
 		}
-
+*/
 		UCIConfig.prototype.$sync = function(opts){
 			var deferred = $.Deferred(); 
 			var self = this; 
@@ -1016,7 +1031,7 @@
 			return false; 
 		}); 
 	}
-
+/*
 	UCI.prototype.$autoCleanInvalidConfigs = function(){
 		var self = this; 
 		var def = $.Deferred(); 
@@ -1034,7 +1049,7 @@
 		}); 
 		return def.promise(); 
 	}
-
+*/
 	UCI.prototype.$getErrors = function(){
 		var self = this; 
 		var errors = []; 
@@ -1231,11 +1246,6 @@
 			}
 		]); 
 		return deferred.promise(); 
-	}
-	
-	UCI.prototype.save = function(){
-		console.error("$uci.save() is deprecated. This method will be replaced with $uci.$save() in future versions to avoid config collisions. Please update your code."); 
-		return this.$save(); 
 	}
 
 	scope.UCI = new UCI(); 
