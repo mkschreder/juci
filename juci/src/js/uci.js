@@ -330,21 +330,21 @@
 				// set dirty if not same
 				var self = this; 
 				self.__value_error = null;
-				if((typeof val != typeof this.schema.type()) || (val instanceof Array && !(self.ovalue instanceof Array))) {
+					
+				// make sure that for all of our types the value is of valid type as well
+				if(	(self.schema.type == Number && typeof val != "number") ||
+					(self.schema.type == String && typeof val != "string") || 
+					(self.schema.type == Array && (val.length == undefined || !(val instanceof Array)))){ // TODO: maybe do better identification of arrays (they appear as objects)
 					//self.__value_error = gettext("Field has been set to value of a different type than what was defined in the schema!");
-					//return; 
+					return;
 				}
-				if(self.schema.dvalue instanceof String && !(val instanceof String)){
-					//self.__value_error = gettext("Field has been set to value of a different type than what was defined in the schema!");
-					//return;
-				}
+
 				if(val instanceof Array){
 					// our arrays never contain objects so we can do this
 					self.is_dirty = JSON.stringify(val) != JSON.stringify(self.uvalue); 
 				} else {
 					self.is_dirty = val != self.ovalue; 
 				}
-				if(self.ovalue instanceof Array && !(val instanceof Array)) return; 
 				if(val instanceof Array && self.ovalue instanceof Array){
 					self.is_dirty = false; 
 					if(val.length != self.ovalue.length) self.is_dirty = true; 
@@ -353,13 +353,18 @@
 
 				// properly handle booleans
 				if(this.schema.type == Boolean){
-					if(this.ovalue == "on" || this.ovalue == "off") { this.uvalue = (val)?"on":"off"; }
-					else if(this.ovalue == "yes" || this.ovalue == "no") { this.uvalue = (val)?"yes":"no"; }
-					else if(this.ovalue == "true" || this.ovalue == "false") { this.uvalue = (val)?"true":"false"; } 
-					else if(this.ovalue == true || this.ovalue == false){
+					var val = null;
+					if(this.ovalue != undefined) val = this.ovalue;
+					else if(this.dvalue != undefined) val = this.dvalue;
+
+					if(["on", "off"].indexOf(val) != -1) { this.uvalue = (val)?"on":"off"; }
+					else if(["yes", "no"].indexOf(val) != -1) { this.uvalue = (val)?"yes":"no"; }
+					else if(["true", "false"].indexOf(val) != -1) { this.uvalue = (val)?"true":"false"; } 
+					else if([true, false].indexOf(val) != -1 && typeof val == "boolean"){
 						this.uvalue = val; 
 					} else {
-						this.__value_error = gettext("Invalid boolean value");
+						//this.__value_error = gettext("Invalid boolean value");
+						return;
 					}
 				} else {
 					if(val instanceof Array) {
@@ -710,7 +715,8 @@
 			Object.keys(self).map(function(x){
 				if(self[x] && self[x].constructor == UCI.Section){
 					self[x].$reset(); 
-					if(self[x][".new"]) self[x].$delete(); 
+					// TODO: this should be made to work such that if we reset we only delete sections that have not been commited yet
+					//if(self[x][".new"]) self[x].$delete(); 
 				}
 			}); 
 			self[".need_commit"] = false; 
@@ -832,6 +838,7 @@
 		}
 		// set object values on objects that match search criteria 
 		// if object does not exist, then create a new object 
+		/** TODO: where is this used exactly?
 		UCIConfig.prototype.set = function(search, values){
 			var self = this; 
 			self["@all"].map(function(item){
@@ -843,7 +850,7 @@
 				}
 			}); 
 		}
-		
+		**/	
 		UCIConfig.prototype.$registerSectionType = function(name, descriptor, validator){
 			var config = this[".name"]; 
 			var conf_type = section_types[config]; 
@@ -928,7 +935,7 @@
 				}, 0); 
 				return deferred.promise(); 
 			}
-			
+				
 			console.log("Adding: "+JSON.stringify(item)+" to "+self[".name"]+": "+JSON.stringify(values)); 
 			$rpc.uci.add({
 				"config": self[".name"], 

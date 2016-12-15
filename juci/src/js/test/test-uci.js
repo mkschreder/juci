@@ -6,6 +6,13 @@ global.async = require("async");
 global.watch = require("watchjs").watch; 
 global.expect = require("expect.js"); 
 */
+
+// simulated config database 
+var CONFIG = {
+	test: {
+	}
+};
+
 global.gettext = function(str) { return str; }
 global.assert = require("assert");
 global.async = require("async"); 
@@ -16,32 +23,69 @@ global.UBUS = {
 			console.log("UCI get");
 			var def = $.Deferred();
 			setTimeout(function(){
-				def.resolve({
-					values: {
-						".name": "mysection",
-						".type": "test",
-						field: "foo"
-					}
-				});
+				var conf = CONFIG[params.config];
+				if(conf && !params.section){
+					def.resolve({
+						values: conf
+					});
+				} else if(conf && params.section && conf[params.section]){
+					def.resolve({
+						values: conf[params.section]	
+					});
+				} else {
+					def.reject();
+				}
 			}, 0);
 			return def.promise();
 		},
 		set: function(params){
-			console.log("UCI add");
+			console.log("UCI set");
 			var def = $.Deferred();
 			setTimeout(function(){
-				def.resolve({
-				});
+				if(!params.config || !params.section || !params.values) {
+					console.error("RPC: INVALID PARAMETERS TO UCI SET!");
+					def.reject();
+					return;
+				} 
+				var conf = CONFIG[params.config];
+				if(conf && conf[params.section]){
+					var s = conf[params.section];
+					Object.keys(params.values).map(function(x){
+						s[x] = params.values[x];
+					});
+					def.resolve({});
+				} else {
+					def.reject();
+				}
 			}, 0);
 			return def.promise();
 		},
 		add: function(params){
-			console.log("UCI add");
+			console.log("UCI ADD: "+JSON.stringify(params));
 			var def = $.Deferred();
 			setTimeout(function(){
-				def.resolve({
-					section: params["name"] || "unknown"
-				});
+				if(!params.config || !params.type) {
+					console.error("INVALID ARGUMENTS TO UCI.add!");
+					def.reject();
+					return;
+				}
+				var conf = CONFIG[params.config];
+				if(conf && conf[params["name"]] != undefined){
+					console.error("SECTION ALREADY EXISTS");
+					def.reject();
+				} else {
+					var name = (params.name)?params.name:String((new Date()).getTime());
+					var obj = {};
+					Object.keys(params.values).map(function(x){
+						obj[x] = params.values[x];
+					});
+					obj[".name"] = name;
+					obj[".type"] = params.type;
+					conf[name] = obj;
+					def.resolve({
+						section: name
+					});
+				}
 			}, 0);
 			return def.promise();
 		},
@@ -54,11 +98,11 @@ global.UBUS = {
 			return def.promise();
 		},
 		configs: function(){
-			console.log("UCI add");
+			console.log("UCI configs");
 			var def = $.Deferred();
 			setTimeout(function(){
 				def.resolve({
-					configs: [ "test" ]
+					configs: Object.keys(CONFIG)
 				});
 			}, 0);
 			return def.promise();
@@ -72,12 +116,14 @@ UCI.$registerConfig("test");
 UCI.test.$registerSectionType("test", {
 	"field": { dvalue: "test", type: String },
 	"string": { dvalue: "test", type: String },
+	"number": { dvalue: 3.14, type: Number },
+	"array": { dvalue: [], type: Array },
 	"ip4field": { dvalue: "test", type: String, validator: UCI.validators.IP4AddressValidator },
 	"time": { dvalue: "00:00", type: String, validator: UCI.validators.TimeValidator },
 	"timespan": { dvalue: "00:00-01:00", type: String, validator: UCI.validators.TimespanValidator },
-	"weekdays": { dvalue: [], type: String, validator: UCI.validators.WeekDayListValidator },
+	"weekdays": { dvalue: [], type: Array, validator: UCI.validators.WeekDayListValidator },
 	"portrange": { dvalue: "", type: String, validator: UCI.validators.PortValidator },
-	"minmax": { dvalue: "", type: String, validator: UCI.validators.NumberLimitValidator(0, 100) },
+	"minmax": { dvalue: "", type: Number, validator: UCI.validators.NumberLimitValidator(0, 100) },
 	"multicast": { dvalue: "", type: String, validator: UCI.validators.IP4MulticastAddressValidator },
 	"unicast": { dvalue: "", type: String, validator: UCI.validators.IP4UnicastAddressValidator },
 	"ip4cidr": { dvalue: "", type: String, validator: UCI.validators.IP4CIDRValidator },
@@ -85,9 +131,12 @@ UCI.test.$registerSectionType("test", {
 	"ipcidr": { dvalue: "", type: String, validator: UCI.validators.IPCIDRAddressValidator },
 	"ip4mask": { dvalue: "", type: String, validator: UCI.validators.IP4NetmaskValidator },
 	"mac": { dvalue: "", type: String, validator: UCI.validators.MACAddressValidator },
-	"maclist": { dvalue: [], type: String, validator: UCI.validators.MACListValidator },
-	"array": { dvalue: [], type: String, validator: UCI.validators.ArrayValidator(UCI.validators.IP4AddressValidator) },
+	"maclist": { dvalue: [], type: Array, validator: UCI.validators.MACListValidator },
+	"iparray": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(UCI.validators.IP4AddressValidator) },
 	"bool": { dvalue: false, type: Boolean },
+	"boolyesno": { dvalue: "yes", type: Boolean },
+	"boolonoff": { dvalue: "on", type: Boolean },
+	"booltf": { dvalue: "true", type: Boolean },
 });
 
 describe("init", function(){
@@ -125,21 +174,29 @@ describe("Section operations", function(){
 	});
 
 	it("add a new section with invalid type", function(done){
+		assert(UCI.test.mysection);
 		try {
 			UCI.test.$create({
 				".name": "mysection",
 				".type": "noexist"
 			}).done(function(){
-				done(new Error("Able to create invlid sections"));
+				throw new Error("Able to create invalid sections");
+				done();
 			}).fail(function(){
-				done(new Error("unable to create section"));
+				throw new Error("unable to create section");
+				done();
 			});
 		} catch(err){
+			console.error("ERROR: "+err);
 			done();
 		}
 	});
 
 	it("saves a section", function(done){
+		// first check here that we indeed have mysection in all the correct places
+		assert(UCI.test.mysection);
+		assert.equal(UCI.test["@test"][0][".name"], "mysection");
+		assert.equal(UCI.test["@all"][0][".name"], "mysection");
 		UCI.$save().done(function(){
 			done();
 		});
@@ -149,23 +206,46 @@ describe("Section operations", function(){
 		UCI.test.mysection.field.value = "newstuff";
 		assert.equal(UCI.$hasChanges(), true);
 		var changes = UCI.$getChanges();
-		assert.equal(changes.find(function(x){
-			return x.config == "test" && x.section == "mysection" && x.field == "field";
-		}).value, "newstuff");
+		console.log(JSON.stringify(changes));
+		var change = changes.find(function(x){
+			return x.config == "test" && x.section == "mysection" && x.option == "field";
+		});
+		assert(change);
+		assert.equal(change.uvalue, "newstuff");
 		UCI.$save().done(function(){
 			done();
 		});
 	});
 
+	/** 
+	 * This test tests that reloading works correctly. Values changed by the
+	 * user should be preserved while values changed on the backend that are
+	 * not changed by the user should be updated. If reload is passed "false"
+	 * as argument then all values shall be updated.
+	 */
 	it("reload a section", function(done){
-		var f = UCI.test.mysection.field;
-		f.value = "reload";
-		// reload needs to be tested with a mock version of data and we need to establish reload rules
-		UCI.test.$reload(false).done(function(){
-			assert(f.value != "reload");
-			done();
+		var s = UCI.test.mysection;
+		s.field.value = "reload";
+		// first try modifying it and reloading only user changes
+		assert(CONFIG.test.mysection.field != "foobar");
+		assert(CONFIG.test.mysection.string != "changed");
+		CONFIG.test.mysection.field = "foobar";
+		CONFIG.test.mysection.string = "changed";
+		UCI.test.$reload(true).done(function(){
+			// result should be that field will not be reloaded but string will change
+			assert(UCI.test.mysection);
+			assert(s.field.value == "reload");
+			assert(s.string.value == "changed");
+			// reload needs to be tested with a mock version of data and we need to establish reload rules
+			UCI.test.$reload(false).done(function(){
+				assert(UCI.test.mysection);
+				assert(s.field.value != "reload");
+				done();
+			}).fail(function(){
+				assert.equals(false, "failed to reload section");
+				done();
+			});
 		}).fail(function(){
-			assert.equals(false, "failed to reload section");
 			done();
 		});
 	});
@@ -178,18 +258,20 @@ describe("Section operations", function(){
 		assert(f.value == "newstuff2");
 		UCI.test.$reset();
 		assert(f.value != "newstuff2");
+		assert(UCI.test.mysection);
 		done();
 	});
 });
 
 describe("Field operations", function(){
 	it("try setting different values", function(done){
+		assert(UCI.test.mysection);
 		UCI.test.$create({
 			".name": "another",
 			".type": "test",
 			"field": "value"
 		}).done(function(){
-			var s = UCI.test["@test"][0];
+			var s = UCI.test.another;
 			assert.equal(s.field.value, "value");
 			s.field.value = "me";
 			assert.equal(s.field.value, "me");
@@ -201,19 +283,34 @@ describe("Field operations", function(){
 			done(new Error("unable to create section"));
 		});
 	});
-	it("string field", function(done){
+	it("check that fields can not be set to values of different type than the field itself", function(){
+		var s = UCI.test.mysection;
+		s.string.value = "anystring";
+		assert.equal(s.string.value, "anystring");
+		s.string.value = false;
+		s.string.value = 0;
+		s.string.value = 123.4;
+		s.string.value = [];
+		assert.equal(s.string.value, "anystring");
+		s.number.value = 1234;
+		assert.equal(s.number.value, 1234);
+		s.number.value = "";
+		s.number.value = false;
+		s.number.value = true;
+		s.number.value = [];
+		assert.equal(s.number.value, 1234);
+		s.array.value = [1, 2, 3, 4];
+		assert.equal(s.array.value[3], 4);
+		s.array.value = "test";
+		s.array.value = 123;
+		s.array.value = false;
+		s.array.value = true;
+		assert.equal(s.array.value[3], 4);
+	});
+
+	it("string field", function(){
 		var s = UCI.test["@test"][0];
 		assert.equal(UCI.$getErrors().length, 0);
-		s.string.value = ["24:00"];
-		assert(UCI.$getErrors().length, 1);
-		s.string.value = [{}];
-		assert.equal(UCI.$getErrors().length, 1);
-		s.string.value = {};
-		assert.equal(UCI.$getErrors().length, 1);
-		s.string.value = 0;
-		assert.equal(UCI.$getErrors().length, 1);
-		s.string.value = 1.4;
-		assert.equal(UCI.$getErrors().length, 1);
 		s.string.value = "24:00";
 		assert.equal(UCI.$getErrors().length, 0);
 	});
@@ -319,11 +416,6 @@ describe("Field operations", function(){
 
 	it("number limit", function(){
 		var s = UCI.test["@test"][0];
-		assert.equal(UCI.$getErrors().length, 0);
-		s.minmax.value = "0";
-		assert.equal(UCI.$getErrors().length, 0);
-		s.minmax.value = "-1";
-		assert.equal(UCI.$getErrors().length, 1);
 		s.minmax.value = -1;
 		assert.equal(UCI.$getErrors().length, 1);
 		s.minmax.value = 101;
@@ -473,31 +565,42 @@ describe("Field operations", function(){
 	it("ip array", function(){
 		var s = UCI.test["@test"][0];
 		assert.equal(UCI.$getErrors().length, 0);
-		s.array.value = "asdf"; // value will not be set because array is expected
+		s.iparray.value = "asdf"; // value will not be set because array is expected
 		assert.equal(UCI.$getErrors().length, 0);
-		assert(s.array.value.length == 0);
-		s.array.value = ["20.10.30.4", "10.20.30.40"];
-		assert(s.array.value.length == 2);
+		assert(s.iparray.value.length == 0);
+		s.iparray.value = ["20.10.30.4", "10.20.30.40"];
+		assert(s.iparray.value.length == 2);
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 	it("boolean ops", function(){
 		var s = UCI.test["@test"][0];
 		assert.equal(UCI.$getErrors().length, 0);
+		var prev = s.bool.value;
 		s.bool.value = "asdf";
-		assert.equal(UCI.$getErrors().length, 1);
-		s.bool.value = "on";
-		assert(s.bool.value == true);
-		assert(UCI.$getErrors().length == 0);
-		s.bool.value = "off";
-		assert(s.bool.value == false && UCI.$getErrors().length == 0);
-		s.bool.value = "yes";
-		assert(s.bool.value == true && UCI.$getErrors().length == 0);
-		s.bool.value = "no";
-		assert(s.bool.value == false && UCI.$getErrors().length == 0);
-		s.bool.value = "true";
-		assert(s.bool.value == true && UCI.$getErrors().length == 0);
-		s.bool.value = "false";
-		assert(s.bool.value == false && UCI.$getErrors().length == 0);
+		assert(s.bool.value == prev);
+		//assert.equal(UCI.$getErrors().length, 1);
+		s.bool.value = true;
+		s.boolonoff.value = true;
+		s.boolyesno.value = true;
+		s.booltf.value = true;
+		UCI.$save().done(function(){
+			var conf = CONFIG.test[s[".name"]];
+			assert.equal(conf.bool, true);
+			assert.equal(conf.boolonoff, "on");
+			assert.equal(conf.boolyesno, "yes");
+			assert.equal(conf.booltf, "true");
+
+			s.bool.value = false;
+			s.boolonoff.value = false;
+			s.boolyesno.value = false;
+			s.booltf.value = false;
+			UCI.$save().done(function(){
+				assert.equal(conf.bool, false);
+				assert.equal(conf.boolonoff, "off");
+				assert.equal(conf.boolyesno, "no");
+				assert.equal(conf.booltf, "false");
+			});
+		});
 	});
 });
 
