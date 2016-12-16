@@ -35,7 +35,6 @@ JUCI.app
 	$scope.$watch("zone", function onFirewallZoneModelChanged(zone){
 		$scope.zones = {source:[], dest:[]}
 		if(!zone) return; 
-		//zone.name.validator = new zoneValidator();
 		// old version
 		/*
 		$network.getNetworks().done(function(nets){

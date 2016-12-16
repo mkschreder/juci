@@ -10,6 +10,11 @@ global.expect = require("expect.js");
 // simulated config database 
 var CONFIG = {
 	test: {
+		"default": {
+			".type": "test",
+			".name": "default",
+			"field": "value"
+		}
 	}
 };
 
@@ -112,31 +117,38 @@ global.UBUS = {
 
 var uci = require("../uci");
 
+var InvalidValidator = function(){} // this is just a dummy invalid validator
+
 UCI.$registerConfig("test");
+// make sure that defaults are set to something other than empty value just so we can unit test what happens when value is set to empty
 UCI.test.$registerSectionType("test", {
 	"field": { dvalue: "test", type: String },
 	"string": { dvalue: "test", type: String },
 	"number": { dvalue: 3.14, type: Number },
-	"array": { dvalue: [], type: Array },
+	"array": { dvalue: ["mydefault"], type: Array },
 	"ip4field": { dvalue: "test", type: String, validator: UCI.validators.IP4AddressValidator },
 	"time": { dvalue: "00:00", type: String, validator: UCI.validators.TimeValidator },
 	"timespan": { dvalue: "00:00-01:00", type: String, validator: UCI.validators.TimespanValidator },
-	"weekdays": { dvalue: [], type: Array, validator: UCI.validators.WeekDayListValidator },
-	"portrange": { dvalue: "", type: String, validator: UCI.validators.PortValidator },
-	"minmax": { dvalue: "", type: Number, validator: UCI.validators.NumberLimitValidator(0, 100) },
-	"multicast": { dvalue: "", type: String, validator: UCI.validators.IP4MulticastAddressValidator },
-	"unicast": { dvalue: "", type: String, validator: UCI.validators.IP4UnicastAddressValidator },
-	"ip4cidr": { dvalue: "", type: String, validator: UCI.validators.IP4CIDRValidator },
-	"ip": { dvalue: "", type: String, validator: UCI.validators.IPAddressValidator },
-	"ipcidr": { dvalue: "", type: String, validator: UCI.validators.IPCIDRAddressValidator },
-	"ip4mask": { dvalue: "", type: String, validator: UCI.validators.IP4NetmaskValidator },
-	"mac": { dvalue: "", type: String, validator: UCI.validators.MACAddressValidator },
+	"weekdays": { dvalue: ["Wed"], type: Array, validator: UCI.validators.WeekDayListValidator },
+	"portrange": { dvalue: "100-300", type: String, validator: UCI.validators.PortValidator },
+	"minmax": { dvalue: "94", type: Number, validator: UCI.validators.NumberLimitValidator(0, 100) },
+	"multicast": { dvalue: "225.0.0.0", type: String, validator: UCI.validators.IP4MulticastAddressValidator },
+	"unicast": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IP4UnicastAddressValidator },
+	"ip4cidr": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IP4CIDRValidator },
+	"ip": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IPAddressValidator },
+	"ipcidr": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IPCIDRAddressValidator },
+	"ip4mask": { dvalue: "255.0.0.0", type: String, validator: UCI.validators.IP4NetmaskValidator },
+	"mac": { dvalue: "aa:bb:cc:dd:ee:ff", type: String, validator: UCI.validators.MACAddressValidator },
 	"maclist": { dvalue: [], type: Array, validator: UCI.validators.MACListValidator },
 	"iparray": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(UCI.validators.IP4AddressValidator) },
+	"uniqueiparray": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(UCI.validators.IP4AddressValidator, true) },
+	"uniquearray": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(String, true) },
+	"invarray": { dvalue: ["foo","bar"], type: Array, validator: UCI.validators.ArrayValidator(InvalidValidator) },
 	"bool": { dvalue: false, type: Boolean },
 	"boolyesno": { dvalue: "yes", type: Boolean },
 	"boolonoff": { dvalue: "on", type: Boolean },
 	"booltf": { dvalue: "true", type: Boolean },
+	"nodefault": { type: Boolean },
 });
 
 describe("init", function(){
@@ -150,6 +162,11 @@ describe("init", function(){
 describe("Basic test", function(){
 	it("tests the basic function of loading a config", function(done){
 		UCI.$sync("test").done(function(){
+			assert(UCI.test);	
+			assert(UCI.test.default);	
+			assert.equal(UCI.test.default.field.value, "value");	
+			assert.equal(UCI.test.default.ip4field.value, "test");	
+			assert.equal(UCI.test.default.time.value, "00:00");	
 			done();
 		}).fail(function(){
 			done(new Error("unable to sync config"));
@@ -164,9 +181,8 @@ describe("Section operations", function(){
 			".type": "test",
 			"field": "value"
 		}).done(function(){
-			var s = UCI.test["@test"][0];
+			var s = UCI.test.mysection;
 			assert.equal(s.field.value, "value");
-			assert.equal(UCI.test.mysection.field.value, "value");
 			done();
 		}).fail(function(){
 			done(new Error("unable to create section"));
@@ -183,7 +199,6 @@ describe("Section operations", function(){
 				throw new Error("Able to create invalid sections");
 				done();
 			}).fail(function(){
-				throw new Error("unable to create section");
 				done();
 			});
 		} catch(err){
@@ -195,8 +210,6 @@ describe("Section operations", function(){
 	it("saves a section", function(done){
 		// first check here that we indeed have mysection in all the correct places
 		assert(UCI.test.mysection);
-		assert.equal(UCI.test["@test"][0][".name"], "mysection");
-		assert.equal(UCI.test["@all"][0][".name"], "mysection");
 		UCI.$save().done(function(){
 			done();
 		});
@@ -226,20 +239,33 @@ describe("Section operations", function(){
 	it("reload a section", function(done){
 		var s = UCI.test.mysection;
 		s.field.value = "reload";
+		s.array.value = ["bar", "bar"];
 		// first try modifying it and reloading only user changes
 		assert(CONFIG.test.mysection.field != "foobar");
 		assert(CONFIG.test.mysection.string != "changed");
 		CONFIG.test.mysection.field = "foobar";
 		CONFIG.test.mysection.string = "changed";
-		UCI.test.$reload(true).done(function(){
+		// someone has set config to foo bar
+		CONFIG.test.mysection.array = ["foo", "bar"];
+		
+		// do a reload of this partucular config and instruct reload to keep changes
+		UCI.test.$sync({reload: true, keep_user_changes: true}).done(function(){
 			// result should be that field will not be reloaded but string will change
 			assert(UCI.test.mysection);
 			assert(s.field.value == "reload");
 			assert(s.string.value == "changed");
+			// double check that our user value are kept
+			assert.equal(s.array.value[0], "bar");
+			assert.equal(s.array.value[1], "bar");
+			assert.equal(UCI.$hasChanges(), true);
 			// reload needs to be tested with a mock version of data and we need to establish reload rules
-			UCI.test.$reload(false).done(function(){
+			UCI.test.$sync({reload: true, keep_user_changes: false}).done(function(){
 				assert(UCI.test.mysection);
 				assert(s.field.value != "reload");
+				assert.equal(s.array.value[0], "foo");
+				assert.equal(s.array.value[1], "bar");
+				// should not have any changes since we have reloaded all fields
+				assert.equal(UCI.$hasChanges(), false);
 				done();
 			}).fail(function(){
 				assert.equals(false, "failed to reload section");
@@ -283,24 +309,77 @@ describe("Field operations", function(){
 			done(new Error("unable to create section"));
 		});
 	});
-	it("check that fields can not be set to values of different type than the field itself", function(){
+	it("check changes calculator", function(done){
 		var s = UCI.test.mysection;
+		UCI.$save().done(function(){
+			function check(){
+				assert.equal(UCI.$hasChanges(), true);
+				s.$reset();
+				assert.equal(UCI.$hasChanges(), false);
+			}
+			assert.equal(UCI.$hasChanges(), false);
+			s.string.value = "abracadabra"; check();
+			s.number.value = "123"; check();
+			s.array.value = [123]; check();
+			s.array.value = []; check();
+			assert.equal(UCI.$hasChanges(), false);
+			s.array.value = [123];
+			s.array.ovalue = [123];
+			assert.equal(UCI.$hasChanges(), false);
+			s.array.ovalue = [123, 123];
+			assert.equal(UCI.$hasChanges(), true);
+			s.array.value = [123, 123];
+			assert.equal(UCI.$hasChanges(), false);
+			done();
+		}).fail(function(){
+			assert(false);
+			done();
+		});
+	});
+
+	it("check field value conversions", function(){
+		var s = UCI.test.mysection;
+		// check string conversion
 		s.string.value = "anystring";
 		assert.equal(s.string.value, "anystring");
 		s.string.value = false;
+		assert.equal(s.string.value, "false");
 		s.string.value = 0;
+		assert.equal(s.string.value, "0");
 		s.string.value = 123.4;
+		assert.equal(s.string.value, "123.4");
 		s.string.value = [];
-		assert.equal(s.string.value, "anystring");
+		assert.equal(s.string.value, "");
+		s.string.value = ["foo",0,true];
+		assert.equal(s.string.value, "foo,0,true");
+
+		// check number conversion
 		s.number.value = 1234;
 		assert.equal(s.number.value, 1234);
-		s.number.value = "";
-		s.number.value = false;
-		s.number.value = true;
-		s.number.value = [];
+		// these are just invalid
+		s.number.value = [1, 3, 4, 2];
+		s.number.value = "string"
 		assert.equal(s.number.value, 1234);
+		// make sure that empty value is interpreted as setting a zero because this will correctly work with text fields when user deletes text
+		s.number.value = "";
+		assert.equal(s.number.value, 0);
+		s.number.value = [];
+		assert.equal(s.number.value, 0);
+		s.number.value = false;
+		assert.equal(s.number.value, 0);
+		s.number.value = true;
+		assert.equal(s.number.value, 1);
+		s.number.value = "12";
+		assert.equal(s.number.value, 12);
+		s.number.value = "-12";
+		assert.equal(s.number.value, -12);
+		s.number.value = "-12.4";
+		assert.equal(s.number.value, -12.4);
+		
+		// test array
 		s.array.value = [1, 2, 3, 4];
 		assert.equal(s.array.value[3], 4);
+		// following are invalid
 		s.array.value = "test";
 		s.array.value = 123;
 		s.array.value = false;
@@ -309,13 +388,13 @@ describe("Field operations", function(){
 	});
 
 	it("string field", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.string.value = "24:00";
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 	it("time field", function(done){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.time.value = "24:00";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -329,7 +408,7 @@ describe("Field operations", function(){
 	});
 
 	it("timespan field", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.timespan.value = "12:30-11:20";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -348,7 +427,7 @@ describe("Field operations", function(){
 	});
 
 	it("ipv4validator", function(done){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4field.value = "123.300.200.100";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -368,12 +447,19 @@ describe("Field operations", function(){
 	});
 
 	it("weekdays", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		// assignments to array fields of nonarray values should fail
+		console.log("Array value: "+s.weekdays.value);
+		assert(s.weekdays.value != undefined);
+		assert(s.weekdays.value instanceof Array);
 		s.weekdays.value = "string";
-		assert(s.weekdays.value instanceof Array && s.weekdays.value.length == 0 && UCI.$getErrors().length == 0);
+		assert.equal(UCI.$getErrors().length, 0);
+		assert(s.weekdays.value instanceof Array);
+		assert(s.weekdays.value[0] == s.weekdays.dvalue[0]);
+		assert(UCI.$getErrors().length == 0);
 		s.weekdays.value = ["string"];
+		assert.equal(s.weekdays.value[0], "string");
 		assert.equal(UCI.$getErrors().length, 1);
 		s.weekdays.value = [0];
 		assert.equal(UCI.$getErrors().length, 1);
@@ -386,13 +472,13 @@ describe("Field operations", function(){
 		s.weekdays.value = ["MON", "wed", ""];
 		assert.equal(UCI.$getErrors().length, 1);
 		s.weekdays.value = "";
-		assert.equal(UCI.$getErrors().length, 1);
+		assert.equal(UCI.$getErrors().length, 0);
 		s.weekdays.value = ["Mon"];
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 
 	it("portrange", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.portrange.value = "100000-300000";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -415,7 +501,7 @@ describe("Field operations", function(){
 	});
 
 	it("number limit", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		s.minmax.value = -1;
 		assert.equal(UCI.$getErrors().length, 1);
 		s.minmax.value = 101;
@@ -429,15 +515,15 @@ describe("Field operations", function(){
 	});
 
 	it("multicast ip", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
+		assert.equal(UCI.$getErrors().length, 0);
+		s.multicast.value = "224.0.1.0";
 		assert.equal(UCI.$getErrors().length, 0);
 		s.multicast.value = "0";
 		assert.equal(UCI.$getErrors().length, 1);
-		s.multicast.value = "0";
-		assert.equal(UCI.$getErrors().length, 1);
+		s.multicast.value = null;
+		assert.equal(s.multicast.value, "0");
 		s.multicast.value = "";
-		assert.equal(UCI.$getErrors().length, 0);
-		s.multicast.value = null; // TODO: should we really allow null?
 		assert.equal(UCI.$getErrors().length, 0);
 		s.multicast.value = "127.0.0.1.";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -448,7 +534,7 @@ describe("Field operations", function(){
 	});
 
 	it("unicast ip", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.unicast.value = "0.0.0.0"; // this one is valid ip but not a valid unicast ip
 		assert.equal(UCI.$getErrors().length, 1);
@@ -463,7 +549,7 @@ describe("Field operations", function(){
 	});
 
 	it("cidr ipv4", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4cidr.value = "192.168.1.0/24";
 		assert.equal(UCI.$getErrors().length, 0);
@@ -473,14 +559,14 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4cidr.value = "192.168.1.0.1/20";
 		assert.equal(UCI.$getErrors().length, 1);
-		s.ip4cidr.value = "192.168.1.0";
-		assert.equal(UCI.$getErrors().length, 1);
+		s.ip4cidr.value = "192.168.1.1";
+		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4cidr.value = "";
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 
 	it("ip address (v4 + v6)", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip.value = "192.168.1.0";
 		assert.equal(UCI.$getErrors().length, 0);
@@ -490,6 +576,11 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip.value = "2001:0db8:0a0b:12f0:0000:0000:0000:0001";
 		assert.equal(UCI.$getErrors().length, 0);
+		s.ip.value = "not an ip";
+		assert.equal(UCI.$getErrors().length, 1);
+		// TODO: this one for now appears valid when it is not. Need to update the regex.
+		//s.ip.value = "2001:0db8:0a0b:12f0:0000:0000:0000:0001:123:123";
+		//assert.equal(UCI.$getErrors().length, 1);
 		s.ip.value = "2001:0db8::0001";
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip.value = "2001:db8:0:0:0:0:2:1";
@@ -502,11 +593,23 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 	it("ip cidr address (v4 + v6)", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ipcidr.value = "3731:54:65fe:2::a7";
 		assert.equal(UCI.$getErrors().length, 0);
-		/** TODO: make a full list of test cases for ipv6 cidr notation and then rewrite the validator to support all of them! */
+		s.ipcidr.value = "192.168.1.1";
+		assert.equal(UCI.$getErrors().length, 0);
+		s.ipcidr.value = "3731:54:65fe:2::a7/200";
+		assert.equal(UCI.$getErrors().length, 1);
+		s.ipcidr.value = "noip/100";
+		assert.equal(UCI.$getErrors().length, 1);
+		s.ipcidr.value = "fe80::/10"; // defaults for firewall rules
+		assert.equal(UCI.$getErrors().length, 0);
+		s.ipcidr.value = "";
+		assert.equal(UCI.$getErrors().length, 0);
+		s.ipcidr.value = "3731:54:65fe:2::a7/56";
+		assert.equal(UCI.$getErrors().length, 0);
+		// TODO: revise this and come up with list of possible test cases
 		/*
 		s.ipcidr.value = "2001:5::/32";
 		assert.equal(UCI.$getErrors().length, 0);
@@ -521,7 +624,7 @@ describe("Field operations", function(){
 		*/
 	});
 	it("ip4 netmask", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4mask.value = "192.168.1.1";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -529,15 +632,19 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4mask.value = "test";
 		assert.equal(UCI.$getErrors().length, 1);
+		s.ip4mask.value = "-1.500.30.1";
+		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4mask.value = "255.255.255.0";
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4mask.value = "255.245.255.0";
 		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4mask.value = "255.0.0.0";
 		assert.equal(UCI.$getErrors().length, 0);
+		s.ip4mask.value = "";
+		assert.equal(UCI.$getErrors().length, 0);
 	});
 	it("mac address", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.mac.value = "192.168.1.1";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -551,7 +658,7 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 	it("mac list", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.maclist.value = "asdf"; // value will not be set because array is expected
 		assert.equal(UCI.$getErrors().length, 0);
@@ -563,17 +670,43 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 	it("ip array", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.iparray.value = "asdf"; // value will not be set because array is expected
 		assert.equal(UCI.$getErrors().length, 0);
 		assert(s.iparray.value.length == 0);
+		s.iparray.value = ["asdf"];
+		assert.equal(UCI.$getErrors().length, 1);
 		s.iparray.value = ["20.10.30.4", "10.20.30.40"];
 		assert(s.iparray.value.length == 2);
 		assert.equal(UCI.$getErrors().length, 0);
 	});
+
+	it("uniqueiparray", function(){
+		var s = UCI.test.mysection;
+		assert.equal(UCI.$getErrors().length, 0);
+		s.uniqueiparray.value = ["192.168.2.1", "192.168.2.1"];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniqueiparray.value = ["192.168.2.1.12", "192.168.2.1"];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniqueiparray.value = ["192.168.2.1"];
+		assert.equal(UCI.$getErrors().length, 0);
+	});
+
+	it("uniquearray", function(){
+		var s = UCI.test.mysection;
+		assert.equal(UCI.$getErrors().length, 0);
+		s.uniquearray.value = ["foo", "foo"];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniquearray.value = ["foo", "0", 0];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniquearray.value = ["two", "items"];
+		console.log(JSON.stringify(s.$getErrors()));
+		assert.equal(UCI.$getErrors().length, 0);
+	});
+
 	it("boolean ops", function(){
-		var s = UCI.test["@test"][0];
+		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		var prev = s.bool.value;
 		s.bool.value = "asdf";
@@ -604,3 +737,31 @@ describe("Field operations", function(){
 	});
 });
 
+UCI.test.$registerSectionType("validated", {
+	"string": { dvalue: "test", type: String },
+	"strlen": { dvalue: 4, type: Number } // will hold the length of string
+}, function(s){
+	if(s.string.value.length != s.strlen.value){
+		return gettext("strlen value does not crrespond to string length!");
+	}
+	return null;
+});
+
+describe("Several ways to validate sections: ", function(){
+	var s = null;
+	it("create a section with the type that we defined to have custom validator", function(done){
+		UCI.test.$create({
+			".type": "validated",
+			".name": "val"
+		}).done(function(result){
+			s = UCI.test.val;
+			done();
+		});
+	});
+	it("custom section validator", function(){
+		s.string.value = "mystring";
+		assert.equal(UCI.$getErrors().length, 1);
+		s.strlen.value = 8;
+		assert.equal(UCI.$getErrors().length, 0);
+	});
+});

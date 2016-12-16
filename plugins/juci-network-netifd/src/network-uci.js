@@ -72,7 +72,7 @@ UCI.network.$registerSectionType("interface", {
 	"bridge_instance": 		{ dvalue: '', type: Boolean }, 
 	"vendorid":				{ dvalue: '', type: String }, 
 	"ipv6":					{ dvalue: '', type: Boolean },
-	"dns": 					{ dvalue: [], type: Array }, 
+	"dns": 					{ dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(UCI.validators.IP4AddressValidator, true) }, //unique ip addresses 
 	"macaddr":				{ dvalue: "", type: String, validator: UCI.validators.MACAddressValidator }, 
 	"mtu":					{ dvalue: "", type: Number },
 	"enabled": 				{ dvalue: true, type: Boolean }, 

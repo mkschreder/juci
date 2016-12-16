@@ -150,10 +150,6 @@
 				}
 				
 				// retrieve session acls map
-				var acls = {}; 
-				if(UBUS.$session && UBUS.$session.acls && UBUS.$session.acls["access-group"]){
-					acls = UBUS.$session.acls["access-group"]; 
-				}
 				console.log("juci: loading menu from server.."); 
 				$uci.juci["@menu"].sort(function(a, b){
 					return String(a[".name"]).localeCompare(b[".name"]); 
@@ -164,10 +160,6 @@
 						return result[sname]; 
 					}).sort(function(a, b){ return a[".index"] - b[".index"]; }).map(function(menu){
 						// only include menu items that are marked as accessible based on our rights (others will simply be broken because of restricted access)
-						/*if(menu.acls.value.length && menu.acls.value.find(function(x){
-							return !acls[x]; 
-						})) return; 
-	*/
 						var redirect = menu.redirect; 
 						var page = menu.page; 
 						console.log("adding menu: "+page+" "+menu.path); 
@@ -242,6 +234,7 @@
 							});
 							return def.promise(); 
 						},*/ 
+						/*
 						saveChangesOnExit: function($uci, $tr, gettext){
 							var def = $.Deferred(); 
 							// this will remove any invalid data when user tries to leave a page and revert changes that have resulted in errors. 
@@ -256,7 +249,6 @@
 							} catch(e){
 								alert("Error while auto cleaning configs. This should not happen. "+e); 
 							}
-							/*
 							var errors = $uci.$getErrors(); 
 							if(errors.length > 0){
 								if(confirm($tr(gettext("There are errors in your current configuration. "+
@@ -268,9 +260,9 @@
 							} else {
 								def.resolve(); 
 							}							}
-							*/
 							return def.promise(); 
 						}
+						*/
 					},
 					// Perfect! This loads our controllers on demand! :) 
 					// Leave this code here because it serves as a valuable example
@@ -302,7 +294,7 @@
 						// scroll to top
 						$window.scrollTo(0, 0); 
 					}, 
-					onExit: function($uci, $tr, gettext, $interval, $rpc, saveChangesOnExit){
+					onExit: function($uci, $tr, gettext, $interval, $rpc){
 						// clear all juci intervals when leaving a page
 						JUCI.interval.$clearAll(); 
 						$rpc.$clearAllEvents(); 
@@ -324,14 +316,6 @@
 
 		app.run(function($templateCache, $uci, $rpc, $rootScope){
 			var self = scope.JUCI;
-			// add capability lookup to root scope so that it can be used inside html ng-show directly 
-			$rootScope.has_capability = function(cap_name){
-				if(!$rpc.$session || !$rpc.$session.acls.juci || !$rpc.$session.acls.juci.capabilities || !($rpc.$session.acls.juci.capabilities instanceof Array)) {
-					console.log("capabilities not enabled!"); 
-					return false; 
-				}
-				return $rpc.$session.acls.juci.capabilities.indexOf(cap_name) != -1; 
-			}
 			// register all templates 
 			Object.keys(self.templates).map(function(k){
 				//console.log("Registering template "+k); 

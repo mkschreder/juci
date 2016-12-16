@@ -108,6 +108,14 @@
 		}
 	};
 
+	function IP6AddressValidator(){
+		this.validate = function(field){
+			if(field.value && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
+			return null;
+		}
+	};
+
+
 	function IP4MulticastAddressValidator(){
 		this.validate = function(field){
 			if(!field.value || field.value == "") return null;
@@ -136,14 +144,29 @@
 
 	function IP4CIDRValidator(){
 		this.validate = function(field){
-			if(!field.value) return null;
-			ipv4 = new IP4AddressValidator();
+			if(!field.value || field.value == "") return null;
+			var ipv4 = new IP4AddressValidator();
 			var parts = field.value.split("/"); 
 			var err = ipv4.validate({ value: parts[0] });
 			if(err) return err;
+			if(parts.length == 1) return null;
 			var mask = parseInt(parts[1]);
 			if(!isNaN(mask) && mask >= 0 && mask <= 32) return null; 
 			return gettext("Netmask must be a value between 0 and 32");
+		};
+	};
+
+	function IP6CIDRValidator(){
+		this.validate = function(field){
+			if(!field.value || field.value == "") return null;
+			var ip = new IP6AddressValidator();
+			var parts = field.value.split("/"); 
+			var err = ip.validate({ value: parts[0] });
+			//if(err) return err;
+			if(parts.length == 1) return null;
+			var mask = parseInt(parts[1]);
+			if(!isNaN(mask) && mask >= 0 && mask <= 128) return null; 
+			return gettext("Netmask must be a value between 0 and 128");
 		};
 	};
 
@@ -158,15 +181,10 @@
 	
 	function IPCIDRAddressValidator(){
 		this.validate = function(field){
-			if(!field.value) return null;
-			ip = new IPAddressValidator();
-			var parts = field.value.split("/"); 
-			var err = ip.validate({ value: parts[0] });
-			if(err) return err;
-			var mask = parseInt(parts[1]);
-			// TODO: what about ipv6?
-			if(isNaN(mask) || (mask >= 0 && mask <= 128)) return null; 
-			return gettext("Netmask must be a value between 0 and 32");
+			var ipv4 = (new IP4CIDRValidator()).validate(field);
+			var ipv6 = (new IP6CIDRValidator()).validate(field);
+			if(ipv4 && ipv6) return gettext("IP address must be an either valid IPv4 or IPv6 CIDR address!"); 
+			return null; 
 		};
 	};
 
@@ -180,13 +198,6 @@
 			// make sure mask follows the pattern of first all ones and then all zeros at the end
 			if(!parts.map(function(part){return ("00000000" + (parseInt(part) >>> 0)
 				.toString(2)).slice(-8);}).join("").match(/^1+0+$/)) return error;
-			return null;
-		}
-	};
-
-	function IP6AddressValidator(){
-		this.validate = function(field){
-			if(field.value && !field.value.match("^((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}$")) return gettext("Address must be a valid IPv6 address"); 
 			return null;
 		}
 	};
@@ -214,23 +225,52 @@
 		}
 	}; 
 
-	function ArrayValidator(itemValidator){
+	function ArrayValidator(itemValidator, unique){
 		return function ArrayValidatorImpl(){
 			this.validate = function(field){
-				if(!(field.value instanceof Array)) return gettext("field value is not an array!"); 
+				// using array validator on nonarray fields makes no sense
+				if(field.schema.type != Array) return null;
+
+				if(!(itemValidator instanceof Function)) {
+					console.error("Item validator is not a function: "+typeof itemValidator+", "+JSON.stringify(itemValidator));
+					return null;
+				}
+
+				function hasDuplicates(arr){
+					var sorted_list = arr.sort();
+					for(var i = 0; i < sorted_list.length -1; i++){
+						if(sorted_list[i+1] == sorted_list[i]) return true;
+					}
+					return false;
+				};
+
 				// create an instance of the validator if validator is a function
 				// this fixes the issue of using ItemValidator both inside array validator and as a standalone validator
 				// TODO: proper fix by making all validators use the same format that supports validators that take custom options. Currently complex validators are highly unintuitive to create.  
-				if(itemValidator instanceof Function) itemValidator = new itemValidator(); 
+				var validator = new itemValidator(); 
+
+				var notsame = false;
+
+				if(unique && hasDuplicates(field.value)){
+					return gettext("Array may not contain duplicates!");
+				}
 
 				var errors = field.value.map(function(x){
-					// TODO: this is actually creating a dummy field object because validators expect to be passed a field. This may fail with some validators!
-					if(!itemValidator || !itemValidator.validate){
-						console.warn("ArrayValidator: field validator is missing 'validate' method. Code seems to have compatibility issues. Please file a bug report about this!"); 
+					if(!validator.validate){
+						// check if we have a basic type
+						var v = itemValidator;
+						if(v == String || v == Number || v == Boolean){
+							if(typeof x != typeof v()){
+								console.log("value "+x+" not instance of "+v);
+								notsame = true;
+							}
+						}
 						return null; 
 					}
-					return itemValidator.validate({value: x}); 
+					return validator.validate({value: x}); 
 				}).filter(function(x){ return !!x;}); 
+
+				if(notsame) return gettext("All items in the array must have the same type");
 				if(!errors.length) return null; 
 				return errors; 
 			}
@@ -254,6 +294,7 @@
 			IP4NetmaskValidator: IP4NetmaskValidator,
 			IP4MulticastAddressValidator: IP4MulticastAddressValidator,
 			IP4CIDRValidator: IP4CIDRValidator,
+			IP6CIDRValidator: IP6CIDRValidator,
 			IPCIDRAddressValidator: IPCIDRAddressValidator,
 			IP4UnicastAddressValidator: IP4UnicastAddressValidator,
 			ArrayValidator: ArrayValidator
@@ -261,33 +302,44 @@
 	}
 	(function(){
 		function UCIField(value, schema){
-			if(!schema) throw new Error("No schema specified for the field!"); 
-			this.ovalue = schema.dvalue; 
-			if(value != null && value instanceof Array && value.length) {
-				this.ovalue = []; Object.assign(this.ovalue, value); 
-			} 
-			this.is_dirty = false; 
-			this.uvalue = undefined; 
+			// set default value to either specified default or to default value of the given type
+			/*
+			if(value instanceof Array) {
+				this.ovalue = []; 
+				if(value) Object.assign(this.ovalue, value); 
+			} else if(schema.dvalue != undefined){
+				this.ovalue = schema.dvalue;
+			} else if(schema.type instanceof Function){
+				this.ovalue = schema.type(); 
+			}
+			*/
+			this.ovalue = (value != undefined)?value:schema.dvalue;
+			this.uvalue = this.ovalue; 
 			this.schema = schema; 
+			this.is_dirty = false;
+
+			// create the field validator
 			if(schema.validator) this.validator = new schema.validator(); 
 			else this.validator = new DefaultValidator(); 
 		}
 		UCIField.prototype = {
 			$reset: function(){
-				this.uvalue = this.ovalue; 
-				this.is_dirty = false; 
+				this.uvalue = undefined; //this.ovalue; 
+				this.is_dirty = false;
 			}, 
 			$reset_defaults: function(){
 				this.uvalue = this.schema.dvalue;
-				this.is_dirty = false;
 			},
+			/*
 			$begin_edit: function(){
 				this.svalue = this.value; 
 			},
 			$cancel_edit: function(){
 				if(this.svalue != undefined) this.value = this.svalue; 
 			},
+			*/
 			$update: function(value, keep_user){
+				if(value == undefined) return;
 				if(this.dvalue instanceof Array){
 					if(!(value instanceof Array)) return; // skip an update without valid value
 					if(!this.ovalue) this.ovalue = [];
@@ -298,7 +350,6 @@
 					if(!keep_user || !this.dirty) {
 						this.uvalue.length = 0; 
 						Object.assign(this.uvalue, value); 
-						this.dirty = false; 
 					}
 					// store original value
 					this.ovalue.length = 0; 
@@ -306,96 +357,106 @@
 				} else {
 					if(!keep_user || !this.dirty) {
 						this.uvalue = value; 
-						this.dirty = false; 
 					} 
 					this.ovalue = value; 
 				}
 			}, 
 			$commit: function(){
-				this.$update(this.uvalue, false); 
+				this.ovalue = this.value;
+				//this.$update(this.uvalue, false); 
 			},
 			get dvalue(){
 				return this.schema.dvalue;
 			},
 			get value(){
+				// for value we return either uvalue or ovalue or dvalue
+				var uvalue = (this.uvalue == undefined)?this.ovalue:this.uvalue; 
+				if(uvalue == undefined) uvalue = this.schema.dvalue;
+				// make sure that for most types we explicitly make sure that the returned type of variable is of the same type as the schema type
 				if(this.schema.type == Boolean){
-					var uvalue = (this.uvalue == undefined)?this.ovalue:this.uvalue; 
 					if(uvalue === "true" || uvalue === "1" || uvalue === "on" || uvalue === "yes") return true; 
 					else if(uvalue === "false" || uvalue === "0" || uvalue === "off" || uvalue === "no") return false; 
+					// this will at least make sure we return a boolean
+					return Boolean(uvalue);
+				} else if(this.schema.type == Number){
+					return Number(uvalue);
+				} else if(this.schema.type == String){
+					return String(uvalue);
+				} else if(this.schema.type == Array){
+					if(!(uvalue instanceof Array)){
+						return Array(uvalue);
+					}
+					return uvalue;
 				}
-				if(this.uvalue == undefined) return this.ovalue;
-				else return this.uvalue; 
+				//if(this.schema.type) console.error("Field type is not handled: "+this.schema.type);
+				// if all else fails then return uvalue
+				return uvalue;
 			},
 			set value(val){
 				// set dirty if not same
 				var self = this; 
-				self.__value_error = null;
-					
-				// make sure that for all of our types the value is of valid type as well
-				if(	(self.schema.type == Number && typeof val != "number") ||
-					(self.schema.type == String && typeof val != "string") || 
-					(self.schema.type == Array && (val.length == undefined || !(val instanceof Array)))){ // TODO: maybe do better identification of arrays (they appear as objects)
-					//self.__value_error = gettext("Field has been set to value of a different type than what was defined in the schema!");
-					return;
-				}
+		
+				// undefined is a special case and right now we just refuse to set it. 
+				if(val == undefined) return;
 
-				if(val instanceof Array){
-					// our arrays never contain objects so we can do this
-					self.is_dirty = JSON.stringify(val) != JSON.stringify(self.uvalue); 
-				} else {
-					self.is_dirty = val != self.ovalue; 
-				}
-				if(val instanceof Array && self.ovalue instanceof Array){
-					self.is_dirty = false; 
-					if(val.length != self.ovalue.length) self.is_dirty = true; 
-					val.forEach(function(x, i){ if(self.ovalue[0] != x) self.is_dirty = true; }); 
-				}
-
-				// properly handle booleans
-				if(this.schema.type == Boolean){
-					var val = null;
-					if(this.ovalue != undefined) val = this.ovalue;
-					else if(this.dvalue != undefined) val = this.dvalue;
-
-					if(["on", "off"].indexOf(val) != -1) { this.uvalue = (val)?"on":"off"; }
-					else if(["yes", "no"].indexOf(val) != -1) { this.uvalue = (val)?"yes":"no"; }
-					else if(["true", "false"].indexOf(val) != -1) { this.uvalue = (val)?"true":"false"; } 
-					else if([true, false].indexOf(val) != -1 && typeof val == "boolean"){
-						this.uvalue = val; 
+				// handle type conversions
+				var orig = this.uvalue;
+				if( self.schema.type == Number) {
+					if(typeof val != "number"){
+						// try to do type conversion
+						var num = Number(val);
+						if(!isNaN(num)) this.uvalue = num; 
 					} else {
-						//this.__value_error = gettext("Invalid boolean value");
-						return;
+						this.uvalue = val;
 					}
-				} else {
-					if(val instanceof Array) {
+				} else if(self.schema.type == String){
+					// for strings we can always just do this
+					this.uvalue = String(val);
+				} else if(this.schema.type == Boolean){
+					// for booleans we need to take into account what the config expects
+					// some configs use yes/no, some on/off, some 0/1 or "true"/"false"
+					var oval = null;
+					if(this.ovalue != undefined) oval = this.ovalue;
+					else if(this.dvalue != undefined) oval = this.dvalue;
+
+					if(["on", "off"].indexOf(oval) != -1) { 
+						this.uvalue = (val)?"on":"off"; 
+					} else if(["yes", "no"].indexOf(oval) != -1) {
+						this.uvalue = (val)?"yes":"no";
+					} else if(["true", "false"].indexOf(oval) != -1) { 
+						this.uvalue = (val)?"true":"false"; 
+					} else if([true, false].indexOf(oval) != -1 && typeof val == "boolean"){
+						this.uvalue = val; 
+					}
+				} else if(self.schema.type == Array){
+					if(val.length == undefined || !(val instanceof Array)){ // TODO: maybe do better identification of arrays (they appear as objects)
+						// in case of arrays we do not generate a valid value unless user supplies an array
+						// return;
+					} else {
 						this.uvalue = []; 
 						Object.assign(this.uvalue, val); 
-					} else {
-						this.uvalue = val; 
 					}
 				}
+				this.is_dirty = orig != this.uvalue;
 			},
 			get error(){
-				if(this.__value_error) return this.__value_error;
-				// even if default is null, if the field is required then it is considered invalid!
-				if(!this.uvalue && this.schema.required) return gettext("Field value required!"); 
+				// make sure that fields that user did not modify do not return errors
+				if(!this.dirty) return null;
 				// make sure we ignore errors if value is default and was not changed by user
 				if(this.uvalue == this.schema.dvalue || this.uvalue == this.ovalue) return null; 
 				if(this.validator) return this.validator.validate(this); 
 				return null; 
 			},
 			get valid(){
-				if(this.__value_error) return false;
-				if(this.validator) return this.validator.validate(this) == null; 
-				return true; 
+				// make sure that fields that user did not modify do not return errors
+				if(!this.dirty) return null;
+				return this.error == null; 
 			}, 
-			set dirty(value){
-				this.is_dirty = value; 
-			},
 			get dirty(){
-				if(this.uvalue instanceof Array && 
+				if(this.uvalue == undefined) return false;
+				if(this.schema.type == Array && 
 					// our arrays never contain objects so we can do this
-					JSON.stringify(this.uvalue) == JSON.stringify(this.ovalue)) return false; 
+					(JSON.stringify(this.uvalue) == JSON.stringify(this.ovalue))) return false; 
 				else if(this.uvalue === this.ovalue) return false; 
 				return this.is_dirty; 
 			}
@@ -412,10 +473,16 @@
 		
 		UCISection.prototype.$update = function(data, opts){
 			if(!opts) opts = {}; 
-			if(!(".type" in data)) throw new Error("Supplied object does not have required '.type' field!"); 
+			if(!(".type" in data)) {
+				console.error("Supplied object does not have required '.type' field!"); 
+				return;
+			}
 			// try either <config>-<type> or just <type>
 			var sconfig = section_types[this[".config"][".name"]]; 
-			if((typeof sconfig) == "undefined") throw new Error("Missing type definition for config "+this[".config"][".name"]+"!"); 
+			if(!sconfig) {
+				console.error("Missing type definition for config "+this[".config"][".name"]+"!"); 
+				return;
+			}
 			var type = 	sconfig[data[".type"]]; 
 			if(!type) {
 				console.error("Section.$update: unrecognized section type "+this[".config"][".name"]+"-"+data[".type"]); 
@@ -428,32 +495,16 @@
 			self[".section_type"] = type; 
 			
 			Object.keys(type).map(function(k){
-				var field = self[k]; 
-				if(!field) { field = self[k] = new UCI.Field("", type[k]); }
-				var value = type[k].dvalue; 
-				if(!(k in data)) { 
-					//console.log("Field "+k+" missing in data!"); 
-				} else {
-					switch(type[k].type){
-						case Number: 
-							var n = Number(data[k]); 
-							if(isNaN(n)) n = type.dvalue;
-							value = n; 
-							break; 
-						case Array: 
-							if(!(data[k] instanceof Array)) value = [data[k]]; 
-							else value = data[k];  
-							if(!value) value = []; 
-							break; 
-						//case Boolean: 
-							//if(data[k] === 'true" || data[k] === "1" || data[k] === "on") value = true; 
-							//else if(data[k] === "false" || data[k] === "0" || data[k] == "off") value = false; 
-						//	break; 
-						default: 
-							value = data[k]; 
+				var field_type = type[k];
+				try{
+					if(!(k in self)) { 
+						self[k] = new UCI.Field(data[k], field_type);
+					} else if(k in data) {
+						self[k].$update(data[k], opts.keep_user_changes);
 					}
+				} catch(e){
+					console.error(e);
 				}
-				field.$update(value, opts.keep_user_changes); 
 			}); 
 		}
 		
@@ -473,6 +524,10 @@
 				config: self[".config"][".name"], 
 				section: self[".name"]
 			}).done(function(data){
+				if(data.values == undefined){
+					deferred.reject();
+					return;
+				}
 				self.$update(data.values);
 				deferred.resolve(); 
 			}).fail(function(){
@@ -480,27 +535,7 @@
 			}); 
 			return deferred.promise(); 
 		}
-		
-		/*
-		UCISection.prototype.$save = function(){
-			var deferred = $.Deferred(); 
-			var self = this; 
 			
-			// try to validate the section using section wide validator
-			if(self[".validator"] instanceof Function) self[".validator"](self); 
-			
-			$rpc.uci.set({
-				config: self[".config"][".name"], 
-				section: self[".name"], 
-				values: self.$getChangedValues()
-			}).done(function(data){
-				deferred.resolve(); 
-			}).fail(function(){
-				deferred.reject(); 
-			}); 
-			return deferred.promise(); 
-		}*/
-		
 		UCISection.prototype.$delete = function(){
 			var self = this; 
 			if(self[".config"]) return self[".config"].$deleteSection(self); 
@@ -519,7 +554,6 @@
 					self[k].$reset(); 
 			}); 
 		}
-			
 		UCISection.prototype.$commit = function(){
 			var self = this; 
 			Object.keys(self).map(function(k){
@@ -528,7 +562,6 @@
 					self[k].$commit(); 
 			}); 
 		}
-
 		UCISection.prototype.$reset_defaults = function(exc){
 			var self = this;
 			var exceptions = {}
@@ -540,39 +573,7 @@
 					self[k].$reset_defaults();
 			});
 		}
-	/*	
-		UCISection.prototype.$begin_edit = function(){
-			var self = this; 
-			Object.keys(self).map(function(k){
-				if(!(self[k] instanceof UCI.Field)) return;
-				if(self[k].$begin_edit)
-					self[k].$begin_edit();
-			});
-		}
-	
-		UCISection.prototype.$cancel_edit = function(){
-			var self = this; 
-			Object.keys(self).map(function(k){
-				if(!(self[k] instanceof UCI.Field)) return;
-				if(self[k].$cancel_edit)
-					self[k].$cancel_edit();
-			});
-		}
-		
-		UCISection.prototype.$autoCleanInvalidValues = function(){
-			var self = this; 
-			var valid = true; 
-			Object.keys(self).map(function(k){
-				if(!(self[k] instanceof UCI.Field)) return;
-				var f = self[k]; 
-				if(f.error) console.error("Invalid field "+f.error); 
-				if(f.error) f.value = f.ovalue; 
-				if(f.error) f.value = f.dvalue; 
-				if(f.error) valid = false; 
-			});
-			return valid; 
-		}
-*/
+
 		UCISection.prototype.$getErrors = function(){
 			var errors = []; 
 			var self = this; 
@@ -632,7 +633,10 @@
 			self.uci = uci; 
 			self[".name"] = name; 
 			self["@all"] = []; 
-			if(!name in section_types) throw new Error("Missing type definition for config "+name); 
+			if(!name in section_types) {
+				console.error("Missing type definition for config!");
+				throw new Error("Missing type definition for config "+name); 
+			}
 			
 			// set up slots for all known types of objects so we can reference them in widgets
 			Object.keys(section_types[name]||{}).map(function(type){
@@ -719,73 +723,19 @@
 					//if(self[x][".new"]) self[x].$delete(); 
 				}
 			}); 
-			self[".need_commit"] = false; 
+			//self[".need_commit"] = false; 
 		}
 
 		UCIConfig.prototype.$mark_for_reload = function(){
 			this.deferred = null; 
 		}
 		
-		// reloads data from backend without modifying values set by user
-		UCIConfig.prototype.$reload = function(keep){
-			var self = this; 
-			var def = $.Deferred(); 
-			if(keep == undefined) keep = true; // if keep is not specified then default is to keep user changes
-			this.$mark_for_reload();
-			$rpc.uci.get({config: self[".name"]}).done(function(data){
-				var vals = data.values;
-				Object.keys(vals).filter(function(x){
-					return vals[x][".type"] in section_types[self[".name"]]; 
-				}).map(function(k){
-					_updateSection(self, vals[k], {keep_user_changes: keep}); 
-				}); 
-				def.resolve(); 
-			}).fail(function(){
-				def.reject(); 
-			}); 
-			return def.promise(); 
-		}
-	/*	
-		UCIConfig.prototype.$autoCleanInvalidSections = function(){
-			var def = $.Deferred(); 
-			var self = this; 
-			
-			var to_delete = {}; 
-			Object.keys(self).map(function(x){
-				if(!self[x] || self[x].constructor != UCI.Section) return; 
-				// attemt to clean invalid values (by setting them to original ones)
-				self[x].$autoCleanInvalidValues(); 
-				// if section still has errors then we delete the section
-				if(self[x].$getErrors().length){
-					to_delete[x] = self[x];
-				}
-			}); 
-			
-			async.eachSeries(Object.keys(to_delete), function(x, next){
-				if(!to_delete[x]) { next(); return; }
-				var section = to_delete[x]; 
-				console.warn("Deleting errornous section "+x); 
-				section.$delete().always(function(){
-					next(); 
-				}); 
-			}, function(){
-				def.resolve();
-			});  
-
-			return def.promise(); 
-		}
-*/
 		UCIConfig.prototype.$sync = function(opts){
 			var deferred = $.Deferred(); 
 			var self = this; 
 			if(!opts) opts = {}; 
 			
-			if(self._do_reload) {
-				self._do_reload = false; 
-				self.deferred = self.$reload(); 
-			}
-
-			if(self.deferred && self.deferred.state() != "rejected") return self.deferred.promise(); 
+			if(!opts.reload && self.deferred && self.deferred.state() != "rejected") return self.deferred.promise(); 
 			
 			self.deferred = deferred; 
 
@@ -813,44 +763,31 @@
 					deferred.reject(); 
 					return;
 				}
+				// go through each section in the result and update it
 				Object.keys(vals).filter(function(x){
 					return vals[x][".type"] in section_types[self[".name"]]; 
 				}).map(function(k){
 					if(!(k in self)) _insertSection(self, vals[k]); 
-					else _updateSection(self, vals[k], opts); 
+					else {
+						var section = self[vals[k][".name"]]; 
+						section.$update(vals[k], opts); 
+					}
 					delete to_delete[k]; 
 				}); 
 				
 				// now delete any section that no longer exists in our local cache
-				async.eachSeries(Object.keys(to_delete), function(x, next){
-					if(!to_delete[x]) { next(); return; }
+				Object.keys(to_delete).map(function(x){
+					if(!to_delete[x]) return;
 					var section = to_delete[x]; 
-					//console.log("Would delete section "+section[".name"]+" of type "+section[".type"]); 
 					_unlinkSection(self, section); 
-					next(); 
-				}, function(){
-					deferred.resolve();
-				});  
+				});
+				deferred.resolve();
 			}).fail(function(){
 				deferred.reject(); 
 			}); 
 			return deferred.promise(); 
 		}
-		// set object values on objects that match search criteria 
-		// if object does not exist, then create a new object 
-		/** TODO: where is this used exactly?
-		UCIConfig.prototype.set = function(search, values){
-			var self = this; 
-			self["@all"].map(function(item){
-				var match = Object.keys(search).filter(function(x){ item[x] != search[x]; }).length == 0; 
-				if(match){
-					Object.keys(values).map(function(x){
-						item[x].value = values[x]; 
-					}); 
-				}
-			}); 
-		}
-		**/	
+		
 		UCIConfig.prototype.$registerSectionType = function(name, descriptor, validator){
 			var config = this[".name"]; 
 			var conf_type = section_types[config]; 
@@ -896,7 +833,7 @@
 			}).done(function(){
 				_unlinkSection(self, section); 
 				console.log("Deleted section "+self[".name"]+"."+section[".name"]); 
-				self[".need_commit"] = true; 
+				//self[".need_commit"] = true; 
 				deferred.resolve(); 
 			}).fail(function(){
 				console.error("Failed to delete section!"); 
@@ -907,11 +844,20 @@
 		
 		UCIConfig.prototype.$create = function(item, offline){
 			var self = this; 
-			if(!(".type" in item)) throw new Error("Missing '.type' parameter!"); 
-			var type = section_types[self[".name"]][item[".type"]]; 
-			if(!type) throw Error("Trying to create section of unrecognized type ("+self[".name"]+"."+item[".type"]+")"); 
-		
 			var deferred = $.Deferred(); 
+
+			if(!(".type" in item)) {
+				console.error("Missing '.type' parameter in call to $create!");
+				setTimeout(function(){ deferred.reject(); }, 0);
+				return deferred.promise();
+			}
+
+			var type = section_types[self[".name"]][item[".type"]]; 
+			if(!type) {
+				console.error("Trying to create section of unrecognized type ("+self[".name"]+"."+item[".type"]+")"); 
+				setTimeout(function(){ deferred.reject(); }, 0);
+				return deferred.promise();
+			}
 			
 			if(!$rpc.uci) {
 				// this will happen if there is no router connection!
@@ -924,7 +870,6 @@
 			Object.keys(type).map(function(k){ 
 				if(k in item && item[k] != null && item[k] != undefined) values[k] = item[k]; 
 				else if(type[k].dvalue != null && type[k].dvalue != undefined){
-					//if(type[k].required) throw Error("Missing required field "+k); 
 					values[k] = type[k].dvalue; 
 				}
 			}); 
@@ -1033,30 +978,12 @@
 		var self = this; 
 		return !!Object.keys(self).find(function(x){ 
 			if(self[x].constructor != UCI.Config) return false; 
-			if(self[x][".need_commit"]) return true; 
+			//if(self[x][".need_commit"]) return true; 
 			if(self[x].$getWriteRequests().length) return true; 
 			return false; 
 		}); 
 	}
-/*
-	UCI.prototype.$autoCleanInvalidConfigs = function(){
-		var self = this; 
-		var def = $.Deferred(); 
-		async.eachSeries(Object.keys(self), function(x, next){
-			if(!self[x] || self[x].constructor != UCI.Config){
-				next(); 
-				return; 
-			}
-			self[x].$autoCleanInvalidSections().always(function(){
-				next(); 
-			});
-			next(); 
-		}, function(){
-			def.resolve(); 
-		}); 
-		return def.promise(); 
-	}
-*/
+
 	UCI.prototype.$getErrors = function(){
 		var self = this; 
 		var errors = []; 
@@ -1080,12 +1007,14 @@
 
 		Object.keys(self).map(function(x){
 			if(!self[x] || self[x].constructor != UCI.Config) return; 
+			/*
 			if(self[x][".need_commit"]){
 				changes.push({
 					type: "config", 
 					config: self[x][".name"]
 				}); 
 			}
+			*/
 			/*Object.keys(self[x]).map(function(k){
 				var section = self[x][k]; 
 				if(section[".new"]) changes.push({ 
@@ -1097,7 +1026,7 @@
 			self[x].$getWriteRequests().map(function(ch){
 				Object.keys(ch.values).map(function(opt){
 					var o = self[x][ch.section][opt]; 
-					if(o.is_dirty){
+					if(o.dirty){
 						changes.push({
 							type: "option", 
 							config: self[x][".name"], 
@@ -1127,7 +1056,7 @@
 		var self = this; 
 		Object.keys(self).map(function(x){ 
 			if(self[x].constructor != UCI.Config) return; 
-			self[x]._do_reload = true; 
+			self[x].$mark_for_reload(); 
 		}); 
 	}
 
@@ -1151,6 +1080,7 @@
 		
 		async.series([
 			function(next){
+				// make an array of either all configs or just the one user has specified
 				if(configs == undefined || configs.length == 0) { 
 					// if no argument provided then we sync all configs
 					configs = Object.keys(self).filter(function(x){ 
@@ -1160,31 +1090,23 @@
 				} else if(!(configs instanceof Array)) {
 					configs = [configs]; 
 				}
+				
 				async.eachSeries(configs, function(cf, next){
+					// configs may contain invalid ones
 					if(!(cf in self)) { 
-						//throw new Error("invalid config name "+cf); 
-						// NOTE: this can not throw because we need to sync all configs that we can sync
 						// TODO: decide on whether to always resolve if at least one config compiles
 						// or to always reject if at least one config fails. 
 						console.error("invalid config name "+cf); 
 						next(); 
 						return; 
-					} /*else if(self[cf].$lastSync){
-						var SYNC_TIMEOUT = 10000; // probably make this configurable
-						if(((new Date()).getTime() - self[cf].$lastSync.getTime()) > SYNC_TIMEOUT){
-							console.log("Using cached version of "+cf); 
-							next(); 
-							return; 
-						}
-					}*/
+					} 
+					// sync the config
 					self[cf].$sync().done(function(){
 						console.log("Synched config "+cf); 
-						//self[cf].$lastSync = new Date(); 
 						next(); 
 					}).fail(function(){
 						console.error("Could not sync config "+cf); 
 						next(); // continue because we want to sync as many as we can!
-						//next("Could not sync config "+cf); 
 					}); 
 				}, function(err){
 					next(err); 
@@ -1213,7 +1135,6 @@
 
 		async.series([
 			function(next){ // send all changes to the server
-				console.log("Checking for errors..."); 
 				Object.keys(self).map(function(k){
 					if(self[k].constructor == UCI.Config){
 						var err = self[k].$getErrors(); 
@@ -1233,11 +1154,11 @@
 					setTimeout(function(){ deferred.reject(errors); }, 0); 
 					return; 
 				}
-				console.log("Writing changes: "+JSON.stringify(writes)); 
 				async.eachSeries(writes, function(cmd, next){
+					console.log("Writing changes: "+JSON.stringify(cmd)); 
 					$rpc.uci.set(cmd).done(function(response){
 						console.log("... "+cmd.config+": "+JSON.stringify(response)); 
-						self[cmd.config][".need_commit"] = true; 
+						//self[cmd.config][".need_commit"] = true; 
 						self[cmd.config].deferred = null; 
 						next(); 
 					}).fail(function(){
@@ -1249,6 +1170,7 @@
 						if(self[x] instanceof UCI.Config) self[x].$commit(); 
 					}); 
 					setTimeout(function(){ deferred.resolve();}, 0); 
+					next();
 				}); 
 			}
 		]); 
@@ -1256,13 +1178,4 @@
 	}
 
 	scope.UCI = new UCI(); 
-	/*if(exports.JUCI){
-		var JUCI = exports.JUCI; 
-		JUCI.uci = exports.uci = new UCI(); 
-		if(JUCI.app){
-			JUCI.app.factory('$uci', function(){
-				return $juci.uci; 
-			}); 
-		}
-	}*/
 })(typeof exports === 'undefined'? this : global); 
