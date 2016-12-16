@@ -16,6 +16,9 @@
 
 (function(scope){
 	//var JUCI = exports.JUCI; 
+	function UCI_DEBUG(str){
+		//console.log(str);
+	}
 	var $rpc = scope.UBUS; 
 	
 	function DefaultValidator(){
@@ -261,7 +264,7 @@
 						var v = itemValidator;
 						if(v == String || v == Number || v == Boolean){
 							if(typeof x != typeof v()){
-								console.log("value "+x+" not instance of "+v);
+								UCI_DEBUG("value "+x+" not instance of "+v);
 								notsame = true;
 							}
 						}
@@ -560,6 +563,7 @@
 				if(!(self[k] instanceof UCI.Field)) return;
 				self[k].$commit(); 
 			}); 
+			self[".new"] = false;
 		}
 		UCISection.prototype.$reset_defaults = function(exc){
 			var self = this;
@@ -617,7 +621,7 @@
 			
 			Object.keys(type).map(function(k){
 				if(self[k] && self[k].dirty){ 
-					//console.log("Adding dirty field: "+k); 
+					//UCI_DEBUG("Adding dirty field: "+k); 
 					changed[k] = self[k].uvalue; 
 				}
 			}); 
@@ -630,6 +634,7 @@
 			var self = this; 
 			self.uci = uci; 
 			self[".name"] = name; 
+			self[".deleted"] = [];
 			self["@all"] = []; 
 			if(!name in section_types) {
 				console.error("Missing type definition for config!");
@@ -647,7 +652,7 @@
 			// experimental feature for hiding sections from interface 
 			if(item["do_not_edit"] || item["juci_hide"]) return; 
 
-			//console.log("Adding local section: "+self[".name"]+"."+item[".name"]); 
+			//UCI_DEBUG("Adding local section: "+self[".name"]+"."+item[".name"]); 
 			var section = new UCI.Section(self); 
 			section.$update(item); 
 			var type = "@"+item[".type"]; 
@@ -661,7 +666,7 @@
 		function _unlinkSection(self, section){
 			// NOTE: can not use filter() because we must edit the list in place 
 			// in order to play well with controls that reference the list! 
-			console.log("Unlinking local section: "+self[".name"]+"."+section[".name"]+" of type "+section[".type"]); 
+			UCI_DEBUG("Unlinking local section: "+self[".name"]+"."+section[".name"]+" of type "+section[".type"]); 
 			var all = self["@all"]; 
 			for(var i = 0; i < all.length; i++){
 				if(all[i][".name"] === section[".name"]) {
@@ -687,6 +692,7 @@
 					if(self[x].$commit) self[x].$commit(); 
 				}
 			}); 
+			self[".deleted"] = [];
 			self[".need_commit"] = false; 
 			return errors; 
 		}
@@ -710,13 +716,18 @@
 		
 		UCIConfig.prototype.$reset = function(){
 			var self = this; 
+			var to_delete = [];
 			Object.keys(self).map(function(x){
 				if(self[x] && self[x].constructor == UCI.Section){
-					self[x].$reset(); 
+					if(self[x][".new"]) to_delete.push(self[k]); 
+					else self[x].$reset(); 
 					// TODO: this should be made to work such that if we reset we only delete sections that have not been commited yet
 					//if(self[x][".new"]) self[x].$delete(); 
 				}
 			}); 
+			to_delete.map(function(section){
+				_unlinkSection(self, section);
+			});
 			//self[".need_commit"] = false; 
 		}
 
@@ -745,9 +756,9 @@
 			var to_delete = {}; 
 			Object.keys(self).map(function(x){
 				// prevent deletion of automatically created type sections with default value which are created by registerSectionType..
-				if(self[x].constructor == UCI.Section && self[x][".type"] != self[x][".name"]) to_delete[x] = self[x]; 
+				if(self[x] && self[x].constructor == UCI.Section && self[x][".type"] != self[x][".name"]) to_delete[x] = self[x]; 
 			}); 
-			//console.log("To delete: "+Object.keys(to_delete)); 
+			//UCI_DEBUG("To delete: "+Object.keys(to_delete)); 
 		
 			$rpc.uci.get({
 				config: self[".name"]
@@ -797,12 +808,12 @@
 			// add validator
 			if(!conf_type[name][".validators"]) conf_type[name][".validators"] = []; 
 			if(validator !== undefined && validator instanceof Function) conf_type[name][".validators"].push(validator); 
-			//console.log("Registered new section type "+config+"."+name); 
+			//UCI_DEBUG("Registered new section type "+config+"."+name); 
 		}
 		
 		UCIConfig.prototype.$insertDefaults = function(typename, sectionname){
 			if(!sectionname) sectionname = typename; 
-			//console.log("Adding new defaults section: "+JSON.stringify(values)); 
+			//UCI_DEBUG("Adding new defaults section: "+JSON.stringify(values)); 
 			// insert a default section with the same name as the type
 			// this allows us to use $uci.config.section.setting.value without having to first check for the existence of the section.
 			// we will get defaults by default and if the section exists in the config file then we will get the values from the config.
@@ -813,26 +824,31 @@
 			var self = this; 
 			var deferred = $.Deferred(); 
 				
-			if(!$rpc.uci) {
+			if(!$rpc.uci || !section) {
 				// this will happen if there is no router connection!
 				setTimeout(function(){ deferred.reject(); }, 0); 
 				return deferred.promise(); 
 			}
 
 			//self[".need_commit"] = true; 
-			console.log("Removing section "+JSON.stringify(section[".name"])); 
+			UCI_DEBUG("Removing section "+JSON.stringify(section[".name"])); 
+			self[".deleted"].push(section);
+			_unlinkSection(self, section);
+			setTimeout(function(){ deferred.resolve(); }, 0);
+			/*
 			$rpc.uci.delete({
 				"config": self[".name"], 
 				"section": section[".name"]
 			}).done(function(){
 				_unlinkSection(self, section); 
-				console.log("Deleted section "+self[".name"]+"."+section[".name"]); 
+				UCI_DEBUG("Deleted section "+self[".name"]+"."+section[".name"]); 
 				//self[".need_commit"] = true; 
 				deferred.resolve(); 
 			}).fail(function(){
 				console.error("Failed to delete section!"); 
 				deferred.reject(); 
 			}); 
+			*/
 			return deferred.promise(); 
 		}
 		
@@ -875,14 +891,26 @@
 				return deferred.promise(); 
 			}
 				
-			console.log("Adding: "+JSON.stringify(item)+" to "+self[".name"]+": "+JSON.stringify(values)); 
+			// add the section only locally
+			// generate a random name for this section
+			var anon = false;
+			if(!item[".name"]) {
+				item[".name"] = String((new Date()).getTime());
+				anon = true;
+			}
+			var section = _insertSection(self, item);
+			section[".new"] = true;
+			if(!anon) section[".customname"] = item[".name"];
+			UCI_DEBUG("Adding: "+section[".name"]+" to "+self[".name"]+": "+JSON.stringify(values)); 
+			setTimeout(function(){ deferred.resolve(section); }, 0);
+/*
 			$rpc.uci.add({
 				"config": self[".name"], 
 				"type": item[".type"],
 				"name": item[".name"], 
 				"values": values
 			}).done(function(state){
-				console.log("Added new section: "+JSON.stringify(state)); 
+				UCI_DEBUG("Added new section: "+JSON.stringify(state)); 
 				item[".name"] = state.section; 
 				self[".need_commit"] = true; 
 				var section = _insertSection(self, item); 
@@ -891,6 +919,7 @@
 			}).fail(function(){
 				deferred.reject(); 
 			});
+			*/
 			return deferred.promise(); 
 		}
 	
@@ -920,7 +949,7 @@
 			var reqlist = []; 
 			self["@all"].map(function(section){
 				var changed = section.$getChangedValues(); 
-				//console.log(JSON.stringify(changed) +": "+Object.keys(changed).length); 
+				//UCI_DEBUG(JSON.stringify(changed) +": "+Object.keys(changed).length); 
 				if(Object.keys(changed).length){
 					reqlist.push({
 						"config": self[".name"], 
@@ -937,7 +966,7 @@
 	
 	UCI.prototype.$init = function(){
 		var deferred = $.Deferred(); 
-		console.log("Init UCI"); 
+		UCI_DEBUG("Init UCI"); 
 		var self = this; 
 
 		if(!$rpc.uci) {
@@ -951,11 +980,11 @@
 			if(!cfigs) { console.error("No configs found!"); deferred.reject(); return; }
 			cfigs.map(function(k){
 				if(!(k in section_types)) {
-					console.log("Missing type definition for config "+k); 
+					UCI_DEBUG("Missing type definition for config "+k); 
 					return; 
 				}
 				if(!(k in self)){
-					//console.log("Adding new config "+k); 
+					//UCI_DEBUG("Adding new config "+k); 
 					self[k] = new UCI.Config(self, k); 
 					self[k]._exists = true; // mark that we have this config
 				} else {
@@ -973,9 +1002,9 @@
 	UCI.prototype.$hasChanges = function(){
 		var self = this; 
 		return !!Object.keys(self).find(function(x){ 
-			if(self[x].constructor != UCI.Config) return false; 
+			if(self[x] && self[x].constructor != UCI.Config) return false; 
 			//if(self[x][".need_commit"]) return true; 
-			if(self[x].$getWriteRequests().length) return true; 
+			if(self[x] && self[x].$getWriteRequests().length) return true; 
 			return false; 
 		}); 
 	}
@@ -1011,20 +1040,45 @@
 				}); 
 			}
 			*/
-			/*Object.keys(self[x]).map(function(k){
+			Object.keys(self[x]).map(function(k){
 				var section = self[x][k]; 
-				if(section[".new"]) changes.push({ 
-					type: "add",
+				if(!section || section.constructor != UCI.Section) return;
+				if(section[".new"]) {
+					var values = {};
+					Object.keys(section).filter(function(j){
+						if(!section[j]) return false;
+						return !!section[j] && (section[j] instanceof UCI.Field);
+					}).map(function(j){
+						values[j] = section[j].value;
+					});
+					changes.push({ 
+						type: "add",
+						config: self[x][".name"], 
+						section_type: section[".type"],
+						section: section[".customname"],
+						values: values,
+						// a function so that it does not end up in the json
+						get_section: function(){
+							return section;
+						}
+					}); 
+				} 
+			});
+			// add deleted sections
+			self[x][".deleted"].map(function(section){
+				changes.push({ 
+					type: "delete",
 					config: self[x][".name"], 
-					section: section[".name"]
+					section: section[".name"],
 				}); 
-			});*/  
+			}); 
 			self[x].$getWriteRequests().map(function(ch){
+				if(!ch.section || self[x][ch.section][".new"]) return;
 				Object.keys(ch.values).map(function(opt){
 					var o = self[x][ch.section][opt]; 
-					if(o.dirty){
+					if(o && o.dirty){
 						changes.push({
-							type: "option", 
+							type: "set", 
 							config: self[x][".name"], 
 							section: self[x][ch.section][".name"],
 							option: opt, 
@@ -1098,7 +1152,7 @@
 					} 
 					// sync the config
 					self[cf].$sync().done(function(){
-						console.log("Synched config "+cf); 
+						UCI_DEBUG("Synched config "+cf); 
 						next(); 
 					}).fail(function(){
 						console.error("Could not sync config "+cf); 
@@ -1120,7 +1174,6 @@
 	UCI.prototype.$save = function(){
 		var deferred = $.Deferred(); 
 		var self = this; 
-		var writes = []; 
 		var add_requests = []; 
 		var errors = []; 
 		
@@ -1128,39 +1181,62 @@
 			setTimeout(function(){ deferred.reject(); }, 0); 
 			return deferred.promise(); 
 		}
+		
+		var errors = this.$getErrors();
+		if(errors.length){
+			setTimeout(function(){ deferred.reject(errors); }, 0);
+			return deferred.promise();
+		}
 
 		async.series([
 			function(next){ // send all changes to the server
-				Object.keys(self).map(function(k){
-					if(self[k].constructor == UCI.Config){
-						var err = self[k].$getErrors(); 
-						if(err && err.length) {
-							err.map(function(e){
-								console.error("UCI error ["+k+"]: "+e); 
-							}); 
-							errors = errors.concat(err);
-							return; 
-						} 
-						var reqlist = self[k].$getWriteRequests(); 
-						reqlist.map(function(x){ writes.push(x); });  
-					}
-				}); 
-				// push errors to top level if there are errors in config! 
-				if(errors.length){
-					setTimeout(function(){ deferred.reject(errors); }, 0); 
-					return; 
-				}
+				var writes = self.$getChanges();
+
 				async.eachSeries(writes, function(cmd, next){
-					console.log("Writing changes: "+JSON.stringify(cmd)); 
-					$rpc.uci.set(cmd).done(function(response){
-						console.log("... "+cmd.config+": "+JSON.stringify(response)); 
-						//self[cmd.config][".need_commit"] = true; 
-						self[cmd.config].deferred = null; 
-						next(); 
-					}).fail(function(){
-						console.error("Failed to write config "+cmd.config); 
-						next(); 
-					}); 
+					if(cmd.type == "add"){
+						$rpc.uci.add({
+							config: cmd.config, 
+							type: cmd.section_type,
+							name: cmd.section,
+							values: cmd.values
+						}).done(function(state){
+							UCI_DEBUG("Added new section: "+JSON.stringify(state)); 
+							// update the local section name
+							self[cmd.config][cmd.get_section()[".name"]] = null;
+							self[cmd.config][state.section] = cmd.get_section();
+							cmd.get_section()[".name"] = state.section; 
+							next();
+						}).fail(function(){
+							next();
+						});
+					} else if(cmd.type == "delete"){
+						$rpc.uci.delete({
+							"config": cmd.config, 
+							"section": cmd.section
+						}).done(function(){
+							UCI_DEBUG("Deleted section "+self[".name"]+"."+cmd.section); 
+							next();
+						}).fail(function(){
+							console.error("Failed to delete section!"); 
+							next();
+						}); 
+					} else if(cmd.type == "set"){
+						var values = {};
+						values[cmd.option] = cmd.uvalue;
+						$rpc.uci.set({
+							config: cmd.config,
+							section: cmd.section,
+							values: values
+						}).done(function(response){
+							UCI_DEBUG("... "+cmd.config+": "+JSON.stringify(response)); 
+							//self[cmd.config][".need_commit"] = true; 
+							self[cmd.config].deferred = null; 
+							next(); 
+						}).fail(function(){
+							console.error("Failed to write config "+cmd.config); 
+							next(); 
+						}); 
+					}
 				}, function(){
 					Object.keys(self).map(function(x){
 						if(self[x] instanceof UCI.Config) self[x].$commit(); 

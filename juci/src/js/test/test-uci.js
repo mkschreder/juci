@@ -48,7 +48,7 @@ global.UBUS = {
 			var def = $.Deferred();
 			setTimeout(function(){
 				if(!params.config || !params.section || !params.values) {
-					console.error("RPC: INVALID PARAMETERS TO UCI SET!");
+					console.error("RPC: INVALID PARAMETERS TO UCI SET! "+JSON.stringify(params));
 					def.reject();
 					return;
 				} 
@@ -121,6 +121,10 @@ var uci = require("../uci");
 var InvalidValidator = function(){} // this is just a dummy invalid validator
 
 UCI.$registerConfig("test");
+UCI.test.$registerSectionType("anontype", {
+	"field": { dvalue: "test", type: String },
+	"string": { dvalue: "test", type: String },
+});
 // make sure that defaults are set to something other than empty value just so we can unit test what happens when value is set to empty
 UCI.test.$registerSectionType("test", {
 	"field": { dvalue: "test", type: String },
@@ -180,14 +184,40 @@ describe("Section operations", function(){
 		UCI.test.$create({
 			".name": "mysection",
 			".type": "test",
-			"field": "value"
+			"field": "value",
+			"string": "mystring"
 		}).done(function(){
 			// section must not be created in the config yet!
+			console.log("CHANGES: "+JSON.stringify(UCI.$getChanges()));
 			assert(!CONFIG.test.mysection);
 			UCI.$save().done(function(){
 				assert(CONFIG.test.mysection);
 				var s = UCI.test.mysection;
 				assert.equal(s.field.value, "value");
+			}).always(function(){
+				done();
+			});
+		}).fail(function(){
+			done(new Error("unable to create section"));
+		});
+	});
+
+	it("add an anonymous section", function(done){
+		UCI.test.$create({
+			".type": "anontype",
+			"field": "anonval",
+			"string": "anonstring"
+		}).done(function(section){
+			assert(section);
+			// section must not be created in the config yet!
+			console.log("CHANGES: "+JSON.stringify(UCI.$getChanges()));
+			assert(!CONFIG.test[section[".name"]]);
+			UCI.$save().done(function(){
+				assert(CONFIG.test[section[".name"]]);
+				var s = UCI.test[section[".name"]];
+				assert(s);
+				assert.equal(s.field.value, "anonval");
+				assert.equal(s.string.value, "anonstring");
 			}).always(function(){
 				done();
 			});
@@ -210,6 +240,7 @@ describe("Section operations", function(){
 			});
 		} catch(err){
 			console.error("ERROR: "+err);
+			assert(false);
 			done();
 		}
 	});
@@ -386,8 +417,9 @@ describe("Field operations", function(){
 			".name": "another",
 			".type": "test",
 			"field": "value"
-		}).done(function(){
+		}).done(function(section){
 			var s = UCI.test.another;
+			assert(s == section);
 			assert.equal(s.field.value, "value");
 			s.field.value = "me";
 			assert.equal(s.field.value, "me");
