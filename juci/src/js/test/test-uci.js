@@ -97,6 +97,7 @@ global.UBUS = {
 		delete: function(params){
 			console.log("UCI delete");
 			var def = $.Deferred();
+			delete CONFIG[params.config][params.section];
 			setTimeout(function(){
 				def.resolve({});
 			}, 0);
@@ -181,9 +182,15 @@ describe("Section operations", function(){
 			".type": "test",
 			"field": "value"
 		}).done(function(){
-			var s = UCI.test.mysection;
-			assert.equal(s.field.value, "value");
-			done();
+			// section must not be created in the config yet!
+			assert(!CONFIG.test.mysection);
+			UCI.$save().done(function(){
+				assert(CONFIG.test.mysection);
+				var s = UCI.test.mysection;
+				assert.equal(s.field.value, "value");
+			}).always(function(){
+				done();
+			});
 		}).fail(function(){
 			done(new Error("unable to create section"));
 		});
@@ -205,6 +212,72 @@ describe("Section operations", function(){
 			console.error("ERROR: "+err);
 			done();
 		}
+	});
+
+	it("simulate adding a section on the backend", function(done){
+		assert(!UCI.test.newsection);
+		CONFIG.test.newsection = {
+			".type": "test",
+			".name": "newsection",
+			"string": "mystring"
+		};
+		CONFIG.test.newsection2 = {
+			".type": "test",
+			".name": "newsection2",
+			"string": "another"
+		};
+
+		UCI.test.$mark_for_reload();
+		UCI.$sync("test", true).done(function(){
+			var s = UCI.test.newsection;
+			var s2 = UCI.test.newsection2;
+			assert(s);	
+			assert.equal(s.string.value, "mystring");	
+			assert.equal(s2.string.value, "another");	
+		}).always(function(){
+			done();
+		});
+	});
+
+	it("simulate field modification on backend and a single section reload", function(done){
+		var s = UCI.test.newsection;
+		assert.equal(s.string.value, "mystring");
+		assert.notEqual(s.number.value, 777);
+		CONFIG.test.newsection.number = "777";
+		UCI.test.newsection.$sync().done(function(){
+			assert.equal(s.number.value, 777);
+		}).always(function(){
+			done();
+		});
+	});
+
+	it("simulate deleting a section on the backend", function(done){
+		delete CONFIG.test.newsection2;
+		UCI.test.$mark_for_reload();
+		UCI.$sync("test").done(function(){
+			var s = UCI.test.newsection;
+			var s2 = UCI.test.newsection2;
+			assert(s);	
+			assert(!s2);	
+			assert.equal(s.string.value, "mystring");	
+		}).always(function(){
+			done();
+		});
+	});
+
+	it("simulate deleting a section", function(done){
+		UCI.test.newsection.$delete().done(function(){
+			// deleting a section should not delete it from the backend	yet
+			assert(CONFIG.test.newsection);
+			UCI.$save().done(function(){
+				assert(!CONFIG.test.newsection);
+			}).always(function(){
+				done();
+			});
+		}).fail(function(){
+			assert(false);
+			done();
+		});
 	});
 
 	it("saves a section", function(done){
@@ -278,13 +351,30 @@ describe("Section operations", function(){
 
 
 	it("reset config", function(done){
+		assert(UCI.test.mysection);
 		var f = UCI.test.mysection.field;
 		f.value = "newstuff2";
 		assert.equal(UCI.$hasChanges(), true);
+		assert.notEqual(f.value, f.ovalue);
 		assert(f.value == "newstuff2");
 		UCI.test.$reset();
-		assert(f.value != "newstuff2");
-		assert(UCI.test.mysection);
+		assert.equal(f.value, f.ovalue);
+
+		// try exceptions
+		f.value = "foo";
+		UCI.test.mysection.$reset_defaults(["field"]);
+		assert.equal(f.value, "foo");
+
+		UCI.test.mysection.$reset_defaults();
+		assert.notEqual(f.value, f.ovalue);
+		assert.equal(f.value, f.dvalue);
+		f.value = "newstuff2";
+		assert.notEqual(f.value, f.dvalue);
+
+		UCI.test.mysection.$reset_defaults();
+		assert.equal(f.value, f.dvalue);
+
+		UCI.test.$reset();
 		done();
 	});
 });

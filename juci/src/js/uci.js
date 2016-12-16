@@ -508,9 +508,10 @@
 			}); 
 		}
 		
-		UCISection.prototype.$sync = function(){
+		UCISection.prototype.$sync = function(opts){
 			var deferred = $.Deferred(); 
 			var self = this; 
+			if(!opts) opts = {};
 
 			if(!$rpc.uci) {
 				setTimeout(function(){ 
@@ -528,7 +529,7 @@
 					deferred.reject();
 					return;
 				}
-				self.$update(data.values);
+				self.$update(data.values, opts);
 				deferred.resolve(); 
 			}).fail(function(){
 				deferred.reject(); 
@@ -550,16 +551,14 @@
 			var self = this; 
 			Object.keys(self).map(function(k){
 				if(!(self[k] instanceof UCI.Field)) return;
-				if(self[k].$reset) 
-					self[k].$reset(); 
+				self[k].$reset(); 
 			}); 
 		}
 		UCISection.prototype.$commit = function(){
 			var self = this; 
 			Object.keys(self).map(function(k){
 				if(!(self[k] instanceof UCI.Field)) return;
-				if(self[k].$commit) 
-					self[k].$commit(); 
+				self[k].$commit(); 
 			}); 
 		}
 		UCISection.prototype.$reset_defaults = function(exc){
@@ -569,8 +568,7 @@
 				exc.map(function(e){ exceptions[e] = true;});
 			Object.keys(self).map(function(k){
 				if(!(self[k] instanceof UCI.Field) || exceptions[k]) return;
-				if(self[k].$reset_defaults)
-					self[k].$reset_defaults();
+				self[k].$reset_defaults();
 			});
 		}
 
@@ -658,10 +656,6 @@
 			self["@all"].push(section); 
 			if(item[".name"]) self[item[".name"]] = section; 
 			return section; 
-		}
-		function _updateSection(self, item, opts){
-			var section = self[item[".name"]]; 
-			if(section && section.$update) section.$update(item, opts); 
 		}
 		
 		function _unlinkSection(self, section){
@@ -900,7 +894,9 @@
 			return deferred.promise(); 
 		}
 	
-		//! Tells uci to reorder sections based on current order in the section types table
+		/**
+		 * Tells uci to reorder sections based on current order in the section types table.
+		 */
 		UCIConfig.prototype.$save_order = function(type){
 			var def = $.Deferred(); 
 			var arr = this["@"+type]; 
@@ -1044,7 +1040,7 @@
 	}
 
 	// marks all configs for reload on next sync of the config 
-	UCI.prototype.$clearCache = function(){
+	UCI.prototype.$reset = function(){
 		var self = this; 
 		Object.keys(self).map(function(x){ 
 			if(self[x].constructor != UCI.Config) return; 
@@ -1064,7 +1060,7 @@
 		if(!(name in section_types)) section_types[name] = {}; 
 		if(!(name in this)) this[name] = new UCI.Config(this, name); 
 	}
-	
+/*	
 	UCI.prototype.$eachConfig = function(cb){
 		var self = this; 
 		Object.keys(self).filter(function(x){ 
@@ -1073,7 +1069,7 @@
 			cb(self[x]); 
 		});
 	}
-	 
+*/	 
 	UCI.prototype.$sync = function(configs){
 		var deferred = $.Deferred(); 
 		var self = this; 
