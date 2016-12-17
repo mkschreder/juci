@@ -165,6 +165,7 @@
 			var ip = new IP6AddressValidator();
 			var parts = field.value.split("/"); 
 			var err = ip.validate({ value: parts[0] });
+			// TODO: uncomment this once we have better validation
 			//if(err) return err;
 			if(parts.length == 1) return null;
 			var mask = parseInt(parts[1]);
@@ -322,7 +323,7 @@
 			this.is_dirty = false;
 
 			// create the field validator
-			if(schema.validator) this.validator = new schema.validator(); 
+			if(schema.validator && schema.validator instanceof Function) this.validator = new schema.validator(); 
 			else this.validator = new DefaultValidator(); 
 		}
 		UCIField.prototype = {
@@ -343,7 +344,7 @@
 			*/
 			$update: function(value, keep_user){
 				if(value == undefined) return;
-				if(this.dvalue instanceof Array){
+				if(this.schema.type == Array){
 					if(!(value instanceof Array)) return; // skip an update without valid value
 					if(!this.ovalue) this.ovalue = [];
 					if(!this.uvalue) this.uvalue = [];
@@ -365,8 +366,8 @@
 				}
 			}, 
 			$commit: function(){
-				this.ovalue = this.value;
-				//this.$update(this.uvalue, false); 
+				// this is important that it is uvalue because of booleans 
+				this.ovalue = this.uvalue;
 			},
 			get dvalue(){
 				return this.schema.dvalue;
@@ -447,12 +448,12 @@
 				if(!this.dirty) return null;
 				// make sure we ignore errors if value is default and was not changed by user
 				if(this.uvalue == this.schema.dvalue || this.uvalue == this.ovalue) return null; 
-				if(this.validator) return this.validator.validate(this); 
-				return null; 
+				// validator will always be set either to user supplied one or to default
+				return this.validator.validate(this); 
 			},
 			get valid(){
 				// make sure that fields that user did not modify do not return errors
-				if(!this.dirty) return null;
+				if(!this.dirty) return true;
 				return this.error == null; 
 			}, 
 			get dirty(){
@@ -541,13 +542,8 @@
 		}
 			
 		UCISection.prototype.$delete = function(){
-			var self = this; 
-			if(self[".config"]) return self[".config"].$deleteSection(self); 
-			var def = $.Deferred(); 
-			setTimeout(function(){
-				def.reject(); 
-			}, 0); 
-			return def.promise(); 
+			// config will always be set
+			return this[".config"].$deleteSection(this); 
 		}
 		
 		UCISection.prototype.$reset = function(){
@@ -656,10 +652,11 @@
 			var section = new UCI.Section(self); 
 			section.$update(item); 
 			var type = "@"+item[".type"]; 
-			if(!(type in self)) self[type] = []; 
 			self[type].push(section); 
 			self["@all"].push(section); 
-			if(item[".name"]) self[item[".name"]] = section; 
+			// name will pretty much always be defined. But we check just to avoid programmer errors
+			if(item[".name"]) 
+				self[item[".name"]] = section; 
 			return section; 
 		}
 		
@@ -689,7 +686,7 @@
 			var self = this;  
 			Object.keys(self).map(function(x){
 				if(self[x] && self[x].constructor == UCI.Section) {
-					if(self[x].$commit) self[x].$commit(); 
+					self[x].$commit(); 
 				}
 			}); 
 			self[".deleted"] = [];
@@ -719,7 +716,7 @@
 			var to_delete = [];
 			Object.keys(self).map(function(x){
 				if(self[x] && self[x].constructor == UCI.Section){
-					if(self[x][".new"]) to_delete.push(self[k]); 
+					if(self[x][".new"]) to_delete.push(self[x]); 
 					else self[x].$reset(); 
 					// TODO: this should be made to work such that if we reset we only delete sections that have not been commited yet
 					//if(self[x][".new"]) self[x].$delete(); 
@@ -781,11 +778,13 @@
 				}); 
 				
 				// now delete any section that no longer exists in our local cache
-				Object.keys(to_delete).map(function(x){
-					if(!to_delete[x]) return;
-					var section = to_delete[x]; 
-					_unlinkSection(self, section); 
-				});
+				if(!opts.keep_user_changes) {
+					Object.keys(to_delete).map(function(x){
+						if(!to_delete[x]) return;
+						var section = to_delete[x]; 
+						_unlinkSection(self, section); 
+					});
+				}
 				deferred.resolve();
 			}).fail(function(){
 				deferred.reject(); 
@@ -983,13 +982,8 @@
 					UCI_DEBUG("Missing type definition for config "+k); 
 					return; 
 				}
-				if(!(k in self)){
-					//UCI_DEBUG("Adding new config "+k); 
-					self[k] = new UCI.Config(self, k); 
-					self[k]._exists = true; // mark that we have this config
-				} else {
-					self[k]._exists = true; // mark that we have this config
-				}
+				// will always exist if it is registered (register will stick it into section types)
+				self[k]._exists = true; // mark that we have this config
 			}); 
 			deferred.resolve(); 
 		}).fail(function(){

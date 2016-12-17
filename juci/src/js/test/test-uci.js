@@ -14,6 +14,25 @@ var CONFIG = {
 			".type": "test",
 			".name": "default",
 			"field": "value"
+		},
+		"hidden": {
+			".type": "test",
+			".name": "hidden",
+			"field": "hidden",
+			"juci_hide": "true"
+		},
+		"defsec": {
+			".type": "test",
+			".name": "defsec",
+			"field": "abradefault",
+			"string": "strdefault",
+		},
+		"notype": {
+			".name": "notype",
+			"field": "value"
+		},
+		"noname": {
+			"field": "value"
 		}
 	}
 };
@@ -108,8 +127,16 @@ global.UBUS = {
 			var def = $.Deferred();
 			setTimeout(function(){
 				def.resolve({
-					configs: Object.keys(CONFIG)
+					configs: Object.keys(CONFIG).concat(["unknownconf", "someother"])
 				});
+			}, 0);
+			return def.promise();
+		},
+		order: function(opts){
+			console.log("ORDER: "+JSON.stringify(opts));
+			var def = $.Deferred();
+			setTimeout(function(){
+				def.resolve({});
 			}, 0);
 			return def.promise();
 		}
@@ -125,6 +152,7 @@ UCI.test.$registerSectionType("anontype", {
 	"field": { dvalue: "test", type: String },
 	"string": { dvalue: "test", type: String },
 });
+
 // make sure that defaults are set to something other than empty value just so we can unit test what happens when value is set to empty
 UCI.test.$registerSectionType("test", {
 	"field": { dvalue: "test", type: String },
@@ -138,23 +166,36 @@ UCI.test.$registerSectionType("test", {
 	"portrange": { dvalue: "100-300", type: String, validator: UCI.validators.PortValidator },
 	"minmax": { dvalue: "94", type: Number, validator: UCI.validators.NumberLimitValidator(0, 100) },
 	"multicast": { dvalue: "225.0.0.0", type: String, validator: UCI.validators.IP4MulticastAddressValidator },
-	"unicast": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IP4UnicastAddressValidator },
-	"ip4cidr": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IP4CIDRValidator },
-	"ip": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IPAddressValidator },
-	"ipcidr": { dvalue: "192.168.1.1", type: String, validator: UCI.validators.IPCIDRAddressValidator },
+	"unicast": { dvalue: "192.168.123.1", type: String, validator: UCI.validators.IP4UnicastAddressValidator },
+	"ip4cidr": { dvalue: "192.168.123.1", type: String, validator: UCI.validators.IP4CIDRValidator },
+	"ip": { dvalue: "192.168.123.1", type: String, validator: UCI.validators.IPAddressValidator },
+});
+// split definition into two parts since we do support this (if duplicate keys appear then they will be replaced!)
+UCI.test.$registerSectionType("test", {
+	"ipcidr": { dvalue: "192.168.123.1", type: String, validator: UCI.validators.IPCIDRAddressValidator },
 	"ip4mask": { dvalue: "255.0.0.0", type: String, validator: UCI.validators.IP4NetmaskValidator },
 	"mac": { dvalue: "aa:bb:cc:dd:ee:ff", type: String, validator: UCI.validators.MACAddressValidator },
 	"maclist": { dvalue: [], type: Array, validator: UCI.validators.MACListValidator },
 	"iparray": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(UCI.validators.IP4AddressValidator) },
 	"uniqueiparray": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(UCI.validators.IP4AddressValidator, true) },
 	"uniquearray": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(String, true) },
+	"uniquenumarr": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(Number, true) },
+	"uniqueboolarr": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(Boolean, true) },
 	"invarray": { dvalue: ["foo","bar"], type: Array, validator: UCI.validators.ArrayValidator(InvalidValidator) },
 	"bool": { dvalue: false, type: Boolean },
 	"boolyesno": { dvalue: "yes", type: Boolean },
 	"boolonoff": { dvalue: "on", type: Boolean },
 	"booltf": { dvalue: "true", type: Boolean },
 	"nodefault": { type: Boolean },
+	// invalid combinations
+	// invalid type and validator combination
+	"invarr": { dvalue: [], type: String, validator: UCI.validators.ArrayValidator(String, true) },
+	// invalid validator (not a function)
+	"invval": { dvalue: [], type: String, validator: {"test":"bar"} },
 });
+
+UCI.test.$insertDefaults("test", "defsec");
+UCI.test.$insertDefaults("test");
 
 describe("init", function(){
 	it("must initialize first", function(done){
@@ -162,11 +203,21 @@ describe("init", function(){
 			done();
 		});
 	});
+	it("check defaults", function(done){
+		var s = UCI.test.defsec;
+		assert.notEqual(s.string.value, CONFIG.test.defsec.string);
+		assert.notEqual(s.field.value, CONFIG.test.defsec.field);
+		assert.equal(s.string.value, s.string.dvalue);
+		assert.equal(s.field.value, s.field.dvalue);
+		// etc
+		done();
+	});
+
 });
 
 describe("Basic test", function(){
 	it("tests the basic function of loading a config", function(done){
-		UCI.$sync("test").done(function(){
+		UCI.$sync().done(function(){
 			assert(UCI.test);	
 			assert(UCI.test.default);	
 			assert.equal(UCI.test.default.field.value, "value");	
@@ -176,6 +227,15 @@ describe("Basic test", function(){
 		}).fail(function(){
 			done(new Error("unable to sync config"));
 		});
+	});
+	it("check defaults", function(done){
+		// after sync we should not have config values
+		var s = UCI.test.defsec;
+		assert.equal(s.string.value, CONFIG.test.defsec.string);
+		assert.equal(s.field.value, CONFIG.test.defsec.field);
+		assert.notEqual(s.string.value, s.string.dvalue);
+		assert.notEqual(s.field.value, s.field.dvalue);
+		done();
 	});
 });
 
@@ -258,8 +318,8 @@ describe("Section operations", function(){
 			"string": "another"
 		};
 
-		UCI.test.$mark_for_reload();
-		UCI.$sync("test", true).done(function(){
+		UCI.$mark_for_reload();
+		UCI.$sync(["test", "somegarbage"], true).done(function(){
 			var s = UCI.test.newsection;
 			var s2 = UCI.test.newsection2;
 			assert(s);	
@@ -329,8 +389,19 @@ describe("Section operations", function(){
 		});
 		assert(change);
 		assert.equal(change.uvalue, "newstuff");
+		// first try with an invalid value
+		UCI.test.mysection.ip4field.value = "asdf";
 		UCI.$save().done(function(){
+			assert(false);
 			done();
+		}).fail(function(){
+			UCI.test.mysection.ip4field.value = "";
+			UCI.$save().done(function(){
+				done();
+			}).fail(function(){
+				assert(false);
+				done();
+			});
 		});
 	});
 
@@ -351,32 +422,42 @@ describe("Section operations", function(){
 		CONFIG.test.mysection.string = "changed";
 		// someone has set config to foo bar
 		CONFIG.test.mysection.array = ["foo", "bar"];
-		
-		// do a reload of this partucular config and instruct reload to keep changes
-		UCI.test.$sync({reload: true, keep_user_changes: true}).done(function(){
-			// result should be that field will not be reloaded but string will change
-			assert(UCI.test.mysection);
-			assert(s.field.value == "reload");
-			assert(s.string.value == "changed");
-			// double check that our user value are kept
-			assert.equal(s.array.value[0], "bar");
-			assert.equal(s.array.value[1], "bar");
-			assert.equal(UCI.$hasChanges(), true);
-			// reload needs to be tested with a mock version of data and we need to establish reload rules
-			UCI.test.$sync({reload: true, keep_user_changes: false}).done(function(){
+		// create a new section that we will then delete
+		UCI.test.$create({
+			".type": "test",
+			".name": "willdelete"
+		}).done(function(section){
+			assert(UCI.test.willdelete);
+			// do a reload of this partucular config and instruct reload to keep changes
+			UCI.test.$sync({reload: true, keep_user_changes: true}).done(function(){
+				// section should still exist
+				assert(UCI.test.willdelete);
+				// result should be that field will not be reloaded but string will change
 				assert(UCI.test.mysection);
-				assert(s.field.value != "reload");
-				assert.equal(s.array.value[0], "foo");
+				assert(s.field.value == "reload");
+				assert(s.string.value == "changed");
+				// double check that our user value are kept
+				assert.equal(s.array.value[0], "bar");
 				assert.equal(s.array.value[1], "bar");
-				// should not have any changes since we have reloaded all fields
-				assert.equal(UCI.$hasChanges(), false);
-				done();
+				assert.equal(UCI.$hasChanges(), true);
+				// reload needs to be tested with a mock version of data and we need to establish reload rules
+				UCI.test.$sync({reload: true, keep_user_changes: false}).done(function(){
+					// section should be gone
+					assert(!UCI.test.willdelete);
+					assert(UCI.test.mysection);
+					assert(s.field.value != "reload");
+					assert.equal(s.array.value[0], "foo");
+					assert.equal(s.array.value[1], "bar");
+					// should not have any changes since we have reloaded all fields
+					assert.equal(UCI.$hasChanges(), false);
+					done();
+				}).fail(function(){
+					assert.equals(false, "failed to reload section");
+					done();
+				});
 			}).fail(function(){
-				assert.equals(false, "failed to reload section");
 				done();
 			});
-		}).fail(function(){
-			done();
 		});
 	});
 
@@ -388,25 +469,33 @@ describe("Section operations", function(){
 		assert.equal(UCI.$hasChanges(), true);
 		assert.notEqual(f.value, f.ovalue);
 		assert(f.value == "newstuff2");
-		UCI.test.$reset();
-		assert.equal(f.value, f.ovalue);
+		UCI.test.$create({
+			".type": "test",
+			".name": "todelete"
+		}).done(function(){
+			assert(UCI.test.todelete);
+			UCI.$reset();
+			assert(!UCI.test.todelete);
+			assert(f.valid);
+			assert.equal(f.value, f.ovalue);
 
-		// try exceptions
-		f.value = "foo";
-		UCI.test.mysection.$reset_defaults(["field"]);
-		assert.equal(f.value, "foo");
+			// try exceptions
+			f.value = "foo";
+			UCI.test.mysection.$reset_defaults(["field"]);
+			assert.equal(f.value, "foo");
 
-		UCI.test.mysection.$reset_defaults();
-		assert.notEqual(f.value, f.ovalue);
-		assert.equal(f.value, f.dvalue);
-		f.value = "newstuff2";
-		assert.notEqual(f.value, f.dvalue);
+			UCI.test.mysection.$reset_defaults();
+			assert.notEqual(f.value, f.ovalue);
+			assert.equal(f.value, f.dvalue);
+			f.value = "newstuff2";
+			assert.notEqual(f.value, f.dvalue);
 
-		UCI.test.mysection.$reset_defaults();
-		assert.equal(f.value, f.dvalue);
+			UCI.test.mysection.$reset_defaults();
+			assert.equal(f.value, f.dvalue);
 
-		UCI.test.$reset();
-		done();
+			UCI.test.$reset();
+			done();
+		});
 	});
 });
 
@@ -519,6 +608,7 @@ describe("Field operations", function(){
 		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.time.value = "24:00";
+		assert.equal(s.time.valid, false);
 		assert.equal(UCI.$getErrors().length, 1);
 		s.time.value = "asdf";
 		assert.equal(UCI.$getErrors().length, 1);
@@ -681,7 +771,7 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4cidr.value = "192.168.1.0.1/20";
 		assert.equal(UCI.$getErrors().length, 1);
-		s.ip4cidr.value = "192.168.1.1";
+		s.ip4cidr.value = "192.168.2.1";
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4cidr.value = "";
 		assert.equal(UCI.$getErrors().length, 0);
@@ -719,11 +809,9 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ipcidr.value = "3731:54:65fe:2::a7";
 		assert.equal(UCI.$getErrors().length, 0);
-		s.ipcidr.value = "192.168.1.1";
+		s.ipcidr.value = "192.168.2.1";
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ipcidr.value = "3731:54:65fe:2::a7/200";
-		assert.equal(UCI.$getErrors().length, 1);
-		s.ipcidr.value = "noip/100";
 		assert.equal(UCI.$getErrors().length, 1);
 		s.ipcidr.value = "fe80::/10"; // defaults for firewall rules
 		assert.equal(UCI.$getErrors().length, 0);
@@ -731,8 +819,10 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ipcidr.value = "3731:54:65fe:2::a7/56";
 		assert.equal(UCI.$getErrors().length, 0);
-		// TODO: revise this and come up with list of possible test cases
+		// TODO: revise this and come up with list of possible test cases and then update the validator
 		/*
+		s.ipcidr.value = "noip/100";
+		assert.equal(UCI.$getErrors().length, 0);
 		s.ipcidr.value = "2001:5::/32";
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ipcidr.value = "::1/128";
@@ -822,12 +912,23 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 1);
 		s.uniquearray.value = ["foo", "0", 0];
 		assert.equal(UCI.$getErrors().length, 1);
+		s.uniquearray.value = ["foo", "0"];
+		assert.equal(UCI.$getErrors().length, 0);
+		s.uniquenumarr.value = ["two", "items", 123, 456];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniquenumarr.value = [11, 11];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniquenumarr.value = [11, 10];
+		assert.equal(UCI.$getErrors().length, 0);
+		s.uniqueboolarr.value = [false, false];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniqueboolarr.value = [false, true];
+		assert.equal(UCI.$getErrors().length, 0);
 		s.uniquearray.value = ["two", "items"];
-		console.log(JSON.stringify(s.$getErrors()));
 		assert.equal(UCI.$getErrors().length, 0);
 	});
 
-	it("boolean ops", function(){
+	it("boolean ops", function(done){
 		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		var prev = s.bool.value;
@@ -854,7 +955,17 @@ describe("Field operations", function(){
 				assert.equal(conf.boolonoff, "off");
 				assert.equal(conf.boolyesno, "no");
 				assert.equal(conf.booltf, "false");
+
+				assert.equal(s.bool.value, false);
+				assert.equal(s.boolonoff.value, false);
+				assert.equal(s.boolyesno.value, false);
+				assert.equal(s.booltf.value, false);
+			}).always(function(){
+				done();
 			});
+		}).fail(function(){
+			assert(false);
+			done();
 		});
 	});
 });
@@ -864,7 +975,10 @@ UCI.test.$registerSectionType("validated", {
 	"strlen": { dvalue: 4, type: Number } // will hold the length of string
 }, function(s){
 	if(s.string.value.length != s.strlen.value){
-		return gettext("strlen value does not crrespond to string length!");
+		return [
+			gettext("strlen value does not crrespond to string length!"),
+			gettext("second error")
+		];
 	}
 	return null;
 });
@@ -882,8 +996,28 @@ describe("Several ways to validate sections: ", function(){
 	});
 	it("custom section validator", function(){
 		s.string.value = "mystring";
-		assert.equal(UCI.$getErrors().length, 1);
+		assert.equal(UCI.$getErrors().length, 2);
 		s.strlen.value = 8;
 		assert.equal(UCI.$getErrors().length, 0);
 	});
+});
+
+describe("UCI section ordering: ", function(){
+	it("save order", function(done){
+		UCI.test.$save_order("test").done(function(){
+			done();
+		}).fail(function(){
+			assert(false);
+			done();
+		});
+	});
+	it("save order invalid type", function(done){
+		UCI.test.$save_order("fooinvalid").done(function(){
+			assert(false);
+			done();
+		}).fail(function(){
+			done();
+		});
+	});
+
 });
