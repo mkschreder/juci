@@ -19,7 +19,6 @@
 	function UCI_DEBUG(str){
 		//console.log(str);
 	}
-	var $rpc = scope.UBUS; 
 	
 	function DefaultValidator(){
 		this.validate = function(field){
@@ -517,7 +516,7 @@
 			var self = this; 
 			if(!opts) opts = {};
 
-			if(!$rpc.uci) {
+			if(!scope.UBUS || !scope.UBUS.uci) {
 				setTimeout(function(){ 
 					console.error("RPC uci object does not exist! Can not sync!"); 
 					deferred.reject(); 
@@ -525,7 +524,7 @@
 				return deferred.promise(); 
 			}
 			
-			$rpc.uci.get({
+			scope.UBUS.uci.get({
 				config: self[".config"][".name"], 
 				section: self[".name"]
 			}).done(function(data){
@@ -741,7 +740,7 @@
 			
 			self.deferred = deferred; 
 
-			if(!$rpc.uci) {
+			if(!scope.UBUS || !scope.UBUS.uci) {
 				// this will happen if there is no router connection!
 				setTimeout(function(){ 
 					console.error("uci is not defined!");
@@ -757,7 +756,7 @@
 			}); 
 			//UCI_DEBUG("To delete: "+Object.keys(to_delete)); 
 		
-			$rpc.uci.get({
+			scope.UBUS.uci.get({
 				config: self[".name"]
 			}).done(function(data){
 				var vals = data.values;
@@ -823,7 +822,7 @@
 			var self = this; 
 			var deferred = $.Deferred(); 
 				
-			if(!$rpc.uci || !section) {
+			if(!section) {
 				// this will happen if there is no router connection!
 				setTimeout(function(){ deferred.reject(); }, 0); 
 				return deferred.promise(); 
@@ -834,20 +833,6 @@
 			self[".deleted"].push(section);
 			_unlinkSection(self, section);
 			setTimeout(function(){ deferred.resolve(); }, 0);
-			/*
-			$rpc.uci.delete({
-				"config": self[".name"], 
-				"section": section[".name"]
-			}).done(function(){
-				_unlinkSection(self, section); 
-				UCI_DEBUG("Deleted section "+self[".name"]+"."+section[".name"]); 
-				//self[".need_commit"] = true; 
-				deferred.resolve(); 
-			}).fail(function(){
-				console.error("Failed to delete section!"); 
-				deferred.reject(); 
-			}); 
-			*/
 			return deferred.promise(); 
 		}
 		
@@ -867,13 +852,7 @@
 				setTimeout(function(){ deferred.reject(); }, 0);
 				return deferred.promise();
 			}
-			
-			if(!$rpc.uci) {
-				// this will happen if there is no router connection!
-				setTimeout(function(){ deferred.reject(); }, 0); 
-				return deferred.promise(); 
-			}
-
+		
 			// TODO: validate values!
 			var values = {}; 
 			Object.keys(type).map(function(k){ 
@@ -902,23 +881,6 @@
 			if(!anon) section[".customname"] = item[".name"];
 			UCI_DEBUG("Adding: "+section[".name"]+" to "+self[".name"]+": "+JSON.stringify(values)); 
 			setTimeout(function(){ deferred.resolve(section); }, 0);
-/*
-			$rpc.uci.add({
-				"config": self[".name"], 
-				"type": item[".type"],
-				"name": item[".name"], 
-				"values": values
-			}).done(function(state){
-				UCI_DEBUG("Added new section: "+JSON.stringify(state)); 
-				item[".name"] = state.section; 
-				self[".need_commit"] = true; 
-				var section = _insertSection(self, item); 
-				section[".new"] = true; 
-				deferred.resolve(section); 
-			}).fail(function(){
-				deferred.reject(); 
-			});
-			*/
 			return deferred.promise(); 
 		}
 	
@@ -929,14 +891,14 @@
 			var def = $.Deferred(); 
 			var arr = this["@"+type]; 
 			var self = this; 
-			if(!arr){
+			if(!scope.UBUS || !scope.UBUS.uci || !arr){
 				console.error("UCI."+self[".name"]+".$reorder: section "+type+" is unknown!"); 
 				setTimeout(function(){ def.reject(); }, 0); 
 				return def.promise(); 
 			}
 			// get section order and send it to uci. This will be applied when user does $save(); 
 			var order = arr.map(function(x){ return x[".name"]; }).filter(function(x){ return x; }); 
-			$rpc.uci.order({ 
+			scope.UBUS.uci.order({ 
 				config: self[".name"], 
 				sections: order
 			}).done(function(){ def.resolve(); }).fail(function(){ def.reject(); });
@@ -968,13 +930,13 @@
 		UCI_DEBUG("Init UCI"); 
 		var self = this; 
 
-		if(!$rpc.uci) {
+		if(!scope.UBUS || !scope.UBUS.uci) {
 			console.error("No uci rpc object present!"); 
 			setTimeout(function(){ deferred.reject(); }, 0); 
 			return deferred.promise(); 
 		}
 		
-		$rpc.uci.configs().done(function(response){
+		scope.UBUS.uci.configs().done(function(response){
 			var cfigs = response.configs; 
 			if(!cfigs) { console.error("No configs found!"); deferred.reject(); return; }
 			cfigs.map(function(k){
@@ -1121,7 +1083,12 @@
 	UCI.prototype.$sync = function(configs){
 		var deferred = $.Deferred(); 
 		var self = this; 
-		
+	
+		if(!scope.UBUS || !scope.UBUS.uci){
+			setTimeout(function(){ deferred.reject(); }, 0);
+			return deferred.promise();
+		}
+
 		async.series([
 			function(next){
 				// make an array of either all configs or just the one user has specified
@@ -1171,7 +1138,7 @@
 		var add_requests = []; 
 		var errors = []; 
 		
-		if(!$rpc.uci) {
+		if(!scope.UBUS || !scope.UBUS.uci) {
 			setTimeout(function(){ deferred.reject(); }, 0); 
 			return deferred.promise(); 
 		}
@@ -1188,7 +1155,7 @@
 
 				async.eachSeries(writes, function(cmd, next){
 					if(cmd.type == "add"){
-						$rpc.uci.add({
+						scope.UBUS.uci.add({
 							config: cmd.config, 
 							type: cmd.section_type,
 							name: cmd.section,
@@ -1204,7 +1171,7 @@
 							next();
 						});
 					} else if(cmd.type == "delete"){
-						$rpc.uci.delete({
+						scope.UBUS.uci.delete({
 							"config": cmd.config, 
 							"section": cmd.section
 						}).done(function(){
@@ -1217,7 +1184,7 @@
 					} else if(cmd.type == "set"){
 						var values = {};
 						values[cmd.option] = cmd.uvalue;
-						$rpc.uci.set({
+						scope.UBUS.uci.set({
 							config: cmd.config,
 							section: cmd.section,
 							values: values

@@ -41,7 +41,10 @@ global.gettext = function(str) { return str; }
 global.assert = require("assert");
 global.async = require("async"); 
 global.$ = global.jQuery = require("jquery-deferred"); 
-global.UBUS = {
+
+// this is so that we can test code paths that check for absense of RPC object
+// we will later assign this to global.UBUS
+var _RPC = {
 	uci: {
 		get: function(params){
 			console.log("UCI get");
@@ -143,11 +146,14 @@ global.UBUS = {
 	}
 };
 
-var uci = require("../uci");
+require("../uci");
 
 var InvalidValidator = function(){} // this is just a dummy invalid validator
 
 UCI.$registerConfig("test");
+// this will simply fail
+UCI.$registerConfig("test");
+
 UCI.test.$registerSectionType("anontype", {
 	"field": { dvalue: "test", type: String },
 	"string": { dvalue: "test", type: String },
@@ -197,8 +203,50 @@ UCI.test.$registerSectionType("test", {
 UCI.test.$insertDefaults("test", "defsec");
 UCI.test.$insertDefaults("test");
 
+describe("check no rpc", function(){
+	it("must work even without rpc module by graciously failing", function(done){
+		async.series([
+			function(next){
+				UCI.$init().done(function(){ assert(false); }).always(function(){
+					next();
+				});
+			},
+			function(next){
+				UCI.$sync("test").done(function(){ assert(false); }).always(function(){
+					next();
+				});
+			},
+			function(next){
+				UCI.$save("test").done(function(){ assert(false); }).always(function(){
+					next();
+				});
+			},
+			function(next){
+				UCI.test.$deleteSection(null).done(function(){ assert(false); }).always(function(){
+					next();
+				});
+			},
+			function(next){
+				UCI.test.$sync().done(function(){ assert(false); }).always(function(){
+					next();
+				});
+			},
+			function(next){
+				UCI.test.$save_order("test").done(function(){ assert(false); }).always(function(){
+					next();
+				});
+			}
+		], function(){
+			done();
+		});
+	});
+});
+
 describe("init", function(){
+	// make the rpc object available
 	it("must initialize first", function(done){
+		console.log("--- init ---");
+		global.UBUS = _RPC;
 		UCI.$init().done(function(){
 			done();
 		});
