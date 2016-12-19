@@ -924,13 +924,15 @@ describe("Field operations", function(){
 		var s = UCI.test.mysection;
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4cidr.value = "192.168.1.0/24";
-		assert.equal(UCI.$getErrors().length, 0);
+		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4cidr.value = "192.168.1.0/33";
 		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4cidr.value = "192.168.1.0/not mask";
 		assert.equal(UCI.$getErrors().length, 1);
 		s.ip4cidr.value = "192.168.1.0.1/20";
 		assert.equal(UCI.$getErrors().length, 1);
+		s.ip4cidr.value = "192.168.0.1/8";
+		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4cidr.value = "192.168.2.1";
 		assert.equal(UCI.$getErrors().length, 0);
 		s.ip4cidr.value = "";

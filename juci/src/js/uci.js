@@ -102,6 +102,7 @@
 		this.validate = function(field){
 			var error = gettext("IP Address must be a valid IPv4 address!");
 			if(!field.value || field.value == "") return null;
+			if(field.value == "0.0.0.0") return gettext("IP Address is not a valid Unicast address!");
 			// match 4 groups of 1-3 digits separated by dots
 			if(field.value.match(/^[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}$/) == null) return error;
 			// validate each part to be an int between 0 and 255. 
@@ -158,9 +159,11 @@
 			parts.map(function(x, i){ ret |= parseInt(x) << (8 * (3 - i)); }); 
 			return ret; 
 		}
+		/*
 		function long2ip(l){
 			return [(l >> 24) & 255, (l >> 16) & 255, (l >> 8) & 255, l & 255].map(function(x){ return ""+x; }).join("."); 
 		}
+		*/
 		this.validate = function(field){
 			if(!field.value || field.value == "") return null;
 			var ipv4 = new IP4AddressValidator();
@@ -202,7 +205,7 @@
 			return null; 
 		}
 	}; 
-/*	
+
 	function IPCIDRAddressValidator(){
 		this.validate = function(field){
 			var ipv4 = (new IP4CIDRValidator()).validate(field);
@@ -211,7 +214,7 @@
 			return null; 
 		};
 	};
-*/
+
 	function IP4NetmaskValidator(){
 		this.validate = function(field){
 			var error = gettext("Netmask must be a valid IPv4 netmask");
