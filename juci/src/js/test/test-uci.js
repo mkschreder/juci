@@ -52,8 +52,10 @@ global.$ = global.jQuery = require("jquery-deferred");
 // we will later assign this to global.UBUS
 var _RPC = {
 	uci: {
+		get_count: 0,
 		get: function(params){
 			console.log("UCI get");
+			this.get_count++;
 			var def = $.Deferred();
 			setTimeout(function(){
 				var conf = CONFIG[params.config];
@@ -253,8 +255,106 @@ describe("check no rpc", function(){
 				});
 			}
 		], function(){
+			// make rpc available
 			done();
 		});
+	});
+	it("make all rpc calls fail", function(done){
+		function do_fail(){
+			var def = $.Deferred();
+			setTimeout(function(){ def.reject(); }, 0);
+			return def.promise();
+		}
+		global.UBUS = {
+			uci: {
+				add: do_fail,
+				delete: do_fail,
+				set: do_fail,
+				get: do_fail,
+				order: do_fail,
+				configs: do_fail
+			}
+		};
+		done();
+	});
+	it("check that create fails gracefully", function(done){
+		UCI.$init().done(function(){
+			assert(false);
+			done();
+		}).fail(function(){
+			done();
+		});
+	});
+	it("check that create fails gracefully", function(done){
+		UCI.test.$create({
+			".type": "test",
+			".name": "test"
+		}).done(function(){
+			assert(false);
+			done();
+		}).fail(function(){
+			done();
+		});
+	});
+	it("check that sync fails gracefully", function(done){
+		UCI.$sync().done(function(){
+			// sync always succeeds
+			done();
+		}).fail(function(){
+			assert(false);
+			done();
+		});
+	});
+	it("check that section sync fails gracefully", function(done){
+		UCI.test.test.$sync().done(function(){
+			assert(false);
+			done();
+		}).fail(function(){
+			done();
+		});
+	});
+	it("check that save fails gracefully", function(done){
+		UCI.test.test.string.value = "foobar";
+		UCI.$save().done(function(){
+			done();
+		}).fail(function(){
+			done();
+		});
+	});
+	it("check that add fails gracefully", function(done){
+		UCI.test.$create({
+			".type": "test",
+			".name": "failadd"
+		}).done(function(){
+			UCI.$save().done(function(){
+				done();
+			}).fail(function(){
+				assert(false);
+				done();
+			});
+		}).fail(function(){
+			assert(false);
+			done();
+		});
+	});
+	it("check that delete fails gracefully", function(done){
+		// just make sure fail code runs
+		UCI.test.failadd.$update({});
+		UCI.test.failadd.$update({".type": "somethingthatfails"});
+		UCI.test[".name"] = "foo";
+		UCI.test.failadd.$update({".type": "somethingthatfails"});
+		UCI.test[".name"] = "test";
+		UCI.test.failadd.$delete();
+		UCI.$save().done(function(){
+			done();
+		}).fail(function(){
+			assert(false);
+			done();
+		});
+	});
+
+	it("enable rpc", function(){
+		global.UBUS = _RPC;
 	});
 });
 
@@ -262,7 +362,6 @@ describe("init", function(){
 	// make the rpc object available
 	it("must initialize first", function(done){
 		console.log("--- init ---");
-		global.UBUS = _RPC;
 		UCI.$init().done(function(){
 			done();
 		});
@@ -279,9 +378,13 @@ describe("init", function(){
 
 });
 
+var get_count = _RPC.uci.get_count;
 describe("Basic test", function(){
 	it("tests the basic function of loading a config", function(done){
+		get_count = _RPC.uci.get_count;
 		UCI.$sync().done(function(){
+			assert.equal(get_count + 1, _RPC.uci.get_count);
+			get_count = _RPC.uci.get_count;
 			assert(UCI.test);	
 			assert(UCI.test.default);	
 			var s = UCI.test.default;
@@ -297,6 +400,16 @@ describe("Basic test", function(){
 			done(new Error("unable to sync config"));
 		});
 	});
+	it("tests the basic function of loading a config", function(done){
+		UCI.$sync().done(function(){
+			// make sure that no more calls to uci.get were made
+			assert.equal(get_count, _RPC.uci.get_count);
+			done();
+		}).fail(function(){
+			assert(false);
+			done();
+		});
+	});
 	it("check defaults", function(done){
 		// after sync we should not have config values
 		var s = UCI.test.defsec;
@@ -309,6 +422,14 @@ describe("Basic test", function(){
 });
 
 describe("Section operations", function(){
+	it("add a new section with no type should fail", function(done){
+		UCI.test.$create({}).done(function(){
+			assert(false);
+			done();
+		}).fail(function(){
+			done();
+		});
+	});
 	it("add a new section", function(done){
 		UCI.test.$create({
 			".name": "mysection",
@@ -330,7 +451,19 @@ describe("Section operations", function(){
 			done(new Error("unable to create section"));
 		});
 	});
-
+	it("adding a section with duplicate name should fail", function(done){
+		var s = UCI.test.mysection;
+		UCI.test.$create({
+			".name": "mysection",
+			".type": "test",
+		}).done(function(){
+			assert(false);
+			done();
+		}).fail(function(){
+			assert(s == UCI.test.mysection);
+			done();
+		});
+	});
 	it("add an anonymous section", function(done){
 		UCI.test.$create({
 			".type": "anontype",
@@ -618,36 +751,71 @@ describe("Section operations", function(){
 			".name": "changes"
 		}).done(function(section){
 			var s = UCI.test.changes;
+			assert(!CONFIG.test.changes);
 			assert.equal(UCI.$getChanges().length, 1);
 			// try to modify some fields
 			s.string.value = "changes";
 			assert.equal(UCI.$getChanges().length, 1);
-			// save the config
-			UCI.$save().done(function(){
-				assert.equal(s.string.value, "changes");
-				assert.equal(s.string.value, s.string.ovalue);
-				s.string.value = "nochange";
-				s.field.value = "strings";
-				assert.equal(s.string.value, "nochange");
-				assert.equal(UCI.$getChanges().length, 2);
-				// delete the string change
-				UCI.$getChanges().find(function(x){
-					return x.option == "string";
-				}).$delete();
-				assert.equal(s.string.value, "changes");
-				assert.equal(UCI.$getChanges().length, 1);
-				s.string.value = "beforedelete";
-				assert.equal(UCI.$getChanges().length, 2);
-				// try deleting the whole section
+			// try undoing the change and add it again
+			UCI.$getChanges().find(function(x){
+				return x.type == "add";
+			}).$delete();
+			assert(!UCI.test.changes);
+			assert.equal(UCI.$getChanges().length, 0);
+			UCI.test.$create({
+				".type": "test",
+				".name": "changes"
+			}).done(function(section){
+				assert(UCI.test.changes != s);
+				s = UCI.test.changes;
+				s.string.value = "changes";
+				// try deleting the section
 				s.$delete();
-				assert.equal(UCI.$getChanges().length, 1);
-				// and reverting the change
-				UCI.$getChanges().find(function(x){
-					return x.type == "delete" && x.section == "changes";
-				}).$delete();
-				console.log(JSON.stringify(UCI.$getChanges()));
-				assert.equal(UCI.$getChanges().length, 2);
-				done();
+				assert(!UCI.test.changes);
+				// deleting a new section is not recoverable
+				assert.equal(UCI.$getChanges().length, 0);
+				// revert the change
+				UCI.test.$create({
+					".type": "test",
+					".name": "changes"
+				}).done(function(section){
+					assert(UCI.test.changes);
+					s = UCI.test.changes;
+					// save the config
+					UCI.$save().done(function(){
+						assert(CONFIG.test.changes);
+						assert.equal(s.string.value, "test");
+						assert.equal(s.string.value, s.string.ovalue);
+						s.string.value = "nochange";
+						s.field.value = "strings";
+						assert.equal(s.string.value, "nochange");
+						assert.equal(UCI.$getChanges().length, 2);
+						// delete the string change
+						UCI.$getChanges().find(function(x){
+							return x.option == "string";
+						}).$delete();
+						assert.equal(s.string.value, "test");
+						assert.equal(UCI.$getChanges().length, 1);
+						s.string.value = "beforedelete";
+						assert.equal(UCI.$getChanges().length, 2);
+						// try deleting the whole section
+						s.$delete();
+						assert.equal(UCI.$getChanges().length, 1);
+						// and reverting the change
+						UCI.$getChanges().find(function(x){
+							return x.type == "delete" && x.section == "changes";
+						}).$delete();
+						console.log(JSON.stringify(UCI.$getChanges()));
+						assert.equal(UCI.$getChanges().length, 2);
+						done();
+					}).fail(function(){
+						assert(false);
+						done();
+					});
+				}).fail(function(){
+					assert(false);
+					done();
+				});
 			}).fail(function(){
 				assert(false);
 				done();

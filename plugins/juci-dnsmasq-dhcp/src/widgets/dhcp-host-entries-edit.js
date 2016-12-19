@@ -17,6 +17,7 @@
 JUCI.app.directive("dhcpHostEntriesEdit", function(){
 	return {
 		scope: {
+			// ngModel is dhcp "domain" type
 			model: "=ngModel"
 		},
 		templateUrl: "/widgets/dhcp-host-entries-edit.html",
@@ -39,7 +40,6 @@ JUCI.app.directive("dhcpHostEntriesEdit", function(){
 	$scope.onAddressTypeChange = function(value){
 		if(!$scope.model) return;
 		$scope.model.ip.value = "";
-		$scope.model.ip.validator = (value == 'ipv4') ? new $uci.validators.IP4AddressValidator() : new $uci.validators.IP6AddressValidator();
 	};
 	$scope.ipAddressTypes = [
 		{ label: $tr(gettext("IPv4")),	value: "ipv4" },
@@ -47,7 +47,6 @@ JUCI.app.directive("dhcpHostEntriesEdit", function(){
 	];
 	$scope.$watch("model", function onDhcpHostModelChanged(){
 		if(!$scope.model) return;
-		$scope.model.ip.validator = ($scope.model.family.value == 'ipv4') ? new $uci.validators.IP4AddressValidator(): new $uci.validators.IP6AddressValidator();
 		$scope.names = $scope.model.name.value.map(function(name){ return { value: name }});
 	}, false);
 	$scope.$watch("names", function onDhcpHostNamesChanged(){

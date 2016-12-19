@@ -495,9 +495,6 @@
 	(function(){
 		function UCISection(config){
 			this[".config"] = config; 
-			this.__defineSetter__("validator", function(value){
-				this[".user_validator"] = value; 
-			}); 
 		}
 		
 		UCISection.prototype.$update = function(data, opts){
@@ -608,16 +605,7 @@
 				}
 			}); 
 			var type = this[".section_type"]; 
-			// support user defined validators for a section
-			var uval = this[".user_validator"]; 
-			if(uval && uval instanceof Function){
-				try {
-					var e = uval(self); 
-					if(e) errors.push(e); 
-				} catch(e){
-					errors.push(e); 
-				}
-			}
+			// run all available validators for the type
 			if(type && type[".validators"]){
 				type[".validators"].map(function(val){
 					if(!(val instanceof Function)) return; 
@@ -690,16 +678,6 @@
 			self[".name"] = name; 
 			self[".deleted"] = [];
 			self["@all"] = []; 
-			if(!name in section_types) {
-				console.error("Missing type definition for config!");
-				throw new Error("Missing type definition for config "+name); 
-			}
-			
-			// set up slots for all known types of objects so we can reference them in widgets
-			Object.keys(section_types[name]||{}).map(function(type){
-				self["@"+type] = []; 
-			}); 
-			//this["@deleted"] = []; 
 		}
 				
 		UCIConfig.prototype.$commit = function(){
@@ -806,7 +784,6 @@
 				}); 
 				
 				Object.keys(to_delete).map(function(x){
-					if(!to_delete[x]) return;
 					var section = to_delete[x]; 
 					// no point in doing this if section is newly added
 					// or if it has user changes in it but we are not instructed to keep them
@@ -972,8 +949,7 @@
 		}
 		
 		scope.UBUS.uci.configs().done(function(response){
-			var cfigs = response.configs; 
-			if(!cfigs) { console.error("No configs found!"); deferred.reject(); return; }
+			var cfigs = response.configs || []; 
 			cfigs.map(function(k){
 				if(!(k in section_types)) {
 					UCI_DEBUG("Missing type definition for config "+k); 
@@ -1078,19 +1054,18 @@
 				if(!ch.section || self[x][ch.section][".new"]) return;
 				Object.keys(ch.values).map(function(opt){
 					var o = self[x][ch.section][opt]; 
-					if(o && o.dirty){
-						changes.push({
-							type: "set", 
-							config: self[x][".name"], 
-							section: self[x][ch.section][".name"],
-							option: opt, 
-							uvalue: o.uvalue, 
-							ovalue: o.ovalue,
-							$delete: function(){
-								o.$reset();	
-							}
-						}); 
-					}
+					// in this case o will always be dirty since it has been added to the write requests
+					changes.push({
+						type: "set", 
+						config: self[x][".name"], 
+						section: self[x][ch.section][".name"],
+						option: opt, 
+						uvalue: o.uvalue, 
+						ovalue: o.ovalue,
+						$delete: function(){
+							o.$reset();	
+						}
+					}); 
 				}); 
 			});
 		});
@@ -1168,14 +1143,14 @@
 						console.error("Could not sync config "+cf); 
 						next(); // continue because we want to sync as many as we can!
 					}); 
-				}, function(err){
-					next(err); 
+				}, function(){
+					next(); 
 				}); 
 			}
-		], function(err){
+		], function(){
 			setTimeout(function(){ // in case async did not defer
-				if(err) deferred.reject(err); 
-				else deferred.resolve(); 
+				// sync actually always resolves because we do not stop when we can not sync some config
+				deferred.resolve(); 
 			}, 0); 
 		}); 
 		return deferred.promise(); 

@@ -54,6 +54,10 @@ UCI.dhcp.$registerSectionType("domain", {
 	"name":		{ dvalue: [], type: Array, },
 	"ip":		{ dvalue: "", type: String, required: true },  // TODO: change to ip address
 	"family":	{ dvalue: "ipv4", type: String, required: true }
+}, function(section){
+	// this is very bad design on the dhcpmasq side  
+	var validator = (section.family.value == 'ipv4') ? new UCI.validators.IP4AddressValidator() : new UCI.validators.IP6AddressValidator();
+	return validator.validate({value: section.ip.value});
 });
 UCI.dhcp.$registerSectionType("host", {
 	"name":		{ dvalue: "", type: String, required: false},
