@@ -1,11 +1,13 @@
-/*global.JSON = require("JSON"); 
-global.async = require("async"); 
-global.$ = global.jQuery = require("jquery-deferred"); 
-global.$.ajax = require("najax"); 
-global.async = require("async"); 
-global.watch = require("watchjs").watch; 
-global.expect = require("expect.js"); 
-*/
+/**
+ * This is a unit test for uci module.
+ *
+ * Author: Martin Schröder <mkschreder.uk@gmail.com>
+ *
+ * This test attempts to test most of the uci module. Get coverage by running
+ * tests from parent directory like this: 
+ *
+ * istanbul cover _mocha -- -u exports -R tap
+ */
 
 // simulated config database 
 var CONFIG = {
