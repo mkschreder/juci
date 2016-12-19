@@ -834,7 +834,9 @@
 
 			//self[".need_commit"] = true; 
 			UCI_DEBUG("Removing section "+JSON.stringify(section[".name"])); 
-			self[".deleted"].push(section);
+			// if section has just been added then there is no point in adding it to the deleted list
+			if(!section[".new"])
+				self[".deleted"].push(section);
 			_unlinkSection(self, section);
 			setTimeout(function(){ deferred.resolve(); }, 0);
 			return deferred.promise(); 
@@ -1017,7 +1019,7 @@
 						type: "add",
 						config: self[x][".name"], 
 						section_type: section[".type"],
-						section: section[".customname"] || "N/A",
+						section: section[".customname"],
 						values: values,
 						// a function so that it does not end up in the json
 						get_section: function(){
