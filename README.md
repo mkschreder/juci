@@ -1,10 +1,10 @@
 JUCI Webgui for Embedded Routers
 --------------------------------
 
-	Date: 01 Aug 2016
+	Date: 19 Dec 2016
 	Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
-* Latest version of juci is v2.16.08 
+* Latest version of juci is v2.16.12
 * Juci feed for openwrt with all other packages that juci depends on can be found here: https://github.com/mkschreder/juci-openwrt-feed.git
 
 Update: new build instructions available! 
