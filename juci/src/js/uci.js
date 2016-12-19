@@ -759,7 +759,10 @@
 			if(!opts) opts = {}; 
 			
 			if(!opts.reload && self.deferred && self.deferred.state() != "rejected") return self.deferred.promise(); 
-			
+	
+			// keeping user changes is default unless specified otherwise
+			if(opts.keep_user_changes == undefined) opts.keep_user_changes = true;
+
 			self.deferred = deferred; 
 
 			if(!scope.UBUS || !scope.UBUS.uci) {
@@ -802,14 +805,14 @@
 					delete to_delete[k]; 
 				}); 
 				
-				// now delete any section that no longer exists in our local cache
-				if(!opts.keep_user_changes) {
-					Object.keys(to_delete).map(function(x){
-						if(!to_delete[x]) return;
-						var section = to_delete[x]; 
+				Object.keys(to_delete).map(function(x){
+					if(!to_delete[x]) return;
+					var section = to_delete[x]; 
+					// no point in doing this if section is newly added
+					// or if it has user changes in it but we are not instructed to keep them
+					if((!section[".new"] || opts.keep_user_changes == false) && (Object.keys(section.$getChangedValues()).length == 0))
 						_unlinkSection(self, section); 
-					});
-				}
+				});
 				deferred.resolve();
 			}).fail(function(){
 				deferred.reject(); 
