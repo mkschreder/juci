@@ -224,61 +224,7 @@
 						}
 					},
 					resolve: {
-						/*isAuthenticated: function($rpc){
-							var def = $.Deferred(); 
-							// this will touch the session so that it does not expire
-							$rpc.$authenticate().done(function(){
-								def.resolve(true); 
-							}).fail(function(){
-								def.resolve(false); 
-							});
-							return def.promise(); 
-						},*/ 
-						/*
-						saveChangesOnExit: function($uci, $tr, gettext){
-							var def = $.Deferred(); 
-							// this will remove any invalid data when user tries to leave a page and revert changes that have resulted in errors. 
-							// it is good to do this as a way to go along with the element of "Least Surprise" and avoid the nag dialog that would 
-							// otherwise ask the user to fix the errors.. 
-							try { 
-								$uci.$autoCleanInvalidConfigs().done(function(){
-									def.resolve(); 
-								}).fail(function(){
-									def.reject(); 
-								}); 
-							} catch(e){
-								alert("Error while auto cleaning configs. This should not happen. "+e); 
-							}
-							var errors = $uci.$getErrors(); 
-							if(errors.length > 0){
-								if(confirm($tr(gettext("There are errors in your current configuration. "+
-									"Please try applying them manually and fixing any errors before leaving this page! Following errors have been found: \n\n"+errors.join("\n"))))){
-									def.reject(); 
-								} else {
-									def.resolve(); 
-								}
-							} else {
-								def.resolve(); 
-							}							}
-							return def.promise(); 
-						}
-						*/
 					},
-					// Perfect! This loads our controllers on demand! :) 
-					// Leave this code here because it serves as a valuable example
-					// of how this can be done. 
-					/*resolve: {
-						deps : function ($q, $rootScope) {
-							var deferred = $q.defer();
-							require([plugin_root + "/" + page.view + ".js"], function (tt) {
-								$rootScope.$apply(function () {
-										deferred.resolve();
-								});
-								deferred.resolve()
-							});
-							return deferred.promise;
-						}
-					},*/
 					// this function will run upon load of every page in the gui
 					onEnter: function($uci, $window, $rootScope, $tr, gettext){
 						if(page.redirect) {
@@ -372,7 +318,8 @@
 	UCI.juci.$registerSectionType("juci", {
 		"homepage": 		{ dvalue: "overview", type: String },
 		"language_debug":	{ dvalue: false, type: String },
-		"default_language": { dvalue: "en", type: String }
+		"default_language": { dvalue: "en", type: String },
+		"logout_timeout": 	{ dvalue: 60000, type: Number } // we set this to 1m by default. 
 	}); 
 	UCI.juci.$insertDefaults("juci"); 
 

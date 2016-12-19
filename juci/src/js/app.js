@@ -67,7 +67,21 @@ JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $
 })
 .run(function($rootScope, $state, gettextCatalog, $tr, gettext, $rpc, $config, $location, $navigation, $templateCache, $languages){
 	console.log("juci: angular init"); 
-	
+
+	// automatic logout
+	(function(){
+		function do_logout(){
+			$rpc.$logout().done(function(){
+				window.location.reload();
+			});
+		}
+		var timeout = setTimeout(do_logout, $config.settings.juci.logout_timeout.value || 60000);
+		window.onmousemove = function(){
+			clearTimeout(timeout);
+			timeout = setTimeout(do_logout, $config.settings.juci.logout_timeout.value || 60000);
+		}
+	})();
+
 	// TODO: maybe use some other way to gather errors than root scope? 
 	$rootScope.errors = []; 
 	
