@@ -242,7 +242,7 @@
 				function hasDuplicates(arr){
 					var sorted_list = arr.sort();
 					for(var i = 0; i < sorted_list.length -1; i++){
-						if(sorted_list[i+1] == sorted_list[i]) return true;
+						if(sorted_list[i+1] == sorted_list[i] && (typeof sorted_list[i+1] == typeof sorted_list[i])) return true;
 					}
 					return false;
 				};
@@ -259,18 +259,19 @@
 				}
 
 				var errors = field.value.map(function(x){
+					// check that validator is not a validator type
 					if(!validator.validate){
 						// check if we have a basic type
 						var v = itemValidator;
-						if(v == String || v == Number || v == Boolean){
-							if(typeof x != typeof v()){
-								UCI_DEBUG("value "+x+" not instance of "+v);
-								notsame = true;
-							}
+						// this is ok because we have already checked above that itemValidator is a function
+						if(typeof x != typeof v()){
+							UCI_DEBUG("value "+x+" not instance of "+v);
+							notsame = true;
 						}
-						return null; 
+					} else {
+						return validator.validate({value: x}); 
 					}
-					return validator.validate({value: x}); 
+					return null;
 				}).filter(function(x){ return !!x;}); 
 
 				if(notsame) return gettext("All items in the array must have the same type");
@@ -418,9 +419,10 @@
 				} else if(this.schema.type == Boolean){
 					// for booleans we need to take into account what the config expects
 					// some configs use yes/no, some on/off, some 0/1 or "true"/"false"
-					var oval = null;
+					var oval;
 					if(this.ovalue != undefined) oval = this.ovalue;
 					else if(this.dvalue != undefined) oval = this.dvalue;
+					else oval = false; // this should never occur under normal conditions
 
 					if(["on", "off"].indexOf(oval) != -1) { 
 						this.uvalue = (val)?"on":"off"; 
@@ -528,7 +530,7 @@
 				config: self[".config"][".name"], 
 				section: self[".name"]
 			}).done(function(data){
-				if(data.values == undefined){
+				if(!data || data.values == undefined){
 					deferred.reject();
 					return;
 				}
@@ -624,6 +626,39 @@
 		}
 		UCI.Section = UCISection; 
 	})(); 
+		
+		function _insertSection(self, section){
+			//UCI_DEBUG("Adding local section: "+self[".name"]+"."+item[".name"]); 
+			// experimental feature for hiding sections from interface 
+			var type = "@"+section[".type"]; 
+			self[type].push(section); 
+			self["@all"].push(section); 
+			// name will pretty much always be defined. But we check just to avoid programmer errors
+			if(section[".name"]) 
+				self[section[".name"]] = section;  
+		}
+		
+		function _unlinkSection(self, section){
+			// NOTE: can not use filter() because we must edit the list in place 
+			// in order to play well with controls that reference the list! 
+			UCI_DEBUG("Unlinking local section: "+self[".name"]+"."+section[".name"]+" of type "+section[".type"]); 
+			var all = self["@all"]||[]; 
+			for(var i = 0; i < all.length; i++){
+				if(all[i][".name"] === section[".name"]) {
+					all.splice(i, 1); 
+					break; 
+				}; 
+			}
+			var jlist = self["@"+section[".type"]]||[]; 
+			for(var j = 0; j < jlist.length; j++){
+				if(jlist[j][".name"] === section[".name"]) {
+					jlist.splice(j, 1); 
+					break; 
+				}
+			}
+			if(section[".name"]) delete self[section[".name"]]; 
+		}
+
 	(function(){
 		function UCIConfig(uci, name){
 			var self = this; 
@@ -642,44 +677,7 @@
 			}); 
 			//this["@deleted"] = []; 
 		}
-		
-		function _insertSection(self, item){
-			// experimental feature for hiding sections from interface 
-			if(item["do_not_edit"] || item["juci_hide"]) return; 
-
-			//UCI_DEBUG("Adding local section: "+self[".name"]+"."+item[".name"]); 
-			var section = new UCI.Section(self); 
-			section.$update(item); 
-			var type = "@"+item[".type"]; 
-			self[type].push(section); 
-			self["@all"].push(section); 
-			// name will pretty much always be defined. But we check just to avoid programmer errors
-			if(item[".name"]) 
-				self[item[".name"]] = section; 
-			return section; 
-		}
-		
-		function _unlinkSection(self, section){
-			// NOTE: can not use filter() because we must edit the list in place 
-			// in order to play well with controls that reference the list! 
-			UCI_DEBUG("Unlinking local section: "+self[".name"]+"."+section[".name"]+" of type "+section[".type"]); 
-			var all = self["@all"]; 
-			for(var i = 0; i < all.length; i++){
-				if(all[i][".name"] === section[".name"]) {
-					all.splice(i, 1); 
-					break; 
-				}; 
-			}
-			var jlist = self["@"+section[".type"]]||[]; 
-			for(var j = 0; j < jlist.length; j++){
-				if(jlist[j][".name"] === section[".name"]) {
-					jlist.splice(j, 1); 
-					break; 
-				}
-			}
-			if(section[".name"]) delete self[section[".name"]]; 
-		}
-			
+				
 		UCIConfig.prototype.$commit = function(){
 			var errors = [];
 			var self = this;  
@@ -759,17 +757,21 @@
 			scope.UBUS.uci.get({
 				config: self[".name"]
 			}).done(function(data){
-				var vals = data.values;
-				if(vals == undefined){
+				if(!data || data.values == undefined){
 					deferred.reject(); 
 					return;
 				}
+				var vals = data.values;
 				// go through each section in the result and update it
 				Object.keys(vals).filter(function(x){
 					return vals[x][".type"] in section_types[self[".name"]]; 
 				}).map(function(k){
-					if(!(k in self)) _insertSection(self, vals[k]); 
-					else {
+					if(!(k in self)) {
+						if(vals[k]["do_not_edit"] || vals[k]["juci_hide"]) return; 
+						var section = new UCI.Section(self);
+						section.$update(vals[k]);
+						_insertSection(self, section); 
+					} else {
 						var section = self[vals[k][".name"]]; 
 						section.$update(vals[k], opts); 
 					}
@@ -815,7 +817,9 @@
 			// insert a default section with the same name as the type
 			// this allows us to use $uci.config.section.setting.value without having to first check for the existence of the section.
 			// we will get defaults by default and if the section exists in the config file then we will get the values from the config.
-			_insertSection(this, { ".type": typename, ".name": sectionname});  
+			var section = new UCI.Section(this);
+			section.$update({ ".type": typename, ".name": sectionname});
+			_insertSection(this, section);  
 		}
 
 		UCIConfig.prototype.$deleteSection = function(section){
@@ -876,7 +880,9 @@
 				item[".name"] = String((new Date()).getTime());
 				anon = true;
 			}
-			var section = _insertSection(self, item);
+			var section = new UCI.Section(self);
+			section.$update(item);
+			_insertSection(self, section);
 			section[".new"] = true;
 			if(!anon) section[".customname"] = item[".name"];
 			UCI_DEBUG("Adding: "+section[".name"]+" to "+self[".name"]+": "+JSON.stringify(values)); 
@@ -1011,21 +1017,32 @@
 						type: "add",
 						config: self[x][".name"], 
 						section_type: section[".type"],
-						section: section[".customname"],
+						section: section[".customname"] || "N/A",
 						values: values,
 						// a function so that it does not end up in the json
 						get_section: function(){
 							return section;
+						},
+						$delete: function(){
+							// this reverts adding a new section	
+							_unlinkSection(self[x], section);
 						}
 					}); 
 				} 
 			});
 			// add deleted sections
-			self[x][".deleted"].map(function(section){
+			self[x][".deleted"].map(function(section, i){
 				changes.push({ 
 					type: "delete",
 					config: self[x][".name"], 
 					section: section[".name"],
+					$delete: function(){
+						// this reverts deleting a section (we put the section back into the lists)
+						_insertSection(self[x], section);
+						// remove from deleted list
+						self[x][".deleted"].splice(i, 1);
+						delete section[".deleted"];
+					}
 				}); 
 			}); 
 			self[x].$getWriteRequests().map(function(ch){
@@ -1039,7 +1056,10 @@
 							section: self[x][ch.section][".name"],
 							option: opt, 
 							uvalue: o.uvalue, 
-							ovalue: o.ovalue
+							ovalue: o.ovalue,
+							$delete: function(){
+								o.$reset();	
+							}
 						}); 
 					}
 				}); 
@@ -1080,7 +1100,7 @@
 		});
 	}
 */	 
-	UCI.prototype.$sync = function(configs){
+	UCI.prototype.$sync = function(configs, do_reload){
 		var deferred = $.Deferred(); 
 		var self = this; 
 	
@@ -1112,7 +1132,7 @@
 						return; 
 					} 
 					// sync the config
-					self[cf].$sync().done(function(){
+					self[cf].$sync({ reload: do_reload }).done(function(){
 						UCI_DEBUG("Synched config "+cf); 
 						next(); 
 					}).fail(function(){

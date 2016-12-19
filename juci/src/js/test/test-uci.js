@@ -13,7 +13,11 @@ var CONFIG = {
 		"default": {
 			".type": "test",
 			".name": "default",
-			"field": "value"
+			"field": "value",
+			"array": "juststring",
+			"uniquearray": [0, 1, 2],
+			"number": null,
+			"ip4field": undefined
 		},
 		"hidden": {
 			".type": "test",
@@ -189,13 +193,18 @@ UCI.test.$registerSectionType("test", {
 	"uniqueboolarr": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(Boolean, true) },
 	"invarray": { dvalue: ["foo","bar"], type: Array, validator: UCI.validators.ArrayValidator(InvalidValidator) },
 	"bool": { dvalue: false, type: Boolean },
+	"boolnodval": { type: Boolean },
 	"boolyesno": { dvalue: "yes", type: Boolean },
 	"boolonoff": { dvalue: "on", type: Boolean },
 	"booltf": { dvalue: "true", type: Boolean },
 	"nodefault": { type: Boolean },
 	// invalid combinations
 	// invalid type and validator combination
-	"invarr": { dvalue: [], type: String, validator: UCI.validators.ArrayValidator(String, true) },
+	"invarr": { dvalue: "", type: String, validator: UCI.validators.ArrayValidator(String, true) },
+	"invarrdnull": { dvalue: null, type: Array, validator: UCI.validators.ArrayValidator(String, true) },
+	"invarrnull": { dvalue: "", type: null, validator: UCI.validators.ArrayValidator(String, true) },
+	"invnotype": { },
+	"invarritem": { dvalue: [], type: Array, validator: UCI.validators.ArrayValidator(123, true) },
 	// invalid validator (not a function)
 	"invval": { dvalue: [], type: String, validator: {"test":"bar"} },
 });
@@ -228,6 +237,11 @@ describe("check no rpc", function(){
 			},
 			function(next){
 				UCI.test.$sync().done(function(){ assert(false); }).always(function(){
+					next();
+				});
+			},
+			function(next){
+				UCI.test.defsec.$sync().done(function(){ assert(false); }).always(function(){
 					next();
 				});
 			},
@@ -268,9 +282,14 @@ describe("Basic test", function(){
 		UCI.$sync().done(function(){
 			assert(UCI.test);	
 			assert(UCI.test.default);	
-			assert.equal(UCI.test.default.field.value, "value");	
-			assert.equal(UCI.test.default.ip4field.value, "test");	
-			assert.equal(UCI.test.default.time.value, "00:00");	
+			var s = UCI.test.default;
+			assert.equal(s.field.value, "value");	
+			assert.equal(s.ip4field.value, "test");	
+			assert.equal(s.time.value, "00:00");	
+			// array should be converted into an array
+			assert(s.array.value instanceof Array);	
+			assert.equal(s.array.value[0], "juststring");	
+			assert.equal(s.uniquearray.value[1], 1);	
 			done();
 		}).fail(function(){
 			done(new Error("unable to sync config"));
@@ -366,7 +385,7 @@ describe("Section operations", function(){
 			"string": "another"
 		};
 
-		UCI.$mark_for_reload();
+		// we pass second argument that signal that we want to reload
 		UCI.$sync(["test", "somegarbage"], true).done(function(){
 			var s = UCI.test.newsection;
 			var s2 = UCI.test.newsection2;
@@ -377,7 +396,6 @@ describe("Section operations", function(){
 			done();
 		});
 	});
-
 	it("simulate field modification on backend and a single section reload", function(done){
 		var s = UCI.test.newsection;
 		assert.equal(s.string.value, "mystring");
@@ -399,6 +417,32 @@ describe("Section operations", function(){
 			assert(s);	
 			assert(!s2);	
 			assert.equal(s.string.value, "mystring");	
+		}).always(function(){
+			done();
+		});
+	});
+
+	// TODO: maybe mark_for_reload should actually be made deprecated now that we have argument passed to $sync..
+	it("simulate usage of mark_for_reload", function(done){
+		CONFIG.test.newsection = {
+			".type": "test",
+			".name": "newsection",
+			"string": "mystring2"
+		};
+		CONFIG.test.newsection2 = {
+			".type": "test",
+			".name": "newsection2",
+			"string": "another2"
+		};
+
+		// we pass second argument that signal that we want to reload
+		UCI.$mark_for_reload();
+		UCI.$sync(["test", "somegarbage"]).done(function(){
+			var s = UCI.test.newsection;
+			var s2 = UCI.test.newsection2;
+			assert(s);	
+			assert.equal(s.string.value, "mystring2");	
+			assert.equal(s2.string.value, "another2");	
 		}).always(function(){
 			done();
 		});
@@ -542,6 +586,72 @@ describe("Section operations", function(){
 			assert.equal(f.value, f.dvalue);
 
 			UCI.test.$reset();
+			done();
+		});
+	});
+
+	/**
+	 * This test checks for possibility to delete individual changes fron the
+	 * list of changes such that these can be reverted. Special handling needs
+	 * to be done when reverting an added or deleted section. This is handled
+	 * by the uci module. 
+	 */
+	it("reverting individual changes", function(done){
+		// we will do the test in this order
+		// 1) add a new section and modify some fields in it and then delete
+		// the change. It should be one change (instead of being multiple set
+		// commands) because the section is newly added. 
+		// 2) save the config and now modify a field in the newly added section
+		// and then try deleting each change to revert the field to ovalue
+		// (current value stored in uci)
+		// 3) now with changes still pending we try to delete the section and
+		// make sure that our changes to individual fields are no longer in the
+		// list of changes and are replaced with only one change that deletes
+		// the section. We should now be able to revert this change and should
+		// once again see all modifications to the fields in the list of
+		// changes. 
+		assert.equal(UCI.$getChanges().length, 0);
+		UCI.test.$create({
+			".type": "test",
+			".name": "changes"
+		}).done(function(section){
+			var s = UCI.test.changes;
+			assert.equal(UCI.$getChanges().length, 1);
+			// try to modify some fields
+			s.string.value = "changes";
+			assert.equal(UCI.$getChanges().length, 1);
+			// save the config
+			UCI.$save().done(function(){
+				assert.equal(s.string.value, "changes");
+				assert.equal(s.string.value, s.string.ovalue);
+				s.string.value = "nochange";
+				s.field.value = "strings";
+				assert.equal(s.string.value, "nochange");
+				assert.equal(UCI.$getChanges().length, 2);
+				// delete the string change
+				UCI.$getChanges().find(function(x){
+					return x.option == "string";
+				}).$delete();
+				assert.equal(s.string.value, "changes");
+				assert.equal(UCI.$getChanges().length, 1);
+				s.string.value = "beforedelete";
+				assert.equal(UCI.$getChanges().length, 2);
+				// try deleting the whole section
+				s.$delete();
+				assert.equal(UCI.$getChanges().length, 1);
+				// and reverting the change
+				UCI.$getChanges().find(function(x){
+					return x.type == "delete" && x.section == "changes";
+				}).$delete();
+				console.log(JSON.stringify(UCI.$getChanges()));
+				assert.equal(UCI.$getChanges().length, 2);
+				done();
+			}).fail(function(){
+				assert(false);
+				done();
+			});
+		}).fail(function(){
+			assert(false);
 			done();
 		});
 	});
@@ -964,6 +1074,10 @@ describe("Field operations", function(){
 		assert.equal(UCI.$getErrors().length, 0);
 		s.uniquenumarr.value = ["two", "items", 123, 456];
 		assert.equal(UCI.$getErrors().length, 1);
+		s.uniquenumarr.value = ["two", "items", null];
+		assert.equal(UCI.$getErrors().length, 1);
+		s.uniquenumarr.value = [null, null, null];
+		assert.equal(UCI.$getErrors().length, 1);
 		s.uniquenumarr.value = [11, 11];
 		assert.equal(UCI.$getErrors().length, 1);
 		s.uniquenumarr.value = [11, 10];
@@ -987,12 +1101,14 @@ describe("Field operations", function(){
 		s.boolonoff.value = true;
 		s.boolyesno.value = true;
 		s.booltf.value = true;
+		s.boolnodval.value = true;
 		UCI.$save().done(function(){
 			var conf = CONFIG.test[s[".name"]];
 			assert.equal(conf.bool, true);
 			assert.equal(conf.boolonoff, "on");
 			assert.equal(conf.boolyesno, "yes");
 			assert.equal(conf.booltf, "true");
+			assert.equal(conf.boolnodval, true);
 
 			s.bool.value = false;
 			s.boolonoff.value = false;
@@ -1067,5 +1183,30 @@ describe("UCI section ordering: ", function(){
 			done();
 		});
 	});
+});
 
+/**
+ * The purpose of this test is to document existing error handling and just to
+ * make sure we cover all error handling paths that are currently coded into
+ * the uci module. Some of the error handling code may never even run in
+ * production, but it's still good to keep it around. These tests make sure we
+ * cover all of that code and get 100% test coverage (which is good because if
+ * error handling code contains a coding error that makes the handler crash
+ * then it is not a good error handling block. 
+ */
+describe("various error handling", function(){
+	it("errors", function(done){
+		var s = UCI.test.mysection;
+
+		s.invarr.value = "asdf";
+		s.invarritem.value = ["asdf"];
+		s.invarritem.value = ["asdf"];
+		s.invnotype.value = true;
+		
+		assert.equal(s.invnotype.value, undefined);
+		// since fields are invalid we should only get a console printout but still allow them to be there
+		assert.equal(UCI.$getErrors().length, 0);
+
+		done();
+	});
 });

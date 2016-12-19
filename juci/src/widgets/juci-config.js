@@ -129,8 +129,9 @@ JUCI.app
 			on_apply: function(btn, inst){
 				if(!model.reverted) return true;
 				model.reverted.map(function(x){
-					if(!$uci[x.config] || !$uci[x.config][x.section] || !$uci[x.config][x.section][x.option] || !$uci[x.config][x.section][x.option].$reset) return;
-					$uci[x.config][x.section][x.option].$reset();
+					x.$delete();
+					//if(!$uci[x.config] || !$uci[x.config][x.section] || !$uci[x.config][x.section][x.option] || !$uci[x.config][x.section][x.option].$reset) return;
+					//$uci[x.config][x.section][x.option].$reset();
 				});
 				return true;
 			},

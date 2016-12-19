@@ -3,6 +3,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
+					<th translate>Type</th>
 					<th translate>Config</th>
 					<th translate>Section</th>
 					<th translate>Option</th>
@@ -13,12 +14,13 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in model.changes track by $index">
+					<td>{{item.type|uppercase}}</td>
 					<td>{{item.config|maxlength:30}}</td>
-					<td>{{item.section|maxlength:30}}</td>
+					<td>{{(item.section || "-")|maxlength:30}}</td>
 					<td>{{item.option|maxlength:30}}</td>
 					<td>{{item.ovalue|maxlength:30}}</td>
 					<td>{{item.uvalue|maxlength:30}}</td>
-					<td><span ng-show="item.type == 'option'" ng-click="onRevertOption($index)" style="cursor:pointer;"><i class="fa fa-trash"></i></span></td>
+					<td><span ng-click="onRevertOption($index)" style="cursor:pointer;"><i class="fa fa-trash"></i></span></td>
 				</tr>
 			</tbody>
 		</table>
