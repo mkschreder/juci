@@ -730,7 +730,12 @@
 		UCIConfig.prototype.$mark_for_reload = function(){
 			this.deferred = null; 
 		}
-		
+	
+		// this is just a shortcut
+		UCIConfig.prototype.$reload = function(){
+			return this.$sync({ reload: true });
+		}
+
 		UCIConfig.prototype.$sync = function(opts){
 			var deferred = $.Deferred(); 
 			var self = this; 
@@ -1073,7 +1078,6 @@
 		return changes; 
 	}
 
-	// marks all configs for reload on next sync of the config 
 	UCI.prototype.$reset = function(){
 		var self = this; 
 		Object.keys(self).map(function(x){ 
@@ -1082,6 +1086,7 @@
 		}); 
 	}
 
+	// marks all configs for reload on next sync of the config 
 	UCI.prototype.$mark_for_reload = function(){
 		var self = this; 
 		Object.keys(self).map(function(x){ 
