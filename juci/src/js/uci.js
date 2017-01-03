@@ -459,7 +459,7 @@
 					} else if(["0", "1"].indexOf(oval) != -1) { 
 						this.uvalue = (val)?"1":"0"; 
 					} else {
-						this.uvalue = !!val;
+						//this.uvalue = !!val;
 					}
 				} else if(self.schema.type == Array){
 					if(val.length == undefined || !(val instanceof Array)){ // TODO: maybe do better identification of arrays (they appear as objects)

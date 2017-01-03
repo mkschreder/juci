@@ -199,6 +199,7 @@ UCI.test.$registerSectionType("test", {
 	"bool": { dvalue: false, type: Boolean },
 	"boolnodval": { type: Boolean },
 	"boolyesno": { dvalue: "yes", type: Boolean },
+	"boolonezero": { dvalue: "1", type: Boolean },
 	"boolonoff": { dvalue: "on", type: Boolean },
 	"booltf": { dvalue: "true", type: Boolean },
 	"nodefault": { type: Boolean },
@@ -1272,6 +1273,7 @@ describe("Field operations", function(){
 		s.bool.value = true;
 		s.boolonoff.value = true;
 		s.boolyesno.value = true;
+		s.boolonezero.value = true;
 		s.booltf.value = true;
 		s.boolnodval.value = true;
 		UCI.$save().done(function(){
@@ -1279,22 +1281,26 @@ describe("Field operations", function(){
 			assert.equal(conf.bool, true);
 			assert.equal(conf.boolonoff, "on");
 			assert.equal(conf.boolyesno, "yes");
+			assert.equal(conf.boolonezero, "1");
 			assert.equal(conf.booltf, "true");
 			assert.equal(conf.boolnodval, true);
 
 			s.bool.value = false;
 			s.boolonoff.value = false;
 			s.boolyesno.value = false;
+			s.boolonezero.value = false;
 			s.booltf.value = false;
 			UCI.$save().done(function(){
 				assert.equal(conf.bool, false);
 				assert.equal(conf.boolonoff, "off");
 				assert.equal(conf.boolyesno, "no");
+				assert.equal(conf.boolonezero, "0");
 				assert.equal(conf.booltf, "false");
 
 				assert.equal(s.bool.value, false);
 				assert.equal(s.boolonoff.value, false);
 				assert.equal(s.boolyesno.value, false);
+				assert.equal(s.boolonezero.value, false);
 				assert.equal(s.booltf.value, false);
 			}).always(function(){
 				done();
