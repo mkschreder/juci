@@ -1069,8 +1069,8 @@
 						config: self[x][".name"], 
 						section: self[x][ch.section][".name"],
 						option: opt, 
-						uvalue: o.uvalue, 
-						ovalue: o.ovalue,
+						uvalue: String(o.uvalue), 
+						ovalue: String(o.ovalue),
 						$delete: function(){
 							o.$reset();	
 						}
