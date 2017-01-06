@@ -37,7 +37,7 @@ JUCI.app
 
 UCI.$registerConfig("minidlna");
 UCI.minidlna.$registerSectionType("minidlna", {
-	"enabled":          { dvalue: 0, type: Number },
+	"enabled":          { dvalue: true, type: Boolean },
 	"port":         	{ dvalue: "", type: Number },
 	"interface":        { dvalue: "", type: String },
 	"friendly_name":    { dvalue: "", type: String },
