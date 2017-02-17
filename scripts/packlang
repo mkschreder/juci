@@ -6,7 +6,7 @@ fi
 
 LANG="$1"
 TRANSDIR=translations
-for file in `find . -name "$LANG.po"`; do
+for file in `find $2 . -name "$LANG.po"`; do
 	mkdir -p "$TRANSDIR/$(dirname $file)"
 	cp -p "$file" "$TRANSDIR/$file"
 done
