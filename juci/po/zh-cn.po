@@ -1,0 +1,282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh-cn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "OK"
+msgstr ""
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Invalid command"
+msgstr "无效的命令"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Invalid parameters"
+msgstr "无效的参数"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Method not found"
+msgstr "找不到页面"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Object not found"
+msgstr "找不到对象"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "No data"
+msgstr "没有数据"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Access denied"
+msgstr "拒绝访问"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Timed out"
+msgstr "超时"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Not supported"
+msgstr "不支持"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Unknown error"
+msgstr "未知错误"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "Connection failed"
+msgstr "连接失败"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "RPC error #"
+msgstr "RPC错误 #"
+
+# /data/intranet/software/juci/juci//src/js/rpc.js
+msgid "You have been logged out due to inactivity"
+msgstr "您由于不活动而被注销"
+
+# /data/intranet/software/juci/juci//src/js/uci.js
+msgid "please specify both hour and minute value for time separated by ':'"
+msgstr "请指定由”：“分隔的时间的小时和分钟值"
+
+# /data/intranet/software/juci/juci//src/js/uci.js
+msgid "please enter valid time in form hh:mm"
+msgstr "请输入有效的时间，格式为hh：mm"
+
+# /data/intranet/software/juci/juci//src/js/uci.js
+msgid "Please specify both start time and end time for schedule!"
+msgstr "请指定计划的开始时间和结束时间！"
+
+# /data/intranet/software/juci/juci//src/js/uci.js
+msgid "Schedule start time must be lower than schedule end time!"
+msgstr "计划开始时间必须低于计划结束时间！"
+
+# /data/intranet/software/juci/juci//src/js/uci.js
+msgid "Please pick days between mon-sun"
+msgstr "请选择天之间的星期日"
+
+# /data/intranet/software/juci/juci//src/js/uci.js
+msgid ""
+"Port value must be a valid port number or port range between 1 and 65536"
+msgstr "端口值必须是有效的端口号或端口范围在1和65536之间"
+
+# /data/intranet/software/juci/juci//src/js/uci.js
+msgid "Number value is not within valid range"
+msgstr "数值不在有效范围内"
+
+msgid "application.name"
+msgstr "JUCI"
+
+msgid "Settings have been applied successfully!"
+msgstr "设置已成功应用"
+
+msgid "Apply"
+msgstr "应用"
+
+msgid "Cancel"
+msgstr "撤销"
+
+msgid "Please enter correct username and password!"
+msgstr "请输入正确的用户名和密码!"
+
+msgid "Basic Mode"
+msgstr "基本模式"
+
+msgid "Expert Mode"
+msgstr "专家模式"
+
+msgid "Individual Days"
+msgstr "个人日"
+
+msgid "Every Day"
+msgstr "每天"
+
+msgid "Every Workday"
+msgstr "每个工作日"
+
+msgid "All Weekend"
+msgstr "所有周末"
+
+msgid "Monday"
+msgstr "星期一"
+
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "星期五"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "星期天"
+
+msgid "-- Select One --"
+msgstr "-- 选择一个 --"
+
+msgid "Start port"
+msgstr "开始端口"
+
+msgid "End port"
+msgstr "结束端口"
+
+msgid "Port (1-65535)"
+msgstr "端口(1-6555)"
+
+msgid "from"
+msgstr "从"
+
+msgid "to"
+msgstr "到"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Username"
+msgstr "用户名"
+
+msgid "Password"
+msgstr "密码"
+
+msgid "You are logged in!"
+msgstr "您已经登录!"
+
+msgid "Log out"
+msgstr "注销"
+
+msgid "Please sign in"
+msgstr "请登录"
+
+msgid "You do not have an RPC connection to the router!"
+msgstr "您没有连接到RPC服务器!"
+
+msgid "Connecting..."
+msgstr "正在连接..."
+
+msgid "Host"
+msgstr "主机"
+
+msgid "Sign in"
+msgstr "登录"
+
+msgid "Signing in..."
+msgstr "正在登录..."
+
+msgid "Select Mode"
+msgstr "选择模式"
+
+msgid "Toggle navigation"
+msgstr "切换导航"
+
+msgid "Time Frame"
+msgstr "时间帧"
+
+msgid "Preselected Days"
+msgstr "预选天数"
+
+msgid "Days"
+msgstr "天"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Select Theme"
+msgstr "选择主题"
+
+msgid "The page you were trying to access was not found!"
+msgstr "找不到您尝试访问的页面!"
+
+# /data/intranet/software/juci/juci//src/pages/404.html
+msgid "404-title"
+msgstr "404错误"
+
+# /data/intranet/software/juci/juci//src/pages/default.html
+msgid "default-title"
+msgstr "JUCI"
+
+# /data/intranet/software/juci/juci//src/pages/bootstrap.html
+msgid "bootstrap-title"
+msgstr "Bootstrap"
+
+# /data/intranet/software/juci/juci//src/pages/login.html
+msgid "login-title"
+msgstr "登录"
+
+# /data/intranet/software/juci/juci//src/pages/overview.html
+msgid "overview-title"
+msgstr "概述"
+
+# /data/intranet/software/juci/juci//src/pages/404.html
+msgid "menu-404-title"
+msgstr "菜单-404-错误"
+
+# /data/intranet/software/juci/juci//src/pages/default.html
+msgid "menu-default-title"
+msgstr "JUCI"
+
+# /data/intranet/software/juci/juci//src/pages/bootstrap.html
+msgid "menu-bootstrap-title"
+msgstr "Bootstrap"
+
+# /data/intranet/software/juci/juci//src/pages/login.html
+msgid "menu-login-title"
+msgstr "登录"
+
+# /data/intranet/software/juci/juci//src/pages/overview.html
+msgid "menu-overview-title"
+msgstr "Overview"
+
+# share/menu.d/overview.json
+
+# share/menu.d/wifi.json
+
+# share/menu.d/internet.json
+
+# share/menu.d/settings.json
+
+# share/menu.d/settings.json
+
+# share/menu.d/status.vodafone.json
+
+# share/menu.d/status.json
+
+# share/menu.d/status.json
+
