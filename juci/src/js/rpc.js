@@ -229,6 +229,12 @@
 	}
 */	
 	RevoRPC.prototype.$call = function(object, method, data){
+		if((typeof object == "string") && (!method || typeof method == "object")){
+			var parts = object.split(".");
+			data = method;
+			method = parts.pop();
+			object = parts.join(".");
+		}
 		var sid = localStorage.getItem("sid")||RPC_DEFAULT_SESSION_ID; 
 		//data._ubus_session_id = sid; 
 		return this.$request("call", [sid, object, method, data]); 

@@ -22,7 +22,7 @@
 		var sync_hosts = $uci.$sync("hosts"); 
 		function _refreshClients(self){
 			var deferred = $.Deferred(); 
-			$rpc.juci.network.clients().done(function(res){
+			$rpc.$call("juci.network.clients").done(function(res){
 				sync_hosts.done(function(){
 					if(res && res.clients){
 						self.clients = res.clients.map(function(cl){
@@ -152,7 +152,7 @@
 		NetworkBackend.prototype.getNameServers = function(){
 			var deferred = $.Deferred(); 
 			var self = this; 
-			$rpc.juci.network.nameservers().done(function(result){
+			$rpc.$call("juci.network.nameservers").done(function(result){
 				if(result && result.nameservers) deferred.resolve(result.nameservers); 
 				else deferred.reject(); 
 			}); 
