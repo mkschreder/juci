@@ -6,6 +6,18 @@ JUCI Webgui for Embedded Routers
 
 * Latest version of juci is v2.16.12
 * Juci feed for openwrt with all other packages that juci depends on can be found here: https://github.com/mkschreder/juci-openwrt-feed.git
+JUCI architecture looks roughly like this: 
+
+![JUCI Architecture](/media/juci-architecture.jpg)
+
+JUCI frontend is built with html5, angularjs and bootstrap: 
+
+![Desktop](/media/screenshot.jpg?raw=true "JUCI Screenshot")
+
+JUCI is theme-able and fully mobile-ready (responsive): 
+
+![Mobile](/media/mobile.jpg)
+
 
 Update: new build instructions available! 
 
@@ -28,17 +40,6 @@ JUCI Flash and Memory Requirements (actual runtime usage):
 - ~160k flash for backend rpc server (revorpcd)
 - 16M ram (revorpcd + lighttpd server) 
 
-JUCI architecture looks roughly like this: 
-
-![JUCI Architecture](/media/juci-architecture.jpg)
-
-JUCI frontend is built with html5, angularjs and bootstrap: 
-
-![Desktop](/media/screenshot.jpg?raw=true "JUCI Screenshot")
-
-JUCI is theme-able and fully mobile-ready (responsive): 
-
-![Mobile](/media/mobile.jpg)
 
 News
 ----
