@@ -1,11 +1,12 @@
 JUCI Webgui for Embedded Routers
 --------------------------------
 
-	Date: 19 Dec 2016
-	Author: Martin K. Schröder <mkschreder.uk@gmail.com>
+Author: Martin K. Schröder <mkschreder.uk@gmail.com>
 
 * Latest version of juci is v2.16.12
-* Juci feed for openwrt with all other packages that juci depends on can be found here: https://github.com/mkschreder/juci-openwrt-feed.git
+* Juci feed for openwrt with all other packages that juci depends on can be
+  found here: https://github.com/mkschreder/juci-openwrt-feed.git
+
 JUCI architecture looks roughly like this: 
 
 ![JUCI Architecture](/media/juci-architecture.jpg)
@@ -19,20 +20,22 @@ JUCI is theme-able and fully mobile-ready (responsive):
 ![Mobile](/media/mobile.jpg)
 
 
-Update: new build instructions available! 
-
 JUCI is modern web interface developed for OpenWRT-based embedded devices. It
 is built using HTML5 and angular.js and uses websockets for communicating with
 a compact and fast lua backend running on the embedded device. You can build
 both the frontend application and the backend server independently of each
 other and use them separately. 
 
-The OrangeRPCD project which JUCI uses as it's websocket based backend RPC server
-can be found here: [https://github.com/mkschreder/orangerpcd.git](https://github.com/mkschreder/orangerpcd.git). 
+The OrangeRPCD project which JUCI uses as it's websocket based backend RPC
+server can be found here:
+[https://github.com/mkschreder/orangerpcd.git](https://github.com/mkschreder/orangerpcd.git). 
 
-JUCI Documentation in HTML form can be found here: [http://mkschreder.github.io/juci](http://mkschreder.github.io/juci/)
+JUCI Documentation in HTML form can be found here:
+[http://mkschreder.github.io/juci](http://mkschreder.github.io/juci/)
 
-It is recommended that you start by reading overview of how juci works found here: [http://mkschreder.github.io/juci/manual/how-juci-works.html](http://mkschreder.github.io/juci/manual/how-juci-works.html)
+It is recommended that you start by reading overview of how juci works found
+here:
+[http://mkschreder.github.io/juci/manual/how-juci-works.html](http://mkschreder.github.io/juci/manual/how-juci-works.html)
 
 JUCI Flash and Memory Requirements (actual runtime usage): 
 
@@ -40,12 +43,10 @@ JUCI Flash and Memory Requirements (actual runtime usage):
 - ~160k flash for backend rpc server (revorpcd)
 - 16M ram (revorpcd + lighttpd server) 
 
-
 News
 ----
 
 Latest version of juci is 2.16.05. 
-Latest release of juci is 2.16.02 (Orange Sunrize)
 
 Release notes: 
 - Removed plugins that do not work on OpenWRT. 
@@ -54,7 +55,7 @@ Release notes version 2.16.03:
 - Moved backend to a specialized juci server and removed dependency on ubus in
   the backend (see motivation below)
 
-Removing ubus dependency (Feb 2016) 
+Removing ubus dependency (Feb 2016)
 -----------------------------------
 
 Original juci server was using ubus as it's primary way to organize backend
@@ -111,23 +112,6 @@ If offers you the following:
   supporting dynamically changing language on page without having to reload the
   application. Also featuring quick debug mode for translations where you can
   see which strings are missing in currently used language pack. 
-
-How to support JUCI
--------------------
-
-To support JUCI project (or any other GPL project) you can hire one of JUCI
-developers on contract basis to help you develop your particular product. You
-get plenty of code already in the repository free of charge under the terms of
-GPL - and you also get plenty of new features added on your demand. Depending
-on their availability, developers may have variable ammounts of time to put
-into your project. To get list of JUCI developers, you can clone this repo and
-run git shortlog command. 
-
-	git shortlog -s -e -n
-
-Since JUCI is distributed under the terms of GPL, you must also be aware that
-any functionality implemented just for you, must, by definition, also fall into
-GPL. 
 
 Usage on OpenWRT
 ----------------
@@ -234,67 +218,10 @@ and so you will not be able to login.
 JUCI also includes a nodejs server which you can do for local testing and for
 forwarding jsonrpc calls to your router during testing (juci-local-server). 
 
-The GPL
--------
-
-![GPL Compatibility](http://www.dwheeler.com/essays/floss-license-slide-image.png "GPL Compatibility Chart")
-
-JUCI project chooses the GPL because GPL is a license that protects software
-freedom. Freedom for software means that the software can move around the world
-and that every developer, anywhere, has freedom to adopt software to solve his
-specific problems. However, for this freedom to be lasting and perpetual it
-must follow that you as recipient of this software must also give the same
-freedoms to anyone else to whom you redistribute it. 
-
-GPL puts this idea into written form. Therefore JUCI is distributed under the
-GPLv3 as the most flexible of the freedom licenses which protects the freedoms
-of both software and your freedoms as the user who chooses to use this software
-and build products with it.  
-
-GPL (regardless of version) means that you as the user of the JUCI project
-(whether you use it commercially or privately) are always protected by law to
-exercise the four freedoms of GPL software: 
-
-- the freedom to run it
-- the freedom to study it
-- the freedom to redistribute it
-- the freedom to adopt it to your own needs and to your own products.
-
-You may do whatever you want with this software, but you can not take these
-freedoms away from it. These freedoms are granted to you by the GPL only on the
-condition that you never take them away or deny them to someone else as you
-adopt, modify and redistribute this software. And you must also guard these
-freedoms from anyone who may try to take them away. 
-
 Contribution
 ------------
 
-If you want to work on juci or if you are using juci yourself and make
-modifications to it, it is usually a good idea if you submit your modifications
-as patches. This can be done by using "git format-patch --stdout" and then
-submitting the patch to me by email or through the JUCI github page at
-https://github.com/mkschreder/juci.git. 
-
-For detailed instructions on how to submit patches see: 
-[Submitting Patches](https://github.com/mkschreder/juci/blob/master/docs/submitting-patches.md)
-
-If you make any significant patches to JUCI to accomodate your project needs,
-it is very good if you submit them upstream to main juci project because your
-changes are likely to become obsolete within a few months unless they are
-integrated into the main project. 
-
-Copyright Assignment
---------------------
-
-As a contributor to the JUCI project you remain as the holder of the copyright
-of your own contribution. Even if the copyright, under any circumstances, gets
-reassigned to someone else - you as the original owner of your contribution
-still retain all rights and benefits of a copyright holder to relicense and
-redistribute the code as your own. (note that GPL code that has once been
-released under GPL can not ever be made private in it's already released form.
-Only later versions can be made private - if you are the copyright holder.)
-Such a situation is however very unlikely to occur, unless someone decides to
-breach the GPL and do something stupid. 
+If you want to contribute to this project, feel free to submit pull requests. 
 
 Good to know
 ------------
@@ -488,19 +415,6 @@ Further information
 JUCI documentation can definitely be improved. You can speed up this process by
 posting your questions on the issues board on juci github page
 (https://github.com/mkschreder/juci/issues). 
-
-About Me
---------
-
-I'm a freelance consultant and I love to develop software. I work best when I
-can freely apply my knowledge to fulfill customer needs and adopt free software
-for solving specific customer problems. I can accept work from anyone as long
-as it is compatible with my existing obligations and duties. I do not work
-exclusively for anyone - it does not motivate me and I find it detrimental to
-performance. I find that I achieve best results when I get to adopt my software
-to a wide variety of different situations which resonates very well with the
-freedoms of free software. If you feel that I can add value to your products
-you should definitely email me about it to mkschreder.uk@gmail.com.
 
 License Notice
 --------------

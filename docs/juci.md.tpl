@@ -1,7 +1,8 @@
 JUCI
 ====
 
-JUCI WebGUI is designed for building modern and dynamic web interfaces for embedded devices. 
+JUCI WebGUI is designed for building modern and dynamic web interfaces for
+embedded devices. 
 
 * Project git: [https://github.com/mkschreder/juci](https://github.com/mkschreder/juci)
 * Official docs: [https://mkschreder.github.io/juci](https://mkschreder.github.io/juci)
